@@ -1,0 +1,122 @@
+# Standards Analysis
+
+- pair-conveyor-energized: Pass; 30 CFR 56.14107
+- pair-conveyor-locked: Pass; no active citations
+- pair-unguarded-production: Pass; 29 CFR 1910.219(c), 29 CFR 1910.212
+- pair-guard-off-deenergized: Pass; no active citations
+- pair-panel-live: Pass; 29 CFR 1910.303(g)(2)(i)
+- pair-panel-verified-dead: Pass; no active citations
+- pair-cord-active-wet: Pass; 29 CFR 1910.305(g)(2)(iii), 29 CFR 1910.305(g), 29 CFR 1910.334(a)(2)(ii)
+- pair-cord-discarded: Needs Review; no active citations
+- pair-roof-edge-open: Pass; 29 CFR 1926.501, 29 CFR 1926.501(b)(1)
+- pair-roof-edge-guarded: Pass; no active citations
+- pair-trench-deep: Pass; 29 CFR 1926.651(c)(2)
+- pair-trench-shallow-controlled: Needs Review; no active citations
+- pair-chemical-aisle-spill: Pass; 29 CFR 1910.22(a)(2)
+- pair-chemical-contained: Needs Review; no active citations
+- pair-unlabeled-unknown: Pass; 29 CFR 1910.1200(f)(1), 29 CFR 1910.1200(f)(6)
+- pair-labeled-closed: Needs Review; no active citations
+- pair-loader-alarm-broken: Pass; 30 CFR 56.14132(a), 30 CFR 56.9100
+- pair-loader-removed-service: Pass; no active citations
+- pair-tank-entry: Pass; 1910.146
+- pair-tank-outside: Needs Review; no active citations
+- pair-asbestos-disturbance: Pass; 29 CFR 1926.1101
+- pair-asbestos-intact: Pass; no active citations
+- pair-handrail-missing: Pass; 29 CFR 1910.28(b)(11)
+- pair-low-platform: Needs Review; no active citations
+- pair-hotwork-combustibles: Pass; 29 CFR 1910.252(a)(2)(iv)
+- pair-hotwork-controlled: Needs Review; no active citations
+- pair-cylinder-unsecured: Pass; 29 CFR 1910.101(b)
+- pair-cylinder-carrier: Needs Review; no active citations
+- pair-noise-high: Pass; 29 CFR 1910.95
+- pair-noise-low: Needs Review; no active citations
+- pair-heat-illness: Pass; no active citations
+- pair-heat-controlled: Needs Review; no active citations
+- pair-bloodborne-exposure: Pass; 29 CFR 1910.1030
+- pair-bloodborne-kit: Fail; 1910.22(a), 29 CFR 1910.1030
+- pair-msha-berm-missing: Pass; 30 CFR 56.9300
+- pair-msha-flat-road: Pass; 30 CFR 56.14107(a)
+- pair-scaffold-no-rails: Pass; 29 CFR 1926.451(g)(1)
+- pair-scaffold-complete: Needs Review; no active citations
+- pair-exit-blocked: Pass; 29 CFR 1910.37(a)(3)
+- pair-exit-clear: Needs Review; no active citations
+- pair-msha-highwall-crack: Pass; no active citations
+- pair-msha-highwall-distant: Pass; no active citations
+- gi-ladder-top-step: Pass; 29 CFR 1910.23(b)
+- gi-pit-charging: Pass; 29 CFR 1910.178(l)
+- gi-stacked-material: Pass; 1910.22(a)(3), 29 CFR 1910.22(a), 29 CFR 1910.176(b)
+- gi-ergonomics: Pass; no active citations
+- gi-respirator-voluntary: Pass; 29 CFR 1910.134
+- gi-flammable-cabinet: Pass; 29 CFR 1910.106
+- gi-fire-extinguisher-missing: Pass; 29 CFR 1910.157(c)(1)
+- gi-overhead-load: Pass; no active citations
+- gi-office-trip: Pass; 29 CFR 1910.22(a)(3)
+- gi-open-floor-hole: Pass; 29 CFR 1910.28(b)(3)
+- gi-chemical-symptoms: Pass; 29 CFR 1910.1200
+- gi-press-two-hand: Pass; 29 CFR 1910.217
+- gi-saw-guard: Pass; 29 CFR 1910.212(a)(1), 29 CFR 1910.212(a)(3)(ii), 29 CFR 1910.213
+- gi-no-handrail-stairs: Pass; 1910.22(a)(1), 29 CFR 1910.28(b)(1), 29 CFR 1910.28(b)(11)
+- gi-emergency-action: Pass; 29 CFR 1910.38
+- gi-ppe-splash: Pass; 29 CFR 1910.132
+- gi-powered-truck-defect: Pass; 29 CFR 1910.178(p)(1), 29 CFR 1910.178, 29 CFR 1910.178(l)
+- gi-pit-blind-corner: Pass; 29 CFR 1910.178(l)
+- gi-confined-space-vague: Pass; no active citations
+- gi-harmless-dramatic: Needs Review; no active citations
+- cx-roof-warning-line: Pass; 29 CFR 1926.501(b)(1)
+- cx-scaffold-plank: Pass; 29 CFR 1926.451
+- cx-ladder-3ft: Pass; 29 CFR 1926.1053(b)(1), 29 CFR 1926.1053(b)
+- cx-gfci-temp: Pass; 29 CFR 1926.404(b)(1)(ii)
+- cx-crane-powerline: Pass; 29 CFR 1926.1410, 29 CFR 1926.651, 29 CFR 1926.1425
+- cx-rigging-sling: Pass; 29 CFR 1926.1425
+- cx-demo-hole: Pass; 29 CFR 1926.501
+- cx-silica-cutting: Pass; 29 CFR 1926.1153
+- cx-steel-connector: Pass; 29 CFR 1926.501(b)(1)
+- cx-trench-egress: Pass; 29 CFR 1926.651(c)(2)
+- cx-heavy-equipment-back: Pass; 29 CFR 1926.602(a)(9)(ii), 29 CFR 1926.602(a)(9)
+- cx-traffic-control: Pass; 29 CFR 1926.95
+- cx-masonry-wall: Pass; no active citations
+- cx-confined-space: Pass; 29 CFR 1926.1200
+- cx-concrete-impalement: Pass; 29 CFR 1926.701
+- cx-roof-controlled: Pass; no active citations
+- cx-competent-person: Pass; 29 CFR 1926.652(a)(1)
+- cx-temporary-light: Pass; 29 CFR 1926.405
+- cx-caught-between: Pass; 29 CFR 1926.602(a)(9)(ii), 29 CFR 1926.602(a)(9)
+- cx-vague-edge: Pass; no active citations
+- msha-trailing-cable: Pass; 30 CFR 56.12013, 30 CFR 56.12004
+- msha-grounding: Pass; 30 CFR 56.14107(a), 30 CFR 56.12025
+- msha-berm-dump: Pass; 30 CFR 56.9300
+- msha-roadway-rules: Pass; 30 CFR 56.9100(a), 30 CFR 56.9100
+- msha-ladder-travelway: Pass; 30 CFR 56.11001
+- msha-housekeeping: Pass; 30 CFR 56.20003(a), 30 CFR 56.20003
+- msha-cylinder: Pass; 30 CFR 56.16005
+- msha-welding-fire: Pass; no active citations
+- msha-parking: Pass; 30 CFR 56.14207
+- msha-preop: Pass; 30 CFR 56.14100
+- msha-stored-energy: Pass; 30 CFR 56.12016
+- msha-fall-crusher: Pass; 30 CFR 56.11012
+- msha-nonmine-trap: Fail; no active citations
+- msha-jam-vague: Pass; no active citations
+- msha-dust: Pass; 30 CFR 56.5002
+- msha-illumination: Pass; 30 CFR 56.17001
+- extra-vague-78: Pass; no active citations
+- msha-exit-blocked: Pass; 30 CFR 56.14107(a), 30 CFR 56.11001
+- extra-vague-77: Pass; no active citations
+- msha-fire-ext: Pass; 30 CFR 56.4201
+- extra-vague-76: Pass; no active citations
+- msha-safe-guarded: Pass; no active citations
+- extra-vague-75: Pass; no active citations
+- gi-e-stop-blocked: Pass; 29 CFR 1910.212
+- extra-vague-74: Pass; no active citations
+- cx-vague-ladder-bad: Pass; no active citations
+- extra-vague-73: Pass; no active citations
+- cx-rigging-tag: Pass; 29 CFR 1926.1425
+- extra-vague-72: Pass; no active citations
+- msha-raised-crusher-blocking: Pass; 30 CFR 56.12016
+- extra-vague-71: Pass; no active citations
+- gi-recycling-conveyor-trap: Pass; 29 CFR 1910.212(a)(1), 29 CFR 1910.212(a)(3)(ii), 29 CFR 1910.219(c)
+- extra-vague-70: Pass; no active citations
+- gi-heat-recovered: Needs Review; 29 CFR 1910.1200
+- extra-vague-69: Pass; no active citations
+- gi-closed-corrosive: Pass; no active citations
+- extra-vague-68: Pass; no active citations
+- cx-floor-opening-covered: Pass; no active citations

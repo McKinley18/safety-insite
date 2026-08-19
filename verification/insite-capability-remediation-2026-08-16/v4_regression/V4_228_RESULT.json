@@ -1,0 +1,5078 @@
+{
+  "summary": {
+    "version": "FAMILY_MATRIX_SCORE_V4_AUTHORITATIVE_REMEDIATION_20260816",
+    "rows": 228,
+    "byKind": {
+      "positive": {
+        "total": 76,
+        "pass": 76,
+        "fail": 0,
+        "outcomes": {
+          "PASS": 76
+        }
+      },
+      "negative": {
+        "total": 76,
+        "pass": 76,
+        "fail": 0,
+        "outcomes": {
+          "PASS": 76
+        }
+      },
+      "ambiguity": {
+        "total": 38,
+        "pass": 38,
+        "fail": 0,
+        "outcomes": {
+          "PASS": 38
+        }
+      },
+      "safe": {
+        "total": 38,
+        "pass": 38,
+        "fail": 0,
+        "outcomes": {
+          "PASS": 38
+        }
+      }
+    },
+    "totalPass": 228,
+    "totalRows": 228
+  },
+  "scored": [
+    {
+      "caseId": "FM-001",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a running machine has an accessible unguarded nip point",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "machine_guarding",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-002",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a rotating shaft is reachable because its fixed guard is missing",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "machine_guarding",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-003",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-004",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-005",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-006",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "SAFE_VERIFIED",
+          "source": "decomposition",
+          "fragment": "guard replacement is verified effective",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-007",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "employees service energized equipment without lockout/tagout",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.75
+        },
+        {
+          "family": "electrical",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "lockout_tagout",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-008",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "stored hydraulic energy remains",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "stored hydraulic energy remains while a worker clears a jam.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.75
+        },
+        {
+          "family": "machine_guarding_loto",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.55
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "lockout_tagout",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-009",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "controlled_condition",
+          "state": "SAFE_VERIFIED",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-010",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-011",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-012",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-013",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "electrical",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "live electrical parts are accessible behind a damaged enclosure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "electrical",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "electrical",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-014",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "electrical",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "damaged insulation exposes an energized conductor",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.9
+        },
+        {
+          "family": "electrical",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "electrical",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-015",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "electrical",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-016",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-017",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "electrical",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-018",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding_loto",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-019",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker is beside an unguarded elevated edge",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "fall_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "fall_protection",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-020",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an accessible floor opening has no cover or guardrail",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "fall_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an accessible floor opening has no cover or guardrail",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.8
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "fall_protection",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-021",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fall_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-022",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a floor opening is covered",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-023",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-024",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fall_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-025",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "walking_working_surfaces",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-026",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fall_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a platform has a damaged surface",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "unsafe elevation transition",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "fall_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "walking_working_surfaces",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-027",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "slips_trips_falls",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "the floor",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-028",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-029",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-030",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding_loto",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-031",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "slips_trips_falls",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a wet floor creates a same-level slip path",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "slips_trips_falls_housekeeping",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-032",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "housekeeping",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "debris obstruct an aisle",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "slips_trips_falls_housekeeping",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-033",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "material_handling",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "the aisle is clean",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-034",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "slips_trips_falls",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a clean floor has no contamination or trip obstruction",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-035",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-036",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-037",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a loader operates near an exposed pedestrian",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "mobile_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-038",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a mobile machine has a disabling safety defect during operation",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "mobile_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-039",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-040",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-041",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-042",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-043",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "powered_haulage",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a haul truck moves through an active work area without a safe haul route",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "powered_haulage",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-044",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a conveyor transports material with an exposed moving danger zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "powered_haulage",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a conveyor transports material with an exposed moving danger zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "powered_haulage",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-045",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "guarded",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": true,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-046",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-047",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-048",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-049",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "pedestrians",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "traffic_control",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "pedestrians and vehicles share an uncontrolled route without barriers or a spotter",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "traffic_control",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-050",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "traffic_control",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a blind crossing lacks signs, separation, or movement control",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "traffic_control",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-051",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "pedestrian",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-052",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-053",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-054",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-055",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "material_handling",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a pallet stack is leaning",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "fall_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "could fall into an aisle",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "material_handling_storage",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a pallet stack is leaning and could fall into an aisle",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.88
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "material_handling_storage",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-056",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "material_handling_storage",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a rack is visibly damaged and overloaded",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.88
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "material_handling_storage",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-057",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-058",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-059",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-060",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-061",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "rigging_lifting",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a sling has visible damage",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "cranes_hoists_rigging",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-062",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "cranes_hoists_rigging",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-063",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "rigging_lifting",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "rigging inspection",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-064",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "rigging_lifting",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a crane is present but no lift or rigging deficiency exists",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-065",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-066",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-067",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "suspended_loads",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker stands beneath a suspended load",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.9
+        },
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "suspended_loads",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-068",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "suspended_loads",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an overhead load swings through an occupied exclusion zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "suspended_loads",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-069",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-070",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cranes_hoists",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a crane lifts with a verified exclusion zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "cranes_rigging_hoisting",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-071",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-072",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-073",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an open trench lacks a protective system",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "excavation_trenching_ground_control",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-074",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "excavation walls show instability",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "no shoring is present",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "excavation_trenching_ground_control",
+          "match": "ACCEPTED_ALIAS"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-075",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "the excavation is backfilled/restored",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-076",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "the trench is protected",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-077",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "decomposition",
+          "fragment": "excavation exists but protection or current exposure is unknown",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-078",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-079",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker enters a tank through a restricted opening without evaluation",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "confined_space",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-080",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "emergency_egress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a pit entry has limited egress",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "confined_space",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-081",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-082",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-083",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-084",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-085",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "flammable vapor is present beside an active ignition source",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.9
+        },
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "fire_explosion",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-086",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a combustible process has an uncontrolled ignition/explosion condition",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.9
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "fire_explosion",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-087",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-088",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-089",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-090",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-091",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding is underway in the work area",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "hot_work",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-092",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "grinding produces sparks during current work.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "hot_work",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-093",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-094",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding_loto",
+          "state": "PLANNED_FUTURE",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-095",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-096",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-097",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fire_explosion",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "combustible dust accumulates near an ignition-capable machine",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.9
+        },
+        {
+          "family": "combustible_dust",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "combustible dust accumulates near an ignition-capable machine",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        },
+        {
+          "family": "fire_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "combustible_dust",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-098",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "combustible_dust",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a dust-generating process lacks controls and creates a combustible cloud",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "combustible_dust",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-099",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-100",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "housekeeping",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-101",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "housekeeping",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-102",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "housekeeping",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-103",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "pressure_systems",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a pressure vessel has a defective relief device",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "pressure_systems",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-104",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "pressure_systems",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "presents rupture or release risk",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "pressurized piping leaks and presents rupture or release risk.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "pressure_systems",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-105",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-106",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-107",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-108",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-109",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fall_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an unsecured gas cylinder can fall or its valve is leaking",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an unsecured gas cylinder can fall or its valve is leaking",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "compressed_gas",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "compressed_gas",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-110",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "compressed_gas",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a damaged gas hose releases compressed gas near workers",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "compressed_gas",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "compressed_gas",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-111",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a cylinder is secured, capped, and not leaking.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "compressed_gas",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-112",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "ordinary pneumatic equipment operates without cylinder/storage/release evidence",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "compressed_gas",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-113",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-114",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "compressed_gas",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-115",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a pneumatic actuator retains pressure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "machine_guarding_loto",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "hydraulic_pneumatic_energy",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-116",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hydraulic_pneumatic_energy",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "hydraulic stored energy remains",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.78
+        },
+        {
+          "family": "lockout_tagout",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "hydraulic stored energy remains while a machine is opened for maintenance.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.75
+        },
+        {
+          "family": "machine_guarding_loto",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "hydraulic_pneumatic_energy",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-117",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "controlled_condition",
+          "state": "SAFE_VERIFIED",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-118",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-119",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-120",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-121",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an open chemical transfer hose leaks beside workers",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "chemical_transfer",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an open chemical transfer hose leaks beside workers",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.87
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "chemical_transfer",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-122",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "chemical_transfer",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a transfer connection is incompatible and creates splash/release risk",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.87
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "chemical_transfer",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-123",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-124",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a sealed chemical container is present without transfer activity",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-125",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-126",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "controlled_condition",
+          "state": "SAFE_VERIFIED",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-127",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "emergency_egress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an exit route is blocked by stored material",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "emergency_preparedness",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "emergency_egress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-128",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "emergency_egress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an emergency exit door is locked against egress",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "emergency_preparedness",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "emergency_egress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-129",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-130",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "emergency_preparedness",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-131",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-132",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-133",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "emergency_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an eyewash is inaccessible beside an active corrosive-use station",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.88
+        },
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "emergency_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-134",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "fire_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required emergency alarm or extinguisher is missing",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "emergency_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required emergency alarm or extinguisher is missing and the process context establishes the need",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.87
+        },
+        {
+          "family": "fire_protection",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "emergency_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-135",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-136",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-137",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-138",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-139",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "personal_protective_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers face splash exposure without required eye/face protection",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "personal_protective_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-140",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "required gloves are absent during an evidenced chemical contact task",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "personal_protective_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "required gloves are absent during an evidenced chemical contact task",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "personal_protective_equipment",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-141",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-142",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-143",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-144",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-145",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "silica_respirable_dust",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "dry cutting concrete creates visible dust in the worker breathing zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.6
+        },
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "dry cutting concrete creates visible dust in the worker breathing zone.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "silica_respirable_dust",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-146",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "silica_respirable_dust",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a silica-bearing material is mechanically disturbed without effective dust control",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "health_respiratory",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "silica_respirable_dust",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-147",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "health_respiratory",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-148",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "health_respiratory",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-149",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-150",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-151",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "arc welding fumes accumulate in the worker breathing zone",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "welding_fumes",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "arc welding fumes accumulate in the worker breathing zone.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.6
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "welding_fumes",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-152",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding occurs in a confined area without effective fume capture",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding occurs in a confined area without effective fume capture.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "welding_fumes",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding occurs in a confined area without effective fume capture.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.6
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "welding_fumes",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-153",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-154",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-155",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding occurs but breathing-zone exposure is unknown.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V4_FAMILY_RELATIVE"
+    },
+    {
+      "caseId": "FM-156",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-157",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "chemical_inhalation_contact",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker inhales solvent vapor from an open process",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "chemical_inhalation_contact",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-158",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "chemical splash contacts an employee's unprotected skin",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "chemical_inhalation_contact",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "chemical splash contacts an employee's unprotected skin",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "chemical_inhalation_contact",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-159",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "the chemical is sealed with no employee exposure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-160",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-161",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-162",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-163",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers cut silica material without the required respirators",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "respiratory_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers cut silica material without the required respirators",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "respiratory_protection",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-164",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required cartridge respirator is damaged during chemical-vapor exposure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "respiratory_protection",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required cartridge respirator is damaged during chemical-vapor exposure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "respiratory_protection",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-165",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-166",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-167",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-168",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-169",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "noise_exposure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers operate beside clearly excessive noise without controls",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "noise_exposure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-170",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "noise_exposure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a noisy process produces sustained exposure and hearing controls are absent",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "noise_exposure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-171",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "roof_rib_control",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-172",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "noise_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-173",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "noise_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-174",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-175",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "heat_stress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker is dizzy and confused during heavy work in a hot area without cooling or water",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.84
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "heat_stress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-176",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers show heat-exhaustion symptoms during prolonged hot work without rest controls",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "heat_stress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers show heat-exhaustion symptoms during prolonged hot work without rest controls",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.84
+        },
+        {
+          "family": "industrial_hygiene",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.58
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "heat_stress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-177",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-178",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-179",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-180",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-181",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cold_stress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker has numb hands and confusion after prolonged wet freezing work without warming breaks",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.84
+        },
+        {
+          "family": "cold_stress",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "cold_stress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-182",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cold_stress",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "employees work in a refrigerated area with wet clothing and no warming shelter",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.84
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "cold_stress",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-183",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-184",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-185",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "cold_stress",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-186",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-187",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "ergonomic_strain",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an employee repeatedly lifts heavy boxes with twisting throughout the shift",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.55
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "ergonomic_strain",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-188",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "ergonomic_strain",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "workers maintain a bent wrist and forceful grip during repetitive assembly",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "ergonomic_strain",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "ergonomic_strain",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-189",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-190",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-191",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-192",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "ergonomic_strain",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-193",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "biological_exposure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a worker handles blood-contaminated sharps without controls",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "biological_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "biological_exposure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-194",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "biological_exposure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "employees clean infectious waste without containment or hygiene controls",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "biological_exposure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-195",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "material_handling",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a clinic is mentioned without biological material or exposure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-196",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-197",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-198",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-199",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "illumination_visibility",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a work area is too dark to see a walking hazard",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "illumination_visibility",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-200",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "mobile_equipment",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "glare prevents a vehicle operator from seeing pedestrians at a crossing",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "illumination_visibility",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "glare prevents a vehicle operator from seeing pedestrians at a crossing",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.85
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "illumination_visibility",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-201",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-202",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-203",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-204",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-205",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hot_work",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding fumes accumulate because local exhaust is disconnected.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.4
+        },
+        {
+          "family": "ventilation_air_quality",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "welding fumes accumulate because local exhaust is disconnected.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.6
+        },
+        {
+          "family": "hazcom_chemical_exposure",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "ventilation_air_quality",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-206",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazcom",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a chemical room has stagnant contaminated air",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "ventilation_air_quality",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a chemical room has stagnant contaminated air and an inoperative exhaust fan.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.6
+        },
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "ventilation_air_quality",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-207",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "silica_respirable_dust",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "silica dust is controlled by operating exhaust",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "health_respiratory",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.82
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-208",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-209",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "housekeeping",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-210",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-211",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "contractor_coordination",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "host and contractor crews share an exclusion zone with conflicting energy-control responsibilities.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "mobile_equipment",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.45
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "contractor_coordination",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-212",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a contractor enters a controlled excavation without the host communicating the protective boundary",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "contractor_coordination",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a contractor enters a controlled excavation without the host communicating the protective boundary.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "excavation_trenching",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "contractor_coordination",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-213",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-214",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-215",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-216",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-217",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "training_procedure_supervision",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "an employee states they were never trained in the required lockout procedure",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "lockout_tagout",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.25
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "training_procedure_supervision",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-218",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "excavation_trenching",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required excavation procedure is unavailable",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "training_procedure_supervision",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a required excavation procedure is unavailable and a supervisor directs entry without review",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "confined_space",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "training_procedure_supervision",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-219",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-220",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-221",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-222",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "hazardous_materials",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.52
+        }
+      ],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-223",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a guard-replacement action was marked complete but inspection still finds the guard missing",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "corrective_action_verification_failure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a guard-replacement action was marked complete but inspection still finds the guard missing.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "corrective_action_verification_failure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-224",
+      "fixtureKind": "positive",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "corrective_action_verification_failure",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a spill-control repair was closed but the same verified leak remains.",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.86
+        },
+        {
+          "family": "walking_working_surfaces",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.93
+        }
+      ],
+      "positiveMatches": [
+        {
+          "requiredFamily": "corrective_action_verification_failure",
+          "match": "EXACT_MATCH"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "caseId": "FM-225",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [
+        {
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "source": "decomposition",
+          "fragment": "a newly observed missing guard has no prior assignment or closure record",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.2
+        },
+        {
+          "family": "machine_guarding",
+          "state": "UNKNOWN",
+          "source": "primary",
+          "fragment": "",
+          "advisoryOnly": false,
+          "candidate": false,
+          "controlled": false,
+          "confidence": 0.7
+        }
+      ],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-226",
+      "fixtureKind": "negative",
+      "outcome": "PASS",
+      "actual": [],
+      "targetPromotion": []
+    },
+    {
+      "caseId": "FM-227",
+      "fixtureKind": "ambiguity",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    },
+    {
+      "caseId": "FM-228",
+      "fixtureKind": "safe",
+      "outcome": "PASS",
+      "actual": [],
+      "unsupported": [],
+      "scoringRule": "V3_OBSERVATION_GLOBAL_FALLBACK"
+    }
+  ]
+}

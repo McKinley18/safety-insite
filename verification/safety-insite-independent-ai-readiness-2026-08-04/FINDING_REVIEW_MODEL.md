@@ -1,0 +1,3 @@
+# Finding-scoped review model
+
+Migration `1800000005500-FindingScopedHumanReviews` adds `human_reviews.findingId`, `status` (`current`, `superseded`, `invalidated`), and `idempotencyKey`, with finding foreign key, indexes, unique current-review index, and unique finding/idempotency index. `InspectionFinding.finalReviewId` links the current accepted review. Reanalysis invalidates a review only when the finding’s mechanism/source candidate materially changes; unchanged findings retain review state deterministically. New findings are pending review. Finalization requires every active finding to have a current review and finalized/dismissed state.

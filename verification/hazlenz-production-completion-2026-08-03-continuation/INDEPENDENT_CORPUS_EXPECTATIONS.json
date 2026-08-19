@@ -1,0 +1,1400 @@
+[
+  {
+    "id": "gi-machine-guard-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-machine-guard-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-machine-guard-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-loto-jam-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.147"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-loto-jam-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.147"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-loto-jam-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.147"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-panel-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.303"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-panel-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.303"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-panel-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.303"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-cord-wet-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.305"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-cord-wet-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.305"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-cord-wet-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.305"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-walkway-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.22"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-walkway-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.22"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-walkway-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.22"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-confined-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-confined-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-confined-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-label-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-label-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-label-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-spill-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-spill-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-chemical-spill-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-oxygen-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.101"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-oxygen-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.101"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-oxygen-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.101"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-noise-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-noise-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-noise-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-hot-work-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-hot-work-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-hot-work-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-exit-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-exit-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-exit-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-pit-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-pit-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-pit-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-ppe-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-ppe-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-ppe-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-training-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-training-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-training-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "c-fall-edge-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-fall-edge-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-fall-edge-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-ladder-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-ladder-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-ladder-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.652"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.652"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.652"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-shallow-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-shallow-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-trench-shallow-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-temp-power-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-temp-power-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-temp-power-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-silica-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-silica-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-silica-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-hoist-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-hoist-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-hoist-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-housekeeping-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-housekeeping-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-housekeeping-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-maintenance-ambiguous-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-maintenance-ambiguous-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-maintenance-ambiguous-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-roof-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-roof-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-roof-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-welding-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-welding-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-welding-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-safe-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-safe-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-scaffold-safe-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-chemical-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-chemical-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-chemical-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "m-traffic-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.9100"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-traffic-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.9100"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-traffic-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.9100"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-conveyor-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.14107"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-conveyor-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.14107"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-conveyor-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.14107"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.3200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.3200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.3200"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-safe-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-safe-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ground-safe-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-electrical-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.12025"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-electrical-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.12025"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-electrical-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "56.12025"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-loto-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-loto-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-loto-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ladder-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ladder-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-ladder-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-compressed-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-compressed-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-compressed-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-contractor-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-contractor-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-contractor-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-housekeeping-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-housekeeping-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "m-housekeeping-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "MSHA metal/nonmetal"
+  },
+  {
+    "id": "x-unknown-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-unknown-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-unknown-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-prompt-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-prompt-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-prompt-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-recordkeeping-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-recordkeeping-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-recordkeeping-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Uncertain"
+  },
+  {
+    "id": "x-coal-1",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Unsupported"
+  },
+  {
+    "id": "x-coal-2",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Unsupported"
+  },
+  {
+    "id": "x-coal-3",
+    "expected": {
+      "requiredCitationFamilies": [],
+      "forbiddenCitationFamilies": [],
+      "disposition": "safe_or_review"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "Unsupported"
+  }
+]

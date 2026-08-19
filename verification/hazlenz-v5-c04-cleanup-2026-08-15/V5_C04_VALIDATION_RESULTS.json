@@ -1,0 +1,93 @@
+{
+  "phase": "V5-C04",
+  "date": "2026-08-16",
+  "disposable_infra": {
+    "database": "phase130_c04_20260816",
+    "backend_port": 4300,
+    "storage_root": "scratchpad/c04_storage"
+  },
+  "results": [
+    {
+      "id": "C04-01",
+      "name": "Canonical corrective action unchanged",
+      "status": "PASS",
+      "evidence": "backend/scripts/test-canonical-workflow.ts -> {\"passed\":true,...,\"persisted\":{...,\"actions\":1}}. generatedActions and correctiveActionReasoning both confirmed present and populated in a live classify() response after this phase's edits; neither engine (ActionEngineService, CorrectiveActionBrainService) was touched."
+    },
+    {
+      "id": "C04-02",
+      "name": "Hierarchy of controls not regressed toward default PPE/training",
+      "status": "PASS",
+      "evidence": "No live hierarchy-of-controls engine was modified. SafeScopeControlEffectivenessService (the real hierarchy-of-controls logic) was confirmed dead before and after this phase (instrumentation), so it was not a live decision input either way. The two removed engines (CorrectiveActionControlMapService, GovernanceReportAdapterService) always returned the same hardcoded 'guarding' family regardless of hazard -- removing them cannot cause a regression toward PPE/training since they never varied by hazard in the first place."
+    },
+    {
+      "id": "C04-03",
+      "name": "Mechanism specificity preserved",
+      "status": "PASS",
+      "evidence": "mechanismChain / correctiveActionReasoning generation logic untouched. Live classify() response retains mechanism-specific narrative content unchanged by this phase's edits (only controlMap/adapter, both mechanism-agnostic hardcoded stubs, were removed)."
+    },
+    {
+      "id": "C04-04",
+      "name": "No placeholder output reaches inspector-facing fields",
+      "status": "PASS",
+      "evidence": "Live classify() response captured after the fix: 'has controlMap: False', 'has adapter: False' (both fields fully removed from the API response and from intelligence-orchestrator.service.ts's returned object, and from persistence since resultSnapshot no longer contains them)."
+    },
+    {
+      "id": "C04-05",
+      "name": "Clarification behavior unchanged unless explicitly justified",
+      "status": "PASS",
+      "evidence": "clarifyingQuestions / evidenceGapQuestions / evg (EvidenceQuestionGenerationService) computation untouched. resultStage/mayFinalize logic in the hash-protected safescope-v2.service.ts untouched. Evidence-sufficiency verdict deliberately left unwired into finalize/clarification gating per explicit task instruction (see runtime census)."
+    },
+    {
+      "id": "C04-06",
+      "name": "Evidence sufficiency: no accidental finalization/clarification regression",
+      "status": "PASS",
+      "evidence": "backend/scripts/validate-safescope-evidence-sufficiency.ts -> 6/6 cases passed ('SafeScope evidence sufficiency validation passed.'). evidence-sufficiency-core/evidence-sufficiency.service.ts was not edited; only a documentation comment was added in the (non-protected) orchestrator file at the call site."
+    },
+    {
+      "id": "C04-07",
+      "name": "V5-C01 finding-scoped risk remains independent",
+      "status": "PASS",
+      "evidence": "Fresh DB query against phase130_c04_20260816 after this phase's edits: two sibling findings from the same observation (machine_guarding, hazardous_energy) carry independently-computed riskSnapshot values (riskBand High vs Moderate respectively, both source=system_generated), demonstrating sibling isolation is intact. No file under backend/src/inspection/ or backend/src/safescope-v2/risk/ was touched in this phase (confirmed via session tool-call audit)."
+    },
+    {
+      "id": "C04-08",
+      "name": "PRA-002 shared-review completion remains closed",
+      "status": "PASS",
+      "evidence": "backend/scripts/test-finding-scoped-reviews.ts -> {\"passed\":true,...,\"currentReviewCount\":2,\"finalStatus\":\"completed\"} -- 2 findings sharing/using 2 distinct reviews, completion succeeded correctly. inspection.service.ts's transition() completion-gate logic was not touched in this phase."
+    },
+    {
+      "id": "C04-09",
+      "name": "No report regression",
+      "status": "PASS",
+      "evidence": "backend/scripts/test-private-storage-reports.ts -> {\"passed\":true,\"scenarios\":12,...}. canonical-reports.service.ts was not touched in this phase."
+    },
+    {
+      "id": "C04-10",
+      "name": "No authorization regression",
+      "status": "PASS",
+      "evidence": "test-canonical-workflow.ts: crossUserDenials=4, massAssignmentRejected=true. test-private-storage-reports.ts: crossUserDownload=404. JwtGuard/EntitlementGuard/RolesGuard and all controller decorators untouched in this phase."
+    },
+    {
+      "id": "C04-11",
+      "name": "Focused performance measured before/after, no overclaiming",
+      "status": "PASS",
+      "evidence": "See V5_C04_PERFORMANCE_NOTES.md. Response payload reduced 76,608 -> 75,324 bytes (-1.7%) for an identical fixture. No per-request CPU/latency win is claimed (removed computations were O(1) hardcoded-return functions); dead-chain constructor cost is a one-time singleton cost, unaffected by this phase since its removal is blocked by the protected-file constraint."
+    },
+    {
+      "id": "C04-12",
+      "name": "Runtime object graph: removed components no longer instantiated/called",
+      "status": "PASS",
+      "evidence": "CorrectiveActionControlMapService and GovernanceReportAdapterService: source files deleted entirely (strongest possible proof of non-instantiation). SafeScopeActionQualityService / SafeScopeControlEffectivenessService / SafeScopeNativeReasoningService: confirmed via instrumentation to receive zero invocations on a real classify() call both before and after this phase (their instantiation could not be removed due to the protected-file constraint, but zero-invocation status is unchanged and now explicitly documented in source)."
+    }
+  ],
+  "pre_existing_unrelated_findings_not_caused_by_c04": [
+    {
+      "finding": "backend/scripts/validate-safescope-defensible-corrective-action.ts reports '2 defensible-corrective-action validation case(s) failed.'",
+      "attribution": "Pre-existing. dca.service.ts, dca.types.ts, and this validation script were not modified at any point in this session (confirmed via git status showing no diff against HEAD for these paths, and via the session's own tool-call history). Not investigated or fixed -- out of scope for a placeholder-cleanup phase; flagged for separate root-cause triage."
+    },
+    {
+      "finding": "backend/scripts/smoke-corrective-actions-organization-scope.ts fails to compile: CreateCorrectiveActionDto now requires assignedToUserId/assignedToName which the script's fixture does not supply.",
+      "attribution": "Pre-existing. backend/src/corrective-actions/** was not modified at any point in this session. This is a stale test fixture vs. a DTO that gained required fields in earlier, unrelated work. Not fixed -- out of scope; flagged for separate triage."
+    }
+  ]
+}

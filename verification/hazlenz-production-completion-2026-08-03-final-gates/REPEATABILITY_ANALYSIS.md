@@ -1,0 +1,3 @@
+# Repeatability analysis
+
+The planned sample includes all life-critical cases. A paced execution completed 32 life-critical cases (three HTTP 201 passes each) before being stopped during a prolonged throttle wait; all completed cases were semantically stable with no transport failures. The full selected sample therefore remains incomplete and is a release blocker. Material instability is defined as a jurisdiction change, required-family appearance/disappearance, unsupported definitive citation, lost material hazard, changed safe-state suppression, risk movement greater than one category without changed evidence, unsafe corrective action, or pending-review leakage.

@@ -1,0 +1,410 @@
+{
+  "attempted": 40,
+  "valid": 40,
+  "transportFailures": 0,
+  "crossFamilyCorrectiveActionLeakage": 0,
+  "crossFamilyMechanismLeakage": 1,
+  "mechanismActivityInconsistency": 0,
+  "rows": [
+    {
+      "id": "q01",
+      "category": "corrective_guard",
+      "domain": "guarding",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "The supplied evidence indicates cut amputation point of operation could expose access to point; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q02",
+      "category": "corrective_energy",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Restore the enclosure or replace damaged electrical components with equipment-rated parts, then verify insulation and enclosure integrity before re-energizing.",
+      "mechanism": "Contact with the supplied energized electrical parts, or an arc across the available path, could transfer electrical energy to unknown and cause shock, burns, or fatal injury."
+    },
+    {
+      "id": "q03",
+      "category": "corrective_forklift",
+      "domain": "mobile",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Engineer durable pedestrian/vehicle separation and a defined traffic-control layout matched to the observed route and visibility limits.",
+      "mechanism": "Vehicle or moving-object energy could contact employees walking beside moving equipment in the described path, causing struck-by or caught-between injury."
+    },
+    {
+      "id": "q04",
+      "category": "corrective_fall",
+      "domain": "fall",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install compliant guardrails or another engineered fall-protection system suited to the identified edge and task before work resumes.",
+      "mechanism": "Loss of balance or an unprotected edge could allow unknown to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q05",
+      "category": "corrective_spill",
+      "domain": "walking",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": true,
+      "action": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+      "mechanism": "Loss of balance or an unprotected edge could allow employees use the walkway to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q06",
+      "category": "corrective_hotwork",
+      "domain": "hot",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as extinguisher_access or inspection or fire_watch or combustible_control or permit, to eliminate exposure to fire_or_explosion.",
+      "mechanism": "The supplied evidence indicates fire or explosion could expose employees performing hot work; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q07",
+      "category": "corrective_confined",
+      "domain": "confined",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to asphyxiation.",
+      "mechanism": "The supplied evidence indicates asphyxiation could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q08",
+      "category": "corrective_electrical",
+      "domain": "electrical",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Restore the enclosure or replace damaged electrical components with equipment-rated parts, then verify insulation and enclosure integrity before re-energizing.",
+      "mechanism": "Contact with the supplied energized electrical parts, or an arc across the available path, could transfer electrical energy to unknown and cause shock, burns, or fatal injury."
+    },
+    {
+      "id": "q09",
+      "category": "corrective_compressed",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+      "mechanism": "The supplied evidence indicates compressed gas release or rupture could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q10",
+      "category": "corrective_dust",
+      "domain": "dust",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+      "mechanism": "The supplied evidence indicates respiratory disease could expose worker_inhalation; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q11",
+      "category": "mechanism_entangle",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while access to area is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q12",
+      "category": "mechanism_struck",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+      "mechanism": "The supplied evidence indicates unknown could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q13",
+      "category": "mechanism_electrical",
+      "domain": "electrical",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Restore the enclosure or replace damaged electrical components with equipment-rated parts, then verify insulation and enclosure integrity before re-energizing.",
+      "mechanism": "Contact with the supplied energized electrical parts, or an arc across the available path, could transfer electrical energy to unknown and cause shock, burns, or fatal injury."
+    },
+    {
+      "id": "q14",
+      "category": "mechanism_unexpected",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while worker near belt is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q15",
+      "category": "mechanism_fall",
+      "domain": "fall",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Erect engineered guardrails or qualified-review approved edge-protection controls around the unprotected_edge to resolve fall exposures.",
+      "mechanism": "The supplied evidence indicates overexertion strains could expose worker; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q16",
+      "category": "mechanism_chemical",
+      "domain": "chemical",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+      "mechanism": "Loss of balance or an unprotected edge could allow employees use the walkway to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q17",
+      "category": "mechanism_mobile",
+      "domain": "mobile",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Engineer durable pedestrian/vehicle separation and a defined traffic-control layout matched to the observed route and visibility limits.",
+      "mechanism": "Vehicle or moving-object energy could contact unknown in the described path, causing struck-by or caught-between injury."
+    },
+    {
+      "id": "q18",
+      "category": "mechanism_stored",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+      "mechanism": "Loss of balance or an unprotected edge could allow unknown to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q19",
+      "category": "standard_direct_gi",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "The supplied evidence indicates cut amputation point of operation could expose access to point; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q20",
+      "category": "standard_direct_construction",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install compliant guardrails or another engineered fall-protection system suited to the identified edge and task before work resumes.",
+      "mechanism": "Loss of balance or an unprotected edge could allow unknown to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q21",
+      "category": "standard_msha",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+      "mechanism": "The supplied evidence indicates unknown could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q22",
+      "category": "standard_candidate",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while access to area is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q23",
+      "category": "standard_threshold",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+      "mechanism": "Loss of balance or an unprotected edge could allow employees use the walkway to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q24",
+      "category": "standard_ambiguous",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+      "mechanism": "The supplied evidence indicates unknown could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q25",
+      "category": "standard_condition",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install compliant guardrails or another engineered fall-protection system suited to the identified edge and task before work resumes.",
+      "mechanism": "Loss of balance or an unprotected edge could allow unknown to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q26",
+      "category": "standard_safe",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Residual or unexpectedly released energy could move the equipment or component into unknown's path, causing impact, crushing, or other energy-transfer injury."
+    },
+    {
+      "id": "q27",
+      "category": "time_corrected_guard",
+      "domain": "guarding",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while unknown is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q28",
+      "category": "time_historical_spill",
+      "domain": "walking",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+      "mechanism": "Loss of balance or an unprotected edge could allow employees use the walkway to fall to a lower level, causing impact or serious injury."
+    },
+    {
+      "id": "q29",
+      "category": "time_future",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while unknown is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q32",
+      "category": "time_reported",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Residual or unexpectedly released energy could move the equipment or component into unknown's path, causing impact, crushing, or other energy-transfer injury."
+    },
+    {
+      "id": "q33",
+      "category": "time_contradict",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Restore the enclosure or replace damaged electrical components with equipment-rated parts, then verify insulation and enclosure integrity before re-energizing.",
+      "mechanism": "Contact with the supplied energized electrical parts, or an arc across the available path, could transfer electrical energy to unknown and cause shock, burns, or fatal injury."
+    },
+    {
+      "id": "q34",
+      "category": "time_controlled",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Exposed moving components can draw clothing, tools, or a body part into the rotating or nip point interface while access to area is in the affected path, causing caught-in, crushing, or amputation injury."
+    },
+    {
+      "id": "q35",
+      "category": "multi_guard_electrical",
+      "domain": "electrical",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Restore the enclosure or replace damaged electrical components with equipment-rated parts, then verify insulation and enclosure integrity before re-energizing.",
+      "mechanism": "Contact with the supplied energized electrical parts, or an arc across the available path, could transfer electrical energy to employees cannot safely access and cause shock, burns, or fatal injury."
+    },
+    {
+      "id": "q36",
+      "category": "multi_hot_chemical",
+      "domain": "chemical",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement localized engineering controls or ventilation systems to eliminate the risk of respiratory chemical inhalation and direct liquid contact.",
+      "mechanism": "The described release or contact pathway could expose unknown through skin contact, eye contact, or inhalation; the specific severity depends on the confirmed substance and exposure conditions."
+    },
+    {
+      "id": "q37",
+      "category": "multi_fall_mobile",
+      "domain": "fall",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "The supplied evidence indicates cut amputation point of operation could expose access to point; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q38",
+      "category": "partial_ppe",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as hazard assessment or ppe selection or ppe inspection or training, to eliminate exposure to eye_injury.",
+      "mechanism": "The supplied evidence indicates eye injury could expose employee performing task; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q39",
+      "category": "partial_housekeeping",
+      "domain": "walking",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+      "mechanism": "The supplied evidence indicates unknown could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q39",
+      "category": "partial_housekeeping",
+      "domain": "walking",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+      "mechanism": "The supplied evidence indicates unknown could expose unknown; the initiating event and contact pathway remain limited to the facts provided and require qualified confirmation."
+    },
+    {
+      "id": "q40",
+      "category": "partial_voice",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Residual or unexpectedly released energy could move the equipment or component into unknown's path, causing impact, crushing, or other energy-transfer injury."
+    },
+    {
+      "id": "q40",
+      "category": "partial_voice",
+      "domain": "other",
+      "status": 201,
+      "actionLeak": false,
+      "mechanismLeak": false,
+      "action": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+      "mechanism": "Residual or unexpectedly released energy could move the equipment or component into unknown's path, causing impact, crushing, or other energy-transfer injury."
+    }
+  ]
+}

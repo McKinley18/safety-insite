@@ -1,0 +1,20 @@
+{
+  "database": "hazlenz_completion_20260730",
+  "authoritativeSources": ["govinfo CFR bulk XML", "eCFR official source endpoints"],
+  "documents": {
+    "osha": 49,
+    "msha": 80,
+    "total": 129
+  },
+  "distinctChunks": {
+    "title29": 479,
+    "title30": 1786,
+    "total": 2265
+  },
+  "approvedForDefinitiveApplicability": 0,
+  "pendingReview": 2265,
+  "rejected": 0,
+  "knownOmissions": ["29 CFR 1904", "29 CFR 1910 Subpart C reserved/invalid source target"],
+  "existingGovernedStandards": 19,
+  "status": "reference corpus imported; production applicability approval blocked"
+}

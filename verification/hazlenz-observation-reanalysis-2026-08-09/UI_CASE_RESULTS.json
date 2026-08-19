@@ -1,0 +1,89 @@
+[
+  {
+    "key": "removal",
+    "id": "1d447630-8043-4146-ac94-4dc0dfc0984b",
+    "revisionControlVisible": true,
+    "updateStatus": 200,
+    "analysisStatus": 409,
+    "observationVersion": 2,
+    "findings": [
+      {
+        "id": "62f55de6-b458-4edd-95e1-d0d1f77d92c0",
+        "key": "electrical",
+        "status": "pending_review",
+        "review": null
+      },
+      {
+        "id": "50d10e56-9386-425b-9176-d8f2cf1adcc5",
+        "key": "machine-guarding",
+        "status": "superseded",
+        "review": "47fdd1fb-4029-4822-846b-be4f392bc4b0"
+      },
+      {
+        "id": "d9d12843-35c6-4c41-becf-a55c0bef6063",
+        "key": "slips-trips-falls",
+        "status": "superseded",
+        "review": "3d0e72d5-5d83-4873-8235-f19b2735d2f2"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "key": "addition",
+    "id": "c91813f2-0000-4ed2-9ec7-b1602a7b2dc0",
+    "revisionControlVisible": true,
+    "updateStatus": 0,
+    "analysisStatus": 0,
+    "observationVersion": 1,
+    "findings": [
+      {
+        "id": "90c03b50-fa8d-4e93-adea-c6b754a8817f",
+        "key": "mobile-equipment",
+        "status": "finalized",
+        "review": "00b13bbb-41a4-4453-9cdf-075622c75ab1"
+      },
+      {
+        "id": "06dc369d-c58d-44d3-9415-8f733465eabe",
+        "key": "machine-guarding",
+        "status": "finalized",
+        "review": "1774f694-77f9-43ff-a43b-324bf8d36c36"
+      },
+      {
+        "id": "bbe2f0f8-1539-497f-8574-bb6a94f18322",
+        "key": "powered-industrial-trucks",
+        "status": "finalized",
+        "review": "bba16c97-8ebd-4c9c-ad51-b880414f514a"
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "key": "material-change",
+    "id": "af028451-29c0-4587-a705-5ac8a464d0e6",
+    "revisionControlVisible": true,
+    "updateStatus": 0,
+    "analysisStatus": 0,
+    "observationVersion": 1,
+    "findings": [
+      {
+        "id": "3bfed311-9a46-457d-8e4c-3bf03fb03cb9",
+        "key": "mobile-equipment",
+        "status": "pending_review",
+        "review": null
+      },
+      {
+        "id": "0468bf1c-f0a5-4245-b523-dab0932569a4",
+        "key": "powered-industrial-trucks",
+        "status": "pending_review",
+        "review": null
+      },
+      {
+        "id": "527bad5a-07e5-420c-9398-4cc073e59e8e",
+        "key": "fall-protection",
+        "status": "superseded",
+        "review": "16a307da-59dd-4f1a-b49a-c1f02f27f9ee"
+      }
+    ],
+    "consoleErrors": []
+  }
+]

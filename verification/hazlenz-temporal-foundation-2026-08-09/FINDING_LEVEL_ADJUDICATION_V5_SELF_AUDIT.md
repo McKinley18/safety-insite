@@ -1,0 +1,34 @@
+# V5 second-pass self-audit
+
+- st-002: historical guard sibling allowed secondary because current guard finding already required
+- st-003: historical guard sibling allowed secondary because current guard finding already required
+- st-005: fall protection allowed secondary
+- st-011: fall protection allowed secondary
+- st-014: historical guard sibling allowed secondary because current guard finding already required
+- st-015: historical guard sibling allowed secondary because current guard finding already required
+- st-017: fall protection allowed secondary
+- st-020: historical guard sibling allowed secondary because current guard finding already required
+- st-021: historical guard sibling allowed secondary because current guard finding already required
+- st-023: fall protection allowed secondary
+- st-035: fall protection allowed secondary
+- st-041: fall protection allowed secondary
+- st-043: powered industrial truck allowed secondary
+- st-044: powered industrial truck allowed secondary
+- st-045: powered industrial truck allowed secondary
+- st-046: powered industrial truck allowed secondary
+- st-047: powered industrial truck allowed secondary
+- st-047: fall protection allowed secondary
+- st-048: powered industrial truck allowed secondary
+- st-049: powered industrial truck allowed secondary
+- st-050: powered industrial truck allowed secondary
+- st-051: powered industrial truck allowed secondary
+- st-052: powered industrial truck allowed secondary
+- st-053: powered industrial truck allowed secondary
+- st-053: fall protection allowed secondary
+- st-054: powered industrial truck allowed secondary
+- st-055: fall protection allowed secondary
+- st-056: fall protection allowed secondary
+- st-057: fall protection allowed secondary
+- st-058: fall protection allowed secondary
+- st-059: fall protection allowed secondary
+- st-060: fall protection allowed secondary

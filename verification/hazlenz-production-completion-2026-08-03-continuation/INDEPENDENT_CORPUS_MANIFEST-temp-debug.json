@@ -1,0 +1,10 @@
+{
+  "total": 129,
+  "selected": 1,
+  "offset": 60,
+  "authoredBases": 43,
+  "variants": 3,
+  "endpoint": "POST /safescope-v2/classify",
+  "authenticated": true,
+  "expectationsOutsideProduction": true
+}

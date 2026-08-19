@@ -1,0 +1,10 @@
+{
+  "sourceCorpus": "verification/hazlenz-production-completion-2026-08-03-continuation/raw/independent-corpus-cases.json",
+  "sourceCases": 129,
+  "sampleSelection": "all 81 life-critical cases plus the first non-life-critical cases to reach the minimum sample size",
+  "sampleSize": 81,
+  "passesPerCase": 3,
+  "endpoint": "POST /safescope-v2/classify",
+  "authenticated": true,
+  "pacedBelowProductionThrottle": true
+}

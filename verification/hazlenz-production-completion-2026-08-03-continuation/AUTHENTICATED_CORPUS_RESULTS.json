@@ -1,0 +1,13 @@
+{
+  "suite": "hazlenz-authentic-reasoning-evaluation",
+  "total": 20,
+  "pass": 20,
+  "needsReview": 0,
+  "fail": 0,
+  "requestFailures": 0,
+  "lifeCriticalFailures": 0,
+  "unsupportedDefinitiveCitations": 0,
+  "negativeControlErrors": 0,
+  "repeatability": "not independently sampled",
+  "note": "This is the existing 20-case authenticated regression suite, not the required independent 100+ corpus. No broader readiness claim is made."
+}

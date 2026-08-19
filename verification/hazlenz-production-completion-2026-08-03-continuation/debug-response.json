@@ -1,0 +1,1617 @@
+{
+  "classification": "Walking/Working Surfaces",
+  "confidence": 0.93,
+  "confidenceBand": "high",
+  "evidenceTokens": [],
+  "ambiguityWarnings": [],
+  "requiresHumanReview": true,
+  "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+  "commonConsequences": [
+    "slip",
+    "trip",
+    "fall",
+    "delayed emergency egress"
+  ],
+  "requiredControls": [
+    "remove obstruction",
+    "clean spill",
+    "maintain clear access",
+    "mark walkway"
+  ],
+  "score": 25,
+  "scoreMargin": 25,
+  "additionalHazards": [],
+  "excludedHazards": [
+    {
+      "classification": "Personal Protective Equipment",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Drowning Hazards",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Machine Guarding",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Electrical",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Fall Protection",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Mobile Equipment / Traffic",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Hazard Communication",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Confined Space",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Fire / Explosion",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Lockout / Stored Energy",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    },
+    {
+      "classification": "Respirable Dust / Silica",
+      "reason": "Insufficient weighted signal evidence.",
+      "negativeTokens": []
+    }
+  ],
+  "risk": {
+    "riskScore": 6,
+    "riskBand": "Moderate",
+    "imminentDanger": false,
+    "fatalityPotential": "medium",
+    "requiresShutdown": false,
+    "reasoning": [],
+    "operationalRisk": {
+      "profileId": "standard_5x5",
+      "profileLabel": "Standard 5x5",
+      "matrixSize": 5,
+      "severity": 2,
+      "likelihood": 3,
+      "matrixScore": 6,
+      "matrixBand": "Moderate"
+    },
+    "aiRisk": {
+      "escalationScore": 6,
+      "escalationBand": "Moderate",
+      "imminentDanger": false,
+      "fatalityPotential": "medium",
+      "requiresShutdown": false,
+      "escalationReasons": []
+    }
+  },
+  "family": "slip_trip_fall",
+  "intelligenceMetadata": {
+    "engineName": "HazLenz AI Orchestrator",
+    "engineVersion": "0.1.0",
+    "generatedAt": "2026-08-03T13:36:36.688Z",
+    "layersExecuted": [
+      "observation_context",
+      "observation_understanding",
+      "scenario",
+      "citation_level_review",
+      "risk_reasoning",
+      "evidence_gap_questions",
+      "corrective_action",
+      "confidence",
+      "operational_reasoning",
+      "trend",
+      "energy_transfer",
+      "evidence_quality",
+      "control",
+      "barrier",
+      "event_sequence",
+      "operational_state",
+      "human_factors",
+      "contradiction_detection",
+      "action_effectiveness",
+      "counterfactual",
+      "standards_reasoning",
+      "applicability_intelligence",
+      "decision_explainability",
+      "hazard_graph",
+      "exposure_path",
+      "correlation",
+      "site_memory",
+      "confidence_calibration",
+      "reasoning_drift",
+      "workspace_learning",
+      "learning_governance",
+      "learning_memory",
+      "domain_intelligence",
+      "cross_domain_interaction",
+      "executive_judgment",
+      "registry_schema_foundation"
+    ]
+  },
+  "observationContext": {
+    "rawObservation": "temporary power cords have damaged insulation on a framing level.",
+    "normalizedText": "temporary power cords have damaged insulation on a framing level",
+    "matchedTerms": [],
+    "detectedEquipment": [
+      "electrical equipment"
+    ],
+    "detectedTasks": [
+      "unknown"
+    ],
+    "detectedUnsafeConditions": [
+      "damaged"
+    ],
+    "detectedOperationalStates": [
+      "unknown"
+    ],
+    "detectedEnergySources": [
+      "unknown"
+    ],
+    "detectedMechanismsOfInjury": [
+      "unknown"
+    ],
+    "detectedExposureSignals": [
+      "unknown"
+    ],
+    "detectedControls": [],
+    "detectedMissingOrFailedControls": [],
+    "detectedJurisdictionSignals": [],
+    "detectedIndustrySignals": [],
+    "ambiguitySignals": [],
+    "conflictSignals": [],
+    "photoLikeDescriptionSignals": [],
+    "employeeExposureKnown": false,
+    "employeeExposureUnclear": true,
+    "taskContextKnown": false,
+    "operationalStateKnown": false,
+    "confidenceSignals": {
+      "score": 0.5,
+      "reasoning": [
+        "Initial normalization"
+      ]
+    },
+    "evidenceGaps": {
+      "missingEvidence": [],
+      "ambiguities": [],
+      "conflicts": []
+    },
+    "trace": [
+      "Normalized via ObservationContextService"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "narrative": {
+    "findingTitle": "Review of damaged_cord_wet_location",
+    "findingSummary": "This finding relates to damaged_cord_wet_location observed in the field.",
+    "scenarioExplanation": "Reasoning indicates a scenario involving electrical_shock.",
+    "mechanismOfInjuryNarrative": "The mechanism of injury is related to electrical_shock.",
+    "exposureNarrative": "Exposure is related to employees handle the cord.",
+    "evidenceGapNarrative": "Sufficient evidence is present.",
+    "followUpQuestionNarrative": "",
+    "standardFamilyReviewNarrative": "Advisory review of standard families recommended.",
+    "citationCandidateReviewNarrative": "Advisory review of citations recommended.",
+    "correctiveActionNarrative": "Review recommended corrective actions.",
+    "immediateActionNarrative": "Secure the area.",
+    "interimControlNarrative": "Apply temporary controls.",
+    "permanentCorrectionNarrative": "Implement permanent engineered controls.",
+    "administrativeFollowUpNarrative": "Follow standard administrative procedures.",
+    "verificationNarrative": "Verify all implemented controls.",
+    "confidenceNarrative": "Confidence is determined based on scenario understanding.",
+    "qualifiedReviewDisclaimer": "This finding is for advisory purposes only and requires qualified review.",
+    "auditAppendixNarrative": "Audit details include source provenance and scenario mapping."
+  },
+  "domainIntelligence": {
+    "confinedSpace": null,
+    "loto": null,
+    "mobileEquipment": null,
+    "trenching": null,
+    "electrical": null,
+    "liftingRigging": null,
+    "hazcomGhs": null
+  },
+  "scenarioIntelligence": {
+    "scenarioFamilyId": "damaged_cord_wet_location",
+    "hazardCategory": "electrical",
+    "equipment": "cord",
+    "task": "maintenance",
+    "unsafeCondition": "damaged insulation",
+    "operationalState": "in use",
+    "energySource": "electrical",
+    "mechanismOfInjury": "electrical_shock",
+    "exposedPersonActivity": "employees handle the cord",
+    "missingOrFailedControls": [
+      "damaged insulation",
+      "no protection",
+      "cord damage"
+    ],
+    "hierarchyLevel": "unknown",
+    "candidateStandardFamily": "electrical",
+    "evidenceGaps": [
+      "energized status",
+      "extent of insulation damage",
+      "wet location confirmation"
+    ],
+    "confidenceSignals": {
+      "score": 0.82,
+      "reasoning": [
+        "Matched against scenario family: Damaged electrical cord in wet location"
+      ]
+    },
+    "qualifiedReviewRequired": true,
+    "advisoryOnly": true,
+    "doesNotDeclareViolation": true
+  },
+  "multiHazardDecomposition": {
+    "version": "v1",
+    "originalObservation": "temporary power cords have damaged insulation on a framing level.",
+    "isMultiHazard": false,
+    "hazardCount": 1,
+    "primaryHazard": {
+      "hazardId": "haz-1",
+      "domainId": "electrical",
+      "hazardFamily": "electrical",
+      "mechanism": "cord",
+      "observationFragment": "temporary power cords have damaged insulation on a framing level",
+      "supportingSignals": [
+        "cord"
+      ],
+      "confidence": 0.2,
+      "possibleOverlapWith": [],
+      "requiresHumanReview": false,
+      "evidenceGaps": [],
+      "reviewerQuestions": []
+    },
+    "hazards": [
+      {
+        "hazardId": "haz-1",
+        "domainId": "electrical",
+        "hazardFamily": "electrical",
+        "mechanism": "cord",
+        "observationFragment": "temporary power cords have damaged insulation on a framing level",
+        "supportingSignals": [
+          "cord"
+        ],
+        "confidence": 0.2,
+        "possibleOverlapWith": [],
+        "requiresHumanReview": false,
+        "evidenceGaps": [],
+        "reviewerQuestions": []
+      }
+    ],
+    "decompositionConfidence": 0.9,
+    "routingNotes": [
+      "Decomposed fragment \"temporary power cords have damaged insulation on a framing level\" routed to electrical"
+    ],
+    "evidenceGaps": [],
+    "reviewerQuestions": [],
+    "advisoryBoundary": "HazLenz AI multi-hazard decomposition is advisory only."
+  },
+  "riskReasoning": {
+    "riskReasoningId": "risk-1785764196686",
+    "scenarioFamilyId": "damaged_cord_wet_location",
+    "hazardDomain": "electrical",
+    "mechanismOfInjury": "electrical_shock",
+    "credibleWorstCaseOutcome": "shock_burn_arc_flash_or_fatality",
+    "severityEstimate": "high",
+    "likelihoodEstimate": "possible",
+    "exposureFrequency": "occasional",
+    "exposureDuration": "unknown",
+    "exposedPopulation": 2,
+    "energySourceSeverity": "high",
+    "controlFailureSeverity": "high",
+    "existingControls": [],
+    "missingOrFailedControls": [
+      "damaged insulation",
+      "no protection",
+      "cord damage"
+    ],
+    "uncertaintyFactors": [
+      "Narrative is short and may not fully support classification.",
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available.",
+      "Location or equipment context is limited.",
+      "Worker exposure is not explicitly described."
+    ],
+    "evidenceGaps": [
+      "Narrative is short and may not fully support classification.",
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available.",
+      "Location or equipment context is limited.",
+      "Worker exposure is not explicitly described."
+    ],
+    "initialRiskLevel": "high",
+    "residualRiskLevel": "low",
+    "riskDrivers": [
+      "credible severity: high",
+      "exposure likelihood: possible",
+      "energy source: electrical",
+      "mechanism: electrical_shock",
+      "missing/failed control: damaged insulation",
+      "missing/failed control: no protection",
+      "missing/failed control: cord damage"
+    ],
+    "riskReducers": [
+      "implement effective controls",
+      "verify correction"
+    ],
+    "urgencyLevel": "urgent",
+    "suggestedDueDateLogic": "same shift or before task continues",
+    "verificationRequirements": [
+      "verify corrective action effectiveness"
+    ],
+    "confidence": 0.82,
+    "humanReviewTriggers": [
+      "High-risk condition requires qualified review.",
+      "Evidence gaps remain and should be resolved before final reliance."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "causalRiskReasoning": {
+    "engine": "hazlenz_causal_risk_reasoning",
+    "version": "0.1.0",
+    "primaryEnergySource": "electrical",
+    "energyTransferPath": "electrical current through worker contact path",
+    "exposedTarget": "unknown",
+    "initiatingCondition": "electrical_integrity",
+    "failedOrMissingControl": "electrical_integrity",
+    "mechanismOfInjury": "electrical_shock",
+    "credibleWorstCase": "shock, burn, arc-flash injury, or fatality",
+    "competingMechanisms": [
+      "arc_flash",
+      "thermal_burn"
+    ],
+    "missingEvidence": [
+      "worker exposure"
+    ],
+    "confidence": {
+      "level": "moderate",
+      "score": 0.77,
+      "reasons": [
+        "Mechanism of injury was identified.",
+        "Primary energy source was identified.",
+        "Failed or missing control was identified.",
+        "Structured understanding provided supporting confidence.",
+        "Missing evidence: worker exposure."
+      ]
+    },
+    "reasoningTrace": [
+      "Read structured observation understanding when available.",
+      "Identified primary energy source: electrical.",
+      "Mapped likely energy-transfer path: electrical current through worker contact path.",
+      "Identified exposed target: unknown.",
+      "Identified initiating condition: electrical_integrity.",
+      "Identified failed or missing control: electrical_integrity.",
+      "Selected mechanism of injury: electrical_shock.",
+      "Estimated credible worst case: shock, burn, arc-flash injury, or fatality.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "promotion": {
+    "decision": "approved",
+    "reasons": [],
+    "missingFields": []
+  },
+  "absorption": {
+    "absorptionDecision": "categorize_only",
+    "primaryDomain": "electrical",
+    "secondaryDomains": [],
+    "hazardFamilies": [
+      "electrical"
+    ],
+    "mechanisms": [
+      "cord"
+    ],
+    "equipmentGroups": [
+      "panel",
+      "cord",
+      "live_parts",
+      "electrical"
+    ],
+    "taskContexts": [],
+    "jurisdictionAssessment": "unknown",
+    "evidenceQuestions": [
+      "Is panel closed?"
+    ],
+    "requiredFacts": [
+      "domain_validated"
+    ],
+    "correctiveActionControlFamilies": [
+      "insulation"
+    ],
+    "duplicateKeys": [
+      "electrical-draft-01"
+    ],
+    "prohibitedLanguageFlags": false,
+    "advisoryBoundary": true,
+    "reasons": [
+      "Absorbed and categorized via taxonomy"
+    ]
+  },
+  "lcq": {
+    "candidateId": "cand-1785764196688",
+    "reviewerCorrectionId": "unknown",
+    "sourceContextId": "unknown",
+    "status": "blocked",
+    "eligibilityScore": 0,
+    "blockedReasons": [
+      "HRLG blocked"
+    ],
+    "reviewerApprovalMetadata": {
+      "approvedBy": "",
+      "approvedAt": "",
+      "roleAccepted": false
+    },
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "adapter": {
+    "safetyFindingSummary": {
+      "title": "Finding",
+      "content": "Potential hazard identified",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "confidenceAndEvidenceSummary": {
+      "title": "Confidence",
+      "content": "Low evidence",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "missingEvidenceQuestions": {
+      "title": "Missing Evidence",
+      "content": "Can you provide more evidence or context regarding the object?",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "reviewerRequiredSummary": {
+      "title": "Reviewer Required",
+      "content": "Yes",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "standardsApplicabilitySummary": {
+      "title": "Standards",
+      "content": "None mapped",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "correctiveActionSummary": {
+      "title": "Actions",
+      "content": "guarding",
+      "advisoryDisclaimer": "Advisory only"
+    },
+    "advisoryDisclaimer": "Advisory only",
+    "auditAppendixSummary": {
+      "title": "Audit",
+      "content": "Pending",
+      "advisoryDisclaimer": "Advisory only"
+    }
+  },
+  "evg": {
+    "evidenceQuestions": [
+      "Can you provide more evidence or context regarding the object?"
+    ],
+    "priorityQuestions": [
+      "Are all critical safety controls in place?"
+    ],
+    "reviewerOnlyQuestions": [
+      "Confirm all critical facts related to the hazard observation."
+    ],
+    "missingFacts": [],
+    "questionSourceTrace": [
+      "HazLenz AI Dynamic Evidence Generator"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "controlMap": {
+    "preferredControlFamilies": [
+      "guarding"
+    ],
+    "immediateControls": [
+      "Guard area"
+    ],
+    "permanentControls": [
+      "Install permanent barrier"
+    ],
+    "verificationMethods": [
+      "Physical inspection"
+    ],
+    "weakActionsToAvoid": [
+      "Be careful"
+    ],
+    "requiredReviewerChecks": [
+      "Guard functionality"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "calibrationMeta": {
+    "hazardFamily": "electrical",
+    "scenarioFamily": "damaged_cord_wet_location",
+    "jurisdiction": "osha_general_industry",
+    "mechanism": "electrical_shock",
+    "riskBand": "high",
+    "standardFamily": "electrical",
+    "evidenceGaps": [
+      "energized status",
+      "extent of insulation damage",
+      "wet location confirmation",
+      "Jurisdiction is unclear and should be confirmed.",
+      "Task or activity is not clearly identified.",
+      "Worker exposure is not clearly established.",
+      "Worker proximity to the hazard is not clearly described.",
+      "Operational or energy state is not clearly established.",
+      "energized or in-use status",
+      "worker exposure"
+    ]
+  },
+  "standardFamilyCandidates": [
+    {
+      "id": "candidate-electrical",
+      "title": "Advisory Electrical Standards Review",
+      "jurisdictionContext": [
+        "osha",
+        "msha"
+      ],
+      "candidateFamily": "electrical",
+      "relatedScenarioFamilies": [
+        "electrical-damage"
+      ],
+      "relatedHazardDomains": [
+        "electrical"
+      ],
+      "relatedEquipmentIndicators": [
+        "cord",
+        "panel"
+      ],
+      "relatedTaskIndicators": [
+        "operation"
+      ],
+      "relatedMechanismOfInjuryIndicators": [
+        "shock"
+      ],
+      "relatedExposureIndicators": [
+        "user"
+      ],
+      "relatedMissingControlIndicators": [
+        "insulation"
+      ],
+      "evidenceRequired": [
+        "equipment state"
+      ],
+      "evidenceGaps": [
+        "equipment state"
+      ],
+      "confidenceBoosters": [
+        "photo of damage"
+      ],
+      "confidenceReducers": [
+        "vague location"
+      ],
+      "humanReviewTriggers": [
+        "hazard present"
+      ],
+      "reasoningNotes": [
+        "Review for advisory electrical standards."
+      ],
+      "whyItMayApply": "Review mapping for potential hazard.",
+      "factsSupportingApplicability": [],
+      "factsStillMissing": [],
+      "sourceAuthorityTier": "advisory",
+      "confidenceBand": "medium",
+      "advisoryGuardrails": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "requiresQualifiedReview": true
+      }
+    }
+  ],
+  "citationLevelCandidates": [],
+  "evidenceGapQuestions": [],
+  "correctiveActionReasoning": {
+    "scenarioFamilyId": "damaged_cord_wet_location",
+    "hazardDomain": "electrical",
+    "mechanismOfInjury": "electrical_shock",
+    "exposurePathway": "employees handle the cord",
+    "missingOrFailedControls": [
+      "damaged insulation",
+      "no protection",
+      "cord damage"
+    ],
+    "immediateActions": [
+      "Immediately stop all work in the affected zone",
+      "Lock out and tag out all energy sources"
+    ],
+    "interimControls": [
+      "Implement temporary physical barriers",
+      "Assign a dedicated safety spotter"
+    ],
+    "permanentCorrections": [
+      "Implement permanent engineered solutions specific to hazard"
+    ],
+    "administrativeFollowUps": [
+      "Perform hazard analysis update",
+      "Conduct targeted tool-box safety briefing"
+    ],
+    "verificationSteps": [
+      "Competent person verification of controls",
+      "Document functional test results"
+    ],
+    "evidenceNeededBeforeFinalizing": [
+      "Narrative is short and may not fully support classification.",
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available.",
+      "Location or equipment context is limited.",
+      "Worker exposure is not explicitly described."
+    ],
+    "responsibleRoleSuggestions": [
+      "Safety Manager",
+      "Operations Supervisor"
+    ],
+    "urgencyLevel": "critical",
+    "controlHierarchyLevel": "unknown",
+    "standardFamilyReviewLinks": [],
+    "confidence": 0.82,
+    "humanReviewTriggers": [
+      "Qualified safety review required due to high hazard complexity"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    },
+    "immediateActionNarrative": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+    "interimControlNarrative": "Tag out the power supply source and enforce strict physical clearance from the affected cord_insulation_or_conductor area.",
+    "permanentCorrectionNarrative": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+    "administrativeFollowUpNarrative": "Perform a comprehensive workspace electrical audit and conduct a toolbox safety briefing on de-energization procedures.",
+    "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations."
+  },
+  "crossDomainInteraction": {
+    "interactions": [],
+    "escalationRisks": [],
+    "reviewFocus": [],
+    "interactionSeverity": "none",
+    "interactionSummary": "No cross-domain interaction pattern detected from available domain intelligence."
+  },
+  "workspaceLearning": {
+    "workspaceId": "default",
+    "learningMaturity": "limited_signal",
+    "repeatedSimilarFindingCount": 0,
+    "acceptedStandardFeedbackCount": 0,
+    "rejectedStandardFeedbackCount": 0,
+    "ineffectiveActionOutcomeCount": 0,
+    "learningSignals": [],
+    "learningSummary": "Workspace-specific learning is limited for this hazard type.",
+    "recommendedUse": "Use workspace learning as supporting intelligence only; do not override regulatory requirements or qualified human review."
+  },
+  "learningGovernance": {
+    "allowedInfluence": [
+      "adjust_confidence",
+      "surface_review_patterns",
+      "suggest_evidence_questions",
+      "prioritize_human_review"
+    ],
+    "prohibitedInfluence": [
+      "create_citations",
+      "invented_citations",
+      "auto_finalize_compliance_decisions",
+      "invent_citations",
+      "declare_violations",
+      "override_regulations",
+      "remove_qualified_review_requirement"
+    ],
+    "advisoryOnly": true,
+    "requiresQualifiedReview": true,
+    "finalGovernanceRule": "HazLenz AI may support classification, risk reasoning, standards review, evidence questions, and corrective action recommendations, but it must not invent citations, declare violations, finalize compliance decisions, or remove qualified human review."
+  },
+  "learningMemory": {
+    "engine": "hazlenz_learning_memory",
+    "canSelfModifyRules": false,
+    "canOverrideStandards": false,
+    "canReduceHumanReview": false,
+    "memoryBoundary": "Learning memory may preserve reviewer patterns and confidence signals for future review support, but it cannot self-modify rules, override standards, invent citations, or reduce qualified human review."
+  },
+  "confidenceIntelligence": {
+    "overallConfidence": 0.82,
+    "confidenceBand": "high",
+    "strengths": [],
+    "missingCriticalInformation": [
+      "Employee exposure is not clearly described.",
+      "Exposure distance or interaction with the hazard is unclear.",
+      "Specific location or equipment context is limited."
+    ],
+    "conflictingSignals": [],
+    "recommendedFollowup": [
+      "Add missing context before relying on final standard selection."
+    ],
+    "reasonCodes": [
+      "MISSING_EMPLOYEE_EXPOSURE",
+      "MISSING_EXPOSURE_DISTANCE_OR_INTERACTION",
+      "MISSING_LOCATION_OR_EQUIPMENT_CONTEXT",
+      "MULTIPLE_CRITICAL_CONTEXT_GAPS"
+    ],
+    "reviewTriggers": [
+      "Multiple critical context gaps detected."
+    ],
+    "supervisorReviewRecommended": true
+  },
+  "trendIntelligence": {
+    "recurrenceRisk": "low",
+    "trendDirection": "not_established",
+    "hotspotArea": null,
+    "relatedFindingCount": 0,
+    "recentRelatedFindingCount": 0,
+    "repeatedClassificationCount": 0,
+    "repeatedLocationCount": 0,
+    "highRiskRepeatCount": 0,
+    "escalationRecommended": false,
+    "controlFailureIndicators": [],
+    "similarFindingsTimeline": [],
+    "recommendation": "No recurring trend detected from provided prior findings."
+  },
+  "energyTransferIntelligence": {
+    "dominantEnergySource": "electrical",
+    "energySources": [
+      "electrical"
+    ],
+    "uncontrolledEnergyLikely": false,
+    "releaseMechanisms": [
+      "Contact with energized components or arc-flash/arc-blast release."
+    ],
+    "exposureInterfaces": [
+      "Exposure interface requires confirmation."
+    ],
+    "missingBarriers": [],
+    "severityAmplifiers": [
+      "Electrical energy can rapidly create fatal shock, burn, or arc-flash consequences."
+    ],
+    "controlLogic": [
+      "Verify de-energization, guarding, covers, qualified-person access, and electrical work controls."
+    ],
+    "energyTransferSummary": "Primary energy source appears to be electrical. HazLenz AI evaluated release mechanism, exposure interface, and barrier/control effectiveness."
+  },
+  "evidenceQuality": {
+    "evidenceQualityScore": 30,
+    "evidenceQualityBand": "weak",
+    "strengths": [],
+    "gaps": [
+      "Narrative is short and may not fully support classification.",
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available.",
+      "Location or equipment context is limited.",
+      "Worker exposure is not explicitly described."
+    ],
+    "defensibilityStatement": "Evidence should be strengthened before relying on final classification, standards, or corrective actions."
+  },
+  "controlIntelligence": {
+    "controlTypes": [
+      "elimination",
+      "energy_control",
+      "verification",
+      "administrative",
+      "general"
+    ],
+    "strongestControl": "elimination",
+    "durableControlPresent": true,
+    "ppeOnly": false,
+    "verificationNeeded": true,
+    "controlGaps": [],
+    "hierarchyAssessment": "Durable controls are represented in the recommendation set.",
+    "verificationRecommendation": "Require supervisor or competent-person verification before closure."
+  },
+  "barrierIntelligence": {
+    "barrierTypes": [],
+    "failedOrMissingBarriers": [],
+    "barrierAdequacy": "unknown",
+    "verificationNeeds": [
+      "Identify what barrier or control currently separates the worker from the hazard.",
+      "Field verification is needed before closure."
+    ],
+    "barrierReasoning": "Barrier status is not clear from available evidence."
+  },
+  "eventSequence": {
+    "beforeEvent": [],
+    "duringEvent": [],
+    "afterEvent": [],
+    "sequenceGaps": [
+      "Pre-event work activity is not clearly described.",
+      "Event-state condition is not clearly described.",
+      "Post-control or verification status is not clearly described."
+    ],
+    "likelySequence": [
+      "Pre-event condition unknown.",
+      "Event-state condition unknown.",
+      "Post-event control status unknown."
+    ],
+    "sequenceConfidence": "low",
+    "sequenceSummary": "HazLenz AI reconstructed the likely event sequence from work activity, energy state, exposure, and control-status signals."
+  },
+  "operationalState": {
+    "primaryState": "unknown",
+    "states": [],
+    "stateSignals": [],
+    "stateRisks": [],
+    "stateConfidence": "low",
+    "stateAwarenessSummary": "Operational state is unclear. HazLenz AI needs more context about whether work was active, maintenance, cleaning, startup, shutdown, or emergency response."
+  },
+  "humanFactors": {
+    "humanFactorsPresent": false,
+    "humanFactorSignals": [],
+    "behaviorRiskSignals": [],
+    "supervisionSignals": [],
+    "visibilitySignals": [],
+    "lineOfFireSignals": [],
+    "humanFactorsSummary": "No strong human-factor signal detected from available narrative.",
+    "recommendedReview": "Continue to verify worker exposure and task context during supervisor review."
+  },
+  "contradictionIntelligence": {
+    "engine": "hazlenz_contradiction_intelligence_v1",
+    "contradictionsDetected": false,
+    "contradictionSeverity": "none",
+    "contradictions": [],
+    "ambiguities": [],
+    "reviewImpact": "No major internal contradictions or ambiguities detected from available narrative."
+  },
+  "actionEffectiveness": {
+    "effectivenessScore": 84,
+    "effectivenessBand": "adequate",
+    "addressedElements": [
+      "Energy source or energy transfer pathway addressed.",
+      "Verification step included."
+    ],
+    "unresolvedElements": [],
+    "effectivenessStatement": "Corrective actions appear usable, but should be reviewed for stronger verification or durable control.",
+    "recommendedImprovement": "Maintain verification evidence before closing the action."
+  },
+  "counterfactualIntelligence": {
+    "counterfactuals": [
+      "No strong counterfactual prevention pathway was identified from available information."
+    ],
+    "preventionLevers": [],
+    "strongestPreventionLever": "Additional evidence needed to identify strongest prevention lever.",
+    "counterfactualSummary": "HazLenz AI evaluated how alternate control states may have reduced exposure, energy transfer, recurrence, or injury potential."
+  },
+  "standardsReasoning": {
+    "topDefensible": [],
+    "summary": "No defensible standards identified."
+  },
+  "decisionExplainability": {
+    "decisionSummary": "Walking/Working Surfaces was selected based on hazard signals, context, risk indicators, and standards alignment.",
+    "confidenceStatement": "Overall confidence is 82%.",
+    "riskStatement": "Risk is rated Moderate.",
+    "standardsStatement": "No standards were confidently selected.",
+    "controlStatement": "Durable controls are represented in the recommendation set.",
+    "keyEvidence": [
+      "A physical condition appears degraded, missing, damaged, or uncontrolled. → Exposure pathway requires confirmation. → Energy transfer mechanism requires confirmation. → Control failure mechanism requires confirmation. → Potential consequence requires supervisor review."
+    ],
+    "uncertainty": [
+      "employee exposure is not clearly described.",
+      "exposure distance or interaction with the hazard is unclear.",
+      "specific location or equipment context is limited.",
+      "worker exposure is not explicitly described."
+    ],
+    "escalationFactors": [
+      "Supervisor review recommended by confidence intelligence.",
+      "Control intelligence recommends verification before closure."
+    ],
+    "supervisorReviewRecommended": true
+  },
+  "executiveJudgment": {
+    "classification": "Walking/Working Surfaces",
+    "riskBand": "Moderate",
+    "supervisorReviewRecommended": true,
+    "stopWorkRecommended": false,
+    "immediateActionRecommended": true,
+    "strongestCausalFactor": "Dominant energy source: electrical.",
+    "topUncertainty": "Employee exposure is not clearly described.",
+    "topStandard": null,
+    "primaryAction": {
+      "title": "Restore walking-working surface conditions",
+      "priority": "MEDIUM"
+    },
+    "decisionSummary": "Walking/Working Surfaces should be reviewed by a qualified supervisor.",
+    "auditReadySummary": "Walking/Working Surfaces should be reviewed by a qualified supervisor. Dominant energy source: electrical. Top uncertainty: Employee exposure is not clearly described. No top standard selected."
+  },
+  "hazardGraph": {
+    "nodes": [
+      "Walking/Working Surfaces",
+      "unknown"
+    ],
+    "edges": [
+      "unknown -> Walking/Working Surfaces"
+    ],
+    "graphComplexity": "low",
+    "cascadeRisks": [],
+    "graphSummary": "HazLenz AI mapped interacting hazards, operational states, barrier failures, and energy-transfer relationships to identify possible cascading risk pathways."
+  },
+  "exposurePathIntelligence": {
+    "exposurePathways": [],
+    "workerInterfaces": [],
+    "exposureAmplifiers": [],
+    "exposureComplexity": "low",
+    "exposureSummary": "HazLenz AI mapped likely exposure pathways, worker interfaces, and amplification conditions contributing to hazard exposure."
+  },
+  "correlationIntelligence": {
+    "correlatedHazards": [
+      "Walking/Working Surfaces"
+    ],
+    "correlatedSignals": [],
+    "systemicIndicators": [],
+    "cascadingRiskPaths": [],
+    "cascadePotential": "low",
+    "escalationRecommended": false,
+    "recommendation": "No strong hazard-correlation pattern detected from available information."
+  },
+  "siteMemory": {
+    "recurringRiskDetected": false,
+    "repeatedClassificationCount": 0,
+    "repeatedLocationCount": 0,
+    "operationalPatterns": [
+      "Multiple correlated hazards suggest broader operational-system weaknesses."
+    ],
+    "degradationRisk": "medium",
+    "siteMemorySummary": "No strong recurring operational memory pattern detected from available findings.",
+    "recommendedAction": "Continue monitoring for recurring operational patterns.",
+    "temporalRecurrence": {
+      "recurrence30DaysCount": 0,
+      "recurrence90DaysCount": 0,
+      "recurrence180DaysCount": 0,
+      "escalationLevel": "none",
+      "hierarchyOfControlsShift": false,
+      "temporalNotes": "No active temporal recurrence triggers."
+    }
+  },
+  "confidenceCalibration": {
+    "baseConfidence": 0.82,
+    "calibratedConfidence": 0.62,
+    "calibrationBand": "use_with_review",
+    "reliabilityFactors": [],
+    "calibrationWarnings": [
+      "Confidence reduced because evidence quality is weak.",
+      "Confidence reduced because standards defensibility support is limited."
+    ],
+    "reliabilityStatement": "HazLenz AI output is usable but should be reviewed against evidence gaps, contradictions, or control effectiveness."
+  },
+  "reasoningDrift": {
+    "driftScore": 15,
+    "driftBand": "low",
+    "driftSignals": [
+      "Limited defensible standards mapping available."
+    ],
+    "driftSummary": "No major reasoning drift indicators detected."
+  },
+  "multidisciplinaryExpertSynthesis": {
+    "safetyAndHealth": {
+      "hopFactors": [],
+      "systemicRootCauses": [],
+      "expertAdvisory": "Standard corrective actions apply."
+    },
+    "laborLawyer": {
+      "defensibilityStrategy": "Routine violation defense. Document immediate abatement.",
+      "precedentCaseLawRefs": [],
+      "penaltyExposureRisk": "moderate"
+    },
+    "industrialHygiene": {
+      "pelStelTwaConcerns": [],
+      "noiseDustSilicaRisks": [],
+      "healthAdvisory": "No immediate acute IH sampling required."
+    },
+    "environmental": {
+      "epaComplianceConcerns": [],
+      "spccRcraApplicability": "Low environmental impact probability."
+    },
+    "executiveSummary": "Multidisciplinary Synthesis: Routine operational hazard.  Requires systemic HOP evaluation ."
+  },
+  "primaryCitation": "",
+  "reviewStateLabel": "Review",
+  "isVague": false,
+  "structuredObservation": {
+    "equipmentInvolved": [],
+    "materialOrSubstance": [],
+    "exposurePathway": [],
+    "controlsPresent": [],
+    "controlsMissing": [],
+    "potentialConsequence": [],
+    "affectedPeople": [],
+    "evidenceSource": [],
+    "userConfirmedFacts": [],
+    "inferredFacts": [],
+    "unknownFacts": [],
+    "unresolvedContradictions": []
+  },
+  "clarificationAnswerState": {
+    "answeredQuestionIds": [],
+    "invalidAnswers": []
+  },
+  "unresolvedContradictions": [],
+  "evidenceUsed": [],
+  "hazardCategory": "slip_trip_fall",
+  "candidateStandardFamily": "electrical",
+  "supportingStandards": [],
+  "standardApplicability": {
+    "matchedRules": [],
+    "evaluationResults": [],
+    "needsMoreEvidenceStandards": [],
+    "followUpQuestions": []
+  },
+  "citationRecovery": {
+    "outcome": "no_supported_candidate",
+    "rationale": "A hazard was identified, but no candidate in the current standards knowledge matched the selected jurisdiction and evidence.",
+    "recoveredCitations": [],
+    "evidenceNeeded": [
+      "How close are employees to the condition, how often are they exposed, and is exposure temporary or ongoing?",
+      "What controls are currently in place, and has a qualified safety professional verified their condition and applicability?"
+    ],
+    "advisoryOnly": true,
+    "requiresQualifiedReview": true
+  },
+  "standardsMatchExplanations": [],
+  "excludedStandards": [],
+  "needsMoreEvidenceStandards": [],
+  "standardsTraceability": {
+    "primaryMatcher": "ApplicableStandardsService",
+    "primaryMatcherRole": "Produces the initial suggested standards from approved knowledge chunks or the active standards repository.",
+    "scopeFilter": "SafescopeV2Service.applyStandardsScopeFit",
+    "scopeFilterRole": "Promotes standards matching the selected jurisdiction and excludes mismatched MSHA/OSHA scopes.",
+    "defensibilityRanker": "StandardsReasoningService",
+    "defensibilityRankerRole": "Ranks already-suggested standards for operational defensibility using context, exposure, risk, and reputable-source support.",
+    "scenarioStandardMapper": "StandardFamilyMapperService",
+    "scenarioStandardMapperRole": "Maps scenario intelligence to standard families for review and supporting context.",
+    "citationReview": "CitationReviewBrainService",
+    "citationReviewRole": "Reviews citation-level candidates and evidence gaps for advisory applicability support.",
+    "sourceBackedGovernance": "SourceBackedApplicabilityGovernanceService",
+    "sourceBackedGovernanceRole": "Evaluates whether source-backed applicability is sufficiently supported and what reviewer limits apply.",
+    "approvedKnowledgeRetrieval": "ApprovedKnowledgeRetrievalOutputV1Service",
+    "approvedKnowledgeRetrievalRole": "Retrieves approved knowledge records for supporting field output and source context where available.",
+    "priorFindingsRole": "reference_only",
+    "priorFindingsCanCreateStandards": false,
+    "priorFindingsCanOverrideStandards": false,
+    "finalSuggestedStandardsSource": "applicable_standards_scope_filtered_then_v2_reasoning_context",
+    "selectedScopes": [
+      "osha_construction"
+    ],
+    "sourceMode": "OSHA_CONSTRUCTION",
+    "rawCandidateCount": 1,
+    "scopeFilteredCandidateCount": 1,
+    "supportingCandidateCount": 0,
+    "needsMoreEvidenceCandidateCount": 1,
+    "excludedCandidateCount": 0,
+    "suggestedCitations": [],
+    "supportingCitations": [],
+    "needsMoreEvidenceCitations": [],
+    "excludedCitations": [],
+    "v2ContextAvailable": {
+      "standardsReasoning": true,
+      "standardFamilyCandidates": true,
+      "citationLevelCandidates": true,
+      "sourceBackedApplicability": true,
+      "approvedKnowledgeRetrieval": true
+    },
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true,
+      "finalComplianceDecisionByHuman": true
+    }
+  },
+  "knowledgeRoute": {
+    "jurisdiction": "osha_construction",
+    "hazardFamily": "other",
+    "equipmentFamily": "unknown",
+    "taskMechanism": "unknown",
+    "shardKey": "osha_construction/other/unknown/unknown",
+    "sourceKeys": [
+      "osha-1926-501"
+    ],
+    "bundleIds": [
+      "bundle-osha-fall-prot"
+    ],
+    "confidence": 66,
+    "reasons": [
+      "jurisdiction: OSHA construction signal",
+      "hazard family: other",
+      "equipment family: unknown",
+      "task mechanism: unknown",
+      "fallback: matched jurisdiction only"
+    ],
+    "shardSummary": {
+      "matchedShardCount": 1,
+      "shardKeys": [
+        "osha_construction/fall_protection/platform/fall_from_height"
+      ],
+      "citations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.451",
+        "29 CFR 1926.502"
+      ],
+      "evidenceNeeded": [
+        "Identify the elevated work surface or access equipment",
+        "Estimate or confirm fall height where possible",
+        "Confirm whether guardrails, personal fall arrest, or other fall protection is present",
+        "Document worker exposure near the edge/opening/platform"
+      ],
+      "correctiveActionPatterns": []
+    },
+    "advisoryOnly": true,
+    "requiresQualifiedReview": true
+  },
+  "generatedActions": [
+    {
+      "title": "Immediately stop all work in the affected zone",
+      "description": "Focused HazLenz shard controls: Restrict access to the fall exposure; Provide competent-person review and employee instruction where needed",
+      "priority": "MEDIUM",
+      "dueDate": "2026-08-10T13:36:36.684Z",
+      "assignedRole": "Team Lead",
+      "source": "AI_ENGINE",
+      "reportId": "safescope-v2-eval-1785764196684",
+      "referenceStandards": [],
+      "suggestedFixes": [
+        "Restrict access to the fall exposure",
+        "Provide competent-person review and employee instruction where needed",
+        "Maintain interim exposure controls",
+        "Complete permanent corrective action",
+        "Verify correction before closure",
+        "Immediately stop all work in the affected zone",
+        "Lock out and tag out all energy sources",
+        "Implement temporary physical barriers",
+        "Implement permanent engineered solutions specific to hazard",
+        "Perform hazard analysis update",
+        "Conduct targeted tool-box safety briefing",
+        "Competent person verification of controls"
+      ],
+      "originalSuggestion": {
+        "hazard": "Damaged insulation on flexible power cord",
+        "fixes": [
+          "Remove cord from service immediately",
+          "Replace with heavy-duty SOOW cord",
+          "Ensure proper strain relief at plug"
+        ],
+        "contextualControls": {
+          "immediateControls": [
+            "Clean or isolate the affected walking-working surface."
+          ],
+          "permanentControls": [
+            "Correct the source of the spill, obstruction, or poor housekeeping condition for the power cord."
+          ],
+          "verificationSteps": [
+            "Verify the walking-working surface is clean, dry, and passable for the power cord."
+          ],
+          "restartCriteria": [],
+          "competentPersonReview": false
+        },
+        "source": "hazlenz_v2_enriched_corrective_action",
+        "correctiveActionReasoning": {
+          "scenarioFamilyId": "damaged_cord_wet_location",
+          "hazardDomain": "electrical",
+          "mechanismOfInjury": "electrical_shock",
+          "exposurePathway": "employees handle the cord",
+          "missingOrFailedControls": [
+            "damaged insulation",
+            "no protection",
+            "cord damage"
+          ],
+          "immediateActions": [
+            "Immediately stop all work in the affected zone",
+            "Lock out and tag out all energy sources"
+          ],
+          "interimControls": [
+            "Implement temporary physical barriers",
+            "Assign a dedicated safety spotter"
+          ],
+          "permanentCorrections": [
+            "Implement permanent engineered solutions specific to hazard"
+          ],
+          "administrativeFollowUps": [
+            "Perform hazard analysis update",
+            "Conduct targeted tool-box safety briefing"
+          ],
+          "verificationSteps": [
+            "Competent person verification of controls",
+            "Document functional test results"
+          ],
+          "evidenceNeededBeforeFinalizing": [
+            "Narrative is short and may not fully support classification.",
+            "No photo evidence is attached.",
+            "No supplemental evidence notes are available.",
+            "Location or equipment context is limited.",
+            "Worker exposure is not explicitly described."
+          ],
+          "responsibleRoleSuggestions": [
+            "Safety Manager",
+            "Operations Supervisor"
+          ],
+          "urgencyLevel": "critical",
+          "controlHierarchyLevel": "unknown",
+          "standardFamilyReviewLinks": [],
+          "confidence": 0.82,
+          "humanReviewTriggers": [
+            "Qualified safety review required due to high hazard complexity"
+          ],
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          },
+          "immediateActionNarrative": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+          "interimControlNarrative": "Tag out the power supply source and enforce strict physical clearance from the affected cord_insulation_or_conductor area.",
+          "permanentCorrectionNarrative": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+          "administrativeFollowUpNarrative": "Perform a comprehensive workspace electrical audit and conduct a toolbox safety briefing on de-energization procedures.",
+          "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations."
+        },
+        "riskReasoning": {
+          "riskReasoningId": "risk-1785764196686",
+          "scenarioFamilyId": "damaged_cord_wet_location",
+          "hazardDomain": "electrical",
+          "mechanismOfInjury": "electrical_shock",
+          "credibleWorstCaseOutcome": "shock_burn_arc_flash_or_fatality",
+          "severityEstimate": "high",
+          "likelihoodEstimate": "possible",
+          "exposureFrequency": "occasional",
+          "exposureDuration": "unknown",
+          "exposedPopulation": 2,
+          "energySourceSeverity": "high",
+          "controlFailureSeverity": "high",
+          "existingControls": [],
+          "missingOrFailedControls": [
+            "damaged insulation",
+            "no protection",
+            "cord damage"
+          ],
+          "uncertaintyFactors": [
+            "Narrative is short and may not fully support classification.",
+            "No photo evidence is attached.",
+            "No supplemental evidence notes are available.",
+            "Location or equipment context is limited.",
+            "Worker exposure is not explicitly described."
+          ],
+          "evidenceGaps": [
+            "Narrative is short and may not fully support classification.",
+            "No photo evidence is attached.",
+            "No supplemental evidence notes are available.",
+            "Location or equipment context is limited.",
+            "Worker exposure is not explicitly described."
+          ],
+          "initialRiskLevel": "high",
+          "residualRiskLevel": "low",
+          "riskDrivers": [
+            "credible severity: high",
+            "exposure likelihood: possible",
+            "energy source: electrical",
+            "mechanism: electrical_shock",
+            "missing/failed control: damaged insulation",
+            "missing/failed control: no protection",
+            "missing/failed control: cord damage"
+          ],
+          "riskReducers": [
+            "implement effective controls",
+            "verify correction"
+          ],
+          "urgencyLevel": "urgent",
+          "suggestedDueDateLogic": "same shift or before task continues",
+          "verificationRequirements": [
+            "verify corrective action effectiveness"
+          ],
+          "confidence": 0.82,
+          "humanReviewTriggers": [
+            "High-risk condition requires qualified review.",
+            "Evidence gaps remain and should be resolved before final reliance."
+          ],
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        },
+        "scenarioIntelligence": {
+          "scenarioFamilyId": "damaged_cord_wet_location",
+          "hazardCategory": "electrical",
+          "equipment": "cord",
+          "task": "maintenance",
+          "unsafeCondition": "damaged insulation",
+          "operationalState": "in use",
+          "energySource": "electrical",
+          "mechanismOfInjury": "electrical_shock",
+          "exposedPersonActivity": "employees handle the cord",
+          "missingOrFailedControls": [
+            "damaged insulation",
+            "no protection",
+            "cord damage"
+          ],
+          "hierarchyLevel": "unknown",
+          "candidateStandardFamily": "electrical",
+          "evidenceGaps": [
+            "energized status",
+            "extent of insulation damage",
+            "wet location confirmation"
+          ],
+          "confidenceSignals": {
+            "score": 0.82,
+            "reasoning": [
+              "Matched against scenario family: Damaged electrical cord in wet location"
+            ]
+          },
+          "qualifiedReviewRequired": true,
+          "advisoryOnly": true,
+          "doesNotDeclareViolation": true
+        },
+        "evidenceGapQuestions": [],
+        "reviewerQuestions": [
+          "Confirm what task or activity was occurring at the time of the observation.",
+          "Confirm whether a worker was exposed and how close they were to the hazard.",
+          "Confirm jurisdiction/site type before relying on standards mapping.",
+          "Confirm whether photos, measurements, records, tags, permits, SDS, tests, or other supporting evidence exist.",
+          "Confirm whether workers were exposed, how close they were, and whether access is possible.",
+          "Confirm whether workers were exposed, how close they were, and whether access to the hazard is possible during normal or foreseeable work.",
+          "Attach photos, measurements, records, inspection notes, or other supporting evidence before closure."
+        ],
+        "shardCorrectiveActionPatterns": [
+          "Restrict access to the fall exposure",
+          "Provide competent-person review and employee instruction where needed"
+        ],
+        "usesFocusedShardCorrectiveActions": true,
+        "enrichmentApplied": true,
+        "relevanceFilterApplied": true
+      },
+      "category": "Walking/Working Surfaces"
+    }
+  ],
+  "reasoningSourceHierarchy": {
+    "primaryBasis": [
+      "HazLenz AI governed classifier and reasoning brain",
+      "approved knowledge and source governance",
+      "regulatory scope filtering",
+      "standards applicability service",
+      "scenario, equipment, task, mechanism, and evidence reasoning"
+    ],
+    "secondaryReferenceOnly": [
+      "prior saved findings",
+      "workspace learning",
+      "site memory",
+      "trend intelligence",
+      "correlation intelligence",
+      "reviewer feedback history"
+    ],
+    "prohibitedHistoricalInfluence": [
+      "prior findings cannot create a standard match by themselves",
+      "prior findings cannot override approved knowledge or source governance",
+      "prior findings cannot remove high-risk review requirements",
+      "prior findings cannot finalize compliance or violation decisions"
+    ]
+  },
+  "reasoningBasis": {
+    "primaryReasoningSource": "hazlenz_governed_brain",
+    "standardsMatchPrimarySource": "approved_applicability_and_scope_filtered_standards",
+    "workspaceHistoryRole": "supporting_reference_only",
+    "priorFindingsUsed": false,
+    "priorFindingReferenceCount": 0,
+    "priorFindingsCanCreateStandards": false,
+    "priorFindingsCanOverrideGovernance": false,
+    "sourceHierarchyEnforced": true,
+    "advisoryOnly": true,
+    "requiresQualifiedReview": true,
+    "explanation": "HazLenz AI generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches."
+  },
+  "aiReadiness": {
+    "readyForDecisionSupport": true,
+    "readyForAutonomousComplianceDecision": false,
+    "marketingPosition": "AI-assisted safety review and decision-support engine",
+    "advisoryOnly": true,
+    "requiresQualifiedReview": true,
+    "limitations": [
+      "Does not declare violations.",
+      "Does not create citations.",
+      "Does not replace qualified safety or regulatory review.",
+      "Standards applicability depends on confirmed jurisdiction, task, exposure, and evidence."
+    ]
+  },
+  "aiEvidenceContract": {
+    "inputsUsed": [
+      "hazard_observation_text"
+    ],
+    "standardsSourcesUsed": [],
+    "missingInputs": [
+      "specific_location",
+      "supporting_photo_or_evidence_note"
+    ],
+    "unsupportedClaims": [],
+    "reviewTriggers": [
+      "qualified_review_required"
+    ],
+    "canFinalizeWithoutHumanReview": false,
+    "advisoryOnly": true,
+    "doesNotDeclareViolation": true,
+    "doesNotCreateCitation": true,
+    "requiresQualifiedReview": true
+  },
+  "additionalInformationNeeded": [],
+  "informationNeeded": [],
+  "aiCapabilityProfile": {
+    "classification": "AI-assisted safety review engine",
+    "capabilities": [
+      "hazard classification",
+      "risk reasoning",
+      "standards candidate support",
+      "evidence gap identification",
+      "corrective action recommendation",
+      "source-governed advisory reasoning"
+    ],
+    "missingForValidatedAi": [
+      "independent third-party validation",
+      "production-scale field accuracy study",
+      "live source update governance approval workflow"
+    ]
+  },
+  "reasoningSnapshotId": "local-reasoning-1785764196690",
+  "standardDecisions": [],
+  "mechanismChain": {
+    "observedCondition": "Insufficient observation detail; obtain condition, task, exposure, and control evidence.",
+    "failureMode": "Insufficient observation detail; obtain condition, task, exposure, and control evidence.",
+    "exposurePathway": "Insufficient observation detail; obtain condition, task, exposure, and control evidence.",
+    "potentialConsequence": "Insufficient observation detail; obtain condition, task, exposure, and control evidence.",
+    "evidenceGaps": [
+      "How close are employees to the condition, how often are they exposed, and is exposure temporary or ongoing?",
+      "What controls are currently in place, and has a qualified safety professional verified their condition and applicability?"
+    ],
+    "controlFocus": [],
+    "confidence": 0.93
+  },
+  "clarifyingQuestions": [],
+  "followUpQuestions": [],
+  "resultStage": "final",
+  "requiresAnotherReasoningPass": false,
+  "mayFinalize": true,
+  "humanReviewRequired": false,
+  "finalStandardRankingHydrated": true,
+  "candidatePrimaryCitation": "29 CFR 1926.501",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "regulatoryConclusion": {
+    "advisoryOnly": true,
+    "qualifiedHumanReviewRequired": true,
+    "violationDetermination": "pending_qualified_review",
+    "evidenceStatus": "sufficient_for_advisory_candidate"
+  },
+  "evidenceSnapshot": {
+    "id": "ev-fc8a35425083979d9bcc",
+    "schemaVersion": "1.0",
+    "facts": [
+      {
+        "id": "fact-1",
+        "type": "jurisdiction",
+        "value": "osha-construction",
+        "source": "system_inference",
+        "confidence": 0.98,
+        "status": "confirmed",
+        "temporalState": "current",
+        "reviewerStatus": "unreviewed"
+      }
+    ],
+    "criticalUnknowns": [],
+    "contradictions": [],
+    "extractorVersion": "evidence-foundation-2026-07-29.2",
+    "offlineBundle": {
+      "id": "hazlenz-offline-federal-core",
+      "version": "2026-07-29.1"
+    }
+  },
+  "applicabilityDecisions": [],
+  "evidenceConfidence": {
+    "score": 0.98,
+    "basis": "submitted evidence facts, provenance, unknowns, and contradictions",
+    "notLegalConfidence": true
+  },
+  "guidedFinding": {
+    "contractVersion": "guided-finding-v1",
+    "engineVersion": "hazlenz-production",
+    "rulesRelease": "2026-07-29.1",
+    "observedCondition": "Temporary power cords have damaged insulation on a framing level.",
+    "hazardCategory": "Walking/Working Surfaces",
+    "primaryStandard": null,
+    "additionalStandards": [],
+    "clarificationQuestions": [],
+    "riskAssessment": {
+      "severity": "Not established",
+      "likelihood": "Not established",
+      "exposure": "Not established",
+      "existingControls": [],
+      "immediacy": "Planned correction",
+      "potentialConsequence": "Confirm during qualified review.",
+      "overallRisk": "Moderate",
+      "riskLevel": "Moderate",
+      "provisional": true,
+      "rationale": "Material exposure or control facts remain unconfirmed.",
+      "reviewerConfirmed": false,
+      "reviewerOverrideReasonRequired": true
+    },
+    "correctiveAction": {
+      "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+      "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+      "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+      "responsibleRole": "Qualified responsible person",
+      "urgency": "Pending evidence review",
+      "suggestedDueDate": null,
+      "rationale": "Actions are advisory and tied to the Walking/Working Surfaces evidence and proposed risk.",
+      "hierarchyPreference": [
+        "elimination",
+        "substitution",
+        "engineering",
+        "administrative",
+        "PPE"
+      ]
+    },
+    "findingCandidates": [],
+    "multiHazardReview": {
+      "requiresSplitReview": false,
+      "instruction": "Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations."
+    },
+    "reviewStatus": {
+      "status": "qualified-review-required",
+      "reviewerConfirmed": false,
+      "editableFields": [
+        "facts",
+        "standard",
+        "risk",
+        "correctiveAction"
+      ]
+    },
+    "limitations": [
+      "HazLenz is advisory and does not replace a qualified safety professional.",
+      "Candidate standards are not confirmed violations.",
+      "Applicability depends on verified facts, jurisdiction, and the current authoritative source."
+    ],
+    "provenance": {
+      "evidenceSnapshotId": "ev-fc8a35425083979d9bcc",
+      "rulesRelease": "2026-07-29.1",
+      "deterministicInputHash": "d1c128f3b2b86a34dda808d52c3e6806657ccabd0149d375eb366cf99c9ac6ce"
+    }
+  },
+  "primaryStandards": [],
+  "suggestedStandards": [],
+  "standards": []
+}

@@ -1,0 +1,58 @@
+{
+  "inspectionId": "0849f89a-2e78-440a-985e-cfa035a2c44c",
+  "siteId": "7495c2ec-4a0d-40df-a119-b3f4e3761595",
+  "initial": "Home\nInspect\nReports\nCalendar\nSettings\nLive\nCM\n\nSAFETY INSITE\n\nServer-saved inspection\n\nHazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization.\n\n1. Capture\n2. Review\n3. Risk\n4. Action\n5. Complete\nSaved to Safety InSite\n\nINSPECTION\n\nFinding Lifecycle Probe\n\nStatus: draft · version 1\n\nPhoto evidence (optional)\nLocation or area\nWork activity (optional)\nSite context\nNot sure\nMSHA mine site\nOSHA general industry\nOSHA construction\nWhat did you observe?\nSave and review with HazLenz AI",
+  "body": "Home\nInspect\nReports\nCalendar\nSettings\nLive\nCM\n\nSAFETY INSITE\n\nServer-saved inspection\n\nHazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization.\n\n1. Capture\n2. Review\n3. Risk\n4. Action\n5. Complete\nHazLenz advisory snapshot saved — qualified human review required.\n\nINSPECTION\n\nFinding Lifecycle Probe\n\nStatus: draft · version 1\n\nHuman review required\nPersisted hazard findings\n\nmachine_guarding\n\nFinding ID: 89516ee3-3523-4b0e-9d07-d174136a08e3\n\nState: pending_review · Review: required · Analysis: 23386c86-8de2-49fd-b2bc-16c824fa00b3\n\nReview this finding\n\nconveyors\n\nFinding ID: db557721-8387-4c8a-9ea0-b1d8c26459ee\n\nState: pending_review · Review: required · Analysis: 23386c86-8de2-49fd-b2bc-16c824fa00b3\n\nReview this finding\n\nelectrical\n\nFinding ID: 056dda37-504a-4832-89f9-c10e151262fb\n\nState: pending_review · Review: required · Analysis: 23386c86-8de2-49fd-b2bc-16c824fa00b3\n\nReview this finding\nWhat HazLenz understood\n\nCorrect any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed.\n\njurisdiction\nSource: user confirmation · unknown\nwork Activity\nSource: user text · observed\nenergy State\nSource: user text · observed\nRe-run after fact corrections\nEssential clarification\nWhere did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\nWas a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?\n\nControl status determines whether HazLenz should treat the observation as an active exposure or a verification item.\n\nGuard missing or removed\nGuard installed\nLockout/tagout applied\nZero-energy verified\nNo control verified\nNot sure\nWere internal conductors or energized parts exposed, or was the damage limited to the outer jacket?\n\nVisible conductor exposure changes electrical shock risk and citation applicability.\n\nInternal conductors exposed\nOuter jacket damage only\nUnknown\nNot sure\n\nPRIMARY STANDARD\n\nNo primary standard established\nContinue to risk review",
+  "url": "http://localhost:3008/inspection-workspace",
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4237/offline/safescope-brain-bundle.json",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/0849f89a-2e78-440a-985e-cfa035a2c44c",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/0849f89a-2e78-440a-985e-cfa035a2c44c/observations",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/safescope-v2/classify",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/observations/90b88504-b4a7-4253-b147-b0c052f4c5ce/analyses",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/0849f89a-2e78-440a-985e-cfa035a2c44c",
+      "status": 200
+    }
+  ],
+  "buttons": [
+    "CM",
+    "Review this finding",
+    "Review this finding",
+    "Review this finding",
+    "Re-run after fact corrections",
+    "Mine or quarry",
+    "Construction site",
+    "Manufacturing or plant",
+    "Warehouse",
+    "Other workplace",
+    "Not sure",
+    "Guard missing or removed",
+    "Guard installed",
+    "Lockout/tagout applied",
+    "Zero-energy verified",
+    "No control verified",
+    "Not sure",
+    "Internal conductors exposed",
+    "Outer jacket damage only",
+    "Unknown",
+    "Not sure",
+    "Continue to risk review",
+    ""
+  ]
+}

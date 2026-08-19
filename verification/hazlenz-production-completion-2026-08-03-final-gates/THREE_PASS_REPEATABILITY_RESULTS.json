@@ -1,0 +1,9 @@
+{
+  "status": "partial",
+  "note": "The atomic runner file is populated incrementally. It completed 32 of the 81 selected cases before the disposable run was stopped to avoid an extended throttle wait; all 32 completed cases had three HTTP 201 passes and stable semantic safety output.",
+  "completedCases": 32,
+  "selectedCases": 81,
+  "stableCompletedCases": 32,
+  "unstableCompletedCases": 0,
+  "transportFailures": 0
+}

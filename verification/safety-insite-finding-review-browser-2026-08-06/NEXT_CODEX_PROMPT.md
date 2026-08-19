@@ -1,0 +1,3 @@
+Continue from `verification/safety-insite-finding-review-browser-2026-08-06`.
+
+Highest priority: reproduce and fix the production Chromium React hydration error #418, then run the complete authorization and audit matrices for current/history findings, reviews, evidence, actions, tasks, reports, and unauthenticated/foreign users. Next prove legitimate report version 2 and concurrent report generation with immutable checksums/snapshots. Preserve the finding-scoped UI fix and rerun the three required multi-hazard lifecycles. Then expand blind HazLenz contradiction/jurisdiction/threshold/image evaluation and reduce the 5% safe-state unsupported rate without overprediction. Do not commit or push; preserve the dirty worktree and protected hashes.

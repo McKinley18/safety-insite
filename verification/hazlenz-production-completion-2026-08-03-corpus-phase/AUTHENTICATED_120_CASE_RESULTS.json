@@ -1,0 +1,8 @@
+{
+  "generated": 129,
+  "authenticatedSmokeCases": 3,
+  "authenticatedSmokePass": 3,
+  "fullCorpusAccepted": false,
+  "reason": "Long endpoint runs encountered the configured 100 requests/minute throttler; existing 20-case authenticated regression remains the accepted broad regression signal.",
+  "lifeCriticalFailuresAccepted": 0
+}

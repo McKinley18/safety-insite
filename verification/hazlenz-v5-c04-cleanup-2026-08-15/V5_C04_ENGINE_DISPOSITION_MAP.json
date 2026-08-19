@@ -1,0 +1,98 @@
+{
+  "phase": "V5-C04",
+  "date": "2026-08-16",
+  "note": "Explicit map of the corrective-action / control engine landscape identified by the V5 capability audit. No consolidation was performed in this phase, per explicit scope control.",
+  "targets_named_by_task": [
+    {
+      "engine": "SafeScopeActionQualityService",
+      "file": "backend/src/safescope-v2/action-quality/action-quality.service.ts",
+      "role": "supporting_engine_dead",
+      "classification": "INSTANTIATED_BUT_DEAD",
+      "disposition": "DEFER_WITH_EXPLICIT_MARKER",
+      "reason": "Only reachable via SafeScopeNativeReasoningService, which is instantiated but never invoked from the hash-protected safescope-v2.service.ts. Confirmed via runtime instrumentation (zero invocations on a real classify() call). Cannot be removed without editing a protected file or breaking the build."
+    },
+    {
+      "engine": "SafeScopeControlEffectivenessService",
+      "file": "backend/src/safescope-v2/control-effectiveness/control-effectiveness.service.ts",
+      "role": "supporting_engine_dead",
+      "classification": "INSTANTIATED_BUT_DEAD",
+      "disposition": "DEFER_WITH_EXPLICIT_MARKER",
+      "reason": "Same root cause as SafeScopeActionQualityService. Genuinely implemented hierarchy-of-controls logic (not a stub) but unreachable from any live request path. Wiring it in would be a product-behavior change requiring dedicated validation, and the only insertion point is the protected file."
+    },
+    {
+      "engine": "CorrectiveActionControlMapService",
+      "file": "backend/src/safescope-v2/corrective-action-control-map/corrective-action-control-map.service.ts",
+      "role": "placeholder_engine",
+      "classification": "PLACEHOLDER_STUB",
+      "disposition": "REMOVE",
+      "reason": "Live, called every request with literal dummy args ('hazard','mechanism',[]), always returns one hardcoded object, zero frontend or other backend consumers. Removed from the orchestrator's call path and returned object; file deleted (confirmed zero other references)."
+    },
+    {
+      "engine": "GovernanceReportAdapterService",
+      "file": "backend/src/safescope-v2/governance-report-adapter/governance-report-adapter.service.ts",
+      "role": "placeholder_engine",
+      "classification": "PLACEHOLDER_STUB",
+      "disposition": "REMOVE",
+      "reason": "Discovered while tracing CorrectiveActionControlMapService's consumer (required by the task's own Phase-1 methodology). Consumes the fake controlMap output plus mostly-ignored parameters; most output fields are hardcoded generic strings. Zero frontend or other backend consumers. Removed from the orchestrator's call path and returned object; file deleted."
+    },
+    {
+      "engine": "Evidence sufficiency (EvidenceSufficiencyService, evidence-sufficiency-core)",
+      "file": "backend/src/safescope-v2/evidence-sufficiency-core/evidence-sufficiency.service.ts",
+      "role": "supporting_engine_live_partially_unwired",
+      "classification": "LIVE_BUT_UNUSED_OUTPUT",
+      "disposition": "KEEP computation; DEFER_WITH_EXPLICIT_MARKER for finalize-gate wiring",
+      "reason": "Real computation, genuinely consumed by 6 sibling engines inside the orchestrator. Its top-level sufficiencyLevel/overallScore/confidenceImpact verdict is never read by safescope-v2.service.ts's resultStage/mayFinalize decision (0 references, confirmed by grep of the protected file). Correctly hidden from the API response by the display sanitizer (unrelated, intentional, not a defect). Wiring the verdict into finalize/clarification gating is a product-behavior change explicitly deferred to V5-C02/C03."
+    }
+  ],
+  "adjacent_corrective_action_engines_mapped_no_consolidation": [
+    {
+      "engine": "CorrectiveActionBrainService",
+      "file": "backend/src/safescope-v2/brain/corrective-action-brain/corrective-action.service.ts",
+      "role": "authoritative_engine",
+      "classification": "LIVE_AND_EFFECTIVE",
+      "disposition": "KEEP",
+      "evidence": "Constructed as `correctiveActionEngine` in intelligence-orchestrator.service.ts; .evaluate() called; output assigned to `correctiveActionReasoning`; confirmed present in a live classify() API response (response.correctiveActionReasoning) both before and after this phase's edits."
+    },
+    {
+      "engine": "ActionEngineService",
+      "file": "backend/src/action-engine/action-engine.service.ts",
+      "role": "authoritative_engine",
+      "classification": "LIVE_AND_EFFECTIVE",
+      "disposition": "KEEP",
+      "evidence": "Standard NestJS DI, constructor-injected into safescope-v2.service.ts, action-engine.module.ts, and reports.service.ts. Generates `generatedActions`, the corrective-action list actually shown to and persisted for the inspector. Confirmed present in a live classify() API response."
+    },
+    {
+      "engine": "DefensibleCorrectiveActionService (dca)",
+      "file": "backend/src/safescope-v2/defensible-corrective-action/dca.service.ts",
+      "role": "supporting_engine_live",
+      "classification": "LIVE_AND_EFFECTIVE",
+      "disposition": "KEEP",
+      "evidence": "Constructed as `dcaEngine` in intelligence-orchestrator.service.ts, .evaluateDCA() called, output genuinely consumed as input by later engines within the orchestrator (not a dead leaf). Hidden from the API response by the display sanitizer for the same intentional reason as evidenceSufficiency -- not a defect. Task suggested this as a possible reference pattern contingent on runtime confirmation of it being the strongest live path; confirmed live and real, but no consolidation was performed (explicitly out of scope for C04)."
+    },
+    {
+      "engine": "SafeScopeCorrectiveActionReasoningService",
+      "file": "backend/src/safescope-v2/reasoning-orchestrator/corrective-actions/corrective-action-reasoning.service.ts",
+      "role": "authoritative_engine_second_pipeline",
+      "classification": "LIVE_AND_EFFECTIVE",
+      "disposition": "KEEP",
+      "evidence": "Constructed inside SafeScopeReasoningOrchestratorService, which is itself constructed AND invoked (.reason() is called) from the hash-protected safescope-v2.service.ts:1000, producing `advisoryReasoning`, which is deeply used throughout that file (standards applicability, vague-input detection, mining context, hazard candidates). This is a distinct, live, pre-classification 'inspection intelligence' pipeline -- complementary to CorrectiveActionBrainService's post-classification narrative reasoning, not redundant with it. No consolidation performed."
+    },
+    {
+      "engine": "CorrectiveActionControlMapService",
+      "file": "(deleted)",
+      "role": "placeholder_engine",
+      "classification": "PLACEHOLDER_STUB",
+      "disposition": "REMOVED",
+      "evidence": "See targets_named_by_task above."
+    },
+    {
+      "engine": "GovernanceReportAdapterService",
+      "file": "(deleted)",
+      "role": "placeholder_engine",
+      "classification": "PLACEHOLDER_STUB",
+      "disposition": "REMOVED",
+      "evidence": "See targets_named_by_task above."
+    }
+  ],
+  "consolidation_explicitly_not_performed": "The V5 audit noted 3-4 corrective-action/control engines. This phase confirms at least 4 distinct live engines (CorrectiveActionBrainService, ActionEngineService, DefensibleCorrectiveActionService, SafeScopeCorrectiveActionReasoningService) plus 2 dead engines (now removed) plus 2 further dead-but-protected engines (SafeScopeActionQualityService, SafeScopeControlEffectivenessService). Per explicit task scope control, no merging, no framework redesign, and no picking of a single 'winner' engine was performed. This map is intended to inform a future dedicated consolidation phase, not to replace it."
+}

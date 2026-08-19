@@ -1,0 +1,25 @@
+{
+  "priorProductionPath": {
+    "total": 445,
+    "pass": 359,
+    "needsReview": 86,
+    "fail": 0,
+    "lifeSafetyMisses": 0,
+    "unsupportedDefinitivePromotions": 0,
+    "fabricatedCitations": 0,
+    "unsafeCorrectiveActions": 0,
+    "safeStateFailures": 0
+  },
+  "authenticatedReasoningRerun": {
+    "total": 20,
+    "scenarioPassLabels": 20,
+    "averageScorePercent": 97.5,
+    "criticalDimensionFailures": 3,
+    "processPassed": false
+  },
+  "clarificationGauntlet": {
+    "processPassed": false,
+    "failure": "guarding clarification did not promote an expected approved citation"
+  },
+  "newIndependentCorpusCompleted": false
+}

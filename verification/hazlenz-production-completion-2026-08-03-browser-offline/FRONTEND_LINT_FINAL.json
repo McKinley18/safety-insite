@@ -1,0 +1,8 @@
+{
+  "tool": "npx eslint . --format json",
+  "errors": 505,
+  "warnings": 115,
+  "scope": "frontend-next",
+  "productionReachableErrorsRemain": true,
+  "policyChanged": false
+}

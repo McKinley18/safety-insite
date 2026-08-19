@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "startedAt": "2026-08-03T13:36:36.693Z",
+  "resumedAt": null,
+  "completedAt": "2026-08-03T13:36:36.693Z",
+  "total": 1,
+  "completed": 1,
+  "results": [
+    {
+      "id": "c-temp-power-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 52,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

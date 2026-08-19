@@ -1,0 +1,12 @@
+{
+  "existingApprovedStandardRecords": 19,
+  "newOfficialReferenceChunks": 2265,
+  "newApprovedPredicateSchemas": 0,
+  "capability": {
+    "tier1Direct": "limited existing approved rules only",
+    "tier2Candidate": "limited existing approved rules only",
+    "tier3Reference": 2265,
+    "tier4Unreviewed": 2265
+  },
+  "productionCoverageSufficient": false
+}

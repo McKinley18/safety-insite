@@ -1,0 +1,3 @@
+# Production deployment checklist
+
+Before deployment, provision PostgreSQL, S3-compatible private storage, HTTPS exact CORS origins, non-development JWT secrets, password-reset delivery, log/error monitoring, backups, and a rollback target. Run migrations against a disposable rehearsal database, then production with a reviewed change window. Confirm `DEV_AUTH_BYPASS=false`, `STORAGE_PROVIDER=s3`, no local storage, readiness health, entitlement denial, authenticated classification, upload/retrieval authorization, report generation, and audit logging. Do not launch until qualified regulatory release approval is recorded.

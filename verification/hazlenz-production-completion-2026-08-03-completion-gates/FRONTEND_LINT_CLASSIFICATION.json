@@ -1,0 +1,11 @@
+{
+  "errors": 500,
+  "warnings": 115,
+  "topRules": {
+    "@typescript-eslint/no-explicit-any": 491,
+    "@typescript-eslint/no-unused-vars": 110,
+    "react-hooks/set-state-in-effect": 7,
+    "react-hooks/rules-of-hooks": 2
+  },
+  "productionReachableErrorsRemain": true
+}

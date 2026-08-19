@@ -1,0 +1,62 @@
+[
+  {
+    "id": "c-temp-power-1",
+    "narrative": "Temporary power cords have damaged insulation on a framing level.",
+    "scopes": [
+      "osha_construction"
+    ],
+    "jurisdiction": "OSHA Construction",
+    "mechanisms": [
+      "electrical",
+      "temporary"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "c-temp-power-2",
+    "narrative": "Temporary power cords have damaged insulation on a framing level. Inspector shorthand: recheck before shift change.",
+    "scopes": [
+      "osha_construction"
+    ],
+    "jurisdiction": "OSHA Construction",
+    "mechanisms": [
+      "electrical",
+      "temporary"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "c-temp-power-3",
+    "narrative": "Temporary power cords have damaged insulation on a framing level.",
+    "scopes": [
+      "osha_construction"
+    ],
+    "jurisdiction": "OSHA Construction",
+    "mechanisms": [
+      "electrical",
+      "temporary"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  }
+]

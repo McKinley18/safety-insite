@@ -1,0 +1,571 @@
+[
+  {
+    "key": "removal",
+    "inspectionId": "1d447630-8043-4146-ac94-4dc0dfc0984b",
+    "observationId": "e444be29-8986-470b-825e-f98f78f85f13",
+    "initial": "The operating conveyor has an exposed nip point and the adjacent electrical cabinet has energized conductors exposed. Workers clear jams while the floor is oily.",
+    "revised": "The conveyor guard is installed and verified before inspection. The adjacent electrical cabinet remains open with energized conductors exposed. Workers still cross an oily floor.",
+    "baseline": {
+      "analysisId": "0394d84f-82a3-4043-a444-fbac71bc3fd1",
+      "findings": [
+        {
+          "id": "50d10e56-9386-425b-9176-d8f2cf1adcc5",
+          "key": "machine-guarding",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "62f55de6-b458-4edd-95e1-d0d1f77d92c0",
+          "key": "electrical",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "d9d12843-35c6-4c41-becf-a55c0bef6063",
+          "key": "slips-trips-falls",
+          "status": "pending_review",
+          "review": null
+        }
+      ],
+      "status": "in_review",
+      "history": [
+        {
+          "i": 0,
+          "body": "ing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\nWas a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?\n\nControl status determines whether HazLenz should treat the observation as an active exposure or a verification item.\n\nGuard missing or removed\nGuard installed\nLockout/tagout applied\nZero-energy verified\nNo control verified\nNot sure\nWere internal conductors or energized parts exposed, or was the damage limited to the outer jacket?\n\nVisible conductor exposure changes electrical shock risk and citation applicability.\n\nInternal conductors exposed\nOuter jacket damage only\nUnknown\nNot sure\n\nPRIMARY STANDARD\n\nNo primary standard established\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Review this finding",
+            "Review this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Guard missing or removed",
+            "Guard installed",
+            "Lockout/tagout applied",
+            "Zero-energy verified",
+            "No control verified",
+            "Not sure",
+            "Internal conductors exposed",
+            "Outer jacket damage only",
+            "Unknown",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        },
+        {
+          "i": 1,
+          "body": "ing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\nWas a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?\n\nControl status determines whether HazLenz should treat the observation as an active exposure or a verification item.\n\nGuard missing or removed\nGuard installed\nLockout/tagout applied\nZero-energy verified\nNo control verified\nNot sure\nWere internal conductors or energized parts exposed, or was the damage limited to the outer jacket?\n\nVisible conductor exposure changes electrical shock risk and citation applicability.\n\nInternal conductors exposed\nOuter jacket damage only\nUnknown\nNot sure\n\nPRIMARY STANDARD\n\nNo primary standard established\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Reviewing this finding",
+            "Review this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Guard missing or removed",
+            "Guard installed",
+            "Lockout/tagout applied",
+            "Zero-energy verified",
+            "No control verified",
+            "Not sure",
+            "Internal conductors exposed",
+            "Outer jacket damage only",
+            "Unknown",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        },
+        {
+          "i": 2,
+          "body": "ing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\nWas a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?\n\nControl status determines whether HazLenz should treat the observation as an active exposure or a verification item.\n\nGuard missing or removed\nGuard installed\nLockout/tagout applied\nZero-energy verified\nNo control verified\nNot sure\nWere internal conductors or energized parts exposed, or was the damage limited to the outer jacket?\n\nVisible conductor exposure changes electrical shock risk and citation applicability.\n\nInternal conductors exposed\nOuter jacket damage only\nUnknown\nNot sure\n\nPRIMARY STANDARD\n\nNo primary standard established\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Review this finding",
+            "Reviewing this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Guard missing or removed",
+            "Guard installed",
+            "Lockout/tagout applied",
+            "Zero-energy verified",
+            "No control verified",
+            "Not sure",
+            "Internal conductors exposed",
+            "Outer jacket damage only",
+            "Unknown",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        }
+      ]
+    },
+    "reanalysis": {
+      "analysisId": "3111bb3f-6e23-4752-81c7-144a6b1a30f1",
+      "findings": [
+        {
+          "id": "62f55de6-b458-4edd-95e1-d0d1f77d92c0",
+          "key": "electrical",
+          "status": "pending_review",
+          "review": null,
+          "originatingAnalysisId": "0394d84f-82a3-4043-a444-fbac71bc3fd1"
+        },
+        {
+          "id": "50d10e56-9386-425b-9176-d8f2cf1adcc5",
+          "key": "machine-guarding",
+          "status": "superseded",
+          "review": "47fdd1fb-4029-4822-846b-be4f392bc4b0",
+          "originatingAnalysisId": "0394d84f-82a3-4043-a444-fbac71bc3fd1"
+        },
+        {
+          "id": "d9d12843-35c6-4c41-becf-a55c0bef6063",
+          "key": "slips-trips-falls",
+          "status": "superseded",
+          "review": "3d0e72d5-5d83-4873-8235-f19b2735d2f2",
+          "originatingAnalysisId": "0394d84f-82a3-4043-a444-fbac71bc3fd1"
+        }
+      ],
+      "analyses": [
+        {
+          "id": "3111bb3f-6e23-4752-81c7-144a6b1a30f1",
+          "version": 2,
+          "status": "current"
+        },
+        {
+          "id": "0394d84f-82a3-4043-a444-fbac71bc3fd1",
+          "version": 1,
+          "status": "superseded"
+        }
+      ],
+      "repeatFindings": [
+        {
+          "id": "62f55de6-b458-4edd-95e1-d0d1f77d92c0",
+          "key": "electrical",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "50d10e56-9386-425b-9176-d8f2cf1adcc5",
+          "key": "machine-guarding",
+          "status": "superseded",
+          "review": "47fdd1fb-4029-4822-846b-be4f392bc4b0"
+        },
+        {
+          "id": "d9d12843-35c6-4c41-becf-a55c0bef6063",
+          "key": "slips-trips-falls",
+          "status": "superseded",
+          "review": "3d0e72d5-5d83-4873-8235-f19b2735d2f2"
+        }
+      ]
+    },
+    "events": [
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/offline/safescope-brain-bundle.json",
+        "status": 404
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b/observations",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/safescope-v2/classify",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/e444be29-8986-470b-825e-f98f78f85f13/analyses",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/e444be29-8986-470b-825e-f98f78f85f13/reviews",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/e444be29-8986-470b-825e-f98f78f85f13/findings",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b/transition",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/e444be29-8986-470b-825e-f98f78f85f13/reviews",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/e444be29-8986-470b-825e-f98f78f85f13/findings",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/1d447630-8043-4146-ac94-4dc0dfc0984b",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "key": "addition",
+    "inspectionId": "c91813f2-0000-4ed2-9ec7-b1602a7b2dc0",
+    "observationId": "5cdbbed7-fb06-484a-b587-1603096b5f9f",
+    "initial": "A forklift reverses through a congested aisle without a clear pedestrian separation.",
+    "revised": "A forklift reverses through a congested aisle without pedestrian separation, and a nearby conveyor has an exposed moving nip point.",
+    "baseline": {
+      "analysisId": "d134f2cb-d3aa-40aa-910a-f0b271b812ae",
+      "findings": [
+        {
+          "id": "90c03b50-fa8d-4e93-adea-c6b754a8817f",
+          "key": "mobile-equipment",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "bbe2f0f8-1539-497f-8574-bb6a94f18322",
+          "key": "powered-industrial-trucks",
+          "status": "pending_review",
+          "review": null
+        }
+      ],
+      "status": "in_review",
+      "history": [
+        {
+          "i": 0,
+          "body": " accepting the advisory result. Unknown facts remain unknown; they are not treated as observed.\n\njurisdiction\nSource: user confirmation · unknown\nRe-run after fact corrections\nEssential clarification\nWhere did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\n\nCANDIDATE STANDARD — MORE EVIDENCE REQUIRED\n\n29 CFR 1910.178 — Mobile Equipment / Traffic\n\nReview the authoritative requirement and confirmed facts before finalization.\n\nWhy HazLenz selected this\n\nHazLenz retained this as a candidate because material applicability facts remain unconfirmed.\n\nConfidence: Low\n\nRegulatory source approval or release coverage limits confidence.\n\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Review this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        },
+        {
+          "i": 1,
+          "body": " accepting the advisory result. Unknown facts remain unknown; they are not treated as observed.\n\njurisdiction\nSource: user confirmation · unknown\nRe-run after fact corrections\nEssential clarification\nWhere did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\n\nCANDIDATE STANDARD — MORE EVIDENCE REQUIRED\n\n29 CFR 1910.178 — Mobile Equipment / Traffic\n\nReview the authoritative requirement and confirmed facts before finalization.\n\nWhy HazLenz selected this\n\nHazLenz retained this as a candidate because material applicability facts remain unconfirmed.\n\nConfidence: Low\n\nRegulatory source approval or release coverage limits confidence.\n\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Reviewing this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        }
+      ]
+    },
+    "reanalysis": {
+      "analysisId": "d6904c08-60a9-4a3b-8bd0-328436ee9125",
+      "findings": [
+        {
+          "id": "90c03b50-fa8d-4e93-adea-c6b754a8817f",
+          "key": "mobile-equipment",
+          "status": "finalized",
+          "review": "00b13bbb-41a4-4453-9cdf-075622c75ab1",
+          "originatingAnalysisId": "d134f2cb-d3aa-40aa-910a-f0b271b812ae"
+        },
+        {
+          "id": "06dc369d-c58d-44d3-9415-8f733465eabe",
+          "key": "machine-guarding",
+          "status": "pending_review",
+          "review": null,
+          "originatingAnalysisId": "d6904c08-60a9-4a3b-8bd0-328436ee9125"
+        },
+        {
+          "id": "bbe2f0f8-1539-497f-8574-bb6a94f18322",
+          "key": "powered-industrial-trucks",
+          "status": "pending_review",
+          "review": null,
+          "originatingAnalysisId": "d134f2cb-d3aa-40aa-910a-f0b271b812ae"
+        }
+      ],
+      "analyses": [
+        {
+          "id": "d6904c08-60a9-4a3b-8bd0-328436ee9125",
+          "version": 2,
+          "status": "current"
+        },
+        {
+          "id": "d134f2cb-d3aa-40aa-910a-f0b271b812ae",
+          "version": 1,
+          "status": "superseded"
+        }
+      ],
+      "repeatFindings": [
+        {
+          "id": "90c03b50-fa8d-4e93-adea-c6b754a8817f",
+          "key": "mobile-equipment",
+          "status": "finalized",
+          "review": "00b13bbb-41a4-4453-9cdf-075622c75ab1"
+        },
+        {
+          "id": "06dc369d-c58d-44d3-9415-8f733465eabe",
+          "key": "machine-guarding",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "bbe2f0f8-1539-497f-8574-bb6a94f18322",
+          "key": "powered-industrial-trucks",
+          "status": "pending_review",
+          "review": null
+        }
+      ]
+    },
+    "events": [
+      {
+        "url": "http://127.0.0.1:4238/inspections/c91813f2-0000-4ed2-9ec7-b1602a7b2dc0",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/offline/safescope-brain-bundle.json",
+        "status": 404
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/c91813f2-0000-4ed2-9ec7-b1602a7b2dc0/observations",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/safescope-v2/classify",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/5cdbbed7-fb06-484a-b587-1603096b5f9f/analyses",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/c91813f2-0000-4ed2-9ec7-b1602a7b2dc0",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/5cdbbed7-fb06-484a-b587-1603096b5f9f/reviews",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/5cdbbed7-fb06-484a-b587-1603096b5f9f/findings",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/c91813f2-0000-4ed2-9ec7-b1602a7b2dc0/transition",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/c91813f2-0000-4ed2-9ec7-b1602a7b2dc0",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "key": "material-change",
+    "inspectionId": "af028451-29c0-4587-a705-5ac8a464d0e6",
+    "observationId": "6027d126-fd77-437f-ad7a-67e3ecad2834",
+    "initial": "A damaged extension ladder is being used on an uneven loading dock without secured feet.",
+    "revised": "A powered industrial truck is reversing through the loading dock aisle with pedestrians nearby and no effective separation.",
+    "baseline": {
+      "analysisId": "bed70720-8375-40c9-a759-0d89c7c4070a",
+      "findings": [
+        {
+          "id": "527bad5a-07e5-420c-9398-4cc073e59e8e",
+          "key": "fall-protection",
+          "status": "pending_review",
+          "review": null
+        }
+      ],
+      "status": "completed",
+      "history": [
+        {
+          "i": 0,
+          "body": " or plant\nWarehouse\nOther workplace\nNot sure\nWhat was the approximate working height or fall distance?\n\nHeight determines whether fall-protection standards are likely applicable.\n\nYes\nNo\nUnknown\nNot applicable\nWas the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?\n\nFall and ladder standards depend on the access method and specific misuse or defect.\n\nDefective ladder\nIncorrect ladder use\nUnprotected edge or opening\nScaffold\nRoof\nPlatform\nNot sure\n\nCANDIDATE STANDARD — MORE EVIDENCE REQUIRED\n\n29 CFR 1910.23(b) — Fall Protection\n\nReview the authoritative requirement and confirmed facts before finalization.\n\nWhy HazLenz selected this\n\nHazLenz retained this as a candidate because material applicability facts remain unconfirmed.\n\nConfidence: Low\n\nRegulatory source approval or release coverage limits confidence.\n\nContinue to risk review",
+          "buttons": [
+            "CM",
+            "Review this finding",
+            "Re-run after fact corrections",
+            "Mine or quarry",
+            "Construction site",
+            "Manufacturing or plant",
+            "Warehouse",
+            "Other workplace",
+            "Not sure",
+            "Yes",
+            "No",
+            "Unknown",
+            "Not applicable",
+            "Defective ladder",
+            "Incorrect ladder use",
+            "Unprotected edge or opening",
+            "Scaffold",
+            "Roof",
+            "Platform",
+            "Not sure",
+            "Continue to risk review",
+            ""
+          ]
+        },
+        {
+          "i": 1,
+          "body": "Home\nInspect\nReports\nCalendar\nSettings\nLive\nCM\n\nSAFETY INSITE\n\nServer-saved inspection\n\nHazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization.\n\n1. Capture\n2. Review\n3. Risk\n4. Action\n5. Complete\nAll current findings have a separate completed human review.\n\nINSPECTION\n\nReconciliation Material Change\n\nStatus: in_review · version 2\n\nCorrective action\nImmediate protective action\nPermanent correction\nVerification step\n\nThis creates durable corrective-action and calendar records before completing the inspection.\n\nComplete inspection and generate report",
+          "buttons": [
+            "CM",
+            "Complete inspection and generate report",
+            ""
+          ]
+        }
+      ]
+    },
+    "reanalysis": {
+      "analysisId": "dd9105dd-eb9e-4405-bfe9-692753ee7439",
+      "findings": [
+        {
+          "id": "3bfed311-9a46-457d-8e4c-3bf03fb03cb9",
+          "key": "mobile-equipment",
+          "status": "pending_review",
+          "review": null,
+          "originatingAnalysisId": "dd9105dd-eb9e-4405-bfe9-692753ee7439"
+        },
+        {
+          "id": "0468bf1c-f0a5-4245-b523-dab0932569a4",
+          "key": "powered-industrial-trucks",
+          "status": "pending_review",
+          "review": null,
+          "originatingAnalysisId": "dd9105dd-eb9e-4405-bfe9-692753ee7439"
+        },
+        {
+          "id": "527bad5a-07e5-420c-9398-4cc073e59e8e",
+          "key": "fall-protection",
+          "status": "superseded",
+          "review": "16a307da-59dd-4f1a-b49a-c1f02f27f9ee",
+          "originatingAnalysisId": "bed70720-8375-40c9-a759-0d89c7c4070a"
+        }
+      ],
+      "analyses": [
+        {
+          "id": "dd9105dd-eb9e-4405-bfe9-692753ee7439",
+          "version": 2,
+          "status": "current"
+        },
+        {
+          "id": "bed70720-8375-40c9-a759-0d89c7c4070a",
+          "version": 1,
+          "status": "superseded"
+        }
+      ],
+      "repeatFindings": [
+        {
+          "id": "3bfed311-9a46-457d-8e4c-3bf03fb03cb9",
+          "key": "mobile-equipment",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "0468bf1c-f0a5-4245-b523-dab0932569a4",
+          "key": "powered-industrial-trucks",
+          "status": "pending_review",
+          "review": null
+        },
+        {
+          "id": "527bad5a-07e5-420c-9398-4cc073e59e8e",
+          "key": "fall-protection",
+          "status": "superseded",
+          "review": "16a307da-59dd-4f1a-b49a-c1f02f27f9ee"
+        }
+      ]
+    },
+    "events": [
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/offline/safescope-brain-bundle.json",
+        "status": 404
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6/observations",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/safescope-v2/classify",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/6027d126-fd77-437f-ad7a-67e3ecad2834/analyses",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/6027d126-fd77-437f-ad7a-67e3ecad2834/reviews",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/observations/6027d126-fd77-437f-ad7a-67e3ecad2834/findings",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6/transition",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4238/actions",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/tasks",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6/transition",
+        "status": 201
+      },
+      {
+        "url": "http://127.0.0.1:4238/inspections/af028451-29c0-4587-a705-5ac8a464d0e6/reports",
+        "status": 201
+      }
+    ]
+  }
+]

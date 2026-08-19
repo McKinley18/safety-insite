@@ -1,0 +1,38 @@
+[
+  {
+    "id": "c-temp-power-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-temp-power-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  },
+  {
+    "id": "c-temp-power-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA Construction"
+  }
+]

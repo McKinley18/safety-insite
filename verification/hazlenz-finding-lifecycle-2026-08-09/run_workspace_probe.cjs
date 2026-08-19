@@ -1,0 +1,42 @@
+const { chromium } = require('/Users/mckinley/Desktop/Safety_InSite/frontend-next/node_modules/playwright');
+const fs = require('fs');
+const backend = 'http://127.0.0.1:4237';
+const frontend = 'http://localhost:3008';
+
+(async () => {
+  const browser = await chromium.launch({ headless: true, executablePath: '/Users/mckinley/Library/Caches/ms-playwright/chromium-1223/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing' });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+  const page = await context.newPage();
+  const api = context.request;
+  const login = await api.post(backend + '/auth/login', { data: { email: 'lifecycle.owner@example.test', password: 'Lifecycle!123' } });
+  const auth = await login.json();
+  const headers = { Authorization: `Bearer ${auth.token}`, 'Content-Type': 'application/json' };
+  const sitesResponse = await api.get(backend + '/sites?limit=100', { headers });
+  const sites = await sitesResponse.json();
+  let site = sites.data?.[0];
+  if (!site) site = await (await api.post(backend + '/sites', { headers, data: { name: 'Finding Lifecycle Site' } })).json();
+  const inspection = await (await api.post(backend + '/inspections', { headers, data: { siteId: site.id, title: 'Finding Lifecycle Probe' } })).json();
+  await page.goto(frontend + '/login', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(({ token, user, inspectionId, siteId }) => {
+    localStorage.setItem('sentinel_auth_token', token);
+    localStorage.setItem('sentinel_auth_user', JSON.stringify(user));
+    localStorage.setItem('sentinel_selected_inspection_context', JSON.stringify({ persistedInspectionId: inspectionId, persistedSiteId: siteId, persistenceState: 'saved', inspectionType: 'guided_inspection', inspectionTitle: 'Finding Lifecycle Probe', workflowDepth: 'guided' }));
+  }, { token: auth.token, user: auth.user, inspectionId: inspection.id, siteId: site.id });
+  const responses = [];
+  page.on('response', response => { if (/safescope|inspections|actions|tasks|reports/.test(response.url())) responses.push({ url: response.url(), status: response.status() }); });
+  await page.goto(frontend + '/inspection-workspace', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(1000);
+  const initial = await page.locator('body').innerText();
+  const observation = 'During conveyor clearing, the drive nip point is exposed while the belt is running, and a nearby electrical panel has an open cover with energized conductors within reach. Operators also cross an oily walking surface beside the drive.';
+  await page.getByLabel('What did you observe?').fill(observation);
+  await page.getByLabel('Location or area').fill('Crusher conveyor drive and adjacent panel');
+  await page.getByLabel('Work activity').fill('Clearing a conveyor jam');
+  await page.getByRole('button', { name: /Save and review with HazLenz AI/i }).click();
+  await page.waitForTimeout(7000);
+  const body = await page.locator('body').innerText();
+  const result = { inspectionId: inspection.id, siteId: site.id, initial, body: body.slice(0, 24000), url: page.url(), responses, buttons: await page.getByRole('button').allTextContents() };
+  fs.writeFileSync(__dirname + '/WORKSPACE_PROBE.json', JSON.stringify(result, null, 2));
+  await page.screenshot({ path: __dirname + '/workspace-probe-review.png', fullPage: true });
+  console.log(JSON.stringify({ inspectionId: inspection.id, responses, body: body.slice(-5000), buttons: result.buttons }, null, 2));
+  await browser.close();
+})();

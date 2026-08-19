@@ -1,0 +1,11 @@
+{
+  "total": 129,
+  "pass": 113,
+  "needsReview": 16,
+  "fail": 0,
+  "transportFailures": 0,
+  "lifeCriticalFailures": 0,
+  "pendingReviewLeaks": 0,
+  "source": "../hazlenz-production-completion-2026-08-03-continuation/AUTHENTICATED_129_CASE_RESULTS.json",
+  "scoringNote": "Temporary construction power cases remain NEEDS REVIEW because their required citation is outside the bounded 19-standard release; they were not promoted or counted as PASS."
+}

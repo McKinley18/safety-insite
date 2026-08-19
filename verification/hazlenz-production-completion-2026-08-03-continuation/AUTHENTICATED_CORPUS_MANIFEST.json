@@ -1,0 +1,10 @@
+{
+  "suite": "hazlenz-authentic-reasoning-evaluation",
+  "authenticated": true,
+  "endpoint": "POST /safescope-v2/classify",
+  "cases": 20,
+  "independentCorpusMinimum": 100,
+  "independentCorpusStatus": "not_available_in_repository",
+  "expectedOutputsSentToProduction": false,
+  "devAuthBypass": false
+}

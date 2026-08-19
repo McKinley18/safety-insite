@@ -1,0 +1,10 @@
+{
+  "database": "hazlenz_completion_20260730",
+  "documents": 129,
+  "byAgency": {"OSHA": 49, "MSHA": 80},
+  "normalizedChunks": {"29CFR": 479, "30CFR": 1786, "total": 2265},
+  "approvalStatus": {"pending_review": 129, "approved": 0, "rejected": 0, "superseded": 0},
+  "runtimeDefinitiveEligibility": "pending documents excluded",
+  "part1904Documents": 0,
+  "sourceSecretsIncluded": false
+}

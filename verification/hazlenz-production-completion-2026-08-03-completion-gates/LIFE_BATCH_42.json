@@ -1,0 +1,1493 @@
+{
+  "offset": 42,
+  "selected": 20,
+  "results": [
+    {
+      "id": "c-hoist-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-hoist-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-hoist-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Emergency Egress hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-maintenance-ambiguous-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-maintenance-ambiguous-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-maintenance-ambiguous-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Lockout / Stored Energy hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Lockout / Stored Energy hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-roof-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-roof-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "c-roof-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "29 CFR 1926.501(b)(1)",
+            "standards": [
+              "29 CFR 1926.501(b)(1)"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-traffic-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "30 CFR 56.9100",
+            "standards": [
+              "30 CFR 56.9100"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "30 CFR 56.9100",
+            "standards": [
+              "30 CFR 56.9100"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "30 CFR 56.9100",
+            "standards": [
+              "30 CFR 56.9100"
+            ],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-traffic-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-traffic-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-conveyor-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-conveyor-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-conveyor-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-ground-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-ground-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-ground-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-electrical-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "m-electrical-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    }
+  ],
+  "completed": 10,
+  "stable": 10,
+  "deferred": 10
+}

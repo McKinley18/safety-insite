@@ -1,0 +1,7 @@
+{
+  "status": "not_completed",
+  "requiredMinimum": 100,
+  "acceptedCases": 0,
+  "reason": "The authenticated entitlement fixture produced false HTTP 402 failures; no independent score is claimed until the harness is repaired.",
+  "expectedOutputsOutsideProductionLogic": true
+}

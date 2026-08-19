@@ -1,0 +1,17 @@
+{
+  "repository": "/Users/mckinley/Desktop/Safety_InSite",
+  "head": "24e37703ff37d96b0e42cde4b85ccdef89b2bf2a",
+  "verdict": "NOT READY",
+  "summary": {"critical": 11, "high": 16, "medium": 1, "external": 5},
+  "gates": [
+    {"id":"hazlenz-corpus","status":"PASS","severity":"High","evidence":"129 authenticated cases; 113 PASS; 0 FAIL"},
+    {"id":"multi-hazard-lifecycle","status":"PARTIAL","severity":"Critical","evidence":"UI decomposition/cards pass; complete persistence/report lifecycle open"},
+    {"id":"analysis-concurrency","status":"PARTIAL","severity":"Critical","evidence":"Endpoint 409/idempotency/locking pass; browser two-context proof open"},
+    {"id":"authorization","status":"PARTIAL","severity":"Critical","evidence":"Prior owner/unrelated report denial; full matrix open"},
+    {"id":"reports","status":"PARTIAL","severity":"Critical","evidence":"Single-hazard PDF immutability pass; multi-hazard versions open"},
+    {"id":"lint","status":"FAIL","severity":"High","evidence":"502 errors, 115 warnings"},
+    {"id":"offline","status":"NOT TESTED","severity":"High","evidence":"localStorage helpers only"},
+    {"id":"storage","status":"EXTERNAL","severity":"Critical","evidence":"live provider credentials unavailable"},
+    {"id":"regulatory","status":"EXTERNAL","severity":"Critical","evidence":"129 imported records pending review"}
+  ]
+}

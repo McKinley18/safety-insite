@@ -1,0 +1,22 @@
+[
+  {
+    "id": "c-temp-power-1",
+    "narrative": "Temporary power cords have damaged insulation on a framing level.",
+    "scopes": [
+      "osha_construction"
+    ],
+    "jurisdiction": "OSHA Construction",
+    "mechanisms": [
+      "electrical",
+      "temporary"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1926.404"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  }
+]

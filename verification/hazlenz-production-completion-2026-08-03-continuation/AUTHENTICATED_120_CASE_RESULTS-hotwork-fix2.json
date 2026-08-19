@@ -1,0 +1,241 @@
+{
+  "total": 3,
+  "pass": 3,
+  "needsReview": 0,
+  "fail": 0,
+  "lifeCriticalFailures": 0,
+  "pendingReviewLeaks": 0,
+  "results": [
+    {
+      "id": "gi-hot-work-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 129,
+      "jurisdiction": null,
+      "classification": "Fire / Explosion",
+      "primaryCitation": "29 CFR 1910.252(a)(2)(iv)",
+      "standards": [
+        "29 CFR 1910.252(a)(2)(iv)",
+        "29 CFR 1910.252(a)(2)(iv)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-ih-heat-hydration",
+          "scenarioFamilyId": "heat_stress_exposure",
+          "hazardDomain": "industrial_hygiene",
+          "evidenceGapId": "hydration access",
+          "question": "Is adequate, cool drinking water readily available and accessible to all workers?",
+          "reasonForQuestion": "Hydration is crucial for preventing heat stress.",
+          "relatedMechanismOfInjury": "heat_stress",
+          "relatedExposurePathway": "worker",
+          "relatedMissingControl": "rest_breaks",
+          "relatedStandardFamilyCandidate": "candidate-ih",
+          "priority": "high",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "water station photo"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fire / Explosion hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fire / Explosion hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 97,
+      "jurisdiction": null,
+      "classification": "Fire / Explosion",
+      "primaryCitation": "29 CFR 1910.252(a)(2)(iv)",
+      "standards": [
+        "29 CFR 1910.252(a)(2)(iv)",
+        "29 CFR 1910.252(a)(2)(iv)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-ih-heat-hydration",
+          "scenarioFamilyId": "heat_stress_exposure",
+          "hazardDomain": "industrial_hygiene",
+          "evidenceGapId": "hydration access",
+          "question": "Is adequate, cool drinking water readily available and accessible to all workers?",
+          "reasonForQuestion": "Hydration is crucial for preventing heat stress.",
+          "relatedMechanismOfInjury": "heat_stress",
+          "relatedExposurePathway": "worker",
+          "relatedMissingControl": "rest_breaks",
+          "relatedStandardFamilyCandidate": "candidate-ih",
+          "priority": "high",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "water station photo"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fire / Explosion hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fire / Explosion hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 69,
+      "jurisdiction": null,
+      "classification": "Fire / Explosion",
+      "primaryCitation": "29 CFR 1910.252(a)(2)(iv)",
+      "standards": [
+        "29 CFR 1910.252(a)(2)(iv)",
+        "29 CFR 1910.252(a)(2)(iv)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-ih-heat-hydration",
+          "scenarioFamilyId": "heat_stress_exposure",
+          "hazardDomain": "industrial_hygiene",
+          "evidenceGapId": "hydration access",
+          "question": "Is adequate, cool drinking water readily available and accessible to all workers?",
+          "reasonForQuestion": "Hydration is crucial for preventing heat stress.",
+          "relatedMechanismOfInjury": "heat_stress",
+          "relatedExposurePathway": "worker",
+          "relatedMissingControl": "rest_breaks",
+          "relatedStandardFamilyCandidate": "candidate-ih",
+          "priority": "high",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "water station photo"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fire / Explosion hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fire / Explosion hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

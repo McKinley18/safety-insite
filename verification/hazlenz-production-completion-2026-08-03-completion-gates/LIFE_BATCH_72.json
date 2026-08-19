@@ -1,0 +1,1080 @@
+{
+  "offset": 72,
+  "selected": 9,
+  "results": [
+    {
+      "id": "x-unknown-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-unknown-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-unknown-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Machine Guarding hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Machine Guarding hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-recordkeeping-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-recordkeeping-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-recordkeeping-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-coal-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-coal-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-coal-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 6,
+              "riskBand": "Moderate",
+              "imminentDanger": false,
+              "fatalityPotential": "medium",
+              "requiresShutdown": false,
+              "reasoning": [],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 2,
+                "likelihood": 3,
+                "matrixScore": 6,
+                "matrixBand": "Moderate"
+              },
+              "aiRisk": {
+                "escalationScore": 6,
+                "escalationBand": "Moderate",
+                "imminentDanger": false,
+                "fatalityPotential": "medium",
+                "requiresShutdown": false,
+                "escalationReasons": []
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    }
+  ],
+  "completed": 9,
+  "stable": 9,
+  "deferred": 0
+}

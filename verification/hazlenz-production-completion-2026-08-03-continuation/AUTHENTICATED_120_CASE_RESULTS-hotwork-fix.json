@@ -1,0 +1,145 @@
+{
+  "total": 3,
+  "pass": 0,
+  "needsReview": 3,
+  "fail": 0,
+  "lifeCriticalFailures": 3,
+  "pendingReviewLeaks": 0,
+  "results": [
+    {
+      "id": "gi-hot-work-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 121,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 87,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 69,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

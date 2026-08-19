@@ -1,0 +1,1468 @@
+{
+  "offset": 62,
+  "selected": 19,
+  "results": [
+    {
+      "id": "m-electrical-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Electrical hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Electrical hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Electrical hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Electrical hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Electrical hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Electrical hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-ladder-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-ladder-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-ladder-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 19,
+              "riskBand": "Critical",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Fall Protection hazards can create serious or fatal exposure.",
+                "Condition wording indicates active uncontrolled exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 4,
+                "matrixScore": 16,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 19,
+                "escalationBand": "Critical",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Fall Protection hazards can create serious or fatal exposure.",
+                  "Condition wording indicates active uncontrolled exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-compressed-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-compressed-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-compressed-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": true,
+              "reasoning": [
+                "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": true,
+                "escalationReasons": [
+                  "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-contractor-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-contractor-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "m-contractor-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 2,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "pass": 3,
+          "status": 201,
+          "retries": 0,
+          "deferred": false,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": {
+              "riskScore": 15,
+              "riskBand": "High",
+              "imminentDanger": false,
+              "fatalityPotential": "high",
+              "requiresShutdown": false,
+              "reasoning": [
+                "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+              ],
+              "operationalRisk": {
+                "profileId": "standard_5x5",
+                "profileLabel": "Standard 5x5",
+                "matrixSize": 5,
+                "severity": 4,
+                "likelihood": 3,
+                "matrixScore": 12,
+                "matrixBand": "High"
+              },
+              "aiRisk": {
+                "escalationScore": 15,
+                "escalationBand": "High",
+                "imminentDanger": false,
+                "fatalityPotential": "high",
+                "requiresShutdown": false,
+                "escalationReasons": [
+                  "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "stable": true
+    },
+    {
+      "id": "x-unknown-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-unknown-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-unknown-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-recordkeeping-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-recordkeeping-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-recordkeeping-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-coal-1",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-coal-2",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    },
+    {
+      "id": "x-coal-3",
+      "runs": [
+        {
+          "pass": 1,
+          "status": 429,
+          "retries": 0,
+          "deferred": true,
+          "semantic": {
+            "jurisdiction": null,
+            "primaryCitation": "",
+            "standards": [],
+            "risk": null
+          }
+        }
+      ],
+      "complete": false,
+      "stable": false
+    }
+  ],
+  "completed": 10,
+  "stable": 10,
+  "deferred": 9
+}

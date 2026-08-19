@@ -1,0 +1,6 @@
+- Repository: `/Users/mckinley/Desktop/Safety_InSite`
+- Branch: `main`; HEAD `24e37703ff37d96b0e42cde4b85ccdef89b2bf2a`
+- Status entries before phase: 234; current: 237.
+- Disposable DB: `phase_hlz_assoc`; backend port 4245; persistent session used.
+- Original development DB untouched; unrelated changes preserved.
+- No commit or push; `git diff --check`: PASS.

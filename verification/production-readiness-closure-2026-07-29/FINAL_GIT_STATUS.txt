@@ -1,0 +1,13 @@
+Repository: /Users/mckinley/Desktop/Safety_InSite
+Branch: main
+HEAD: 24e37703ff37d96b0e42cde4b85ccdef89b2bf2a
+Status entries: 145
+Tracked modified/deleted entries: 68
+Untracked entries: 77
+git diff --check: PASS
+No commit or push occurred.
+
+The complete path-level status remains available through:
+git status --short
+
+Initial status was captured verbatim in INITIAL_GIT_STATUS.txt. All unrelated and prior-phase dirty work was preserved.

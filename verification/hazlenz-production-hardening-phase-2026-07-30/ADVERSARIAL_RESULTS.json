@@ -1,0 +1,17 @@
+{
+  "newIndependentCorpusExecuted": false,
+  "reason": "This scoped hardening pass did not have sufficient independent authoritative expectation review to create a defensible new corpus without reusing prior expectations.",
+  "priorProductionPathBaseline": {
+    "total": 445,
+    "pass": 359,
+    "needsReview": 86,
+    "fail": 0,
+    "lifeSafetyMisses": 0,
+    "unsupportedDefinitivePromotions": 0,
+    "fabricatedCitationsOrText": 0,
+    "unsafeCorrectiveActions": 0,
+    "safeStateFailures": 0
+  },
+  "newFocusedContractAssertions": 27,
+  "newBrowserRiskOverrideChecks": 2
+}

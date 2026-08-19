@@ -1,0 +1,12 @@
+{
+  "target": 81,
+  "completed": 50,
+  "runsPerCase": 3,
+  "totalRuns": 150,
+  "lifeCriticalCompleted": 32,
+  "additionalCompleted": 18,
+  "stable": 50,
+  "unstable": 0,
+  "transportFailures": 0,
+  "rateLimitPolicy": "production throttle preserved; paced requests with retry-after support"
+}

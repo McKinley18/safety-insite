@@ -1,0 +1,17 @@
+68c72e93f743af7919a1918afaee00fdb43b4fce  backend/src/safescope-v2/engine/deterministic-classifier.ts
+7ea24f7805df7b8128d6f70b5c2ef1e6bc7330da  backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts
+de49db20179deadc90b657bf81de03fd66aa0502  backend/src/safescope-v2/safescope-v2.service.ts
+f8de31945e3670d9174a5166eb38f5d5b605f247  backend/src/safescope-v2/safescope-v2.controller.ts
+be32fdd2a8ef1dd66efb04d29609d22314c693e6  backend/src/inspection/inspection.service.ts
+5a5c922aa29f877548eac04fa898a718071ea319  backend/src/inspection/entities/inspection-finding.entity.ts
+0200f08de4d3610eb934ca64356041e4aeccedb7  backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+a86f61cb251ffe1d0619d67b2995591622491649  backend/src/safescope-v2/evidence/finalization-gate.ts
+952ca110b970e0e951cd4b4ee74e02fc9a9bb4fd  backend/src/safescope-v2/evidence/evidence-foundation.ts
+32f057a670499f59e1de78e4b299b5805f6059e1  backend/src/safescope-v2/brain/corrective-action-brain/corrective-action.service.ts
+c7dbb56ae982954d03dfd0f7e01d936d5fb7cfd1  backend/src/safescope-v2/evidence-sufficiency-core/evidence-sufficiency.service.ts
+8395e1aec2bd6c6ef42119be84298df4d9f7bd4c  frontend-next/app/inspection-workspace/page.tsx
+81199c6dba19f1b265be073106f180375d5c1692  frontend-next/app/inspections/page.tsx
+e4fc3e61f7b665efa7aee946a1461c59796a7a2d  frontend-next/app/command-center/page.tsx
+1eb997847d192954ae0e7a0a5552e9cabe5963b2  frontend-next/components/inspection/InspectionStepRenderer.tsx
+7d3c6032417a101fdfdaf808340bd7047b8e6f5c  frontend-next/components/inspection/steps/InspectionStepTwo.tsx
+feae30e1634ee4f91def37bb212c4a3368594f76  frontend-next/components/inspection/SafeScopeInspectionStep.tsx

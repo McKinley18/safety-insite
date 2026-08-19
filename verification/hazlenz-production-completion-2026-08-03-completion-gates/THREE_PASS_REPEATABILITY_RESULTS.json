@@ -1,0 +1,11 @@
+{
+  "totalLifeCritical": 81,
+  "completedLifeCritical": 81,
+  "runsPerCase": 3,
+  "totalRuns": 243,
+  "stableCases": 81,
+  "materialInstabilities": 0,
+  "transportFailures": 0,
+  "productionThrottleDisabled": false,
+  "batchArtifacts": ["LIFE_BATCH_32.json", "LIFE_BATCH_42.json", "LIFE_BATCH_52.json", "LIFE_BATCH_62.json", "LIFE_BATCH_72.json"]
+}

@@ -1,0 +1,3 @@
+# Exact next action
+
+Implement a canonical persisted decomposition-to-findings transition in the inspection workspace. Persist each material decomposition hazard as a distinct finding linked to the observation and selected analysis, render current/prior analysis history read-only, and drive risk review, corrective actions, tasks, finalization, and report snapshots from those finding IDs. Add a fresh disposable-DB Chromium test that completes one guarding+energy inspection end to end, including a two-hazard PDF and owner/foreign-user authorization. Only after that passes, expand the same fixture to electrical+fall and hot-work+compressed-gas.

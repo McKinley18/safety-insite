@@ -1,0 +1,3 @@
+# Browser evidence
+
+The corrected harness authenticated with the disposable account, created a disposable site/inspection through the canonical API setup, wrote the selected inspection context, and loaded `/inspection` in Chromium. All 20 scenarios reached the capture page and accepted observation input. The page remained on Step 1 after the Next interaction; Step 2's `Review with HazLenz AI` control was not present. No classify/analyze request was observed for these attempts. Console output contained development HMR WebSocket handshake errors but no page exception. This is a failed UI transition proof, not a backend reasoning result.

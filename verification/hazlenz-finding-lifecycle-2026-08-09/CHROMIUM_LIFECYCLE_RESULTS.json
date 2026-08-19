@@ -1,0 +1,17 @@
+{
+  "scenariosAttempted": 3,
+  "authenticated": 3,
+  "observationsSaved": 3,
+  "analysisInvoked": 3,
+  "analysisHttp201": 3,
+  "findingsMaterialized": 9,
+  "distinctFindingsPerScenario": [3,3,3],
+  "findingScopedReviews": 9,
+  "partialFinalizationBlocked": true,
+  "completedFinalization": 3,
+  "reportsGenerated": 3,
+  "actions": 9,
+  "tasks": 9,
+  "reloadPersistence": "PASS",
+  "stableFindingIds": "PASS"
+}

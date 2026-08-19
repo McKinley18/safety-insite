@@ -1,0 +1,1 @@
+No defined authorization matrix failures. The harness executed 18 rows and passed all 18. Unsupported operations outside the defined fixture contract remain documented in the next-phase ledger rather than silently omitted.

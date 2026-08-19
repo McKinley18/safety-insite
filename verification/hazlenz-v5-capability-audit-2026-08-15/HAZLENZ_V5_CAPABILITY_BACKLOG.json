@@ -1,0 +1,373 @@
+{
+  "auditDate": "2026-08-15",
+  "repoHead": "24e37703ff37d96b0e42cde4b85ccdef89b2bf2a",
+  "scoringNote": "Scores are 1 (lowest) to 5 (highest) except implementationComplexity, regressionRisk, validationBurden, and computationalCost, which are 1 (lowest/best) to 5 (highest/worst). Tier is not a pure score sum -- it also reflects whether the capability is primarily 'connect/scope existing work' (cheap, high-confidence) vs 'build new' (see rationale per item).",
+  "tiers": {
+    "V5-P0": "Do first. High inspector value and/or safety impact, and low-to-moderate implementation complexity because the underlying computation or logic already exists and mainly needs connecting/rescoping.",
+    "V5-P1": "Do next. Real value, but either higher complexity, dependent on a V5-P0 item landing first, or narrower in scope.",
+    "V5-P2": "Worth doing, lower urgency or narrower blast radius; schedule after P0/P1.",
+    "LATER": "Legitimate but either high complexity/risk relative to value today, or blocked on a larger prerequisite (e.g., introducing an actual model call) that is out of scope for this backlog."
+  },
+  "capabilities": [
+    {
+      "id": "V5-C01",
+      "title": "Finding-scoped risk (close PRA-006)",
+      "tier": "V5-P0",
+      "description": "Compute risk (evaluateRisk + risk-reasoning brain) once per decomposed hazard family instead of once per request for the primary classification only; persist risk per finding, not per review/analysis; update the frontend Risk step to be per-finding.",
+      "scores": {
+        "inspectorValue": 5,
+        "safetyImpact": 5,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 3,
+        "implementationComplexity": 3,
+        "regressionRisk": 3,
+        "architectureImpact": 3,
+        "validationBurden": 3,
+        "computationalCost": 1
+      },
+      "rationale": "The core computation is a pure, cheap, already-correct function (evaluateRisk); the fix is calling it at the right scope, not building new intelligence. Every multi-hazard observation is affected today. Frontend rework (per-finding Risk step) and a schema migration are the real cost drivers, not the risk logic itself.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-2", "architecture-map-2"]
+    },
+    {
+      "id": "V5-C02",
+      "title": "Shared structured-evidence-fact layer",
+      "tier": "V5-P0",
+      "description": "Extend the existing EvidenceFact/FactStatus model to be the mandatory input contract for the orchestrator's ~60 reasoning engines, computed once per request (and hazard-scoped, once per decomposed hazard), replacing ad hoc independent regex scans of raw fusedText.",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 4,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 5,
+        "regressionRisk": 4,
+        "architectureImpact": 5,
+        "validationBurden": 4,
+        "computationalCost": 1
+      },
+      "rationale": "Highest architectural leverage in the whole audit -- it is the prerequisite for genuine multi-hazard independence (V5-C06), evidence provenance (V5-C05), and the biggest efficiency win, all at once. Marked P0 despite complexity because every other high-value capability becomes cheaper once this exists; sequencing it first changes the shape of everything after it. Should be migrated engine-by-engine (existing regression tests validate each step) rather than as one big-bang change.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-required-architecture-question", "efficiency-analysis-1"]
+    },
+    {
+      "id": "V5-C03",
+      "title": "Connect evidence-sufficiency score to the finalize/continue decision",
+      "tier": "V5-P0",
+      "description": "Replace (or validate against) the hardcoded safety-decisive-question-ID allowlist that currently gates resultStage/mayFinalize with the already-computed-but-disconnected EvidenceSufficiencyService 9-dimension score.",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 3,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 4,
+        "implementationComplexity": 2,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "The scoring engine already exists and is already computed on every request -- it is simply not consulted for the one decision it was built for. Very low complexity/risk relative to direct impact on 'ask fewer, better questions,' one of the audit brief's central framing questions.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-3"]
+    },
+    {
+      "id": "V5-C04",
+      "title": "Remove/fix live placeholder and dead-but-instantiated modules",
+      "tier": "V5-P0",
+      "description": "Fix or remove CorrectiveActionControlMapService's placeholder stub (ships hardcoded output in live responses); wire in or delete SafeScopeActionQualityService/SafeScopeControlEffectivenessService (real hierarchy-of-controls QA logic, currently never called); resolve SafeScopeCorrectiveActionReasoningService's self-labeled test-only-advisory status running in the live path.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 3,
+        "frequencyOfUse": 4,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 2,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "Lowest-complexity item with real safety-adjacent impact: a literal placeholder currently ships as if it were a real recommendation. Re-enabling the hierarchy-of-controls QA layer is close to free (the logic is already written and tested, just disconnected).",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-5"]
+    },
+    {
+      "id": "V5-C05",
+      "title": "Evidence provenance surfacing (assumed vs. observed vs. derived, exposed to the inspector)",
+      "tier": "V5-P1",
+      "description": "Split EvidenceFact.source's 'system_inference' into distinct DERIVED and ASSUMED values; surface fact source/status in the inspector-facing output so assumptions are never visually indistinguishable from observed facts.",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 4,
+        "frequencyOfUse": 4,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 3,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 3,
+        "computationalCost": 1
+      },
+      "rationale": "Directly implements the audit brief's explicit boundary rule ('HazLenz should never silently convert an assumption into an observed fact'). Meaningful full coverage depends on V5-C02 landing first for engines beyond evidence-foundation.ts's own logic, but the type extension and UI surfacing can start immediately for the fact model's existing scope.",
+      "dependsOn": ["V5-C02"],
+      "relatedAuditSections": ["capability-audit-8"]
+    },
+    {
+      "id": "V5-C06",
+      "title": "Multi-hazard independence beyond risk (standards, narrative, controls, clarification per finding)",
+      "tier": "V5-P1",
+      "description": "Extend the finding-scoped principle established by V5-C01 to standards-family narrowing, narrative generation, control recommendations, and clarification-question scoping, so every decomposed hazard has independently correct output across all 8 dimensions the audit brief names.",
+      "scores": {
+        "inspectorValue": 5,
+        "safetyImpact": 4,
+        "frequencyOfUse": 4,
+        "reductionInInspectorEffort": 3,
+        "implementationComplexity": 4,
+        "regressionRisk": 3,
+        "architectureImpact": 4,
+        "validationBurden": 4,
+        "computationalCost": 2
+      },
+      "rationale": "The broader generalization of PRA-006; genuinely high value but explicitly sequenced after V5-C01 (prove the pattern on risk first, where the fix is simplest) and benefits heavily from V5-C02 (hazard-scoped facts make per-hazard standards/narrative/controls a natural consequence rather than bespoke rework per engine).",
+      "dependsOn": ["V5-C01", "V5-C02"],
+      "relatedAuditSections": ["capability-audit-7"]
+    },
+    {
+      "id": "V5-C07",
+      "title": "Standards applicability 5-tier model, unifying the two competing engines",
+      "tier": "V5-P1",
+      "description": "Introduce APPLICABLE/LIKELY_APPLICABLE/POSSIBLY_RELEVANT/INSUFFICIENT_CONTEXT/NOT_APPLICABLE as a genuine shared tier, computed at the point ApplicableStandardsService and StandardApplicabilityService outputs are reconciled, with explicit disagreement surfacing instead of silent demotion.",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 3,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 3,
+        "regressionRisk": 3,
+        "architectureImpact": 3,
+        "validationBurden": 3,
+        "computationalCost": 1
+      },
+      "rationale": "Real, frequently-encountered gap (no such tiering exists today despite two engines each having their own partial version of it). Moderate complexity because it requires touching the reconciliation logic between two independently-evolved engines without destabilizing either.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-4"]
+    },
+    {
+      "id": "V5-C08",
+      "title": "Server-side GLOBAL_INSPECTION_CONTEXT reuse (jurisdiction, site, inspection type)",
+      "tier": "V5-P1",
+      "description": "Fetch persisted inspection/site context server-side and merge it into classify() automatically, instead of requiring the frontend to resend it every time; eliminates the caller-dependent duplicate-question risk identified in the clarification-intelligence analysis.",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 2,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 4,
+        "implementationComplexity": 3,
+        "regressionRisk": 3,
+        "architectureImpact": 3,
+        "validationBurden": 3,
+        "computationalCost": 2
+      },
+      "rationale": "Directly reduces repeated-question annoyance, one of the audit's named product goals ('use inspection context without repeatedly asking for known information'). Must be implemented alongside the explicit GLOBAL/OBSERVATION/FINDING context boundary (see V5-C06's negative-case testing) to avoid reintroducing PRA-006-style over-sharing while fixing under-sharing.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-6"]
+    },
+    {
+      "id": "V5-C09",
+      "title": "Clarification question reason taxonomy + explicit consequence field",
+      "tier": "V5-P1",
+      "description": "Formalize the existing requiredFor field into the exact HAZARD_CONFIRMATION/RISK_REFINEMENT/STANDARD_APPLICABILITY/CONTROL_EFFECTIVENESS/TEMPORAL_STATE/JURISDICTION enum, and add a structured 'what changes if yes/no' consequence object built from the existing impactedDecisions/couldPromoteStandard/couldSuppressStandard/couldChangeShutdown fields.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 2,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 3,
+        "implementationComplexity": 2,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "Low-complexity formalization of fields that are ~80% already present in different shapes; primarily a type/consistency cleanup plus a UI surfacing change, not new logic.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-3"]
+    },
+    {
+      "id": "V5-C10",
+      "title": "Confidence model unification (categorical, single semantics)",
+      "tier": "V5-P1",
+      "description": "Replace the 9 incompatible confidence subsystems/4 numeric scales with one categorical scale for anything inspector-facing, reserving numeric scores for internal sorting only; wire ConfidenceGovernanceService's output permissions into the actual pipeline decisions they were designed to gate.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 3,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 4,
+        "regressionRisk": 3,
+        "architectureImpact": 3,
+        "validationBurden": 3,
+        "computationalCost": 1
+      },
+      "rationale": "Real trust/credibility issue (fake numeric precision) but touches many call sites across the 9 subsystems; sequenced P1 rather than P0 because it is more about correcting a misleading presentation than blocking a core workflow, and benefits from V5-C02's fact model providing an honest basis for confidence.",
+      "dependsOn": ["V5-C02"],
+      "relatedAuditSections": ["capability-audit-9"]
+    },
+    {
+      "id": "V5-C11",
+      "title": "Corrective-action engine consolidation",
+      "tier": "V5-P2",
+      "description": "Consolidate the 3-4 parallel corrective-action generation engines into one canonical pipeline governed by DefensibleCorrectiveActionService's evidence-gating pattern; remove copy-pasted static fields (identical interimControls string across all 20 template-registry domains, identical administrativeFollowUps/verificationSteps across all corrective-action-brain calls).",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 3,
+        "frequencyOfUse": 4,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 4,
+        "regressionRisk": 4,
+        "architectureImpact": 4,
+        "validationBurden": 3,
+        "computationalCost": 2
+      },
+      "rationale": "Real value but higher regression risk (touches 4 independently-evolved engines and their merge logic simultaneously) and is partially superseded in value by V5-C04 (fixing the worst individual defects) landing first cheaply.",
+      "dependsOn": ["V5-C04"],
+      "relatedAuditSections": ["capability-audit-5"]
+    },
+    {
+      "id": "V5-C12",
+      "title": "Persisted CorrectiveAction structured fields (hierarchy level, mechanism, verification criterion, stable source-recommendation ID)",
+      "tier": "V5-P2",
+      "description": "Add first-class columns to the CorrectiveAction entity instead of burying AI-reasoning output in an untyped originalSuggestion jsonb blob; make the classify()-to-persisted-action link automatic and ID-based instead of a fuzzy (reportId, findingId, title) match at report-creation time.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 3,
+        "frequencyOfUse": 3,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 3,
+        "regressionRisk": 3,
+        "architectureImpact": 3,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "Needed for defensible closeout (verification criterion should gate closure, not free text) but is a schema/persistence change with narrower immediate inspector-facing payoff than the P0/P1 items; reasonable to schedule after the generation-side consolidation (V5-C11) so there is one clean shape to persist rather than four.",
+      "dependsOn": ["V5-C11"],
+      "relatedAuditSections": ["capability-audit-5", "capability-audit-12"]
+    },
+    {
+      "id": "V5-C13",
+      "title": "Standards/knowledge-chunk lookup caching",
+      "tier": "V5-P2",
+      "description": "Add a cache (in-memory or Redis-backed) for standards/knowledge-chunk DB lookups keyed on normalized-text hash plus jurisdiction/classification, and for the two existing static disk-load caches to be joined by an actual result cache.",
+      "scores": {
+        "inspectorValue": 2,
+        "safetyImpact": 1,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 1,
+        "implementationComplexity": 2,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "Pure efficiency play with no direct inspector-facing behavior change (correctly-cached output must be identical to uncached output). Low complexity, low risk, real but modest backend-cost benefit -- good candidate for a quick win but not a capability an inspector would notice.",
+      "dependsOn": [],
+      "relatedAuditSections": ["efficiency-analysis-3"]
+    },
+    {
+      "id": "V5-C14",
+      "title": "Incremental re-analysis (skip unaffected stages on clarification answer)",
+      "tier": "V5-P2",
+      "description": "When a clarification answer is tagged as not affecting hazard-family identity, skip re-running classification/decomposition on re-analysis and only recompute the stages downstream of the changed fact.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 1,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 3,
+        "implementationComplexity": 4,
+        "regressionRisk": 4,
+        "architectureImpact": 4,
+        "validationBurden": 3,
+        "computationalCost": 1
+      },
+      "rationale": "Real inspector-perceived-latency win on the most common interaction loop, but genuinely hard to get right without risking stale/inconsistent state (deciding what is 'safely skippable' per answer type is itself a non-trivial rule system). Benefits from V5-C02's fact model, which makes 'what does this fact affect' an explicit, checkable property instead of an implicit assumption.",
+      "dependsOn": ["V5-C02"],
+      "relatedAuditSections": ["efficiency-analysis-4"]
+    },
+    {
+      "id": "V5-C15",
+      "title": "Production heap-guard transparency",
+      "tier": "V5-P2",
+      "description": "Add a field to the classify() response contract that flags when a response was produced via the degraded (heap-guarded) path instead of the full intelligence orchestrator, so the frontend/inspector can see when they received a reduced-capability answer.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 2,
+        "frequencyOfUse": 2,
+        "reductionInInspectorEffort": 1,
+        "implementationComplexity": 1,
+        "regressionRisk": 1,
+        "architectureImpact": 1,
+        "validationBurden": 1,
+        "computationalCost": 1
+      },
+      "rationale": "Very low complexity (one field), real trust/transparency value, but only matters at the (presumably infrequent) times the guard actually trips -- lower frequency of impact than most P0/P1 items despite trivial cost.",
+      "dependsOn": [],
+      "relatedAuditSections": ["capability-audit-architecture-map-2", "efficiency-analysis-5"]
+    },
+    {
+      "id": "V5-C16",
+      "title": "Inspector-facing output hierarchy redesign (immediate vs. expandable)",
+      "tier": "V5-P2",
+      "description": "Restructure the API response contract (not just frontend presentation) around the audit's proposed immediate-vs-expandable hierarchy (hazard/evidence/why-it-matters/risk/requirement/clarification immediate; full trace/controls/verification/confidence/excluded-standards expandable).",
+      "scores": {
+        "inspectorValue": 4,
+        "safetyImpact": 2,
+        "frequencyOfUse": 5,
+        "reductionInInspectorEffort": 4,
+        "implementationComplexity": 3,
+        "regressionRisk": 2,
+        "architectureImpact": 2,
+        "validationBurden": 2,
+        "computationalCost": 1
+      },
+      "rationale": "High day-to-day usefulness value but is presentation/contract-shaping work best done once the underlying data (finding-scoped risk, unified confidence, provenance) actually exists to populate the hierarchy correctly -- building the ideal UI shape around still-shared/still-inconsistent data would just relocate the existing defects into a nicer layout.",
+      "dependsOn": ["V5-C01", "V5-C10"],
+      "relatedAuditSections": ["capability-audit-11"]
+    },
+    {
+      "id": "V5-C17",
+      "title": "Full live/dead census of the SafeScopeIntelligenceOrchestrator object graph",
+      "tier": "LATER",
+      "description": "Systematically trace every one of the ~100+ safescope-v2 subdirectories against both wiring mechanisms (NestJS @Module DI and the plain-new orchestrator graph) to produce a definitive live/dead inventory, rather than the partial spot-check this audit performed.",
+      "scores": {
+        "inspectorValue": 1,
+        "safetyImpact": 1,
+        "frequencyOfUse": 1,
+        "reductionInInspectorEffort": 1,
+        "implementationComplexity": 3,
+        "regressionRisk": 1,
+        "architectureImpact": 2,
+        "validationBurden": 1,
+        "computationalCost": 1
+      },
+      "rationale": "Zero direct inspector value; purely a codebase-hygiene/maintainability task. Legitimate and eventually worth doing (this audit found at least 4 cases where a grep-based dead-code check gave a false positive), but should not compete for scheduling against any capability with real inspector/safety value.",
+      "dependsOn": [],
+      "relatedAuditSections": ["architecture-map-1"]
+    },
+    {
+      "id": "V5-C18",
+      "title": "Introduce an actual model-backed reasoning step for a narrow, well-scoped task",
+      "tier": "LATER",
+      "description": "Evaluate whether a specific, narrow task (e.g., ranking clarification questions by true decision value, or drafting the inspector-facing narrative sentence) would benefit from an actual LLM call, now that the deterministic ceiling is well-understood -- explicitly NOT a wholesale replacement of the deterministic recognition/reasoning core.",
+      "scores": {
+        "inspectorValue": 3,
+        "safetyImpact": 2,
+        "frequencyOfUse": 3,
+        "reductionInInspectorEffort": 2,
+        "implementationComplexity": 5,
+        "regressionRisk": 5,
+        "architectureImpact": 5,
+        "validationBurden": 5,
+        "computationalCost": 5
+      },
+      "rationale": "Explicitly deferred: this is the largest possible architectural change available (introducing model dependency, cost, latency, and non-determinism where none exists today) and the audit brief is explicit that recognition work / engine replacement is out of scope. Worth naming as a real LATER option precisely because §0 of this audit established that 'AI' in this codebase currently means 'deterministic rules,' and V5-C02 (shared fact layer) would make a future narrow model integration dramatically safer and cheaper to validate if the product direction ever calls for it.",
+      "dependsOn": ["V5-C02"],
+      "relatedAuditSections": ["architecture-map-0", "capability-audit-required-architecture-question"]
+    }
+  ]
+}

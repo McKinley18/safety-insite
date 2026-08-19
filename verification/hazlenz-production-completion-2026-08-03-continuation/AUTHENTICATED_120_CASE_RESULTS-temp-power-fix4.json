@@ -1,0 +1,133 @@
+{
+  "total": 3,
+  "pass": 0,
+  "needsReview": 3,
+  "fail": 0,
+  "lifeCriticalFailures": 3,
+  "pendingReviewLeaks": 0,
+  "results": [
+    {
+      "id": "c-temp-power-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 116,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-temp-power-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 89,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-temp-power-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 57,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

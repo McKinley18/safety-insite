@@ -1,0 +1,3 @@
+# Precision error analysis
+
+The independent holdout is deliberately adversarial and includes controlled, historical, contradictory, and incomplete conditions. Raw family-label counts overstate unsupported promotion because advisory decomposition context is serialized alongside current findings. In the final run, all 45 raw forbidden mentions occurred in `UNKNOWN` or `CONTRADICTORY` responses (15 and 30 respectively); zero were active or `SUPPORTED`. State-aware scoring therefore found zero definitive unsupported promotions. Category recall remains 0.7778 because some expected controlled/historical/ambiguous context is not scored as a hazard family, so this phase improves safety-state precision without claiming full precision readiness.

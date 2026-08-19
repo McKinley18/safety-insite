@@ -1,0 +1,3 @@
+# Hot work plus compressed gas
+
+Real Chromium submitted a supported PNG and an observation describing active flame cutting/brazing beside an upright cylinder with restraint/cap status not visible and no leak observed. The authenticated response was HTTP 201 with `isMultiHazard=true`, `hazardCount=2`, families `hot_work` and `compressed_gas`; the UI displayed separate Hot Work and Compressed Gas cards with human-review/evidence-gap treatment. No leak, damage, missing cap, or concentration was invented. The backend decomposition fallback was corrected to preserve active hot work when adjacent cylinder routing otherwise displaced it. Full report lifecycle remains open.

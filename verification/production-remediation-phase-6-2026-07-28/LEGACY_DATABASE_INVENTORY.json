@@ -1,0 +1,2042 @@
+{
+  "formatVersion": 1,
+  "identity": {
+    "databaseName": "safescope",
+    "schema": "public",
+    "databaseUser": "user",
+    "sizeBytes": "8895511",
+    "identityHash": "589818b312bb74ae4f6d29235014f10e7d6049f35909b875a76eb5c476312110"
+  },
+  "catalog": {
+    "schemas": [
+      {
+        "schema_name": "public"
+      }
+    ],
+    "tables": [
+      {
+        "table_schema": "public",
+        "table_name": "migrations"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription"
+      }
+    ],
+    "columns": [
+      {
+        "table_schema": "public",
+        "table_name": "migrations",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "nextval('migrations_id_seq'::regclass)"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "migrations",
+        "ordinal_position": 2,
+        "column_name": "timestamp",
+        "data_type": "bigint",
+        "udt_name": "int8",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "migrations",
+        "ordinal_position": 3,
+        "column_name": "name",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "uuid_generate_v4()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 2,
+        "column_name": "name",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 3,
+        "column_name": "type",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'individual'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 4,
+        "column_name": "subscriptionStatus",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 5,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 6,
+        "column_name": "updatedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 7,
+        "column_name": "logoPath",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 8,
+        "column_name": "industry",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 9,
+        "column_name": "address",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 10,
+        "column_name": "phone",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 11,
+        "column_name": "email",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 12,
+        "column_name": "website",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 13,
+        "column_name": "deletedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 14,
+        "column_name": "riskProfileId",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 15,
+        "column_name": "planCode",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 16,
+        "column_name": "subscriptionTier",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 17,
+        "column_name": "stripeCustomerId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 18,
+        "column_name": "stripeSubscriptionId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 19,
+        "column_name": "currentPeriodEnd",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 20,
+        "column_name": "nextBillingDate",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "organization",
+        "ordinal_position": 21,
+        "column_name": "trialEndsAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "gen_random_uuid()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 2,
+        "column_name": "documentId",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 3,
+        "column_name": "chunkIndex",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 5,
+        "column_name": "chunkText",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 6,
+        "column_name": "chunkSummary",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 8,
+        "column_name": "authorityTier",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "5"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 15,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 16,
+        "column_name": "sectionHeading",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 17,
+        "column_name": "citation",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 18,
+        "column_name": "hazardTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 19,
+        "column_name": "equipmentTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 20,
+        "column_name": "taskTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 21,
+        "column_name": "standardTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 22,
+        "column_name": "lessonTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_chunks",
+        "ordinal_position": 23,
+        "column_name": "confidenceWeight",
+        "data_type": "double precision",
+        "udt_name": "float8",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'0'::double precision"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "gen_random_uuid()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 5,
+        "column_name": "authorityTier",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "5"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 11,
+        "column_name": "summary",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 12,
+        "column_name": "rawText",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 18,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 19,
+        "column_name": "updatedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 20,
+        "column_name": "title",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 21,
+        "column_name": "agency",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'Other'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 22,
+        "column_name": "sourceType",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'other'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 23,
+        "column_name": "citation",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 24,
+        "column_name": "sourceUrl",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 25,
+        "column_name": "publishedAt",
+        "data_type": "date",
+        "udt_name": "date",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 26,
+        "column_name": "reviewedAt",
+        "data_type": "date",
+        "udt_name": "date",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 27,
+        "column_name": "approvalStatus",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'draft'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 28,
+        "column_name": "hazardTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 29,
+        "column_name": "equipmentTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 30,
+        "column_name": "taskTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 31,
+        "column_name": "standardTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_documents",
+        "ordinal_position": 32,
+        "column_name": "lessonTags",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "gen_random_uuid()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 2,
+        "column_name": "sourceId",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 7,
+        "column_name": "discoveredCount",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "0"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 8,
+        "column_name": "ingestedCount",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "0"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 9,
+        "column_name": "pendingReviewCount",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "0"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 10,
+        "column_name": "approvedCount",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "0"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 11,
+        "column_name": "skippedCount",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "0"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 13,
+        "column_name": "errorMessage",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 14,
+        "column_name": "metadataJson",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'{}'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 15,
+        "column_name": "startedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 16,
+        "column_name": "completedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 17,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 18,
+        "column_name": "sourceName",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 19,
+        "column_name": "agency",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 20,
+        "column_name": "sourceType",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 21,
+        "column_name": "status",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'queued'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "ordinal_position": 22,
+        "column_name": "warnings",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "gen_random_uuid()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 10,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 11,
+        "column_name": "queryText",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 12,
+        "column_name": "retrievedChunkIds",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 13,
+        "column_name": "selectedChunkIds",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'[]'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 14,
+        "column_name": "confidence",
+        "data_type": "double precision",
+        "udt_name": "float8",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'0'::double precision"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 15,
+        "column_name": "reasoningJson",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'{}'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 16,
+        "column_name": "workspaceId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 17,
+        "column_name": "reportId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "ordinal_position": 18,
+        "column_name": "findingId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "gen_random_uuid()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 6,
+        "column_name": "defaultAuthorityTier",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "3"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 7,
+        "column_name": "baseUrl",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 8,
+        "column_name": "description",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 10,
+        "column_name": "lastCheckedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 11,
+        "column_name": "lastSuccessfulIngestionAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 13,
+        "column_name": "metadataJson",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'{}'::jsonb"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 14,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 15,
+        "column_name": "updatedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 16,
+        "column_name": "name",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 17,
+        "column_name": "agency",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 18,
+        "column_name": "sourceType",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 19,
+        "column_name": "trustLevel",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'official'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 20,
+        "column_name": "status",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'active'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "safescope_knowledge_sources",
+        "ordinal_position": 21,
+        "column_name": "lastKnownVersion",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "uuid_generate_v4()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 2,
+        "column_name": "agency_code",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 3,
+        "column_name": "citation",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 4,
+        "column_name": "part_number",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 5,
+        "column_name": "subpart",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 6,
+        "column_name": "title",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 7,
+        "column_name": "standard_text",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 8,
+        "column_name": "plain_language_summary",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 9,
+        "column_name": "scope_code",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 10,
+        "column_name": "source_key",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 11,
+        "column_name": "source_name",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 12,
+        "column_name": "source_type",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 13,
+        "column_name": "authority_tier",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "1"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 14,
+        "column_name": "allowed_use",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 15,
+        "column_name": "requires_approval",
+        "data_type": "boolean",
+        "udt_name": "bool",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "false"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 16,
+        "column_name": "approved_for_auto_ingestion",
+        "data_type": "boolean",
+        "udt_name": "bool",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "true"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 17,
+        "column_name": "hazard_codes",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 18,
+        "column_name": "required_controls",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 19,
+        "column_name": "keywords",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 20,
+        "column_name": "severity_weight",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "1"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 21,
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "udt_name": "bool",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "true"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 22,
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "standards_master",
+        "ordinal_position": 23,
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "uuid_generate_v4()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 2,
+        "column_name": "email",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 3,
+        "column_name": "passwordHash",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 4,
+        "column_name": "name",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 5,
+        "column_name": "role",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'admin'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 6,
+        "column_name": "type",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'individual'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 7,
+        "column_name": "subscriptionStatus",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 8,
+        "column_name": "planCode",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 9,
+        "column_name": "organizationId",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 10,
+        "column_name": "createdAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 11,
+        "column_name": "updatedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 12,
+        "column_name": "firstName",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 13,
+        "column_name": "lastName",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 14,
+        "column_name": "companyName",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 15,
+        "column_name": "subscriptionTier",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 16,
+        "column_name": "stripeCustomerId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 17,
+        "column_name": "stripeSubscriptionId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 18,
+        "column_name": "currentPeriodEnd",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 19,
+        "column_name": "nextBillingDate",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 20,
+        "column_name": "trialEndsAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 21,
+        "column_name": "isEmailVerified",
+        "data_type": "boolean",
+        "udt_name": "bool",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": "false"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 22,
+        "column_name": "lastLoginAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 23,
+        "column_name": "deletedAt",
+        "data_type": "timestamp without time zone",
+        "udt_name": "timestamp",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user",
+        "ordinal_position": 24,
+        "column_name": "password",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 1,
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "uuid_generate_v4()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 2,
+        "column_name": "userId",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 3,
+        "column_name": "stripeCustomerId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 4,
+        "column_name": "stripeSubscriptionId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 5,
+        "column_name": "stripePriceId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 6,
+        "column_name": "tier",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'free'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 7,
+        "column_name": "status",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "'none'::character varying"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 8,
+        "column_name": "currentPeriodStart",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 9,
+        "column_name": "currentPeriodEnd",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 10,
+        "column_name": "cancelAtPeriodEnd",
+        "data_type": "boolean",
+        "udt_name": "bool",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "false"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 11,
+        "column_name": "lastStripeEventId",
+        "data_type": "character varying",
+        "udt_name": "varchar",
+        "is_nullable": "YES",
+        "is_generated": "NEVER",
+        "column_default": ""
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 12,
+        "column_name": "createdAt",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      },
+      {
+        "table_schema": "public",
+        "table_name": "user_subscription",
+        "ordinal_position": 13,
+        "column_name": "updatedAt",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": "NO",
+        "is_generated": "NEVER",
+        "column_default": "now()"
+      }
+    ],
+    "views": [],
+    "sequences": [
+      {
+        "sequence_schema": "public",
+        "sequence_name": "migrations_id_seq",
+        "data_type": "integer"
+      }
+    ],
+    "indexes": [
+      {
+        "table_name": "migrations",
+        "index_name": "PK_8c82d7f526340ab734260ea46be",
+        "definition": "CREATE UNIQUE INDEX \"PK_8c82d7f526340ab734260ea46be\" ON public.migrations USING btree (id)"
+      },
+      {
+        "table_name": "organization",
+        "index_name": "PK_organization_id",
+        "definition": "CREATE UNIQUE INDEX \"PK_organization_id\" ON public.organization USING btree (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_chunks",
+        "index_name": "safescope_knowledge_chunks_pkey",
+        "definition": "CREATE UNIQUE INDEX safescope_knowledge_chunks_pkey ON public.safescope_knowledge_chunks USING btree (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_documents",
+        "index_name": "safescope_knowledge_documents_pkey",
+        "definition": "CREATE UNIQUE INDEX safescope_knowledge_documents_pkey ON public.safescope_knowledge_documents USING btree (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "index_name": "safescope_knowledge_ingestion_runs_pkey",
+        "definition": "CREATE UNIQUE INDEX safescope_knowledge_ingestion_runs_pkey ON public.safescope_knowledge_ingestion_runs USING btree (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "index_name": "safescope_knowledge_retrieval_logs_pkey",
+        "definition": "CREATE UNIQUE INDEX safescope_knowledge_retrieval_logs_pkey ON public.safescope_knowledge_retrieval_logs USING btree (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_sources",
+        "index_name": "safescope_knowledge_sources_pkey",
+        "definition": "CREATE UNIQUE INDEX safescope_knowledge_sources_pkey ON public.safescope_knowledge_sources USING btree (id)"
+      },
+      {
+        "table_name": "standards_master",
+        "index_name": "IDX_c27d52393c2c29e8c67eb4192e",
+        "definition": "CREATE UNIQUE INDEX \"IDX_c27d52393c2c29e8c67eb4192e\" ON public.standards_master USING btree (agency_code, citation)"
+      },
+      {
+        "table_name": "standards_master",
+        "index_name": "PK_cf656a8e6fe9f03442687fcabfb",
+        "definition": "CREATE UNIQUE INDEX \"PK_cf656a8e6fe9f03442687fcabfb\" ON public.standards_master USING btree (id)"
+      },
+      {
+        "table_name": "user",
+        "index_name": "PK_user_id",
+        "definition": "CREATE UNIQUE INDEX \"PK_user_id\" ON public.\"user\" USING btree (id)"
+      },
+      {
+        "table_name": "user",
+        "index_name": "UQ_user_email",
+        "definition": "CREATE UNIQUE INDEX \"UQ_user_email\" ON public.\"user\" USING btree (email)"
+      },
+      {
+        "table_name": "user",
+        "index_name": "idx_user_organization_id",
+        "definition": "CREATE INDEX idx_user_organization_id ON public.\"user\" USING btree (\"organizationId\")"
+      },
+      {
+        "table_name": "user_subscription",
+        "index_name": "PK_user_subscription_id",
+        "definition": "CREATE UNIQUE INDEX \"PK_user_subscription_id\" ON public.user_subscription USING btree (id)"
+      },
+      {
+        "table_name": "user_subscription",
+        "index_name": "idx_user_subscription_stripe_subscription_id",
+        "definition": "CREATE UNIQUE INDEX idx_user_subscription_stripe_subscription_id ON public.user_subscription USING btree (\"stripeSubscriptionId\")"
+      },
+      {
+        "table_name": "user_subscription",
+        "index_name": "idx_user_subscription_user_id",
+        "definition": "CREATE UNIQUE INDEX idx_user_subscription_user_id ON public.user_subscription USING btree (\"userId\")"
+      }
+    ],
+    "constraints": [
+      {
+        "table_name": "migrations",
+        "constraint_name": "PK_8c82d7f526340ab734260ea46be",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "organization",
+        "constraint_name": "PK_organization_id",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_chunks",
+        "constraint_name": "FK_03b0c99f7148a0b78d11c7a8021",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (\"documentId\") REFERENCES safescope_knowledge_documents(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "safescope_knowledge_chunks",
+        "constraint_name": "safescope_knowledge_chunks_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_documents",
+        "constraint_name": "safescope_knowledge_documents_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_ingestion_runs",
+        "constraint_name": "safescope_knowledge_ingestion_runs_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_retrieval_logs",
+        "constraint_name": "safescope_knowledge_retrieval_logs_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "safescope_knowledge_sources",
+        "constraint_name": "safescope_knowledge_sources_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "standards_master",
+        "constraint_name": "PK_cf656a8e6fe9f03442687fcabfb",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "user",
+        "constraint_name": "PK_user_id",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "user",
+        "constraint_name": "UQ_user_email",
+        "constraint_type": "u",
+        "definition": "UNIQUE (email)"
+      },
+      {
+        "table_name": "user_subscription",
+        "constraint_name": "PK_user_subscription_id",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "enums": [],
+    "extensions": [
+      {
+        "extname": "pgcrypto",
+        "extversion": "1.3"
+      },
+      {
+        "extname": "plpgsql",
+        "extversion": "1.0"
+      },
+      {
+        "extname": "uuid-ossp",
+        "extversion": "1.1"
+      }
+    ]
+  },
+  "rowCounts": {
+    "migrations": 0,
+    "organization": 7,
+    "safescope_knowledge_chunks": 8,
+    "safescope_knowledge_documents": 8,
+    "safescope_knowledge_ingestion_runs": 0,
+    "safescope_knowledge_retrieval_logs": 0,
+    "safescope_knowledge_sources": 0,
+    "standards_master": 19,
+    "user": 5,
+    "user_subscription": 0
+  },
+  "dataConditions": {
+    "duplicateLowercaseEmails": 0,
+    "usersWithoutCredential": 0,
+    "usersWithAmbiguousCredential": 0,
+    "usersWithMissingOrganization": 0,
+    "orphanKnowledgeChunks": 0,
+    "duplicateStandards": 0,
+    "organizationLegacyPaths": 0
+  },
+  "pathColumns": [
+    {
+      "table": "organization",
+      "column": "logoPath"
+    },
+    {
+      "table": "organization",
+      "column": "riskProfileId"
+    },
+    {
+      "table": "safescope_knowledge_documents",
+      "column": "sourceUrl"
+    },
+    {
+      "table": "safescope_knowledge_retrieval_logs",
+      "column": "reportId"
+    },
+    {
+      "table": "safescope_knowledge_sources",
+      "column": "baseUrl"
+    }
+  ],
+  "migrationHistoryCount": 0,
+  "schemaFingerprint": "5c63114074834349c7cdbc0a206d23ad8e4e75acea7aaa85fda07ec0bc382bf2",
+  "contentFingerprint": "7eb310d5fb6b4861368630f79528283a39155465c6540c892f036b833d06072e",
+  "sensitiveValuesIncluded": false
+}

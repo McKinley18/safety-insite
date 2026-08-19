@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gi-hot-work-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-hot-work-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-hot-work-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": true,
+    "jurisdiction": "OSHA General Industry"
+  }
+]

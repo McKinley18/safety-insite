@@ -1,0 +1,7 @@
+{
+  "status": "generated_outside_production_logic",
+  "source": "run-independent-corpus.mjs",
+  "caseCount": 129,
+  "expectationDimensions": ["jurisdiction", "mechanism", "requiredCitationFamilies", "lifeCritical", "safeState", "clarification"],
+  "acceptedFullRun": false
+}

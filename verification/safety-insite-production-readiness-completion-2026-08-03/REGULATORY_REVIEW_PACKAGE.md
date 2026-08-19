@@ -1,0 +1,3 @@
+# Regulatory review package
+
+There are 129 imported OSHA/MSHA records pending review and 19 governed definitive standards (13 OSHA, 6 MSHA). Reviewers must approve provenance, extraction completeness, hierarchy, version/effective date, citation scope, jurisdiction predicates, suppression conditions, clarification predicates, corrective-action relevance, and runtime qualification for each record. Part 1904 is excluded and must remain fail-closed in retrieval, UI, reports, and model-proposed citations. Broad coal-mine coverage is unsupported. No imported pending record may be promoted solely by government-domain provenance.

@@ -1,0 +1,3 @@
+# Failure root causes
+
+Blind evaluation exposed two systemic issues. First, the lexical classifier lacked an explicit hazardous-energy family and weaker conveyor/electrical signals won; a generic lockout/stored-energy taxonomy and evidence-boundary override corrected the two life-critical misses. Second, verified safe controls were still represented as hazards through downstream decomposition/compatibility serialization; a generic controlled-condition boundary now clears current hazard labels, additional hazards, and decomposition hazards when controls are explicitly verified. Final metrics improved from two life-critical misses and 22% safe-state false-positive rate to zero life-critical misses and 5% safe-state unsupported-hazard rate.

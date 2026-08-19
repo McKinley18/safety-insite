@@ -1,0 +1,154 @@
+{
+  "total": 3,
+  "pass": 3,
+  "needsReview": 0,
+  "fail": 0,
+  "lifeCriticalFailures": 0,
+  "pendingReviewLeaks": 0,
+  "results": [
+    {
+      "id": "gi-machine-guard-1",
+      "status": 201,
+      "verdict": "PASS",
+      "durationMs": 20073,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-machine-guard-2",
+      "status": 201,
+      "verdict": "PASS",
+      "durationMs": 80,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-machine-guard-3",
+      "status": 201,
+      "verdict": "PASS",
+      "durationMs": 128,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

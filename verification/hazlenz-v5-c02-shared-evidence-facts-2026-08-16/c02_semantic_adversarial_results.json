@@ -1,0 +1,289 @@
+{
+  "allPass": true,
+  "results": [
+    {
+      "name": "positive: guard absence is captured, not lost",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "guardState",
+          "value": "absent_or_ineffective",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "safe/control: guard-present is captured and is NOT equivalent to the positive/absent condition",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "guardState",
+          "value": "present_and_effective",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "unknown: does not infer missing or effective",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "negation: does not become positive electrical exposure",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "historical: temporal distinction preserved (currentHazardNegated + correctedBeforeReview both true)",
+      "pass": true,
+      "detail": {
+        "currentHazardNegated": true,
+        "correctedBeforeReview": true,
+        "facts": [
+          {
+            "id": "fact-1",
+            "type": "jurisdiction",
+            "value": "unknown",
+            "source": "system_inference",
+            "confidence": 0.2,
+            "status": "unknown",
+            "temporalState": "current",
+            "reviewerStatus": "unreviewed"
+          },
+          {
+            "id": "fact-2",
+            "type": "currentHazardState",
+            "value": "not_established",
+            "source": "user_text",
+            "confidence": 0.98,
+            "status": "corrected",
+            "temporalState": "corrected_before_review",
+            "reviewerStatus": "unreviewed"
+          },
+          {
+            "id": "fact-3",
+            "type": "guardState",
+            "value": "absent_or_ineffective",
+            "source": "user_text",
+            "confidence": 0.94,
+            "status": "observed",
+            "temporalState": "current",
+            "reviewerStatus": "unreviewed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "planned future: replacement is not represented as already completed",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "failed control: distinguishes control presence from control effectiveness",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "controlEffectiveness",
+          "value": "present_but_ineffective",
+          "source": "user_text",
+          "confidence": 0.9,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-3",
+          "type": "silicaControlState",
+          "value": "effective",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "multi-hazard: whole-observation facts include both hazards",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "energyState",
+          "value": "energized_or_operating",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-3",
+          "type": "electricalLiveParts",
+          "value": "exposed_and_reachable",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-4",
+          "type": "guardState",
+          "value": "absent_or_ineffective",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "multi-hazard: hazard-scoped guard fragment does NOT pick up the sibling electrical fact",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "guardState",
+          "value": "absent_or_ineffective",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    },
+    {
+      "name": "multi-hazard: hazard-scoped electrical fragment does NOT pick up the sibling guard fact",
+      "pass": true,
+      "detail": [
+        {
+          "id": "fact-1",
+          "type": "jurisdiction",
+          "value": "unknown",
+          "source": "system_inference",
+          "confidence": 0.2,
+          "status": "unknown",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-2",
+          "type": "energyState",
+          "value": "energized_or_operating",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        },
+        {
+          "id": "fact-3",
+          "type": "electricalLiveParts",
+          "value": "exposed_and_reachable",
+          "source": "user_text",
+          "confidence": 0.94,
+          "status": "observed",
+          "temporalState": "current",
+          "reviewerStatus": "unreviewed"
+        }
+      ]
+    }
+  ]
+}

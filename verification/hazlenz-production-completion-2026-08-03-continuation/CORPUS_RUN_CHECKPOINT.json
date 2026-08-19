@@ -1,0 +1,5989 @@
+{
+  "status": "complete",
+  "startedAt": "2026-08-03T13:15:23.296Z",
+  "resumedAt": "2026-08-03T13:29:13.265Z",
+  "completedAt": "2026-08-03T13:29:13.265Z",
+  "total": 129,
+  "completed": 129,
+  "results": [
+    {
+      "id": "gi-machine-guard-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 138,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-machine-guard-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 106,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-machine-guard-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 79,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-loto-jam-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.147",
+      "standards": [
+        "29 CFR 1910.147",
+        "29 CFR 1910.147"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-loto-jam-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 80,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.147",
+      "standards": [
+        "29 CFR 1910.147",
+        "29 CFR 1910.147"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-loto-jam-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.147",
+      "standards": [
+        "29 CFR 1910.147",
+        "29 CFR 1910.147"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-panel-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 75,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.303(g)(2)(i)",
+      "standards": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(2)(i)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-panel-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 83,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.303(g)(2)(i)",
+      "standards": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(2)(i)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-panel-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 71,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.303(g)(2)(i)",
+      "standards": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(2)(i)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-cord-wet-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 70,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.305(g)(1)(iii)",
+      "standards": [
+        "29 CFR 1910.305(g)(1)(iii)",
+        "29 CFR 1910.305(g)(1)(iii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-cord-wet-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 81,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.305(g)(1)(iii)",
+      "standards": [
+        "29 CFR 1910.305(g)(1)(iii)",
+        "29 CFR 1910.305(g)(1)(iii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-cord-wet-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 63,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": "29 CFR 1910.305(g)(1)(iii)",
+      "standards": [
+        "29 CFR 1910.305(g)(1)(iii)",
+        "29 CFR 1910.305(g)(1)(iii)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-walkway-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 70,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1910.22(a)(3)",
+      "standards": [
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(2)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-walkway-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 81,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1910.22(a)(3)",
+      "standards": [
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(2)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-walkway-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1910.22(a)(3)",
+      "standards": [
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.22(a)(2)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-confined-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 70,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.146",
+      "standards": [
+        "29 CFR 1910.146",
+        "29 CFR 1910.146"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-confined-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 81,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.146",
+      "standards": [
+        "29 CFR 1910.146",
+        "29 CFR 1910.146"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-confined-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 65,
+      "jurisdiction": null,
+      "classification": "Confined Space",
+      "primaryCitation": "29 CFR 1910.146",
+      "standards": [
+        "29 CFR 1910.146",
+        "29 CFR 1910.146"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Confined Space hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Confined Space hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-label-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 102,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-label-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 75,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-label-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 60,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-spill-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 65,
+      "jurisdiction": null,
+      "classification": "Chemical Storage",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-spill-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 81,
+      "jurisdiction": null,
+      "classification": "Chemical Storage",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-chemical-spill-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Chemical Storage",
+      "primaryCitation": "29 CFR 1910.1200",
+      "standards": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.1200"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-oxygen-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 62,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": "29 CFR 1910.101(b)",
+      "standards": [
+        "29 CFR 1910.101(b)",
+        "29 CFR 1910.101(b)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-oxygen-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 73,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": "29 CFR 1910.101(b)",
+      "standards": [
+        "29 CFR 1910.101(b)",
+        "29 CFR 1910.101(b)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-oxygen-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 63,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": "29 CFR 1910.101(b)",
+      "standards": [
+        "29 CFR 1910.101(b)",
+        "29 CFR 1910.101(b)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-noise-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 59,
+      "jurisdiction": null,
+      "classification": "Noise Exposure",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-noise-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 71,
+      "jurisdiction": null,
+      "classification": "Noise Exposure",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-noise-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 63,
+      "jurisdiction": null,
+      "classification": "Noise Exposure",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-1",
+      "status": 201,
+      "retries": 1,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 60564,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-hot-work-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 50,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-exit-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 59,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.37(a)(3)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Current uncontrolled exposure is not established by the submitted evidence."
+        ]
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-exit-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 77,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": "29 CFR 1910.36",
+      "standards": [
+        "29 CFR 1910.36",
+        "29 CFR 1910.37(a)(3)",
+        "29 CFR 1910.36"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Emergency Egress hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Emergency Egress hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-exit-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 39,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1910.37(a)(3)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Current uncontrolled exposure is not established by the submitted evidence."
+        ]
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-pit-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 63,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-pit-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 79,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-pit-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 61,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-ppe-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 65,
+      "jurisdiction": null,
+      "classification": "Personal Protective Equipment",
+      "primaryCitation": "29 CFR 1910.132(d)(1)",
+      "standards": [
+        "29 CFR 1910.132(d)(1)",
+        "29 CFR 1910.132(d)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-ppe-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 75,
+      "jurisdiction": null,
+      "classification": "Personal Protective Equipment",
+      "primaryCitation": "29 CFR 1910.132(d)(1)",
+      "standards": [
+        "29 CFR 1910.132(d)(1)",
+        "29 CFR 1910.132(d)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-ppe-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 68,
+      "jurisdiction": null,
+      "classification": "Personal Protective Equipment",
+      "primaryCitation": "29 CFR 1910.132(d)(1)",
+      "standards": [
+        "29 CFR 1910.132(d)(1)",
+        "29 CFR 1910.132(d)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-training-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 74,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "29 CFR 1910.178(l)",
+      "standards": [
+        "29 CFR 1910.178(l)",
+        "29 CFR 1910.178(l)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-training-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 85,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "29 CFR 1910.178(l)",
+      "standards": [
+        "29 CFR 1910.178(l)",
+        "29 CFR 1910.178(l)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "gi-training-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 102,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "29 CFR 1910.178(l)",
+      "standards": [
+        "29 CFR 1910.178(l)",
+        "29 CFR 1910.178(l)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-fall-edge-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 90,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-fall-edge-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 75,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-fall-edge-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60493,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 106,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 107,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 101,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-ladder-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 114,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-ladder-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 114,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-ladder-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 105,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 108,
+      "jurisdiction": null,
+      "classification": "Trenching & Shoring",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 112,
+      "jurisdiction": null,
+      "classification": "Trenching & Shoring",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 97,
+      "jurisdiction": null,
+      "classification": "Trenching & Shoring",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-shallow-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 86,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-shallow-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 108,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-trench-shallow-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 83,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": false,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-temp-power-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 90,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-temp-power-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 98,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-temp-power-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "NEEDS REVIEW",
+      "durationMs": 60123,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": "29 CFR 1926.501",
+      "standards": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.501",
+        "29 CFR 1926.501"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": false,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-silica-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 64,
+      "jurisdiction": null,
+      "classification": "Respirable Dust / Silica",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1153"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-silica-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 72,
+      "jurisdiction": null,
+      "classification": "Respirable Dust / Silica",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1153"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-silica-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 84,
+      "jurisdiction": null,
+      "classification": "Respirable Dust / Silica",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1153"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-hoist-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 106,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1425"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Emergency Egress hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Emergency Egress hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-hoist-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 127,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1425"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Emergency Egress hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Emergency Egress hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-hoist-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 119,
+      "jurisdiction": null,
+      "classification": "Emergency Egress",
+      "primaryCitation": null,
+      "standards": [
+        "29 CFR 1926.1425"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Emergency Egress hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Emergency Egress hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-housekeeping-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 148,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-housekeeping-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 131,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-housekeeping-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 82,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-maintenance-ambiguous-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 101,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Lockout / Stored Energy hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Lockout / Stored Energy hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-maintenance-ambiguous-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 75,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Lockout / Stored Energy hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Lockout / Stored Energy hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-maintenance-ambiguous-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 44707,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Lockout / Stored Energy hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Lockout / Stored Energy hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-roof-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 85,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501(b)(1)",
+      "standards": [
+        "29 CFR 1926.501(b)(1)",
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-roof-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 90,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501(b)(1)",
+      "standards": [
+        "29 CFR 1926.501(b)(1)",
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-roof-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 85,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": "29 CFR 1926.501(b)(1)",
+      "standards": [
+        "29 CFR 1926.501(b)(1)",
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-welding-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 101,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-welding-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 95,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-welding-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 87,
+      "jurisdiction": null,
+      "classification": "Welding / Cutting / Hot Work",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-safe-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 108,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-safe-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 106,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-scaffold-safe-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 65,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-chemical-1",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60343,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-chemical-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 152,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "c-chemical-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 119,
+      "jurisdiction": null,
+      "classification": "Hazard Communication",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 0,
+        "riskBand": "Controlled",
+        "imminentDanger": false,
+        "fatalityPotential": "not_established",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Submitted evidence describes controls in place and does not establish active uncontrolled exposure."
+        ]
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-traffic-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 125,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "30 CFR 56.9100",
+      "standards": [
+        "30 CFR 56.9100",
+        "30 CFR 56.9100",
+        "30 CFR 56.9100(a)",
+        "30 CFR 56.9300"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-traffic-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 174,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "30 CFR 56.9100",
+      "standards": [
+        "30 CFR 56.9100",
+        "30 CFR 56.9100",
+        "30 CFR 56.9100(a)",
+        "30 CFR 56.9300"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-traffic-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 129,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": "30 CFR 56.9100",
+      "standards": [
+        "30 CFR 56.9100",
+        "30 CFR 56.9100",
+        "30 CFR 56.9100(a)",
+        "30 CFR 56.9300"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-conveyor-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 134,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": "30 CFR 56.14107(a)",
+      "standards": [
+        "30 CFR 56.14107(a)",
+        "29 CFR 1910.219(c)",
+        "30 CFR 56.14107(a)",
+        "30 CFR 57.14107(a)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-conveyor-loto",
+          "scenarioFamilyId": "conveyor-cleanup",
+          "hazardDomain": "machine_guarding",
+          "evidenceGapId": "LOTO status",
+          "question": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+          "reasonForQuestion": "Conveyor cleaning near moving parts is high-risk; verifying energy isolation is critical.",
+          "relatedMechanismOfInjury": "rotating_equipment_nip_point",
+          "relatedExposurePathway": "worker near belt",
+          "relatedMissingControl": "no LOTO",
+          "relatedStandardFamilyCandidate": "candidate-machine-guarding",
+          "priority": "critical",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "photo of lock",
+            "tag details"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-conveyor-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 155,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": "30 CFR 56.14107(a)",
+      "standards": [
+        "30 CFR 56.14107(a)",
+        "29 CFR 1910.219(c)",
+        "30 CFR 56.14107(a)",
+        "30 CFR 57.14107(a)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-conveyor-loto",
+          "scenarioFamilyId": "conveyor-cleanup",
+          "hazardDomain": "machine_guarding",
+          "evidenceGapId": "LOTO status",
+          "question": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+          "reasonForQuestion": "Conveyor cleaning near moving parts is high-risk; verifying energy isolation is critical.",
+          "relatedMechanismOfInjury": "rotating_equipment_nip_point",
+          "relatedExposurePathway": "worker near belt",
+          "relatedMissingControl": "no LOTO",
+          "relatedStandardFamilyCandidate": "candidate-machine-guarding",
+          "priority": "critical",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "photo of lock",
+            "tag details"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-conveyor-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 126,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": "30 CFR 56.14107(a)",
+      "standards": [
+        "30 CFR 56.14107(a)",
+        "29 CFR 1910.219(c)",
+        "30 CFR 56.14107(a)",
+        "30 CFR 57.14107(a)"
+      ],
+      "evidenceGaps": [
+        {
+          "id": "gap-conveyor-loto",
+          "scenarioFamilyId": "conveyor-cleanup",
+          "hazardDomain": "machine_guarding",
+          "evidenceGapId": "LOTO status",
+          "question": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+          "reasonForQuestion": "Conveyor cleaning near moving parts is high-risk; verifying energy isolation is critical.",
+          "relatedMechanismOfInjury": "rotating_equipment_nip_point",
+          "relatedExposurePathway": "worker near belt",
+          "relatedMissingControl": "no LOTO",
+          "relatedStandardFamilyCandidate": "candidate-machine-guarding",
+          "priority": "critical",
+          "answerType": "boolean",
+          "examplesOfUsefulEvidence": [
+            "photo of lock",
+            "tag details"
+          ],
+          "confidenceImpact": "high",
+          "factsToConfirm": [
+            "Confirm exposure",
+            "Confirm controls"
+          ],
+          "humanReviewTrigger": true,
+          "advisoryGuardrails": {
+            "advisoryOnly": true,
+            "doesNotDeclareViolation": true,
+            "requiresQualifiedReview": true
+          }
+        }
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 117,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": "30 CFR 56.3200",
+      "standards": [
+        "30 CFR 56.3200",
+        "30 CFR 56.3200",
+        "30 CFR 56.3200"
+      ],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-2",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60196,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": "30 CFR 56.3200",
+      "standards": [
+        "30 CFR 56.3200",
+        "30 CFR 56.3200",
+        "30 CFR 56.3200"
+      ],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 94,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": "30 CFR 56.3200",
+      "standards": [
+        "30 CFR 56.3200",
+        "30 CFR 56.3200",
+        "30 CFR 56.3200"
+      ],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-safe-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 82,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-safe-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 110,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ground-safe-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 118,
+      "jurisdiction": null,
+      "classification": "Ground Control / Highwall / Roof Fall",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-electrical-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 122,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.12025"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-electrical-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 126,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.12025"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-electrical-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 61076,
+      "jurisdiction": null,
+      "classification": "Electrical",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.12025"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Electrical hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Electrical hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-loto-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 62,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "Confirm the lockout/tagout review status and whether the equipment remains isolated for the maintenance task.",
+        "Verify that all hazardous energy sources were isolated, stored energy was relieved or restrained, and zero-energy testing was completed.",
+        "Confirm each exposed employee is protected by the lockout/tagout controls before maintenance continues or equipment is restored."
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-loto-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 154,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "Confirm the lockout/tagout review status and whether the equipment remains isolated for the maintenance task.",
+        "Verify that all hazardous energy sources were isolated, stored energy was relieved or restrained, and zero-energy testing was completed.",
+        "Confirm each exposed employee is protected by the lockout/tagout controls before maintenance continues or equipment is restored."
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-loto-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 151,
+      "jurisdiction": null,
+      "classification": "Lockout / Stored Energy",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "Confirm the lockout/tagout review status and whether the equipment remains isolated for the maintenance task.",
+        "Verify that all hazardous energy sources were isolated, stored energy was relieved or restrained, and zero-energy testing was completed.",
+        "Confirm each exposed employee is protected by the lockout/tagout controls before maintenance continues or equipment is restored."
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ladder-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 176,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ladder-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 123,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-ladder-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 61048,
+      "jurisdiction": null,
+      "classification": "Fall Protection",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 19,
+        "riskBand": "Critical",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Fall Protection hazards can create serious or fatal exposure.",
+          "Condition wording indicates active uncontrolled exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 4,
+          "matrixScore": 16,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 19,
+          "escalationBand": "Critical",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Fall Protection hazards can create serious or fatal exposure.",
+            "Condition wording indicates active uncontrolled exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-compressed-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 49,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.16005"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-compressed-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 60,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.16005"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-compressed-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 49,
+      "jurisdiction": null,
+      "classification": "Compressed Gas Cylinders",
+      "primaryCitation": null,
+      "standards": [
+        "30 CFR 56.16005"
+      ],
+      "evidenceGaps": [],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": true,
+        "reasoning": [
+          "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": true,
+          "escalationReasons": [
+            "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-contractor-1",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60389,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-contractor-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 77,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-contractor-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 47,
+      "jurisdiction": null,
+      "classification": "Mobile Equipment / Traffic",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-housekeeping-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 43,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-housekeeping-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 50,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "m-housekeeping-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 58,
+      "jurisdiction": null,
+      "classification": "Walking/Working Surfaces",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-unknown-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 178,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What equipment, opening, edge, or moving part is missing the guard?",
+        "Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?",
+        "Is this OSHA General Industry, OSHA Construction, or MSHA?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-unknown-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 191,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What equipment, opening, edge, or moving part is missing the guard?",
+        "Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?",
+        "Is this OSHA General Industry, OSHA Construction, or MSHA?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-unknown-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 34134,
+      "jurisdiction": null,
+      "classification": "Machine Guarding",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What equipment, opening, edge, or moving part is missing the guard?",
+        "Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?",
+        "Is this OSHA General Industry, OSHA Construction, or MSHA?"
+      ],
+      "risk": {
+        "riskScore": 15,
+        "riskBand": "High",
+        "imminentDanger": false,
+        "fatalityPotential": "high",
+        "requiresShutdown": false,
+        "reasoning": [
+          "Machine Guarding hazards can create serious or fatal exposure."
+        ],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 4,
+          "likelihood": 3,
+          "matrixScore": 12,
+          "matrixBand": "High"
+        },
+        "aiRisk": {
+          "escalationScore": 15,
+          "escalationBand": "High",
+          "imminentDanger": false,
+          "fatalityPotential": "high",
+          "requiresShutdown": false,
+          "escalationReasons": [
+            "Machine Guarding hazards can create serious or fatal exposure."
+          ]
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-prompt-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 88,
+      "jurisdiction": null,
+      "classification": "Lifting & Rigging",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-prompt-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 185,
+      "jurisdiction": null,
+      "classification": "Lifting & Rigging",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-prompt-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 251,
+      "jurisdiction": null,
+      "classification": "Lifting & Rigging",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": false,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-recordkeeping-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 235,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-recordkeeping-2",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60976,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-recordkeeping-3",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 146,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-coal-1",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 46,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-coal-2",
+      "status": 201,
+      "retries": 0,
+      "verdict": "PASS",
+      "durationMs": 83,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    },
+    {
+      "id": "x-coal-3",
+      "status": 201,
+      "retries": 1,
+      "verdict": "PASS",
+      "durationMs": 60718,
+      "jurisdiction": null,
+      "classification": "Unclassified",
+      "primaryCitation": null,
+      "standards": [],
+      "evidenceGaps": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "risk": {
+        "riskScore": 6,
+        "riskBand": "Moderate",
+        "imminentDanger": false,
+        "fatalityPotential": "medium",
+        "requiresShutdown": false,
+        "reasoning": [],
+        "operationalRisk": {
+          "profileId": "standard_5x5",
+          "profileLabel": "Standard 5x5",
+          "matrixSize": 5,
+          "severity": 2,
+          "likelihood": 3,
+          "matrixScore": 6,
+          "matrixBand": "Moderate"
+        },
+        "aiRisk": {
+          "escalationScore": 6,
+          "escalationBand": "Moderate",
+          "imminentDanger": false,
+          "fatalityPotential": "medium",
+          "requiresShutdown": false,
+          "escalationReasons": []
+        }
+      },
+      "lifeCritical": true,
+      "requiredFound": true,
+      "safeSuppressed": true,
+      "responseHasPendingReview": false
+    }
+  ]
+}

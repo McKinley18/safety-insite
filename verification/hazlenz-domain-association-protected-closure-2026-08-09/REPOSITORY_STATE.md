@@ -1,0 +1,7 @@
+- Repository: `/Users/mckinley/Desktop/Safety_InSite`
+- Branch: `main`
+- HEAD: `24e37703ff37d96b0e42cde4b85ccdef89b2bf2a`
+- Status entries before phase: 237; current observed: 239.
+- No production files changed during this phase.
+- No reset, clean, stash, commit, or push.
+- Original development database untouched; unrelated work preserved.

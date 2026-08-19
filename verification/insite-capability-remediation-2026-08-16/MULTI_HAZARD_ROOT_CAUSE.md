@@ -1,0 +1,23 @@
+# Multi-Hazard Decomposition Root Cause
+
+## Correction to the prior verification session's framing
+
+The prior phase's `MULTI_HAZARD_VERIFICATION.md` described the 3-hazard and 4-hazard test cases as producing "duplicate full-text fragments" (implying phantom/redundant findings). Re-examining the same live cases this session **with `domainId` visible** (the prior pass only printed `observationFragment`, which hid this) shows the fragments are **not literal duplicates** — each has a distinct `domainId`/`hazardFamily` (e.g. for the 4-hazard case: `machine_guarding`, `hazcom`, `suspended_loads`, `chemical_transfer`, `chemical_release` — 5 genuinely different classifications, not 5 copies of one). The real, confirmed defects are two different and more precise things:
+
+## Defect 1 (confirmed, now fixed): a real hazard was silently dropped
+
+`backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts:406-410` only promoted an `electrical` finding when the **same local clause** matched three separate word categories: an electrical-source word (panel/wire/conductor/etc.), an explicit energized-state word (`energized|energised|live|powered`), AND an exposure-defect word. The 4-hazard test clause — "temporary wiring ran through a doorway with the outer insulation stripped away, exposing bare conductors" — never says the word "energized," even though bare conductors from stripped insulation is a serious, unambiguous electrical hazard in ordinary inspection language. The gate was too strict for real-world phrasing and silently dropped the finding rather than flagging it for review.
+
+**Fix**: broadened the energized-state condition to also accept implicit-energized phrasing ("stripped insulation," "bare conductor," "bare wire," "exposed conductor/wire/wiring") as sufficient on its own, alongside the existing explicit-energized-word check. Live-verified: the electrical hazard is now correctly detected with a properly-scoped evidence fragment ("temporary wiring ran through a doorway with the outer insulation strip...").
+
+## Defect 2 (confirmed, partially fixed): inconsistent clause-splitting causes evidence over-scoping
+
+The file's main fragment list (line 14-17, `splitRegex = /[.;,!]|\band\b|\balso\b|\bwhile\b/i`) correctly splits on semicolons, periods, commas, and a few conjunctions, and most detector blocks iterate over it correctly (e.g. `hazcom`, `suspended_loads` in the test cases both got properly-scoped, clause-level evidence fragments). But several detector blocks — `chemical_transfer`, `chemical_release`, `machine_guarding`, and others (grep for `observationFragment: observationText` in the file: ~10 occurrences) — either re-split the text themselves with an inconsistent, narrower regex (`chemical_transfer` used `observationText.split(/[.!]/)`, missing semicolons entirely) or don't split at all and cite the whole `observationText` as their evidence fragment unconditionally. On a semicolon-delimited multi-hazard observation (a natural way to phrase "we observed 3 things: A; B; and C"), this makes several distinct, correctly-identified hazard classifications all point at the *entire* observation as their evidence, which reads to a user as repetitive/unscoped rather than as the multiple genuinely-different findings they actually are.
+
+**Fix applied (narrow)**: `chemical_transfer`'s clause split now uses `/[.;!]/` (added the missing semicolon), matching the file's own established convention. Live-verified: `chemical_transfer` no longer incorrectly fires against unrelated whole-text content in the 4-hazard case (it correctly stopped matching once clause-scoped, since the isolated "chemical container was actively leaking" clause alone doesn't contain a transfer verb).
+
+**Not fixed this session (documented, real, scoped out)**: `machine_guarding` and `chemical_release` (among ~8 other blocks) still cite `observationText` as their evidence fragment rather than a scoped clause. Fixing all of them is a larger, file-wide consistency pass (~10 independent detector blocks across 1378 lines) beyond what a narrow fix should attempt in one pass without much more regression-testing time; flagged as the natural next increment of this same fix, not silently left out of the report.
+
+## What was NOT a bug
+
+Sibling-finding identity contamination (one finding borrowing another's evidence/identity) was checked again this session and, as before, not observed — every fragment's *content*, when scoped correctly, stayed correctly attached to its own hazard. The defects here are drop (missed hazard) and over-broad evidence citation (imprecise, not wrong), not misattribution.

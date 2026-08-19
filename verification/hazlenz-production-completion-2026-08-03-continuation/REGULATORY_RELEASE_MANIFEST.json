@@ -1,0 +1,9 @@
+{
+  "releaseId": "governed-19-standard-release",
+  "status": "bounded_pending_external_qualification",
+  "definitiveStandards": {"total": 19, "OSHA": 13, "MSHA": 6},
+  "pendingImportedDocuments": 129,
+  "qualifiedImportedApplicabilityRecords": 0,
+  "excludedFamilies": ["OSHA 29 CFR Part 1904", "broad MSHA coal support"],
+  "pendingRecordsMayPromoteDefinitiveCitation": false
+}

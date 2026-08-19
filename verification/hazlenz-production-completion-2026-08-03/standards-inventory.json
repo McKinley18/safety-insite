@@ -1,0 +1,9 @@
+{
+  "databases": {
+    "hazlenz_completion_20260730": {"governedStandards": 19, "officialDocuments": 129, "normalizedChunks": 2265, "documentStatus": "pending_review"},
+    "phase6_adopt_completion_a": {"governedStandards": 19, "approvedStarterDocuments": 8, "approvedStarterChunks": 8}
+  },
+  "governedStandardsByAgency": {"OSHA": 13, "MSHA": 6},
+  "knownGaps": ["OSHA Part 1904 reconciliation", "qualified applicability approval for imported documents", "broad coal-mine coverage"],
+  "sourceSecretsIncluded": false
+}

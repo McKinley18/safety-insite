@@ -1,0 +1,122 @@
+# Corrective Action Analysis
+
+- pair-conveyor-energized: corrective-action score 1; Pass
+- pair-conveyor-locked: corrective-action score 1; Pass
+- pair-unguarded-production: corrective-action score 1; Pass
+- pair-guard-off-deenergized: corrective-action score 1; Pass
+- pair-panel-live: corrective-action score 1; Pass
+- pair-panel-verified-dead: corrective-action score 1; Pass
+- pair-cord-active-wet: corrective-action score 1; Pass
+- pair-cord-discarded: corrective-action score 0; Needs Review
+- pair-roof-edge-open: corrective-action score 1; Pass
+- pair-roof-edge-guarded: corrective-action score 1; Pass
+- pair-trench-deep: corrective-action score 1; Pass
+- pair-trench-shallow-controlled: corrective-action score 0; Needs Review
+- pair-chemical-aisle-spill: corrective-action score 1; Pass
+- pair-chemical-contained: corrective-action score 0; Needs Review
+- pair-unlabeled-unknown: corrective-action score 1; Pass
+- pair-labeled-closed: corrective-action score 0; Needs Review
+- pair-loader-alarm-broken: corrective-action score 1; Pass
+- pair-loader-removed-service: corrective-action score 1; Pass
+- pair-tank-entry: corrective-action score 1; Pass
+- pair-tank-outside: corrective-action score 0; Needs Review
+- pair-asbestos-disturbance: corrective-action score 1; Pass
+- pair-asbestos-intact: corrective-action score 1; Pass
+- pair-handrail-missing: corrective-action score 1; Pass
+- pair-low-platform: corrective-action score 0; Needs Review
+- pair-hotwork-combustibles: corrective-action score 1; Pass
+- pair-hotwork-controlled: corrective-action score 0; Needs Review
+- pair-cylinder-unsecured: corrective-action score 1; Pass
+- pair-cylinder-carrier: corrective-action score 0; Needs Review
+- pair-noise-high: corrective-action score 1; Pass
+- pair-noise-low: corrective-action score 0; Needs Review
+- pair-heat-illness: corrective-action score 1; Pass
+- pair-heat-controlled: corrective-action score 0; Needs Review
+- pair-bloodborne-exposure: corrective-action score 1; Pass
+- pair-bloodborne-kit: corrective-action score 0; Fail
+- pair-msha-berm-missing: corrective-action score 0; Pass
+- pair-msha-flat-road: corrective-action score 1; Pass
+- pair-scaffold-no-rails: corrective-action score 1; Pass
+- pair-scaffold-complete: corrective-action score 0; Needs Review
+- pair-exit-blocked: corrective-action score 0; Pass
+- pair-exit-clear: corrective-action score 0; Needs Review
+- pair-msha-highwall-crack: corrective-action score 0; Pass
+- pair-msha-highwall-distant: corrective-action score 1; Pass
+- gi-ladder-top-step: corrective-action score 1; Pass
+- gi-pit-charging: corrective-action score 1; Pass
+- gi-stacked-material: corrective-action score 1; Pass
+- gi-ergonomics: corrective-action score 1; Pass
+- gi-respirator-voluntary: corrective-action score 1; Pass
+- gi-flammable-cabinet: corrective-action score 1; Pass
+- gi-fire-extinguisher-missing: corrective-action score 1; Pass
+- gi-overhead-load: corrective-action score 1; Pass
+- gi-office-trip: corrective-action score 1; Pass
+- gi-open-floor-hole: corrective-action score 1; Pass
+- gi-chemical-symptoms: corrective-action score 1; Pass
+- gi-press-two-hand: corrective-action score 1; Pass
+- gi-saw-guard: corrective-action score 1; Pass
+- gi-no-handrail-stairs: corrective-action score 1; Pass
+- gi-emergency-action: corrective-action score 1; Pass
+- gi-ppe-splash: corrective-action score 1; Pass
+- gi-powered-truck-defect: corrective-action score 1; Pass
+- gi-pit-blind-corner: corrective-action score 1; Pass
+- gi-confined-space-vague: corrective-action score 1; Pass
+- gi-harmless-dramatic: corrective-action score 0; Needs Review
+- cx-roof-warning-line: corrective-action score 1; Pass
+- cx-scaffold-plank: corrective-action score 1; Pass
+- cx-ladder-3ft: corrective-action score 1; Pass
+- cx-gfci-temp: corrective-action score 1; Pass
+- cx-crane-powerline: corrective-action score 0; Pass
+- cx-rigging-sling: corrective-action score 1; Pass
+- cx-demo-hole: corrective-action score 1; Pass
+- cx-silica-cutting: corrective-action score 1; Pass
+- cx-steel-connector: corrective-action score 1; Pass
+- cx-trench-egress: corrective-action score 1; Pass
+- cx-heavy-equipment-back: corrective-action score 1; Pass
+- cx-traffic-control: corrective-action score 1; Pass
+- cx-masonry-wall: corrective-action score 1; Pass
+- cx-confined-space: corrective-action score 1; Pass
+- cx-concrete-impalement: corrective-action score 1; Pass
+- cx-roof-controlled: corrective-action score 1; Pass
+- cx-competent-person: corrective-action score 1; Pass
+- cx-temporary-light: corrective-action score 1; Pass
+- cx-caught-between: corrective-action score 1; Pass
+- cx-vague-edge: corrective-action score 1; Pass
+- msha-trailing-cable: corrective-action score 1; Pass
+- msha-grounding: corrective-action score 1; Pass
+- msha-berm-dump: corrective-action score 1; Pass
+- msha-roadway-rules: corrective-action score 1; Pass
+- msha-ladder-travelway: corrective-action score 1; Pass
+- msha-housekeeping: corrective-action score 1; Pass
+- msha-cylinder: corrective-action score 1; Pass
+- msha-welding-fire: corrective-action score 1; Pass
+- msha-parking: corrective-action score 1; Pass
+- msha-preop: corrective-action score 1; Pass
+- msha-stored-energy: corrective-action score 1; Pass
+- msha-fall-crusher: corrective-action score 1; Pass
+- msha-nonmine-trap: corrective-action score 1; Fail
+- msha-jam-vague: corrective-action score 1; Pass
+- msha-dust: corrective-action score 1; Pass
+- msha-illumination: corrective-action score 0; Pass
+- extra-vague-78: corrective-action score 0; Pass
+- msha-exit-blocked: corrective-action score 0; Pass
+- extra-vague-77: corrective-action score 0; Pass
+- msha-fire-ext: corrective-action score 1; Pass
+- extra-vague-76: corrective-action score 0; Pass
+- msha-safe-guarded: corrective-action score 1; Pass
+- extra-vague-75: corrective-action score 0; Pass
+- gi-e-stop-blocked: corrective-action score 1; Pass
+- extra-vague-74: corrective-action score 0; Pass
+- cx-vague-ladder-bad: corrective-action score 1; Pass
+- extra-vague-73: corrective-action score 0; Pass
+- cx-rigging-tag: corrective-action score 1; Pass
+- extra-vague-72: corrective-action score 0; Pass
+- msha-raised-crusher-blocking: corrective-action score 1; Pass
+- extra-vague-71: corrective-action score 0; Pass
+- gi-recycling-conveyor-trap: corrective-action score 1; Pass
+- extra-vague-70: corrective-action score 0; Pass
+- gi-heat-recovered: corrective-action score 1; Needs Review
+- extra-vague-69: corrective-action score 0; Pass
+- gi-closed-corrosive: corrective-action score 1; Pass
+- extra-vague-68: corrective-action score 0; Pass
+- cx-floor-opening-covered: corrective-action score 1; Pass

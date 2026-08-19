@@ -1,0 +1,56 @@
+{
+  "email": "critical-1785806621@example.test",
+  "results": [
+    {
+      "name": "electrical-fall",
+      "separate": true,
+      "hazards": [
+        "Electrical",
+        "Fall",
+        "Hot Work"
+      ],
+      "clarificationButtons": [
+        "Manufacturing or plant",
+        "Not sure",
+        "Not sure",
+        "Not sure",
+        "Not sure"
+      ],
+      "reanalysis": true,
+      "url": "http://127.0.0.1:3001/inspection"
+    },
+    {
+      "name": "guarding-energy",
+      "separate": true,
+      "hazards": [
+        "Machine Guarding",
+        "Loto"
+      ],
+      "clarificationButtons": [
+        "Manufacturing or plant",
+        "Not sure",
+        "Capable of startup",
+        "Not sure",
+        "Not sure"
+      ],
+      "reanalysis": true,
+      "url": "http://127.0.0.1:3001/inspection"
+    },
+    {
+      "name": "hotwork-gas",
+      "separate": true,
+      "hazards": [
+        "Hot Work",
+        "Compressed Gas"
+      ],
+      "clarificationButtons": [
+        "Manufacturing or plant",
+        "Not sure",
+        "Not sure",
+        "Not sure"
+      ],
+      "reanalysis": true,
+      "url": "http://127.0.0.1:3001/inspection"
+    }
+  ]
+}

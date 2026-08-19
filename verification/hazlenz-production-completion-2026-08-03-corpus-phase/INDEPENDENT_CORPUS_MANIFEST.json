@@ -1,0 +1,10 @@
+{
+  "generatedCases": 129,
+  "independentlyAuthoredBaseCases": 43,
+  "deterministicVariants": 3,
+  "endpoint": "POST /safescope-v2/classify",
+  "expectationsOutsideProductionRequest": true,
+  "authenticatedRunner": "run-independent-corpus.mjs",
+  "executionStatus": "partial",
+  "reason": "The production throttler limited long batches; three-case authenticated smoke passed, while the full batch was not accepted as a complete score."
+}

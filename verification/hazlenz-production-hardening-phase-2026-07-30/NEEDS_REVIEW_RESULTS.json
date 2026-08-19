@@ -1,0 +1,1936 @@
+{
+  "generatedFrom": [
+    "ORIGINAL_CORPUS_RERUN.json",
+    "HOLDOUT_CORPUS_RERUN.json",
+    "EXPANDED_CORPUS_RESULTS.json"
+  ],
+  "total": 86,
+  "clusterCounts": {
+    "regulatory_family_absent": 32,
+    "material_predicate_missing": 35,
+    "standard_selection_or_hydration": 35,
+    "clarification_missing_or_unresolved": 29,
+    "safe_state_unresolved": 25
+  },
+  "records": [
+    {
+      "corpus": "original",
+      "id": "C001",
+      "jurisdiction": "msha",
+      "family": "mobile_equipment_brakes",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "material_predicate_missing",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.14101"
+      ],
+      "missingPredicates": [
+        "power not isolated and locked"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "30 CFR 56.12016"
+      ]
+    },
+    {
+      "corpus": "original",
+      "id": "C009",
+      "jurisdiction": "msha",
+      "family": "mine_lockout",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "power not isolated and locked"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C012",
+      "jurisdiction": "msha",
+      "family": "ground_control",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C016",
+      "jurisdiction": "msha",
+      "family": "highwall",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.3130"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C019",
+      "jurisdiction": "msha",
+      "family": "seat_belt",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.14131"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C024",
+      "jurisdiction": "msha",
+      "family": "electrical_grounding",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "power not isolated and locked"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C025",
+      "jurisdiction": "msha",
+      "family": "compressed_cylinders",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.4601"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C030",
+      "jurisdiction": "msha",
+      "family": "mine_housekeeping",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C031",
+      "jurisdiction": "osha_general_industry",
+      "family": "machine_guarding",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1910.219(c)"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C039",
+      "jurisdiction": "osha_general_industry",
+      "family": "electrical",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C042",
+      "jurisdiction": "osha_general_industry",
+      "family": "forklift",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C051",
+      "jurisdiction": "osha_general_industry",
+      "family": "noise",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C054",
+      "jurisdiction": "osha_general_industry",
+      "family": "permit_space",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C057",
+      "jurisdiction": "osha_general_industry",
+      "family": "egress",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "exit locked, blocked, or unusable"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C058",
+      "jurisdiction": "osha_general_industry",
+      "family": "respiratory",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.134"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1910.146(c)(1)"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C067",
+      "jurisdiction": "osha_construction",
+      "family": "scaffold",
+      "lifeCritical": false,
+      "clusters": [
+        "material_predicate_missing",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required family not promoted despite supported predicates"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "guardrail or personal fall protection absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "original",
+      "id": "C070",
+      "jurisdiction": "osha_construction",
+      "family": "silica",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1153"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C073",
+      "jurisdiction": "osha_construction",
+      "family": "crane_fall_zone",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1425"
+      ],
+      "missingPredicates": [
+        "permitted task exception absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1425"
+      ]
+    },
+    {
+      "corpus": "original",
+      "id": "C075",
+      "jurisdiction": "osha_construction",
+      "family": "crane_fall_zone",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C076",
+      "jurisdiction": "osha_construction",
+      "family": "rigging",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.251"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.1425"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C078",
+      "jurisdiction": "osha_construction",
+      "family": "rigging",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C079",
+      "jurisdiction": "osha_construction",
+      "family": "stairs",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1052"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C081",
+      "jurisdiction": "osha_construction",
+      "family": "stairs",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C082",
+      "jurisdiction": "osha_construction",
+      "family": "housekeeping",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.25"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C085",
+      "jurisdiction": "osha_construction",
+      "family": "power_lines",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "original",
+      "id": "C090",
+      "jurisdiction": "osha_construction",
+      "family": "hot_work",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C100",
+      "jurisdiction": "unknown",
+      "family": "identity",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C102",
+      "jurisdiction": "unknown",
+      "family": "reported_only",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C126",
+      "jurisdiction": "osha_general_industry",
+      "family": "electrical_voltage",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.303"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C128",
+      "jurisdiction": "unknown",
+      "family": "mine_jurisdiction",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.12016"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C129",
+      "jurisdiction": "osha_general_industry",
+      "family": "chemical_identity",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C130",
+      "jurisdiction": "osha_construction",
+      "family": "roof_height",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C131",
+      "jurisdiction": "osha_general_industry",
+      "family": "noise_measurement",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "clarification_missing_or_unresolved",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent",
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.95"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C132",
+      "jurisdiction": "osha_general_industry",
+      "family": "permit_space",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "clarification_missing_or_unresolved",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent",
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.146"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C133",
+      "jurisdiction": "osha_general_industry",
+      "family": "forklift_motion",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "clarification_missing_or_unresolved",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent",
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.178"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C134",
+      "jurisdiction": "osha_general_industry",
+      "family": "machine_operation",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C136",
+      "jurisdiction": "osha_general_industry",
+      "family": "panel_state",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C138",
+      "jurisdiction": "osha_construction",
+      "family": "trench_entry",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "protective system absent"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C140",
+      "jurisdiction": "msha",
+      "family": "mine_brakes",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "power not isolated and locked"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C143",
+      "jurisdiction": "osha_general_industry",
+      "family": "forklift_speed",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C146",
+      "jurisdiction": "osha_construction",
+      "family": "roof_edge_applicable",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.501"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C150",
+      "jurisdiction": "osha_general_industry",
+      "family": "machine_guard_applicable",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1910.219(c)"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C156",
+      "jurisdiction": "msha",
+      "family": "mine_vehicle_applicable",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "30 CFR 56.14207"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "original",
+      "id": "C160",
+      "jurisdiction": "osha_construction",
+      "family": "scaffold_height_applicable",
+      "lifeCritical": false,
+      "clusters": [
+        "material_predicate_missing",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required family not promoted despite supported predicates"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "guardrail or personal fall protection absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "original",
+      "id": "C162",
+      "jurisdiction": "osha_construction",
+      "family": "crane_load_applicable",
+      "lifeCritical": false,
+      "clusters": [
+        "material_predicate_missing",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required family not promoted despite supported predicates"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1425"
+      ],
+      "missingPredicates": [
+        "permitted task exception absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1425"
+      ]
+    },
+    {
+      "corpus": "holdout",
+      "id": "H014",
+      "jurisdiction": "msha",
+      "family": "insufficient",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved",
+        "material_predicate_missing"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [
+        "power not isolated and locked"
+      ],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H018",
+      "jurisdiction": "osha-general-industry",
+      "family": "egress",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1910.36"
+      ],
+      "missingPredicates": [
+        "exit locked, blocked, or unusable"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1910.36"
+      ]
+    },
+    {
+      "corpus": "holdout",
+      "id": "H030",
+      "jurisdiction": "osha-general-industry",
+      "family": "ergonomics",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H043",
+      "jurisdiction": "osha-construction",
+      "family": "confined_space",
+      "lifeCritical": true,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.1203"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H044",
+      "jurisdiction": "osha-construction",
+      "family": "crane",
+      "lifeCritical": false,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.1425"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H045",
+      "jurisdiction": "osha-construction",
+      "family": "housekeeping",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.25"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H076",
+      "jurisdiction": "msha",
+      "family": "energy",
+      "lifeCritical": true,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "56.12016"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "30 CFR 56.12016"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H077",
+      "jurisdiction": "osha-construction",
+      "family": "excavation",
+      "lifeCritical": true,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "1926.652"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H078",
+      "jurisdiction": "osha-construction",
+      "family": "fall_zone",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1425"
+      ],
+      "missingPredicates": [
+        "worker in fall zone",
+        "permitted task exception absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1425"
+      ]
+    },
+    {
+      "corpus": "holdout",
+      "id": "H079",
+      "jurisdiction": "osha-general-industry",
+      "family": "egress",
+      "lifeCritical": true,
+      "clusters": [
+        "clarification_missing_or_unresolved"
+      ],
+      "reasons": [
+        "material clarification absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.36"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": false,
+      "definitiveCitations": [
+        "29 CFR 1910.36"
+      ],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "holdout",
+      "id": "H080",
+      "jurisdiction": "osha-construction",
+      "family": "power_lines",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential",
+        "required encroachment controls absent"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E081",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E082",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E083",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E084",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E085",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E086",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E087",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E088",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E089",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E090",
+      "jurisdiction": "osha-general-industry",
+      "family": "hazcom",
+      "lifeCritical": false,
+      "clusters": [
+        "regulatory_family_absent",
+        "standard_selection_or_hydration"
+      ],
+      "reasons": [
+        "required standard family absent"
+      ],
+      "requiredCitationFamilies": [
+        "1910.1200"
+      ],
+      "missingPredicates": [],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": []
+    },
+    {
+      "corpus": "expanded",
+      "id": "E111",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E112",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E113",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E114",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E115",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E116",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E117",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E118",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E119",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E120",
+      "jurisdiction": "osha-construction",
+      "family": "crane-line",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.1408"
+      ],
+      "missingPredicates": [
+        "encroachment potential"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [],
+      "candidateCitations": [
+        "29 CFR 1926.1408"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E131",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E132",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E133",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E134",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E135",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E136",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E137",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E138",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E139",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "corpus": "expanded",
+      "id": "E140",
+      "jurisdiction": "osha-construction",
+      "family": "scaffold",
+      "lifeCritical": true,
+      "clusters": [
+        "material_predicate_missing",
+        "safe_state_unresolved"
+      ],
+      "reasons": [
+        "life-safety family retained as candidate pending a material predicate"
+      ],
+      "requiredCitationFamilies": [
+        "1926.451"
+      ],
+      "missingPredicates": [
+        "platform more than 10 feet above lower level"
+      ],
+      "clarificationPresent": true,
+      "definitiveCitations": [
+        "29 CFR 1926.501"
+      ],
+      "candidateCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    }
+  ]
+}

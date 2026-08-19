@@ -1,0 +1,129 @@
+## main @ 24e37703ff37d96b0e42cde4b85ccdef89b2bf2a
+## Captured before closure production-code changes; 126 status entries.
+ M backend/package-lock.json
+ M backend/package.json
+ M backend/scripts/smoke-corrective-actions-organization-scope.ts
+ M backend/src/app.module.ts
+ M backend/src/auth/auth.controller.ts
+ M backend/src/auth/auth.module.ts
+ M backend/src/auth/auth.service.ts
+ M backend/src/auth/dto/register.dto.ts
+ M backend/src/auth/entitlements/entitlement.guard.ts
+ M backend/src/auth/jwt.strategy.ts
+ M backend/src/corrective-actions/corrective-actions.controller.ts
+ M backend/src/corrective-actions/corrective-actions.module.ts
+ M backend/src/corrective-actions/corrective-actions.service.ts
+ M backend/src/corrective-actions/dto/corrective-action.dto.ts
+ M backend/src/corrective-actions/entities/corrective-action.entity.ts
+ M backend/src/database/data-source.ts
+ M backend/src/database/migrations/1777429229824-InitialMigration.ts
+ M backend/src/database/migrations/1777896188952-ExtendStandards.ts
+ M backend/src/database/migrations/1779000000000-CreateAuthWorkspaceTables.ts
+ D backend/src/database/migrations/1780000000002-AddReportWorkspaceStorage.ts
+ D backend/src/database/migrations/1780000000003-AlignCorrectiveActionsCompanyFields.ts
+ D backend/src/database/migrations/1780000000004-AddReportActionLinkFields.ts
+ D backend/src/database/migrations/1780000000004-AddSiteOrganizationId.ts
+ D backend/src/database/migrations/1780000000005-AddAuditSessionOrganizationScope.ts
+ D backend/src/database/migrations/1780000000006-AddInspectionOrganizationScope.ts
+ D backend/src/database/migrations/1790000003000-AlterUserSubscriptionUserIdToVarchar.ts
+ M backend/src/inspection/inspection.controller.ts
+ M backend/src/inspection/inspection.entity.ts
+ M backend/src/inspection/inspection.module.ts
+ M backend/src/inspection/inspection.service.ts
+ M backend/src/main.ts
+ M backend/src/organizations/organizations.module.ts
+ M backend/src/organizations/organizations.service.ts
+ M backend/src/pdf/pdf.controller.ts
+ M backend/src/reports/reports.controller.ts
+ M backend/src/reports/reports.module.ts
+ M backend/src/safescope-v2/inspection-intelligence/inspection-citation-ranking.service.ts
+ M backend/src/safescope-v2/inspection-intelligence/inspection-citation-recovery.service.ts
+ M backend/src/safescope-v2/inspection-intelligence/inspection-condition-assessment.service.ts
+ M backend/src/safescope-v2/inspection-intelligence/standard-applicability.rules.ts
+ M backend/src/safescope-v2/safescope-v2.controller.ts
+ M backend/src/safescope-v2/safescope-v2.service.ts
+ M backend/src/sites/entities/site.entity.ts
+ M backend/src/sites/sites.module.ts
+ M backend/src/transparency/transparency.controller.ts
+ M backend/src/upload/upload.controller.ts
+ M backend/src/upload/upload.module.ts
+ M backend/src/users/user.entity.ts
+ M docker-compose.yml
+ M frontend-next/app/forgot-password/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/app/reports/page.tsx
+ M frontend-next/package-lock.json
+ M frontend-next/package.json
+ D frontend-next/scripts/check-action-workflow-visibility.js
+ D frontend-next/scripts/check-company-actions-sync.js
+?? DEVELOPMENT.md
+?? backend/scripts/adopt-legacy-database.ts
+?? backend/scripts/grant-test-entitlement.ts
+?? backend/scripts/legacy-database-inventory.ts
+?? backend/scripts/migration-baseline.ts
+?? backend/scripts/phase5-two-clone-reconciliation.ts
+?? backend/scripts/quarantine-legacy-reports.ts
+?? backend/scripts/test-auth-flow.ts
+?? backend/scripts/test-auth-rate-limit.ts
+?? backend/scripts/test-canonical-organization-authorization.ts
+?? backend/scripts/test-canonical-workflow.ts
+?? backend/scripts/test-entitlement-boundary.ts
+?? backend/scripts/test-entitlement-operations.ts
+?? backend/scripts/test-password-reset-delivery.ts
+?? backend/scripts/test-private-storage-reports.ts
+?? backend/scripts/test-s3-production-provider.ts
+?? backend/scripts/test-storage-provider.ts
+?? backend/scripts/test-upload-security.ts
+?? backend/scripts/verify-phase6-adoption.ts
+?? backend/src/audit/entities/security-audit-event.entity.ts
+?? backend/src/auth/entities/platform-support-grant.entity.ts
+?? backend/src/auth/entitlements/entitlement-operations.controller.ts
+?? backend/src/auth/entitlements/entitlement.service.ts
+?? backend/src/auth/entitlements/entitlements.module.ts
+?? backend/src/auth/password-reset-delivery.service.ts
+?? backend/src/billing/entitlement-grant.entity.ts
+?? backend/src/common/authenticated-user.ts
+?? backend/src/database/migrations/1780000000003-AddReportWorkspaceStorage.ts
+?? backend/src/database/migrations/1780000000004-AlignCorrectiveActionsCompanyFields.ts
+?? backend/src/database/migrations/1780000000005-AddReportActionLinkFields.ts
+?? backend/src/database/migrations/1780000000006-AddSiteOrganizationId.ts
+?? backend/src/database/migrations/1780000000007-AddAuditSessionOrganizationScope.ts
+?? backend/src/database/migrations/1780000000008-AddInspectionOrganizationScope.ts
+?? backend/src/database/migrations/1790000003001-AlterUserSubscriptionUserIdToVarchar.ts
+?? backend/src/database/migrations/1793000000000-CanonicalUserAuthentication.ts
+?? backend/src/database/migrations/1800000000000-CanonicalInspectionFoundation.ts
+?? backend/src/database/migrations/1800000001000-AlignCanonicalAuditLog.ts
+?? backend/src/database/migrations/1800000002000-PrivateStorageReportsKnowledge.ts
+?? backend/src/database/migrations/1800000003000-LegacyAdoptionProvenance.ts
+?? backend/src/inspection/dto/
+?? backend/src/inspection/entities/
+?? backend/src/organizations/entities/organization-membership.entity.ts
+?? backend/src/reports/canonical-reports.controller.ts
+?? backend/src/reports/canonical-reports.service.ts
+?? backend/src/reports/entities/inspection-report-version.entity.ts
+?? backend/src/reports/entities/inspection-report.entity.ts
+?? backend/src/reports/entities/legacy-report-quarantine.entity.ts
+?? backend/src/sites/dto/
+?? backend/src/sites/sites.controller.ts
+?? backend/src/sites/sites.service.ts
+?? backend/src/storage/
+?? backend/src/tasks/
+?? backend/src/upload/image-upload.security.ts
+?? frontend-next/app/reset-password/
+?? frontend-next/lib/canonicalWorkflowApi.ts
+?? frontend-next/scripts/check-action-workflow-visibility.mjs
+?? frontend-next/scripts/check-authenticated-release.mjs
+?? frontend-next/scripts/check-canonical-persistence-release.mjs
+?? frontend-next/scripts/check-company-actions-sync.mjs
+?? frontend-next/scripts/check-phase5-inspection-report-release.mjs
+?? scripts/release-gate-phase2.mjs
+?? verification/full-production-audit-2026-07-26/
+?? verification/hazlenz-authentic-validation-2026-07-22/
+?? verification/product-engineering-decision-phase-2026-07-26/
+?? verification/production-remediation-phase-1-2026-07-26/
+?? verification/production-remediation-phase-2-2026-07-26/
+?? verification/production-remediation-phase-3-2026-07-26/
+?? verification/production-remediation-phase-4-2026-07-26/
+?? verification/production-remediation-phase-5-2026-07-27/
+?? verification/production-remediation-phase-6-2026-07-28/
+

@@ -1,0 +1,3192 @@
+{
+  "metadata": {
+    "createdAt": "2026-07-29T19:00:03.696Z",
+    "count": 80,
+    "methodology": "80 independently reasoned holdout cases authored before execution; different wording from the closure corpus.",
+    "nearNeighborCaseCount": 30,
+    "groups": {
+      "msha": 15,
+      "general_industry": 15,
+      "construction": 15,
+      "safe_state": 10,
+      "ambiguous": 10,
+      "contradiction": 5,
+      "adversarial": 5,
+      "clarification": 5
+    }
+  },
+  "cases": [
+    {
+      "id": "H001",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "energy",
+      "observation": "Millwright had both hands in the crusher drive while the disconnect stayed ON; no personal lok was fitted.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.12016"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Millwright had both hands in the crusher drive while the disconnect stayed ON; no personal lok was fitted.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P01"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H002",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "energy",
+      "observation": "Millwright opened the crusher after every source was locked out and zero energy was verified.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.12016",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Millwright opened the crusher after every source was locked out and zero energy was verified.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P01"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H003",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "ground",
+      "observation": "Drummy rock is hangin over the active miner walkway at the portal.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.3200"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Drummy rock is hangin over the active miner walkway at the portal.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P02"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H004",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "ground",
+      "observation": "Scaling crew removed the loose back, barricade remains, and nobody can enter until the competent check.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.3200",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Scaling crew removed the loose back, barricade remains, and nobody can enter until the competent check.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P02"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H005",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "electrical",
+      "observation": "Bare live conductor is reachable beside a wet pump frame where the operator is standing.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.12025"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Bare live conductor is reachable beside a wet pump frame where the operator is standing.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P03"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H006",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "electrical",
+      "observation": "Cord jacket is muddy but intact; power is disconnected and continuity test passed before use.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.12025",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Cord jacket is muddy but intact; power is disconnected and continuity test passed before use.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P03"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H007",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "guarding",
+      "observation": "Tail pulley running, nip point open waist high where cleanup guy walks.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.14107"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Tail pulley running, nip point open waist high where cleanup guy walks.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P04"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H008",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "guarding",
+      "observation": "Tail pulley guard is bolted on and blocks reach to the nip while belt runs.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.14107",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Tail pulley guard is bolted on and blocks reach to the nip while belt runs.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P04"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H009",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "mobile_equipment",
+      "observation": "Loader backup alarm made no sound during pre-shift and machine is still being used around foot traffic.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.14132"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Loader backup alarm made no sound during pre-shift and machine is still being used around foot traffic.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P05"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H010",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "mobile_equipment",
+      "observation": "Loader alarm sounded in the function test; unit is parked and no one is in travel lane.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.14132",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Loader alarm sounded in the function test; unit is parked and no one is in travel lane.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P05"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H011",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "fall",
+      "observation": "Miner is workin from an unprotected elevated crusher deck with a clear fall to the floor.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.15005"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Miner is workin from an unprotected elevated crusher deck with a clear fall to the floor.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H012",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "housekeeping",
+      "observation": "Oil pooled across the mine shop travelway and boots are tracking through it.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.20003"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Oil pooled across the mine shop travelway and boots are tracking through it.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H013",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "compressed_gas",
+      "observation": "Oxygen cylinder is free standing next to the welding bench with no chain.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.16005"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Oxygen cylinder is free standing next to the welding bench with no chain.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H014",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "insufficient",
+      "observation": "Hydraulic hose looks old in the pic. Can't tell if cracked, leaking, pressurized, or in service.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Hydraulic hose looks old in the pic. Can't tell if cracked, leaking, pressurized, or in service.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H015",
+      "group": "msha",
+      "jurisdiction": "msha",
+      "domain": "non_safety",
+      "observation": "New blue paint on handrail is uneven but rail is solid and complete.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.",
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "New blue paint on handrail is uneven but rail is solid and complete.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H016",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "electrical",
+      "observation": "Live 480 bus is uncovered at shoulder height in the production room; employee can touch it.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.303"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Live 480 bus is uncovered at shoulder height in the production room; employee can touch it.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P06"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H017",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "electrical",
+      "observation": "Panel is deenergized, locked, tested dead, and the dead-front is back in place.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.303",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Panel is deenergized, locked, tested dead, and the dead-front is back in place.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P06"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H018",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "egress",
+      "observation": "Night shift's only marked exit has a padlock thru the latch.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.36"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Night shift's only marked exit has a padlock thru the latch.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P07"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H019",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "egress",
+      "observation": "Both exits are unlocked, lit and clear for the occupied night shift.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.36",
+          "1910.37",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Both exits are unlocked, lit and clear for the occupied night shift.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P07"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H020",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "noise",
+      "observation": "Dosimeter result is 88 dBA TWA for the press operator's full shift.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.95"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Dosimeter result is 88 dBA TWA for the press operator's full shift.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P08"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H021",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "noise",
+      "observation": "Calibrated dosimeter says 79 dBA TWA; no impact peaks and no unusual impulse noise.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.95",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Calibrated dosimeter says 79 dBA TWA; no impact peaks and no unusual impulse noise.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P08"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H022",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "loto",
+      "observation": "Operator reaches into the baler to pull a jam while it remains powered; no lock applied.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.147"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Operator reaches into the baler to pull a jam while it remains powered; no lock applied.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P09"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H023",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "loto",
+      "observation": "Baler jam cleared only after disconnect lock, stored-energy release and try-start verification.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.147",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Baler jam cleared only after disconnect lock, stored-energy release and try-start verification.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P09"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H024",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "hazcom",
+      "observation": "Secondary bottle at mixing station has no name or hazard label and contains unknown solvent.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.1200"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Secondary bottle at mixing station has no name or hazard label and contains unknown solvent.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P10"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H025",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "hazcom",
+      "observation": "Secondary bottle is labeled with product and hazards and matches the SDS at the station.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.1200",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Secondary bottle is labeled with product and hazards and matches the SDS at the station.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P10"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H026",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "pit",
+      "observation": "Open service pit beside the mechanic aisle has no cover or guard and workers pass within inches.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.28"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Open service pit beside the mechanic aisle has no cover or guard and workers pass within inches.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H027",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "forklift",
+      "observation": "Forklift seat belt is torn through and supervisor said keep using it for this shift.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.178"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Forklift seat belt is torn through and supervisor said keep using it for this shift.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H028",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "respiratory",
+      "observation": "Worker says dust is bad; material, concentration, task, ventilation and respirator use aren't known.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Worker says dust is bad; material, concentration, task, ventilation and respirator use aren't known.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H029",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "fire",
+      "observation": "Extinguisher cabinet is visible but photo does not show inspection tag, pressure gauge, or access.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Extinguisher cabinet is visible but photo does not show inspection tag, pressure gauge, or access.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H030",
+      "group": "general_industry",
+      "jurisdiction": "osha-general-industry",
+      "domain": "ergonomics",
+      "observation": "Packer says the tote feels awkward; no weight, frequency, symptoms or injury was reported.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.147",
+          "1910.212",
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Packer says the tote feels awkward; no weight, frequency, symptoms or injury was reported.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H031",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "excavation",
+      "observation": "Laborer is setting pipe in a 7-ft cut with vertical soil walls; no box, slope or shoring.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.652"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Laborer is setting pipe in a 7-ft cut with vertical soil walls; no box, slope or shoring.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P11"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H032",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "excavation",
+      "observation": "Four-foot cut is confirmed stable rock and no worker is exposed to a cave-in zone.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.652",
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Four-foot cut is confirmed stable rock and no worker is exposed to a cave-in zone.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P11"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H033",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "power_lines",
+      "observation": "Crane boom is 9 ft from an energized overhead line; no spotter or encroachment plan.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.1408"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Crane boom is 9 ft from an energized overhead line; no spotter or encroachment plan.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P12"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H034",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "power_lines",
+      "observation": "Utility verified line deenergized and visibly grounded before the crane entered the work zone.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.1408",
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Utility verified line deenergized and visibly grounded before the crane entered the work zone.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P12"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H035",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "fall_zone",
+      "observation": "Two workers stand below a suspended HVAC section and are not guiding or connecting it.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.1425"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Two workers stand below a suspended HVAC section and are not guiding or connecting it.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P13"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H036",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "fall_zone",
+      "observation": "No one is below the hoisted panel; controlled tag line area is barricaded.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.1425",
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "No one is below the hoisted panel; controlled tag line area is barricaded.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P13"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H037",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "scaffold",
+      "observation": "Mason works from 16-ft scaffold platform with the outside guardrail missing.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.451"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Mason works from 16-ft scaffold platform with the outside guardrail missing.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P14"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H038",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "scaffold",
+      "observation": "Scaffold platform has toprail, midrail, toe board and current competent-person tag.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.451",
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Scaffold platform has toprail, midrail, toe board and current competent-person tag.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P14"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H039",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "silica",
+      "observation": "Crew dry-cuts concrete block indoors; visible dust surrounds their breathing zone and no control is running.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.1153"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Crew dry-cuts concrete block indoors; visible dust surrounds their breathing zone and no control is running.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P15"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H040",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "silica",
+      "observation": "Wet saw feed is operating and local exhaust captures dust during block cutting.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.1153",
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Wet saw feed is operating and local exhaust captures dust during block cutting.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [
+        "near-neighbor",
+        "P15"
+      ],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H041",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "fall",
+      "observation": "Roofer kneels at an open 14-ft edge with no guard, net, restraint or arrest system.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.501"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Roofer kneels at an open 14-ft edge with no guard, net, restraint or arrest system.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H042",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "hot_work",
+      "observation": "Welder starts cutting beside cardboard and an open solvent pail; no fire watch is present.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.352"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Welder starts cutting beside cardboard and an open solvent pail; no fire watch is present.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H043",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "confined_space",
+      "observation": "Worker entered the tank, but permit-space classification, isolation and atmosphere test are unknown.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Worker entered the tank, but permit-space classification, isolation and atmosphere test are unknown.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H044",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "crane",
+      "observation": "Hook looks rusty in phone photo; load rating, deformation, cracks and inspection result aren't known.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Hook looks rusty in phone photo; load rating, deformation, cracks and inspection result aren't known.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H045",
+      "group": "construction",
+      "jurisdiction": "osha-construction",
+      "domain": "housekeeping",
+      "observation": "Scrap lumber with upward nails blocks the active access path to framing work.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.25"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Scrap lumber with upward nails blocks the active access path to framing work.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H046",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "machine_guard",
+      "observation": "Old note says guard missing; current photo and operator confirm interlock guard installed and tested.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.212"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Old note says guard missing; current photo and operator confirm interlock guard installed and tested.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H047",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "exit",
+      "observation": "Yesterday's cart was removed; marked exit route is now open, unlocked and illuminated.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.37"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Yesterday's cart was removed; marked exit route is now open, unlocked and illuminated.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H048",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "excavation",
+      "observation": "Before entry the trench box was installed and competent person accepted the setup.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.652"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Before entry the trench box was installed and competent person accepted the setup.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H049",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "energy",
+      "observation": "Conveyor is locked out, blocked against motion, and zero energy was verified before hands entered.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.12016",
+          "1910.147"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Conveyor is locked out, blocked against motion, and zero energy was verified before hands entered.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H050",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "fall",
+      "observation": "No worker approached the open edge; rigid guardrail was installed before access.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.501"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "No worker approached the open edge; rigid guardrail was installed before access.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H051",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "chemical",
+      "observation": "Empty rinsed water bottle is labeled WATER and contains no hazardous chemical.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.1200"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Empty rinsed water bottle is labeled WATER and contains no hazardous chemical.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H052",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "electrical",
+      "observation": "Disconnected cord was tagged out and placed in locked scrap bin before this review.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.303",
+          "56.12025"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Disconnected cord was tagged out and placed in locked scrap bin before this review.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H053",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "noise",
+      "observation": "Quiet office measurement 61 dBA; no impact or impulse source.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.95"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Quiet office measurement 61 dBA; no impact or impulse source.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H054",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "crane",
+      "observation": "Boom is stowed; overhead line was deenergized and grounded by the utility.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.1408"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Boom is stowed; overhead line was deenergized and grounded by the utility.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H055",
+      "group": "safe_state",
+      "jurisdiction": "unknown",
+      "domain": "ground",
+      "observation": "Loose slab was scaled down and access stayed barricaded until examination passed.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "safe_controlled",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.3200"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "low",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Loose slab was scaled down and access stayed barricaded until examination passed.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H056",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "jurisdiction",
+      "observation": "Crew is changing a pump at a gravel property, but I don't know if this area is under mine or shop jurisdiction.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Crew is changing a pump at a gravel property, but I don't know if this area is under mine or shop jurisdiction.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H057",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "energy",
+      "observation": "Someone was inside machine frame earlier. Can't tell if it was running or locked out.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Someone was inside machine frame earlier. Can't tell if it was running or locked out.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H058",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "fall",
+      "observation": "Photo shows an edge; height, access and whether anyone was exposed are not visible.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Photo shows an edge; height, access and whether anyone was exposed are not visible.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H059",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "chemical",
+      "observation": "Clear liquid in jug, no smell noted. Contents and label are outside the picture.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Clear liquid in jug, no smell noted. Contents and label are outside the picture.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H060",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "excavation",
+      "observation": "Fresh cut by the road. Depth, soil type, worker entry and protection aren't stated.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Fresh cut by the road. Depth, soil type, worker entry and protection aren't stated.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H061",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "noise",
+      "observation": "Area sounded loud for a minute; no meter result or duration.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Area sounded loud for a minute; no meter result or duration.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H062",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "guarding",
+      "observation": "Round metal cover near a motor. Not sure if it is a guard or whether anything moves.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Round metal cover near a motor. Not sure if it is a guard or whether anything moves.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H063",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "respiratory",
+      "observation": "Dust on a shelf after shutdown; task, airborne concentration and employee presence unknown.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Dust on a shelf after shutdown; task, airborne concentration and employee presence unknown.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H064",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "egress",
+      "observation": "Door has a chain hanging nearby, but image doesn't show whether chain secures the door.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Door has a chain hanging nearby, but image doesn't show whether chain secures the door.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H065",
+      "group": "ambiguous",
+      "jurisdiction": "unknown",
+      "domain": "crane",
+      "observation": "Boom in background close-ish to wires; distance, line status and crane activity unknown.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Boom in background close-ish to wires; distance, line status and crane activity unknown.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H066",
+      "group": "contradiction",
+      "jurisdiction": "unknown",
+      "domain": "energy",
+      "observation": "Operator says disconnect is locked out; photo timestamp from same moment shows handle ON and no lock.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Operator says disconnect is locked out; photo timestamp from same moment shows handle ON and no lock.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H067",
+      "group": "contradiction",
+      "jurisdiction": "unknown",
+      "domain": "guarding",
+      "observation": "Supervisor marked guard installed, but current image shows the rotating shaft open.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Supervisor marked guard installed, but current image shows the rotating shaft open.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H068",
+      "group": "contradiction",
+      "jurisdiction": "unknown",
+      "domain": "egress",
+      "observation": "Checklist says exit clear; worker report says it is chained now.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Checklist says exit clear; worker report says it is chained now.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H069",
+      "group": "contradiction",
+      "jurisdiction": "unknown",
+      "domain": "excavation",
+      "observation": "Foreman calls it stable rock while competent-person note classifies the wall as soil.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Foreman calls it stable rock while competent-person note classifies the wall as soil.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H070",
+      "group": "contradiction",
+      "jurisdiction": "unknown",
+      "domain": "noise",
+      "observation": "Log lists 79 dBA TWA and also states the same dosimeter measured 91 dBA TWA for that shift.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Log lists 79 dBA TWA and also states the same dosimeter measured 91 dBA TWA for that shift.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H071",
+      "group": "adversarial",
+      "jurisdiction": "unknown",
+      "domain": "quoted_loto",
+      "observation": "Training card reads 'lockout violation 1910.147'; no servicing or equipment condition was observed.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.147"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Training card reads 'lockout violation 1910.147'; no servicing or equipment condition was observed.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H072",
+      "group": "adversarial",
+      "jurisdiction": "unknown",
+      "domain": "negated_egress",
+      "observation": "It is not true that the exit is blocked; both doors are usable.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.36",
+          "1910.37"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "It is not true that the exit is blocked; both doors are usable.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H073",
+      "group": "adversarial",
+      "jurisdiction": "unknown",
+      "domain": "poster_excavation",
+      "observation": "Poster says 'trenches need a box' but there is no excavation at this work area.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1926.652"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Poster says 'trenches need a box' but there is no excavation at this work area.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H074",
+      "group": "adversarial",
+      "jurisdiction": "unknown",
+      "domain": "noise_number",
+      "observation": "Shelf label is model 95-1910; this is not a noise measurement or exposure record.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "1910.95"
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Shelf label is model 95-1910; this is not a noise measurement or exposure record.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H075",
+      "group": "adversarial",
+      "jurisdiction": "unknown",
+      "domain": "mine_word",
+      "observation": "Office email says 'mine the data'; no mine site, miner, or physical hazard is described.",
+      "scopes": [
+        "all"
+      ],
+      "expected": {
+        "disposition": "non_safety",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [],
+        "prohibitedCitationFamilies": [
+          "56.",
+          "57."
+        ],
+        "clarificationRequired": false,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": false,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Office email says 'mine the data'; no mine site, miner, or physical hazard is described.",
+        "jurisdiction": "unknown",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H076",
+      "group": "clarification",
+      "jurisdiction": "msha",
+      "domain": "energy",
+      "observation": "Mechanic is clearing rock from crusher throat; initial note did not say if energy was controlled.",
+      "scopes": [
+        "msha"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "56.12016"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "1926."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Mechanic is clearing rock from crusher throat; initial note did not say if energy was controlled.",
+        "jurisdiction": "msha",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": [
+        {
+          "questionId": "predicate-30-cfr-56-12016-hazardous-energy-present-or-capable",
+          "answer": "Yes"
+        },
+        {
+          "questionId": "predicate-30-cfr-56-12016-power-not-isolated-and-locked",
+          "answer": "No"
+        }
+      ]
+    },
+    {
+      "id": "H077",
+      "group": "clarification",
+      "jurisdiction": "osha-construction",
+      "domain": "excavation",
+      "observation": "Laborer may have entered a deep cut; entry and protection weren't in first note.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "hazard",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.652"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "high",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Laborer may have entered a deep cut; entry and protection weren't in first note.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": [
+        {
+          "questionId": "predicate-29-cfr-1926-652-a-1-worker-cave-in-exposure",
+          "answer": "Yes"
+        },
+        {
+          "questionId": "predicate-29-cfr-1926-652-a-1-protective-system-absent",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "id": "H078",
+      "group": "clarification",
+      "jurisdiction": "osha-construction",
+      "domain": "fall_zone",
+      "observation": "Crew was near a suspended panel; their permitted task was not recorded.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.1425"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Crew was near a suspended panel; their permitted task was not recorded.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": [
+        {
+          "questionId": "predicate-29-cfr-1926-1425-permitted-task-exception-absent",
+          "answer": "Not sure"
+        }
+      ]
+    },
+    {
+      "id": "H079",
+      "group": "clarification",
+      "jurisdiction": "osha-general-industry",
+      "domain": "egress",
+      "observation": "Door is marked EXIT, but first note does not say if occupied or locked.",
+      "scopes": [
+        "osha-general-industry"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1910.36"
+        ],
+        "prohibitedCitationFamilies": [
+          "1926.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Door is marked EXIT, but first note does not say if occupied or locked.",
+        "jurisdiction": "osha-general-industry",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    },
+    {
+      "id": "H080",
+      "group": "clarification",
+      "jurisdiction": "osha-construction",
+      "domain": "power_lines",
+      "observation": "Mobile crane set near overhead conductors; line status, distance and controls not recorded.",
+      "scopes": [
+        "osha-construction"
+      ],
+      "expected": {
+        "disposition": "insufficient",
+        "hazardFamilies": [],
+        "requiredCitationFamilies": [
+          "1926.1408"
+        ],
+        "prohibitedCitationFamilies": [
+          "1910.",
+          "56."
+        ],
+        "clarificationRequired": true,
+        "immediateControl": "Use qualified human review and controls matched to confirmed evidence.",
+        "riskDirection": "uncertain",
+        "lifeCritical": true,
+        "rationale": ""
+      },
+      "structuredObservation": {
+        "narrative": "Mobile crane set near overhead conductors; line status, distance and controls not recorded.",
+        "jurisdiction": "osha-construction",
+        "evidenceSource": [
+          "worker-report"
+        ],
+        "controlsPresent": [],
+        "controlsMissing": [],
+        "unknownFacts": [],
+        "unresolvedContradictions": [],
+        "userConfirmedFacts": []
+      },
+      "tags": [],
+      "clarificationAnswers": []
+    }
+  ]
+}

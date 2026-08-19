@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gi-hot-work-1",
+    "narrative": "A torch is being used beside cardboard pallets without a fire watch.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "hot work",
+      "fire"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "gi-hot-work-2",
+    "narrative": "A torch is being used beside cardboard pallets without a fire watch. Inspector shorthand: recheck before shift change.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "hot work",
+      "fire"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "gi-hot-work-3",
+    "narrative": "A torch was being used beside cardboard pallets without a fire watch.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "hot work",
+      "fire"
+    ],
+    "lifeCritical": true,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.252"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  }
+]

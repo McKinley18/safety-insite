@@ -1,0 +1,10 @@
+Repository: /Users/mckinley/Desktop/Safety_InSite
+Branch: main
+HEAD: 24e37703ff37d96b0e42cde4b85ccdef89b2bf2a
+Initial git status entries: 145
+
+The full path-level state is intentionally dirty and preserved. It is the same state recorded at the end of:
+verification/production-readiness-closure-2026-07-29/FINAL_GIT_STATUS.txt
+
+Authoritative reproduction command:
+git status --short

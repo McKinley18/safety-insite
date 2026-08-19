@@ -1,0 +1,2892 @@
+{
+  "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+  "history": [
+    {
+      "i": 0,
+      "body": "Finding ID: d082a470-802e-45f6-85eb-cc61249cc1f6\n\nState: finalized · Review: complete · Analysis: f1501563-e396-48ef-8e4f-8348a3276e61\n\nReview this finding\n\nhot_work\n\nFinding ID: 8aa33505-1028-422e-9653-98699542e405\n\nState: pending_review · Review: required · Analysis: f1501563-e396-48ef-8e4f-8348a3276e61\n\nReview this finding\nWhat HazLenz understood\n\nCorrect any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed.\n\nEssential clarification\nWhere did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?\n\nJurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.\n\nMine or quarry\nConstruction site\nManufacturing or plant\nWarehouse\nOther workplace\nNot sure\n\nCANDIDATE STANDARD — MORE EVIDENCE REQUIRED\n\n29 CFR 1910.101(b) — Emergency Egress\n\nReview the authoritative requirement and confirmed facts before finalization.\n\nWhy HazLenz selected this\n\nHazLenz retained this as a candidate because material applicability facts remain unconfirmed.\n\nConfidence: Low\n\nRegulatory source approval or release coverage limits confidence.\n\nContinue to risk review",
+      "buttons": [
+        "CM",
+        "Reviewing this finding",
+        "Review this finding",
+        "Review this finding",
+        "Mine or quarry",
+        "Construction site",
+        "Manufacturing or plant",
+        "Warehouse",
+        "Other workplace",
+        "Not sure",
+        "Continue to risk review",
+        ""
+      ]
+    },
+    {
+      "i": 1,
+      "body": "Home\nInspect\nReports\nCalendar\nSettings\nLive\nCM\n\nSAFETY INSITE\n\nServer-saved inspection\n\nHazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization.\n\n1. Capture\n2. Review\n3. Risk\n4. Action\n5. Complete\nAll current findings have a separate completed human review.\n\nINSPECTION\n\nLifecycle Hot Work Gas Egress\n\nStatus: in_review · version 2\n\nCorrective action\nImmediate protective action\nPermanent correction\nVerification step\n\nThis creates durable corrective-action and calendar records before completing the inspection.\n\nComplete inspection and generate report",
+      "buttons": [
+        "CM",
+        "Complete inspection and generate report",
+        ""
+      ]
+    },
+    {
+      "completeBody": "Home\nInspect\nReports\nCalendar\nSettings\nLive\nCM\n\nSAFETY INSITE\n\nServer-saved inspection\n\nHazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization.\n\n1. Capture\n2. Review\n3. Risk\n4. Action\n5. Complete\nInspection, follow-up records, and immutable report saved.\n\nINSPECTION\n\nLifecycle Hot Work Gas Egress\n\nStatus: completed · version 3\n\nDurably saved\n\nReport version 1 · checksum 35092cb6044a…\n\nView report history",
+      "buttons": [
+        "CM",
+        "View report history",
+        ""
+      ]
+    }
+  ],
+  "final": {
+    "id": "7ba86b27-4517-448f-8a13-6a0911f57659",
+    "organizationId": null,
+    "ownerUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+    "createdByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+    "siteId": "7495c2ec-4a0d-40df-a119-b3f4e3761595",
+    "title": "Lifecycle Hot Work Gas Egress",
+    "status": "completed",
+    "version": 3,
+    "completedAt": "2026-08-09T21:12:35.073Z",
+    "completedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+    "archivedAt": null,
+    "createdAt": "2026-08-10T01:08:10.014Z",
+    "updatedAt": "2026-08-09T21:12:35.073Z",
+    "observations": [
+      {
+        "id": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+        "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+        "rawText": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+        "evidenceSource": "direct_observation",
+        "version": 1,
+        "createdByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+        "createdAt": "2026-08-09T21:08:10.137Z",
+        "updatedAt": "2026-08-09T21:08:10.137Z",
+        "analyses": [
+          {
+            "id": "f1501563-e396-48ef-8e4f-8348a3276e61",
+            "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+            "engineVersion": "hazlenz-production",
+            "traceId": null,
+            "idempotencyKey": "7f15de2e-efa1-4f05-95d5-aa3c87de5e4f",
+            "requestVersion": 1,
+            "status": "current",
+            "resultSnapshot": {
+              "evg": {
+                "missingFacts": [],
+                "evidenceQuestions": [
+                  "Can you provide more evidence or context regarding the object?"
+                ],
+                "priorityQuestions": [
+                  "Are all critical safety controls in place?"
+                ],
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "questionSourceTrace": [
+                  "HazLenz AI Dynamic Evidence Generator"
+                ],
+                "reviewerOnlyQuestions": [
+                  "Confirm all critical facts related to the hazard observation."
+                ]
+              },
+              "lcq": {
+                "status": "blocked",
+                "candidateId": "cand-1786309690261",
+                "blockedReasons": [
+                  "HRLG blocked"
+                ],
+                "sourceContextId": "unknown",
+                "eligibilityScore": 0,
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "reviewerCorrectionId": "unknown",
+                "reviewerApprovalMetadata": {
+                  "approvedAt": "",
+                  "approvedBy": "",
+                  "roleAccepted": false
+                }
+              },
+              "risk": {
+                "aiRisk": {
+                  "escalationBand": "High",
+                  "imminentDanger": false,
+                  "escalationScore": 15,
+                  "requiresShutdown": false,
+                  "escalationReasons": [
+                    "Emergency Egress hazards can create serious or fatal exposure."
+                  ],
+                  "fatalityPotential": "high"
+                },
+                "riskBand": "High",
+                "reasoning": [
+                  "Emergency Egress hazards can create serious or fatal exposure."
+                ],
+                "riskScore": 15,
+                "imminentDanger": false,
+                "operationalRisk": {
+                  "severity": 4,
+                  "profileId": "standard_5x5",
+                  "likelihood": 3,
+                  "matrixBand": "High",
+                  "matrixSize": 5,
+                  "matrixScore": 12,
+                  "profileLabel": "Standard 5x5"
+                },
+                "requiresShutdown": false,
+                "fatalityPotential": "high"
+              },
+              "score": 76,
+              "family": "compressed_gas",
+              "adapter": {
+                "advisoryDisclaimer": "Advisory only",
+                "auditAppendixSummary": {
+                  "title": "Audit",
+                  "content": "Pending",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "safetyFindingSummary": {
+                  "title": "Finding",
+                  "content": "Potential hazard identified",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "correctiveActionSummary": {
+                  "title": "Actions",
+                  "content": "guarding",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "reviewerRequiredSummary": {
+                  "title": "Reviewer Required",
+                  "content": "Yes",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "missingEvidenceQuestions": {
+                  "title": "Missing Evidence",
+                  "content": "Can you provide more evidence or context regarding the object?",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "confidenceAndEvidenceSummary": {
+                  "title": "Confidence",
+                  "content": "Low evidence",
+                  "advisoryDisclaimer": "Advisory only"
+                },
+                "standardsApplicabilitySummary": {
+                  "title": "Standards",
+                  "content": "None mapped",
+                  "advisoryDisclaimer": "Advisory only"
+                }
+              },
+              "isVague": false,
+              "narrative": {
+                "findingTitle": "Review of unknown",
+                "findingSummary": "The observation supports compressed_gas involving unknown during unknown. The available evidence indicates compressed_gas_release_or_rupture exposure for unknown.",
+                "exposureNarrative": "unknown may be exposed through compressed_gas_release_or_rupture; the conclusion is limited to the facts supplied in the observation.",
+                "confidenceNarrative": "93% scenario confidence based on the supplied evidence; unresolved gaps or contradictions should lower certainty rather than be filled by assumption. Initial advisory risk is moderate; credible worst case: serious_injury.",
+                "scenarioExplanation": "Observed condition: unknown. Operational context: unknown. Energy or source context: unknown.",
+                "evidenceGapNarrative": "The current evidence supports the described hazard mechanism; qualified review should confirm site-specific conditions.",
+                "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                "auditAppendixNarrative": "Audit details include source provenance and scenario mapping.",
+                "interimControlNarrative": "Deploy temporary physical safeguards or implement access restrictions until permanent engineered controls are validated.",
+                "immediateActionNarrative": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                "correctiveActionNarrative": "Recommended correction: Implement permanent engineered solutions specific to hazard Verification: Competent person verification of controls Document functional test results",
+                "followUpQuestionNarrative": "",
+                "qualifiedReviewDisclaimer": "This finding is for advisory purposes only and requires qualified review.",
+                "mechanismOfInjuryNarrative": "Injury or exposure could occur when compressed_gas_release_or_rupture places unknown in the affected path.",
+                "permanentCorrectionNarrative": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+                "standardFamilyReviewNarrative": "The compressed_gas_cylinders standard family is a candidate because the observed condition and mechanism are consistent with that scope; applicability and jurisdiction still require qualified confirmation.",
+                "administrativeFollowUpNarrative": "Review and update the hazard control plan; conduct a mandatory safety briefing for all personnel affected by this work activity.",
+                "citationCandidateReviewNarrative": "Citations are advisory candidates only and should be confirmed against jurisdiction, task, equipment, and current site evidence."
+              },
+              "promotion": {
+                "reasons": [],
+                "decision": "approved",
+                "missingFields": [],
+                "approvedRecordCandidate": {
+                  "status": "approved",
+                  "mapping": {
+                    "mechanisms": [
+                      "unexpected_startup"
+                    ],
+                    "taskContexts": [
+                      "inspection"
+                    ],
+                    "requiredFacts": [
+                      "confirm applicability"
+                    ],
+                    "hazardFamilies": [
+                      "Compressed Gas Cylinders"
+                    ],
+                    "standardFamily": "compressed_gas",
+                    "equipmentGroups": [
+                      "general"
+                    ],
+                    "evidenceQuestions": [
+                      "Confirm the observed condition, exposure path, and control status for Compressed gases (general safety requirements and securing)."
+                    ],
+                    "disqualifyingFacts": [],
+                    "applicabilitySignals": [
+                      "29 CFR 1910.101(b)"
+                    ]
+                  },
+                  "version": "1.0.0",
+                  "citation": "29 CFR 1910.101(b)",
+                  "recordId": "rec-1",
+                  "authority": {
+                    "title": "Compressed gases (general safety requirements and securing)",
+                    "agency": "OSHA",
+                    "citation": "29 CFR 1910.101(b)",
+                    "sourceUrl": "http://osha.gov",
+                    "jurisdiction": "osha_general_industry",
+                    "revisionDate": "2026-01-01",
+                    "authorityTier": "primary_regulation",
+                    "effectiveDate": "2026-01-01",
+                    "sourceDateStatus": "current"
+                  },
+                  "reference": "29 CFR 1910.101(b)",
+                  "governance": {
+                    "approvedAt": "2026-06-06",
+                    "approvedBy": "SafetyMgr",
+                    "advisoryOnly": true,
+                    "changeReason": "Initial approval",
+                    "reviewerRole": "Safety Manager",
+                    "duplicateKeys": [
+                      "29-cfr-1910.101(b)"
+                    ],
+                    "supersedesRecordIds": [],
+                    "doesNotCreateCitation": true,
+                    "doesNotDeclareViolation": true,
+                    "requiresQualifiedReview": true
+                  },
+                  "applicability": {
+                    "appliesWhen": "Compressed gases (general safety requirements and securing)",
+                    "doesNotApplyWhen": "conditions not established",
+                    "plainLanguageSummary": "Compressed gases (general safety requirements and securing)",
+                    "requiredReviewerChecks": [
+                      "Qualified review of applicability"
+                    ]
+                  },
+                  "correctiveActionLinks": {
+                    "verificationMethods": [
+                      "qualified review"
+                    ],
+                    "commonWeakActionsToAvoid": [
+                      "unverified assumption"
+                    ],
+                    "preferredControlFamilies": [
+                      "compressed_gas"
+                    ]
+                  }
+                }
+              },
+              "absorption": {
+                "reasons": [
+                  "Absorbed and categorized via taxonomy"
+                ],
+                "mechanisms": [
+                  "cylinder",
+                  "air"
+                ],
+                "taskContexts": [],
+                "duplicateKeys": [
+                  "compressed_gas-draft-01"
+                ],
+                "primaryDomain": "compressed_gas",
+                "requiredFacts": [
+                  "domain_validated"
+                ],
+                "hazardFamilies": [
+                  "compressed_gas"
+                ],
+                "equipmentGroups": [
+                  "cylinder",
+                  "compressed",
+                  "air",
+                  "pneumatic",
+                  "hose",
+                  "coupling",
+                  "pressurized"
+                ],
+                "advisoryBoundary": true,
+                "secondaryDomains": [],
+                "evidenceQuestions": [
+                  "Is cylinder secured?"
+                ],
+                "absorptionDecision": "hold_for_review",
+                "jurisdictionAssessment": "unknown",
+                "prohibitedLanguageFlags": false,
+                "correctiveActionControlFamilies": [
+                  "securing_cylinders"
+                ]
+              },
+              "confidence": 0.93,
+              "controlMap": {
+                "immediateControls": [
+                  "Guard area"
+                ],
+                "permanentControls": [
+                  "Install permanent barrier"
+                ],
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "weakActionsToAvoid": [
+                  "Be careful"
+                ],
+                "verificationMethods": [
+                  "Physical inspection"
+                ],
+                "requiredReviewerChecks": [
+                  "Guard functionality"
+                ],
+                "preferredControlFamilies": [
+                  "guarding"
+                ]
+              },
+              "siteMemory": {
+                "degradationRisk": "medium",
+                "recommendedAction": "Continue monitoring for recurring operational patterns.",
+                "siteMemorySummary": "No strong recurring operational memory pattern detected from available findings.",
+                "temporalRecurrence": {
+                  "temporalNotes": "No active temporal recurrence triggers.",
+                  "escalationLevel": "none",
+                  "recurrence30DaysCount": 0,
+                  "recurrence90DaysCount": 0,
+                  "recurrence180DaysCount": 0,
+                  "hierarchyOfControlsShift": false
+                },
+                "operationalPatterns": [
+                  "Multiple correlated hazards suggest broader operational-system weaknesses."
+                ],
+                "recurringRiskDetected": false,
+                "repeatedLocationCount": 0,
+                "repeatedClassificationCount": 0
+              },
+              "aiReadiness": {
+                "limitations": [
+                  "Does not declare violations.",
+                  "Does not create citations.",
+                  "Does not replace qualified safety or regulatory review.",
+                  "Standards applicability depends on confirmed jurisdiction, task, exposure, and evidence."
+                ],
+                "advisoryOnly": true,
+                "marketingPosition": "AI-assisted safety review and decision-support engine",
+                "readyForDecisionSupport": true,
+                "requiresQualifiedReview": true,
+                "readyForAutonomousComplianceDecision": false
+              },
+              "explanation": "HazLenz AI matched weighted Emergency Egress signals.",
+              "hazardGraph": {
+                "edges": [
+                  "Emergency Egress -> uncontrolled_energy",
+                  "maintenance_or_service -> Emergency Egress"
+                ],
+                "nodes": [
+                  "Emergency Egress",
+                  "uncontrolled_energy",
+                  "maintenance_or_service"
+                ],
+                "cascadeRisks": [
+                  "Uncontrolled energy may amplify exposure severity."
+                ],
+                "graphSummary": "HazLenz AI mapped interacting hazards, operational states, barrier failures, and energy-transfer relationships to identify possible cascading risk pathways.",
+                "graphComplexity": "low"
+              },
+              "mayFinalize": false,
+              "resultStage": "provisional",
+              "scoreMargin": 32,
+              "evidenceUsed": [
+                {
+                  "fact": "Welding repair",
+                  "effect": "Supports task and servicing/exposure mechanism selection.",
+                  "source": "taskBeingPerformed"
+                },
+                {
+                  "fact": "unknown",
+                  "effect": "Constrains OSHA/MSHA standard families.",
+                  "source": "jurisdiction"
+                }
+              ],
+              "humanFactors": {
+                "lineOfFireSignals": [],
+                "recommendedReview": "Continue to verify worker exposure and task context during supervisor review.",
+                "visibilitySignals": [],
+                "humanFactorSignals": [],
+                "supervisionSignals": [],
+                "behaviorRiskSignals": [],
+                "humanFactorsPresent": false,
+                "humanFactorsSummary": "No strong human-factor signal detected from available narrative."
+              },
+              "eventSequence": {
+                "afterEvent": [],
+                "beforeEvent": [
+                  "Work activity appears to involve maintenance, repair, cleaning, clearing, or adjustment."
+                ],
+                "duringEvent": [],
+                "sequenceGaps": [
+                  "Event-state condition is not clearly described.",
+                  "Post-control or verification status is not clearly described."
+                ],
+                "likelySequence": [
+                  "Work activity appears to involve maintenance, repair, cleaning, clearing, or adjustment.",
+                  "Event-state condition unknown.",
+                  "Post-event control status unknown."
+                ],
+                "sequenceSummary": "HazLenz AI reconstructed the likely event sequence from work activity, energy state, exposure, and control-status signals.",
+                "sequenceConfidence": "low"
+              },
+              "guidedFinding": {
+                "provenance": {
+                  "rulesRelease": "2026-07-29.1",
+                  "evidenceSnapshotId": "ev-2f7cdbad17136342823e",
+                  "deterministicInputHash": "8c9fc49a108165b96c12a836826fd41687aeae19469eb8918c7266371508d033"
+                },
+                "limitations": [
+                  "HazLenz is advisory and does not replace a qualified safety professional.",
+                  "Candidate standards are not confirmed violations.",
+                  "Applicability depends on verified facts, jurisdiction, and the current authoritative source."
+                ],
+                "reviewStatus": {
+                  "status": "qualified-review-required",
+                  "editableFields": [
+                    "facts",
+                    "standard",
+                    "risk",
+                    "correctiveAction"
+                  ],
+                  "reviewerConfirmed": false
+                },
+                "rulesRelease": "2026-07-29.1",
+                "engineVersion": "hazlenz-production",
+                "conditionState": "UNKNOWN",
+                "hazardCategory": "Emergency Egress",
+                "riskAssessment": {
+                  "exposure": "Not established",
+                  "severity": "Serious",
+                  "immediacy": "Prompt action",
+                  "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                  "riskLevel": "High",
+                  "likelihood": "Not established",
+                  "overallRisk": "High",
+                  "provisional": true,
+                  "existingControls": [],
+                  "reviewerConfirmed": false,
+                  "potentialConsequence": "Confirm during qualified review.",
+                  "reviewerOverrideReasonRequired": true
+                },
+                "contractVersion": "guided-finding-v1",
+                "primaryStandard": {
+                  "title": "Emergency Egress",
+                  "agency": "OSHA",
+                  "citation": "29 CFR 1910.101(b)",
+                  "confidence": 0.6933333333333334,
+                  "whyOffered": "HazLenz retained this as a candidate because material applicability facts remain unconfirmed.",
+                  "sourceStatus": "source-review-required",
+                  "applicability": "candidate",
+                  "sourceRelease": null,
+                  "confidenceLabel": "Low",
+                  "evidenceMissing": [],
+                  "evidenceSupporting": [],
+                  "confidenceLimitReason": "Regulatory source approval or release coverage limits confidence.",
+                  "contradictoryEvidence": [],
+                  "simplifiedRequirement": "Review the authoritative requirement and confirmed facts before finalization."
+                },
+                "correctiveAction": {
+                  "urgency": "Urgent",
+                  "rationale": "Actions are advisory and tied to the Emergency Egress evidence and proposed risk.",
+                  "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                  "responsibleRole": "Qualified responsible person",
+                  "suggestedDueDate": null,
+                  "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                  "hierarchyPreference": [
+                    "elimination",
+                    "substitution",
+                    "engineering",
+                    "administrative",
+                    "PPE"
+                  ],
+                  "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+                },
+                "findingCandidates": [],
+                "multiHazardReview": {
+                  "instruction": "Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations.",
+                  "requiresSplitReview": false
+                },
+                "observedCondition": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+                "additionalStandards": [],
+                "clarificationQuestions": [
+                  {
+                    "id": "jurisdiction-work-environment",
+                    "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                    "options": [
+                      "Mine or quarry",
+                      "Construction site",
+                      "Manufacturing or plant",
+                      "Warehouse",
+                      "Other workplace",
+                      "Not sure"
+                    ],
+                    "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                    "answerType": "single-select",
+                    "materialTo": [
+                      "jurisdiction",
+                      "standard-applicability"
+                    ]
+                  }
+                ],
+                "conditionStateEvidence": {
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "contradictionCount": 0
+                }
+              },
+              "riskReasoning": {
+                "confidence": 0.93,
+                "riskDrivers": [
+                  "credible severity: moderate",
+                  "exposure likelihood: possible",
+                  "energy source: unknown",
+                  "mechanism: compressed_gas_release_or_rupture"
+                ],
+                "evidenceGaps": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described."
+                ],
+                "hazardDomain": "compressed_gas",
+                "riskReducers": [
+                  "implement effective controls",
+                  "verify correction"
+                ],
+                "urgencyLevel": "prompt",
+                "riskReasoningId": "risk-1786309690258",
+                "existingControls": [],
+                "exposureDuration": "unknown",
+                "initialRiskLevel": "moderate",
+                "scenarioFamilyId": "unknown",
+                "severityEstimate": "moderate",
+                "exposedPopulation": 1,
+                "exposureFrequency": "occasional",
+                "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                "residualRiskLevel": "low",
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "likelihoodEstimate": "possible",
+                "uncertaintyFactors": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described."
+                ],
+                "humanReviewTriggers": [
+                  "Evidence gaps remain and should be resolved before final reliance."
+                ],
+                "energySourceSeverity": "moderate",
+                "suggestedDueDateLogic": "prompt correction with supervisor verification",
+                "controlFailureSeverity": "moderate",
+                "missingOrFailedControls": [],
+                "credibleWorstCaseOutcome": "serious_injury",
+                "verificationRequirements": [
+                  "verify corrective action effectiveness"
+                ]
+              },
+              "classification": "Emergency Egress",
+              "conditionState": "UNKNOWN",
+              "confidenceBand": "high",
+              "evidenceTokens": [
+                "exit",
+                "route"
+              ],
+              "hazardCategory": "compressed_gas",
+              "knowledgeRoute": {
+                "reasons": [
+                  "jurisdiction: unclear",
+                  "hazard family: other",
+                  "equipment family: unknown",
+                  "task mechanism: unknown",
+                  "fallback: matched jurisdiction only"
+                ],
+                "shardKey": "unclear/other/unknown/unknown",
+                "bundleIds": [
+                  "bundle-general-mobile-eq"
+                ],
+                "confidence": 56,
+                "sourceKeys": [
+                  "general-pedestrian-safety"
+                ],
+                "advisoryOnly": true,
+                "hazardFamily": "other",
+                "jurisdiction": "unclear",
+                "shardSummary": {
+                  "citations": [],
+                  "shardKeys": [
+                    "unclear/mobile_equipment/mobile_equipment/struck_by"
+                  ],
+                  "evidenceNeeded": [
+                    "Identify the equipment type",
+                    "Confirm pedestrian or worker location relative to travel path",
+                    "Confirm traffic controls, spotters, alarms, berms, barricades, or separation controls",
+                    "Confirm jurisdiction and site type"
+                  ],
+                  "matchedShardCount": 1,
+                  "correctiveActionPatterns": []
+                },
+                "taskMechanism": "unknown",
+                "equipmentFamily": "unknown",
+                "requiresQualifiedReview": true
+              },
+              "learningMemory": {
+                "engine": "hazlenz_learning_memory",
+                "memoryBoundary": "Learning memory may preserve reviewer patterns and confidence signals for future review support, but it cannot self-modify rules, override standards, invent citations, or reduce qualified human review.",
+                "canSelfModifyRules": false,
+                "canOverrideStandards": false,
+                "canReduceHumanReview": false
+              },
+              "mechanismChain": {
+                "confidence": 0.93,
+                "failureMode": "The cylinder can be struck, tipped, or damaged, allowing valve impact or uncontrolled gas release.",
+                "controlFocus": [
+                  "Secure the cylinder upright with an effective restraint.",
+                  "Relocate it out of the aisle or protect it from mobile-equipment impact.",
+                  "Stop hot work and remove or protect combustibles and any flammable atmosphere.",
+                  "Relocate the work or combustibles, isolate fuel sources, and engineer spark/heat containment and ventilation.",
+                  "Use a site-specific hot-work permit/program with authorization, area inspection, fire-watch duties, and training.",
+                  "Inspect cylinder-storage practices and train affected handlers on securing, caps, and segregation."
+                ],
+                "evidenceGaps": [
+                  "Confirm whether the cylinder is capped, connected for use, or in storage.",
+                  "What hot-work process, combustible/flammable material, distance, and enclosure/opening conditions are present?",
+                  "Were atmosphere testing, material removal/protection, fire watch, extinguishers, and permit controls required and used?",
+                  "Could sparks or heat travel to concealed or adjacent spaces?",
+                  "Is the cylinder upright and secured with an approved restraint?",
+                  "What gas is present, and are fuel-gas separation and ignition controls relevant?",
+                  "How close are employees to the condition, how often are they exposed, and is exposure temporary or ongoing?",
+                  "What controls are currently in place, and has a qualified safety professional verified their condition and applicability?"
+                ],
+                "exposurePathway": "Workers, pedestrians, or mobile-equipment operators in the travel path can be struck by the cylinder or exposed to released gas.",
+                "observedCondition": "An oxygen or compressed-gas cylinder is unsecured near an aisle or equipment travel path.",
+                "potentialConsequence": "Struck-by impact, valve projectile, fire or oxidizer involvement, or serious injury from uncontrolled cylinder movement."
+              },
+              "reasoningBasis": {
+                "explanation": "HazLenz AI generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
+                "advisoryOnly": true,
+                "priorFindingsUsed": false,
+                "workspaceHistoryRole": "supporting_reference_only",
+                "primaryReasoningSource": "hazlenz_governed_brain",
+                "requiresQualifiedReview": true,
+                "sourceHierarchyEnforced": true,
+                "priorFindingReferenceCount": 0,
+                "standardsMatchPrimarySource": "approved_applicability_and_scope_filtered_standards",
+                "priorFindingsCanCreateStandards": false,
+                "priorFindingsCanOverrideGovernance": false
+              },
+              "reasoningDrift": {
+                "driftBand": "low",
+                "driftScore": 0,
+                "driftSignals": [],
+                "driftSummary": "No major reasoning drift indicators detected."
+              },
+              "calibrationMeta": {
+                "riskBand": "moderate",
+                "mechanism": "compressed_gas_release_or_rupture",
+                "evidenceGaps": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described.",
+                  "Jurisdiction is unclear and should be confirmed.",
+                  "Equipment type is not clearly identified.",
+                  "Worker exposure is not clearly established.",
+                  "Operational or energy state is not clearly established.",
+                  "Existing, missing, or failed controls are not clearly described."
+                ],
+                "hazardFamily": "compressed_gas",
+                "jurisdiction": "unclear",
+                "scenarioFamily": "unknown",
+                "standardFamily": "compressed_gas_cylinders"
+              },
+              "evidenceQuality": {
+                "gaps": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described."
+                ],
+                "strengths": [
+                  "Narrative contains meaningful detail.",
+                  "Location or equipment context is present."
+                ],
+                "evidenceQualityBand": "usable",
+                "evidenceQualityScore": 68,
+                "defensibilityStatement": "Evidence is usable, but additional context would improve defensibility."
+              },
+              "excludedHazards": [
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Personal Protective Equipment",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Drowning Hazards",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Ground Control / Highwall / Roof Fall",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Machine Guarding",
+                  "negativeTokens": [
+                    "scrap"
+                  ]
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Electrical",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Walking/Working Surfaces",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Fall Protection",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Mobile Equipment / Traffic",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Hazard Communication",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Insufficient weighted signal evidence.",
+                  "classification": "Confined Space",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Lower weighted score than primary classification.",
+                  "classification": "Fire / Explosion",
+                  "negativeTokens": []
+                },
+                {
+                  "reason": "Lower weighted score than primary classification.",
+                  "classification": "Lockout / Stored Energy",
+                  "negativeTokens": []
+                }
+              ],
+              "primaryCitation": "29 CFR 1910.101(b)",
+              "citationRecovery": {
+                "outcome": "recovered_candidates",
+                "rationale": "Inspection-specific condition and mechanism evidence restored supported advisory candidates after legacy scope/evidence filtering.",
+                "advisoryOnly": true,
+                "evidenceNeeded": [
+                  "Confirm exact scope, exposure, task, equipment, and jurisdiction before relying on this candidate standard.",
+                  "Confirm the observed condition, exposure path, and control status for Compressed gases (general safety requirements and securing).",
+                  "hot-work process",
+                  "combustible proximity",
+                  "removal/protection feasibility",
+                  "fire watch/permit conditions"
+                ],
+                "recoveredCitations": [
+                  "29 CFR 1910.178",
+                  "29 CFR 1910.101",
+                  "29 CFR 1910.252(a)(2)(iv)"
+                ],
+                "requiresQualifiedReview": true
+              },
+              "evidenceSnapshot": {
+                "id": "ev-2f7cdbad17136342823e",
+                "facts": [
+                  {
+                    "id": "fact-1",
+                    "type": "jurisdiction",
+                    "value": "unknown",
+                    "source": "user_confirmation",
+                    "status": "unknown",
+                    "confidence": 0.2,
+                    "temporalState": "current",
+                    "reviewerStatus": "user_confirmed"
+                  },
+                  {
+                    "id": "fact-2",
+                    "type": "workActivity",
+                    "value": "servicing_or_maintenance",
+                    "source": "user_text",
+                    "status": "observed",
+                    "confidence": 0.94,
+                    "temporalState": "current",
+                    "reviewerStatus": "unreviewed"
+                  },
+                  {
+                    "id": "fact-3",
+                    "type": "egressRoute",
+                    "value": "present",
+                    "source": "user_text",
+                    "status": "observed",
+                    "confidence": 0.94,
+                    "temporalState": "current",
+                    "reviewerStatus": "unreviewed"
+                  }
+                ],
+                "offlineBundle": {
+                  "id": "hazlenz-offline-federal-core",
+                  "version": "2026-07-29.1"
+                },
+                "schemaVersion": "1.0",
+                "contradictions": [],
+                "criticalUnknowns": [],
+                "extractorVersion": "evidence-foundation-2026-07-29.2"
+              },
+              "generatedActions": [
+                {
+                  "title": "Control compressed-gas cylinder exposure",
+                  "source": "AI_ENGINE",
+                  "dueDate": "2026-08-12T21:08:10.254Z",
+                  "category": "Emergency Egress",
+                  "priority": "HIGH",
+                  "reportId": "safescope-v2-eval-1786309690254",
+                  "description": "Focused HazLenz shard controls: Secure cylinders upright and protect valves from damage.; Separate cylinders from ignition sources, incompatible materials, traffic, or impact exposure as applicable.; Verify valve caps, storage position, and cylinder handling controls before normal use resumes. Reviewer questions before closure: Clarify what specific condition or activity made the observation hazardous.; Confirm the equipment, material, opening, space, or energy source involved.; Confirm whether a worker was exposed and how close they were to the hazard.; Confirm whether the equipment was energized, running, pressurized, elevated, suspended, or otherwise hazardous.",
+                  "assignedRole": "Operations Supervisor",
+                  "suggestedFixes": [
+                    "Secure cylinders upright and protect valves from damage.",
+                    "Separate cylinders from ignition sources, incompatible materials, traffic, or impact exposure as applicable.",
+                    "Verify valve caps, storage position, and cylinder handling controls before normal use resumes.",
+                    "Control the observed hazard pending qualified review",
+                    "Maintain interim exposure controls",
+                    "Complete permanent corrective action",
+                    "Verify correction before closure",
+                    "Assess current hazard exposure",
+                    "Secure the area",
+                    "Restrict access until controls are verified",
+                    "Implement permanent engineered solutions specific to hazard",
+                    "Perform hazard analysis update"
+                  ],
+                  "originalSuggestion": {
+                    "fixes": [
+                      "Separate by 20 feet",
+                      "Install 5-foot 1/2 hour fire wall"
+                    ],
+                    "hazard": "Oxygen cylinder stored near fuel gas",
+                    "source": "hazlenz_v2_enriched_corrective_action",
+                    "riskReasoning": {
+                      "confidence": 0.93,
+                      "riskDrivers": [
+                        "credible severity: moderate",
+                        "exposure likelihood: possible",
+                        "energy source: unknown",
+                        "mechanism: compressed_gas_release_or_rupture"
+                      ],
+                      "evidenceGaps": [
+                        "No photo evidence is attached.",
+                        "No supplemental evidence notes are available.",
+                        "Worker exposure is not explicitly described."
+                      ],
+                      "hazardDomain": "compressed_gas",
+                      "riskReducers": [
+                        "implement effective controls",
+                        "verify correction"
+                      ],
+                      "urgencyLevel": "prompt",
+                      "riskReasoningId": "risk-1786309690258",
+                      "existingControls": [],
+                      "exposureDuration": "unknown",
+                      "initialRiskLevel": "moderate",
+                      "scenarioFamilyId": "unknown",
+                      "severityEstimate": "moderate",
+                      "exposedPopulation": 1,
+                      "exposureFrequency": "occasional",
+                      "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                      "residualRiskLevel": "low",
+                      "advisoryGuardrails": {
+                        "advisoryOnly": true,
+                        "doesNotDeclareViolation": true,
+                        "requiresQualifiedReview": true
+                      },
+                      "likelihoodEstimate": "possible",
+                      "uncertaintyFactors": [
+                        "No photo evidence is attached.",
+                        "No supplemental evidence notes are available.",
+                        "Worker exposure is not explicitly described."
+                      ],
+                      "humanReviewTriggers": [
+                        "Evidence gaps remain and should be resolved before final reliance."
+                      ],
+                      "energySourceSeverity": "moderate",
+                      "suggestedDueDateLogic": "prompt correction with supervisor verification",
+                      "controlFailureSeverity": "moderate",
+                      "missingOrFailedControls": [],
+                      "credibleWorstCaseOutcome": "serious_injury",
+                      "verificationRequirements": [
+                        "verify corrective action effectiveness"
+                      ]
+                    },
+                    "enrichmentApplied": true,
+                    "reviewerQuestions": [
+                      "Clarify what specific condition or activity made the observation hazardous.",
+                      "Confirm the equipment, material, opening, space, or energy source involved.",
+                      "Confirm whether a worker was exposed and how close they were to the hazard.",
+                      "Confirm whether the equipment was energized, running, pressurized, elevated, suspended, or otherwise hazardous.",
+                      "Confirm jurisdiction/site type before relying on standards mapping.",
+                      "Confirm whether photos, measurements, records, tags, permits, SDS, tests, or other supporting evidence exist.",
+                      "Confirm whether workers were exposed, how close they were, and whether access is possible.",
+                      "Confirm whether workers were exposed, how close they were, and whether access to the hazard is possible during normal or foreseeable work.",
+                      "Attach photos, measurements, records, inspection notes, or other supporting evidence before closure."
+                    ],
+                    "contextualControls": {
+                      "restartCriteria": [],
+                      "immediateControls": [
+                        "Remove stacked material and restore the full exit route immediately."
+                      ],
+                      "permanentControls": [
+                        "Prohibit storage in the exit route and maintain required route width, lighting, and door access."
+                      ],
+                      "verificationSteps": [
+                        "Walk the entire evacuation path and verify the exit is unobstructed and operable."
+                      ],
+                      "competentPersonReview": false
+                    },
+                    "evidenceGapQuestions": [],
+                    "scenarioIntelligence": {
+                      "task": "unknown",
+                      "equipment": "unknown",
+                      "advisoryOnly": true,
+                      "energySource": "unknown",
+                      "evidenceGaps": [
+                        "No photo evidence is attached.",
+                        "No supplemental evidence notes are available.",
+                        "Worker exposure is not explicitly described."
+                      ],
+                      "hazardCategory": "compressed_gas",
+                      "hierarchyLevel": "unknown",
+                      "unsafeCondition": "unknown",
+                      "operationalState": "unknown",
+                      "scenarioFamilyId": "unknown",
+                      "confidenceSignals": {
+                        "score": 0.93,
+                        "reasoning": [
+                          "Inferred from fused operational reasoning and observation."
+                        ]
+                      },
+                      "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                      "exposedPersonActivity": "unknown",
+                      "candidateStandardFamily": "compressed_gas_cylinders",
+                      "doesNotDeclareViolation": true,
+                      "missingOrFailedControls": [],
+                      "qualifiedReviewRequired": true
+                    },
+                    "relevanceFilterApplied": true,
+                    "correctiveActionReasoning": {
+                      "confidence": 0.93,
+                      "hazardDomain": "compressed_gas_cylinders",
+                      "urgencyLevel": "moderate",
+                      "exposurePathway": "unknown",
+                      "interimControls": [
+                        "Restrict access until controls are verified"
+                      ],
+                      "immediateActions": [
+                        "Assess current hazard exposure",
+                        "Secure the area"
+                      ],
+                      "scenarioFamilyId": "unknown",
+                      "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                      "verificationSteps": [
+                        "Competent person verification of controls",
+                        "Document functional test results"
+                      ],
+                      "advisoryGuardrails": {
+                        "advisoryOnly": true,
+                        "doesNotDeclareViolation": true,
+                        "requiresQualifiedReview": true
+                      },
+                      "humanReviewTriggers": [
+                        "Qualified safety review required due to high hazard complexity"
+                      ],
+                      "permanentCorrections": [
+                        "Implement permanent engineered solutions specific to hazard"
+                      ],
+                      "controlHierarchyLevel": "unknown",
+                      "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                      "administrativeFollowUps": [
+                        "Perform hazard analysis update",
+                        "Conduct targeted tool-box safety briefing"
+                      ],
+                      "interimControlNarrative": "Deploy temporary physical safeguards or implement access restrictions until permanent engineered controls are validated.",
+                      "missingOrFailedControls": [],
+                      "immediateActionNarrative": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                      "standardFamilyReviewLinks": [],
+                      "responsibleRoleSuggestions": [
+                        "Safety Manager",
+                        "Operations Supervisor"
+                      ],
+                      "permanentCorrectionNarrative": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+                      "evidenceNeededBeforeFinalizing": [
+                        "No photo evidence is attached.",
+                        "No supplemental evidence notes are available.",
+                        "Worker exposure is not explicitly described."
+                      ],
+                      "administrativeFollowUpNarrative": "Review and update the hazard control plan; conduct a mandatory safety briefing for all personnel affected by this work activity."
+                    },
+                    "shardCorrectiveActionPatterns": [
+                      "Secure cylinders upright and protect valves from damage.",
+                      "Separate cylinders from ignition sources, incompatible materials, traffic, or impact exposure as applicable.",
+                      "Verify valve caps, storage position, and cylinder handling controls before normal use resumes."
+                    ],
+                    "usesFocusedShardCorrectiveActions": true
+                  },
+                  "referenceStandards": [
+                    "29 CFR 1910.101(b)"
+                  ]
+                }
+              ],
+              "operationalState": {
+                "states": [
+                  "maintenance_or_service"
+                ],
+                "stateRisks": [
+                  "Maintenance work can increase exposure because guards, covers, or normal controls may be removed."
+                ],
+                "primaryState": "maintenance_or_service",
+                "stateSignals": [
+                  "Maintenance or service activity indicated."
+                ],
+                "stateConfidence": "medium",
+                "stateAwarenessSummary": "HazLenz AI inferred operational state as maintenance or service based on narrative and energy-state signals."
+              },
+              "requiredControls": [
+                "clear exit route",
+                "unlock exit door",
+                "maintain exit signage",
+                "inspect emergency routes"
+              ],
+              "reviewStateLabel": "Review",
+              "additionalHazards": [
+                {
+                  "family": "compressed_gas",
+                  "mechanism": "cylinder",
+                  "confidence": 0.2,
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "evidenceBound": true,
+                  "classification": "Compressed Gas",
+                  "conditionState": "ACTIVE",
+                  "hazardCategory": "Compressed Gas",
+                  "correctionStatus": "not_stated",
+                  "temporalEvidence": [],
+                  "supportingSignals": [
+                    "cylinder"
+                  ],
+                  "observationFragment": "welding is underway beside stored oxygen cylinders",
+                  "requiresHumanReview": true,
+                  "decompositionHazardId": "haz-1",
+                  "clarificationQuestions": [
+                    "Please verify the compressed_gas hazard in this fragment."
+                  ]
+                },
+                {
+                  "family": "emergency_egress",
+                  "mechanism": "exit",
+                  "confidence": 0.2,
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "evidenceBound": true,
+                  "classification": "Egress",
+                  "conditionState": "ACTIVE",
+                  "hazardCategory": "Egress",
+                  "correctionStatus": "not_stated",
+                  "temporalEvidence": [],
+                  "supportingSignals": [
+                    "exit"
+                  ],
+                  "observationFragment": "the nearest exit route is narrowed by scrap material",
+                  "requiresHumanReview": true,
+                  "decompositionHazardId": "haz-2",
+                  "clarificationQuestions": [
+                    "Please verify the emergency_egress hazard in this fragment."
+                  ]
+                },
+                {
+                  "family": "hot_work",
+                  "mechanism": "work",
+                  "confidence": 0.2,
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "evidenceBound": true,
+                  "classification": "Hot Work",
+                  "conditionState": "ACTIVE",
+                  "hazardCategory": "Hot Work",
+                  "correctionStatus": "not_stated",
+                  "temporalEvidence": [],
+                  "supportingSignals": [
+                    "work"
+                  ],
+                  "observationFragment": "work area: fabrication bay",
+                  "requiresHumanReview": true,
+                  "decompositionHazardId": "haz-3",
+                  "clarificationQuestions": [
+                    "Please verify the hot_work hazard in this fragment."
+                  ]
+                }
+              ],
+              "ambiguityWarnings": [],
+              "excludedStandards": [],
+              "executiveJudgment": {
+                "riskBand": "High",
+                "topStandard": {
+                  "citation": "29 CFR 1910.101(b)",
+                  "reasoning": "Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators.",
+                  "defensibilityScore": 0.58
+                },
+                "primaryAction": {
+                  "title": "Clear and restore emergency egress route",
+                  "priority": "HIGH"
+                },
+                "classification": "Emergency Egress",
+                "topUncertainty": "Employee exposure is not clearly described.",
+                "decisionSummary": "Emergency Egress may require immediate controls or stop-work review.",
+                "auditReadySummary": "Emergency Egress may require immediate controls or stop-work review. Dominant energy source: pressure/stored energy. Top uncertainty: Employee exposure is not clearly described. Most defensible standard: 29 CFR 1910.101(b)",
+                "stopWorkRecommended": true,
+                "strongestCausalFactor": "Dominant energy source: pressure/stored energy.",
+                "immediateActionRecommended": true,
+                "supervisorReviewRecommended": true
+              },
+              "followUpQuestions": [
+                {
+                  "id": "jurisdiction-work-environment",
+                  "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                  "options": [
+                    "Mine or quarry",
+                    "Construction site",
+                    "Manufacturing or plant",
+                    "Warehouse",
+                    "Other workplace",
+                    "Not sure"
+                  ],
+                  "priority": "critical",
+                  "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                  "required": true,
+                  "answerType": "single-select",
+                  "requiredFor": "jurisdiction",
+                  "impactedDecisions": [
+                    "jurisdiction",
+                    "standard-applicability"
+                  ],
+                  "couldChangeShutdown": false,
+                  "couldPromoteStandard": false,
+                  "couldSuppressStandard": false,
+                  "expectedEvidenceFields": [
+                    "jurisdiction",
+                    "workEnvironment"
+                  ]
+                }
+              ],
+              "informationNeeded": [],
+              "provisionalResult": {
+                "evidenceGaps": [],
+                "currentConfidence": 0.93,
+                "likelyHazardFamily": "compressed_gas_cylinders",
+                "possibleAlternatives": [
+                  {
+                    "family": "compressed_gas",
+                    "mechanism": "cylinder",
+                    "confidence": 0.2,
+                    "advisoryOnly": true,
+                    "evidenceGaps": [],
+                    "evidenceBound": true,
+                    "classification": "Compressed Gas",
+                    "conditionState": "ACTIVE",
+                    "hazardCategory": "Compressed Gas",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "supportingSignals": [
+                      "cylinder"
+                    ],
+                    "observationFragment": "welding is underway beside stored oxygen cylinders",
+                    "requiresHumanReview": true,
+                    "decompositionHazardId": "haz-1",
+                    "clarificationQuestions": [
+                      "Please verify the compressed_gas hazard in this fragment."
+                    ]
+                  },
+                  {
+                    "family": "emergency_egress",
+                    "mechanism": "exit",
+                    "confidence": 0.2,
+                    "advisoryOnly": true,
+                    "evidenceGaps": [],
+                    "evidenceBound": true,
+                    "classification": "Egress",
+                    "conditionState": "ACTIVE",
+                    "hazardCategory": "Egress",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "supportingSignals": [
+                      "exit"
+                    ],
+                    "observationFragment": "the nearest exit route is narrowed by scrap material",
+                    "requiresHumanReview": true,
+                    "decompositionHazardId": "haz-2",
+                    "clarificationQuestions": [
+                      "Please verify the emergency_egress hazard in this fragment."
+                    ]
+                  },
+                  {
+                    "family": "hot_work",
+                    "mechanism": "work",
+                    "confidence": 0.2,
+                    "advisoryOnly": true,
+                    "evidenceGaps": [],
+                    "evidenceBound": true,
+                    "classification": "Hot Work",
+                    "conditionState": "ACTIVE",
+                    "hazardCategory": "Hot Work",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "supportingSignals": [
+                      "work"
+                    ],
+                    "observationFragment": "work area: fabrication bay",
+                    "requiresHumanReview": true,
+                    "decompositionHazardId": "haz-3",
+                    "clarificationQuestions": [
+                      "Please verify the hot_work hazard in this fragment."
+                    ]
+                  }
+                ],
+                "questionsRequiredBeforeFinalStandardSelection": [
+                  {
+                    "id": "jurisdiction-work-environment",
+                    "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                    "options": [
+                      "Mine or quarry",
+                      "Construction site",
+                      "Manufacturing or plant",
+                      "Warehouse",
+                      "Other workplace",
+                      "Not sure"
+                    ],
+                    "priority": "critical",
+                    "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                    "required": true,
+                    "answerType": "single-select",
+                    "requiredFor": "jurisdiction",
+                    "impactedDecisions": [
+                      "jurisdiction",
+                      "standard-applicability"
+                    ],
+                    "couldChangeShutdown": false,
+                    "couldPromoteStandard": false,
+                    "couldSuppressStandard": false,
+                    "expectedEvidenceFields": [
+                      "jurisdiction",
+                      "workEnvironment"
+                    ]
+                  }
+                ]
+              },
+              "standardDecisions": [
+                {
+                  "title": null,
+                  "source": null,
+                  "status": "applicable_after_human_review",
+                  "citation": "29 CFR 1910.101(b)",
+                  "rationale": "The citation is advisory and must be confirmed against the facts, jurisdiction, and authoritative text by a qualified reviewer.",
+                  "standardText": null
+                }
+              ],
+              "trendIntelligence": {
+                "hotspotArea": null,
+                "recommendation": "No recurring trend detected from provided prior findings.",
+                "recurrenceRisk": "low",
+                "trendDirection": "not_established",
+                "highRiskRepeatCount": 0,
+                "relatedFindingCount": 0,
+                "escalationRecommended": false,
+                "repeatedLocationCount": 0,
+                "similarFindingsTimeline": [],
+                "controlFailureIndicators": [],
+                "recentRelatedFindingCount": 0,
+                "repeatedClassificationCount": 0
+              },
+              "workspaceLearning": {
+                "workspaceId": "default",
+                "recommendedUse": "Use workspace learning as supporting intelligence only; do not override regulatory requirements or qualified human review.",
+                "learningSignals": [],
+                "learningSummary": "Workspace-specific learning is limited for this hazard type.",
+                "learningMaturity": "limited_signal",
+                "repeatedSimilarFindingCount": 0,
+                "acceptedStandardFeedbackCount": 0,
+                "ineffectiveActionOutcomeCount": 0,
+                "rejectedStandardFeedbackCount": 0
+              },
+              "aiEvidenceContract": {
+                "inputsUsed": [
+                  "hazard_observation_text"
+                ],
+                "advisoryOnly": true,
+                "missingInputs": [
+                  "specific_location",
+                  "supporting_photo_or_evidence_note"
+                ],
+                "reviewTriggers": [
+                  "qualified_review_required"
+                ],
+                "unsupportedClaims": [],
+                "standardsSourcesUsed": [
+                  "29 CFR 1910.101(b)"
+                ],
+                "doesNotCreateCitation": true,
+                "doesNotDeclareViolation": true,
+                "requiresQualifiedReview": true,
+                "canFinalizeWithoutHumanReview": false
+              },
+              "commonConsequences": [
+                "delayed evacuation",
+                "entrapment",
+                "fatality during emergency"
+              ],
+              "domainIntelligence": {
+                "loto": null,
+                "hazcomGhs": null,
+                "trenching": null,
+                "electrical": null,
+                "confinedSpace": null,
+                "liftingRigging": null,
+                "mobileEquipment": null
+              },
+              "evidenceConfidence": {
+                "basis": "submitted evidence facts, provenance, unknowns, and contradictions",
+                "score": 0.6933333333333334,
+                "notLegalConfidence": true
+              },
+              "learningGovernance": {
+                "advisoryOnly": true,
+                "allowedInfluence": [
+                  "adjust_confidence",
+                  "surface_review_patterns",
+                  "suggest_evidence_questions",
+                  "prioritize_human_review"
+                ],
+                "finalGovernanceRule": "HazLenz AI may support classification, risk reasoning, standards review, evidence questions, and corrective action recommendations, but it must not invent citations, declare violations, finalize compliance decisions, or remove qualified human review.",
+                "prohibitedInfluence": [
+                  "create_citations",
+                  "invented_citations",
+                  "auto_finalize_compliance_decisions",
+                  "invent_citations",
+                  "declare_violations",
+                  "override_regulations",
+                  "remove_qualified_review_requirement"
+                ],
+                "requiresQualifiedReview": true
+              },
+              "observationContext": {
+                "trace": [
+                  "Normalized via ObservationContextService"
+                ],
+                "evidenceGaps": {
+                  "conflicts": [],
+                  "ambiguities": [],
+                  "missingEvidence": []
+                },
+                "matchedTerms": [],
+                "detectedTasks": [
+                  "unknown"
+                ],
+                "normalizedText": "welding is underway beside stored oxygen cylinders and combustible packaging one cylinder is unsecured and the nearest exit route is narrowed by scrap material | structured observation evidence task being performed welding repair work area fabrication bay",
+                "rawObservation": "welding is underway beside stored oxygen cylinders and combustible packaging. one cylinder is unsecured, and the nearest exit route is narrowed by scrap material. | structured observation evidence:\ntask being performed: welding repair.\nwork area: fabrication bay.",
+                "conflictSignals": [],
+                "ambiguitySignals": [],
+                "detectedControls": [],
+                "taskContextKnown": false,
+                "confidenceSignals": {
+                  "score": 0.5,
+                  "reasoning": [
+                    "Initial normalization"
+                  ]
+                },
+                "detectedEquipment": [],
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "detectedEnergySources": [
+                  "unknown"
+                ],
+                "employeeExposureKnown": false,
+                "operationalStateKnown": false,
+                "detectedExposureSignals": [
+                  "unknown"
+                ],
+                "detectedIndustrySignals": [],
+                "employeeExposureUnclear": true,
+                "detectedUnsafeConditions": [
+                  "unknown"
+                ],
+                "detectedOperationalStates": [
+                  "unknown"
+                ],
+                "detectedMechanismsOfInjury": [
+                  "unknown"
+                ],
+                "detectedJurisdictionSignals": [],
+                "photoLikeDescriptionSignals": [],
+                "detectedMissingOrFailedControls": []
+              },
+              "standardsReasoning": {
+                "summary": "Standards ranked using operational defensibility analysis backed by reputable sources.",
+                "topDefensible": [
+                  {
+                    "score": 295,
+                    "title": "Compressed gases (general safety requirements and securing)",
+                    "source": [
+                      "standard_applicability"
+                    ],
+                    "status": "candidate_standard",
+                    "summary": "Compressed gases (general safety requirements and securing)",
+                    "citation": "29 CFR 1910.101(b)",
+                    "scopeFit": "neutral",
+                    "reasoning": "Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators.",
+                    "confidence": 0.96,
+                    "domainBoost": 0,
+                    "hazardFamily": "compressed_gas",
+                    "jurisdiction": "osha_general_industry",
+                    "titleSummary": "Compressed gases (general safety requirements and securing)",
+                    "evidenceNeeded": [
+                      "Confirm the observed condition, exposure path, and control status for Compressed gases (general safety requirements and securing)."
+                    ],
+                    "standardFamily": "compressed_gas",
+                    "candidateStatus": "candidate_standard",
+                    "citationRanking": {
+                      "penalties": [],
+                      "advisoryOnly": true,
+                      "directCandidate": true,
+                      "directnessScore": 295,
+                      "evidenceFitReasons": [
+                        "Direct inspection candidate for the primary observed condition and failed control.",
+                        "Citation jurisdiction matches the selected regulatory scope."
+                      ],
+                      "directCandidateRank": 0,
+                      "outrankedBroaderCandidates": false
+                    },
+                    "directnessScore": 295,
+                    "matchingReasons": [
+                      "Sufficient applicability rule matched: Compressed gases (general safety requirements and securing).",
+                      "Direct inspection candidate for the primary observed condition and failed control.",
+                      "Citation jurisdiction matches the selected regulatory scope."
+                    ],
+                    "defensibilityScore": 0.58,
+                    "evidenceFitReasons": [
+                      "Direct inspection candidate for the primary observed condition and failed control.",
+                      "Citation jurisdiction matches the selected regulatory scope."
+                    ],
+                    "scopeFitAdjustment": 0,
+                    "applicabilityConfidence": "low"
+                  }
+                ]
+              },
+              "actionEffectiveness": {
+                "addressedElements": [
+                  "Exposure pathway addressed.",
+                  "Verification step included."
+                ],
+                "effectivenessBand": "adequate",
+                "effectivenessScore": 69,
+                "unresolvedElements": [
+                  "Corrective action may not directly control the energy source."
+                ],
+                "effectivenessStatement": "Corrective actions appear usable, but should be reviewed for stronger verification or durable control.",
+                "recommendedImprovement": "Strengthen the corrective action by explicitly addressing unresolved causal, energy, barrier, or verification elements."
+              },
+              "aiCapabilityProfile": {
+                "capabilities": [
+                  "hazard classification",
+                  "risk reasoning",
+                  "standards candidate support",
+                  "evidence gap identification",
+                  "corrective action recommendation",
+                  "source-governed advisory reasoning"
+                ],
+                "classification": "AI-assisted safety review engine",
+                "missingForValidatedAi": [
+                  "independent third-party validation",
+                  "production-scale field accuracy study",
+                  "live source update governance approval workflow"
+                ]
+              },
+              "barrierIntelligence": {
+                "barrierTypes": [],
+                "barrierAdequacy": "unknown",
+                "barrierReasoning": "Barrier status is not clear from available evidence.",
+                "verificationNeeds": [
+                  "Identify what barrier or control currently separates the worker from the hazard.",
+                  "Field verification is needed before closure."
+                ],
+                "failedOrMissingBarriers": []
+              },
+              "causalRiskReasoning": {
+                "engine": "hazlenz_causal_risk_reasoning",
+                "version": "0.1.0",
+                "confidence": {
+                  "level": "moderate",
+                  "score": 0.62,
+                  "reasons": [
+                    "Mechanism of injury was identified.",
+                    "Failed or missing control was identified.",
+                    "Structured understanding provided supporting confidence.",
+                    "Missing evidence: worker exposure."
+                  ]
+                },
+                "exposedTarget": "unknown",
+                "reasoningTrace": [
+                  "Read structured observation understanding when available.",
+                  "Identified primary energy source: unknown.",
+                  "Mapped likely energy-transfer path: sudden release of compressed gas causing blast, projectile, or exposure.",
+                  "Identified exposed target: unknown.",
+                  "Identified initiating condition: unsecured compressed gas cylinder or missing protective valve cap.",
+                  "Identified failed or missing control: cylinder securing / chains, protective valve caps, and incompatible storage separation.",
+                  "Selected mechanism of injury: compressed_gas_release_or_rupture.",
+                  "Estimated credible worst case: blast trauma, serious struck-by injury, asphyxiation, fire/explosion burn, or fatality.",
+                  "Preserved advisory-only boundary and qualified-review requirement."
+                ],
+                "missingEvidence": [
+                  "worker exposure"
+                ],
+                "credibleWorstCase": "blast trauma, serious struck-by injury, asphyxiation, fire/explosion burn, or fatality",
+                "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "energyTransferPath": "sudden release of compressed gas causing blast, projectile, or exposure",
+                "competingMechanisms": [
+                  "struck_by_whipping_pressurized_line",
+                  "asphyxiation",
+                  "fire_explosion"
+                ],
+                "initiatingCondition": "unsecured compressed gas cylinder or missing protective valve cap",
+                "primaryEnergySource": "unknown",
+                "failedOrMissingControl": "cylinder securing / chains, protective valve caps, and incompatible storage separation"
+              },
+              "clarifyingQuestions": [
+                {
+                  "id": "jurisdiction-work-environment",
+                  "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                  "options": [
+                    "Mine or quarry",
+                    "Construction site",
+                    "Manufacturing or plant",
+                    "Warehouse",
+                    "Other workplace",
+                    "Not sure"
+                  ],
+                  "priority": "critical",
+                  "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                  "required": true,
+                  "answerType": "single-select",
+                  "requiredFor": "jurisdiction",
+                  "impactedDecisions": [
+                    "jurisdiction",
+                    "standard-applicability"
+                  ],
+                  "couldChangeShutdown": false,
+                  "couldPromoteStandard": false,
+                  "couldSuppressStandard": false,
+                  "expectedEvidenceFields": [
+                    "jurisdiction",
+                    "workEnvironment"
+                  ]
+                }
+              ],
+              "controlIntelligence": {
+                "ppeOnly": false,
+                "controlGaps": [],
+                "controlTypes": [
+                  "elimination",
+                  "engineering",
+                  "verification",
+                  "general"
+                ],
+                "strongestControl": "elimination",
+                "verificationNeeded": true,
+                "hierarchyAssessment": "Durable controls are represented in the recommendation set.",
+                "durableControlPresent": true,
+                "verificationRecommendation": "Require supervisor or competent-person verification before closure."
+              },
+              "humanReviewRequired": true,
+              "reasoningSnapshotId": "local-reasoning-1786309690271",
+              "requiresHumanReview": true,
+              "supportingStandards": [
+                {
+                  "score": 75,
+                  "title": "Compressed gases (general requirements)",
+                  "source": [
+                    "inspection_intelligence",
+                    "citation_recovery"
+                  ],
+                  "status": "candidate_standard",
+                  "heading": "Compressed gases (general requirements)",
+                  "summary": "Compressed gases (general requirements) Confirm exact subsection text and applicability before relying on it.",
+                  "citation": "29 CFR 1910.101",
+                  "agencyCode": "OSHA",
+                  "confidence": 0.8,
+                  "advisoryOnly": true,
+                  "jurisdiction": "osha_general_industry",
+                  "titleSummary": "Compressed gases (general requirements)",
+                  "supportReason": "Relevant standards context is retained separately because direct condition/component applicability is not established.",
+                  "evidenceNeeded": [
+                    "Confirm exact scope, exposure, task, equipment, and jurisdiction before relying on this candidate standard."
+                  ],
+                  "candidateStatus": "supporting_context",
+                  "citationRanking": {
+                    "penalties": [],
+                    "advisoryOnly": true,
+                    "directCandidate": false,
+                    "directnessScore": 75,
+                    "evidenceFitReasons": [
+                      "Citation jurisdiction matches the selected regulatory scope."
+                    ],
+                    "outrankedBroaderCandidates": false
+                  },
+                  "directnessScore": 75,
+                  "matchingReasons": [
+                    null,
+                    "Recovered from inspection-specific condition and mechanism evidence.",
+                    "Citation jurisdiction matches the selected regulatory scope."
+                  ],
+                  "evidenceFitReasons": [
+                    "Citation jurisdiction matches the selected regulatory scope."
+                  ],
+                  "requiresQualifiedReview": true
+                }
+              ],
+              "evidenceGapQuestions": [],
+              "intelligenceMetadata": {
+                "engineName": "HazLenz AI Orchestrator",
+                "generatedAt": "2026-08-09T21:08:10.262Z",
+                "engineVersion": "0.1.0",
+                "layersExecuted": [
+                  "observation_context",
+                  "observation_understanding",
+                  "scenario",
+                  "citation_level_review",
+                  "risk_reasoning",
+                  "evidence_gap_questions",
+                  "corrective_action",
+                  "confidence",
+                  "operational_reasoning",
+                  "trend",
+                  "energy_transfer",
+                  "evidence_quality",
+                  "control",
+                  "barrier",
+                  "event_sequence",
+                  "operational_state",
+                  "human_factors",
+                  "contradiction_detection",
+                  "action_effectiveness",
+                  "counterfactual",
+                  "standards_reasoning",
+                  "applicability_intelligence",
+                  "decision_explainability",
+                  "hazard_graph",
+                  "exposure_path",
+                  "correlation",
+                  "site_memory",
+                  "confidence_calibration",
+                  "reasoning_drift",
+                  "workspace_learning",
+                  "learning_governance",
+                  "learning_memory",
+                  "domain_intelligence",
+                  "cross_domain_interaction",
+                  "executive_judgment",
+                  "registry_schema_foundation"
+                ]
+              },
+              "regulatoryConclusion": {
+                "advisoryOnly": true,
+                "evidenceStatus": "sufficient_for_advisory_candidate",
+                "violationDetermination": "pending_qualified_review",
+                "qualifiedHumanReviewRequired": true
+              },
+              "scenarioIntelligence": {
+                "task": "unknown",
+                "equipment": "unknown",
+                "advisoryOnly": true,
+                "energySource": "unknown",
+                "evidenceGaps": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described."
+                ],
+                "hazardCategory": "compressed_gas",
+                "hierarchyLevel": "unknown",
+                "unsafeCondition": "unknown",
+                "operationalState": "unknown",
+                "scenarioFamilyId": "unknown",
+                "confidenceSignals": {
+                  "score": 0.93,
+                  "reasoning": [
+                    "Inferred from fused operational reasoning and observation."
+                  ]
+                },
+                "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                "exposedPersonActivity": "unknown",
+                "candidateStandardFamily": "compressed_gas_cylinders",
+                "doesNotDeclareViolation": true,
+                "missingOrFailedControls": [],
+                "qualifiedReviewRequired": true
+              },
+              "assessmentDisposition": "hazard_requires_human_review",
+              "confidenceCalibration": {
+                "baseConfidence": 0.93,
+                "calibrationBand": "reliable",
+                "reliabilityFactors": [
+                  "Standards reasoning produced defensibility-ranked results."
+                ],
+                "calibrationWarnings": [],
+                "calibratedConfidence": 0.93,
+                "reliabilityStatement": "HazLenz AI confidence appears supported by available evidence, standards reasoning, and consistency checks."
+              },
+              "standardApplicability": {
+                "matchedRules": [
+                  {
+                    "id": "gas-cylinders-osha-gi",
+                    "citation": "29 CFR 1910.101(b)",
+                    "hazardFamily": "compressed_gas",
+                    "jurisdiction": "osha_general_industry",
+                    "standardTitle": "Compressed gases (general safety requirements and securing)"
+                  }
+                ],
+                "evaluationResults": [
+                  {
+                    "ruleId": "gas-cylinders-osha-gi",
+                    "citation": "29 CFR 1910.101(b)",
+                    "isSufficient": true,
+                    "missingFacts": [],
+                    "confidenceLevel": "high",
+                    "confidenceScore": 90,
+                    "boostersTriggered": [
+                      "\\b(oxygen|acetylene|freestanding|no restraint|tipped|cart|valve exposed|missing valve protection cap|cap missing|regulator attached|storage area|pedestrian walkway|walkway|aisle|traffic)\\b"
+                    ],
+                    "reducersTriggered": [],
+                    "excludedByDoNotSelect": false
+                  }
+                ],
+                "followUpQuestions": [],
+                "needsMoreEvidenceStandards": []
+              },
+              "standardsTraceability": {
+                "sourceMode": "auto_or_unspecified",
+                "scopeFilter": "SafescopeV2Service.applyStandardsScopeFit",
+                "citationReview": "CitationReviewBrainService",
+                "primaryMatcher": "ApplicableStandardsService",
+                "selectedScopes": [
+                  "all"
+                ],
+                "scopeFilterRole": "Promotes standards matching the selected jurisdiction and excludes mismatched MSHA/OSHA scopes.",
+                "excludedCitations": [],
+                "priorFindingsRole": "reference_only",
+                "rawCandidateCount": 0,
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true,
+                  "finalComplianceDecisionByHuman": true
+                },
+                "citationReviewRole": "Reviews citation-level candidates and evidence gaps for advisory applicability support.",
+                "primaryMatcherRole": "Produces the initial suggested standards from approved knowledge chunks or the active standards repository.",
+                "suggestedCitations": [
+                  "29 CFR 1910.101(b)"
+                ],
+                "v2ContextAvailable": {
+                  "standardsReasoning": true,
+                  "citationLevelCandidates": true,
+                  "standardFamilyCandidates": true,
+                  "sourceBackedApplicability": true,
+                  "approvedKnowledgeRetrieval": true
+                },
+                "defensibilityRanker": "StandardsReasoningService",
+                "supportingCitations": [
+                  "29 CFR 1910.101"
+                ],
+                "excludedCandidateCount": 0,
+                "scenarioStandardMapper": "StandardFamilyMapperService",
+                "sourceBackedGovernance": "SourceBackedApplicabilityGovernanceService",
+                "defensibilityRankerRole": "Ranks already-suggested standards for operational defensibility using context, exposure, risk, and reputable-source support.",
+                "supportingCandidateCount": 1,
+                "approvedKnowledgeRetrieval": "ApprovedKnowledgeRetrievalOutputV1Service",
+                "needsMoreEvidenceCitations": [],
+                "scenarioStandardMapperRole": "Maps scenario intelligence to standard families for review and supporting context.",
+                "sourceBackedGovernanceRole": "Evaluates whether source-backed applicability is sufficiently supported and what reviewer limits apply.",
+                "scopeFilteredCandidateCount": 1,
+                "finalSuggestedStandardsSource": "applicable_standards_scope_filtered_then_v2_reasoning_context",
+                "approvedKnowledgeRetrievalRole": "Retrieves approved knowledge records for supporting field output and source context where available.",
+                "needsMoreEvidenceCandidateCount": 0,
+                "priorFindingsCanCreateStandards": false,
+                "priorFindingsCanOverrideStandards": false
+              },
+              "structuredObservation": {
+                "workArea": "Fabrication bay",
+                "narrative": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+                "jurisdiction": "unknown",
+                "unknownFacts": [],
+                "inferredFacts": [],
+                "affectedPeople": [],
+                "evidenceSource": [
+                  "worker-report"
+                ],
+                "controlsMissing": [],
+                "controlsPresent": [],
+                "exposurePathway": [],
+                "equipmentInvolved": [],
+                "taskBeingPerformed": "Welding repair",
+                "userConfirmedFacts": [],
+                "materialOrSubstance": [],
+                "potentialConsequence": [],
+                "unresolvedContradictions": []
+              },
+              "applicabilityDecisions": [],
+              "conditionStateEvidence": {
+                "advisoryOnly": true,
+                "evidenceGaps": [],
+                "contradictionCount": 0
+              },
+              "confidenceIntelligence": {
+                "strengths": [
+                  "Applicable standards were identified."
+                ],
+                "reasonCodes": [
+                  "STANDARDS_IDENTIFIED",
+                  "MISSING_EMPLOYEE_EXPOSURE"
+                ],
+                "confidenceBand": "high",
+                "reviewTriggers": [],
+                "overallConfidence": 0.93,
+                "conflictingSignals": [],
+                "recommendedFollowup": [
+                  "Add missing context before relying on final standard selection."
+                ],
+                "missingCriticalInformation": [
+                  "Employee exposure is not clearly described."
+                ],
+                "supervisorReviewRecommended": false
+              },
+              "crossDomainInteraction": {
+                "reviewFocus": [],
+                "interactions": [],
+                "escalationRisks": [],
+                "interactionSummary": "No cross-domain interaction pattern detected from available domain intelligence.",
+                "interactionSeverity": "none"
+              },
+              "decisionExplainability": {
+                "keyEvidence": [
+                  "A physical condition appears degraded, missing, damaged, or uncontrolled. → The hazard appears accessible during normal work or travel. → Energy transfer mechanism requires confirmation. → Control failure mechanism requires confirmation. → Potential consequence requires supervisor review.",
+                  "Applicable standards were identified.",
+                  "1 applicable standard suggestion(s) identified."
+                ],
+                "uncertainty": [
+                  "employee exposure is not clearly described.",
+                  "worker exposure is not explicitly described."
+                ],
+                "riskStatement": "Risk is rated High.",
+                "decisionSummary": "Emergency Egress was selected based on hazard signals, context, risk indicators, and standards alignment.",
+                "controlStatement": "Durable controls are represented in the recommendation set.",
+                "escalationFactors": [
+                  "Control intelligence recommends verification before closure."
+                ],
+                "standardsStatement": "Top standards were selected from curated HazLenz AI mappings and CFR-backed matching where available.",
+                "confidenceStatement": "Overall confidence is 93%.",
+                "supervisorReviewRecommended": true
+              },
+              "candidateStandardFamily": "compressed_gas_cylinders",
+              "citationLevelCandidates": [],
+              "correlationIntelligence": {
+                "recommendation": "No strong hazard-correlation pattern detected from available information.",
+                "cascadePotential": "low",
+                "correlatedHazards": [
+                  "Emergency Egress"
+                ],
+                "correlatedSignals": [],
+                "cascadingRiskPaths": [],
+                "systemicIndicators": [],
+                "escalationRecommended": false
+              },
+              "clarificationAnswerState": {
+                "invalidAnswers": [],
+                "answeredQuestionIds": []
+              },
+              "exposurePathIntelligence": {
+                "exposureSummary": "HazLenz AI mapped likely exposure pathways, worker interfaces, and amplification conditions contributing to hazard exposure.",
+                "exposurePathways": [],
+                "workerInterfaces": [],
+                "exposureAmplifiers": [
+                  "Maintenance state may bypass normal operational safeguards.",
+                  "Uncontrolled energy conditions may amplify injury severity."
+                ],
+                "exposureComplexity": "low"
+              },
+              "multiHazardDecomposition": {
+                "hazards": [
+                  {
+                    "domainId": "compressed_gas",
+                    "hazardId": "haz-1",
+                    "mechanism": "cylinder",
+                    "confidence": 0.2,
+                    "evidenceGaps": [],
+                    "hazardFamily": "compressed_gas",
+                    "conditionState": "ACTIVE",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "reviewerQuestions": [
+                      "Please verify the compressed_gas hazard in this fragment."
+                    ],
+                    "supportingSignals": [
+                      "cylinder"
+                    ],
+                    "observationFragment": "welding is underway beside stored oxygen cylinders",
+                    "possibleOverlapWith": [],
+                    "requiresHumanReview": true
+                  },
+                  {
+                    "domainId": "emergency_egress",
+                    "hazardId": "haz-2",
+                    "mechanism": "exit",
+                    "confidence": 0.2,
+                    "evidenceGaps": [],
+                    "hazardFamily": "egress",
+                    "conditionState": "ACTIVE",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "reviewerQuestions": [
+                      "Please verify the emergency_egress hazard in this fragment."
+                    ],
+                    "supportingSignals": [
+                      "exit"
+                    ],
+                    "observationFragment": "the nearest exit route is narrowed by scrap material",
+                    "possibleOverlapWith": [],
+                    "requiresHumanReview": true
+                  },
+                  {
+                    "domainId": "hot_work",
+                    "hazardId": "haz-3",
+                    "mechanism": "work",
+                    "confidence": 0.2,
+                    "evidenceGaps": [],
+                    "hazardFamily": "hot_work",
+                    "conditionState": "ACTIVE",
+                    "correctionStatus": "not_stated",
+                    "temporalEvidence": [],
+                    "reviewerQuestions": [
+                      "Please verify the hot_work hazard in this fragment."
+                    ],
+                    "supportingSignals": [
+                      "work"
+                    ],
+                    "observationFragment": "work area: fabrication bay",
+                    "possibleOverlapWith": [],
+                    "requiresHumanReview": true
+                  }
+                ],
+                "version": "v1",
+                "hazardCount": 3,
+                "evidenceGaps": [],
+                "routingNotes": [
+                  "Decomposed fragment \"welding is underway beside stored oxygen cylinders\" routed to compressed_gas",
+                  "Fragment \"one cylinder is unsecured\" also matched compressed_gas (already captured).",
+                  "Decomposed fragment \"the nearest exit route is narrowed by scrap material\" routed to emergency_egress",
+                  "Fragment \"| structured observation evidence:\ntask being performed: welding repair\" also matched compressed_gas (already captured).",
+                  "Decomposed fragment \"work area: fabrication bay\" routed to hot_work"
+                ],
+                "isMultiHazard": true,
+                "primaryHazard": {
+                  "domainId": "compressed_gas",
+                  "hazardId": "haz-1",
+                  "mechanism": "cylinder",
+                  "confidence": 0.2,
+                  "evidenceGaps": [],
+                  "hazardFamily": "compressed_gas",
+                  "conditionState": "ACTIVE",
+                  "correctionStatus": "not_stated",
+                  "temporalEvidence": [],
+                  "reviewerQuestions": [
+                    "Please verify the compressed_gas hazard in this fragment."
+                  ],
+                  "supportingSignals": [
+                    "cylinder"
+                  ],
+                  "observationFragment": "welding is underway beside stored oxygen cylinders",
+                  "possibleOverlapWith": [],
+                  "requiresHumanReview": true
+                },
+                "advisoryBoundary": "HazLenz AI multi-hazard decomposition is advisory only.",
+                "reviewerQuestions": [
+                  "Multiple hazards detected. Review each for accuracy."
+                ],
+                "originalObservation": "welding is underway beside stored oxygen cylinders and combustible packaging. one cylinder is unsecured, and the nearest exit route is narrowed by scrap material. | structured observation evidence:\ntask being performed: welding repair.\nwork area: fabrication bay.",
+                "decompositionConfidence": 0.9
+              },
+              "reasoningSourceHierarchy": {
+                "primaryBasis": [
+                  "HazLenz AI governed classifier and reasoning brain",
+                  "approved knowledge and source governance",
+                  "regulatory scope filtering",
+                  "standards applicability service",
+                  "scenario, equipment, task, mechanism, and evidence reasoning"
+                ],
+                "secondaryReferenceOnly": [
+                  "prior saved findings",
+                  "workspace learning",
+                  "site memory",
+                  "trend intelligence",
+                  "correlation intelligence",
+                  "reviewer feedback history"
+                ],
+                "prohibitedHistoricalInfluence": [
+                  "prior findings cannot create a standard match by themselves",
+                  "prior findings cannot override approved knowledge or source governance",
+                  "prior findings cannot remove high-risk review requirements",
+                  "prior findings cannot finalize compliance or violation decisions"
+                ]
+              },
+              "standardFamilyCandidates": [],
+              "unresolvedContradictions": [],
+              "contradictionIntelligence": {
+                "engine": "hazlenz_contradiction_intelligence_v1",
+                "ambiguities": [],
+                "reviewImpact": "No major internal contradictions or ambiguities detected from available narrative.",
+                "contradictions": [],
+                "contradictionSeverity": "none",
+                "contradictionsDetected": false
+              },
+              "correctiveActionReasoning": {
+                "confidence": 0.93,
+                "hazardDomain": "compressed_gas_cylinders",
+                "urgencyLevel": "moderate",
+                "exposurePathway": "unknown",
+                "interimControls": [
+                  "Restrict access until controls are verified"
+                ],
+                "immediateActions": [
+                  "Assess current hazard exposure",
+                  "Secure the area"
+                ],
+                "scenarioFamilyId": "unknown",
+                "mechanismOfInjury": "compressed_gas_release_or_rupture",
+                "verificationSteps": [
+                  "Competent person verification of controls",
+                  "Document functional test results"
+                ],
+                "advisoryGuardrails": {
+                  "advisoryOnly": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                },
+                "humanReviewTriggers": [
+                  "Qualified safety review required due to high hazard complexity"
+                ],
+                "permanentCorrections": [
+                  "Implement permanent engineered solutions specific to hazard"
+                ],
+                "controlHierarchyLevel": "unknown",
+                "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                "administrativeFollowUps": [
+                  "Perform hazard analysis update",
+                  "Conduct targeted tool-box safety briefing"
+                ],
+                "interimControlNarrative": "Deploy temporary physical safeguards or implement access restrictions until permanent engineered controls are validated.",
+                "missingOrFailedControls": [],
+                "immediateActionNarrative": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                "standardFamilyReviewLinks": [],
+                "responsibleRoleSuggestions": [
+                  "Safety Manager",
+                  "Operations Supervisor"
+                ],
+                "permanentCorrectionNarrative": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+                "evidenceNeededBeforeFinalizing": [
+                  "No photo evidence is attached.",
+                  "No supplemental evidence notes are available.",
+                  "Worker exposure is not explicitly described."
+                ],
+                "administrativeFollowUpNarrative": "Review and update the hazard control plan; conduct a mandatory safety briefing for all personnel affected by this work activity."
+              },
+              "counterfactualIntelligence": {
+                "counterfactuals": [
+                  "If the energy source had been isolated or controlled, injury potential would likely have been reduced.",
+                  "If corrective actions directly addressed all unresolved causal elements, recurrence likelihood would likely decrease."
+                ],
+                "preventionLevers": [
+                  "Control, isolate, or verify zero energy before exposure.",
+                  "Revise corrective actions to address unresolved causal-chain elements."
+                ],
+                "counterfactualSummary": "HazLenz AI evaluated how alternate control states may have reduced exposure, energy transfer, recurrence, or injury potential.",
+                "strongestPreventionLever": "Control, isolate, or verify zero energy before exposure."
+              },
+              "energyTransferIntelligence": {
+                "controlLogic": [
+                  "Verify pressure relief, isolation, blocking, bleed-down, and zero-energy verification.",
+                  "Verify hot-work controls, isolation, fire protection, cooling, shielding, and ignition-source control."
+                ],
+                "energySources": [
+                  "pressure/stored energy",
+                  "thermal/fire"
+                ],
+                "missingBarriers": [],
+                "releaseMechanisms": [
+                  "Unexpected release of hydraulic, pneumatic, or compressed stored energy.",
+                  "Heat, flame, steam, ignition, or hot-surface exposure."
+                ],
+                "exposureInterfaces": [
+                  "Worker access or proximity creates a credible exposure interface."
+                ],
+                "severityAmplifiers": [
+                  "Stored energy may release unexpectedly during maintenance or troubleshooting."
+                ],
+                "dominantEnergySource": "pressure/stored energy",
+                "energyTransferSummary": "Primary energy source appears to be pressure/stored energy. HazLenz AI evaluated release mechanism, exposure interface, and barrier/control effectiveness.",
+                "uncontrolledEnergyLikely": true
+              },
+              "needsMoreEvidenceStandards": [],
+              "standardsMatchExplanations": [
+                {
+                  "title": "Compressed gases (general safety requirements and securing)",
+                  "reference": "29 CFR 1910.101(b)",
+                  "confidence": 0.96,
+                  "advisoryOnly": true,
+                  "jurisdiction": "osha",
+                  "matchedFacts": [],
+                  "authorityTier": 2,
+                  "standardFamily": "unknown",
+                  "missingEvidence": [
+                    "Curated evidence requirements are not available for this reference."
+                  ],
+                  "satisfiedEvidence": [],
+                  "doesNotCreateCitation": true,
+                  "doesNotDeclareViolation": true,
+                  "requiresQualifiedReview": true
+                }
+              ],
+              "additionalInformationNeeded": [],
+              "finalStandardRankingHydrated": false,
+              "requiresAnotherReasoningPass": true,
+              "multidisciplinaryExpertSynthesis": {
+                "laborLawyer": {
+                  "penaltyExposureRisk": "moderate",
+                  "precedentCaseLawRefs": [],
+                  "defensibilityStrategy": "Routine violation defense. Document immediate abatement."
+                },
+                "environmental": {
+                  "epaComplianceConcerns": [],
+                  "spccRcraApplicability": "Low environmental impact probability."
+                },
+                "safetyAndHealth": {
+                  "hopFactors": [],
+                  "expertAdvisory": "Standard corrective actions apply.",
+                  "systemicRootCauses": []
+                },
+                "executiveSummary": "Multidisciplinary Synthesis: Routine operational hazard.  Requires systemic HOP evaluation .",
+                "industrialHygiene": {
+                  "healthAdvisory": "No immediate acute IH sampling required.",
+                  "pelStelTwaConcerns": [],
+                  "noiseDustSilicaRisks": []
+                }
+              }
+            },
+            "advisoryStatus": "advisory",
+            "requestedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+            "createdAt": "2026-08-09T21:08:10.285Z"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "6d6c4caf-8d7d-4e50-8ce7-08e06103491f",
+            "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+            "findingId": "d0d04445-42a2-43dd-a542-dc85033d32f9",
+            "idempotencyKey": "review:f1501563-e396-48ef-8e4f-8348a3276e61:compressed-gas",
+            "analysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+            "decision": "accepted",
+            "status": "current",
+            "rationale": "Reviewed against the observed facts; accepted as an advisory conclusion.",
+            "reviewedConclusion": {
+              "riskPolicy": {
+                "dueDays": 3,
+                "priority": "urgent",
+                "riskLevel": "high",
+                "modelVersion": "categorical-risk-v1",
+                "closeoutEvidenceRequired": true
+              },
+              "reviewerRisk": {
+                "exposure": "Not established",
+                "severity": "Serious",
+                "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                "likelihood": "Not established",
+                "overallRisk": "High",
+                "reviewerConfirmed": true
+              },
+              "guidedFinding": {
+                "provenance": {
+                  "rulesRelease": "2026-07-29.1",
+                  "evidenceSnapshotId": "ev-2f7cdbad17136342823e",
+                  "deterministicInputHash": "8c9fc49a108165b96c12a836826fd41687aeae19469eb8918c7266371508d033"
+                },
+                "limitations": [
+                  "HazLenz is advisory and does not replace a qualified safety professional.",
+                  "Candidate standards are not confirmed violations.",
+                  "Applicability depends on verified facts, jurisdiction, and the current authoritative source."
+                ],
+                "reviewStatus": {
+                  "status": "qualified-review-required",
+                  "editableFields": [
+                    "facts",
+                    "standard",
+                    "risk",
+                    "correctiveAction"
+                  ],
+                  "reviewerConfirmed": false
+                },
+                "rulesRelease": "2026-07-29.1",
+                "engineVersion": "hazlenz-production",
+                "conditionState": "UNKNOWN",
+                "hazardCategory": "Emergency Egress",
+                "riskAssessment": {
+                  "exposure": "Not established",
+                  "severity": "Serious",
+                  "immediacy": "Prompt action",
+                  "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                  "riskLevel": "High",
+                  "likelihood": "Not established",
+                  "overallRisk": "High",
+                  "provisional": true,
+                  "existingControls": [],
+                  "reviewerConfirmed": false,
+                  "potentialConsequence": "Confirm during qualified review.",
+                  "reviewerOverrideReasonRequired": true
+                },
+                "contractVersion": "guided-finding-v1",
+                "primaryStandard": {
+                  "title": "Emergency Egress",
+                  "agency": "OSHA",
+                  "citation": "29 CFR 1910.101(b)",
+                  "confidence": 0.6933333333333334,
+                  "whyOffered": "HazLenz retained this as a candidate because material applicability facts remain unconfirmed.",
+                  "sourceStatus": "source-review-required",
+                  "applicability": "candidate",
+                  "sourceRelease": null,
+                  "confidenceLabel": "Low",
+                  "evidenceMissing": [],
+                  "evidenceSupporting": [],
+                  "confidenceLimitReason": "Regulatory source approval or release coverage limits confidence.",
+                  "contradictoryEvidence": [],
+                  "simplifiedRequirement": "Review the authoritative requirement and confirmed facts before finalization."
+                },
+                "correctiveAction": {
+                  "urgency": "Urgent",
+                  "rationale": "Actions are advisory and tied to the Emergency Egress evidence and proposed risk.",
+                  "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                  "responsibleRole": "Qualified responsible person",
+                  "suggestedDueDate": null,
+                  "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                  "hierarchyPreference": [
+                    "elimination",
+                    "substitution",
+                    "engineering",
+                    "administrative",
+                    "PPE"
+                  ],
+                  "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+                },
+                "findingCandidates": [],
+                "multiHazardReview": {
+                  "instruction": "Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations.",
+                  "requiresSplitReview": false
+                },
+                "observedCondition": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+                "additionalStandards": [],
+                "clarificationQuestions": [
+                  {
+                    "id": "jurisdiction-work-environment",
+                    "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                    "options": [
+                      "Mine or quarry",
+                      "Construction site",
+                      "Manufacturing or plant",
+                      "Warehouse",
+                      "Other workplace",
+                      "Not sure"
+                    ],
+                    "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                    "answerType": "single-select",
+                    "materialTo": [
+                      "jurisdiction",
+                      "standard-applicability"
+                    ]
+                  }
+                ],
+                "conditionStateEvidence": {
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "contradictionCount": 0
+                }
+              },
+              "correctiveAction": {
+                "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+              },
+              "segmentationDecision": {
+                "disposition": "single_or_merged",
+                "rejectedSegmentKeys": [],
+                "selectedSegmentKeys": []
+              }
+            },
+            "reviewedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+            "createdAt": "2026-08-09T21:08:17.265Z"
+          },
+          {
+            "id": "41ddc4b1-f63b-4443-9598-042f299b2576",
+            "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+            "findingId": "d082a470-802e-45f6-85eb-cc61249cc1f6",
+            "idempotencyKey": "review:f1501563-e396-48ef-8e4f-8348a3276e61:emergency-egress",
+            "analysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+            "decision": "accepted",
+            "status": "current",
+            "rationale": "Reviewed against the observed facts; accepted as an advisory conclusion.",
+            "reviewedConclusion": {
+              "riskPolicy": {
+                "dueDays": 3,
+                "priority": "urgent",
+                "riskLevel": "high",
+                "modelVersion": "categorical-risk-v1",
+                "closeoutEvidenceRequired": true
+              },
+              "reviewerRisk": {
+                "exposure": "Not established",
+                "severity": "Serious",
+                "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                "likelihood": "Not established",
+                "overallRisk": "High",
+                "reviewerConfirmed": true
+              },
+              "guidedFinding": {
+                "provenance": {
+                  "rulesRelease": "2026-07-29.1",
+                  "evidenceSnapshotId": "ev-2f7cdbad17136342823e",
+                  "deterministicInputHash": "8c9fc49a108165b96c12a836826fd41687aeae19469eb8918c7266371508d033"
+                },
+                "limitations": [
+                  "HazLenz is advisory and does not replace a qualified safety professional.",
+                  "Candidate standards are not confirmed violations.",
+                  "Applicability depends on verified facts, jurisdiction, and the current authoritative source."
+                ],
+                "reviewStatus": {
+                  "status": "qualified-review-required",
+                  "editableFields": [
+                    "facts",
+                    "standard",
+                    "risk",
+                    "correctiveAction"
+                  ],
+                  "reviewerConfirmed": false
+                },
+                "rulesRelease": "2026-07-29.1",
+                "engineVersion": "hazlenz-production",
+                "conditionState": "UNKNOWN",
+                "hazardCategory": "Emergency Egress",
+                "riskAssessment": {
+                  "exposure": "Not established",
+                  "severity": "Serious",
+                  "immediacy": "Prompt action",
+                  "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                  "riskLevel": "High",
+                  "likelihood": "Not established",
+                  "overallRisk": "High",
+                  "provisional": true,
+                  "existingControls": [],
+                  "reviewerConfirmed": false,
+                  "potentialConsequence": "Confirm during qualified review.",
+                  "reviewerOverrideReasonRequired": true
+                },
+                "contractVersion": "guided-finding-v1",
+                "primaryStandard": {
+                  "title": "Emergency Egress",
+                  "agency": "OSHA",
+                  "citation": "29 CFR 1910.101(b)",
+                  "confidence": 0.6933333333333334,
+                  "whyOffered": "HazLenz retained this as a candidate because material applicability facts remain unconfirmed.",
+                  "sourceStatus": "source-review-required",
+                  "applicability": "candidate",
+                  "sourceRelease": null,
+                  "confidenceLabel": "Low",
+                  "evidenceMissing": [],
+                  "evidenceSupporting": [],
+                  "confidenceLimitReason": "Regulatory source approval or release coverage limits confidence.",
+                  "contradictoryEvidence": [],
+                  "simplifiedRequirement": "Review the authoritative requirement and confirmed facts before finalization."
+                },
+                "correctiveAction": {
+                  "urgency": "Urgent",
+                  "rationale": "Actions are advisory and tied to the Emergency Egress evidence and proposed risk.",
+                  "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                  "responsibleRole": "Qualified responsible person",
+                  "suggestedDueDate": null,
+                  "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                  "hierarchyPreference": [
+                    "elimination",
+                    "substitution",
+                    "engineering",
+                    "administrative",
+                    "PPE"
+                  ],
+                  "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+                },
+                "findingCandidates": [],
+                "multiHazardReview": {
+                  "instruction": "Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations.",
+                  "requiresSplitReview": false
+                },
+                "observedCondition": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+                "additionalStandards": [],
+                "clarificationQuestions": [
+                  {
+                    "id": "jurisdiction-work-environment",
+                    "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                    "options": [
+                      "Mine or quarry",
+                      "Construction site",
+                      "Manufacturing or plant",
+                      "Warehouse",
+                      "Other workplace",
+                      "Not sure"
+                    ],
+                    "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                    "answerType": "single-select",
+                    "materialTo": [
+                      "jurisdiction",
+                      "standard-applicability"
+                    ]
+                  }
+                ],
+                "conditionStateEvidence": {
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "contradictionCount": 0
+                }
+              },
+              "correctiveAction": {
+                "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+              },
+              "segmentationDecision": {
+                "disposition": "single_or_merged",
+                "rejectedSegmentKeys": [],
+                "selectedSegmentKeys": []
+              }
+            },
+            "reviewedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+            "createdAt": "2026-08-09T21:11:58.010Z"
+          },
+          {
+            "id": "70005b2d-35df-4529-bf88-e617ddfb0c6c",
+            "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+            "findingId": "8aa33505-1028-422e-9653-98699542e405",
+            "idempotencyKey": "review:f1501563-e396-48ef-8e4f-8348a3276e61:hot-work",
+            "analysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+            "decision": "accepted",
+            "status": "current",
+            "rationale": "Reviewed against the observed facts; accepted as an advisory conclusion.",
+            "reviewedConclusion": {
+              "riskPolicy": {
+                "dueDays": 3,
+                "priority": "urgent",
+                "riskLevel": "high",
+                "modelVersion": "categorical-risk-v1",
+                "closeoutEvidenceRequired": true
+              },
+              "reviewerRisk": {
+                "exposure": "Not established",
+                "severity": "Serious",
+                "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                "likelihood": "Not established",
+                "overallRisk": "High",
+                "reviewerConfirmed": true
+              },
+              "guidedFinding": {
+                "provenance": {
+                  "rulesRelease": "2026-07-29.1",
+                  "evidenceSnapshotId": "ev-2f7cdbad17136342823e",
+                  "deterministicInputHash": "8c9fc49a108165b96c12a836826fd41687aeae19469eb8918c7266371508d033"
+                },
+                "limitations": [
+                  "HazLenz is advisory and does not replace a qualified safety professional.",
+                  "Candidate standards are not confirmed violations.",
+                  "Applicability depends on verified facts, jurisdiction, and the current authoritative source."
+                ],
+                "reviewStatus": {
+                  "status": "qualified-review-required",
+                  "editableFields": [
+                    "facts",
+                    "standard",
+                    "risk",
+                    "correctiveAction"
+                  ],
+                  "reviewerConfirmed": false
+                },
+                "rulesRelease": "2026-07-29.1",
+                "engineVersion": "hazlenz-production",
+                "conditionState": "UNKNOWN",
+                "hazardCategory": "Emergency Egress",
+                "riskAssessment": {
+                  "exposure": "Not established",
+                  "severity": "Serious",
+                  "immediacy": "Prompt action",
+                  "rationale": "Emergency Egress hazards can create serious or fatal exposure.",
+                  "riskLevel": "High",
+                  "likelihood": "Not established",
+                  "overallRisk": "High",
+                  "provisional": true,
+                  "existingControls": [],
+                  "reviewerConfirmed": false,
+                  "potentialConsequence": "Confirm during qualified review.",
+                  "reviewerOverrideReasonRequired": true
+                },
+                "contractVersion": "guided-finding-v1",
+                "primaryStandard": {
+                  "title": "Emergency Egress",
+                  "agency": "OSHA",
+                  "citation": "29 CFR 1910.101(b)",
+                  "confidence": 0.6933333333333334,
+                  "whyOffered": "HazLenz retained this as a candidate because material applicability facts remain unconfirmed.",
+                  "sourceStatus": "source-review-required",
+                  "applicability": "candidate",
+                  "sourceRelease": null,
+                  "confidenceLabel": "Low",
+                  "evidenceMissing": [],
+                  "evidenceSupporting": [],
+                  "confidenceLimitReason": "Regulatory source approval or release coverage limits confidence.",
+                  "contradictoryEvidence": [],
+                  "simplifiedRequirement": "Review the authoritative requirement and confirmed facts before finalization."
+                },
+                "correctiveAction": {
+                  "urgency": "Urgent",
+                  "rationale": "Actions are advisory and tied to the Emergency Egress evidence and proposed risk.",
+                  "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                  "responsibleRole": "Qualified responsible person",
+                  "suggestedDueDate": null,
+                  "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                  "hierarchyPreference": [
+                    "elimination",
+                    "substitution",
+                    "engineering",
+                    "administrative",
+                    "PPE"
+                  ],
+                  "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+                },
+                "findingCandidates": [],
+                "multiHazardReview": {
+                  "instruction": "Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations.",
+                  "requiresSplitReview": false
+                },
+                "observedCondition": "Welding is underway beside stored oxygen cylinders and combustible packaging. One cylinder is unsecured, and the nearest exit route is narrowed by scrap material.",
+                "additionalStandards": [],
+                "clarificationQuestions": [
+                  {
+                    "id": "jurisdiction-work-environment",
+                    "reason": "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+                    "options": [
+                      "Mine or quarry",
+                      "Construction site",
+                      "Manufacturing or plant",
+                      "Warehouse",
+                      "Other workplace",
+                      "Not sure"
+                    ],
+                    "question": "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+                    "answerType": "single-select",
+                    "materialTo": [
+                      "jurisdiction",
+                      "standard-applicability"
+                    ]
+                  }
+                ],
+                "conditionStateEvidence": {
+                  "advisoryOnly": true,
+                  "evidenceGaps": [],
+                  "contradictionCount": 0
+                }
+              },
+              "correctiveAction": {
+                "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+                "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+                "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture."
+              },
+              "segmentationDecision": {
+                "disposition": "single_or_merged",
+                "rejectedSegmentKeys": [],
+                "selectedSegmentKeys": []
+              }
+            },
+            "reviewedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+            "createdAt": "2026-08-09T21:12:34.107Z"
+          }
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "id": "d0d04445-42a2-43dd-a542-dc85033d32f9",
+        "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+        "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+        "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "finalReviewId": "6d6c4caf-8d7d-4e50-8ce7-08e06103491f",
+        "status": "finalized",
+        "hazardCategory": "compressed_gas",
+        "segmentKey": "compressed-gas",
+        "hazardKey": "compressed-gas",
+        "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "sourceCandidate": {
+          "id": "d0d04445-42a2-43dd-a542-dc85033d32f9",
+          "family": "compressed_gas",
+          "status": "pending_review",
+          "citation": "",
+          "revision": 1,
+          "createdAt": "2026-08-09T21:08:10.285Z",
+          "hazardKey": "compressed-gas",
+          "stableKey": "compressed-gas",
+          "conclusion": "cylinder",
+          "segmentKey": "compressed-gas",
+          "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+          "applicability": "candidate",
+          "finalReviewId": null,
+          "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+          "hazardCategory": "compressed_gas",
+          "evidenceFactIds": [],
+          "sourceCandidate": {
+            "domainId": "compressed_gas",
+            "hazardId": "haz-1",
+            "hazardKey": "compressed-gas",
+            "mechanism": "cylinder",
+            "confidence": 0.2,
+            "evidenceGaps": [],
+            "hazardFamily": "compressed_gas",
+            "conditionState": "ACTIVE",
+            "correctionStatus": "not_stated",
+            "temporalEvidence": [],
+            "reviewerQuestions": [
+              "Please verify the compressed_gas hazard in this fragment."
+            ],
+            "supportingSignals": [
+              "cylinder"
+            ],
+            "observationFragment": "welding is underway beside stored oxygen cylinders",
+            "possibleOverlapWith": [],
+            "requiresHumanReview": true
+          },
+          "finalizedByUserId": null,
+          "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+          "reviewerDisposition": "split",
+          "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61"
+        },
+        "reviewerDisposition": "single",
+        "conclusion": "cylinder",
+        "revision": 1,
+        "finalizedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+        "createdAt": "2026-08-09T21:08:10.285Z"
+      },
+      {
+        "id": "8aa33505-1028-422e-9653-98699542e405",
+        "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+        "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+        "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "finalReviewId": "70005b2d-35df-4529-bf88-e617ddfb0c6c",
+        "status": "finalized",
+        "hazardCategory": "hot_work",
+        "segmentKey": "hot-work",
+        "hazardKey": "hot-work",
+        "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "sourceCandidate": {
+          "id": "8aa33505-1028-422e-9653-98699542e405",
+          "family": "hot_work",
+          "status": "pending_review",
+          "citation": "",
+          "revision": 1,
+          "createdAt": "2026-08-09T21:08:10.285Z",
+          "hazardKey": "hot-work",
+          "stableKey": "hot-work",
+          "conclusion": "work",
+          "segmentKey": "hot-work",
+          "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+          "applicability": "candidate",
+          "finalReviewId": null,
+          "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+          "hazardCategory": "hot_work",
+          "evidenceFactIds": [],
+          "sourceCandidate": {
+            "domainId": "hot_work",
+            "hazardId": "haz-3",
+            "hazardKey": "hot-work",
+            "mechanism": "work",
+            "confidence": 0.2,
+            "evidenceGaps": [],
+            "hazardFamily": "hot_work",
+            "conditionState": "ACTIVE",
+            "correctionStatus": "not_stated",
+            "temporalEvidence": [],
+            "reviewerQuestions": [
+              "Please verify the hot_work hazard in this fragment."
+            ],
+            "supportingSignals": [
+              "work"
+            ],
+            "observationFragment": "work area: fabrication bay",
+            "possibleOverlapWith": [],
+            "requiresHumanReview": true
+          },
+          "finalizedByUserId": null,
+          "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+          "reviewerDisposition": "split",
+          "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61"
+        },
+        "reviewerDisposition": "single",
+        "conclusion": "work",
+        "revision": 1,
+        "finalizedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+        "createdAt": "2026-08-09T21:08:10.285Z"
+      },
+      {
+        "id": "d082a470-802e-45f6-85eb-cc61249cc1f6",
+        "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+        "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+        "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "finalReviewId": "41ddc4b1-f63b-4443-9598-042f299b2576",
+        "status": "finalized",
+        "hazardCategory": "egress",
+        "segmentKey": "emergency-egress",
+        "hazardKey": "emergency-egress",
+        "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+        "sourceCandidate": {
+          "id": "d082a470-802e-45f6-85eb-cc61249cc1f6",
+          "family": "egress",
+          "status": "pending_review",
+          "citation": "",
+          "revision": 1,
+          "createdAt": "2026-08-09T21:08:10.285Z",
+          "hazardKey": "emergency-egress",
+          "stableKey": "emergency-egress",
+          "conclusion": "exit",
+          "segmentKey": "emergency-egress",
+          "inspectionId": "7ba86b27-4517-448f-8a13-6a0911f57659",
+          "applicability": "candidate",
+          "finalReviewId": null,
+          "observationId": "a3f17613-d38a-4739-94e7-3667ee1e78b9",
+          "hazardCategory": "egress",
+          "evidenceFactIds": [],
+          "sourceCandidate": {
+            "domainId": "emergency_egress",
+            "hazardId": "haz-2",
+            "hazardKey": "emergency-egress",
+            "mechanism": "exit",
+            "confidence": 0.2,
+            "evidenceGaps": [],
+            "hazardFamily": "egress",
+            "conditionState": "ACTIVE",
+            "correctionStatus": "not_stated",
+            "temporalEvidence": [],
+            "reviewerQuestions": [
+              "Please verify the emergency_egress hazard in this fragment."
+            ],
+            "supportingSignals": [
+              "exit"
+            ],
+            "observationFragment": "the nearest exit route is narrowed by scrap material",
+            "possibleOverlapWith": [],
+            "requiresHumanReview": true
+          },
+          "finalizedByUserId": null,
+          "selectedAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61",
+          "reviewerDisposition": "split",
+          "originatingAnalysisId": "f1501563-e396-48ef-8e4f-8348a3276e61"
+        },
+        "reviewerDisposition": "single",
+        "conclusion": "exit",
+        "revision": 1,
+        "finalizedByUserId": "1d6b7a9d-4a22-40bc-86fd-1f779024d2ea",
+        "createdAt": "2026-08-09T21:08:10.285Z"
+      }
+    ],
+    "assignments": []
+  },
+  "events": [
+    {
+      "url": "http://127.0.0.1:4237/inspections/7ba86b27-4517-448f-8a13-6a0911f57659",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/observations/a3f17613-d38a-4739-94e7-3667ee1e78b9/reviews",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/observations/a3f17613-d38a-4739-94e7-3667ee1e78b9/findings",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/7ba86b27-4517-448f-8a13-6a0911f57659",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4237/actions",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/tasks",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/actions",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/tasks",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/actions",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/tasks",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/7ba86b27-4517-448f-8a13-6a0911f57659/transition",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4237/inspections/7ba86b27-4517-448f-8a13-6a0911f57659/reports",
+      "status": 201
+    }
+  ]
+}

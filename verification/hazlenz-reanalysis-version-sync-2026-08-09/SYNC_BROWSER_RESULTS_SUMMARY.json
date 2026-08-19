@@ -1,0 +1,13 @@
+{
+  "inspectionId": "b0f48bb3-b939-41cf-8808-74a60046ee0c",
+  "observationId": "0f3889ae-94a6-4efb-bade-620ccd0d073c",
+  "cycles": [
+    {"cycle":1,"versionBefore":1,"versionAfterSave":2,"saveStatus":200,"classify":201,"snapshot":201,"findingKeys":["electrical","machine-guarding"]},
+    {"cycle":2,"versionBefore":2,"versionAfterSave":3,"saveStatus":200,"classify":201,"snapshot":201,"findingKeys":["electrical","mobile-equipment","machine-guarding"]},
+    {"cycle":3,"versionBefore":3,"versionAfterSave":4,"saveStatus":200,"classify":201,"snapshot":201,"findingKeys":["mobile-equipment","powered-industrial-trucks","machine-guarding","electrical"]}
+  ],
+  "finalVersion": 5,
+  "staleWrite": {"first":200,"stale":409},
+  "hydrationErrors": 0,
+  "unexpectedWorkflowConflicts": 0
+}

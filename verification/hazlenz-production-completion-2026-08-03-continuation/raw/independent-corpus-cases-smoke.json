@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gi-machine-guard-1",
+    "narrative": "The belt drive has an open nip point beside the operator walkway while the line is running.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "guard",
+      "machine"
+    ],
+    "lifeCritical": false,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "gi-machine-guard-2",
+    "narrative": "The belt drive has an open nip point beside the operator walkway while the line is running. Inspector shorthand: recheck before shift change.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "guard",
+      "machine"
+    ],
+    "lifeCritical": false,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  },
+  {
+    "id": "gi-machine-guard-3",
+    "narrative": "The belt drive has an open nip point beside the operator walkway while the line was running.",
+    "scopes": [
+      "osha_general_industry"
+    ],
+    "jurisdiction": "OSHA General Industry",
+    "mechanisms": [
+      "guard",
+      "machine"
+    ],
+    "lifeCritical": false,
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    }
+  }
+]

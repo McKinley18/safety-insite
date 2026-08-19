@@ -1,0 +1,3 @@
+# Exact next action
+
+Start a fresh disposable frontend/backend stack, add temporary non-production instrumentation to `InspectionWorkflowHeader.handleNext`, `goToInspectionStep`, and the inspection page's edit/reset effects, then reproduce one persisted inspection in Chromium. Determine whether `setCurrentStep(2)` is never called, is immediately reset, or renders a stale route. Implement the narrow fix, add a browser regression proving Step 1 → Step 2 and `Review with HazLenz AI`, then rerun the 20-scenario authenticated audit. Do not touch HazLenz inference or corrective-action logic until this UI gate passes.

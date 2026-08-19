@@ -1,0 +1,8 @@
+{
+  "releaseId": "governed-19-standard-release",
+  "definitive": {"total": 19, "OSHA": 13, "MSHA": 6},
+  "pendingImported": 129,
+  "qualifiedImported": 0,
+  "excluded": ["OSHA 29 CFR Part 1904", "broad MSHA coal coverage"],
+  "failClosed": true
+}

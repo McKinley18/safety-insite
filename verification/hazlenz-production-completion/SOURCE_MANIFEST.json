@@ -1,0 +1,10 @@
+{
+  "version": "completion-import-v1",
+  "parserVersion": "cfr-xml-v2",
+  "sources": [
+    {"agency": "OSHA", "title": 29, "kind": "official CFR XML", "status": "retrieved_and_checksummed"},
+    {"agency": "MSHA", "title": 30, "kind": "official CFR XML", "status": "retrieved_and_checksummed"}
+  ],
+  "credentialsStored": false,
+  "approval": "pending human review"
+}

@@ -1,0 +1,925 @@
+{
+  "label": "Independent automated regulatory-applicability audit",
+  "generatedAt": "2026-08-17T03:39:35.025Z",
+  "apiBaseUrl": "http://localhost:4001",
+  "authoritativeSources": {
+    "1910.147": "OSHA 29 CFR 1910.147(a)(1)-(a)(2), control of hazardous energy during servicing/maintenance.",
+    "1910.212": "OSHA 29 CFR 1910.212(a)(1), machine guarding for point of operation, nip points, rotating parts, flying chips/sparks.",
+    "1910.22": "OSHA 29 CFR 1910.22(a), walking-working surfaces kept clean, orderly, sanitary, and free of hazards.",
+    "1910.23": "OSHA 29 CFR 1910.23(b), ladder condition and use requirements.",
+    "1910.28": "OSHA 29 CFR 1910.28(b), duty to have fall protection for general-industry elevated exposures.",
+    "1910.305": "OSHA 29 CFR 1910.305(g), flexible cords and cable condition/use requirements.",
+    "1910.1200": "OSHA 29 CFR 1910.1200(f), workplace container labeling and hazard communication.",
+    "1910.146": "OSHA 29 CFR 1910.146, permit-required confined spaces.",
+    "1926.501": "OSHA 29 CFR 1926.501(b)(1), construction unprotected side/edge at 6 feet or more.",
+    "1926.1053": "OSHA 29 CFR 1926.1053(b), construction ladder use/defect requirements.",
+    "1926.651-652": "OSHA 29 CFR 1926.651 and 1926.652, excavation access, exposure, and protective systems.",
+    "56.14107": "MSHA 30 CFR 56.14107(a), guarding of moving machine parts.",
+    "56.12016": "MSHA 30 CFR 56.12016, locking/tagging electrically powered equipment before mechanical work.",
+    "56.14132": "MSHA 30 CFR 56.14132(a), maintaining audible warning devices on self-propelled mobile equipment.",
+    "56.9300": "MSHA 30 CFR 56.9300, berms or guardrails on roadways with overturn/endangerment drop-offs.",
+    "56.11001": "MSHA 30 CFR 56.11001, safe access.",
+    "56.11012": "MSHA 30 CFR 56.11012, protection for openings above, below, or near travelways."
+  },
+  "summary": {
+    "total": 19,
+    "pass": 7,
+    "qualifiedPass": 12,
+    "needsReview": 0,
+    "criticalFailures": 0,
+    "clearPositiveCases": 9,
+    "safeControlledNegativeCases": 5,
+    "ambiguousCases": 2,
+    "jurisdictionTrapCases": 0,
+    "multiHazardCases": 1,
+    "primaryCitationRecall": 1,
+    "primaryCaseRecall": 1,
+    "unsupportedCitationRate": 0,
+    "falsePositiveCount": 0,
+    "mitigationEssentialControlCoverage": 1
+  },
+  "auditCases": [
+    {
+      "id": "msha-conveyor-jam-energized",
+      "kind": "clear-positive",
+      "family": "MSHA machine guarding and hazardous energy",
+      "observation": "A miner is clearing a jammed conveyor while the belt is energized and the tail pulley guard has been removed.",
+      "scopes": [
+        "msha"
+      ],
+      "expectedJurisdiction": "msha",
+      "expectedHazard": {},
+      "expectedStage": "final",
+      "requiredPrimary": [
+        {},
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "forbiddenMitigationConcepts": [
+        {}
+      ],
+      "sourceReference": "MSHA 30 CFR 56.14107(a), guarding of moving machine parts. MSHA 30 CFR 56.12016, locking/tagging electrically powered equipment before mechanical work.",
+      "applicabilityBasis": "Mine context, moving conveyor parts, removed guard, jam-clearing/mechanical work, and energized state satisfy both guarding and energy-isolation predicates."
+    },
+    {
+      "id": "msha-conveyor-locked-out",
+      "kind": "safe-controlled-negative",
+      "family": "MSHA hazardous energy controlled state",
+      "observation": "A miner is clearing a conveyor jam after the conveyor was locked out, zero-energy verified, and access was restricted.",
+      "scopes": [
+        "msha"
+      ],
+      "structuredObservation": {
+        "narrative": "A miner is clearing a conveyor jam.",
+        "jurisdiction": "msha",
+        "workEnvironment": "mine processing plant",
+        "taskBeingPerformed": "clearing a jam",
+        "equipmentInvolved": [
+          "conveyor"
+        ],
+        "energyState": "locked-out",
+        "controlsPresent": [
+          "lockout/tagout applied",
+          "zero-energy verified",
+          "restricted access"
+        ],
+        "workerInteraction": "No unexpected startup exposure was observed."
+      },
+      "expectedJurisdiction": "msha",
+      "expectedHazard": {},
+      "expectedStage": "final",
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {}
+      ],
+      "forbiddenMitigationConcepts": [
+        {}
+      ],
+      "sourceReference": "MSHA 30 CFR 56.12016, locking/tagging electrically powered equipment before mechanical work.",
+      "applicabilityBasis": "The same task terms are present, but verified lockout and no unexpected-startup exposure suppress active violation promotion."
+    },
+    {
+      "id": "osha-gi-operating-unguarded-shaft",
+      "kind": "clear-positive",
+      "family": "OSHA GI machine guarding",
+      "observation": "Operator reaches near an exposed rotating shaft because the machine guard is missing while the production line is running.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.212(a)(1), machine guarding for point of operation, nip points, rotating parts, flying chips/sparks.",
+      "applicabilityBasis": "General-industry machine, exposed rotating shaft, missing guard, operation, and operator exposure satisfy machine-guarding predicates."
+    },
+    {
+      "id": "osha-gi-guard-removed-isolated",
+      "kind": "safe-controlled-negative",
+      "family": "OSHA GI guarding controlled maintenance",
+      "observation": "Machine guard was removed for maintenance while the machine is locked out, zero energy verified, and the area is restricted.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.147(a)(1)-(a)(2), control of hazardous energy during servicing/maintenance. OSHA 29 CFR 1910.212(a)(1), machine guarding for point of operation, nip points, rotating parts, flying chips/sparks.",
+      "applicabilityBasis": "Guard-removal words are disqualified by verified isolation and restricted access; only verification items remain."
+    },
+    {
+      "id": "osha-gi-damaged-cord-wet-exposed",
+      "kind": "clear-positive",
+      "family": "OSHA GI electrical flexible cord",
+      "observation": "Employee is using an extension cord with exposed copper conductors in a wet washdown area.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.305(g), flexible cords and cable condition/use requirements.",
+      "applicabilityBasis": "In-use flexible cord, damaged insulation/exposed conductors, wet location, and employee exposure support electrical hazard and cord/wiring standards."
+    },
+    {
+      "id": "osha-gi-discarded-damaged-cord",
+      "kind": "safe-controlled-negative",
+      "family": "OSHA GI electrical controlled discarded cord",
+      "observation": "Damaged extension cord is unplugged, tagged out of service, and locked in a disposal bin where employees cannot use it.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {},
+        {},
+        {}
+      ],
+      "requiredQuestions": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.305(g), flexible cords and cable condition/use requirements.",
+      "applicabilityBasis": "The cord is damaged, but unplugged, tagged, inaccessible, and locked for disposal; active employee electrical exposure is not established."
+    },
+    {
+      "id": "construction-edge-eight-feet",
+      "kind": "clear-positive",
+      "family": "OSHA Construction fall protection",
+      "observation": "Construction worker is framing beside an unprotected floor edge eight feet above the lower level without guardrails or fall arrest.",
+      "scopes": [
+        "osha_construction"
+      ],
+      "expectedJurisdiction": "osha_construction",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "forbiddenQuestions": [
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1926.501(b)(1), construction unprotected side/edge at 6 feet or more.",
+      "applicabilityBasis": "Construction, unprotected edge, lower level, and eight-foot height satisfy 1926 Subpart M edge protection predicates."
+    },
+    {
+      "id": "osha-gi-same-level-trip",
+      "kind": "competing-standard",
+      "family": "OSHA GI walking-working surfaces",
+      "observation": "Employee could trip over a loose hose across the same-level aisle.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.22(a), walking-working surfaces kept clean, orderly, sanitary, and free of hazards.",
+      "applicabilityBasis": "Same-level aisle obstruction is a walking-working surface/trip issue, not an elevated-fall case."
+    },
+    {
+      "id": "osha-gi-unlabeled-secondary-solvent",
+      "kind": "clear-positive",
+      "family": "OSHA GI HazCom label",
+      "observation": "Unlabeled spray bottle of solvent is used by multiple employees at the parts washer.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.1200(f), workplace container labeling and hazard communication.",
+      "applicabilityBasis": "Unlabeled workplace secondary container in shared use supports workplace labeling and HazCom controls."
+    },
+    {
+      "id": "osha-gi-immediate-use-cup",
+      "kind": "false-friend",
+      "family": "OSHA GI HazCom immediate-use exception",
+      "observation": "Worker poured solvent into a small unlabeled cup for immediate use during the same shift and kept control of it.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {}
+      ],
+      "requiredQuestions": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.1200(f), workplace container labeling and hazard communication.",
+      "applicabilityBasis": "Immediate-use, under-control transfer language suppresses a final workplace-container labeling violation absent contrary facts."
+    },
+    {
+      "id": "msha-backup-alarm-reversing",
+      "kind": "clear-positive",
+      "family": "MSHA mobile equipment audible warning",
+      "observation": "At a quarry, a loader is backing through a blind area with a broken backup alarm while miners are on foot nearby.",
+      "scopes": [
+        "msha"
+      ],
+      "expectedJurisdiction": "msha",
+      "expectedHazard": {},
+      "expectedStage": "final",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "MSHA 30 CFR 56.14132(a), maintaining audible warning devices on self-propelled mobile equipment.",
+      "applicabilityBasis": "Mine, self-propelled mobile equipment, backing/blind-area operation, broken alarm, and miner exposure satisfy audible-warning/traffic-control predicates."
+    },
+    {
+      "id": "msha-backup-alarm-parked-out",
+      "kind": "safe-controlled-negative",
+      "family": "MSHA mobile equipment controlled state",
+      "observation": "At a quarry, the loader backup alarm is broken but the loader is parked out of service with the key removed and no reverse operation.",
+      "scopes": [
+        "msha"
+      ],
+      "expectedJurisdiction": "msha",
+      "expectedHazard": {},
+      "expectedStage": "final",
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {}
+      ],
+      "sourceReference": "MSHA 30 CFR 56.14132(a), maintaining audible warning devices on self-propelled mobile equipment.",
+      "applicabilityBasis": "A defect exists, but out-of-service/key-removed/no-reverse facts suppress active traffic exposure; repair verification remains appropriate."
+    },
+    {
+      "id": "tank-entry-vague",
+      "kind": "ambiguous",
+      "family": "Confined space ambiguity",
+      "observation": "Worker went into the tank.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {}
+      ],
+      "requiredQuestions": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.146, permit-required confined spaces.",
+      "applicabilityBasis": "Tank entry suggests possible confined-space exposure, but permit-space predicates require more facts before exact citation promotion."
+    },
+    {
+      "id": "permit-space-entry-positive",
+      "kind": "clear-positive",
+      "family": "Permit-required confined space",
+      "observation": "Employee entered a permit-required process tank with possible toxic atmosphere, no attendant, and no pre-entry atmospheric test.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.146, permit-required confined spaces.",
+      "applicabilityBasis": "Entry, permit-space wording, atmospheric hazard, missing attendant, and missing testing satisfy permit-space control predicates."
+    },
+    {
+      "id": "trench-deep-no-protection",
+      "kind": "clear-positive",
+      "family": "Construction excavation protection",
+      "observation": "Construction employee is working in a six-foot trench with vertical walls and no shoring, shielding, or sloping.",
+      "scopes": [
+        "osha_construction"
+      ],
+      "expectedJurisdiction": "osha_construction",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1926.651 and 1926.652, excavation access, exposure, and protective systems.",
+      "applicabilityBasis": "Construction, employee entry, six-foot trench, vertical walls, and no protective system support excavation protective-system requirements."
+    },
+    {
+      "id": "trench-shallow-no-entry",
+      "kind": "safe-controlled-negative",
+      "family": "Construction excavation negative mutation",
+      "observation": "A three-foot landscaping excavation is barricaded, no employee entry is occurring, and no cave-in indicators were observed.",
+      "scopes": [
+        "osha_construction"
+      ],
+      "expectedJurisdiction": "osha_construction",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1926.651 and 1926.652, excavation access, exposure, and protective systems.",
+      "applicabilityBasis": "Depth, no entry, and barricade facts suppress protective-system citation; access/inspection questions may remain."
+    },
+    {
+      "id": "ladder-bad-vague",
+      "kind": "ambiguous",
+      "family": "Ladder ambiguity",
+      "observation": "Ladder is bad.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredQuestions": [
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.23(b), ladder condition and use requirements. OSHA 29 CFR 1926.1053(b), construction ladder use/defect requirements.",
+      "applicabilityBasis": "A vague ladder adjective does not identify defect, misuse, height, use, or jurisdiction predicates."
+    },
+    {
+      "id": "construction-damaged-ladder",
+      "kind": "clear-positive",
+      "family": "Construction ladder defect",
+      "observation": "On a construction site, employees are using a portable ladder with a cracked side rail and loose rung.",
+      "scopes": [
+        "osha_construction"
+      ],
+      "expectedJurisdiction": "osha_construction",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1926.1053(b), construction ladder use/defect requirements.",
+      "applicabilityBasis": "Construction, portable ladder, active use, cracked side rail, and loose rung support construction ladder defect requirements."
+    },
+    {
+      "id": "multi-hazard-conveyor-and-oil",
+      "kind": "multi-hazard",
+      "family": "Machine guarding plus walking surface",
+      "observation": "In a manufacturing plant, an operating conveyor has an exposed nip point and oil is leaking onto the aisle used by employees.",
+      "scopes": [
+        "osha_general_industry"
+      ],
+      "expectedJurisdiction": "osha_general_industry",
+      "expectedHazard": {},
+      "expectedStage": "provisional",
+      "requiredPrimary": [
+        {},
+        {}
+      ],
+      "forbiddenActive": [
+        {},
+        {}
+      ],
+      "requiredMitigationConcepts": [
+        {},
+        {}
+      ],
+      "sourceReference": "OSHA 29 CFR 1910.212(a)(1), machine guarding for point of operation, nip points, rotating parts, flying chips/sparks. OSHA 29 CFR 1910.22(a), walking-working surfaces kept clean, orderly, sanitary, and free of hazards.",
+      "applicabilityBasis": "Two independent hazards must remain separated: exposed moving parts and contaminated walking surface."
+    }
+  ],
+  "results": [
+    {
+      "id": "msha-conveyor-jam-energized",
+      "kind": "clear-positive",
+      "family": "MSHA machine guarding and hazardous energy",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [
+        "30 CFR 56.12016",
+        "30 CFR 56.11009",
+        "30 CFR 56.14113",
+        "30 CFR 56.14107(a)"
+      ],
+      "primaryCitation": "30 CFR 56.14107(a)",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"isolate conveyor energy before clearing jam\",\"description\":\"focused hazlenz shard controls: stop or restrict access to the exposed moving part until guarded; install secure fixed guarding around the tail pulley or exposed nip point; verify guard construction prevents contact with moving parts; use lockout/tagout before cleanup or maintenance where required dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism rotating_equipment_nip_point, failed/missing control machine guarding, and exposure worker exposure identified; proximity=unknown. credible worst case considered: amputation, entanglement, crushing injury, or fatality. all actions remain advisory and require qualified review. immediate: pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed. permanent correction: install permanent, secure guarding over the exposed tail_pulley to completely eliminate the unknown hazard. verification: perform a formal inspection and functional verification by a competent person before removing interim contr",
+      "resultStage": "final",
+      "classification": "Lockout / Stored Energy",
+      "confidence": 0.88
+    },
+    {
+      "id": "msha-conveyor-locked-out",
+      "kind": "safe-controlled-negative",
+      "family": "MSHA hazardous energy controlled state",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"verify the controlled condition\",\"description\":\"document the observed controls and have a qualified reviewer confirm they remain effective before closing the observation.\",\"priority\":\"low\",\"source\":\"hazlenz_evidence_boundary\",\"referencestandards\":[],\"advisoryguardrails\":{\"advisoryonly\":true,\"doesnotdeclareviolation\":true,\"requiresqualifiedreview\":true}}],\"requiredcontrols\":[\"fixed guarding\",\"interlocked guarding\",\"lockout/tagout before repair\",\"pre-use inspection\"],\"correctiveactionreasoning\":{\"scenariofamilyid\":\"conveyor-cleanup\",\"hazarddomain\":\"machine_guarding\",\"mechanismofinjury\":\"rotating_equipment_nip_point\",\"exposurepathway\":\"worker near belt\",\"missingorfailedcontrols\":[\"guard missing\",\"no loto\"],\"immediateactions\":[\"immediately stop all work in the affected zone\",\"lock out and tag out all energy sources\"],\"interimcontrols\":[\"implement temporary physical barriers\",\"assign a dedicated safety spotter\"],\"permanentcorrections\":[\"install permanent interlocked guarding system\",\"develop authorized lockout procedures\"],\"administrativefollowups\":[\"perform hazard analysis update\",\"conduct targeted tool-box safety briefing\"],\"verificationsteps\":[\"competen",
+      "resultStage": "final",
+      "classification": "Controlled Condition",
+      "confidence": 0.21
+    },
+    {
+      "id": "osha-gi-operating-unguarded-shaft",
+      "kind": "clear-positive",
+      "family": "OSHA GI machine guarding",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.215"
+      ],
+      "primaryCitation": "29 CFR 1910.219(c)",
+      "questions": [
+        "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
+        "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control the observed hazard pending qualified review\",\"description\":\"dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism rotating_equipment_entanglement, failed/missing control guarding, and exposure worker exposure identified; proximity=nearby. credible worst case requires confirmation. all actions remain advisory and require qualified review. immediate: pause affected work and restrict access around the exposed rotating_shaft until guarding and mechanical_rotation exposure controls are reviewed. permanent correction: install permanent, secure guarding over the exposed rotating_shaft to completely eliminate the rotating equipment entanglement hazard. verification: perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations. reviewer questions before closure: clarify what specific condition or activity made the observation hazardous.; confirm jurisdiction/site type before relying on standards mapping.\",\"priority\":\"critical\",\"duedate\":\"2026-08-18t03:39:33.207z\",\"assignedrole\":\"safety manager\",\"sou",
+      "resultStage": "final",
+      "classification": "Machine Guarding",
+      "confidence": 0.93
+    },
+    {
+      "id": "osha-gi-guard-removed-isolated",
+      "kind": "safe-controlled-negative",
+      "family": "OSHA GI guarding controlled maintenance",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"verify hazardous-energy isolation before servicing\",\"description\":\"focused hazlenz shard controls: verify de-energization/lockout before work where applicable reviewer questions before closure: clarify what specific condition or activity made the observation hazardous.; confirm the equipment, material, opening, space, or energy source involved.; confirm whether a worker was exposed and how close they were to the hazard.; confirm whether the equipment was energized, running, pressurized, elevated, suspended, or otherwise hazardous.\",\"priority\":\"high\",\"duedate\":\"2026-08-20t03:39:33.347z\",\"assignedrole\":\"operations supervisor\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937973347\",\"referencestandards\":[],\"suggestedfixes\":[\"verify de-energization/lockout before work where applicable\",\"stop servicing activity and secure hazardous energy exposure\",\"maintain interim exposure controls\",\"complete permanent corrective action\",\"verify correction before closure\",\"assess current hazard exposure\",\"secure the area\",\"restrict access until controls are verified\",\"implement permanent engineered solutions specific to hazard\",\"perform hazard analysis update\",\"",
+      "resultStage": "final",
+      "classification": "Controlled Condition",
+      "confidence": 0.5
+    },
+    {
+      "id": "osha-gi-damaged-cord-wet-exposed",
+      "kind": "clear-positive",
+      "family": "OSHA GI electrical flexible cord",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [
+        "29 CFR 1910.305(g)(1)(iii)",
+        "1910.303(b)(1)",
+        "29 CFR 1910.305(g)(2)(iii)"
+      ],
+      "primaryCitation": "29 CFR 1910.305(g)(1)(iii)",
+      "questions": [
+        "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+        "Was GFCI protection present for the wet or damp location?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control electrical exposure\",\"description\":\"focused hazlenz shard controls: restrict access to the electrical exposure until a qualified person evaluates the condition.; remove damaged cords, cables, or electrical equipment from service until repaired or replaced.; verify de-energization, repair, and inspection before normal use resumes.; restrict access to the exposed electrical equipment dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism electrical_shock, failed/missing control electrical equipment condition or isolation, and exposure worker exposure identified; proximity=unknown. credible worst case considered: shock, burn, arc-flash injury, or fatality. all actions remain advisory and require qualified review. immediate: isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse. permanent correction: replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers. verification: perform",
+      "resultStage": "provisional",
+      "classification": "Electrical",
+      "confidence": 0.93
+    },
+    {
+      "id": "osha-gi-discarded-damaged-cord",
+      "kind": "safe-controlled-negative",
+      "family": "OSHA GI electrical controlled discarded cord",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [
+        "29 CFR 1910.422"
+      ],
+      "primaryCitation": "29 CFR 1910.422",
+      "questions": [
+        "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control electrical exposure\",\"description\":\"focused hazlenz shard controls: restrict access to the electrical exposure until a qualified person evaluates the condition.; remove damaged cords, cables, or electrical equipment from service until repaired or replaced.; verify de-energization, repair, and inspection before normal use resumes.; restrict access to the exposed electrical equipment dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism electrical_shock, failed/missing control electrical equipment condition or isolation, and exposure worker exposure identified; proximity=unknown. credible worst case considered: shock, burn, arc-flash injury, or fatality. all actions remain advisory and require qualified review. immediate: isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse. permanent correction: replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers. verification: perform",
+      "resultStage": "provisional",
+      "classification": "Electrical",
+      "confidence": 0.75
+    },
+    {
+      "id": "construction-edge-eight-feet",
+      "kind": "clear-positive",
+      "family": "OSHA Construction fall protection",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1926.1423",
+        "29 CFR 1926.501(b)(1)",
+        "29 CFR 1926.501"
+      ],
+      "primaryCitation": "29 CFR 1926.501",
+      "questions": [
+        "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"provide edge fall protection\",\"description\":\"focused hazlenz shard controls: restrict access to the fall exposure until edge protection or fall protection is in place.; install guardrails, covers, fall-arrest systems, or another suitable fall-protection control for the exposed edge or opening.; verify the fall distance, work surface, anchor/guardrail condition, and employee use before work resumes.; restrict access to the fall exposure immediate: restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues. permanent correction: erect engineered guardrails or qualified-review approved edge-protection controls around the unknown to resolve fall exposures. verification: perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.\",\"priority\":\"medium\",\"duedate\":\"2026-08-24t03:39:33.760z\",\"assignedrole\":\"team lead\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937973760\",\"referencestandards\":[\"29 cfr 1926.501(b)(1)\",\"29 cfr 1926.501\"],\"suggestedfixes\":[\"restrict access to the fall exposure u",
+      "resultStage": "final",
+      "classification": "Walking/Working Surfaces",
+      "confidence": 0.57
+    },
+    {
+      "id": "osha-gi-same-level-trip",
+      "kind": "competing-standard",
+      "family": "OSHA GI walking-working surfaces",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1910.22(a)",
+        "29 CFR 1910.22(a)(3)",
+        "29 CFR 1910.24"
+      ],
+      "primaryCitation": "29 CFR 1910.22(a)(3)",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"clear walking route obstruction\",\"description\":\"focused hazlenz shard controls: verify the aisle, walkway, or travel path remains clear before reopening normal traffic. verification: perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.\",\"priority\":\"medium\",\"duedate\":\"2026-08-24t03:39:33.860z\",\"assignedrole\":\"team lead\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937973860\",\"referencestandards\":[\"29 cfr 1910.22(a)(3)\",\"29 cfr 1910.22(a)\"],\"suggestedfixes\":[\"verify the aisle, walkway, or travel path remains clear before reopening normal traffic.\",\"protect workers from fall exposure\",\"maintain interim exposure controls\",\"verify correction before closure\",\"assess current hazard exposure\",\"secure the area\",\"implement temporary physical barriers\",\"implement permanent engineered solutions specific to hazard\",\"perform hazard analysis update\",\"conduct targeted tool-box safety briefing\",\"competent person verification of controls\",\"document functional test results\"],\"originalsuggestion\":{\"hazard\":\"aisleway blocked by shipping pallets\",\"fixes\":[\"relocate pallets to",
+      "resultStage": "final",
+      "classification": "Walking/Working Surfaces",
+      "confidence": 0.88
+    },
+    {
+      "id": "osha-gi-unlabeled-secondary-solvent",
+      "kind": "clear-positive",
+      "family": "OSHA GI HazCom label",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1910.1200(f)(6)",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200"
+      ],
+      "primaryCitation": "29 CFR 1910.1200",
+      "questions": [
+        "What substance was involved, and was the container labeled or identified?",
+        "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control unknown chemical exposure potential\",\"description\":\"focused hazlenz shard controls: remove an unknown or unlabeled container from active use until its contents are identified; identify the container contents and hazards before assigning label information; label the container with required hazard information; verify sds availability dca rationale: action strength cautious was selected from output policy and confidence governance. actions are tied to mechanism chemical_exposure_unknown_agent, failed/missing control container label and sds availability, and exposure worker exposure identified; proximity=unknown. credible worst case considered: chemical burn, toxic exposure, sensitization, fire/explosion exposure, or unknown health effect. all actions remain advisory and require qualified review. immediate: stop the release or transfer if safe to do so, restrict access, and protect workers from the observed chemical path. verification: verify the source is no longer releasing, inspect the affected surface, and document cleanup and control checks before restoring normal work. reviewer questions before closure: confirm the equipment, material, openi",
+      "resultStage": "final",
+      "classification": "Hazard Communication",
+      "confidence": 0.88
+    },
+    {
+      "id": "osha-gi-immediate-use-cup",
+      "kind": "false-friend",
+      "family": "OSHA GI HazCom immediate-use exception",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [
+        "What substance was involved, and was the container labeled or identified?",
+        "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control unknown chemical exposure potential\",\"description\":\"focused hazlenz shard controls: remove an unknown or unlabeled container from active use until its contents are identified; identify the container contents and hazards before assigning label information; label the container with required hazard information; verify sds availability dca rationale: action strength cautious was selected from output policy and confidence governance. actions are tied to mechanism chemical_exposure_unknown_agent, failed/missing control container label and sds availability, and exposure worker exposure identified; proximity=unknown. credible worst case considered: chemical burn, toxic exposure, sensitization, fire/explosion exposure, or unknown health effect. all actions remain advisory and require qualified review. immediate: stop the release or transfer if safe to do so, restrict access, and protect workers from the observed chemical path. verification: verify the source is no longer releasing, inspect the affected surface, and document cleanup and control checks before restoring normal work. reviewer questions before closure: confirm the equipment, material, openi",
+      "resultStage": "final",
+      "classification": "Hazard Communication",
+      "confidence": 0.88
+    },
+    {
+      "id": "msha-backup-alarm-reversing",
+      "kind": "clear-positive",
+      "family": "MSHA mobile equipment audible warning",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)",
+        "30 CFR 56.9100"
+      ],
+      "primaryCitation": "30 CFR 56.14132(a)",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"separate pedestrians from mobile equipment exposure\",\"description\":\"focused hazlenz shard controls: remove defective mobile equipment from service until corrected or verified safe; repair or verify service brakes, parking brakes, backup alarms, horns, lights, and warning devices before use; require seat belt use where seat belts are provided and equipment is operated; establish traffic controls, signs, berms, barricades, spotters, or designated travel routes where mobile equipment interacts with miners or other vehicles dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism struck_by_mobile_equipment, failed/missing control pedestrian separation / traffic control, and exposure worker exposure identified; proximity=nearby. credible worst case considered: crushing injury or fatality from mobile equipment impact. all actions remain advisory and require qualified review. immediate: pause the conflicting movement and separate people from the vehicle path until a controlled route is established. permanent correction: engineer durable pedestrian/vehicle separation and a defined traffic",
+      "resultStage": "final",
+      "classification": "Mobile Equipment / Traffic",
+      "confidence": 0.93
+    },
+    {
+      "id": "msha-backup-alarm-parked-out",
+      "kind": "safe-controlled-negative",
+      "family": "MSHA mobile equipment controlled state",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"separate pedestrians from mobile equipment exposure\",\"description\":\"focused hazlenz shard controls: remove defective mobile equipment from service until corrected or verified safe; repair or verify service brakes, parking brakes, backup alarms, horns, lights, and warning devices before use; require seat belt use where seat belts are provided and equipment is operated; establish traffic controls, signs, berms, barricades, spotters, or designated travel routes where mobile equipment interacts with miners or other vehicles\",\"priority\":\"high\",\"duedate\":\"2026-08-20t03:39:34.342z\",\"assignedrole\":\"operations supervisor\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937974342\",\"referencestandards\":[],\"suggestedfixes\":[\"remove defective mobile equipment from service until corrected or verified safe\",\"repair or verify service brakes, parking brakes, backup alarms, horns, lights, and warning devices before use\",\"require seat belt use where seat belts are provided and equipment is operated\",\"establish traffic controls, signs, berms, barricades, spotters, or designated travel routes where mobile equipment interacts with miners or other vehicles\",\"provide ",
+      "resultStage": "final",
+      "classification": "Mobile Equipment / Traffic",
+      "confidence": 0.88
+    },
+    {
+      "id": "tank-entry-vague",
+      "kind": "ambiguous",
+      "family": "Confined space ambiguity",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"stop or hold confined-space entry until entry controls are verified\",\"description\":\"observed confined space hazard requires corrective action based on hazlenz ai intelligence in field location. hazlenz ai reasoning: confined space hazards can create serious or fatal exposure. competent-person or qualified-person review is recommended before closure. recommended corrective actions: stop entry and prevent unauthorized access until the space and entry hazards are evaluated.; classify the space and implement permit, isolation, ventilation, attendant, and rescue controls as applicable.; test the atmosphere with calibrated equipment before entry and monitor as conditions require. dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism atmospheric_hazard_engulfment_or_entrapment, failed/missing control atmospheric test, permit, attendant, ventilation, or rescue plan, and exposure worker exposure identified; proximity=unknown. credible worst case considered: asphyxiation, toxic exposure, engulfment, entrapment, or fatality. all actions remain advisory and require qualified review. immedi",
+      "resultStage": "final",
+      "classification": "Confined Space",
+      "confidence": 0.81
+    },
+    {
+      "id": "permit-space-entry-positive",
+      "kind": "clear-positive",
+      "family": "Permit-required confined space",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1910.146"
+      ],
+      "primaryCitation": "29 CFR 1910.146",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"stop or hold confined-space entry until entry controls are verified\",\"description\":\"observed confined space hazard requires corrective action based on hazlenz ai intelligence in field location. hazlenz ai reasoning: confined space hazards can create serious or fatal exposure. competent-person or qualified-person review is recommended before closure. recommended corrective actions: stop entry and prevent unauthorized access until the space and entry hazards are evaluated.; classify the space and implement permit, isolation, ventilation, attendant, and rescue controls as applicable.; test the atmosphere with calibrated equipment before entry and monitor as conditions require.; mandate ansi z89.1 hard hats; post 'hard hat required' signage at gate; replace hard hats older than 5 years dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism atmospheric_hazard_engulfment_or_entrapment, failed/missing control atmospheric test, permit, attendant, ventilation, or rescue plan, and exposure worker exposure identified; proximity=unknown. credible worst case considered: asphyxiation, toxic e",
+      "resultStage": "final",
+      "classification": "Confined Space",
+      "confidence": 0.89
+    },
+    {
+      "id": "trench-deep-no-protection",
+      "kind": "clear-positive",
+      "family": "Construction excavation protection",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1926.651(c)(2)",
+        "29 CFR 1926.651(j)(2)",
+        "29 CFR 1926.10",
+        "29 CFR 1926.1416",
+        "29 CFR 1926.15",
+        "29 CFR 1926.16",
+        "29 CFR 1926.2",
+        "29 CFR 1926.453",
+        "29 CFR 1926.501",
+        "29 CFR 1926.804",
+        "29 CFR 1926.854",
+        "29 CFR 1926.959",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "primaryCitation": "29 CFR 1926.652(a)(1)",
+      "questions": [],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control excavation cave-in exposure\",\"description\":\"focused hazlenz shard controls: remove workers from the trench until a competent person verifies a protective system.; install or verify the protective system: sloping, benching, shielding, or shoring appropriate to the soil and depth.; move spoil and surcharge loads back from the edge and document egress, spoil setback, and inspections before work resumes.; provide competent-person review and employee instruction where needed\",\"priority\":\"medium\",\"duedate\":\"2026-08-24t03:39:34.634z\",\"assignedrole\":\"team lead\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937974634\",\"referencestandards\":[\"29 cfr 1926.652(a)(1)\",\"29 cfr 1926.651(c)(2)\"],\"suggestedfixes\":[\"remove workers from the trench until a competent person verifies a protective system.\",\"install or verify the protective system: sloping, benching, shielding, or shoring appropriate to the soil and depth.\",\"move spoil and surcharge loads back from the edge and document egress, spoil setback, and inspections before work resumes.\",\"provide competent-person review and employee instruction where needed\",\"keep workers out of unsupported excavatio",
+      "resultStage": "final",
+      "classification": "Trenching & Shoring",
+      "confidence": 0.85
+    },
+    {
+      "id": "trench-shallow-no-entry",
+      "kind": "safe-controlled-negative",
+      "family": "Construction excavation negative mutation",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1926.3"
+      ],
+      "primaryCitation": "29 CFR 1926.3",
+      "questions": [
+        "What exact equipment, opening, edge, container, or travel path is involved?",
+        "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+        "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control excavation cave-in exposure\",\"description\":\"focused hazlenz shard controls: remove workers from the trench until a competent person verifies a protective system.; install or verify the protective system: sloping, benching, shielding, or shoring appropriate to the soil and depth.; move spoil and surcharge loads back from the edge and document egress, spoil setback, and inspections before work resumes.; provide competent-person review and employee instruction where needed dca rationale: action strength moderate was selected from output policy and confidence governance. actions are tied to mechanism caught_in_cave_in, failed/missing control excavation protective system, and exposure worker exposure identified; proximity=unknown. credible worst case considered: fatal crushing or asphyxiation from cave-in. all actions remain advisory and require qualified review. immediate: secure the area to prevent further hazard exposure and notify the area supervisor. permanent correction: implement permanent engineered controls, such as no protective system or missing protective system or spoil pile near edge, to eliminate exposure to caught_in_cave_in. verifi",
+      "resultStage": "final",
+      "classification": "Confined Space",
+      "confidence": 0.84
+    },
+    {
+      "id": "ladder-bad-vague",
+      "kind": "ambiguous",
+      "family": "Ladder ambiguity",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [],
+      "primaryCitation": "",
+      "questions": [
+        "What was the approximate working height or fall distance?",
+        "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+        "What specific equipment, task, or physical condition is unsafe?",
+        "Are employees currently exposed to the condition?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"review and control hazlenz ai-identified hazard\",\"description\":\"observed vague safety concern requires qualified safety review. recommended interim controls: keep personnel from touching or operating the affected area/equipment until evaluated.; restrict access if damage or hazard exposure is suspected.; mark/flag the concern and collect photos/details.\",\"priority\":\"high\",\"duedate\":\"2026-08-20t03:39:34.845z\",\"assignedrole\":\"operations supervisor\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937974845\",\"referencestandards\":[],\"suggestedfixes\":[\"keep personnel from touching or operating the affected area/equipment until evaluated.\",\"restrict access if damage or hazard exposure is suspected.\",\"mark/flag the concern and collect photos/details.\",\"repair or replace components identified by qualified review.\",\"have a qualified safety professional or competent person inspect the condition.\",\"maintain access control pending qualified review.\"],\"originalsuggestion\":{\"source\":\"hazlenz_v2_enriched_corrective_action\",\"contextualcontrols\":{\"immediatecontrols\":[\"keep personnel from touching or operating the affected area/equipment until evaluated.\",\"restri",
+      "resultStage": "final",
+      "classification": "Fall Protection",
+      "confidence": 0.36
+    },
+    {
+      "id": "construction-damaged-ladder",
+      "kind": "clear-positive",
+      "family": "Construction ladder defect",
+      "status": "qualified-pass",
+      "criticalFailures": [],
+      "warnings": [
+        "Expected resultStage provisional, received final."
+      ],
+      "activeCitations": [
+        "29 CFR 1926.1053(b)(16)",
+        "29 CFR 1926.1423",
+        "29 CFR 1926.501"
+      ],
+      "primaryCitation": "29 CFR 1926.1053(b)(16)",
+      "questions": [
+        "What was the approximate working height or fall distance?",
+        "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"remove damaged ladder from service\",\"description\":\"focused hazlenz shard controls: stop use of the damaged ladder and tag or remove it from service.; provide a suitable inspected ladder or alternate access method before work continues.; repair or replace the ladder and verify side rails, rungs, feet, and duty rating before returning it to use.; restrict access to the fall exposure immediate: restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues. permanent correction: erect engineered guardrails or qualified-review approved edge-protection controls around the ladder to resolve fall exposures. verification: perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.\",\"priority\":\"high\",\"duedate\":\"2026-08-20t03:39:34.928z\",\"assignedrole\":\"operations supervisor\",\"source\":\"ai_engine\",\"reportid\":\"safescope-v2-eval-1786937974928\",\"referencestandards\":[],\"suggestedfixes\":[\"stop use of the damaged ladder and tag or remove it from service.\",\"provide a suitable inspected ladder or alternate access me",
+      "resultStage": "final",
+      "classification": "Fall Protection",
+      "confidence": 0.32
+    },
+    {
+      "id": "multi-hazard-conveyor-and-oil",
+      "kind": "multi-hazard",
+      "family": "Machine guarding plus walking surface",
+      "status": "pass",
+      "criticalFailures": [],
+      "warnings": [],
+      "activeCitations": [
+        "29 CFR 1910.22(a)",
+        "29 CFR 1910.22(a)(2)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "primaryCitation": "29 CFR 1910.22(a)",
+      "questions": [
+        "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?"
+      ],
+      "mitigationText": "{\"generatedactions\":[{\"title\":\"control walking-surface exposure\",\"description\":\"focused hazlenz shard controls: barricade or warn the affected walking route until the surface is cleaned or isolated.; verify the walkway, aisle, or route is dry, clear, and usable before reopening.; stop or restrict access to the exposed moving part until guarded; install secure fixed guarding around the tail pulley or exposed nip point dca rationale: action strength strong was selected from output policy and confidence governance. actions are tied to mechanism rotating_equipment_nip_point, failed/missing control guarding, and exposure worker exposure identified; proximity=unknown. credible worst case considered: amputation, entanglement, crushing injury, or fatality. all actions remain advisory and require qualified review. immediate: pause affected work and restrict access around the exposed unknown until guarding and mechanical_rotation exposure controls are reviewed. permanent correction: install permanent, secure guarding over the exposed unknown to completely eliminate the rotating equipment nip point hazard. verification: perform a formal inspection and functional verification by a competent pe",
+      "resultStage": "provisional",
+      "classification": "Walking/Working Surfaces",
+      "confidence": 0.99
+    }
+  ]
+}

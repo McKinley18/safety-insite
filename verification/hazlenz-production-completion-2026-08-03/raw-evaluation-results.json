@@ -1,0 +1,10 @@
+{
+  "suite": "hazlenz-authentic-reasoning-evaluation",
+  "scenarioCount": 20,
+  "reachedReasoning": 15,
+  "requestFailures": 5,
+  "reasoningPasses": 15,
+  "reasoningFails": 0,
+  "requestFailure": "HTTP 402 PAID_SUBSCRIPTION_REQUIRED",
+  "acceptedAsReleaseEvidence": false
+}

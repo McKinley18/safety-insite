@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gi-machine-guard-1",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-machine-guard-2",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  },
+  {
+    "id": "gi-machine-guard-3",
+    "expected": {
+      "requiredCitationFamilies": [
+        "1910.212"
+      ],
+      "forbiddenCitationFamilies": [],
+      "disposition": "review_or_match"
+    },
+    "lifeCritical": false,
+    "jurisdiction": "OSHA General Industry"
+  }
+]

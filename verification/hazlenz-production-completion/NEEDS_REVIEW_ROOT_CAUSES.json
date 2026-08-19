@@ -1,0 +1,12 @@
+{
+  "sourceEvaluationCount": 445,
+  "needsReviewCount": 86,
+  "clusters": [
+    {"cause": "approved regulatory family absent", "action": "ingest official source then require predicate review"},
+    {"cause": "material predicate unknown", "action": "retain candidate status and ask blocking clarification"},
+    {"cause": "genuinely insufficient evidence", "action": "retain NEEDS REVIEW"},
+    {"cause": "coverage/source governance limitation", "action": "expose coverage limitation rather than promote"},
+    {"cause": "candidate/direct boundary", "action": "do not lower threshold"}
+  ],
+  "note": "This pass did not reclassify the 86 outcomes solely to improve aggregate PASS rate."
+}

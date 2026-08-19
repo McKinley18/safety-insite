@@ -1,0 +1,3 @@
+# Temporal refinement
+
+The known solvent case (prior reported release plus current direct sealed/no-current-release evidence) remains a limitation. The current response can retain the family as CONTRADICTORY because source/temporal ordering is not yet represented strongly enough to prove HISTORICAL. This is safer than promoting an active HazCom deficiency, but not the final desired representation. No production patch was made without a trace proving the first incorrect temporal transition. Next action: add source/timestamp ordering to TemporalStateEvidence and test historical parent plus active residual sibling cases.
