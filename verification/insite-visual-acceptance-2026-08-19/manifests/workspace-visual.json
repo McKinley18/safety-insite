@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "screenshot": "workspace-desktop-light.png",
+      "overflow": 0,
+      "bg": "rgb(241, 245, 249)",
+      "rootClass": "light",
+      "contrastFailures": []
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "screenshot": "workspace-mobile-light.png",
+      "overflow": 0,
+      "bg": "rgb(241, 245, 249)",
+      "rootClass": "light",
+      "contrastFailures": []
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "screenshot": "workspace-desktop-dark.png",
+      "overflow": 0,
+      "bg": "rgb(7, 17, 31)",
+      "rootClass": "dark",
+      "contrastFailures": []
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "screenshot": "workspace-mobile-dark.png",
+      "overflow": 0,
+      "bg": "rgb(7, 17, 31)",
+      "rootClass": "dark",
+      "contrastFailures": []
+    }
+  ]
+}

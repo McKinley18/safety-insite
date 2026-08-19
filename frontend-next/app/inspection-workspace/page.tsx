@@ -1310,10 +1310,14 @@ export default function InspectionWorkspacePage() {
                     <p className="text-xs">
                       {humanizeFindingStatus(finding.status)} · Review {finding.finalReviewId ? "complete" : "required"}
                     </p>
+                    {/* slate-500 measured 4.38:1 against this card's light #EFF6FF surface,
+                        under the 4.5 needed at 12px. slate-600 is the app's own next muted
+                        step and clears it; dark mode is unaffected because the globals guard
+                        maps both to the same dark muted colour. */}
                     <details className="mt-1">
-                      <summary className="cursor-pointer text-xs font-semibold text-slate-500">Advanced details</summary>
-                      <p className="mt-1 text-xs text-slate-500">Finding ID: {finding.id}</p>
-                      <p className="text-xs text-slate-500">Analysis: {finding.selectedAnalysisId || "pending"}</p>
+                      <summary className="cursor-pointer text-xs font-semibold text-slate-600">Advanced details</summary>
+                      <p className="mt-1 text-xs text-slate-600">Finding ID: {finding.id}</p>
+                      <p className="text-xs text-slate-600">Analysis: {finding.selectedAnalysisId || "pending"}</p>
                     </details>
                     <button type="button" onClick={() => selectFinding(finding)}
                       className="mt-2 min-h-10 rounded-lg border border-slate-700 px-3 font-bold">

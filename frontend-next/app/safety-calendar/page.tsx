@@ -489,7 +489,7 @@ function SafetyCalendarPageInner() {
       <AppPanel padding="sm" className="app-card px-3 py-2.5 sm:px-4 sm:py-3">
         <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8] dark:text-[#5DB7FF]">
               Schedule My Task
             </p>
             <h2 className="mt-0.5 text-sm font-black text-app-text">

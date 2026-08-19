@@ -66,7 +66,7 @@ export default function UnlockPage() {
       />
 
       <AppPanel variant="dark" padding="md" className="rounded-[24px] p-5 sm:p-5">
-        <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#F97316]">
+        <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#C2410C] dark:text-[#F97316]">
           Local Security
         </p>
 

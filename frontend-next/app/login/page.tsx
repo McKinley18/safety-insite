@@ -170,7 +170,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>

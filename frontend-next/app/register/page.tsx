@@ -151,7 +151,7 @@ export default function RegisterPage() {
 
         <form onSubmit={handleRegister} className="bg-gradient-to-b from-white to-slate-50/80 p-5 text-slate-950 sm:p-8 lg:p-10 dark:from-[#07111F] dark:to-[#0B1320] dark:text-white">
         <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-none dark:border-white/10 dark:bg-white/5">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-[#5DB7FF]">
             Select your plan
           </p>
           <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
@@ -216,7 +216,7 @@ export default function RegisterPage() {
                     {plan.description}
                   </span>
 
-                  <span className="mt-3 block border-t border-slate-200 pt-3 text-xs font-black leading-5 text-slate-500 dark:border-white/10 dark:text-slate-300">
+                  <span className="mt-3 block border-t border-slate-200 pt-3 text-xs font-black leading-5 text-slate-600 dark:border-white/10 dark:text-slate-300">
                     {plan.details}
                   </span>
                 </button>
@@ -274,7 +274,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
             >
               {showPassword ? "Hide" : "Show"}
             </button>

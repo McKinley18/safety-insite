@@ -1,0 +1,38 @@
+{
+  "regime": "osha-general-industry",
+  "regimeLabel": "OSHA — General Industry",
+  "selectValue": "osha-general-industry",
+  "persistedContext": "osha-general-industry",
+  "finalContext": "osha-general-industry",
+  "provenanceObserved": [
+    "USER_CONFIRMED"
+  ],
+  "provenanceSamples": 3,
+  "contextValuesObserved": [
+    "osha-general-industry"
+  ],
+  "observations": 3,
+  "activeFindings": 4,
+  "supersededFindings": 0,
+  "finalizedFindings": 4,
+  "reports": 1,
+  "findingTitlesAfterObservation1": [
+    "Egress"
+  ],
+  "findingTitlesAfterAll": [
+    "Egress",
+    "Machine guarding",
+    "Electrical",
+    "Hot work"
+  ],
+  "findingTitlesAfterReload": [
+    "Egress",
+    "Machine guarding",
+    "Electrical",
+    "Hot work"
+  ],
+  "mshaCitationHits": 0,
+  "constructionCitationHits": 0,
+  "passed": true,
+  "problems": []
+}

@@ -427,10 +427,15 @@ export default function DashboardPage() {
                 >
                   Start Inspection
                 </AppLinkButton>
+                {/* "Start Inspection" is this page's primary action. This was an orange
+                    accent button, which both competed with it for primacy and misused the
+                    warning colour for a benign navigation link. It now uses the same
+                    secondary treatment the landing hero already pairs with this exact blue
+                    primary, so the hierarchy reads primary -> secondary. */}
                 <AppLinkButton
                   href="/reports"
-                  variant="accent"
-                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full !bg-orange-500 px-5 py-3 text-sm font-black !text-white shadow-none transition hover:!bg-orange-600"
+                  variant="secondary"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full border border-white/20 bg-[#FFFFFF] px-5 py-3 text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100"
                 >
                   View Reports
                 </AppLinkButton>

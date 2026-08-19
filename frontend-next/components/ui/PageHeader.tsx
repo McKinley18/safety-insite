@@ -9,7 +9,12 @@ export default function PageHeader({ title, eyebrow, description }: PageHeaderPr
     <div className="mb-6">
       <div className="border-l-4 border-[#F97316] pl-4">
         {eyebrow && (
-          <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">
+          // #F97316 (orange-500) measured 2.44:1 on this header's light surface,
+          // well under the 4.5 needed at 12px/900. It stays orange-500 in dark,
+          // where it sits on the dark app surface and passes; light mode steps to
+          // orange-700. The 4px accent rule above is non-text, so it keeps the
+          // brighter orange in both themes.
+          <p className="text-xs font-black uppercase tracking-wide text-[#C2410C] dark:text-[#F97316]">
             {eyebrow}
           </p>
         )}

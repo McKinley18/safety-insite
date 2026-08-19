@@ -42,7 +42,7 @@ export function PriorityTodoPanel({
         {priorityTodoGroups.map(([groupLabel, groupEvents]) => (
           <div key={groupLabel}>
             <div className="flex items-center justify-between gap-3">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8] dark:text-[#5DB7FF]">
                 {groupLabel}
               </p>
               <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">

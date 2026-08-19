@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -40,7 +40,15 @@ const outcomes = [
 ];
 
 export default function AboutPage() {
-  const [isSignedIn] = useState(() => hasAuthToken());
+  // hasAuthToken() reads localStorage, so it is always false during SSR but true for a
+  // signed-in visitor on the client. Seeding useState with it made the server and the
+  // first client render disagree about which CTA to show, which React reports as
+  // hydration error #418 and repairs by throwing away and re-rendering the subtree.
+  // Resolving after mount keeps the first client render identical to the server HTML.
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    setIsSignedIn(hasAuthToken());
+  }, []);
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-4 sm:px-5 lg:py-7">
@@ -61,7 +69,7 @@ export default function AboutPage() {
             </div>
 
             <div className="border-l-4 border-[#1D72B8] pl-4">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-600">
                 Built for clarity
               </p>
               <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
@@ -87,7 +95,7 @@ export default function AboutPage() {
         <div className="relative border-b border-slate-200/80 py-7 sm:py-9">
           <div className="grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-[#5DB7FF]">
                 Capabilities
               </p>
               <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
@@ -108,7 +116,7 @@ export default function AboutPage() {
                     <h3 className="text-lg font-black tracking-tight text-slate-950">
                       {item.title}
                     </h3>
-                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-[#1D72B8]">
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-[#1D72B8] dark:text-[#5DB7FF]">
                       {item.highlight}
                     </p>
                   </div>
@@ -125,7 +133,7 @@ export default function AboutPage() {
         <div className="relative border-b border-slate-200/80 py-7 sm:py-9">
           <div className="grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-[#5DB7FF]">
                 HazLenz AI
               </p>
               <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
@@ -137,7 +145,7 @@ export default function AboutPage() {
               <p>
                 HazLenz AI helps organize hazard context, risk signals, evidence gaps, standards review, and corrective action reasoning so findings are easier to understand, review, and act on.
               </p>
-              <p className="mt-3 text-sm leading-6 text-slate-500">
+              <p className="mt-3 text-sm leading-6 text-slate-600">
                 HazLenz AI is advisory decision support. It does not replace professional judgment, declare violations, create citations, or override regulatory requirements.
               </p>
             </div>
@@ -146,7 +154,7 @@ export default function AboutPage() {
 
         <div className="grid gap-5 border-b border-slate-200/80 py-7 sm:py-9 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-[#5DB7FF]">
               Why it matters
             </p>
             <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
@@ -162,19 +170,19 @@ export default function AboutPage() {
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="border-t border-slate-200/80 pt-3">
                 <p className="text-sm font-black text-slate-950">Capture</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
                   Record the condition clearly.
                 </p>
               </div>
               <div className="border-t border-slate-200/80 pt-3">
                 <p className="text-sm font-black text-slate-950">Review</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
                   Understand risk and context.
                 </p>
               </div>
               <div className="border-t border-slate-200/80 pt-3">
                 <p className="text-sm font-black text-slate-950">Act</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
                   Track correction.
                 </p>
               </div>

@@ -1,0 +1,30 @@
+  [PASS] Suite: Observation Understanding Benchmark | Exit Code: 0
+  [PASS] Suite: PPE Standards Intelligence Benchmark | Exit Code: 0
+  [PASS] Suite: Corrective Action Intelligence Benchmark | Exit Code: 0
+  [PASS] Suite: Mobile Equipment Standards Benchmark | Exit Code: 0
+  [FAIL] Suite: Golden Hardening Scenarios Test | Exit Code: 1
+  [PASS] Suite: Inspection Intelligence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Expansion Regression | Exit Code: 0
+  [PASS] Suite: MSHA Inspection Intelligence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Adversarial Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Recovery Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Ranking Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Output Coherence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Vague Input Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Vague Output Coherence Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Mechanism Chain Hardening | Exit Code: 0
+  [PASS] Suite: HazLenz Spill/Release Citation Ranking | Exit Code: 0
+  [PASS] Suite: HazLenz Mechanism Chain Contract Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Supplemental Knowledge Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Vague Guarding Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Classify Path Regression | Exit Code: 0
+  [FAIL] Suite: HazLenz Production Path Regression | Exit Code: 1
+  [PASS] Suite: HazLenz Temporal Reconciliation Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Condition-State Invariants Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Finding-Scoped Standards Regression | Exit Code: 0
+  [PASS] Suite: HazLenz LOTO Fragment-Scoping Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Handrail/Guardrail Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Energy-Isolation Negation Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Defeated-Control / Contradiction Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Jurisdiction-Unknown Standards Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Inspection-Context / Autonomy Regression | Exit Code: 0

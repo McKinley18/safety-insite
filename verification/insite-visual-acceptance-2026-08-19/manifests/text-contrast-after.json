@@ -1,0 +1,73 @@
+{
+  "confirmed": [
+    {
+      "theme": "light",
+      "route": "/pricing",
+      "text": "Current Plan",
+      "tag": "button",
+      "cls": "inline-flex items-center justify-center rounded-xl font-black transition disabled:cursor-not-allowed disabled:",
+      "color": "rgb(100, 116, 139)",
+      "colorRaw": "rgb(100, 116, 139)",
+      "bgComputed": "rgb(226, 232, 240)",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "largeText": false,
+      "target": 4.5,
+      "computedRatio": 3.86,
+      "renderedRatio": 3.86,
+      "renderedBg": "rgb(226, 232, 240)"
+    },
+    {
+      "theme": "light",
+      "route": "/inspections",
+      "text": "Save site",
+      "tag": "button",
+      "cls": "rounded-full bg-[#102A43] px-5 py-2.5 text-sm font-black text-white disabled:opacity-50",
+      "color": "rgb(100, 116, 139)",
+      "colorRaw": "rgb(100, 116, 139)",
+      "bgComputed": "rgb(226, 232, 240)",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "largeText": false,
+      "target": 4.5,
+      "computedRatio": 3.86,
+      "renderedRatio": 3.86,
+      "renderedBg": "rgb(226, 232, 240)"
+    },
+    {
+      "theme": "light",
+      "route": "/settings",
+      "text": "Manage Subscription",
+      "tag": "button",
+      "cls": "inline-flex items-center justify-center rounded-xl font-black transition disabled:cursor-not-allowed disabled:",
+      "color": "rgb(100, 116, 139)",
+      "colorRaw": "rgb(100, 116, 139)",
+      "bgComputed": "rgb(226, 232, 240)",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "largeText": false,
+      "target": 4.5,
+      "computedRatio": 3.86,
+      "renderedRatio": 3.86,
+      "renderedBg": "rgb(226, 232, 240)"
+    },
+    {
+      "theme": "light",
+      "route": "/profile",
+      "text": "Manage Subscription",
+      "tag": "button",
+      "cls": "inline-flex items-center justify-center rounded-xl font-black transition disabled:cursor-not-allowed disabled:",
+      "color": "rgb(100, 116, 139)",
+      "colorRaw": "rgb(100, 116, 139)",
+      "bgComputed": "rgb(226, 232, 240)",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "largeText": false,
+      "target": 4.5,
+      "computedRatio": 3.86,
+      "renderedRatio": 3.86,
+      "renderedBg": "rgb(226, 232, 240)"
+    }
+  ],
+  "candidateCount": 74
+}

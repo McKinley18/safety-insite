@@ -277,7 +277,11 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
                 <div className="flex-1 space-y-5 py-5">
                   {tier.sections.map((section) => (
                     <div key={section.title}>
-                      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                      {/* The bg-[#E8F4FF] chips in this file keep #1D72B8 because that
+                          surface has no dark override and stays light; the eyebrows and
+                          table cells sit on bg-white / bg-slate-50, which globals.css
+                          flips to the dark app surface, so they take the dark counterpart. */}
+                      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8] dark:text-[#5DB7FF]">
                         {section.title}
                       </p>
 
@@ -323,7 +327,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
 
       <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="text-center">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-[#5DB7FF]">
             Why Pro Is Different
           </p>
 
@@ -357,7 +361,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
               >
                 <div className="px-3 py-3 text-slate-800">{row[0]}</div>
                 <div className="px-3 py-3 text-center text-slate-600">{row[1]}</div>
-                <div className="px-3 py-3 text-center font-black text-[#1D72B8]">{row[2]}</div>
+                <div className="px-3 py-3 text-center font-black text-[#1D72B8] dark:text-[#5DB7FF]">{row[2]}</div>
               </div>
             ))}
           </div>

@@ -967,6 +967,17 @@ body {
   color: var(--app-text-soft) !important;
 }
 
+/* slate-500 was the one muted step this guard family never covered: text-gray-500
+   is remapped below, but .text-slate-500 kept #64748B in dark and measured
+   3.75-4.21:1 against the dark surfaces it lands on (helper text under the
+   regulatory-context select, the login subtitle and field labels, "/month" on
+   pricing). The intentionally-light panels below (.week-glance-light,
+   .calendar-priority-light) declare their own !important slate-500 colour later
+   in this file, so they continue to win and stay dark-on-light. */
+.dark :where(.text-slate-500) {
+  color: var(--app-text-soft) !important;
+}
+
 .dark :where(
   .text-slate-950,
   .text-gray-950,

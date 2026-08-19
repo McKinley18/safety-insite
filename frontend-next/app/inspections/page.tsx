@@ -343,7 +343,7 @@ export default function InspectionsPage() {
                 >
                   <div className="min-w-0">
                     <div className="flex flex-col items-start gap-1">
-                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-[#5DB7FF]">
                         {workflow.eyebrow}
                       </p>
 

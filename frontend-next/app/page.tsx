@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -28,7 +28,15 @@ const useCases = [
 ];
 
 export default function MarketingHomePage() {
-  const [isSignedIn] = useState(() => hasAuthToken());
+  // hasAuthToken() reads localStorage, so it is always false during SSR but true for a
+  // signed-in visitor on the client. Seeding useState with it made the server and the
+  // first client render disagree about which CTA to show, which React reports as
+  // hydration error #418 and repairs by throwing away and re-rendering the subtree.
+  // Resolving after mount keeps the first client render identical to the server HTML.
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    setIsSignedIn(hasAuthToken());
+  }, []);
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-3 py-4 sm:px-6 sm:py-8 lg:py-10">
@@ -69,7 +77,14 @@ export default function MarketingHomePage() {
                 <AppLinkButton
                   href="/login"
                   variant="secondary"
-                  className="!flex !w-full items-center justify-center rounded-full border border-white/20 bg-white px-6 py-3 text-center text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100 sm:!w-[180px]"
+                  // This button sits on the hero gradient, which is dark navy in BOTH
+                  // themes, so it must stay white in both. `bg-white` cannot be used:
+                  // globals.css flips it to the dark app surface in dark mode
+                  // (.dark :where(.bg-white)) while !text-[#0B1320] keeps the label
+                  // near-black, which measured 1.03:1. The arbitrary-value class is not
+                  // matched by that guard, so the surface stays white and the label keeps
+                  // its 12.55:1.
+                  className="!flex !w-full items-center justify-center rounded-full border border-white/20 bg-[#FFFFFF] px-6 py-3 text-center text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100 sm:!w-[180px]"
                 >
                   Sign in
                 </AppLinkButton>
@@ -99,7 +114,12 @@ export default function MarketingHomePage() {
 
       <section className="grid gap-4 lg:grid-cols-[1fr_0.92fr]">
         <article className="rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-none sm:px-7">
-          <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+          {/* globals.css flips `bg-white` to the dark app surface in dark mode, so this
+              eyebrow lands on dark and measured 3.53:1. #5DB7FF is the established dark
+              counterpart already used by the shared SectionHeader eyebrow. The "Pro tier"
+              eyebrow below stays #1D72B8 because its bg-[#E8F4FF] card has no dark override
+              and genuinely remains light. */}
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-[#5DB7FF]">
             Why Safety InSite
           </p>
           <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-slate-900 sm:text-3xl">
@@ -158,7 +178,7 @@ export default function MarketingHomePage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white px-5 py-6 text-center shadow-none sm:px-8">
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-orange-600">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-orange-700 dark:text-orange-500">
           Professional guardrails
         </p>
         <h2 className="mx-auto mt-2 max-w-3xl text-2xl font-black tracking-[-0.04em] text-slate-900 sm:text-3xl">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -46,7 +46,15 @@ const sections = [
 ];
 
 export default function HazLenzPage() {
-  const [isSignedIn] = useState(() => hasAuthToken());
+  // hasAuthToken() reads localStorage, so it is always false during SSR but true for a
+  // signed-in visitor on the client. Seeding useState with it made the server and the
+  // first client render disagree about which CTA to show, which React reports as
+  // hydration error #418 and repairs by throwing away and re-rendering the subtree.
+  // Resolving after mount keeps the first client render identical to the server HTML.
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    setIsSignedIn(hasAuthToken());
+  }, []);
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-4 sm:px-5 lg:py-7">
