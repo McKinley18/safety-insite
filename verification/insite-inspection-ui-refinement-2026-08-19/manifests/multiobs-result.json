@@ -1,0 +1,27 @@
+{
+  "findingTitlesAfterObservation1": [
+    "Egress"
+  ],
+  "findingTitlesAfterAllObservations": [
+    "Egress",
+    "Machine guarding",
+    "Electrical",
+    "Hot work"
+  ],
+  "findingTitlesAfterReload": [
+    "Egress",
+    "Machine guarding",
+    "Electrical",
+    "Hot work"
+  ],
+  "observations": 3,
+  "activeFindings": 4,
+  "supersededFindings": 0,
+  "finalizedFindings": 4,
+  "correctiveActions": 4,
+  "reports": 1,
+  "regulatoryContext": "unknown",
+  "pdf": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/c1f80f5c-a053-4a3b-8011-3dcf3196de9d/scratchpad/multiobs/multi-observation-report.pdf",
+  "passed": true,
+  "problems": []
+}

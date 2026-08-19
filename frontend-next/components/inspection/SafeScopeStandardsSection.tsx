@@ -26,7 +26,10 @@ export function StandardCitationHeading({ citation, title }: { citation: string;
         className="group flex w-full items-start justify-between gap-2 text-left"
       >
         <span className="min-w-0">
-          <span className="block text-base font-black leading-6 text-[#1D72B8] underline decoration-dotted decoration-2 underline-offset-4 group-hover:decoration-solid">
+          {/* #1D72B8 is the light-theme link colour; against the dark surface it measured
+              3.42:1. #5DB7FF is this file's established dark counterpart (already used for the
+              detail panel border below) and measures 7.96:1 on the same background. */}
+          <span className="block text-base font-black leading-6 text-[#1D72B8] dark:text-[#5DB7FF] underline decoration-dotted decoration-2 underline-offset-4 group-hover:decoration-solid">
             {citation}
           </span>
           {!!title && (
@@ -35,7 +38,8 @@ export function StandardCitationHeading({ citation, title }: { citation: string;
             </span>
           )}
         </span>
-        <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] dark:bg-slate-800">
+        {/* Same fix: 2.97:1 against dark:bg-slate-800 before, 6.93:1 after. */}
+        <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] dark:bg-slate-800 dark:text-[#5DB7FF]">
           {expanded ? "Hide standard detail" : "Standard detail"}
         </span>
       </button>

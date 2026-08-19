@@ -31,6 +31,7 @@ interface CalendarViewRendererProps {
   formatFullDate: (date: Date) => string;
   isPersonalCalendarEvent: typeof isPersonalCalendarEvent;
   onOpenDay: (dateKey: string) => void;
+  onAddTaskForDate: (dateKey: string) => void;
   onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
   onTogglePersonalEvent: (event: SafetyCalendarEvent) => void | Promise<void>;
   deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
@@ -55,6 +56,7 @@ export function CalendarViewRenderer({
   formatFullDate,
   isPersonalCalendarEvent,
   onOpenDay,
+  onAddTaskForDate,
   onEditPersonalEvent,
   onTogglePersonalEvent,
   deleteCalendarEvent,
@@ -305,6 +307,17 @@ export function CalendarViewRenderer({
           eyebrow="Day Agenda"
           title={formatFullDate(parseLocalCalendarDate(selectedDateKey) || anchorDate)}
           description="Review scheduled work, overdue items, locations, and source details for the selected day."
+          action={
+            <AppButton
+              type="button"
+              size="sm"
+              variant="accent"
+              data-testid="add-task-for-day"
+              onClick={() => onAddTaskForDate(selectedDateKey)}
+            >
+              + Add task
+            </AppButton>
+          }
         />
                 <div className="mt-4 space-y-3">
                   {selectedEvents.length ? (

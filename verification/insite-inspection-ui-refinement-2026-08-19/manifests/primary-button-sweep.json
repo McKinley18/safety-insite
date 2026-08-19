@@ -1,0 +1,83 @@
+{
+  "rows": [
+    {
+      "scheme": "dark",
+      "route": "/safety-calendar",
+      "label": "Schedule",
+      "fontSize": 12,
+      "fontWeight": 900,
+      "disabled": false,
+      "fg": "rgb(2, 6, 24)",
+      "bg": "rgb(56, 189, 248)",
+      "ratio": 9.41,
+      "target": 4.5,
+      "passes": true
+    },
+    {
+      "scheme": "dark",
+      "route": "/profile",
+      "label": "Sign Out",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "disabled": false,
+      "fg": "rgb(2, 6, 24)",
+      "bg": "rgb(56, 189, 248)",
+      "ratio": 9.41,
+      "target": 4.5,
+      "passes": true
+    },
+    {
+      "scheme": "dark",
+      "route": "/pricing",
+      "label": "Current Plan",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "disabled": true,
+      "fg": "rgb(2, 6, 24)",
+      "bg": "rgb(30, 41, 59)",
+      "ratio": 1.38,
+      "target": 4.5,
+      "passes": true
+    },
+    {
+      "scheme": "light",
+      "route": "/safety-calendar",
+      "label": "Schedule",
+      "fontSize": 12,
+      "fontWeight": 900,
+      "disabled": false,
+      "fg": "rgb(255, 255, 255)",
+      "bg": "rgb(29, 114, 184)",
+      "ratio": 5.06,
+      "target": 4.5,
+      "passes": true
+    },
+    {
+      "scheme": "light",
+      "route": "/profile",
+      "label": "Sign Out",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "disabled": false,
+      "fg": "rgb(255, 255, 255)",
+      "bg": "rgb(29, 114, 184)",
+      "ratio": 5.06,
+      "target": 4.5,
+      "passes": true
+    },
+    {
+      "scheme": "light",
+      "route": "/pricing",
+      "label": "Current Plan",
+      "fontSize": 14,
+      "fontWeight": 900,
+      "disabled": true,
+      "fg": "rgb(100, 116, 139)",
+      "bg": "rgb(226, 232, 240)",
+      "ratio": 3.86,
+      "target": 4.5,
+      "passes": true
+    }
+  ],
+  "failures": []
+}

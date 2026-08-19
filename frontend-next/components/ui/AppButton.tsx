@@ -11,7 +11,18 @@ type AppButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClasses: Record<AppButtonVariant, string> = {
-  primary: "bg-app-primary text-white hover:bg-app-primary-hover",
+  // --app-primary inverts between themes: #1D72B8 (dark blue) in light, #38bdf8 (light sky)
+  // in dark, with an even lighter #7dd3fc hover -- but the label stayed white, measuring 2.05:1.
+  //
+  // The `!` is required, not stylistic. globals.css carries an app-wide dark legibility guard,
+  //   .dark :where(.text-white, .text-gray-900, .text-zinc-900, .text-black) {
+  //     color: var(--app-text-primary) !important; }
+  // which assumes anything marked text-white sits on a DARK surface. This button is the case
+  // that assumption does not cover, so a plain `dark:text-slate-950` loses to that !important
+  // rule. The guard is left intact for every other consumer; only the label on this fill is
+  // overridden (9.4:1). The --app-primary token itself is untouched, so the 7 non-button rules
+  // that consume it for borders and surfaces are unaffected.
+  primary: "bg-app-primary text-white dark:!text-slate-950 hover:bg-app-primary-hover",
   secondary: "app-border bg-app-surface text-app-text hover:bg-app-surface-muted",
   accent: "bg-app-warning text-black hover:opacity-90",
   danger: "border-red-200 bg-red-50 text-red-700 hover:bg-red-100",

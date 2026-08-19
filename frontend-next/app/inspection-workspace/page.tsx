@@ -63,6 +63,25 @@ function humanizeFindingStatus(status: string) {
   return FINDING_STATUS_LABELS[status] || status;
 }
 
+// `hazardKey`/`segmentKey` are internal identifiers the finding table is keyed on
+// ("egress", "mobile_equipment", "powered_industrial_trucks"). They were being rendered
+// directly as the customer-visible finding title. Prefer the human-readable values the
+// engine already produces -- hazardCategory, then the conclusion/mechanism sentence -- and
+// only ever fall back to a de-slugged key.
+function humanizeHazardKey(key: string) {
+  const words = String(key || "").replace(/[_-]+/g, " ").trim();
+  if (!words) return "Safety observation";
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
+function findingDisplayTitle(finding: { hazardCategory?: string | null; conclusion?: string | null; hazardKey: string }) {
+  const category = (finding.hazardCategory || "").trim();
+  if (category && !/^[a-z0-9_-]+$/.test(category)) return category;
+  const conclusion = (finding.conclusion || "").trim();
+  if (conclusion && conclusion.length <= 120 && !/^[a-z0-9_-]+$/.test(conclusion)) return conclusion;
+  return humanizeHazardKey(category || finding.hazardKey);
+}
+
 function materialQuestionReason(question: unknown) {
   if (!question || typeof question !== "object" || !("reason" in question)) return "";
   const reason = (question as { reason?: unknown }).reason;
@@ -338,6 +357,14 @@ export default function InspectionWorkspacePage() {
   const [selectedFindingId, setSelectedFindingId] = useState<string>("");
   const [selectedSegmentKeys, setSelectedSegmentKeys] = useState<string[]>([]);
   const [step, setStep] = useState<Step>("capture");
+  // "additional" means the capture step is collecting a SECOND (or later) observation for an
+  // inspection that already has findings. The data model already supports this -- an inspection
+  // owns many observations, each owning its own findings, and supersession is scoped to a single
+  // observationId -- so an added observation can never disturb findings captured earlier. Before
+  // this flag the capture step was reachable only as the very first thing an inspection did, so
+  // the only way to record a newly noticed hazard was to rewrite the original observation, which
+  // supersedes that observation's findings. See BASELINE/FINAL_REPORT for the audit.
+  const [captureMode, setCaptureMode] = useState<"initial" | "additional">("initial");
   const [planCode, setPlanCode] = useState<BillingTier>(() => getStoredPlanCode() as BillingTier);
   const [status, setStatus] = useState("Loading server-saved inspection…");
   const [busy, setBusy] = useState(false);
@@ -382,6 +409,26 @@ export default function InspectionWorkspacePage() {
   // resend a fragile jurisdiction string per finding.
   const jurisdiction: RegulatoryContext = inspection?.regulatoryContext || "unknown";
 
+  // Findings still in play across EVERY observation on this inspection (superseded revisions are
+  // history, not findings the reviewer has to act on).
+  const activeFindings = (inspection?.findings || []).filter((finding) => finding.status !== "superseded");
+  const activeFindingCount = activeFindings.length;
+  const reviewedFindingCount = activeFindings.filter((finding) => finding.finalReviewId).length;
+
+  // The selected finding's own persisted record, and the two customer-facing values drawn from
+  // it for the assessment lead-in. observationFragment is the sentence the engine attributed to
+  // THIS finding, so it is the honest "why" -- not a rationale reconstructed in the browser.
+  const selectedFindingDetail = activeFindings.find((finding) => finding.id === selectedFindingId) || null;
+  const selectedFindingFragment = (() => {
+    const candidate = selectedFindingDetail?.sourceCandidate as { observationFragment?: unknown } | null;
+    const fragment = candidate?.observationFragment;
+    return typeof fragment === "string" && fragment.trim() ? fragment.trim() : "";
+  })();
+  const selectedFindingRiskBand = (() => {
+    const snapshot = selectedFindingDetail?.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
+    return snapshot?.riskBand || snapshot?.overallRisk || "Not established";
+  })();
+
   async function persistRegulatoryContext(next: RegulatoryContext) {
     if (!inspection || next === jurisdiction) return inspection;
     setBusy(true);
@@ -425,8 +472,17 @@ export default function InspectionWorkspacePage() {
         setFindingIds((value.findings || [])
           .filter((finding) => finding.status !== "superseded")
           .map((finding) => finding.id));
-        setSelectedFindingId((value.findings || []).find((finding) => finding.status !== "superseded")?.id || "");
-        const persistedObservation = value.observations?.[0];
+        // Restore onto the work still outstanding: the first finding that has no completed
+        // review, falling back to the first active finding. Loading observations[0]
+        // unconditionally meant that after a reload of a multi-observation inspection the page
+        // showed observation 1's analysis while selecting a finding that could belong to
+        // observation 2 or 3 -- the same mismatch that made finalization stall.
+        const activeOnLoad = (value.findings || []).filter((finding) => finding.status !== "superseded");
+        const restoreTarget = activeOnLoad.find((finding) => !finding.finalReviewId) || activeOnLoad[0];
+        setSelectedFindingId(restoreTarget?.id || "");
+        const persistedObservation =
+          (restoreTarget && (value.observations || []).find((item) => item.id === restoreTarget.observationId))
+          || value.observations?.[0];
         const currentAnalysis = persistedObservation?.analyses
           ?.filter((item) => item.status !== "superseded")
           .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
@@ -468,6 +524,82 @@ export default function InspectionWorkspacePage() {
       );
   }, []);
 
+  // Load the observation + current analysis that a given finding actually belongs to.
+  //
+  // Findings are owned by an observation, and every write on the review/risk path
+  // (saveHumanReview, finalizePersistedFinding) is addressed by the page-level `observationId`.
+  // Once an inspection can hold more than one observation, selecting a finding without also
+  // switching that context means the reviewer confirms risk against the wrong observation:
+  // acceptReview's `durableFindings` filter (observationId === observationId) would not contain
+  // the selected finding at all and silently fell back to durableFindings[0]. In practice
+  // finalization stalled after the first finding -- 1 of 4 reviewed, 3 permanently unreviewable.
+  function loadObservationContextFor(findingId: string, source?: PersistedInspection) {
+    const snapshot = source || inspection;
+    if (!snapshot) return false;
+    const finding = (snapshot.findings || []).find((item) => item.id === findingId);
+    if (!finding || finding.observationId === observationId) return false;
+    const owning = (snapshot.observations || []).find((item) => item.id === finding.observationId);
+    const current = owning?.analyses
+      ?.filter((item) => item.status !== "superseded")
+      .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+    if (!owning || !current) return false;
+
+    setObservationId(owning.id);
+    setAnalysisId(current.id);
+    setObservation(owning.rawText);
+    setRevisionText(owning.rawText);
+    setEditingObservation(false);
+    analysisRequestVersion.current = current.requestVersion || 0;
+    const restored = current.resultSnapshot as HazLenzAnalysisResult;
+    setAnalysis(restored);
+    const candidates = restored.guidedFinding?.findingCandidates || [];
+    setSelectedSegmentKeys(
+      candidates.filter((candidate) => candidate.applicability === "direct").map(candidateKey).slice(0, 6),
+    );
+    setReviewFacts(restored.evidenceSnapshot?.facts || []);
+    if (restored.guidedFinding) {
+      setActionDraft({
+        immediateAction: restored.guidedFinding.correctiveAction.immediateAction,
+        permanentCorrection: restored.guidedFinding.correctiveAction.permanentCorrection,
+        verificationStep: restored.guidedFinding.correctiveAction.verificationStep,
+      });
+    }
+    return true;
+  }
+
+  // Selecting a finding: switch the observation context first, then apply that finding's own
+  // recorded risk to the reviewer form.
+  function selectFinding(finding: { id: string; riskSnapshot: Record<string, unknown> | null }) {
+    loadObservationContextFor(finding.id);
+    setSelectedFindingId(finding.id);
+    const findingRisk = riskSnapshotToReviewerRisk(finding.riskSnapshot);
+    setReviewerRisk(findingRisk);
+    setProposedRisk(findingRisk);
+    setReviewerRiskReason("");
+  }
+
+  // Return to the capture form to record a hazard noticed after the first analysis. Clears only
+  // the per-observation inputs; the inspection, its regulatory context, and every existing
+  // finding stay exactly as they are.
+  function beginAdditionalObservation() {
+    setObservation("");
+    setWorkArea("");
+    setWorkActivity("");
+    setEvidenceFile(null);
+    setEvidenceObjectId("");
+    setEditingObservation(false);
+    setRevisionText("");
+    setCaptureMode("additional");
+    setStep("capture");
+    setStatus("Describe the additional hazard. Your existing findings are saved and unaffected.");
+  }
+
+  function cancelAdditionalObservation() {
+    setCaptureMode("initial");
+    setStep("review");
+    setStatus("Returned to review — no new observation was recorded.");
+  }
+
   async function analyze() {
     if (!inspection || observation.trim().length < 3) return;
     setBusy(true);
@@ -508,7 +640,11 @@ export default function InspectionWorkspacePage() {
       // multi-finding observation is only one sibling's citation).
       const currentFindings = (nextInspection.findings || []).filter((finding) => finding.status !== "superseded");
       setFindingIds(currentFindings.map((finding) => finding.id));
-      setSelectedFindingId(currentFindings[0]?.id || "");
+      // Select a finding the observation just analysed actually produced. On an added observation
+      // the inspection-wide list still starts with the EARLIER observation's findings, so taking
+      // [0] would drop the reviewer back onto a finding they already reviewed.
+      const ownFindings = currentFindings.filter((finding) => finding.observationId === savedObservation.id);
+      setSelectedFindingId((ownFindings[0] || currentFindings[0])?.id || "");
       setReviewFacts(result.evidenceSnapshot?.facts || []);
       if (result.guidedFinding) {
         const proposal = {
@@ -540,7 +676,12 @@ export default function InspectionWorkspacePage() {
       }
       setInspection(nextInspection);
       setStep("review");
-      setStatus("HazLenz assessment saved — review before finalizing.");
+      setStatus(
+        captureMode === "additional"
+          ? "Additional hazard analysed and added to this inspection — earlier findings are unchanged."
+          : "HazLenz assessment saved — review before finalizing.",
+      );
+      setCaptureMode("initial");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Analysis was not saved.");
     } finally {
@@ -869,6 +1010,10 @@ export default function InspectionWorkspacePage() {
       setInspection(refreshed);
       const remaining = activeFindings.filter((finding) => !finding.finalReviewId);
       if (remaining.length > 0) {
+        // The next unreviewed finding frequently belongs to a DIFFERENT observation than the one
+        // just finalized, so its observation/analysis context must be loaded before it can be
+        // reviewed -- otherwise the auto-advance lands on a finding this page cannot finalize.
+        loadObservationContextFor(remaining[0].id, refreshed);
         setSelectedFindingId(remaining[0].id);
         // Auto-advancing to the next unreviewed finding must reset the risk-proposal
         // form to THAT finding's own computed risk, exactly like the manual "Review
@@ -962,7 +1107,8 @@ export default function InspectionWorkspacePage() {
     <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
       <header>
         <p className="text-xs font-bold uppercase tracking-widest text-sky-600">Safety InSite</p>
-        <h1 className="mt-2 text-3xl font-black">Server-saved inspection</h1>
+        {/* "Server-saved inspection" described our persistence model, not the customer's task. */}
+        <h1 className="mt-2 text-3xl font-black">{inspection?.title || "Inspection"}</h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
           HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified
           safety professional must verify every finding before finalization.
@@ -984,9 +1130,16 @@ export default function InspectionWorkspacePage() {
 
       {inspection && (
         <section className="guided-card">
-          <p className="text-xs font-bold uppercase tracking-wider">Inspection</p>
-          <h2 className="mt-1 text-xl font-bold">{inspection.title}</h2>
+          <p className="text-xs font-bold uppercase tracking-wider">This inspection</p>
           <p className="mt-1 text-sm">Status: {humanizeInspectionStatus(inspection.status)} · revision {inspection.version}</p>
+          {activeFindingCount > 0 && (
+            <p className="mt-1 text-sm" data-testid="inspection-finding-progress">
+              Findings: <strong>{activeFindingCount}</strong> captured · {reviewedFindingCount} reviewed
+              {reviewedFindingCount < activeFindingCount
+                ? ` · ${activeFindingCount - reviewedFindingCount} still need your review`
+                : " · all reviewed"}
+            </p>
+          )}
           <p className="mt-1 text-sm" data-testid="inspection-regulatory-context">
             Regulatory context: <strong>{regulatoryContextLabel(jurisdiction)}</strong>
             {jurisdiction === "unknown"
@@ -998,6 +1151,20 @@ export default function InspectionWorkspacePage() {
 
       {step === "capture" && inspection && (
         <section className="guided-card space-y-3">
+          {captureMode === "additional" && (
+            <div className="guided-subcard space-y-2" data-testid="additional-observation-banner">
+              <h2 className="font-black">Add another finding</h2>
+              <p className="guided-muted text-sm">
+                Describe the additional hazard you observed. It is added to this same inspection and
+                keeps the regulatory context already set — {regulatoryContextLabel(jurisdiction)}.
+                The {activeFindingCount} finding{activeFindingCount === 1 ? "" : "s"} you have
+                already captured stay exactly as they are.
+              </p>
+              <button type="button" disabled={busy} onClick={cancelAdditionalObservation} className="guided-secondary-button">
+                Cancel and go back to review
+              </button>
+            </div>
+          )}
           <label htmlFor="evidence" className="block font-bold">
             Photo evidence <span className="font-normal text-slate-500">(optional)</span>
           </label>
@@ -1054,7 +1221,7 @@ export default function InspectionWorkspacePage() {
             placeholder="Describe only what was directly observed, including controls and uncertainty."
           />
           <button disabled={busy || observation.trim().length < 3} onClick={analyze} className="min-h-11 rounded-xl bg-sky-700 px-5 font-bold text-white disabled:opacity-50">
-            Save and review with HazLenz AI
+            {captureMode === "additional" ? "Analyze and add this finding" : "Save and review with HazLenz AI"}
           </button>
         </section>
       )}
@@ -1104,13 +1271,32 @@ export default function InspectionWorkspacePage() {
             )}
           </div>
           {inspection.findings && inspection.findings.length > 0 && (
-            <section aria-label="Persisted findings" className="guided-subcard space-y-2">
-              <h3 className="font-black">Persisted hazard findings</h3>
+            <section aria-label="Findings in this inspection" className="guided-subcard space-y-2">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h3 className="font-black">
+                    Findings in this inspection ({activeFindingCount})
+                  </h3>
+                  <p className="guided-muted text-sm">
+                    {reviewedFindingCount} of {activeFindingCount} reviewed. Select a finding to
+                    review its standard, risk, and corrective action.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={beginAdditionalObservation}
+                  data-testid="add-finding"
+                  className="guided-primary-button"
+                >
+                  + Add finding
+                </button>
+              </div>
               {inspection.findings
                 .filter((finding) => finding.status !== "superseded")
                 .map((finding) => (
                   <article key={finding.id} className={`rounded-lg border p-3 ${selectedFindingId === finding.id ? "border-[var(--guided-focus)] bg-[var(--guided-info)] text-[var(--guided-text)]" : "border-slate-300"}`}>
-                    <p className="font-bold">{finding.hazardCategory || finding.hazardKey}</p>
+                    <p className="font-bold">{findingDisplayTitle(finding)}</p>
                     <p className="text-xs">
                       {/* Reviewer-confirmed risk (the "Confirm risk and finalize finding" flow above) persists the
                           chosen band under riskSnapshot.overallRisk, not riskBand -- only the earlier, system-generated
@@ -1129,13 +1315,8 @@ export default function InspectionWorkspacePage() {
                       <p className="mt-1 text-xs text-slate-500">Finding ID: {finding.id}</p>
                       <p className="text-xs text-slate-500">Analysis: {finding.selectedAnalysisId || "pending"}</p>
                     </details>
-                    <button type="button" onClick={() => {
-                      setSelectedFindingId(finding.id);
-                      const findingRisk = riskSnapshotToReviewerRisk(finding.riskSnapshot);
-                      setReviewerRisk(findingRisk);
-                      setProposedRisk(findingRisk);
-                      setReviewerRiskReason("");
-                    }} className="mt-2 min-h-10 rounded-lg border border-slate-700 px-3 font-bold">
+                    <button type="button" onClick={() => selectFinding(finding)}
+                      className="mt-2 min-h-10 rounded-lg border border-slate-700 px-3 font-bold">
                       {selectedFindingId === finding.id ? "Reviewing this finding" : "Review this finding"}
                     </button>
                   </article>
@@ -1181,45 +1362,6 @@ export default function InspectionWorkspacePage() {
               </button>
             )}
           </div>
-          {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).length > 0 && (
-            <div className="guided-subcard">
-              <h3 className="font-black">Clarification</h3>
-              <p className="guided-muted mt-1 text-sm">
-                {(() => {
-                  const list = (analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []) as Array<{ decisionCritical?: boolean }>;
-                  const critical = list.filter((item) => item.decisionCritical).length;
-                  return critical > 0
-                    ? `${critical} of ${list.length} could change the finding, standard, or risk; the rest only raise confidence. None blocks your review.`
-                    : `${list.length} optional question${list.length === 1 ? "" : "s"} — answering raises confidence in the standard shown below; none blocks your review.`;
-                })()}
-              </p>
-              {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).map((question) => (
-                <fieldset key={question.id} className="mt-3">
-                  <legend className="font-semibold">
-                    {question.question}{" "}
-                    <span className={`ml-1 rounded px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide ${(question as { decisionCritical?: boolean }).decisionCritical ? "bg-amber-100 text-amber-900" : "bg-slate-100 text-slate-600"}`}>
-                      {(question as { decisionCritical?: boolean }).decisionCritical ? "Decision-critical" : "Optional"}
-                    </span>
-                  </legend>
-                  {materialQuestionReason(question) && (
-                    <p className="guided-muted mt-1 text-sm">{materialQuestionReason(question)}</p>
-                  )}
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {(question.options || ["Yes", "No", "Not sure"]).map((option) => (
-                      <button
-                        key={option}
-                        disabled={busy}
-                        onClick={() => reanalyze({ questionId: question.id, answer: option })}
-                        className="min-h-11 rounded-lg border border-slate-500 px-4 font-semibold"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-              ))}
-            </div>
-          )}
           {analysis.regulatoryContext && (
             <p className="text-sm" data-testid="hazlenz-regulatory-context">
               {analysis.regulatoryContext.provenance === "USER_CONFIRMED" && (
@@ -1243,6 +1385,35 @@ export default function InspectionWorkspacePage() {
                 <>Regulatory context is <strong>not established</strong>; standards below are shown as conditional candidates until the governing agency is known.</>
               )}
             </p>
+          )}
+          {/* Assessment lead-in for the SELECTED finding: what HazLenz identified, the evidence
+              it read it from, and the risk -- in that order, before the citation. Everything here
+              is existing persisted output (hazard title, the finding's own observationFragment,
+              its riskSnapshot); no new regulatory reasoning is produced in the frontend. */}
+          {selectedFindingDetail && (
+            <div className="guided-subcard space-y-3" data-testid="hazlenz-assessment">
+              <div>
+                <p className="guided-eyebrow">HazLenz assessment</p>
+                <h3 className="mt-1 text-lg font-black">{findingDisplayTitle(selectedFindingDetail)}</h3>
+              </div>
+              {selectedFindingFragment && (
+                <div>
+                  <h4 className="font-bold">Why HazLenz flagged this</h4>
+                  <p className="guided-muted mt-1 text-sm">
+                    From what you recorded: “{selectedFindingFragment}”
+                  </p>
+                </div>
+              )}
+              <div>
+                <h4 className="font-bold">Risk</h4>
+                <p className="mt-1 text-sm">
+                  <strong>{selectedFindingRiskBand}</strong>
+                  {selectedFindingRiskBand === "Not established"
+                    ? " — confirm severity and likelihood on the next step."
+                    : " — assessed for this finding on its own, independent of the others."}
+                </p>
+              </div>
+            </div>
           )}
           <div className="guided-standard-card">
             <p className="guided-eyebrow">
@@ -1283,6 +1454,47 @@ export default function InspectionWorkspacePage() {
               </>
             )}
           </div>
+          {/* Questions come after the assessment and its standard: they refine an answer the
+              reviewer can already see, and none of them blocks review. */}
+          {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).length > 0 && (
+            <div className="guided-subcard">
+              <h3 className="font-black">Clarification</h3>
+              <p className="guided-muted mt-1 text-sm">
+                {(() => {
+                  const list = (analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []) as Array<{ decisionCritical?: boolean }>;
+                  const critical = list.filter((item) => item.decisionCritical).length;
+                  return critical > 0
+                    ? `${critical} of ${list.length} could change the finding, standard, or risk; the rest only raise confidence. None blocks your review.`
+                    : `${list.length} optional question${list.length === 1 ? "" : "s"} — answering raises confidence in the standard shown below; none blocks your review.`;
+                })()}
+              </p>
+              {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).map((question) => (
+                <fieldset key={question.id} className="mt-3">
+                  <legend className="font-semibold">
+                    {question.question}{" "}
+                    <span className={`ml-1 rounded px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide ${(question as { decisionCritical?: boolean }).decisionCritical ? "bg-amber-100 text-amber-900" : "bg-slate-100 text-slate-600"}`}>
+                      {(question as { decisionCritical?: boolean }).decisionCritical ? "Decision-critical" : "Optional"}
+                    </span>
+                  </legend>
+                  {materialQuestionReason(question) && (
+                    <p className="guided-muted mt-1 text-sm">{materialQuestionReason(question)}</p>
+                  )}
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {(question.options || ["Yes", "No", "Not sure"]).map((option) => (
+                      <button
+                        key={option}
+                        disabled={busy}
+                        onClick={() => reanalyze({ questionId: question.id, answer: option })}
+                        className="min-h-11 rounded-lg border border-slate-500 px-4 font-semibold"
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+            </div>
+          )}
           {(analysis.guidedFinding?.multiHazardReview?.requiresSplitReview || decompositionHazards(analysis).length > 1) && (
           <div className="guided-info-panel space-y-3" role="group" aria-labelledby="multi-hazard-heading">
               <div>

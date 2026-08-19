@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { AppButton } from "@/components/ui/AppButton";
@@ -146,6 +146,8 @@ function SafetyCalendarPageInner() {
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDate, setTaskDate] = useState(getTodayDateKey());
+  const taskTitleRef = useRef<HTMLInputElement | null>(null);
+  const taskFormRef = useRef<HTMLDivElement | null>(null);
   const [taskPriority, setTaskPriority] = useState("Medium");
   const [taskLocation, setTaskLocation] = useState("");
   const [taskMessage, setTaskMessage] = useState("");
@@ -383,6 +385,24 @@ function SafetyCalendarPageInner() {
     setTaskMessage("Completed personal tasks cleared.");
   }
 
+  // Scheduling a task is "for the day I am looking at". The date field previously defaulted to
+  // today and never moved, so selecting a day and pressing Schedule silently filed the task
+  // against today's date. Manually editing the date input still overrides this until the next
+  // day is selected.
+  useEffect(() => {
+    setTaskDate(selectedDateKey);
+  }, [selectedDateKey]);
+
+  // Explicit "Add task" affordance on the day itself: prefill that date, then move focus to
+  // the title field so the user lands on the one thing still to type.
+  function startTaskForDate(dateKey: string) {
+    setSelectedDateKey(dateKey);
+    setTaskDate(dateKey);
+    setTaskMessage("");
+    taskFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    window.setTimeout(() => taskTitleRef.current?.focus(), 250);
+  }
+
   function openDateInDayView(dateKey: string) {
     const date = parseLocalCalendarDate(dateKey);
     if (date) setAnchorDate(date);
@@ -419,8 +439,16 @@ function SafetyCalendarPageInner() {
       setTaskTitle("");
       setTaskLocation("");
       setTaskPriority("Medium");
-      setTaskDate(getTodayDateKey());
-      setTaskMessage("Personal task scheduled.");
+      // Stay on the day just scheduled rather than snapping the field back to today, so
+      // adding several tasks to the same day does not re-enter the date every time.
+      setTaskDate(task.date);
+      // parseLocalCalendarDate builds a LOCAL midnight Date; `new Date("YYYY-MM-DD")` would
+      // parse as UTC and render as the previous day west of Greenwich.
+      setTaskMessage(
+        taskDateObject
+          ? `Task scheduled for ${formatFullDate(taskDateObject)}.`
+          : "Personal task scheduled.",
+      );
     } catch (error) {
       setTaskMessage(error instanceof Error ? error.message : "Unable to schedule task.");
     }
@@ -478,12 +506,14 @@ function SafetyCalendarPageInner() {
           )}
         </div>
 
-        <div className="mt-2.5 grid gap-1.5 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
+        <div ref={taskFormRef} className="mt-2.5 grid gap-1.5 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
           <AppInput
+            ref={taskTitleRef}
             value={taskTitle}
             onChange={(event) => setTaskTitle(event.target.value)}
             placeholder="Task title"
             fieldSize="sm"
+            data-testid="task-title"
           />
           <AppInput
             type="date"
@@ -611,6 +641,7 @@ function SafetyCalendarPageInner() {
             formatFullDate={formatFullDate}
             isPersonalCalendarEvent={isPersonalCalendarEvent}
             onOpenDay={openDateInDayView}
+            onAddTaskForDate={startTaskForDate}
             onEditPersonalEvent={beginEditPersonalTask}
             onTogglePersonalEvent={togglePersonalTaskComplete}
             deleteCalendarEvent={deleteCalendarEvent}

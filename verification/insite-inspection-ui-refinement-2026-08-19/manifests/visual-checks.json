@@ -1,0 +1,149 @@
+{
+  "results": [
+    {
+      "viewport": "light",
+      "checks": [
+        {
+          "route": "inspection-workspace-review",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 0,
+          "contrastSkipped": 27,
+          "lowContrastSamples": [],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(241, 245, 249)"
+        },
+        {
+          "route": "add-finding-capture",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 1,
+          "contrastSkipped": 17,
+          "lowContrastSamples": [
+            {
+              "text": "Analyze and add this finding",
+              "color": "rgb(100, 116, 139)",
+              "bg": "rgb(226, 232, 240)",
+              "ratio": 3.86,
+              "size": 16
+            }
+          ],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(241, 245, 249)"
+        },
+        {
+          "route": "calendar-day",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 0,
+          "contrastSkipped": 25,
+          "lowContrastSamples": [],
+          "smallTouchTargets": 1,
+          "bodyBg": "rgb(241, 245, 249)"
+        }
+      ]
+    },
+    {
+      "viewport": "dark",
+      "checks": [
+        {
+          "route": "inspection-workspace-review",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 1,
+          "contrastSkipped": 22,
+          "lowContrastSamples": [
+            {
+              "text": "29 CFR 1910.36",
+              "color": "rgb(29, 114, 184)",
+              "bg": "rgb(15, 27, 45)",
+              "ratio": 3.42,
+              "size": 16
+            }
+          ],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(7, 17, 31)"
+        },
+        {
+          "route": "add-finding-capture",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 0,
+          "contrastSkipped": 17,
+          "lowContrastSamples": [],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(7, 17, 31)"
+        },
+        {
+          "route": "calendar-day",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 1,
+          "contrastSkipped": 26,
+          "lowContrastSamples": [
+            {
+              "text": "Schedule",
+              "color": "rgb(248, 250, 252)",
+              "bg": "rgb(56, 189, 248)",
+              "ratio": 2.05,
+              "size": 12
+            }
+          ],
+          "smallTouchTargets": 1,
+          "bodyBg": "rgb(7, 17, 31)"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "checks": [
+        {
+          "route": "inspection-workspace-review",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 0,
+          "contrastSkipped": 21,
+          "lowContrastSamples": [],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(241, 245, 249)"
+        },
+        {
+          "route": "add-finding-capture",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 1,
+          "contrastSkipped": 11,
+          "lowContrastSamples": [
+            {
+              "text": "Analyze and add this finding",
+              "color": "rgb(100, 116, 139)",
+              "bg": "rgb(226, 232, 240)",
+              "ratio": 3.86,
+              "size": 16
+            }
+          ],
+          "smallTouchTargets": 0,
+          "bodyBg": "rgb(241, 245, 249)"
+        },
+        {
+          "route": "calendar-day",
+          "horizontalOverflow": false,
+          "transparentBody": false,
+          "lowContrastText": 0,
+          "contrastSkipped": 21,
+          "lowContrastSamples": [],
+          "smallTouchTargets": 1,
+          "bodyBg": "rgb(241, 245, 249)"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "problems": [
+    "light/add-finding-capture: 1 low-contrast text node(s)",
+    "dark/inspection-workspace-review: 1 low-contrast text node(s)",
+    "dark/calendar-day: 1 low-contrast text node(s)",
+    "mobile/add-finding-capture: 1 low-contrast text node(s)",
+    "mobile/calendar-day: 1 control(s) under 44px"
+  ]
+}

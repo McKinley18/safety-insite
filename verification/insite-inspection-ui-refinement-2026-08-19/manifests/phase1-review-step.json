@@ -1,0 +1,42 @@
+{
+  "observation": "In the north warehouse aisle the emergency exit door is blocked by three stacked pallets, and a 55-gallon drum of solvent next to it has no hazard label. A forklift was operating in the same aisle while employees walked through.",
+  "workspaceHeading": "Server-saved inspection",
+  "nestedMainLandmarks": 2,
+  "stepLabels": [
+    "1. Capture",
+    "2. Review",
+    "3. Risk",
+    "4. Action",
+    "5. Complete"
+  ],
+  "findingCardsRendered": 3,
+  "reviewStepButtons": [
+    "UA",
+    "Revise observation",
+    "Reanalyze with HazLenz AI",
+    "Reviewing this finding",
+    "Review this finding",
+    "Review this finding",
+    "Re-run after fact corrections",
+    "Confirm for this inspection",
+    "29 CFR 1910.1200\nOSHA hazard communication labeling\nSTANDARD DETAIL",
+    "Continue to risk review",
+    "",
+    "0\n1\nIssue",
+    ""
+  ],
+  "reviewStepLinks": [
+    "",
+    "Home",
+    "Inspect",
+    "Reports",
+    "Calendar",
+    "Settings"
+  ],
+  "addFindingAffordancesFound": [],
+  "mentionsAddFinding": false,
+  "internalTerminologyOnScreen": [
+    "Server-saved inspection",
+    "Persisted hazard findings"
+  ]
+}
