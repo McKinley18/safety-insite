@@ -1,0 +1,175 @@
+{
+  "log": [
+    {
+      "name": "[Fall protection] Standard detail opens an \"Official regulation text\" panel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Fall protection] detail panel does not fabricate text when unavailable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Fall protection] citation unchanged after detail round-trip",
+      "ok": true,
+      "detail": "29 CFR 1926.501 -> 29 CFR 1926.501"
+    },
+    {
+      "name": "[Fall protection] backing state unchanged after detail round-trip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Egress] Standard detail opens an \"Official regulation text\" panel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Egress] detail panel does not fabricate text when unavailable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Egress] citation unchanged after detail round-trip",
+      "ok": true,
+      "detail": "29 CFR 1926.34(a) -> 29 CFR 1926.34(a)"
+    },
+    {
+      "name": "[Egress] backing state unchanged after detail round-trip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Excavation] Standard detail opens an \"Official regulation text\" panel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Excavation] detail panel does not fabricate text when unavailable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[Excavation] citation unchanged after detail round-trip",
+      "ok": true,
+      "detail": "29 CFR 1926.652(a)(1) -> 29 CFR 1926.652(a)(1)"
+    },
+    {
+      "name": "[Excavation] backing state unchanged after detail round-trip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "switching findings changes the rendered citation",
+      "ok": true,
+      "detail": "29 CFR 1926.501 vs 29 CFR 1926.652(a)(1)"
+    },
+    {
+      "name": "returning to a finding restores its own citation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "returning to a finding restores its own backing state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no stale content from the other standard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[light] 1910.36 is the rendered citation",
+      "ok": true,
+      "detail": "29 CFR 1910.36"
+    },
+    {
+      "name": "[light] NOT marked \"Verified standard text\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[light] no \"starter-unverified\" string anywhere in the UI",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[light] no \"corpus\" / backing vocabulary leaked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[dark] 1910.36 is the rendered citation",
+      "ok": true,
+      "detail": "29 CFR 1910.36"
+    },
+    {
+      "name": "[dark] NOT marked \"Verified standard text\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[dark] no \"starter-unverified\" string anywhere in the UI",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[dark] no \"corpus\" / backing vocabulary leaked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[mobile] 1910.36 is the rendered citation",
+      "ok": true,
+      "detail": "29 CFR 1910.36"
+    },
+    {
+      "name": "[mobile] NOT marked \"Verified standard text\"",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[mobile] no \"starter-unverified\" string anywhere in the UI",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[mobile] no \"corpus\" / backing vocabulary leaked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "standard-detail control meets a usable tap height (>=24px)",
+      "ok": true,
+      "detail": "h=68"
+    },
+    {
+      "name": "finding review control meets 40px tap height",
+      "ok": true,
+      "detail": "h=40"
+    },
+    {
+      "name": "no horizontal page scroll with the detail panel open",
+      "ok": true,
+      "detail": "{\"doc\":390,\"win\":390}"
+    },
+    {
+      "name": "mobile: returning from detail preserves the finding",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile: returning from detail preserves the backing state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no horizontal page scroll on the workflow",
+      "ok": true,
+      "detail": "{\"doc\":390,\"win\":390}"
+    }
+  ],
+  "failures": []
+}

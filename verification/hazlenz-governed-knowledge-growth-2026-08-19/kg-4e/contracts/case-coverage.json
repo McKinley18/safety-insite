@@ -1,0 +1,324 @@
+{
+  "artifact": "kg-4e/contracts/case-coverage.json",
+  "generatedBy": "KG-4E Phase 2",
+  "note": "Which shadow mismatch category each mirrored case actually exercised. READ FROM THE EMITTED TELEMETRY of the real SHADOW run, never asserted by the harness. Correlation ids are matched to cases by request order, corroborated by citation content.",
+  "casesRun": 8,
+  "casesEmittingComparisons": 7,
+  "caseWithNoComparisons": {
+    "case": "CONTROL-01",
+    "why": "an affirmatively controlled observation produces no citation, so the governed resolver is never asked. A negative control, and it still produces a full report."
+  },
+  "cases": [
+    {
+      "case": "FALL-01",
+      "correlationId": "74b77cdb-c304-435e-8a06-8b8344ead94e",
+      "comparisons": 2,
+      "citations": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.502"
+      ],
+      "mismatch": {
+        "EXACT_MATCH": 1,
+        "GOVERNED_MISSING": 1
+      },
+      "governedBackingState": {
+        "APPROVED_EXACT": 1,
+        "NOT_IN_RELEASE": 1
+      },
+      "applicability": {
+        "SUPPORTED": 1,
+        "UNCERTAIN": 1
+      },
+      "severity": {
+        "INFORMATIONAL": 2
+      },
+      "mixedGovernedStates": true,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 2
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "GUARD-01",
+      "correlationId": "4635aeb4-9d81-46d9-b7db-3057e40f9513",
+      "comparisons": 4,
+      "citations": [
+        "29 CFR 1910.215",
+        "1910.212(a)(1)",
+        "1910.219",
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "mismatch": {
+        "GOVERNED_MISSING": 1,
+        "APPLICABILITY_DIFFERENCE": 2,
+        "EXACT_MATCH": 1
+      },
+      "governedBackingState": {
+        "NOT_IN_RELEASE": 1,
+        "APPROVED_EXACT": 3
+      },
+      "applicability": {
+        "UNCERTAIN": 3,
+        "SUPPORTED": 1
+      },
+      "severity": {
+        "INFORMATIONAL": 2,
+        "REVIEW": 2
+      },
+      "mixedGovernedStates": true,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 4
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "LOTO-01",
+      "correlationId": "f1929b42-7f70-47f1-be2b-b975b88346c0",
+      "comparisons": 1,
+      "citations": [
+        "29 CFR 1910.147"
+      ],
+      "mismatch": {
+        "EXACT_MATCH": 1
+      },
+      "governedBackingState": {
+        "APPROVED_EXACT": 1
+      },
+      "applicability": {
+        "SUPPORTED": 1
+      },
+      "severity": {
+        "INFORMATIONAL": 1
+      },
+      "mixedGovernedStates": false,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 1
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "MSHA-01",
+      "correlationId": "a74f12ec-c55a-46fa-84b7-c039e9ccb5f0",
+      "comparisons": 4,
+      "citations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)",
+        "30 CFR 56.14132"
+      ],
+      "mismatch": {
+        "GOVERNED_MISSING": 1,
+        "GRANULARITY_DIFFERENCE": 1,
+        "APPLICABILITY_DIFFERENCE": 2
+      },
+      "governedBackingState": {
+        "NOT_IN_RELEASE": 1,
+        "APPROVED_SECTION_ONLY": 1,
+        "APPROVED_EXACT": 2
+      },
+      "applicability": {
+        "UNCERTAIN": 4
+      },
+      "severity": {
+        "INFORMATIONAL": 1,
+        "REVIEW": 3
+      },
+      "mixedGovernedStates": true,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 4
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "ELEC-01",
+      "correlationId": "e0c06df5-1ace-4bbd-a234-6707dd78d818",
+      "comparisons": 4,
+      "citations": [
+        "29 CFR 1910.303",
+        "29 CFR 1910.305(g)(2)(iii)",
+        "29 CFR 1910.334(a)(2)(ii)",
+        "29 CFR 1910.305(g)"
+      ],
+      "mismatch": {
+        "EXACT_MATCH": 1,
+        "GOVERNED_MISSING": 3
+      },
+      "governedBackingState": {
+        "APPROVED_EXACT": 1,
+        "NOT_IN_RELEASE": 3
+      },
+      "applicability": {
+        "SUPPORTED": 1,
+        "UNCERTAIN": 3
+      },
+      "severity": {
+        "INFORMATIONAL": 4
+      },
+      "mixedGovernedStates": true,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 4
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "MULTI-01",
+      "correlationId": "49122c8b-7d8b-45ab-8f38-f774b0b60131",
+      "comparisons": 8,
+      "citations": [
+        "29 CFR 1910.1200",
+        "29 CFR 1910.28(b)(1)",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200(f)(6)",
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.28(b)(3)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1910.28"
+      ],
+      "mismatch": {
+        "EXACT_MATCH": 1,
+        "GRANULARITY_DIFFERENCE": 5,
+        "APPLICABILITY_DIFFERENCE": 2
+      },
+      "governedBackingState": {
+        "APPROVED_EXACT": 3,
+        "APPROVED_SECTION_ONLY": 5
+      },
+      "applicability": {
+        "SUPPORTED": 5,
+        "UNCERTAIN": 3
+      },
+      "severity": {
+        "INFORMATIONAL": 1,
+        "REVIEW": 7
+      },
+      "mixedGovernedStates": true,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 8
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    },
+    {
+      "case": "SILICA-01",
+      "correlationId": "3c256b33-0b99-49d7-94b8-469f0a38b082",
+      "comparisons": 1,
+      "citations": [
+        "29 CFR 1926.1153"
+      ],
+      "mismatch": {
+        "APPLICABILITY_DIFFERENCE": 1
+      },
+      "governedBackingState": {
+        "APPROVED_EXACT": 1
+      },
+      "applicability": {
+        "UNCERTAIN": 1
+      },
+      "severity": {
+        "REVIEW": 1
+      },
+      "mixedGovernedStates": false,
+      "fallbackState": {
+        "LEGACY_TEXT_UNVERIFIED": 1
+      },
+      "allProvenanceNull": true,
+      "allOutputInvariant": true,
+      "noCitationSubstituted": true
+    }
+  ],
+  "requiredCoverage": {
+    "1_approved_exact_governed_standard": {
+      "satisfiedBy": [
+        "FALL-01",
+        "GUARD-01",
+        "LOTO-01",
+        "ELEC-01",
+        "MULTI-01"
+      ],
+      "comparisons": 5
+    },
+    "2_expected_governed_missing_fallback": {
+      "satisfiedBy": [
+        "FALL-01",
+        "GUARD-01",
+        "MSHA-01",
+        "ELEC-01"
+      ],
+      "comparisons": 6
+    },
+    "3_granularity_difference": {
+      "satisfiedBy": [
+        "MSHA-01",
+        "MULTI-01"
+      ],
+      "comparisons": 6
+    },
+    "4_applicability_difference": {
+      "satisfiedBy": [
+        "GUARD-01",
+        "MSHA-01",
+        "MULTI-01",
+        "SILICA-01"
+      ],
+      "comparisons": 7
+    },
+    "5_multi_finding_mixed_case": {
+      "multiFindingReports": [
+        "GUARD-01 (2 findings)",
+        "MULTI-01 (2 findings)"
+      ],
+      "analysesWithMixedGovernedStates": [
+        "FALL-01",
+        "GUARD-01",
+        "MSHA-01",
+        "ELEC-01",
+        "MULTI-01"
+      ]
+    }
+  },
+  "totals": {
+    "events": 24,
+    "distinctEventKeys": 24,
+    "duplicateEvents": 0,
+    "mismatch": {
+      "EXACT_MATCH": 5,
+      "GOVERNED_MISSING": 6,
+      "APPLICABILITY_DIFFERENCE": 7,
+      "GRANULARITY_DIFFERENCE": 6
+    },
+    "severity": {
+      "INFORMATIONAL": 11,
+      "REVIEW": 13
+    },
+    "rootCause": {
+      "NONE": 5,
+      "EXPECTED_FALLBACK": 6,
+      "APPLICABILITY_EVIDENCE": 7,
+      "CITATION_GRANULARITY": 6
+    },
+    "governedBackingState": {
+      "APPROVED_EXACT": 12,
+      "NOT_IN_RELEASE": 6,
+      "APPROVED_SECTION_ONLY": 6
+    },
+    "fallbackState": {
+      "LEGACY_TEXT_UNVERIFIED": 24
+    },
+    "blockingMismatches": 0,
+    "resolverHealth": {
+      "OK": 24
+    },
+    "meanLatencyMs": 0.667
+  }
+}

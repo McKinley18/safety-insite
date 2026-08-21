@@ -1,0 +1,304 @@
+{
+  "generatedBy": "kg4d-integrated-shadow-invariance.mjs",
+  "api": "http://127.0.0.1:4350",
+  "app": "http://127.0.0.1:3350",
+  "views": [
+    "light",
+    "dark",
+    "mobile",
+    "mobile-dark"
+  ],
+  "passed": 128,
+  "failed": 0,
+  "forbiddenTermCount": 43,
+  "results": {
+    "light": {
+      "shadow": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      },
+      "legacy": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      }
+    },
+    "light-reload": {
+      "shadow": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      },
+      "legacy": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      }
+    },
+    "dark": {
+      "shadow": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      },
+      "legacy": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      }
+    },
+    "dark-reload": {
+      "shadow": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      },
+      "legacy": {
+        "textLength": 3192,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "Home Inspect Reports Calendar Settings Live K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review"
+      }
+    },
+    "mobile": {
+      "shadow": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      },
+      "legacy": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      }
+    },
+    "mobile-reload": {
+      "shadow": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      },
+      "legacy": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      }
+    },
+    "mobile-dark": {
+      "shadow": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      },
+      "legacy": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      }
+    },
+    "mobile-dark-reload": {
+      "shadow": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      },
+      "legacy": {
+        "textLength": 3234,
+        "cardCount": 1,
+        "citations": [
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.300(b)(2)",
+          "29 CFR 1926.451(g)(1)",
+          "29 CFR 1926.501",
+          "29 CFR 1926.300(b)(2)"
+        ],
+        "badges": [],
+        "confidences": [
+          "High"
+        ],
+        "verifiedBadgePresent": false,
+        "normalizedText": "K BETA SAFETY INSITE KG-4D Browser Inspection HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified safety professional must verify every finding before finalization. 1. Capture 2. Review 3. Risk 4. Action 5. Complete Saved to Safety InSite THIS INSPECTION Status: Draft · revision 1 Findings: 2 captured · 0 reviewed · 2 still need your review Regulatory context: Regulatory context not established — HazLenz keeps standards conditional and will ask once if the agency matters. HazLenz assessment — review before finalizing HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below; a qualified human review is recorded when you finalize each finding. Current observation Revise the persisted observation before requesting a new HazLenz analysis. Revise observation A worker on a scaffold at about 12 feet has no guardrail and no harness anchored, and the nearby bench grinder is missing its tongue guard. Reanalyze with HazLenz AI Findings in this inspection (2) 0 of 2 reviewed. Select a finding to review its standard, risk, and corrective action. + Add finding Machine guarding Risk: Critical (independent of other findings from this observation) Pending review · Review required Advanced details Reviewing this finding Hot work Risk: Moderate (independent of other findings from this observation) Pending review · Review required Advanced details Review this finding What HazLenz understood Correct any extracted fact before accepting the advisory result. Unknown facts remain unknown; they are not treated as observed. Standards evaluated under OSHA — Construction (set for this inspection). HAZLENZ ASSESSMENT Machine guarding Why HazLenz flagged this From what you recorded: “the nearby bench grinder is missing its tongue guard” Risk Critical — assessed for this finding on its own, independent of the others. PRIMARY STANDARD 29 CFR 1926.300(b)(2) Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact STANDARD DETAIL HAZLENZ STANDARD SUMMARY Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)). Why HazLenz selected this Supported by submitted evidence for OSHA Construction moving-part guarding of equipment; qualified review remains required. Confidence: High Multiple distinct hazards detected. Split materially distinct hazard mechanisms into separate findings; merge duplicate obligations. Choose the hazards to preserve as separate findings OSHA Construction scaffold fall protection — 29 CFR 1926.451(g)(1) Supported by current evidence OSHA Construction fall protection — 29 CFR 1926.501 Supported by current evidence OSHA Construction moving-part guarding of equipment — 29 CFR 1926.300(b)(2) Supported by current evidence Continue to risk review 🏠 HOME 📋 INSPECT 🗂 REPORTS 📅 CALENDAR © 2026 Safety InSite. All rights reserved."
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "generatedBy": "compare-kg4d-customer-capture.ts",
+  "left": "baseline-preintegration-A",
+  "right": "integrated-defaultoff-A",
+  "volatilityDerivedFrom": [
+    "baseline-preintegration-A",
+    "baseline-preintegration-B"
+  ],
+  "expect": "IDENTICAL",
+  "caseCount": 8,
+  "identical": 8,
+  "differing": 0,
+  "meanVolatilePathsPerCase": 7,
+  "governedKeyLeak": [],
+  "corpusHashLeft": "ea02ed5c98fc75002d070d668add2601d524a1fccacae3c81822938fb13e0d00",
+  "corpusHashRight": "114f4f3cf6116b1125e94f5f30acc213e51a91db583b38235027068b0cee8985",
+  "cases": [
+    {
+      "case": "FALL-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "db2f1a4c58f9e66890646313597e0316bed44a233e7a812644d936b047f1c0b2",
+      "rightHash": "db2f1a4c58f9e66890646313597e0316bed44a233e7a812644d936b047f1c0b2"
+    },
+    {
+      "case": "GUARD-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "c71aad2a5cecba760e7114cde452866e25af53a846c360327adc29c2848ce3ad",
+      "rightHash": "c71aad2a5cecba760e7114cde452866e25af53a846c360327adc29c2848ce3ad"
+    },
+    {
+      "case": "LOTO-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "55076acf30f1178b386914da90d1464a3317e66b4ae58839db71b9d1bdc09cf8",
+      "rightHash": "55076acf30f1178b386914da90d1464a3317e66b4ae58839db71b9d1bdc09cf8"
+    },
+    {
+      "case": "MSHA-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "6c191fa9c09e41b8cc71e636e3d2c47bed15127a977ea43bad6d8ff47669c82e",
+      "rightHash": "6c191fa9c09e41b8cc71e636e3d2c47bed15127a977ea43bad6d8ff47669c82e"
+    },
+    {
+      "case": "ELEC-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "807a0ab1f491aa9c8d80fbd053f51ebddc64afa4ebf13e55daaf0953dc4c3eec",
+      "rightHash": "807a0ab1f491aa9c8d80fbd053f51ebddc64afa4ebf13e55daaf0953dc4c3eec"
+    },
+    {
+      "case": "MULTI-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "137c1dd9e7a4b8b33670fc8051143317fad5e350e6801b8c4850deab31773968",
+      "rightHash": "137c1dd9e7a4b8b33670fc8051143317fad5e350e6801b8c4850deab31773968"
+    },
+    {
+      "case": "CONTROL-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "c3c66876a4e914cf59451354f56d0fd52ca76b5c33d494e1a6c0fa5156d63199",
+      "rightHash": "c3c66876a4e914cf59451354f56d0fd52ca76b5c33d494e1a6c0fa5156d63199"
+    },
+    {
+      "case": "SILICA-01",
+      "verdict": "INVARIANT",
+      "volatilePathCount": 7,
+      "differingPathCount": 0,
+      "differingPaths": [],
+      "leftHash": "ed0a654fb7801daf6f0dac31292229620d1a5a8a131ff7ae7bb646d1e4f70d34",
+      "rightHash": "ed0a654fb7801daf6f0dac31292229620d1a5a8a131ff7ae7bb646d1e4f70d34"
+    }
+  ],
+  "passed": true,
+  "failures": []
+}

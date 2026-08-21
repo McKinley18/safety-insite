@@ -1,0 +1,798 @@
+{
+  "database": "test_kg3f_remediation_20260820",
+  "physicalHead": [
+    "(0,6) 30 CFR 57.14107(a)",
+    "(10,1) 30 CFR 56.9100(a)",
+    "(10,2) 30 CFR 62.120",
+    "(10,3) 30 CFR 62.130",
+    "(10,4) 1910.212(a)(1)",
+    "(10,5) 1910.219"
+  ],
+  "queryCount": 21,
+  "results": [
+    {
+      "id": "PC-01",
+      "family": "electrical (parent/child)",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.303(b)(1)",
+        "29 CFR 1910.147",
+        "29 CFR 1910.132(a)",
+        "29 CFR 1910.95",
+        "29 CFR 1910.146",
+        "29 CFR 1910.178(p)(1)",
+        "29 CFR 1910.28",
+        "29 CFR 1910.1200"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.303(b)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.147",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.95",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.146",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.178(p)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "PC-02",
+      "family": "electrical (parent/child)",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.303(b)(1)",
+        "29 CFR 1910.132(a)",
+        "29 CFR 1910.22(a)",
+        "29 CFR 1910.28",
+        "29 CFR 1910.36",
+        "29 CFR 1910.95",
+        "29 CFR 1910.146",
+        "29 CFR 1910.147",
+        "29 CFR 1910.1200"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.303(b)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.22(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.36",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.95",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.146",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.147",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "PC-03",
+      "family": "electrical (parent/child)",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.303",
+        "29 CFR 1910.28",
+        "29 CFR 1910.22(a)",
+        "29 CFR 1910.1200"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.303",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.22(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "EL-01",
+      "family": "electrical",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.300(b)(2)",
+        "29 CFR 1926.416(a)(1)",
+        "29 CFR 1926.602(a)(9)(ii)"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.300(b)(2)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "MG-01",
+      "family": "machine guarding",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.28"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "MG-02",
+      "family": "machine guarding (mining)",
+      "source": "MSHA_MNM_SURFACE",
+      "citations": [
+        "30 CFR 56.14107(a)",
+        "30 CFR 57.14107(a)",
+        "30 CFR 56.14105",
+        "30 CFR 56.9100(a)"
+      ],
+      "detail": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "30 CFR 57.14107(a)",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 56.9100(a)",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "FP-01",
+      "family": "fall protection",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.416(a)(1)",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.501",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.652(a)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "FP-02",
+      "family": "fall protection (scaffold)",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.451",
+        "29 CFR 1926.502"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.451",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1926.502",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "active"
+        }
+      ]
+    },
+    {
+      "id": "FP-03",
+      "family": "walking-working surfaces",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.22(a)",
+        "29 CFR 1910.28",
+        "29 CFR 1910.1200",
+        "29 CFR 1910.36",
+        "29 CFR 1910.146",
+        "29 CFR 1910.147",
+        "29 CFR 1910.303"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.22(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.36",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.146",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.147",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.303",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "LO-01",
+      "family": "hazardous energy",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.147",
+        "29 CFR 1910.95",
+        "29 CFR 1910.146",
+        "29 CFR 1910.132(a)",
+        "29 CFR 1910.178(p)(1)",
+        "29 CFR 1910.303"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.147",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.95",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.146",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.178(p)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.303",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "LO-02",
+      "family": "hazardous energy (mining)",
+      "source": "MSHA_MNM_SURFACE",
+      "citations": [
+        "30 CFR 56.12016",
+        "30 CFR 56.15006",
+        "30 CFR 56.14105",
+        "30 CFR 56.14132"
+      ],
+      "detail": [
+        {
+          "citation": "30 CFR 56.12016",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 56.15006",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 56.14132",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "EG-01",
+      "family": "emergency egress",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.36",
+        "29 CFR 1910.95"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.36",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.95",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "EG-02",
+      "family": "emergency egress (construction)",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.602(a)(9)(ii)",
+        "29 CFR 1926.501",
+        "29 CFR 1926.34(a)"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.501",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.34(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "EX-01",
+      "family": "excavation",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.652(a)(1)",
+        "29 CFR 1926.95(a)",
+        "29 CFR 1926.1153",
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.652(a)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.95(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.1153",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "SI-01",
+      "family": "silica / dust",
+      "source": "OSHA_CONSTRUCTION",
+      "citations": [
+        "29 CFR 1926.1153",
+        "29 CFR 1926.95(a)",
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.602(a)(9)(ii)",
+        "29 CFR 1926.52"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1926.1153",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.95(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1926.52",
+          "agencyCode": "OSHA",
+          "scopeCode": "construction",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "NO-01",
+      "family": "noise",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.95",
+        "29 CFR 1910.132(a)",
+        "29 CFR 1910.28",
+        "29 CFR 1910.1200"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.95",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "NO-02",
+      "family": "noise (mining)",
+      "source": "MSHA_MNM_SURFACE",
+      "citations": [
+        "30 CFR 56.15006",
+        "30 CFR 62.120",
+        "30 CFR 62.130",
+        "30 CFR 56.14105"
+      ],
+      "detail": [
+        {
+          "citation": "30 CFR 56.15006",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "30 CFR 62.120",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 62.130",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "HC-01",
+      "family": "hazard communication",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.1200(f)(6)",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.132(a)",
+        "29 CFR 1910.36"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.1200(f)(6)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.1200(f)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.36",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "HC-02",
+      "family": "hazard communication (mining)",
+      "source": "MSHA_MNM_SURFACE",
+      "citations": [
+        "30 CFR 47.41(a)"
+      ],
+      "detail": [
+        {
+          "citation": "30 CFR 47.41(a)",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "ME-01",
+      "family": "mobile equipment (mining)",
+      "source": "MSHA_MNM_SURFACE",
+      "citations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132",
+        "30 CFR 62.120",
+        "30 CFR 62.130"
+      ],
+      "detail": [
+        {
+          "citation": "30 CFR 56.9100",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "active"
+        },
+        {
+          "citation": "30 CFR 56.14132",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 62.120",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "30 CFR 62.130",
+          "agencyCode": "MSHA",
+          "scopeCode": "mining",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    },
+    {
+      "id": "ME-02",
+      "family": "powered industrial trucks",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "citations": [
+        "29 CFR 1910.178(p)(1)",
+        "29 CFR 1910.28"
+      ],
+      "detail": [
+        {
+          "citation": "29 CFR 1910.178(p)(1)",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "agencyCode": "OSHA",
+          "scopeCode": "general_industry",
+          "candidateStatus": "needs_more_evidence"
+        }
+      ]
+    }
+  ]
+}

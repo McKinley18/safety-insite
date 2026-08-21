@@ -1,0 +1,26 @@
+=== HEAD ===
+5f050858227ca11cf90d2f6bf64148e70a018b64
+=== BRANCH ===
+release/insite-rc-2026-08-18
+=== UPSTREAM ===
+0	0
+=== STASHES ===
+       4
+=== TAGS ===
+      23
+insite-hazlenz-verified-baseline-2026-08-19 -> e9f968f76367b6ae4229c569408778d616ebbe94
+insite-inspection-ui-verified-2026-08-19 -> 4c7a501d361f4e5f340ae58af6976303452fc2a5
+insite-visual-acceptance-verified-2026-08-19 -> 5f050858227ca11cf90d2f6bf64148e70a018b64
+=== GOLD SET ===
+93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3  verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts
+=== MIGRATIONS (count / modified vs HEAD) ===
+      46
+       0
+=== PRIOR KG EVIDENCE MODIFIED (kg-1..kg-5b) ===
+       0
+=== GOVERNED_CUTOVER_* anywhere in tracked config? ===
+(none expected)
+unrelated paths present : 31
+newest unrelated mtime  : 2026-08-19 23:19:09 frontend-next/app/inspections/page.tsx
+KG-5C first file mtime  : 2026-08-21 16:03:44
+NO UNRELATED FILE TOUCHED BY KG-5C: True

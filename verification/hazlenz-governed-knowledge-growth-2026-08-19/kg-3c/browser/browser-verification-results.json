@@ -1,0 +1,1337 @@
+{
+  "results": [
+    {
+      "view": "light",
+      "state": "approved",
+      "expect": "APPROVED_GOVERNED_CONTENT",
+      "hasBadge": true,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection where employees are exposed to fall hazards at applicable elevations or conditions. Why HazLenz selected this Supported by submitted evidence for OSHA Construction fall protection; qualified review remains required. Confide",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.501\" in card"
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":498.421875,\"width\":822,\"height\":308}"
+        }
+      ]
+    },
+    {
+      "view": "light",
+      "state": "unapproved",
+      "expect": "UNAPPROVED_CONTENT",
+      "hasBadge": false,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continuall",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.34(a)\" in card"
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary still shown under honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":292.421875,\"width\":822,\"height\":416}"
+        }
+      ]
+    },
+    {
+      "view": "light",
+      "state": "citation-only",
+      "expect": "CITATION_ONLY",
+      "hasBadge": false,
+      "hasNotice": true,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(71, 85, 105)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.652(a)(1) OSHA Construction excavation protective systems STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Candidate only; missing: protective system absent. Confidence: Low Regulatory source approval or release coverage limits confidence. Details that would increase confidence pro",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.652(a)(1)\" in card"
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":490.421875,\"width\":822,\"height\":316}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "approved",
+      "expect": "APPROVED_GOVERNED_CONTENT",
+      "hasBadge": true,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection where employees are exposed to fall hazards at applicable elevations or conditions. Why HazLenz selected this Supported by submitted evidence for OSHA Construction fall protection; qualified review remains required. Confide",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.501\" in card"
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":498.421875,\"width\":822,\"height\":308}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "unapproved",
+      "expect": "UNAPPROVED_CONTENT",
+      "hasBadge": false,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continuall",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.34(a)\" in card"
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary still shown under honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":292.421875,\"width\":822,\"height\":416}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "citation-only",
+      "expect": "CITATION_ONLY",
+      "hasBadge": false,
+      "hasNotice": true,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(203, 213, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.652(a)(1) OSHA Construction excavation protective systems STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Candidate only; missing: protective system absent. Confidence: Low Regulatory source approval or release coverage limits confidence. Details that would increase confidence pro",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.652(a)(1)\" in card"
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":490.421875,\"width\":822,\"height\":316}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "approved",
+      "expect": "APPROVED_GOVERNED_CONTENT",
+      "hasBadge": true,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection where employees are exposed to fall hazards at applicable elevations or conditions. Why HazLenz selected this Supported by submitted evidence for OSHA Construction fall protection; qualified review remains required. Confide",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.501\" in card"
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":188.375,\"width\":304,\"height\":468}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "unapproved",
+      "expect": "UNAPPROVED_CONTENT",
+      "hasBadge": false,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continuall",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.34(a)\" in card"
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary still shown under honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":65.375,\"width\":304,\"height\":714}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "citation-only",
+      "expect": "CITATION_ONLY",
+      "hasBadge": false,
+      "hasNotice": true,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(71, 85, 105)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)",
+          "borderLeft": "rgb(3, 105, 161)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.652(a)(1) OSHA Construction excavation protective systems STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Candidate only; missing: protective system absent. Confidence: Low Regulatory source approval or release coverage limits confidence. Details that would increase confidence pro",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.652(a)(1)\" in card"
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":179.375,\"width\":304,\"height\":486}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "approved",
+      "expect": "APPROVED_GOVERNED_CONTENT",
+      "hasBadge": true,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection where employees are exposed to fall hazards at applicable elevations or conditions. Why HazLenz selected this Supported by submitted evidence for OSHA Construction fall protection; qualified review remains required. Confide",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.501\" in card"
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":188.375,\"width\":304,\"height\":468}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "unapproved",
+      "expect": "UNAPPROVED_CONTENT",
+      "hasBadge": false,
+      "hasNotice": false,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continuall",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.34(a)\" in card"
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary still shown under honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":65.375,\"width\":304,\"height\":714}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "citation-only",
+      "expect": "CITATION_ONLY",
+      "hasBadge": false,
+      "hasNotice": true,
+      "showsCitation": true,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(203, 213, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)",
+          "borderLeft": "rgb(56, 189, 248)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.652(a)(1) OSHA Construction excavation protective systems STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Candidate only; missing: protective system absent. Confidence: Low Regulatory source approval or release coverage limits confidence. Details that would increase confidence pro",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1926.652(a)(1)\" in card"
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":179.375,\"width\":304,\"height\":486}"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

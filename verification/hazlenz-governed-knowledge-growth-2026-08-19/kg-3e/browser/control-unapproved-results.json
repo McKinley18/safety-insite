@@ -1,0 +1,57 @@
+{
+  "results": [
+    {
+      "view": "light",
+      "cardText": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower",
+      "checks": [
+        {
+          "name": "no verified badge on an unapproved standard",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each "
+        },
+        {
+          "name": "content-backing caveat IS still shown",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets"
+        },
+        {
+          "name": "caveat does not claim to limit confidence",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "cardText": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower",
+      "checks": [
+        {
+          "name": "no verified badge on an unapproved standard",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each "
+        },
+        {
+          "name": "content-backing caveat IS still shown",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 29 CFR 1910.28 Duty to have fall protection and falling object protection STANDARD DETAIL HAZLENZ STANDARD SUMMARY Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets"
+        },
+        {
+          "name": "caveat does not claim to limit confidence",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

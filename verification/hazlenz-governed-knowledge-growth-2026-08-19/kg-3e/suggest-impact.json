@@ -1,0 +1,285 @@
+{
+  "database": "test_kg3e_remediation_20260820",
+  "governedReleaseId": "federal-core-2026-08-20.5",
+  "queries": [
+    {
+      "label": "egress (general industry)",
+      "description": "Exit door in the shipping area is chained shut during the shift.",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "resultCount": 2,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 2,
+      "rows": [
+        {
+          "citation": "29 CFR 1910.36",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1910.95",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "exposed live parts (general industry)",
+      "description": "Electrical panel cover missing, energized conductors exposed next to a walkway.",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "resultCount": 4,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 4,
+      "rows": [
+        {
+          "citation": "29 CFR 1910.303",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1910.28",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1910.1200",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1910.22(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "machine guarding (general industry)",
+      "description": "Rotating shaft on the mixer has no guard and the operator works beside it.",
+      "source": "OSHA_GENERAL_INDUSTRY",
+      "resultCount": 1,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 1,
+      "rows": [
+        {
+          "citation": "29 CFR 1910.28",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "fall protection (construction)",
+      "description": "Employee working at 12 feet on an unprotected leading edge with no guardrail or fall arrest.",
+      "source": "OSHA_CONSTRUCTION",
+      "resultCount": 4,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 4,
+      "rows": [
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.501",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.652(a)(1)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "egress (construction)",
+      "description": "Only stairwell out of the occupied floor is blocked with stacked material.",
+      "source": "OSHA_CONSTRUCTION",
+      "resultCount": 3,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 2,
+      "rows": [
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        },
+        {
+          "citation": "29 CFR 1926.34(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.501",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "electrical (construction)",
+      "description": "Worker running conduit next to an energized overhead power circuit with no guarding.",
+      "source": "OSHA_CONSTRUCTION",
+      "resultCount": 3,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 2,
+      "rows": [
+        {
+          "citation": "29 CFR 1926.300(b)(2)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        }
+      ]
+    },
+    {
+      "label": "chemical labels (mining)",
+      "description": "Several chemical containers in the shop have missing or unreadable labels.",
+      "source": "MSHA_MNM_SURFACE",
+      "resultCount": 1,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 1,
+      "rows": [
+        {
+          "citation": "30 CFR 47.41(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "noise (mining)",
+      "description": "Miners working near the crusher all shift without hearing protection.",
+      "source": "MSHA_MNM_SURFACE",
+      "resultCount": 4,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 2,
+      "rows": [
+        {
+          "citation": "30 CFR 56.15006",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        },
+        {
+          "citation": "30 CFR 62.120",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "30 CFR 62.130",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        }
+      ]
+    },
+    {
+      "label": "guarding (mining)",
+      "description": "Conveyor tail pulley guard removed and the walkway runs right beside it.",
+      "source": "MSHA_MNM_SURFACE",
+      "resultCount": 4,
+      "liveApprovedBacked": 0,
+      "governedApprovedBacked": 1,
+      "rows": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+          "governedCorpusBacked": true
+        },
+        {
+          "citation": "30 CFR 57.14107(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        },
+        {
+          "citation": "30 CFR 56.9100(a)",
+          "liveBackingStatus": "UNAPPROVED_CONTENT",
+          "liveCorpusBacked": false,
+          "governedBackingStatus": "UNAPPROVED_CONTENT",
+          "governedCorpusBacked": false
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "resultsReturned": 26,
+    "liveApprovedBacked": 0,
+    "governedApprovedBacked": 19,
+    "wouldBeLostIfCutoverFilteredOnGovernedBacking": 7,
+    "note": "Measurement only. suggest() applies NO backing filter -- membership, ordering and count are unchanged by KG-3D. liveApprovedBacked is 0 by construction while the cutover is off."
+  }
+}

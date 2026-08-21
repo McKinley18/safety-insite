@@ -1,0 +1,3012 @@
+{
+  "releaseId": "federal-core-2026-07-30.1",
+  "manifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+  "approvedRecords": 27,
+  "totalRecords": 35,
+  "customerPaths": {
+    "pathB": "finding-scoped standardDecisions via SafescopeV2Service.hydrateFindingScopedStandards -> mark(); legacy body = plain_language_summary (mark() does not spread hydrated standardText)",
+    "pathA": "ApplicableStandardsService.suggest(); legacy body = standard_text from its own corpus SELECT (the full eCFR section dump)"
+  },
+  "classificationTallyPathB": {
+    "all35": {
+      "LEGACY_UNRESOLVED": 17,
+      "GOVERNED_REVIEWED_RENDERING": 15,
+      "EXACT": 3
+    },
+    "approved27": {
+      "LEGACY_UNRESOLVED": 12,
+      "GOVERNED_REVIEWED_RENDERING": 15
+    }
+  },
+  "classificationTallyPathA": {
+    "all35": {
+      "LEGACY_UNRESOLVED": 17,
+      "GOVERNED_REVIEWED_RENDERING": 15,
+      "CONTENT_DIFFERENCE": 3
+    },
+    "approved27": {
+      "LEGACY_UNRESOLVED": 12,
+      "GOVERNED_REVIEWED_RENDERING": 15
+    }
+  },
+  "deliveryEquivalenceTally": {
+    "DELIVERS_REVIEWED_ARTIFACT": 27,
+    "FALLBACK_IDENTICAL_TO_LEGACY": 8
+  },
+  "records": [
+    {
+      "citation": "30 CFR 47.41(a)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 224,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 224,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 224,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 224,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 47.41(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 47.41(a)",
+        "title": "Requirement for container labels",
+        "standardText": "The mine operator must ensure that each container of a hazardous chemical has a label (30 CFR 47.41(a)); missing or unreadable labels must be replaced immediately and existing container labels must not be removed or defaced.",
+        "plainLanguageSummary": "The mine operator must ensure that each container of a hazardous chemical has a label (30 CFR 47.41(a)); missing or unreadable labels must be replaced immediately and existing container labels must not be removed or defaced.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 56.12016",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 56.12016 Work on electrically-powered equipment.",
+        "sourceKey": null,
+        "standardTextLength": 503,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 510,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 510,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 503,
+        "governedArtifactLength": 510,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 503,
+          "governedLength": 510,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 56.12016",
+        "title": "§ 56.12016 Work on electrically-powered equipment.",
+        "standardText": null,
+        "plainLanguageSummary": "Electrically powered equipment shall be deenergized before mechanical work is done on such equipment. Power switches shall be locked out or other measures taken which shall prevent the equipment from being energized without the knowledge of the individuals working on it. Suitable warning notices shall be posted at the power switch and signed by the individuals who are to do the work. Such locks or preventive devices shall be removed only by the persons who installed them or by authorized personn",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.12016",
+        "title": "Work on electrically powered equipment",
+        "standardText": "Electrically powered equipment must be deenergized before mechanical work is done on it, and power switches must be locked out or other measures taken that will prevent the equipment from being energized without the knowledge of the individuals working on it. Suitable warning notices must be posted at the power switch and signed by the individuals who are to do the work, and such locks or preventive devices may be removed only by the persons who installed them or by authorized personnel (30 CFR 56.12016).",
+        "plainLanguageSummary": "Electrically powered equipment must be deenergized before mechanical work is done on it, and power switches must be locked out or other measures taken that will prevent the equipment from being energized without the knowledge of the individuals working on it. Suitable warning notices must be posted at the power switch and signed by the individuals who are to do the work, and such locks or preventive devices may be removed only by the persons who installed them or by authorized personnel (30 CFR 56.12016).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 56.14105",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 56.14105 Procedures during repairs or maintenance.",
+        "sourceKey": null,
+        "standardTextLength": 381,
+        "plainLanguageSummaryLength": 381
+      },
+      "pathB": {
+        "legacyBodyLength": 381,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 381,
+        "governedBackingStatus": "UNAPPROVED_CONTENT",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "HAZLENZ_AUTHORED",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 381,
+          "governedLength": 381,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "EXACT",
+          "basis": "Byte-identical without any normalization."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 381,
+        "governedArtifactLength": 148,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 381,
+          "governedLength": 148,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "CONTENT_DIFFERENCE",
+          "basis": "The compared regulatory content differs substantively and equivalence cannot be proven under the allowed normalizations."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "30 CFR 56.14105",
+        "title": "§ 56.14105 Procedures during repairs or maintenance.",
+        "standardText": null,
+        "plainLanguageSummary": "Repairs or maintenance of machinery or equipment shall be performed only after the power is off, and the machinery or equipment blocked against hazardous motion. Machinery or equipment motion or activation is permitted to the extent that adjustments or testing cannot be performed without motion or activation, provided that persons are effectively protected from hazardous motion.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.14105",
+        "title": "§ 56.14105 Procedures during repairs or maintenance.",
+        "standardText": null,
+        "plainLanguageSummary": "Repairs or maintenance of machinery or equipment shall be performed only after the power is off, and the machinery or equipment blocked against hazardous motion. Machinery or equipment motion or activation is permitted to the extent that adjustments or testing cannot be performed without motion or activation, provided that persons are effectively protected from hazardous motion.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "30 CFR 56.14107(a)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 587,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 587,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 587,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 587,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 56.14107(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.14107(a)",
+        "title": "Moving machine parts",
+        "standardText": "Moving machine parts must be guarded to protect persons from contacting gears, sprockets, chains, drive, head, tail and takeup pulleys, flywheels, couplings, shafts, fan blades, and similar moving parts that can cause injury (30 CFR 56.14107(a)). That duty is limited by the next paragraph: guards are not required where the exposed moving parts are at least seven feet away from walking or working surfaces (30 CFR 56.14107(b)). Distance from a walking or working surface is therefore part of establishing whether the guarding requirement applies at all, not merely a mitigating factor.",
+        "plainLanguageSummary": "Moving machine parts must be guarded to protect persons from contacting gears, sprockets, chains, drive, head, tail and takeup pulleys, flywheels, couplings, shafts, fan blades, and similar moving parts that can cause injury (30 CFR 56.14107(a)). That duty is limited by the next paragraph: guards are not required where the exposed moving parts are at least seven feet away from walking or working surfaces (30 CFR 56.14107(b)). Distance from a walking or working surface is therefore part of establishing whether the guarding requirement applies at all, not merely a mitigating factor.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 56.14132",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 56.14132 Horns and backup alarms.",
+        "sourceKey": null,
+        "standardTextLength": 779,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1010,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1010,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 779,
+        "governedArtifactLength": 1010,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 779,
+          "governedLength": 1010,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 56.14132",
+        "title": "§ 56.14132 Horns and backup alarms.",
+        "standardText": null,
+        "plainLanguageSummary": "(a) Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature shall be maintained in functional condition. (b)(1) When the operator has an obstructed view to the rear, self-propelled mobile equipment shall have— (i) An automatic reverse-activated signal alarm; (ii) A wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; (iii) A discriminating backup alarm that covers the area of obstructed view;",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.14132",
+        "title": "Horns and backup alarms",
+        "standardText": "Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm sounding at least once for each three feet of reverse movement; a discriminating backup alarm covering the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). The obstructed-view condition is what triggers paragraph (b)(1); paragraph (a) concerns only the functional condition of horns that are provided.",
+        "plainLanguageSummary": "Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm sounding at least once for each three feet of reverse movement; a discriminating backup alarm covering the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). The obstructed-view condition is what triggers paragraph (b)(1); paragraph (a) concerns only the functional condition of horns that are provided.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 56.14132(b)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-4A"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1112,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 1112,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 1112,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 1112,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 56.14132(b)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.14132(b)(1)",
+        "title": "Backup alarms where the operator has an obstructed view to the rear",
+        "standardText": "When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph.",
+        "plainLanguageSummary": "When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 56.15006",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 56.15006 Protective equipment and clothing for hazards and irritants.",
+        "sourceKey": null,
+        "standardTextLength": 313,
+        "plainLanguageSummaryLength": 313
+      },
+      "pathB": {
+        "legacyBodyLength": 313,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 313,
+        "governedBackingStatus": "UNAPPROVED_CONTENT",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "HAZLENZ_AUTHORED",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 313,
+          "governedLength": 313,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "EXACT",
+          "basis": "Byte-identical without any normalization."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 313,
+        "governedArtifactLength": 285,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 313,
+          "governedLength": 285,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "CONTENT_DIFFERENCE",
+          "basis": "The compared regulatory content differs substantively and equivalence cannot be proven under the allowed normalizations."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "30 CFR 56.15006",
+        "title": "§ 56.15006 Protective equipment and clothing for hazards and irritants.",
+        "standardText": null,
+        "plainLanguageSummary": "Special protective equipment and special protective clothing shall be provided, maintained in a sanitary and reliable condition and used whenever hazards of process or environment, chemical hazards, radiological hazards, or mechanical irritants are encountered in a manner capable of causing injury or impairment.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.15006",
+        "title": "§ 56.15006 Protective equipment and clothing for hazards and irritants.",
+        "standardText": null,
+        "plainLanguageSummary": "Special protective equipment and special protective clothing shall be provided, maintained in a sanitary and reliable condition and used whenever hazards of process or environment, chemical hazards, radiological hazards, or mechanical irritants are encountered in a manner capable of causing injury or impairment.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "30 CFR 56.9100(a)",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 0,
+        "governedBackingStatus": "CITATION_ONLY",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "NONE",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 0,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 198,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 198,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "30 CFR 56.9100(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 56.9100(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "30 CFR 57.14107(a)",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 0,
+        "governedBackingStatus": "CITATION_ONLY",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "NONE",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 0,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 93,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 93,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "30 CFR 57.14107(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 57.14107(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "30 CFR 62.120",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 62.120 Action level.",
+        "sourceKey": null,
+        "standardTextLength": 200,
+        "plainLanguageSummaryLength": 200
+      },
+      "pathB": {
+        "legacyBodyLength": 200,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 306,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 200,
+          "governedLength": 306,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 200,
+        "governedArtifactLength": 306,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 200,
+          "governedLength": 306,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 62.120",
+        "title": "§ 62.120 Action level.",
+        "standardText": null,
+        "plainLanguageSummary": "If during any work shift a miner's noise exposure equals or exceeds the action level the mine operator must enroll the miner in a hearing conservation program that complies with § 62.150 of this part.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 62.120",
+        "title": "Action level",
+        "standardText": "If during any work shift a miner's noise exposure equals or exceeds the action level (an 8-hour time-weighted average sound level of 85 dBA, or equivalently a dose of 50 percent, per 30 CFR 62.101), the mine operator must enroll the miner in a hearing conservation program that complies with 30 CFR 62.150.",
+        "plainLanguageSummary": "If during any work shift a miner's noise exposure equals or exceeds the action level (an 8-hour time-weighted average sound level of 85 dBA, or equivalently a dose of 50 percent, per 30 CFR 62.101), the mine operator must enroll the miner in a hearing conservation program that complies with 30 CFR 62.150.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "30 CFR 62.130",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 62.130 Permissible exposure level.",
+        "sourceKey": null,
+        "standardTextLength": 1170,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 561,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 561,
+          "normalizationsApplied": [
+            "collapse-whitespace"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 1170,
+        "governedArtifactLength": 561,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 1170,
+          "governedLength": 561,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "30 CFR 62.130",
+        "title": "§ 62.130 Permissible exposure level.",
+        "standardText": null,
+        "plainLanguageSummary": "(a) The mine operator must assure that no miner is exposed during any work shift to noise that exceeds the permissible exposure level. If during any work shift a miner's noise exposure exceeds the permissible exposure level, the mine operator must use all feasible engineering and administrative controls to reduce the miner's noise exposure to the permissible exposure level, and enroll the miner in a hearing conservation program that complies with § 62.150 of this part. When a mine operator uses ",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "30 CFR 62.130",
+        "title": "Permissible exposure level",
+        "standardText": "The mine operator must assure that no miner is exposed during any work shift to noise that exceeds the permissible exposure level (a TWA8 of 90 dBA, or equivalently a dose of 100 percent, per 30 CFR 62.101). If a miner's exposure exceeds the permissible exposure level, the operator must use all feasible engineering and administrative controls to reduce the exposure to the permissible exposure level and enroll the miner in a hearing conservation program that complies with 30 CFR 62.150; no miner may be exposed at any time to sound levels exceeding 115 dBA.",
+        "plainLanguageSummary": "The mine operator must assure that no miner is exposed during any work shift to noise that exceeds the permissible exposure level (a TWA8 of 90 dBA, or equivalently a dose of 100 percent, per 30 CFR 62.101). If a miner's exposure exceeds the permissible exposure level, the operator must use all feasible engineering and administrative controls to reduce the exposure to the permissible exposure level and enroll the miner in a hearing conservation program that complies with 30 CFR 62.150; no miner may be exposed at any time to sound levels exceeding 115 dBA.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "1910.212(a)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 666,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 666,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 666,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 666,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "1910.212(a)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "1910.212(a)(1)",
+        "title": "Machine guarding - types of guarding methods",
+        "standardText": "One or more methods of machine guarding must be provided to protect the operator and other employees in the machine area from hazards such as those created by point of operation, ingoing nip points, rotating parts, and flying chips and sparks; the rule gives barrier guards, two-hand tripping devices and electronic safety devices as examples of guarding methods (29 CFR 1910.212(a)(1)). Guards must be affixed to the machine where possible and secured elsewhere if attachment to the machine is not possible, and the guard must not itself offer an accident hazard (1910.212(a)(2)). Point-of-operation guarding requirements are addressed separately at 1910.212(a)(3).",
+        "plainLanguageSummary": "One or more methods of machine guarding must be provided to protect the operator and other employees in the machine area from hazards such as those created by point of operation, ingoing nip points, rotating parts, and flying chips and sparks; the rule gives barrier guards, two-hand tripping devices and electronic safety devices as examples of guarding methods (29 CFR 1910.212(a)(1)). Guards must be affixed to the machine where possible and secured elsewhere if attachment to the machine is not possible, and the guard must not itself offer an accident hazard (1910.212(a)(2)). Point-of-operation guarding requirements are addressed separately at 1910.212(a)(3).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "1910.219",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.219 Mechanical power-transmission apparatus.",
+        "sourceKey": null,
+        "standardTextLength": 21404,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 500,
+        "governedBackingStatus": "UNAPPROVED_CONTENT",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "HAZLENZ_AUTHORED",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 500,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "EXACT",
+          "basis": "Byte-identical without any normalization."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 21404,
+        "governedArtifactLength": 140,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 21404,
+          "governedLength": 140,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "CONTENT_DIFFERENCE",
+          "basis": "The compared regulatory content differs substantively and equivalence cannot be proven under the allowed normalizations."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "1910.219",
+        "title": "§ 1910.219 Mechanical power-transmission apparatus.",
+        "standardText": null,
+        "plainLanguageSummary": "General requirements. 1/2 13/32 (a)(1) This section covers all types and shapes of power-transmission belts, except the following when operating at two hundred and fifty (250) feet per minute or less: (i) Flat belts one (1) inch or less in width, (ii) flat belts two (2) inches or less in width which are free from metal lacings or fasteners, (iii) round belts one-half () inch or less in diameter; and (iv) single strand V-belts, the width of which is thirteen thirty-seconds () inch or less. 1/2 (2",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "1910.219",
+        "title": "§ 1910.219 Mechanical power-transmission apparatus.",
+        "standardText": null,
+        "plainLanguageSummary": "General requirements. 1/2 13/32 (a)(1) This section covers all types and shapes of power-transmission belts, except the following when operating at two hundred and fifty (250) feet per minute or less: (i) Flat belts one (1) inch or less in width, (ii) flat belts two (2) inches or less in width which are free from metal lacings or fasteners, (iii) round belts one-half () inch or less in diameter; and (iv) single strand V-belts, the width of which is thirteen thirty-seconds () inch or less. 1/2 (2",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "29 CFR 1910.1200",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.1200 Hazard communication.",
+        "sourceKey": null,
+        "standardTextLength": 56026,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1141,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1141,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 56026,
+        "governedArtifactLength": 1141,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 56026,
+          "governedLength": 1141,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.1200",
+        "title": "§ 1910.1200 Hazard communication.",
+        "standardText": null,
+        "plainLanguageSummary": "Purpose. (a)(1) The purpose of this section is to ensure that the hazards of all chemicals produced or imported are classified, and that information concerning the classified hazards is transmitted to employers and employees. The requirements of this section are intended to be consistent with the provisions of the United Nations Globally Harmonized System of Classification and Labeling of Chemicals (GHS), primarily Revision 7. The transmittal of information is to be accomplished by means of comp",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.1200",
+        "title": "Hazard communication",
+        "standardText": "Employers must ensure that each container of hazardous chemicals in the workplace is labeled, tagged or marked with either the full shipped-container information required by 29 CFR 1910.1200(f)(1)(i)-(v), or with the product identifier plus words, pictures or symbols giving at least general information about the chemical's hazards which, together with the other information available under the employer's hazard communication program, conveys the specific physical and health hazards (1910.1200(f)(6)). This workplace-labeling duty is distinct from 1910.1200(f)(1), which places the duty to label containers leaving the workplace on the chemical manufacturer, importer or distributor. Employers may use signs, placards, process sheets, batch tickets, operating procedures or other written materials in lieu of affixing labels to individual stationary process containers, provided the alternative identifies the containers and conveys the required information (1910.1200(f)(7)), and portable containers into which chemicals are transferred for the immediate use of the employee performing the transfer need not be labeled (1910.1200(f)(8)).",
+        "plainLanguageSummary": "Employers must ensure that each container of hazardous chemicals in the workplace is labeled, tagged or marked with either the full shipped-container information required by 29 CFR 1910.1200(f)(1)(i)-(v), or with the product identifier plus words, pictures or symbols giving at least general information about the chemical's hazards which, together with the other information available under the employer's hazard communication program, conveys the specific physical and health hazards (1910.1200(f)(6)). This workplace-labeling duty is distinct from 1910.1200(f)(1), which places the duty to label containers leaving the workplace on the chemical manufacturer, importer or distributor. Employers may use signs, placards, process sheets, batch tickets, operating procedures or other written materials in lieu of affixing labels to individual stationary process containers, provided the alternative identifies the containers and conveys the required information (1910.1200(f)(7)), and portable containers into which chemicals are transferred for the immediate use of the employee performing the transfer need not be labeled (1910.1200(f)(8)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.132(a)",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 0,
+        "governedBackingStatus": "CITATION_ONLY",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "NONE",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 0,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 276,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 276,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "29 CFR 1910.132(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.132(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "29 CFR 1910.146",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.146 Permit-required confined spaces.",
+        "sourceKey": null,
+        "standardTextLength": 35421,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1344,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1344,
+          "normalizationsApplied": [
+            "collapse-whitespace",
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 35421,
+        "governedArtifactLength": 1344,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 35421,
+          "governedLength": 1344,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.146",
+        "title": "§ 1910.146 Permit-required confined spaces.",
+        "standardText": null,
+        "plainLanguageSummary": "Scope and application. (a)This section contains requirements for practices and procedures to protect employees in general industry from the hazards of entry into permit-required confined spaces. This section does not apply to agriculture, to construction, or to shipyard employment (parts 1928, 1926, and 1915 of this chapter, respectively). Definitions. (b) Acceptable entry conditions means the conditions that must exist in a permit space to allow entry and to ensure that employees involved with ",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.146",
+        "title": "Permit-required confined spaces",
+        "standardText": "Employers must evaluate the workplace to determine whether any spaces are permit-required confined spaces (29 CFR 1910.146(c)(1)). If the workplace contains permit spaces, the employer must inform exposed employees of their existence, location and danger by posting danger signs or other equally effective means (1910.146(c)(2)). If the employer decides employees will not enter permit spaces, it must take effective measures to prevent entry and still comply with 1910.146(c)(1), (c)(2), (c)(6) and (c)(8) (1910.146(c)(3)). If the employer decides employees will enter, it must develop and implement a written permit space program complying with this section, available for inspection by employees and their authorized representatives (1910.146(c)(4)); the required program elements — permits, atmospheric testing, attendants, entry supervisors, and rescue and emergency services — are set out in 1910.146(d) through (k). Alternate procedures are available under 1910.146(c)(5) only where the employer can demonstrate that the sole hazard is an actual or potential hazardous atmosphere and that continuous forced air ventilation alone will keep the space safe for entry. This section does not apply to agriculture, construction, or shipyard employment (1910.146(a)); confined spaces in construction are governed by 29 CFR part 1926 subpart AA.",
+        "plainLanguageSummary": "Employers must evaluate the workplace to determine whether any spaces are permit-required confined spaces (29 CFR 1910.146(c)(1)). If the workplace contains permit spaces, the employer must inform exposed employees of their existence, location and danger by posting danger signs or other equally effective means (1910.146(c)(2)). If the employer decides employees will not enter permit spaces, it must take effective measures to prevent entry and still comply with 1910.146(c)(1), (c)(2), (c)(6) and (c)(8) (1910.146(c)(3)). If the employer decides employees will enter, it must develop and implement a written permit space program complying with this section, available for inspection by employees and their authorized representatives (1910.146(c)(4)); the required program elements — permits, atmospheric testing, attendants, entry supervisors, and rescue and emergency services — are set out in 1910.146(d) through (k). Alternate procedures are available under 1910.146(c)(5) only where the employer can demonstrate that the sole hazard is an actual or potential hazardous atmosphere and that continuous forced air ventilation alone will keep the space safe for entry. This section does not apply to agriculture, construction, or shipyard employment (1910.146(a)); confined spaces in construction are governed by 29 CFR part 1926 subpart AA.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.147",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.147 The control of hazardous energy (lockout/tagout).",
+        "sourceKey": null,
+        "standardTextLength": 25116,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1579,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1579,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 25116,
+        "governedArtifactLength": 1579,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 25116,
+          "governedLength": 1579,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.147",
+        "title": "§ 1910.147 The control of hazardous energy (lockout/tagout).",
+        "standardText": null,
+        "plainLanguageSummary": "Scope, application, and purpose Scope. unexpected (a)—(1)(i) This standard covers the servicing and maintenance of machines and equipment in which theenergization or start up of the machines or equipment, or release of stored energy could cause injury to employees. This standard establishes minimum performance requirements for the control of such hazardous energy. (ii) This standard does not cover the following: (A) Construction and agriculture employment; (B) Employment covered by parts 1915, 1",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.147",
+        "title": "The control of hazardous energy (lockout/tagout)",
+        "standardText": "Before any employee performs servicing or maintenance on a machine or equipment where unexpected energizing, start up, or release of stored energy could occur and cause injury, the employer must establish an energy control program consisting of energy control procedures, employee training and periodic inspections, and the machine or equipment must be isolated from its energy source and rendered inoperative (29 CFR 1910.147(c)(1)). Where an energy isolating device is capable of being locked out, the program must use lockout unless the employer can demonstrate that a tagout system provides full employee protection as set out in 1910.147(c)(3); where the device cannot be locked out, a tagout system must be used (1910.147(c)(2)). The standard covers servicing and maintenance, not normal production operations: work during normal production is covered only if an employee must remove or bypass a guard or other safety device, or must place part of the body into the point of operation or an associated danger zone (1910.147(a)(2)(ii)). Minor tool changes and adjustments and other minor servicing activities that are routine, repetitive and integral to production are excepted when performed under alternative measures providing effective protection (Note to 1910.147(a)(2)(ii)), and work on cord-and-plug connected equipment is excepted where unplugging controls the hazard and the plug is under the exclusive control of the employee performing the work (1910.147(a)(2)(iii)(A)). This standard does not cover construction or agriculture employment (1910.147(a)(1)(ii)(A)).",
+        "plainLanguageSummary": "Before any employee performs servicing or maintenance on a machine or equipment where unexpected energizing, start up, or release of stored energy could occur and cause injury, the employer must establish an energy control program consisting of energy control procedures, employee training and periodic inspections, and the machine or equipment must be isolated from its energy source and rendered inoperative (29 CFR 1910.147(c)(1)). Where an energy isolating device is capable of being locked out, the program must use lockout unless the employer can demonstrate that a tagout system provides full employee protection as set out in 1910.147(c)(3); where the device cannot be locked out, a tagout system must be used (1910.147(c)(2)). The standard covers servicing and maintenance, not normal production operations: work during normal production is covered only if an employee must remove or bypass a guard or other safety device, or must place part of the body into the point of operation or an associated danger zone (1910.147(a)(2)(ii)). Minor tool changes and adjustments and other minor servicing activities that are routine, repetitive and integral to production are excepted when performed under alternative measures providing effective protection (Note to 1910.147(a)(2)(ii)), and work on cord-and-plug connected equipment is excepted where unplugging controls the hazard and the plug is under the exclusive control of the employee performing the work (1910.147(a)(2)(iii)(A)). This standard does not cover construction or agriculture employment (1910.147(a)(1)(ii)(A)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.178(p)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 778,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 778,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 778,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 778,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.178(p)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.178(p)(1)",
+        "title": "Powered industrial trucks - Operation of the truck: removing unsafe or defective trucks from service",
+        "standardText": "If at any time a powered industrial truck is found to be in need of repair, defective, or in any way unsafe, the truck must be taken out of service until it has been restored to safe operating condition (29 CFR 1910.178(p)(1)). The remaining paragraphs of 1910.178(p) address fuelling and fuel-system hazards: fuel tanks must not be filled while the engine is running and spillage must be avoided ((p)(2)); spilled oil or fuel must be carefully washed away or completely evaporated and the fuel tank cap replaced before restarting the engine ((p)(3)); no truck may be operated with a leak in the fuel system until the leak has been corrected ((p)(4)); and open flames must not be used for checking electrolyte level in storage batteries or gasoline level in fuel tanks ((p)(5)).",
+        "plainLanguageSummary": "If at any time a powered industrial truck is found to be in need of repair, defective, or in any way unsafe, the truck must be taken out of service until it has been restored to safe operating condition (29 CFR 1910.178(p)(1)). The remaining paragraphs of 1910.178(p) address fuelling and fuel-system hazards: fuel tanks must not be filled while the engine is running and spillage must be avoided ((p)(2)); spilled oil or fuel must be carefully washed away or completely evaporated and the fuel tank cap replaced before restarting the engine ((p)(3)); no truck may be operated with a leak in the fuel system until the leak has been corrected ((p)(4)); and open flames must not be used for checking electrolyte level in storage batteries or gasoline level in fuel tanks ((p)(5)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.22(a)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 870,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 870,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 870,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 870,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.22(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.22(a)",
+        "title": "General requirements — Surface conditions",
+        "standardText": "Employers must ensure that all places of employment, passageways, storerooms, service rooms and walking-working surfaces are kept in a clean, orderly and sanitary condition (29 CFR 1910.22(a)(1)); that the floor of each workroom is maintained in a clean and, to the extent feasible, dry condition, with drainage maintained and, to the extent feasible, dry standing places such as false floors, platforms and mats provided where wet processes are used (1910.22(a)(2)); and that walking-working surfaces are maintained free of hazards such as sharp or protruding objects, loose boards, corrosion, leaks, spills, snow and ice (1910.22(a)(3)). The separate duties to support the maximum intended load, to provide safe means of access and egress, and to inspect, maintain and repair walking-working surfaces are at 1910.22(b), (c) and (d) respectively, not in this paragraph.",
+        "plainLanguageSummary": "Employers must ensure that all places of employment, passageways, storerooms, service rooms and walking-working surfaces are kept in a clean, orderly and sanitary condition (29 CFR 1910.22(a)(1)); that the floor of each workroom is maintained in a clean and, to the extent feasible, dry condition, with drainage maintained and, to the extent feasible, dry standing places such as false floors, platforms and mats provided where wet processes are used (1910.22(a)(2)); and that walking-working surfaces are maintained free of hazards such as sharp or protruding objects, loose boards, corrosion, leaks, spills, snow and ice (1910.22(a)(3)). The separate duties to support the maximum intended load, to provide safe means of access and egress, and to inspect, maintain and repair walking-working surfaces are at 1910.22(b), (c) and (d) respectively, not in this paragraph.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.28",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.28 Duty to have fall protection and falling object protection.",
+        "sourceKey": null,
+        "standardTextLength": 15055,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1109,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1109,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 15055,
+        "governedArtifactLength": 1109,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 15055,
+          "governedLength": 1109,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.28",
+        "title": "§ 1910.28 Duty to have fall protection and falling object protection.",
+        "standardText": null,
+        "plainLanguageSummary": "General. (a)(1) This section requires employers to provide protection for each employee exposed to fall and falling object hazards. Unless stated otherwise, the employer must ensure that all fall protection and falling object protection required by this section meet the criteria in § 1910.29, except that personal fall protection systems required by this section meet the criteria of § 1910.140. (2) This section does not apply: (i) To portable ladders; (ii) When employers are inspecting, investiga",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.28",
+        "title": "Duty to have fall protection and falling object protection",
+        "standardText": "Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower level be protected by a guardrail or stair rail system (1910.28(b)(11)(i)), and that each flight of stairs having at least 3 treads and at least 4 risers be equipped with stair rail systems and handrails (1910.28(b)(11)(ii)) — so the number of treads and risers is part of establishing whether the handrail requirement applies to a particular flight. Ship stairs and alternating tread type stairs must have handrails on both sides (1910.28(b)(11)(iii)). Construction and dimensional requirements for stairways themselves are at 29 CFR 1910.25, and the criteria for stair rail systems and handrails are at 1910.29, not in this section. Fall protection for employees on scaffolds is governed by 29 CFR part 1926 subpart L (1910.28(b)(12)(i)).",
+        "plainLanguageSummary": "Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower level be protected by a guardrail or stair rail system (1910.28(b)(11)(i)), and that each flight of stairs having at least 3 treads and at least 4 risers be equipped with stair rail systems and handrails (1910.28(b)(11)(ii)) — so the number of treads and risers is part of establishing whether the handrail requirement applies to a particular flight. Ship stairs and alternating tread type stairs must have handrails on both sides (1910.28(b)(11)(iii)). Construction and dimensional requirements for stairways themselves are at 29 CFR 1910.25, and the criteria for stair rail systems and handrails are at 1910.29, not in this section. Fall protection for employees on scaffolds is governed by 29 CFR part 1926 subpart L (1910.28(b)(12)(i)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.303",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.303 General.",
+        "sourceKey": null,
+        "standardTextLength": 21939,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1134,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1134,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 21939,
+        "governedArtifactLength": 1134,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 21939,
+          "governedLength": 1134,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.303",
+        "title": "§ 1910.303 General.",
+        "standardText": null,
+        "plainLanguageSummary": "Approval. (a)The conductors and equipment required or permitted by this subpart shall be acceptable only if approved, as defined in § 1910.399. Examination, installation, and use of equipment Examination. (b)—(1)Electric equipment shall be free from recognized hazards that are likely to cause death or serious physical harm to employees. Safety of equipment shall be determined using the following considerations: (i) Suitability for installation and use in conformity with the provisions of this su",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.303",
+        "title": "Electrical - general requirements",
+        "standardText": "Section 1910.303 sets OSHA's general requirements for electric equipment and installations in general industry. Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees (29 CFR 1910.303(b)(1)), and listed or labeled equipment must be installed and used in accordance with any instructions included in the listing or labeling (1910.303(b)(2)). For equipment operating at 600 volts, nominal, or less to ground: sufficient access and working space must be provided and maintained about all electric equipment to permit ready and safe operation and maintenance (1910.303(g)(1)); live parts of electric equipment operating at 50 volts or more must be guarded against accidental contact by approved cabinets or other approved enclosures, or by the other means that paragraph allows (1910.303(g)(2)(i)); and entrances to rooms and other guarded locations containing exposed live parts must be marked with conspicuous warning signs forbidding unqualified persons to enter (1910.303(g)(2)(iii)). Installations over 600 volts, nominal, are addressed separately at 1910.303(h).",
+        "plainLanguageSummary": "Section 1910.303 sets OSHA's general requirements for electric equipment and installations in general industry. Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees (29 CFR 1910.303(b)(1)), and listed or labeled equipment must be installed and used in accordance with any instructions included in the listing or labeling (1910.303(b)(2)). For equipment operating at 600 volts, nominal, or less to ground: sufficient access and working space must be provided and maintained about all electric equipment to permit ready and safe operation and maintenance (1910.303(g)(1)); live parts of electric equipment operating at 50 volts or more must be guarded against accidental contact by approved cabinets or other approved enclosures, or by the other means that paragraph allows (1910.303(g)(2)(i)); and entrances to rooms and other guarded locations containing exposed live parts must be marked with conspicuous warning signs forbidding unqualified persons to enter (1910.303(g)(2)(iii)). Installations over 600 volts, nominal, are addressed separately at 1910.303(h).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.303(b)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1071,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 1071,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 1071,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 1071,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.303(b)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.303(b)(1)",
+        "title": "Examination, installation, and use of equipment — Examination",
+        "standardText": "Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees, and the safety of equipment is determined using the considerations listed in 29 CFR 1910.303(b)(1)(i)-(viii): suitability for installation and use in conformity with subpart S; mechanical strength and durability, including the adequacy of protection provided by parts designed to enclose and protect other equipment; wire-bending and connection space; electrical insulation; heating effects under all conditions of use; arcing effects; classification by type, size, voltage, current capacity and specific use; and other factors contributing to the practical safeguarding of employees using or likely to come into contact with the equipment. This paragraph is the EXAMINATION requirement. It is not the guarding requirement: the duty to guard live parts operating at 50 volts or more against accidental contact is a separate rule at 29 CFR 1910.303(g)(2)(i), which applies only to installations operating at 600 volts, nominal, or less to ground.",
+        "plainLanguageSummary": "Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees, and the safety of equipment is determined using the considerations listed in 29 CFR 1910.303(b)(1)(i)-(viii): suitability for installation and use in conformity with subpart S; mechanical strength and durability, including the adequacy of protection provided by parts designed to enclose and protect other equipment; wire-bending and connection space; electrical insulation; heating effects under all conditions of use; arcing effects; classification by type, size, voltage, current capacity and specific use; and other factors contributing to the practical safeguarding of employees using or likely to come into contact with the equipment. This paragraph is the EXAMINATION requirement. It is not the guarding requirement: the duty to guard live parts operating at 50 volts or more against accidental contact is a separate rule at 29 CFR 1910.303(g)(2)(i), which applies only to installations operating at 600 volts, nominal, or less to ground.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.36",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.36 Design and construction requirements for exit routes.",
+        "sourceKey": null,
+        "standardTextLength": 5529,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 993,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 993,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 5529,
+        "governedArtifactLength": 993,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 5529,
+          "governedLength": 993,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3D, KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 3,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.36",
+        "title": "§ 1910.36 Design and construction requirements for exit routes.",
+        "standardText": null,
+        "plainLanguageSummary": "Basic requirements. (a)Exit routes must meet the following design and construction requirements: An exit route must be permanent. (1)Each exit route must be a permanent part of the workplace. An exit must be separated by fire resistant materials. (2)Construction materials used to separate an exit from other parts of the workplace must have a one-hour fire resistance-rating if the exit connects three or fewer stories and a two-hour fire resistance-rating if the exit connects four or more stories.",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.36",
+        "title": "Design and construction requirements for exit routes",
+        "standardText": "Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a street, walkway, refuge area, public way or open space large enough for the occupants likely to use it (1910.36(c)); employees must be able to open an exit route door from the inside at all times without keys, tools or special knowledge (1910.36(d)(1)); and exit routes must meet minimum capacity, height and width requirements (1910.36(f), (g)). The separate requirement that exit routes be kept free and unobstructed is at 29 CFR 1910.37(a)(3), not in this section.",
+        "plainLanguageSummary": "Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a street, walkway, refuge area, public way or open space large enough for the occupants likely to use it (1910.36(c)); employees must be able to open an exit route door from the inside at all times without keys, tools or special knowledge (1910.36(d)(1)); and exit routes must meet minimum capacity, height and width requirements (1910.36(f), (g)). The separate requirement that exit routes be kept free and unobstructed is at 29 CFR 1910.37(a)(3), not in this section.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1910.95",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1910.95 Occupational noise exposure.",
+        "sourceKey": null,
+        "standardTextLength": 17004,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 870,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 870,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 17004,
+        "governedArtifactLength": 870,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 17004,
+          "governedLength": 870,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1910.95",
+        "title": "§ 1910.95 Occupational noise exposure.",
+        "standardText": null,
+        "plainLanguageSummary": "(a) Protection against the effects of noise exposure shall be provided when the sound levels exceed those shown in Table G-16 when measured on the A scale of a standard sound level meter at slow response. When noise levels are determined by octave band analysis, the equivalent A-weighted sound level may be determined as follows: (b)(1) When employees are subjected to sound exceeding those listed in Table G-16, feasible administrative or engineering controls shall be utilized. If such controls fa",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1910.95",
+        "title": "Occupational noise exposure",
+        "standardText": "Protection against the effects of noise exposure must be provided when sound levels exceed those in Table G-16 of 29 CFR 1910.95, measured on the A scale at slow response — Table G-16 permits 90 dBA for 8 hours, 92 dBA for 6 hours, 95 dBA for 4 hours, and so on (1910.95(a)). Where employees are subjected to sound exceeding those levels, feasible administrative or engineering controls must be used first, and personal protective equipment is required only if those controls fail to bring exposure within the table (1910.95(b)(1)). Separately and at a lower threshold, the employer must administer a continuing, effective hearing conservation program whenever employee noise exposure equals or exceeds an 8-hour time-weighted average of 85 dBA, or equivalently a dose of fifty percent, computed without regard to any attenuation from hearing protectors (1910.95(c)(1)).",
+        "plainLanguageSummary": "Protection against the effects of noise exposure must be provided when sound levels exceed those in Table G-16 of 29 CFR 1910.95, measured on the A scale at slow response — Table G-16 permits 90 dBA for 8 hours, 92 dBA for 6 hours, 95 dBA for 4 hours, and so on (1910.95(a)). Where employees are subjected to sound exceeding those levels, feasible administrative or engineering controls must be used first, and personal protective equipment is required only if those controls fail to bring exposure within the table (1910.95(b)(1)). Separately and at a lower threshold, the employer must administer a continuing, effective hearing conservation program whenever employee noise exposure equals or exceeds an 8-hour time-weighted average of 85 dBA, or equivalently a dose of fifty percent, computed without regard to any attenuation from hearing protectors (1910.95(c)(1)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.1153",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1926.1153 Respirable crystalline silica.",
+        "sourceKey": null,
+        "standardTextLength": 24625,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1239,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1239,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 24625,
+        "governedArtifactLength": 1239,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 24625,
+          "governedLength": 1239,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.1153",
+        "title": "§ 1926.1153 Respirable crystalline silica.",
+        "standardText": null,
+        "plainLanguageSummary": "Scope and application. 3 (a)This section applies to all occupational exposures to respirable crystalline silica in construction work, except where employee exposure will remain below 25 micrograms per cubic meter of air (25 µg/m) as an 8-hour time-weighted average (TWA) under any foreseeable conditions. Definitions. (b)For the purposes of this section the following definitions apply: Action level 3 means a concentration of airborne respirable crystalline silica of 25 µg/m, calculated as an 8-hou",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.1153",
+        "title": "Respirable crystalline silica",
+        "standardText": "For each employee engaged in a task identified on Table 1 of 29 CFR 1926.1153, the employer must fully and properly implement the engineering controls, work practices and respiratory protection that Table 1 specifies for that task, unless the employer instead assesses and limits exposure under 1926.1153(d) (1926.1153(c)(1)). For stationary masonry saws (Table 1 entry (i)) and for handheld power saws of any blade diameter (Table 1 entry (ii)), Table 1 requires a saw equipped with an integrated water delivery system that continuously feeds water to the blade, operated and maintained in accordance with the manufacturer's instructions to minimize dust emissions; the handheld entry additionally requires respiratory protection with an assigned protection factor of 10 when used indoors or in an enclosed area, and for more than four hours per shift outdoors. Where a task is not listed on Table 1, or where the employer does not fully and properly implement the Table 1 controls, the employer must instead ensure no employee is exposed above the permissible exposure limit of 50 micrograms per cubic metre of respirable crystalline silica as an 8-hour time-weighted average, and must assess exposures accordingly (1926.1153(d)(1)-(2)).",
+        "plainLanguageSummary": "For each employee engaged in a task identified on Table 1 of 29 CFR 1926.1153, the employer must fully and properly implement the engineering controls, work practices and respiratory protection that Table 1 specifies for that task, unless the employer instead assesses and limits exposure under 1926.1153(d) (1926.1153(c)(1)). For stationary masonry saws (Table 1 entry (i)) and for handheld power saws of any blade diameter (Table 1 entry (ii)), Table 1 requires a saw equipped with an integrated water delivery system that continuously feeds water to the blade, operated and maintained in accordance with the manufacturer's instructions to minimize dust emissions; the handheld entry additionally requires respiratory protection with an assigned protection factor of 10 when used indoors or in an enclosed area, and for more than four hours per shift outdoors. Where a task is not listed on Table 1, or where the employer does not fully and properly implement the Table 1 controls, the employer must instead ensure no employee is exposed above the permissible exposure limit of 50 micrograms per cubic metre of respirable crystalline silica as an 8-hour time-weighted average, and must assess exposures accordingly (1926.1153(d)(1)-(2)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.300(b)(2)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 368,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 368,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 368,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 368,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.300(b)(2)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.300(b)(2)",
+        "title": "Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact",
+        "standardText": "Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)).",
+        "plainLanguageSummary": "Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.34(a)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 392,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 392,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 392,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 392,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.34(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.34(a)",
+        "title": "Means of egress - General",
+        "standardText": "In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other emergency (1926.34(c)).",
+        "plainLanguageSummary": "In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other emergency (1926.34(c)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.416(a)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3D",
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 354,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 354,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 354,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 354,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.416(a)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.416(a)(1)",
+        "title": "Electrical safety-related work practices - General requirements: protection of employees from contact with electric power circuits",
+        "standardText": "No employer may permit an employee to work in such proximity to any part of an electric power circuit that the employee could contact the circuit in the course of work, unless the employee is protected against electric shock by deenergizing the circuit and grounding it, or by guarding it effectively by insulation or other means (29 CFR 1926.416(a)(1)).",
+        "plainLanguageSummary": "No employer may permit an employee to work in such proximity to any part of an electric power circuit that the employee could contact the circuit in the course of work, unless the employee is protected against electric shock by deenergizing the circuit and grounding it, or by guarding it effectively by insulation or other means (29 CFR 1926.416(a)(1)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.451(g)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 640,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 640,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 640,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 640,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.451(g)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.451(g)(1)",
+        "title": "General requirements — Fall protection",
+        "standardText": "Each employee on a scaffold more than 10 feet (3.1 m) above a lower level must be protected from falling to that lower level (29 CFR 1926.451(g)(1)). The type of protection required depends on the type of scaffold: 1926.451(g)(1)(i)-(vii) prescribe personal fall arrest systems, guardrail systems, or a combination, for each scaffold type, and fall protection for scaffold erectors and dismantlers is addressed separately at 1926.451(g)(2). Fall protection for employees installing suspension scaffold support systems on floors, roofs and other elevated surfaces is governed by subpart M rather than this paragraph (Note to 1926.451(g)(1)).",
+        "plainLanguageSummary": "Each employee on a scaffold more than 10 feet (3.1 m) above a lower level must be protected from falling to that lower level (29 CFR 1926.451(g)(1)). The type of protection required depends on the type of scaffold: 1926.451(g)(1)(i)-(vii) prescribe personal fall arrest systems, guardrail systems, or a combination, for each scaffold type, and fall protection for scaffold erectors and dismantlers is addressed separately at 1926.451(g)(2). Fall protection for employees installing suspension scaffold support systems on floors, roofs and other elevated surfaces is governed by subpart M rather than this paragraph (Note to 1926.451(g)(1)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.501",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1926.501 Duty to have fall protection.",
+        "sourceKey": null,
+        "standardTextLength": 8702,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 1439,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 1439,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 8702,
+        "governedArtifactLength": 1439,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 8702,
+          "governedLength": 1439,
+          "normalizationsApplied": [
+            "typographic-quotes-and-dashes"
+          ],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.501",
+        "title": "§ 1926.501 Duty to have fall protection.",
+        "standardText": null,
+        "plainLanguageSummary": "General. (a)(1) This section sets forth requirements for employers to provide fall protection systems. All fall protection required by this section shall conform to the criteria set forth in § 1926.502 of this subpart. (2) The employer shall determine if the walking/working surfaces on which its employees are to work have the strength and structural integrity to support employees safely. Employees shall be allowed to work on those surfaces only when the surfaces have the requisite strength and s",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.501",
+        "title": "Duty to have fall protection",
+        "standardText": "Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work on those surfaces only when they do (1926.501(a)(2)). The general construction trigger is six feet: each employee on a walking/working surface with an unprotected side or edge 6 feet (1.8 m) or more above a lower level must be protected by a guardrail system, safety net system, or personal fall arrest system (1926.501(b)(1)), and the same 6-foot threshold governs steep roofs (1926.501(b)(11)) and any walking/working surface not otherwise addressed (1926.501(b)(15)). Two hole provisions differ and should not be flattened into the 6-foot rule: falling THROUGH a hole, including a skylight, must be protected where the hole is more than 6 feet above a lower level (1926.501(b)(4)(i)), while protection from tripping in or stepping into or through a hole, and from objects falling through it, is required by covers at ANY height (1926.501(b)(4)(ii)-(iii)). Fall protection for employees on scaffolds, cranes and derricks, steel erection, and stairways and ladders is governed by subparts L, CC, R and X respectively, not by this section (29 CFR 1926.500(a)(2)).",
+        "plainLanguageSummary": "Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work on those surfaces only when they do (1926.501(a)(2)). The general construction trigger is six feet: each employee on a walking/working surface with an unprotected side or edge 6 feet (1.8 m) or more above a lower level must be protected by a guardrail system, safety net system, or personal fall arrest system (1926.501(b)(1)), and the same 6-foot threshold governs steep roofs (1926.501(b)(11)) and any walking/working surface not otherwise addressed (1926.501(b)(15)). Two hole provisions differ and should not be flattened into the 6-foot rule: falling THROUGH a hole, including a skylight, must be protected where the hole is more than 6 feet above a lower level (1926.501(b)(4)(i)), while protection from tripping in or stepping into or through a hole, and from objects falling through it, is required by covers at ANY height (1926.501(b)(4)(ii)-(iii)). Fall protection for employees on scaffolds, cranes and derricks, steel erection, and stairways and ladders is governed by subparts L, CC, R and X respectively, not by this section (29 CFR 1926.500(a)(2)).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.52",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1926.52 Occupational noise exposure.",
+        "sourceKey": null,
+        "standardTextLength": 1554,
+        "plainLanguageSummaryLength": 500
+      },
+      "pathB": {
+        "legacyBodyLength": 500,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 468,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 500,
+          "governedLength": 468,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 1554,
+        "governedArtifactLength": 468,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 1554,
+          "governedLength": 468,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.52",
+        "title": "§ 1926.52 Occupational noise exposure.",
+        "standardText": null,
+        "plainLanguageSummary": "(a) Protection against the effects of noise exposure shall be provided when the sound levels exceed those shown in Table D-2 of this section when measured on the A-scale of a standard sound level meter at slow response. (b) When employees are subjected to sound levels exceeding those listed in Table D-2 of this section, feasible administrative or engineering controls shall be utilized. If such controls fail to reduce sound levels within the levels of the table, personal protective equipment as r",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.52",
+        "title": "Occupational noise exposure",
+        "standardText": "In construction, protection against the effects of noise exposure must be provided when sound levels exceed those in Table D-2 of 29 CFR 1926.52 measured on the A-scale at slow response (90 dBA for an 8-hour duration); when employees are subjected to sound levels exceeding Table D-2, feasible administrative or engineering controls must be used, and where sound levels exceed the table values a continuing, effective hearing conservation program must be administered.",
+        "plainLanguageSummary": "In construction, protection against the effects of noise exposure must be provided when sound levels exceed those in Table D-2 of 29 CFR 1926.52 measured on the A-scale at slow response (90 dBA for an 8-hour duration); when employees are subjected to sound levels exceeding Table D-2, feasible administrative or engineering controls must be used, and where sound levels exceed the table values a continuing, effective hearing conservation program must be administered.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.59",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": true,
+        "title": "§ 1926.59 Hazard communication.",
+        "sourceKey": null,
+        "standardTextLength": 199,
+        "plainLanguageSummaryLength": 199
+      },
+      "pathB": {
+        "legacyBodyLength": 199,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "UNAPPROVED_CONTENT",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 383,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 199,
+          "governedLength": 383,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 199,
+        "governedArtifactLength": 383,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 199,
+          "governedLength": 383,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "GOVERNED_REVIEWED_RENDERING",
+          "basis": "The delivered text is byte-identical to the release record's frozen reviewed artifact; the record is approved against its exact checksum; a clause-by-clause review is recorded in KG-3E; and the legacy content carries the same logical citation identity. Byte-equality with the verbatim legacy ingest is not achievable by construction and its absence is therefore not evidence of regulatory disagreement. This does NOT mechanically prove the rendering is non-contradictory -- that is the recorded review, not a computation."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.59",
+        "title": "§ 1926.59 Hazard communication.",
+        "standardText": null,
+        "plainLanguageSummary": "§ 1926.59 Hazard communication. Note: The requirements applicable to construction work under this section are identical to those set forth at § 1910.1200 of this chapter. [61 FR 31431, June 20, 1996]",
+        "backingStatus": "UNAPPROVED_CONTENT",
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.59",
+        "title": "Hazard Communication",
+        "standardText": "The hazard communication requirements applicable to construction work under 29 CFR 1926.59 are identical to those set forth at 29 CFR 1910.1200: containers of hazardous chemicals in the workplace must be labeled with the product identifier and hazard information, and employers must maintain the hazard communication program, safety data sheets, and training that 1910.1200 requires.",
+        "plainLanguageSummary": "The hazard communication requirements applicable to construction work under 29 CFR 1926.59 are identical to those set forth at 29 CFR 1910.1200: containers of hazardous chemicals in the workplace must be labeled with the product identifier and hazard information, and employers must maintain the hazard communication program, safety data sheets, and training that 1910.1200 requires.",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.602(a)(9)(ii)",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 0,
+        "governedBackingStatus": "CITATION_ONLY",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "NONE",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 0,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 227,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 227,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "29 CFR 1926.602(a)(9)(ii)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.602(a)(9)(ii)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    },
+    {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "approved": true,
+      "kg5bShadowClassification": "APPROVED_EXACT",
+      "deliveryEquivalence": "DELIVERS_REVIEWED_ARTIFACT",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": true,
+        "clauseReviewRecorded": true,
+        "deliveredTextIsFrozenArtifact": true,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": [
+          "KG-3E"
+        ]
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 649,
+        "governedBackingStatus": "APPROVED_GOVERNED_CONTENT",
+        "governedCorpusBacked": true,
+        "governedContentDisclosure": "GOVERNED_APPROVED",
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 649,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 649,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 649,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 1,
+      "customerVisibleTextDiffers": true,
+      "legacy": {
+        "citation": "29 CFR 1926.652(a)(1)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.652(a)(1)",
+        "title": "Requirements for protective systems — Protection of employees in excavations",
+        "standardText": "Each employee in an excavation must be protected from cave-ins by an adequate protective system designed in accordance with 29 CFR 1926.652(b) or (c), except in two cases: where the excavation is made entirely in stable rock, or where the excavation is less than 5 feet (1.52 m) deep and examination of the ground by a competent person provides no indication of a potential cave-in (1926.652(a)(1)(i)-(ii)). Protective systems must also have the capacity to resist without failure all loads intended or reasonably expected to be applied to them (1926.652(a)(2)). Sloping, benching, shoring and shielding options are specified in 1926.652(b) and (c).",
+        "plainLanguageSummary": "Each employee in an excavation must be protected from cave-ins by an adequate protective system designed in accordance with 29 CFR 1926.652(b) or (c), except in two cases: where the excavation is made entirely in stable rock, or where the excavation is less than 5 feet (1.52 m) deep and examination of the ground by a competent person provides no indication of a potential cave-in (1926.652(a)(1)(i)-(ii)). Protective systems must also have the capacity to resist without failure all loads intended or reasonably expected to be applied to them (1926.652(a)(2)). Sloping, benching, shoring and shielding options are specified in 1926.652(b) and (c).",
+        "backingStatus": "APPROVED_GOVERNED_CONTENT",
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "corpusBacked": true,
+        "sourceKey": null,
+        "governedDeliveryState": "GOVERNED_VERIFIED_TEXT",
+        "governedFallbackReason": "GOVERNED_APPROVED_EXACT",
+        "knowledgeReleaseId": "federal-core-2026-07-30.1"
+      }
+    },
+    {
+      "citation": "29 CFR 1926.95(a)",
+      "approved": false,
+      "kg5bShadowClassification": "UNAPPROVED_RECORD",
+      "deliveryEquivalence": "FALLBACK_IDENTICAL_TO_LEGACY",
+      "reviewedRenderingPreconditions": {
+        "approvedAtExactChecksum": false,
+        "clauseReviewRecorded": false,
+        "deliveredTextIsFrozenArtifact": false,
+        "sameLogicalCitationIdentity": true,
+        "evidencePhases": []
+      },
+      "legacyHydration": {
+        "resolved": false,
+        "title": null,
+        "sourceKey": null,
+        "standardTextLength": 0,
+        "plainLanguageSummaryLength": 0
+      },
+      "pathB": {
+        "legacyBodyLength": 0,
+        "legacyBodyField": "plainLanguageSummary",
+        "legacyBackingStatus": "CITATION_ONLY",
+        "legacyCorpusBacked": false,
+        "governedBodyLength": 0,
+        "governedBackingStatus": "CITATION_ONLY",
+        "governedCorpusBacked": false,
+        "governedContentDisclosure": "NONE",
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null,
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 0,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": false,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "pathA": {
+        "legacyBodyLength": 0,
+        "governedArtifactLength": 313,
+        "comparedAgainst": "the release record frozen payload.canonicalText",
+        "equivalence": {
+          "legacyLength": 0,
+          "governedLength": 313,
+          "normalizationsApplied": [],
+          "customerVisibleTextDiffers": true,
+          "equivalenceClass": "LEGACY_UNRESOLVED",
+          "basis": "The real customer legacy hydration path resolved no corpus record for this citation, so there is no legacy content to disagree with."
+        }
+      },
+      "legacyCorpusCandidateRows": 11,
+      "customerVisibleTextDiffers": false,
+      "legacy": {
+        "citation": "29 CFR 1926.95(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": null,
+        "governedFallbackReason": null,
+        "knowledgeReleaseId": null
+      },
+      "governed": {
+        "citation": "29 CFR 1926.95(a)",
+        "title": null,
+        "standardText": null,
+        "plainLanguageSummary": null,
+        "backingStatus": "CITATION_ONLY",
+        "contentDisclosure": "NONE",
+        "corpusBacked": false,
+        "sourceKey": null,
+        "governedDeliveryState": "LEGACY_TEXT_UNVERIFIED",
+        "governedFallbackReason": "GOVERNED_RECORD_UNAPPROVED",
+        "knowledgeReleaseId": null
+      }
+    }
+  ],
+  "legacyCorpus": {
+    "rowsBefore": 2390,
+    "rowsAfter": 2390,
+    "digestUnchanged": true,
+    "rowsWithSourceKey": 0
+  }
+}

@@ -1,0 +1,2407 @@
+{
+  "generatedAt": "2026-08-20T23:54:54.271Z",
+  "views": [
+    "light",
+    "dark",
+    "mobile",
+    "mobile-dark"
+  ],
+  "states": [
+    {
+      "key": "s1-approved-direct",
+      "inspection": "osha",
+      "citation": "29 CFR 1926.501",
+      "content": "APPROVED_GOVERNED_CONTENT",
+      "applicability": "direct",
+      "scenario": "1. approved content + high applicability confidence"
+    },
+    {
+      "key": "s3-unapproved-strong",
+      "inspection": "osha",
+      "citation": "29 CFR 1926.34(a)",
+      "content": "UNAPPROVED_CONTENT",
+      "applicability": "candidate",
+      "scenario": "3. unapproved content + strong applicability evidence"
+    },
+    {
+      "key": "s4-citation-only",
+      "inspection": "msha",
+      "citation": "30 CFR 56.14132(b)(1)",
+      "content": "CITATION_ONLY",
+      "applicability": "direct",
+      "scenario": "4. citation-only — exact paragraph earned, corpus holds only the section"
+    },
+    {
+      "key": "s5-56-14132-corrected",
+      "inspection": "msha",
+      "citation": "30 CFR 56.14132",
+      "content": "APPROVED_GOVERNED_CONTENT",
+      "applicability": "candidate",
+      "scenario": "2+5. approved TEXT + UNESTABLISHED applicability (corrected 56.14132)"
+    }
+  ],
+  "totalChecks": 376,
+  "failures": [],
+  "results": [
+    {
+      "view": "light",
+      "state": "s1-approved-direct",
+      "scenario": "1. approved content + high applicability confidence",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "direct",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.501\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.501\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":214.421875,\"width\":822,\"height\":572}"
+        }
+      ]
+    },
+    {
+      "view": "light",
+      "state": "s3-unapproved-strong",
+      "scenario": "3. unapproved content + strong applicability evidence",
+      "expectedContent": "UNAPPROVED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": false,
+      "hasNotice": false,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other em",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary shown under its honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":282.421875,\"width\":822,\"height\":436}"
+        }
+      ]
+    },
+    {
+      "view": "light",
+      "state": "s4-citation-only",
+      "scenario": "4. citation-only — exact paragraph earned, corpus holds only the section",
+      "expectedContent": "CITATION_ONLY",
+      "expectedApplicability": "direct",
+      "hasBadge": false,
+      "hasNotice": true,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(71, 85, 105)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) MSHA reverse-warning method for obstructed rear view STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA reverse-warning method for obstructed rear view; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "content gap is stated as a content gap, not as an applicability failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":506.421875,\"width\":822,\"height\":300}"
+        }
+      ]
+    },
+    {
+      "view": "light",
+      "state": "s5-56-14132-corrected",
+      "scenario": "2+5. approved TEXT + UNESTABLISHED applicability (corrected 56.14132)",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 30 CFR 56.14132 Horns and backup alarms STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "APPROVED TEXT DOES NOT IMPLY APPLICABILITY: badge present but applicability still qualified",
+          "ok": true,
+          "detail": "badge=true confidence=\"Low\""
+        },
+        {
+          "name": "the evidence gap is disclosed rather than left implicit",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "UNKNOWN applicability is NOT presented as a corpus failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":232.421875,\"width\":822,\"height\":536}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "s1-approved-direct",
+      "scenario": "1. approved content + high applicability confidence",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "direct",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.501\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.501\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":214.421875,\"width\":822,\"height\":572}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "s3-unapproved-strong",
+      "scenario": "3. unapproved content + strong applicability evidence",
+      "expectedContent": "UNAPPROVED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": false,
+      "hasNotice": false,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other em",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary shown under its honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":282.421875,\"width\":822,\"height\":436}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "s4-citation-only",
+      "scenario": "4. citation-only — exact paragraph earned, corpus holds only the section",
+      "expectedContent": "CITATION_ONLY",
+      "expectedApplicability": "direct",
+      "hasBadge": false,
+      "hasNotice": true,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(203, 213, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) MSHA reverse-warning method for obstructed rear view STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA reverse-warning method for obstructed rear view; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "content gap is stated as a content gap, not as an applicability failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":506.421875,\"width\":822,\"height\":300}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "state": "s5-56-14132-corrected",
+      "scenario": "2+5. approved TEXT + UNESTABLISHED applicability (corrected 56.14132)",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 30 CFR 56.14132 Horns and backup alarms STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "APPROVED TEXT DOES NOT IMPLY APPLICABILITY: badge present but applicability still qualified",
+          "ok": true,
+          "detail": "badge=true confidence=\"Low\""
+        },
+        {
+          "name": "the evidence gap is disclosed rather than left implicit",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "UNKNOWN applicability is NOT presented as a corpus failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":232.421875,\"width\":822,\"height\":536}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "s1-approved-direct",
+      "scenario": "1. approved content + high applicability confidence",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "direct",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.501\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.501\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-245.625,\"width\":304,\"height\":1336}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "s3-unapproved-strong",
+      "scenario": "3. unapproved content + strong applicability evidence",
+      "expectedContent": "UNAPPROVED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": false,
+      "hasNotice": false,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other em",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary shown under its honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":45.375,\"width\":304,\"height\":754}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "s4-citation-only",
+      "scenario": "4. citation-only — exact paragraph earned, corpus holds only the section",
+      "expectedContent": "CITATION_ONLY",
+      "expectedApplicability": "direct",
+      "hasBadge": false,
+      "hasNotice": true,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(71, 85, 105)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) MSHA reverse-warning method for obstructed rear view STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA reverse-warning method for obstructed rear view; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "content gap is stated as a content gap, not as an applicability failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":186.375,\"width\":304,\"height\":472}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "state": "s5-56-14132-corrected",
+      "scenario": "2+5. approved TEXT + UNESTABLISHED applicability (corrected 56.14132)",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 30 CFR 56.14132 Horns and backup alarms STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "APPROVED TEXT DOES NOT IMPLY APPLICABILITY: badge present but applicability still qualified",
+          "ok": true,
+          "detail": "badge=true confidence=\"Low\""
+        },
+        {
+          "name": "the evidence gap is disclosed rather than left implicit",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "UNKNOWN applicability is NOT presented as a corpus failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-152.625,\"width\":304,\"height\":1150}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "s1-approved-direct",
+      "scenario": "1. approved content + high applicability confidence",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "direct",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "PRIMARY STANDARD 29 CFR 1926.501 Duty to have fall protection STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.501\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.501\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-245.625,\"width\":304,\"height\":1336}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "s3-unapproved-strong",
+      "scenario": "3. unapproved content + strong applicability evidence",
+      "expectedContent": "UNAPPROVED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": false,
+      "hasNotice": false,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": null,
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1926.34(a) Means of egress - General STANDARD DETAIL HAZLENZ STANDARD SUMMARY In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other em",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"29 CFR 1926.34(a)\""
+        },
+        {
+          "name": "no verified badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "summary shown under its honest label",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":45.375,\"width\":304,\"height\":754}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "s4-citation-only",
+      "scenario": "4. citation-only — exact paragraph earned, corpus holds only the section",
+      "expectedContent": "CITATION_ONLY",
+      "expectedApplicability": "direct",
+      "hasBadge": false,
+      "hasNotice": true,
+      "hasSourceCaveat": true,
+      "confidenceLabel": "High",
+      "hasEvidenceGaps": false,
+      "styles": {
+        "badge": null,
+        "notice": {
+          "color": "rgb(203, 213, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "14px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) MSHA reverse-warning method for obstructed rear view STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA reverse-warning method for obstructed rear view; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132(b)(1)\""
+        },
+        {
+          "name": "no verified-text claim",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "unavailable notice shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no fabricated body text",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"High\""
+        },
+        {
+          "name": "content gap is stated as a content gap, not as an applicability failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":186.375,\"width\":304,\"height\":472}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "state": "s5-56-14132-corrected",
+      "scenario": "2+5. approved TEXT + UNESTABLISHED applicability (corrected 56.14132)",
+      "expectedContent": "APPROVED_GOVERNED_CONTENT",
+      "expectedApplicability": "candidate",
+      "hasBadge": true,
+      "hasNotice": false,
+      "hasSourceCaveat": false,
+      "confidenceLabel": "Low",
+      "hasEvidenceGaps": true,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "notice": null,
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 30 CFR 56.14132 Horns and backup alarms STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal",
+      "checks": [
+        {
+          "name": "standard detail reachable for the citation",
+          "ok": true,
+          "detail": "no card showed \"30 CFR 56.14132\""
+        },
+        {
+          "name": "citation heading names exactly this citation",
+          "ok": true,
+          "detail": "heading was \"30 CFR 56.14132\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no contradictory source-review caveat beside the badge",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "an applicability confidence is stated",
+          "ok": true,
+          "detail": "parsed \"Low\""
+        },
+        {
+          "name": "applicability is NOT presented as established",
+          "ok": true,
+          "detail": "confidence label was \"Low\""
+        },
+        {
+          "name": "APPROVED TEXT DOES NOT IMPLY APPLICABILITY: badge present but applicability still qualified",
+          "ok": true,
+          "detail": "badge=true confidence=\"Low\""
+        },
+        {
+          "name": "the evidence gap is disclosed rather than left implicit",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "UNKNOWN applicability is NOT presented as a corpus failure",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"approvalDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"substantiveContentDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"sourceIdentityDigest\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-152.625,\"width\":304,\"height\":1150}"
+        }
+      ]
+    }
+  ]
+}

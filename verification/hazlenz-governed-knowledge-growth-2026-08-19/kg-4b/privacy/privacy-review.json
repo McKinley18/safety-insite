@@ -1,0 +1,223 @@
+{
+  "generatedBy": "test-kg4b-privacy-review.ts",
+  "eventsReviewed": 83,
+  "fieldsObserved": [
+    "applicability",
+    "approvalContractVersion",
+    "approvalDigest",
+    "correlationId",
+    "customerOutputUnchanged",
+    "dimensions",
+    "event",
+    "eventKey",
+    "fallbackState",
+    "findingKey",
+    "governedBackingState",
+    "governedResolvedCitation",
+    "governedTextDigest",
+    "hazardFamily",
+    "jurisdiction",
+    "latencyMs",
+    "legacyBackingState",
+    "legacyCitation",
+    "legacyTextDigest",
+    "mismatch",
+    "mode",
+    "observedAt",
+    "releaseId",
+    "releaseManifestChecksum",
+    "requestedCitation",
+    "resolverHealth",
+    "rootCause",
+    "schemaVersion",
+    "severity"
+  ],
+  "fieldReview": {
+    "schemaVersion": {
+      "classification": "required",
+      "rationale": "An analyser must know which shape it is reading before it reads it."
+    },
+    "event": {
+      "classification": "required",
+      "rationale": "Distinguishes this event from the per-resolution event on the same stream."
+    },
+    "observedAt": {
+      "classification": "required",
+      "rationale": "Orders the corpus and bounds a retention window. Server clock; no user timing."
+    },
+    "correlationId": {
+      "classification": "required",
+      "rationale": "Groups the comparisons of ONE analysis. Server-generated UUID or trace id; carries no customer identity and cannot be supplied by a request."
+    },
+    "findingKey": {
+      "classification": "useful",
+      "rationale": "Attributes a comparison to a finding within the analysis. A hazard key or citation, never customer prose."
+    },
+    "eventKey": {
+      "classification": "required",
+      "rationale": "Deterministic idempotency key. Without it a retry double-counts."
+    },
+    "mode": {
+      "classification": "required",
+      "rationale": "A comparison is only interpretable against the mode that produced it."
+    },
+    "releaseId": {
+      "classification": "required",
+      "rationale": "Which governed release answered. Public corpus identifier."
+    },
+    "releaseManifestChecksum": {
+      "classification": "required",
+      "rationale": "Ties the corpus to an exact corpus state, so findings can be reproduced without the database that produced them."
+    },
+    "requestedCitation": {
+      "classification": "required",
+      "rationale": "A public regulatory identifier. The whole subject of the comparison."
+    },
+    "legacyCitation": {
+      "classification": "required",
+      "rationale": "What the customer actually received; the other half of the comparison."
+    },
+    "governedResolvedCitation": {
+      "classification": "required",
+      "rationale": "Makes the no-substitution invariant checkable from the corpus alone."
+    },
+    "applicability": {
+      "classification": "required",
+      "rationale": "The applicability axis, which must stay separable from backing. Categorical."
+    },
+    "legacyBackingState": {
+      "classification": "required",
+      "rationale": "The customer-visible backing claim before governance."
+    },
+    "governedBackingState": {
+      "classification": "required",
+      "rationale": "The governed answer. Categorical."
+    },
+    "approvalContractVersion": {
+      "classification": "useful",
+      "rationale": "Lets a corpus be re-read after the approval contract changes version."
+    },
+    "approvalDigest": {
+      "classification": "useful",
+      "rationale": "Approval identity. A digest, not content."
+    },
+    "fallbackState": {
+      "classification": "required",
+      "rationale": "What the customer would have been shown in a governed mode."
+    },
+    "mismatch": {
+      "classification": "required",
+      "rationale": "The primary analytical dimension."
+    },
+    "dimensions": {
+      "classification": "required",
+      "rationale": "Secondary dimensions, so a multi-dimensional mismatch loses nothing. All booleans."
+    },
+    "severity": {
+      "classification": "required",
+      "rationale": "Drives the cutover decision; blocking cases are listed individually."
+    },
+    "rootCause": {
+      "classification": "required",
+      "rationale": "Makes the corpus actionable by naming who owns the remedy."
+    },
+    "resolverHealth": {
+      "classification": "required",
+      "rationale": "Separates \"we do not know\" from \"there is none\"."
+    },
+    "legacyTextDigest": {
+      "classification": "required",
+      "rationale": "Content EQUALITY without content. Comparing bodies is the whole point; carrying them is not."
+    },
+    "governedTextDigest": {
+      "classification": "required",
+      "rationale": "As above, for the governed side."
+    },
+    "hazardFamily": {
+      "classification": "useful",
+      "rationale": "Aggregation by family. A taxonomy label from the engine, not customer text."
+    },
+    "jurisdiction": {
+      "classification": "useful",
+      "rationale": "Aggregation by regime, and the jurisdiction-disagreement dimension. A regime name."
+    },
+    "latencyMs": {
+      "classification": "useful",
+      "rationale": "Overhead measurement. A duration, not a timestamp of user behaviour."
+    },
+    "customerOutputUnchanged": {
+      "classification": "required",
+      "rationale": "The proof obligation carried on every event."
+    }
+  },
+  "classificationCounts": {
+    "required": 23,
+    "useful": 6
+  },
+  "markersSearched": [
+    {
+      "label": "observation fragment (punch press)",
+      "found": false
+    },
+    {
+      "label": "observation fragment (haul truck)",
+      "found": false
+    },
+    {
+      "label": "observation fragment (scaffold)",
+      "found": false
+    },
+    {
+      "label": "observation fragment (solvent)",
+      "found": false
+    },
+    {
+      "label": "observation fragment (trench)",
+      "found": false
+    },
+    {
+      "label": "shadow account email",
+      "found": false
+    },
+    {
+      "label": "legacy account email",
+      "found": false
+    },
+    {
+      "label": "example.com domain",
+      "found": false
+    },
+    {
+      "label": "test password",
+      "found": false
+    },
+    {
+      "label": "JWT secret",
+      "found": false
+    },
+    {
+      "label": "bearer token prefix",
+      "found": false
+    },
+    {
+      "label": "regulatory body text",
+      "found": false
+    },
+    {
+      "label": "regulatory body text (msha)",
+      "found": false
+    },
+    {
+      "label": "reviewer identity",
+      "found": false
+    }
+  ],
+  "emailShapedStrings": 0,
+  "fieldsOver200Chars": 0,
+  "runtimeGuardFailures": 0,
+  "digestsChecked": 108,
+  "contentEqualityDecidable": {
+    "withBothDigests": 54,
+    "agreeing": 54
+  }
+}

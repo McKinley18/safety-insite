@@ -1,0 +1,205 @@
+{
+  "generatedBy": "report-kg4b-shadow-analytics.ts",
+  "schemaVersion": "kg4b.shadow-comparison.v1",
+  "releaseId": [
+    "federal-core-2026-07-30.1"
+  ],
+  "releaseManifestChecksum": [
+    "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b"
+  ],
+  "corpus": {
+    "goldSetCases": 31,
+    "kg4bFixtures": 12,
+    "totalCases": 43,
+    "regimes": [
+      "osha_general_industry",
+      "msha",
+      "osha_construction",
+      "unknown"
+    ],
+    "shapes": [
+      "positive_hazard",
+      "negative_control",
+      "multi_hazard",
+      "controlled_state",
+      "ambiguous_unknown_jurisdiction",
+      "parent_child",
+      "alternative_compliance",
+      "evidence_unknown",
+      "overlapping_vocabulary",
+      "mixed_provenance"
+    ]
+  },
+  "totals": {
+    "analyses": 43,
+    "findings": 54,
+    "candidateStandards": 74,
+    "citationComparisons": 83
+  },
+  "customerOutputInvariance": {
+    "casesCompared": 43,
+    "identical": 43,
+    "identicalRatePercent": 100,
+    "shadowPayloadsCarryingGovernedKeys": 0
+  },
+  "ratesPerCitationComparison": {
+    "denominator": 83,
+    "exactMatchPercent": 49.4,
+    "contentEquivalentPercent": 0,
+    "substantiveMismatchPercent": 50.6,
+    "governedMissingPercent": 18.07,
+    "governedCitationOnlyPercent": 0,
+    "granularityDifferencePercent": 16.87,
+    "applicabilityDifferencePercent": 15.66,
+    "jurisdictionDifferencePercent": 0,
+    "contentDifferencePercent": 0,
+    "resolverFailurePercent": 0,
+    "integrityFailurePercent": 0,
+    "blockingPercent": 0
+  },
+  "distributions": {
+    "mismatch": {
+      "EXACT_MATCH": 41,
+      "GOVERNED_MISSING": 15,
+      "GRANULARITY_DIFFERENCE": 14,
+      "APPLICABILITY_DIFFERENCE": 13
+    },
+    "severity": {
+      "INFORMATIONAL": 56,
+      "REVIEW": 27
+    },
+    "rootCause": {
+      "NONE": 41,
+      "EXPECTED_FALLBACK": 15,
+      "CITATION_GRANULARITY": 14,
+      "APPLICABILITY_EVIDENCE": 13
+    },
+    "governedBackingState": {
+      "APPROVED_EXACT": 54,
+      "NOT_IN_RELEASE": 15,
+      "APPROVED_SECTION_ONLY": 14
+    },
+    "applicability": {
+      "SUPPORTED": 50,
+      "UNCERTAIN": 33
+    },
+    "resolverHealth": {
+      "OK": 83
+    },
+    "unobservedCategories": [
+      "CONTENT_EQUIVALENT",
+      "CONTENT_DIFFERENCE",
+      "CITATION_DIFFERENCE",
+      "GOVERNED_APPROVED_EXACT",
+      "GOVERNED_UNAPPROVED",
+      "GOVERNED_CITATION_ONLY",
+      "JURISDICTION_DIFFERENCE",
+      "ORDERING_DIFFERENCE",
+      "RESOLVER_FAILURE",
+      "INTEGRITY_FAILURE",
+      "PROVENANCE_DIFFERENCE"
+    ],
+    "unobservedSeverities": [
+      "BLOCKING"
+    ],
+    "unobservedRootCauses": [
+      "HAZLENZ_SELECTION",
+      "CORPUS_CONTENT",
+      "GOVERNANCE_APPROVAL",
+      "SOURCE_PROVENANCE",
+      "JURISDICTION",
+      "PRESENTATION_ONLY",
+      "RESOLVER_FAILURE"
+    ]
+  },
+  "byHazardFamily": {
+    "(unattributed)": {
+      "INFORMATIONAL": 53,
+      "REVIEW": 21
+    },
+    "fall_protection": {
+      "REVIEW": 1,
+      "INFORMATIONAL": 1
+    },
+    "powered_industrial_trucks": {
+      "REVIEW": 2,
+      "INFORMATIONAL": 1
+    },
+    "noise": {
+      "INFORMATIONAL": 1
+    },
+    "machine_guarding": {
+      "REVIEW": 2
+    },
+    "egress": {
+      "REVIEW": 1
+    }
+  },
+  "byJurisdiction": {
+    "osha-general-industry": {
+      "EXACT_MATCH": 12,
+      "GOVERNED_MISSING": 3,
+      "GRANULARITY_DIFFERENCE": 8,
+      "APPLICABILITY_DIFFERENCE": 4
+    },
+    "msha": {
+      "EXACT_MATCH": 10,
+      "GOVERNED_MISSING": 11,
+      "GRANULARITY_DIFFERENCE": 3,
+      "APPLICABILITY_DIFFERENCE": 4
+    },
+    "osha-construction": {
+      "EXACT_MATCH": 19,
+      "APPLICABILITY_DIFFERENCE": 2,
+      "GRANULARITY_DIFFERENCE": 2,
+      "GOVERNED_MISSING": 1
+    },
+    "unknown": {
+      "GRANULARITY_DIFFERENCE": 1,
+      "APPLICABILITY_DIFFERENCE": 3
+    }
+  },
+  "byBackingState": {
+    "APPROVED_EXACT": {
+      "EXACT_MATCH": 41,
+      "APPLICABILITY_DIFFERENCE": 13
+    },
+    "NOT_IN_RELEASE": {
+      "GOVERNED_MISSING": 15
+    },
+    "APPROVED_SECTION_ONLY": {
+      "GRANULARITY_DIFFERENCE": 14
+    }
+  },
+  "volume": {
+    "analysesObserved": 38,
+    "totalEvents": 83,
+    "distinctEventKeys": 83,
+    "duplicateEvents": 0,
+    "eventsPerAnalysis": {
+      "min": 1,
+      "p50": 2,
+      "max": 5,
+      "mean": 2.18
+    },
+    "cardinality": "one event per (analysis x distinct citation)",
+    "cardinalityHolds": true,
+    "distinctCitationsPerAnalysis": {
+      "min": 1,
+      "max": 5
+    }
+  },
+  "blockingMismatches": [],
+  "reviewMismatchSummary": [
+    {
+      "mismatch": "GRANULARITY_DIFFERENCE",
+      "rootCause": "CITATION_GRANULARITY",
+      "count": 14
+    },
+    {
+      "mismatch": "APPLICABILITY_DIFFERENCE",
+      "rootCause": "APPLICABILITY_EVIDENCE",
+      "count": 13
+    }
+  ]
+}

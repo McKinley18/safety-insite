@@ -1,0 +1,51 @@
+{
+  "artifact": "kg-4e/contracts/report-volatility.json",
+  "generatedBy": "KG-4E",
+  "question": "Which parts of a generated inspection report legitimately differ between two runs of identical code, and are therefore not evidence of anything?",
+  "method": "DERIVED, NEVER DECLARED. Two LEGACY reports were generated from two separate but identically-parameterised inspections (same site row, same inspection title, same regulatory context, same observation text, same review rationale, same finding conclusion, same corrective action with a literal due date). Whatever differed between them is volatile. A third independent LEGACY run (legacy-C) was then compared against legacy-A using the volatility derived from legacy-A/legacy-B, and came back invariant on all eight cases -- a non-circular control, because legacy-C contributed nothing to the derivation.",
+  "volatileFields": [
+    {
+      "surface": "extracted page text",
+      "field": "Record reference <8 hex>",
+      "position": "page 1, line 9 (the cover footer), in every report",
+      "origin": "shortRef(snapshot.inspection.id) -- the first eight hex characters of the inspection uuid, uppercased",
+      "why": "Two inspections are two rows. The identifier differs between any two inspections, LEGACY or SHADOW, and naming it is the point of a record reference.",
+      "occurrencesPerReport": 1
+    },
+    {
+      "surface": "PDF document metadata",
+      "field": "/CreationDate and /ModDate",
+      "origin": "PDFKit stamps wall-clock time at render",
+      "why": "Two renders a second apart differ. Not content."
+    },
+    {
+      "surface": "PDF document metadata",
+      "field": "/ID [<hex> <hex>]",
+      "origin": "PDFKit generates a random file identifier per document",
+      "why": "Random by construction. Two renders of the SAME snapshot differ here and nowhere else, which is what identified it."
+    }
+  ],
+  "notVolatile": [
+    "page count", "per-page line count", "section headings and their order", "finding count",
+    "finding order", "citations", "standard titles", "standard text and its 'HazLenz standard summary' label",
+    "applicability and confidence wording", "risk band, severity, likelihood and matrix score",
+    "corrective action title, steps, due date, status and priority", "assignment line and notes rules",
+    "qualified-person review decision and rationale", "running header", "running footer and page numbering",
+    "regulatory-context disclosure", "basis-and-limitations note", "embedded font set",
+    "PDF version", "page size", "Producer", "document Title"
+  ],
+  "measured": {
+    "casesPerRun": 8,
+    "totalPagesPerRun": 42,
+    "totalExtractedLinesPerRun": 636,
+    "volatileLinePositionsPerRun": 8,
+    "linesCompared": 628,
+    "stableDistinctTokensCompared": 2045,
+    "volatilePositionsPerReport": ["0:9"],
+    "fonts": ["Helvetica", "Helvetica-Bold", "Helvetica-Oblique"],
+    "producer": "PDFKit",
+    "pdfVersion": "1.3",
+    "pageSize": "612 x 792 pts (letter)"
+  },
+  "byteEqualityVerdict": "INAPPROPRIATE between two inspections, and unnecessary. Byte equality IS asserted where it is meaningful: rendering ONE frozen snapshot twice, and rendering it again after poisoning it with governed/shadow fields (test:kg4e-report-field-exclusion), where only /CreationDate, /ModDate and /ID are normalised and every page byte must match."
+}

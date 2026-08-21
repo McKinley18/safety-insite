@@ -1,0 +1,127 @@
+{
+  "generatedBy": "report-kg4b-shadow-performance.ts",
+  "sourceDatabase": "test_kg4b_shadow_20260820",
+  "activeRelease": "federal-core-2026-07-30.1",
+  "runs": 40,
+  "warmup": 5,
+  "measurements": [
+    {
+      "label": "LEGACY   1 findings (context never created)",
+      "runs": 40,
+      "meanMs": 0.0029,
+      "p50Ms": 0.0006,
+      "p95Ms": 0.0358,
+      "worstMs": 0.0379
+    },
+    {
+      "label": "SHADOW   1 findings (1 distinct citations)",
+      "runs": 40,
+      "meanMs": 0.3572,
+      "p50Ms": 0.3267,
+      "p95Ms": 0.5248,
+      "worstMs": 0.5984
+    },
+    {
+      "label": "GOVERNED 1 findings (KG-4A comparison)",
+      "runs": 40,
+      "meanMs": 0.2811,
+      "p50Ms": 0.2798,
+      "p95Ms": 0.3117,
+      "worstMs": 0.3172
+    },
+    {
+      "label": "LEGACY   5 findings (context never created)",
+      "runs": 40,
+      "meanMs": 0.0003,
+      "p50Ms": 0.0003,
+      "p95Ms": 0.0005,
+      "worstMs": 0.001
+    },
+    {
+      "label": "SHADOW   5 findings (5 distinct citations)",
+      "runs": 40,
+      "meanMs": 1.0563,
+      "p50Ms": 1.0148,
+      "p95Ms": 1.3191,
+      "worstMs": 2.0064
+    },
+    {
+      "label": "GOVERNED 5 findings (KG-4A comparison)",
+      "runs": 40,
+      "meanMs": 0.7974,
+      "p50Ms": 0.7876,
+      "p95Ms": 0.8554,
+      "worstMs": 0.8809
+    },
+    {
+      "label": "LEGACY   10 findings (context never created)",
+      "runs": 40,
+      "meanMs": 0.0003,
+      "p50Ms": 0.0003,
+      "p95Ms": 0.0006,
+      "worstMs": 0.0009
+    },
+    {
+      "label": "SHADOW   10 findings (6 distinct citations)",
+      "runs": 40,
+      "meanMs": 1.1872,
+      "p50Ms": 1.1725,
+      "p95Ms": 1.2753,
+      "worstMs": 1.8269
+    },
+    {
+      "label": "GOVERNED 10 findings (KG-4A comparison)",
+      "runs": 40,
+      "meanMs": 0.8784,
+      "p50Ms": 0.873,
+      "p95Ms": 0.9578,
+      "worstMs": 0.965
+    },
+    {
+      "label": "SHADOW   multi-hazard 10 findings / 6 distinct",
+      "runs": 40,
+      "meanMs": 1.1113,
+      "p50Ms": 1.076,
+      "p95Ms": 1.5698,
+      "worstMs": 1.7815
+    },
+    {
+      "label": "  governed resolver — one citation",
+      "runs": 40,
+      "meanMs": 0.1178,
+      "p50Ms": 0.1162,
+      "p95Ms": 0.1306,
+      "worstMs": 0.141
+    },
+    {
+      "label": "  classification — one comparison",
+      "runs": 40,
+      "meanMs": 0.0033,
+      "p50Ms": 0.0032,
+      "p95Ms": 0.0038,
+      "worstMs": 0.0039
+    },
+    {
+      "label": "  telemetry — build + guard + serialise",
+      "runs": 40,
+      "meanMs": 0.0193,
+      "p50Ms": 0.0187,
+      "p95Ms": 0.0283,
+      "worstMs": 0.03
+    }
+  ],
+  "summary": {
+    "shadowOverheadMsPerAnalysis10": 1.1869,
+    "shadowOverheadMsPerFinding10": 0.1187,
+    "governedOverheadMsPerAnalysis10": 0.8781,
+    "shadowMinusGovernedMs10": 0.3088,
+    "telemetryMsPerEvent": 0.0193,
+    "telemetryMsPer10Events": 0.193
+  },
+  "queryCounts": {
+    "shadow_1_findings": 2,
+    "shadow_5_findings": 6,
+    "shadow_10_findings": 7
+  },
+  "n1Absent": true
+}

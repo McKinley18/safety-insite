@@ -1,0 +1,57 @@
+{
+  "results": [
+    {
+      "view": "light",
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA backup alarm; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "no verified badge on an unapproved standard",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for"
+        },
+        {
+          "name": "content-backing caveat IS still shown",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA backup alarm; qualified review remains required. Confidence: High The regulatory text shown fo"
+        },
+        {
+          "name": "caveat does not claim to limit confidence",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "cardText": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA backup alarm; qualified review remains required. Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.",
+      "checks": [
+        {
+          "name": "no verified badge on an unapproved standard",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for"
+        },
+        {
+          "name": "content-backing caveat IS still shown",
+          "ok": true,
+          "detail": "PRIMARY STANDARD 30 CFR 56.14132(a) MSHA backup alarm STANDARD DETAIL Verified standard text is not currently available for this citation. Why HazLenz selected this Supported by submitted evidence for MSHA backup alarm; qualified review remains required. Confidence: High The regulatory text shown fo"
+        },
+        {
+          "name": "caveat does not claim to limit confidence",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

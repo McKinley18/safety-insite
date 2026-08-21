@@ -1,0 +1,116 @@
+{
+  "generatedBy": "kg4a-cutover-display-contract.mjs",
+  "api": "http://127.0.0.1:4331",
+  "app": "http://127.0.0.1:3331",
+  "views": [
+    "light",
+    "dark",
+    "mobile",
+    "mobile-dark"
+  ],
+  "checks": 240,
+  "failed": 0,
+  "failures": [],
+  "results": [
+    {
+      "view": "light",
+      "governed": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": true,
+          "hasNotice": false,
+          "hasSourceCaveat": false,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High"
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARY When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability."
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "governed": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": true,
+          "hasNotice": false,
+          "hasSourceCaveat": false,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High"
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARY When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability."
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "governed": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": true,
+          "hasNotice": false,
+          "hasSourceCaveat": false,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High"
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARY When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability."
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "governed": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": true,
+          "hasNotice": false,
+          "hasSourceCaveat": false,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High"
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "30 CFR 56.14132(b)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true,
+          "text": "PRIMARY STANDARD 30 CFR 56.14132(b)(1) Backup alarms where the operator has an obstructed view to the rear STANDARD DETAIL HAZLENZ STANDARD SUMMARY When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (30 CFR 56.14132(b)(1)(i)-(iv)). Any one of the four satisfies this paragraph. The obstructed view to the rear is the condition that triggers the paragraph: where the operator's rear view is clear, this paragraph does not apply. Alarms must be audible above the surrounding noise level (56.14132(b)(2)), and an automatic reverse-activated strobe light may be used at night in lieu of an audible reverse alarm (56.14132(b)(3)). This standard does not apply to rail equipment (56.14132(c)). Paragraph (a), which requires that manually-operated horns or other audible warning devices provided as a safety feature be maintained in functional condition, is a separate requirement and is not addressed by this paragraph. Why HazLenz selected this HazLenz found submitted evidence supporting MSHA jurisdiction, operator has an obstructed view to the rear, no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer). Confidence: High The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability."
+        }
+      ]
+    }
+  ]
+}

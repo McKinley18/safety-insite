@@ -1,0 +1,1070 @@
+{
+  "releaseId": "federal-core-2026-08-20.5",
+  "generatedFrom": {
+    "goldSet": "gold-set-script-v3.ts",
+    "goldSetSha256": "93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3",
+    "goldSetCases": 31,
+    "families": 27,
+    "note": "Families are derived from the gold-set AREA, not from a citation->family table, so a predicate emitting a different citation cannot silently reclassify the family."
+  },
+  "summary": {
+    "familiesMeasured": 27,
+    "familiesReady": 25,
+    "familiesReadyWithEvidenceUnknown": 0,
+    "familiesReadyWithApplicabilityUncertainty": 2,
+    "findingsWithUnestablishedPredicate": 2,
+    "familiesBlockedByGovernanceGap": 0,
+    "familiesEmptiedByApprovedOnlyFilter": 0,
+    "EVIDENCE_UNKNOWN_findings": 0,
+    "GOVERNANCE_FILTER_EMPTY_findings": 0,
+    "hardReadinessTargetMet": true
+  },
+  "families": [
+    {
+      "family": "cross-regime: Construction scaffold vs GI walking surface",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.501"
+      ],
+      "citationsEmittedCount": 2,
+      "governedCoverage": "2/2",
+      "approvedGovernedCoverage": "2/2",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CROSS-01",
+          "area": "Cross-regime adversarial: Construction scaffold vs GI walking surface",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.451(g)(1)",
+            "29 CFR 1926.501"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.451(g)(1)",
+            "29 CFR 1926.501"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "cross-regime: MSHA vs GI machine guarding",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 56.14107(a)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CROSS-02",
+          "area": "Cross-regime adversarial: MSHA vs GI machine guarding",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 56.14107(a)"
+          ],
+          "approvedEmitted": [
+            "30 CFR 56.14107(a)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "electric power circuit contact",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.416(a)(1)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-ELEC-01",
+          "area": "Construction - electric power circuit contact",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.416(a)(1)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.416(a)(1)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "electrical",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.303"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-ELEC-01",
+          "area": "General Industry - electrical",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.303"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.303"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "energy control",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 56.12016"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-LOTO-01",
+          "area": "MSHA - energy control",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 56.12016"
+          ],
+          "approvedEmitted": [
+            "30 CFR 56.12016"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "excavation",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 2,
+      "positiveScenarios": 1,
+      "negativeControls": 1,
+      "citationsEmitted": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-EXC-01",
+          "area": "Construction - excavation",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        },
+        {
+          "id": "CON-EXC-02-NEG",
+          "area": "Construction - excavation (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "notApplicablePredicates": [
+            "29 CFR 1926.652(a)(1)"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "exit routes",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 2,
+      "positiveScenarios": 1,
+      "negativeControls": 1,
+      "citationsEmitted": [
+        "29 CFR 1910.36"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-EXIT-01",
+          "area": "General Industry - exit routes",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.36"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.36"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        },
+        {
+          "id": "GI-EXIT-02-NEG",
+          "area": "General Industry - exit routes (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [
+            "29 CFR 1910.36"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.36"
+          ],
+          "unknownPredicates": [
+            "29 CFR 1910.36"
+          ],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "fall protection (scaffold)",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.501"
+      ],
+      "citationsEmittedCount": 2,
+      "governedCoverage": "2/2",
+      "approvedGovernedCoverage": "2/2",
+      "applicabilityUncertainFindings": 1,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY_WITH_APPLICABILITY_UNCERTAINTY",
+      "cases": [
+        {
+          "id": "CON-FALL-01",
+          "area": "Construction - fall protection (scaffold)",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.451(g)(1)",
+            "29 CFR 1926.501"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.451(g)(1)",
+            "29 CFR 1926.501"
+          ],
+          "unknownPredicates": [
+            "29 CFR 1926.501"
+          ],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "hazard communication",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.59"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-HAZCOM-01",
+          "area": "Construction - hazard communication",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.59"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.59"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "hazard communication container label",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 47.41(a)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-HAZCOM-01",
+          "area": "MSHA - hazard communication container label",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 47.41(a)"
+          ],
+          "approvedEmitted": [
+            "30 CFR 47.41(a)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "HazCom",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.1200"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-HAZCOM-01",
+          "area": "General Industry - HazCom",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.1200"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.1200"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "LOTO",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.147"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-LOTO-01",
+          "area": "General Industry - LOTO",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.147"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.147"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "machine guarding",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 2,
+      "positiveScenarios": 1,
+      "negativeControls": 1,
+      "citationsEmitted": [
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-MG-01",
+          "area": "General Industry - machine guarding",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.212(a)(1)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.212(a)(1)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        },
+        {
+          "id": "GI-MG-02-NEG",
+          "area": "General Industry - machine guarding (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [],
+          "notApplicablePredicates": [
+            "29 CFR 1910.212(a)(1)"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "means of egress",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.34(a)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-EGRESS-01",
+          "area": "Construction - means of egress",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.34(a)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.34(a)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "moving machine parts",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 2,
+      "positiveScenarios": 1,
+      "negativeControls": 1,
+      "citationsEmitted": [
+        "30 CFR 56.14107(a)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-GUARD-01",
+          "area": "MSHA - moving machine parts",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 56.14107(a)"
+          ],
+          "approvedEmitted": [
+            "30 CFR 56.14107(a)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        },
+        {
+          "id": "MSHA-GUARD-02-NEG",
+          "area": "MSHA - moving machine parts (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "moving-part guarding of equipment",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.300(b)(2)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-GUARD-01",
+          "area": "Construction - moving-part guarding of equipment",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.300(b)(2)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.300(b)(2)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "noise",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.95"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-NOISE-01",
+          "area": "General Industry - noise",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.95"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.95"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "noise above PEL",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 62.120",
+        "30 CFR 62.130"
+      ],
+      "citationsEmittedCount": 2,
+      "governedCoverage": "2/2",
+      "approvedGovernedCoverage": "2/2",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-NOISE-01",
+          "area": "MSHA - noise above PEL",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 62.120",
+            "30 CFR 62.130"
+          ],
+          "approvedEmitted": [
+            "30 CFR 62.120",
+            "30 CFR 62.130"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "noise below action level",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 0,
+      "negativeControls": 1,
+      "citationsEmitted": [],
+      "citationsEmittedCount": 0,
+      "governedCoverage": "0/0",
+      "approvedGovernedCoverage": "0/0",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-NOISE-03-NEG",
+          "area": "MSHA - noise below action level (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [],
+          "notApplicablePredicates": [
+            "30 CFR 62.120"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "noise below Table D-2",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 0,
+      "negativeControls": 1,
+      "citationsEmitted": [],
+      "citationsEmittedCount": 0,
+      "governedCoverage": "0/0",
+      "approvedGovernedCoverage": "0/0",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-NOISE-02-NEG",
+          "area": "Construction - noise below Table D-2 (negative control)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [],
+          "notApplicablePredicates": [
+            "29 CFR 1926.52"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "noise between action level and PEL",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 62.120"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "MSHA-NOISE-02",
+          "area": "MSHA - noise between action level and PEL",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 62.120"
+          ],
+          "approvedEmitted": [
+            "30 CFR 62.120"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "occupational noise over Table D-2",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.52"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-NOISE-01",
+          "area": "Construction - occupational noise over Table D-2",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.52"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.52"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "powered industrial trucks",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.178(p)(1)"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-PIT-01",
+          "area": "General Industry - powered industrial trucks",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.178(p)(1)"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.178(p)(1)"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "servicing without lockout",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 0,
+      "negativeControls": 1,
+      "citationsEmitted": [],
+      "citationsEmittedCount": 0,
+      "governedCoverage": "0/0",
+      "approvedGovernedCoverage": "0/0",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-LOTO-01-GAP",
+          "area": "Construction - servicing without lockout (documented gap, honest empty)",
+          "outcome": "NEGATIVE_CONTROL_CORRECTLY_SILENT",
+          "emitted": [],
+          "approvedEmitted": [],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "silica",
+      "regimes": [
+        "osha_construction"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1926.1153"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "CON-SILICA-01",
+          "area": "Construction - silica",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1926.1153"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1926.1153"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "traffic control",
+      "regimes": [
+        "msha"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "30 CFR 56.14132"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 1,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY_WITH_APPLICABILITY_UNCERTAINTY",
+      "cases": [
+        {
+          "id": "MSHA-TRAFFIC-01",
+          "area": "MSHA - traffic control",
+          "outcome": "COVERED",
+          "emitted": [
+            "30 CFR 56.14132"
+          ],
+          "approvedEmitted": [
+            "30 CFR 56.14132"
+          ],
+          "unknownPredicates": [
+            "30 CFR 56.14132"
+          ],
+          "notApplicablePredicates": []
+        }
+      ]
+    },
+    {
+      "family": "walking-working surfaces / handrail",
+      "regimes": [
+        "osha_general_industry"
+      ],
+      "scenariosTested": 1,
+      "positiveScenarios": 1,
+      "negativeControls": 0,
+      "citationsEmitted": [
+        "29 CFR 1910.28"
+      ],
+      "citationsEmittedCount": 1,
+      "governedCoverage": "1/1",
+      "approvedGovernedCoverage": "1/1",
+      "applicabilityUncertainFindings": 0,
+      "findingsWithNoApprovedCandidate": 0,
+      "evidenceUnknownFindings": [],
+      "governanceFilterEmptyFindings": [],
+      "approvedOnlyEmptiesFamily": false,
+      "fallbackWouldBeRequired": false,
+      "readiness": "READY",
+      "cases": [
+        {
+          "id": "GI-WWS-01",
+          "area": "General Industry - walking-working surfaces / handrail",
+          "outcome": "COVERED",
+          "emitted": [
+            "29 CFR 1910.28"
+          ],
+          "approvedEmitted": [
+            "29 CFR 1910.28"
+          ],
+          "unknownPredicates": [],
+          "notApplicablePredicates": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "rehearsedOn": "test_kg5b_prekg_20260821 clone (production pre-KG shape, 2,390 legacy rows)",
+  "assertionsPassed": 28,
+  "assertionsTotal": 28,
+  "evidence": {
+    "customerDelivery": [
+      {
+        "citation": "29 CFR 1910.1200",
+        "legacyBodyLength": 500,
+        "governedBodyLength": 1141,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.146",
+        "legacyBodyLength": 500,
+        "governedBodyLength": 1344,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.147",
+        "legacyBodyLength": 500,
+        "governedBodyLength": 1579,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.178(p)(1)",
+        "legacyBodyLength": 0,
+        "governedBodyLength": 778,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "1910.212(a)(1)",
+        "legacyBodyLength": 0,
+        "governedBodyLength": 666,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.22(a)",
+        "legacyBodyLength": 0,
+        "governedBodyLength": 870,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.28",
+        "legacyBodyLength": 500,
+        "governedBodyLength": 1109,
+        "deliveredIsFrozenArtifact": true
+      },
+      {
+        "citation": "29 CFR 1910.303",
+        "legacyBodyLength": 500,
+        "governedBodyLength": 1134,
+        "deliveredIsFrozenArtifact": true
+      }
+    ],
+    "legacyCorpus": {
+      "rows": 2390,
+      "digestUnchanged": true,
+      "rowsWithSourceKey": 0
+    }
+  },
+  "assertions": [
+    {
+      "assertion": "migrations applied",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "assertion": "the legacy corpus holds 2,390 production-shaped rows",
+      "passed": true,
+      "detail": 2390
+    },
+    {
+      "assertion": "prepare succeeded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "assertion": "the pinned manifest reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "27 approvals appended through the reviewed command",
+      "passed": true,
+      "detail": 27
+    },
+    {
+      "assertion": "with no active release, nothing is presented as approved",
+      "passed": true,
+      "detail": [
+        "UNAPPROVED_CONTENT",
+        "UNAPPROVED_CONTENT",
+        "UNAPPROVED_CONTENT",
+        "CITATION_ONLY",
+        "CITATION_ONLY",
+        "CITATION_ONLY",
+        "UNAPPROVED_CONTENT",
+        "UNAPPROVED_CONTENT"
+      ]
+    },
+    {
+      "assertion": "with no active release, the fallback reason is NO_ACTIVE_GOVERNED_RELEASE",
+      "passed": true,
+      "detail": [
+        "NO_ACTIVE_GOVERNED_RELEASE"
+      ]
+    },
+    {
+      "assertion": "the activation dry run reports all eight gates would pass",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "assertion": "activation succeeded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "LEGACY customers are unaffected by the active release",
+      "passed": true,
+      "detail": [
+        "UNAPPROVED_CONTENT",
+        "CITATION_ONLY"
+      ]
+    },
+    {
+      "assertion": "LEGACY payloads carry NO governed keys",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "SHADOW payloads are byte-identical to LEGACY payloads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "SHADOW payloads carry NO governed keys",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "GOVERNED customers receive APPROVED_GOVERNED_CONTENT",
+      "passed": true,
+      "detail": [
+        "APPROVED_GOVERNED_CONTENT"
+      ]
+    },
+    {
+      "assertion": "GOVERNED delivery is GOVERNED_VERIFIED_TEXT",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "every governed delivery is byte-for-byte the frozen reviewed artifact",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "assertion": "a stale --expected-current is refused after activation",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "assertion": "a wrong --expected-manifest is refused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "rolling back to the active release is refused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "the second release prepares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "the second release activates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "rollback returned the pointer to the exact prior release",
+      "passed": true,
+      "detail": {
+        "command": "rollback",
+        "dryRun": false,
+        "outcome": "rolled_back",
+        "releaseId": "federal-core-2026-07-30.1",
+        "previousReleaseId": "federal-core-2026-07-30.2",
+        "activeReleaseAfter": "federal-core-2026-07-30.1",
+        "activeManifestAfter": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+        "actor": "kg5c-rehearsal-operator"
+      }
+    },
+    {
+      "assertion": "after rollback the customer path serves the first release again",
+      "passed": true,
+      "detail": [
+        "federal-core-2026-07-30.1"
+      ]
+    },
+    {
+      "assertion": "after rollback the delivered text is still the frozen reviewed artifact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "the release rolled off is retained as rolled_back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "legacy row count unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "legacy corpus digest unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "assertion": "source_key still NULL on every legacy row",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "commands": [
+    {
+      "command": "DATABASE_URL=<disposable> npm run migration:run -- ",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- prepare --release-id federal-core-2026-07-30.1",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.1200 --expected-checksum a53f33a13d3155eb6d07e8fa06099b86274c746dd2fa4658a86efbebf4e1fd63 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.146 --expected-checksum 64e95d964d97871c19380657d3b9418c53125c264052aefcc66c55791514791e --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.147 --expected-checksum 003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.178(p)(1) --expected-checksum c45d1cc6c23d6987698b4cebea21ce7994fc5df0c3bf9aa81a70f08c3c36d7ae --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 1910.212(a)(1) --expected-checksum 96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.22(a) --expected-checksum 02516502072c4d6149cd29d518a99b714f8204be2fdbc5369da23516921ce4aa --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.28 --expected-checksum 328727df1602f48e203ddfa510b8b392411f52ea4d07e251fc9bd2e5976b8fb6 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.303 --expected-checksum e210f940c808a12bec28ca53146235ee5c30a6bd3e973e0d120206411642dee6 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.303(b)(1) --expected-checksum d39c7beeda19d1b7227a97744f37f69d2d155c131a47affc7662d82fb60ce877 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.36 --expected-checksum 0e13180d1ff835069294987e4ec819343cf6bd7c147ab1cb6a20f9ac02dd003d --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1910.95 --expected-checksum e5632e7e16402cc65c97acc939b08d72edf48b72140bb92ea21c4e9a4f07590a --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.1153 --expected-checksum a92e4e554f2ef66c1837c32e18d6e930832d378dc03d81a3caa140263be874ef --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.300(b)(2) --expected-checksum b94bc1e035549d90a77f53e0a0ecccdf421340c15fdf1e7f3c5e74a816399416 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.34(a) --expected-checksum dbf18c496390d9daa1185cbc5d5199a7aae2b5bd8ba415bc7e1067efddc1926a --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.416(a)(1) --expected-checksum e449db0edb582c8b653a64334fcb8214d9a1ee8c8adfbeadaa4bcb05638ca63a --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.451(g)(1) --expected-checksum 5ffd58c7429b14ba66363abe21e131c2a3645ba7ffc09398ec833bf9ce9bb6b4 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.501 --expected-checksum b540a377148106669c24b0bf7c06c8ca26c3d65e0320a604869f14874fd97ab4 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.52 --expected-checksum dff7561a7aee2e9def9593a0d690011b1145516ad926211919d08643e34f9e0a --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.59 --expected-checksum d01386e464ef647e66fc9e6c53e8d3766e62cadd4e450e3e7bcb2db5efd92bf1 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 29 CFR 1926.652(a)(1) --expected-checksum 6a827346fa01fef26ede6b5e591ddbe82306196ea8abca47da07036a90ee2e32 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 47.41(a) --expected-checksum 0705c5304b046aa62bb1f64b652e209d03788760af2088d3feaa70944fc3e6ae --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 56.12016 --expected-checksum e14451d4818e95877d9a49d458ec87441832189a318e7ddc3f1be64fb45979a1 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 56.14107(a) --expected-checksum b26287a0b2514f6e1bd7d381acfef71883b074250f8ab79c65613b2220b61b10 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 56.14132 --expected-checksum d714d7a3a9ff14ef1cddbece591562abc8437657ac7f7f7993c5f1fb4808353c --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 56.14132(b)(1) --expected-checksum 388a349c2b0a6f6d5c0deba02d43f54717b54a2c1e6957e5c6f4c3eb5f616d5a --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 62.120 --expected-checksum ff19c04db0758fc4e2efd9b788f6e64be8e7c3657173ca115c153d8de5888063 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.1 --citation 30 CFR 62.130 --expected-checksum 11a1fcb6f70c8041f9648788fbc9f27f6ca65ee744b92431f6a1fe3075845007 --reviewer kg5c-rehearsal-reviewer --role safety-regulatory-reviewer --note KG-5C delivery rehearsal re-attestation.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- activate --release-id federal-core-2026-07-30.1 --expected-manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b --expected-current none --actor kg5c-rehearsal-operator --dry-run",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- activate --release-id federal-core-2026-07-30.1 --expected-manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b --expected-current none --actor kg5c-rehearsal-operator --reason KG-5C delivery rehearsal",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- activate --release-id federal-core-2026-07-30.1 --expected-manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b --expected-current none --actor kg5c-rehearsal-operator",
+      "exitCode": 2
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- activate --release-id federal-core-2026-07-30.1 --expected-manifest aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --expected-current federal-core-2026-07-30.1 --actor kg5c-rehearsal-operator",
+      "exitCode": 2
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- rollback --release-id federal-core-2026-07-30.1 --expected-current federal-core-2026-07-30.1 --actor kg5c-rehearsal-operator",
+      "exitCode": 2
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- prepare --release-id federal-core-2026-07-30.2",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.2 --citation 1910.212(a)(1) --expected-checksum 96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94 --reviewer kg5c-rehearsal-reviewer --note KG-5C rehearsal.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.2 --citation 1910.219 --expected-checksum d90f12ba713a5ef19c73ec34629f7b356e0e4fdf95b13af8a73297666c018c34 --reviewer kg5c-rehearsal-reviewer --note KG-5C rehearsal.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run review:release-record -- approve --release federal-core-2026-07-30.2 --citation 29 CFR 1910.1200 --expected-checksum a53f33a13d3155eb6d07e8fa06099b86274c746dd2fa4658a86efbebf4e1fd63 --reviewer kg5c-rehearsal-reviewer --note KG-5C rehearsal.",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- activate --release-id federal-core-2026-07-30.2 --expected-manifest 0cb17e61f3d4dccd1cd6003e0bcbd092b401997006ec7961e27312dc4a8c84e9 --expected-current federal-core-2026-07-30.1 --actor kg5c-rehearsal-operator",
+      "exitCode": 0
+    },
+    {
+      "command": "DATABASE_URL=<disposable> npm run release -- rollback --release-id federal-core-2026-07-30.1 --expected-current federal-core-2026-07-30.2 --actor kg5c-rehearsal-operator --reason KG-5C rehearsal",
+      "exitCode": 0
+    }
+  ]
+}

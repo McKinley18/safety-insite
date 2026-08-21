@@ -1,0 +1,2364 @@
+{
+  "schemaVersion": "insite.current-state.v1",
+  "generatedAt": "2026-08-21",
+  "generatedBy": "KG-5C customer-path equivalence, consolidated 2026-08-21 by the KG program convergence phase (documentation, architecture convergence and production SHADOW readiness only; no implementation change, no commit, no production operation) Amended 2026-08-21 by the KG-5D production SHADOW preflight (pass two): read-only production inspection, telemetry-integrity root cause, evidence-sufficiency adjudication and Stage-1 experiment design. No implementation change, no production mutation, nothing enabled. Amended 2026-08-21 by Operation 1 (governed release package local commit construction): the KG release package was converted into six ordered local commits. No push, no merge, no deploy, no migration applied to production, no release created/finalized/activated/rolled back, no environment variable changed. SHADOW OFF, CUTOVER OFF, production unchanged.",
+  "documentContract": {
+    "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+    "authoritativeFor": [
+      "stableInvariants",
+      "protectedDecisions",
+      "decisionHistory",
+      "moduleOwnership"
+    ],
+    "notAuthoritativeFor": [
+      "any key listed in reverify",
+      "anything current repository code contradicts"
+    ],
+    "rule": "Repository code and newer verification evidence override this snapshot. Values under mutable.* are recorded hypotheses, not facts."
+  },
+  "repository": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite",
+    "backend": "backend (NestJS + TypeORM + Postgres)",
+    "frontend": "frontend-next (Next.js App Router)",
+    "verificationRoot": "verification/hazlenz-governed-knowledge-growth-2026-08-19",
+    "head": "six commits above 5f050858227ca11cf90d2f6bf64148e70a018b64 (read with `git rev-parse HEAD`)",
+    "branch": "release/insite-rc-2026-08-18",
+    "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
+  },
+  "checkpoint": "KG_5C_COMPLETE — KG_RELEASE_PACKAGE_COMMITTED_LOCALLY",
+  "readiness": "CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED_READY_FOR_CONTROLLED_PRODUCTION_SHADOW",
+  "nextSlice": {
+    "id": "KG-6",
+    "title": "Execute the reviewed production release operations under authorization, then authorize controlled Stage-1 SHADOW as a separate decision",
+    "started": false,
+    "notAuthorizedByThisState": true,
+    "objectives": [
+      "Operations 1-6: commit, push, merge, apply the six migrations, deploy with SHADOW OFF, verify production LEGACY/no-op",
+      "Operations 7-11: prepare the governed release, re-attest/review one record at a time by a named human, evaluate the eight activation gates by dry run, activate with SHADOW OFF, re-verify LEGACY/no-op with a release active",
+      "Operation 13: authorize Stage-1 controlled production SHADOW separately, against the frozen hypotheses, taxonomy, abort gates and success criteria in productionShadowProtocol",
+      "Classify every SHADOW observation into the frozen taxonomy; treat any UNCLASSIFIED as a stop on progression toward CUTOVER",
+      "Do NOT treat SHADOW completion as CUTOVER authorization; CUTOVER additionally requires openIssues.KG4E-DISC-03 to be closed"
+    ],
+    "entryConditions": [
+      "Read blueprint section 0, then sections 21-27",
+      "Reverify every key listed in reverify",
+      "Do not reopen anything in supersededFindings or DO_NOT_REINVESTIGATE_WITHOUT_NEW_EVIDENCE without new contradictory evidence"
+    ]
+  },
+  "actionsPerformedByThisTask": {
+    "committed": false,
+    "pushed": false,
+    "deploymentPerformed": false,
+    "productionModified": false,
+    "productionConfigurationModified": false,
+    "productionDatabaseModified": false,
+    "safescopeDevDatabaseModified": false,
+    "migrationsApplied": false,
+    "stashesTouched": false,
+    "tagsTouched": false,
+    "productionSourceCodeModified": false,
+    "productionSourceCodeModifiedRationale": "The KG program convergence phase is documentation, architecture convergence and production SHADOW readiness only. No implementation defect rose to BLOCKER. The one finding made (KG5D-DISC-01) is INSTRUMENTATION and non-blocking, and adding a telemetry field would have been a speculative implementation change the phase forbids; the SHADOW protocol was corrected to state what the instrument can actually deliver instead.",
+    "filesAdded": [],
+    "filesModified": [
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+      "docs/INSITE_CURRENT_STATE.json"
+    ],
+    "releaseCreated": false,
+    "releaseActivated": false,
+    "rollbackPerformed": false,
+    "merged": false,
+    "priorKgEvidenceModified": false,
+    "goldArtifactsModified": false,
+    "phase": "KG program convergence + root-cause governance + production SHADOW readiness (2026-08-21)"
+  },
+  "productionPosture": {
+    "productionShadowEnabled": false,
+    "governedCutoverModeSetInProduction": false,
+    "customerDefaultMode": "LEGACY",
+    "note": "GOVERNED_CUTOVER_MODE is unset everywhere outside disposable verification servers. MUST_REVERIFY against live environment.",
+    "productionMigrationsApplied": 40,
+    "productionMigrationsNote": "Production still has 40 applied migrations, latest RefreshTokens1800000008000. The six governed-release migrations (1800000009000-1800000014000) remain UNAPPLIED in production. Operation 1 applied migrations only to disposable local test_op1_* databases.",
+    "changedByOperation1": false
+  },
+  "cutover": {
+    "defaultMode": "LEGACY",
+    "modes": [
+      "LEGACY",
+      "SHADOW",
+      "GOVERNED_WITH_FALLBACK",
+      "GOVERNED_STRICT"
+    ],
+    "defaultReason": "DEFAULT_NO_CONFIGURATION",
+    "enablementRule": "server mode AND (account allowlist OR organization allowlist); both default OFF",
+    "environmentVariables": [
+      "GOVERNED_CUTOVER_MODE",
+      "GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST",
+      "GOVERNED_CUTOVER_ORG_ALLOWLIST",
+      "GOVERNED_CUTOVER_PRODUCTION_ACK",
+      "GOVERNED_CUTOVER_OBSERVABILITY"
+    ],
+    "productionAcknowledgementValue": "I_ACKNOWLEDGE_GOVERNED_CUTOVER",
+    "configurationReadIn": "backend/src/standards/cutover/cutover-mode.ts",
+    "configurationModuleImportsNothing": true,
+    "singleSeam": "resolveStandardsBacking() governed input, backend/src/standards/display/standards-backing-contract.ts",
+    "seamCallSites": [
+      "backend/src/applicable-standards/applicable-standards.service.ts",
+      "backend/src/safescope-v2/safescope-v2.service.ts"
+    ],
+    "fallbackMatrixRows": 84,
+    "fallbackMatrixArtifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/fallback-matrix.json",
+    "governedResolutionRunsAfterRankingAndTruncation": true,
+    "shadowMayAlterCustomerOutput": false,
+    "shadowWritesGovernedProvenance": false,
+    "clientCanSelectMode": false,
+    "rollbackMechanism": "mode change only; future requests only; persisted history untouched"
+  },
+  "governance": {
+    "approvalContractVersion": 2,
+    "approvalDigestComposition": [
+      "APPROVAL_CONTRACT_VERSION",
+      "substantiveContentDigest",
+      "sourceIdentityDigest"
+    ],
+    "canonicalDigestSortsKeysRecursively": true,
+    "manifestDigestFunctionUnchanged": true,
+    "decisionsAppendOnly": true,
+    "bulkApprovalPathExists": false,
+    "supersedesDecisionIdSupported": true,
+    "historicalNullMeaning": "record predates the approval contract; never backfilled",
+    "excludedFromApprovalBinding": [
+      "source_url",
+      "retrieval_date",
+      "created_at",
+      "updated_at"
+    ],
+    "requiredMigration": {
+      "id": "1800000014000",
+      "name": "1800000014000-ApprovalProvenanceContract",
+      "path": "backend/src/database/migrations/1800000014000-ApprovalProvenanceContract.ts",
+      "additive": true,
+      "reversible": true,
+      "mustBeAppliedBefore": "seed:safescope-standards",
+      "failLoudlyIfAbsent": true,
+      "appliedToSafescopeDevDatabase": false,
+      "runtimeBehaviourIfAbsent": {
+        "backing": "RESOLVER_UNAVAILABLE",
+        "resolverHealth": "STALE_SCHEMA",
+        "telemetry": "INTEGRITY_FAILURE",
+        "customerPath": "unchanged legacy, no throw"
+      }
+    },
+    "kgMigrations": [
+      "1800000010000-KnowledgeReleaseProvenance",
+      "1800000011000-RegulatoryReleaseLifecycle",
+      "1800000012000-RegulatoryReleaseRecords",
+      "1800000013000-RegulatoryReleaseRecordReviews",
+      "1800000014000-ApprovalProvenanceContract"
+    ]
+  },
+  "shadowTelemetry": {
+    "schemaVersion": "kg4b.shadow-comparison.v1",
+    "eventFieldCount": 29,
+    "mismatchCategoryCount": 15,
+    "severityLevels": [
+      "BLOCKING",
+      "REVIEW",
+      "INFORMATIONAL"
+    ],
+    "rootCauseBucketCount": 11,
+    "contentCarriedAs": "digests only",
+    "productionSchemaCreated": false,
+    "storageUsedInKg4b": "JSONL collected from stdout",
+    "taxonomyArtifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/contracts/shadow-taxonomy.json",
+    "instrumentationDefectsFound": [
+      "429 vacuous comparisons (throttled responses satisfied the equality oracle)",
+      "jurisdiction object/vocabulary mismatch ([object Object] on all 83 events)",
+      "explanation text compared against regulatory text (pre-hydration capture)",
+      "review status misread as applicability (standardDecisions[].status)"
+    ],
+    "shadowPayloadLeakFixed": "projectGovernedDisplay() stamped governed keys in SHADOW; fixed with customerVisible"
+  },
+  "verification": {
+    "note": "Every value is VERIFIED_AT_CHECKPOINT. Re-run the named command to claim it now.",
+    "kg3f": {
+      "retrievalDeterminism": {
+        "score": "170/170",
+        "layouts": 9,
+        "command": "test:kg3f-retrieval-determinism"
+      },
+      "rankingAdversarialMirrored": {
+        "score": "54/54",
+        "command": "test:kg3f-ranking-adversarial"
+      },
+      "predicate_56_14132": {
+        "score": "16/16",
+        "command": "test:kg3f-56-14132-predicate"
+      },
+      "citationGranularity": {
+        "score": "48/48",
+        "command": "test:kg3e-citation-granularity"
+      },
+      "approvalContract": {
+        "score": "57/57",
+        "command": "test:approval-contract"
+      },
+      "shadowInvariance": {
+        "score": "7/7",
+        "digest": "29469550cea4d2fd",
+        "command": "test:kg3f-shadow-invariance"
+      },
+      "customerPathDisconnection": {
+        "score": "9/9",
+        "command": "test:kg3f-customer-path-disconnection",
+        "supersededBy": "test:kg4b-default-off"
+      },
+      "standardDetailBrowser": {
+        "score": "376/376",
+        "themes": 4
+      },
+      "hazardFamilyReadiness": {
+        "familiesMeasured": 27,
+        "blocked": 0
+      },
+      "cleanSeedManifestChecksum": "bee47ebe1e82b74d9507380cff073838093881ea8a990b7d659190174fad6aa2"
+    },
+    "kg4a": {
+      "total": 655,
+      "cutoverContract": 146,
+      "governedResolutionAdversarial": 99,
+      "provenancePinning": 53,
+      "defaultOff": 51,
+      "realHttpE2E": 35,
+      "clauseReview": 31,
+      "browser": 240,
+      "performanceMsPerAnalysis": 0.793,
+      "seedRecordCount": 35,
+      "seedManifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+      "controlSeedRecordCount": 34,
+      "controlSeedManifestChecksum": "bee47ebe1e82b74d9507380cff073838093881ea8a990b7d659190174fad6aa2",
+      "approvalChecksum_56_14132_b1": "388a349c2b0a6f6d5c0deba02d43f54717b54a2c1e6957e5c6f4c3eb5f616d5a"
+    },
+    "kg4b": {
+      "total": 1020,
+      "shadowContract": 123,
+      "shadowCorpus": 145,
+      "adversarial": 84,
+      "determinism": 18,
+      "privacy": 26,
+      "defaultOff": 48,
+      "browser": 576,
+      "performance": {
+        "legacyMsPerAnalysis": 0.0003,
+        "governedMsPerAnalysis": 0.8784,
+        "shadowMsPerAnalysis": 1.1872,
+        "telemetryMsPerEvent": 0.0193,
+        "queriesAt10Findings6DistinctCitations": 7,
+        "nPlusOne": false
+      },
+      "determinismDigest": "0bce5a71a9d2664293834b5eeaa443eb",
+      "privacyMarkersSearched": 14,
+      "privacyMarkersFound": 0
+    },
+    "kg4c": {
+      "total": 549,
+      "productionShadowContract": 438,
+      "disabledDeploymentFailOpenTenancy": 80,
+      "dbOwnershipGuard": 31,
+      "cleanSeedRecordCount": 35,
+      "cleanSeedManifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+      "browserSuitesRerun": false,
+      "browserRerunRationale": "KG-4C added no code to the customer request path; no display, payload, persistence or report code was touched. A reasoned assessment of unchanged risk, not a claim of coverage."
+    },
+    "kg4d": {
+      "total": 459,
+      "orchestrationContract": 151,
+      "defaultOffAuthority": 121,
+      "dbOwnershipBlackBox": 19,
+      "integrationE2E": 42,
+      "browser": 128,
+      "browserViews": [
+        "light",
+        "dark",
+        "mobile",
+        "mobile-dark"
+      ],
+      "browserScreenshots": 16,
+      "legacyInvarianceVsPreIntegrationBaseline": "8/8 identical",
+      "shadowEligibleVsBaseline": "8/8 identical",
+      "cohortIsolation": "8/8 identical",
+      "governedKeyLeaks": 0,
+      "realPathShadowEvents": 32,
+      "realPathAnalyses": 9,
+      "eventsPerAnalysis": 3.56,
+      "duplicateEventKeys": 0,
+      "meanComparisonLatencyMs": 0.688,
+      "privacyCanariesFoundInRealTelemetry": 0,
+      "privacyCanariesSearched": 14,
+      "fieldsOutsideV2Allowlist": 0,
+      "blockingMismatches": 0,
+      "defaultOffAuthorityNote": "119/119 at KG-4D; 121/121 since KG-5B added the earned OPERATOR CMD inventory category (KG5B-D8). Re-measured 121/121 at KG-5C and again at the convergence phase."
+    },
+    "kg4e": {
+      "total": 139,
+      "reportInvarianceCases": 8,
+      "reportInvarianceResult": "8/8 identical",
+      "fieldExclusion": 9,
+      "reportProvenance": 32,
+      "realPathIntegrationE2E": 42,
+      "v2PrivacyGuardEvents": 48,
+      "pdfsGenerated": 56,
+      "pdfLabels": [
+        "legacy-A",
+        "legacy-B",
+        "legacy-C",
+        "shadow-A",
+        "shadow-killswitch",
+        "shadow-resolverfail",
+        "mutation-control"
+      ],
+      "pagesCompared": 42,
+      "extractedLinesPerRun": 636,
+      "volatileLinePositionsPerRun": 8,
+      "volatilePositionPerReport": "0:9 (cover record reference)",
+      "linesCompared": 628,
+      "stableDistinctTokensCompared": 2045,
+      "forbiddenTermPatterns": 38,
+      "forbiddenTermHits": 0,
+      "pageImagesCompared": 16,
+      "pageImagesPixelIdentical": 13,
+      "pageImagesDifferingReason": "page 1 only, the eight-character record reference",
+      "poisonFieldsInjected": 38,
+      "reportsByteIdenticalAfterPoisoning": "33/33",
+      "shadowEventsHealthyRun": 24,
+      "shadowEventsResolverFailureRun": 24,
+      "duplicateEventKeys": 0,
+      "blockingMismatchesHealthyRun": 0,
+      "meanComparisonLatencyMs": 0.667,
+      "analysesWithMixedGovernedStates": "5/7",
+      "approvedExactComparisons": 12,
+      "approvedExactYieldingGovernedText": 0,
+      "oracleMutationControl": "8/8 DIFFERENT, 176 forbidden-term hits -- the oracle is shown to fail",
+      "nonCircularControl": "legacy-C vs legacy-A, volatility derived from legacy-A/B: 8/8 identical",
+      "browserSuitesRerun": false,
+      "browserRerunRationale": "KG-4E changed no production code of any kind. The KG-4D browser pass (128/128, four themes) has identical inputs. The report surface was closed by fetching the actual PDF bytes over the real authenticated download route and inspecting every page, which a browser pass could not improve on; the app-side report UI reads only metadata(), which carries no snapshot.",
+      "telemetryExtractionTool": "poppler pdftotext/pdfinfo/pdffonts/pdftoppm; no OCR",
+      "telemetryPrivacyV2Suite": "test:kg4e-telemetry-privacy-v2 -- 48/48 safe, 35 fields, 0 outside the v2 allowlist, 12 canary patterns"
+    },
+    "kg5b": {
+      "test:kg5b-release-construction": "102/102",
+      "test:kg5b-operator-cli": "65/65",
+      "test:kg5b-approval-continuity": "29/29",
+      "rehearse:kg5b-operator-sequence": "58/58 assertions, 46 reviewed commands, 0 ad-hoc snippets",
+      "test:kg4d-default-off": "121/121 (was 119; +2 operator-command assertions)",
+      "packagedTreeSuitesReproduced": 30
+    },
+    "kg5c": {
+      "test:kg5c-customer-path-equivalence": "31/31",
+      "test:kg5c-goldset-customer-path": "17/17",
+      "rehearse:kg5c-governed-delivery": "28/28 assertions, 40 reviewed commands, 0 ad-hoc snippets",
+      "packagedTreeSuitesReproduced": 32,
+      "newMigrationsAdded": 0
+    },
+    "convergencePhase": {
+      "performedAt": "2026-08-21",
+      "scope": "Documentation, architecture convergence and production SHADOW readiness only. No implementation change.",
+      "suitesRun": {
+        "test:kg4a-cutover-contract": "146/146",
+        "test:kg4b-shadow-contract": "123/123",
+        "test:kg3f-56-14132-predicate": "16/16",
+        "test:kg4c-production-shadow-contract": "438/438",
+        "test:kg4c-disabled-deployment": "80/80",
+        "test:kg4d-orchestration": "151/151",
+        "test:kg4d-default-off": "121/121",
+        "backend npm run build": "exit 0",
+        "frontend-next npx tsc --noEmit": "exit 0"
+      },
+      "whyTheseOnly": "All are PURE (no database, no server, no mutation) and collectively cover the protected invariants this phase touched in documentation: cutover mode/fallback semantics, shadow taxonomy and severity, the 56.14132 adjudication, production-shadow authorization and stages, disabled-deployment fail-open, the orchestration boundary, and default-off reachability/inertness. No mutating or historical matrix suite was re-run, per the phase constraint against a broad re-verification campaign.",
+      "suitesDeliberatelyNotRun": "Every MUT (database-owning) suite, every real-HTTP suite, every browser suite and every historical determinism matrix. No implementation code changed, so their inputs are identical to the KG-5C run that recorded them.",
+      "newFindings": [
+        "KG5D-DISC-01 (INSTRUMENTATION, non-blocking)"
+      ],
+      "implementationFilesChanged": 0,
+      "documentationFilesChanged": 2
+    }
+  },
+  "shadowCorpus": {
+    "releaseId": "federal-core-2026-07-30.1",
+    "releaseManifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+    "goldSetCases": 31,
+    "kg4bFixtures": 12,
+    "totalAnalyses": 43,
+    "findings": 54,
+    "candidateStandards": 74,
+    "citationComparisons": 83,
+    "customerOutputIdentical": "43/43",
+    "shadowPayloadsCarryingGovernedKeys": 0,
+    "events": 83,
+    "distinctEventKeys": 83,
+    "duplicateEvents": 0,
+    "meanEventsPerAnalysis": 2.18,
+    "distribution": {
+      "EXACT_MATCH": 41,
+      "GOVERNED_MISSING": 15,
+      "GRANULARITY_DIFFERENCE": 14,
+      "APPLICABILITY_DIFFERENCE": 13
+    },
+    "severity": {
+      "INFORMATIONAL": 56,
+      "REVIEW": 27,
+      "BLOCKING": 0
+    },
+    "rootCause": {
+      "NONE": 41,
+      "EXPECTED_FALLBACK": 15,
+      "CITATION_GRANULARITY": 14,
+      "APPLICABILITY_EVIDENCE": 13
+    },
+    "dualDigestAgreement": "54/54",
+    "unobservedCategories": [
+      "CONTENT_EQUIVALENT",
+      "CONTENT_DIFFERENCE",
+      "CITATION_DIFFERENCE",
+      "GOVERNED_APPROVED_EXACT",
+      "GOVERNED_UNAPPROVED",
+      "GOVERNED_CITATION_ONLY",
+      "JURISDICTION_DIFFERENCE",
+      "ORDERING_DIFFERENCE",
+      "RESOLVER_FAILURE",
+      "INTEGRITY_FAILURE",
+      "PROVENANCE_DIFFERENCE"
+    ],
+    "artifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/analytics/shadow-analytics.json"
+  },
+  "corpus": {
+    "measuredAtCheckpoint": "KG-3F",
+    "measuredAgainstRelease": "federal-core-2026-08-20.5",
+    "emittedCitations": 23,
+    "emittedAndApproved": 23,
+    "emittedCoveragePercent": 100,
+    "emittedWithNoGovernedRecord": 0,
+    "distinctCitationsInRuleToCorpusMap": 160,
+    "declaredButUnemitted": 137,
+    "notSafeToGovernYet": 132,
+    "duplicateDeclarations": 42,
+    "parentChildAmbiguities": 39,
+    "governedRecordsWithoutSourceUrl": 3,
+    "hazardFamiliesMeasured": 27,
+    "hazardFamiliesBlockedByGovernanceGap": 0,
+    "artifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/rule-to-corpus-map.json",
+    "note": "VERIFIED_AT_CHECKPOINT only. Counts move whenever a predicate or the corpus changes. See reverify."
+  },
+  "mutable": {
+    "note": "Recorded values only. Every key here also appears in reverify and MUST be re-measured before use.",
+    "git": {
+      "branch": "release/insite-rc-2026-08-18",
+      "head": "5f050858227ca11cf90d2f6bf64148e70a018b64",
+      "headUnchangedSinceKG1": true,
+      "workingTreeEntryCount": 127,
+      "workingTreeClean": false,
+      "stashCount": 4,
+      "tagCount": 23,
+      "upstream": "origin/release/insite-rc-2026-08-18 (0 ahead, 0 behind)",
+      "workingTreeEntryCountMeasuredAt": "2026-08-21 (KG program convergence phase)",
+      "measuredAt": "2026-08-21 (KG-5D preflight pass two)"
+    },
+    "counts": {
+      "backendMigrations": 46,
+      "backendPackageScripts": 201
+    },
+    "runtime": {
+      "runningServices": null,
+      "activeRelease": null,
+      "databaseSchemaState": null,
+      "environmentVariables": null
+    }
+  },
+  "protectedResources": {
+    "protectedCommit": "5f050858227ca11cf90d2f6bf64148e70a018b64",
+    "protectedTags": [
+      {
+        "tag": "insite-hazlenz-verified-baseline-2026-08-19",
+        "target": "e9f968f76367b6ae4229c569408778d616ebbe94"
+      },
+      {
+        "tag": "insite-inspection-ui-verified-2026-08-19",
+        "target": "4c7a501d361f4e5f340ae58af6976303452fc2a5"
+      },
+      {
+        "tag": "insite-visual-acceptance-verified-2026-08-19",
+        "target": "5f050858227ca11cf90d2f6bf64148e70a018b64"
+      }
+    ],
+    "protectedStashes": [
+      "stash@{0}",
+      "stash@{1}",
+      "stash@{2}",
+      "stash@{3}"
+    ],
+    "protectedDatabases": [
+      "safescope",
+      "sentinel_dev",
+      "sentinel_safety"
+    ],
+    "protectedGoldSet": {
+      "path": "verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts",
+      "sha256": "93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3",
+      "verifiedByThisTask": true
+    },
+    "unrelatedWorkManifests": [
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/unrelated-worktree-changes.sha256",
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/kg4a-changed-files.sha256",
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/kg4b-changed-files.sha256"
+    ]
+  },
+  "testDatabaseOwnership": {
+    "rule": "A mutating suite may WRITE only to a database whose ownership marker names it. An UNMARKED database is refused.",
+    "guard": "backend/scripts/lib/test-database-ownership.ts",
+    "markerTable": "kg_test_database_ownership",
+    "initializeEnv": "KG_TEST_DB_INITIALIZE_OWNERSHIP",
+    "initializeRequiresExactDatabaseName": true,
+    "refusedClaimPerformsZeroWrites": true,
+    "refusals": [
+      "NO_DATABASE_URL",
+      "PROTECTED_DATABASE",
+      "NAME_NOT_DISPOSABLE",
+      "OWNED_BY_ANOTHER_SUITE",
+      "UNCLAIMED_DATABASE",
+      "CONNECTION_FAILED"
+    ],
+    "wiredInto": [
+      "test:regulatory-release-lifecycle",
+      "test:governed-corpus-matrix",
+      "test:kg3d-corpus-remediation",
+      "test:release-integrity-and-approval",
+      "test:reviewer-approval",
+      "test:standards-backing-contract",
+      "test:kg5b-release-construction"
+    ],
+    "notYetWiredInto": [],
+    "independentBlackBoxVerifier": "backend/scripts/test-kg4d-db-ownership-blackbox.ts",
+    "unprotectedMutatingSuites": 0,
+    "kg4eOwnedDatabases": [
+      {
+        "database": "test_kg4e_report_20260821",
+        "marker": "kg-4e-report-invariance"
+      },
+      {
+        "database": "test_kg4e_stale_20260821",
+        "marker": "kg-4e-resolver-failure"
+      }
+    ],
+    "operatorCommandsExemptFromOwnershipGuard": {
+      "scripts": [
+        "regulatory-release.ts"
+      ],
+      "why": "An operator command must be able to write to production, so it cannot carry the disposable-database guard. The exemption is earned: the script must be on a one-entry allowlist AND require explicit expected-state arguments (--expected-manifest, --expected-current), which is the substitute safety property. Asserted by test:kg4d-default-off."
+    }
+  },
+  "knownCaveats": [
+    {
+      "id": "CAVEAT-1",
+      "title": "HazLenz core — two pre-existing baseline failures",
+      "detail": "Golden Hardening Scenarios Test ('7. LOTO energized maintenance (Not Guarding alone)') and HazLenz Production Path Regression ('FAIL tagged but not locked'). 28 of 30 suites pass. Byte-identical at every slice boundary; the only two.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-2",
+      "title": "MSHA-TRAFFIC-01 protected baseline expectation",
+      "classification": "PROTECTED_BASELINE_EXPECTATION_ADJUDICATION_REQUIRED",
+      "detail": "Gold-set score 31/31 -> 30/31. Intentional regulatory correction; decision is KEEP. Gold artifact preserved byte-for-byte.",
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/MSHA-TRAFFIC-01-adjudication.md",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-3",
+      "title": "Entitlement boundary 429 / hang",
+      "detail": "test:entitlement-boundary fails at its first POST /auth/register with HTTP 429 (throttle 5/60s per IP) then hangs. Pre-existing since KG-3C; zero references to any KG module. Do not weaken the throttle.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-4",
+      "title": "KG-3F Phase 16 architectural assumption superseded",
+      "detail": "test:kg3f-customer-path-disconnection still reports 9/9 but its scan excludes standards/, where the KG-4A resolver and KG-4B comparator live. Authoritative now: test:kg4b-default-off (48/48) and test:kg4a-default-off (51/51).",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-5",
+      "title": "SOURCE_URL_REGISTRY_MISMATCH on five OSHA records",
+      "detail": "1926.300(b)(2), 1926.34(a), 1926.416(a)(1), 1926.52, 1926.59 point at osha.gov standardnumber pages while osha-ecfr-1926 declares an eCFR baseUrl. Classified, deliberately not churned.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-6",
+      "title": "Suite-specific database preconditions",
+      "detail": "test:kg3d-corpus-remediation needs KG-3D historical releases (clone test_kg3f_remediation_20260820); test:kg3e-citation-granularity needs federal-core-2026-07-30.1 intact; port 4000 carries a pre-existing developer backend and must not be used.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-7",
+      "title": "KG-4C ownership-guard incident: the guard caused the damage it prevents",
+      "detail": "The first version treated an absent ownership marker as permission to claim. Every pre-existing evidence database is unmarked, so it claimed test_kg4b_shadow_20260820 and test:regulatory-release-lifecycle deleted every release row. Its own suite passed 26/26 because an assertion stated the defective behaviour was correct. Fully restored and proven: manifest 14a34fea byte-identical, 35/35 approvals re-bound by checksum with no new decision appended, kg4b-shadow-adversarial 84/84, kg4b-shadow-determinism 18/18 at digest 0bce5a71.",
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/INCIDENT-ownership-guard-caused-the-damage-it-prevents.md",
+      "residual": "test_kg4b_shadow_20260820 now carries an ownership marker naming kg-4b-evidence-corpus that did not exist in KG-4B.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-8",
+      "title": "KG4C-DISC-01: seven vs eleven unobserved mismatch categories",
+      "detail": "KG-4B STATUS.md prose names seven never-observed categories; CORPUS_AND_ANALYTICS.md, shadow-analytics.json and the 83-event corpus all give eleven. Eleven is the measured figure. KG-4C maps all eleven. KG-4B artifacts left as written.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-9",
+      "title": "KG-4C modules are now ON the customer request path (RESOLVED by KG-4D)",
+      "detail": "KG-4C recorded the six modules as unreachable and skipped the browser suites. KG-4D wired them in through one orchestration boundary and re-ran the browser suite (128/128). KG4D-DISC-01: the KG-4C readiness label outran its own integration state; KG-4D adopted the stronger conclusion first and earned the label only after integration.",
+      "blocking": false,
+      "resolvedBy": "KG-4D"
+    },
+    {
+      "id": "CAVEAT-10",
+      "title": "SHADOW runs the customer pipeline four times",
+      "detail": "One pristine run (the customer payload) plus three copies (two legacy volatility probes and one shadow run). Paid only by explicitly allowlisted principals; LEGACY runs it once. Measured 0.688 ms mean per comparison. JSON copies are used because the analysis result carries a class reference structuredClone refuses.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-11",
+      "title": "Report/PDF invariance under SHADOW not exercised",
+      "detail": "KG-4D verified the persisted snapshot, reload/rehydration and Standard Detail through real Chromium and did not run a generated-PDF comparison. RESOLVED by KG-4E: 56 real PDFs generated through CanonicalReportsService.generate(), LEGACY vs SHADOW 8/8 customer-semantically identical across three oracles, 0 hits on 38 forbidden patterns, 13/16 page images pixel-identical (the three that differ are page 1's record reference), and 33/33 reports byte-identical after poisoning with 38 governed/shadow/telemetry fields.",
+      "blocking": false,
+      "resolvedBy": "KG-4E"
+    },
+    {
+      "id": "CAVEAT-12",
+      "title": "KG4E-DISC-01: a volatility set of literal VALUES cannot generalise",
+      "detail": "KG-4E's token-set oracle first derived volatility as the token VALUES that differed between two LEGACY probes ({E45BD25A, 8D498838} for the record reference). A third run necessarily carries a third value, so all eight cases reported a difference for a field already recognised as volatile. The positional oracle was correct throughout. Fixed by drawing the token bag from non-volatile POSITIONS. Volatility must be derived as a position or a role, never as a value.",
+      "blocking": false,
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/STATUS.md"
+    },
+    {
+      "id": "CAVEAT-13",
+      "title": "KG4E-DISC-02: the shadow taxonomy and the risk model share the word 'severity'",
+      "detail": "riskSnapshot.operationalRisk.severity is printed in every report. A poison set that stamps severity:'BLOCKING' onto every object therefore fails on a collision of vocabulary rather than on a governance leak, and the obvious repair -- widening the normalisation -- would also stop the suite noticing real changes. The shadow-specific spellings are poisoned instead.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-14",
+      "title": "KG4E-DISC-03: GET /inspection-reports returns every version's full frozen sourceSnapshot",
+      "detail": "CanonicalReportsService.list() uses leftJoinAndSelect('report.versions') and returns raw InspectionReportVersion entities, so every caller receives every version's complete sourceSnapshot -- 3.4 MB for 41 versions in the KG-4E database. GET /inspection-reports/:id does not; it maps through metadata(). Pre-existing and mode-independent: LEGACY and SHADOW return the same shape, canonical-reports.service.ts was last modified 2026-08-19 before any KG-4x cutover work, and under SHADOW every knowledgeReleaseId in it is null. NOT a shadow leak and not a Stage-1 blocker, but under a future governed delivery mode this endpoint would carry real release ids and full governed state to every list caller. No production code was changed for it.",
+      "blocking": false,
+      "backlogClassification": "MUST_FIX_BEFORE_CUSTOMER_GOVERNED_DELIVERY",
+      "stage1ShadowBlocker": false,
+      "remediatedByThisTask": false,
+      "measuredExample": "approximately 3.4 MB for 41 versions (KG-4E database)",
+      "reconfirmedBy": "KG-5A (Phase 19), not remediated"
+    },
+    {
+      "id": "CAVEAT-15",
+      "title": "KG4E-DISC-04: dropping the four approval-contract columns does not fail the resolver",
+      "detail": "resolveGovernedCitation() selects payload, recordChecksum and the effective review state; it never reads substantiveContentDigest, sourceIdentityDigest, approvalDigest or approvalContractVersion. Dropping those four columns left resolverHealth OK on all 24 comparisons. The blueprint's 'migration 1800000014000 absent -> STALE_SCHEMA' behaviour is about the migration being absent in full. A genuine resolver failure required making regulatory_release_records itself unreadable.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-16",
+      "title": "KG5A-DISC-01: the governed release cannot be built from the production corpus",
+      "detail": "finalize-regulatory-release.ts selects FROM standards_master with no WHERE clause, so release membership is the whole table. Production holds 2,390 full-text rows with source_key NULL on all of them, so Axis B of the approval contract is unsatisfiable from them and 0 of 35 governed citations reconcile as identical (18 content-differ, 17 missing). Measured on disposable copies of the real production corpus: seed:safescope-standards rewrote standard_text and title on five live rows (1910.146, 1910.219, 1910.36, 30 CFR 56.12016, 30 CFR 56.14105) and then crashed on a unique-index collision, because stage 1 inserts 29 CFR 1910.147 while stage 2 tries to rename the pre-existing bare 1910.147 to the same string. Not idempotent, not transactional, left the corpus at 2,396 rows with a duplicate citation pair. On a clean corpus the same seed is idempotent and correctly refuses to re-finalize an active release, so the defect is specific to a non-empty differently-formatted corpus -- which is exactly production.",
+      "blocking": true,
+      "blocksOperations": [
+        7,
+        8
+      ],
+      "owner": "KG-5B",
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5a/STATUS.md"
+    },
+    {
+      "id": "CAVEAT-17",
+      "title": "KG5A-DISC-02: one KG frontend file carries a single unrelated hunk",
+      "detail": "frontend-next/app/inspection-workspace/page.tsx is otherwise wholly KG-3C/3D but adds an unrelated <option value=\"unknown\" disabled> placeholder. The KG commit needs a hunk-level exclusion on this one file rather than whole-file staging. The packaged tree excludes it and still typechecks.",
+      "blocking": false
+    },
+    {
+      "id": "CAVEAT-18",
+      "title": "KG5A-DISC-03: no operator CLI for release activation or rollback",
+      "detail": "RegulatoryReleaseLifecycleService.activate() and rollbackTo() exist only as service methods. KG-5A drove them from an ad-hoc rehearsal script. A production activation has no reviewed command today. Packaging gap, owned by the slice that performs Operation 8.",
+      "blocking": true,
+      "blocksOperations": [
+        8
+      ],
+      "owner": "KG-5B"
+    },
+    {
+      "id": "KG5B-DISC-01",
+      "title": "15 CONTENT_DIFFERENCE/BLOCKING shadow comparisons against production's real corpus",
+      "classification": "RESOLVED_BY_KG_5C",
+      "detail": "With the release active on a production-shaped corpus, the resolver is healthy on all 35 citations (RESOLVER_FAILURE 35 -> 0) and 27 resolve APPROVED_EXACT -- but 15 of those 27 classify CONTENT_DIFFERENCE and therefore BLOCKING, because production carries the full eCFR section dump (56,026 bytes for 1910.1200) where the governed record carries the reviewed 1,141-byte clause-accurate artifact. This is NOT a release defect: every BLOCKING record resolved with resolverHealth OK and governedBackingState APPROVED_EXACT, every digest reproduces, and the corpus is byte-identical. KG-5A's 'release active' column showed EXACT_MATCH on all 35 only because it ran on a corpus that had been REPLACED by the governed rows -- the step KG-5A then proved unsafe. Cross-checked two independent ways: KG-5A's reconciliation found 18 PRODUCTION_ROW_CONTENT_DIFFERS, of which 3 are NEW_REVIEW_REQUIRED and never reach a content comparison; 18 - 3 = 15. BLOCKING means 'would put a materially wrong claim in front of a customer IF GOVERNED MODE WERE ENABLED' -- it does not block SHADOW, which is customer-invisible, and it does not block activation with the cutover variables absent.",
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5b/contracts/operator-rehearsal.json",
+      "blocking": false,
+      "blocksGovernedDelivery": false,
+      "countIsADiscoveryNotAnEquivalenceResult": true,
+      "whyNotYetAuthoritative": "The KG-5B SHADOW comparison selected its legacy input with the repository's prefix-insensitive matcher (normalizeCitationForMatch), NOT by exercising the live hydrateStandardReferences customer path. 15 is therefore a corroborated DISCOVERY count, not an authoritative customer-path equivalence result. The difference may represent a true regulatory content difference, a storage/citation granularity difference, the governed artifact being an exact subsection of a larger legacy section dump, a normalization-only difference, a resolver pairing difference, or another evidence-backed classification. It must not be prejudged.",
+      "resolvedBy": "KG-5C",
+      "resolution": "KG-5C re-measured all 15 through the REAL customer path on both body-text tiers. The KG-5B PAIRING was correct and the count of 15 is confirmed -- what was too coarse was the classification. All 15 classify GOVERNED_REVIEWED_RENDERING on Path A and Path B: the delivered text is byte-for-byte the frozen reviewed artifact, the record is approved against its exact checksum, and a clause-by-clause review is recorded. Delivery fidelity is 27/27 DELIVERS_REVIEWED_ARTIFACT with zero approved badges on non-reviewed content. Not blocking."
+    },
+    {
+      "id": "KG5C-DISC-01",
+      "title": "634 legacy plain_language_summary values are truncated mid-word",
+      "classification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+      "detail": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows, and 634 of those cut mid-word (1910.219 ends \"...thirteen thirty-seconds () inch or less. 1/2 (2\"). That fragment is what a Path B customer reads TODAY under the \"HazLenz standard summary\" label. Pre-existing and unrelated to governance. Not a SHADOW blocker (SHADOW is customer-invisible). Not a cutover blocker: cutover REPAIRS it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract promise.",
+      "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5c/STATUS.md section 8",
+      "blocking": false
+    }
+  ],
+  "openItems": [
+    "KG5C-DISC-01: adjudicate the 634 mid-word-truncated legacy summaries before widening legacy delivery",
+    "Confirm the platform log pipeline collects and retains kg4c.shadow-comparison.v2 events",
+    "Name the single internal Stage-1 account and set the four locks (operational decision)",
+    "Operator-triggered instant kill switch (control-plane feature)",
+    "KG4E-DISC-03: GET /inspection-reports returns every version's full frozen sourceSnapshot",
+    "Close GOVERNED_MISSING - 137 declared-but-unemitted citations",
+    "Resolve 39 parent/child ambiguities",
+    "Resolve 42 duplicate multi-surface declarations",
+    "Source the 3 governed records without a source URL",
+    "Adjudicate SOURCE_URL_REGISTRY_MISMATCH on 5 OSHA records",
+    "Do not pursue GOVERNED_STRICT as a customer mode while emitted-approved coverage is 23/160",
+    "Do not enable GOVERNED_WITH_FALLBACK for customers until a production shadow exercises the eleven unobserved categories"
+  ],
+  "evidenceIndex": {
+    "root": "verification/hazlenz-governed-knowledge-growth-2026-08-19",
+    "kg-1": "kg-1/KG_1_VERIFICATION.md",
+    "kg-2": "kg-2/KG_2_VERIFICATION.md",
+    "kg-3a": "kg-3a/KG_3A_VERIFICATION.md",
+    "kg-3b": "kg-3b/KG_3B_VERIFICATION.md",
+    "kg-3c": "kg-3c/KG_3C_VERIFICATION.md",
+    "kg-3d": "kg-3d/KG_3D_VERIFICATION.md",
+    "kg-3e": "kg-3e/KG_3E_VERIFICATION.md",
+    "kg-3f": "kg-3f/STATUS.md",
+    "kg-4a": "kg-4a/STATUS.md",
+    "kg-4b": "kg-4b/STATUS.md",
+    "selfValidation": "blueprint/BLUEPRINT_SELF_VALIDATION.md",
+    "kg-4c": "kg-4c/STATUS.md",
+    "kg-4c-incident": "kg-4c/INCIDENT-ownership-guard-caused-the-damage-it-prevents.md",
+    "kg-4c-runbook": "kg-4c/PRODUCTION_SHADOW_RUNBOOK.md",
+    "kg-4d": "kg-4d/STATUS.md",
+    "kg-4d-browser": "kg-4d/browser/kg4d-browser-verification-results.json",
+    "kg-4e": "kg-4e/STATUS.md",
+    "kg-4e-reproduction": "kg-4e/REPRODUCTION_COMMANDS.md",
+    "kg-4e-contracts": "kg-4e/contracts/"
+  },
+  "reverify": [
+    "mutable.git.head",
+    "mutable.git.branch",
+    "mutable.git.upstream",
+    "mutable.git.workingTreeEntryCount",
+    "mutable.git.stashCount",
+    "mutable.git.tagCount",
+    "protectedResources.protectedTags[].target",
+    "mutable.counts.backendMigrations",
+    "mutable.counts.backendPackageScripts",
+    "mutable.runtime.runningServices",
+    "mutable.runtime.activeRelease",
+    "mutable.runtime.databaseSchemaState",
+    "mutable.runtime.environmentVariables",
+    "productionPosture.productionShadowEnabled",
+    "productionPosture.governedCutoverModeSetInProduction",
+    "cutover.defaultMode",
+    "corpus.emittedCitations",
+    "corpus.emittedAndApproved",
+    "corpus.declaredButUnemitted",
+    "corpus.parentChildAmbiguities",
+    "corpus.duplicateDeclarations",
+    "shadowCorpus.releaseId",
+    "shadowCorpus.releaseManifestChecksum",
+    "governance.requiredMigration.appliedToSafescopeDevDatabase",
+    "verification.kg3f",
+    "verification.kg4a",
+    "verification.kg4b",
+    "unrelated worktree file hashes against protectedResources.unrelatedWorkManifests",
+    "productionShadow.enabled",
+    "productionShadow.acknowledgementEverSet",
+    "testDatabaseOwnership.wiredInto",
+    "verification.kg4c",
+    "productionShadow.modulesOnCustomerRequestPath",
+    "verification.kg4d",
+    "testDatabaseOwnership.unprotectedMutatingSuites",
+    "verification.kg4e",
+    "reportPdfInvariance.verified",
+    "productionEnvironment.backend.liveCommit",
+    "productionEnvironment.backend.instancePlan",
+    "productionEnvironment.backend.trackedBranch",
+    "productionEnvironment.database.migrationsApplied",
+    "productionEnvironment.database.activeRelease",
+    "productionEnvironment.cutoverConfiguration.governedCutoverEnvVarsSetInProduction",
+    "telemetryPipeline.retentionObservedDays",
+    "telemetryPipeline.workspaceTier",
+    "stage1PreflightVerdict.stage1AccountId",
+    "stage1PreflightVerdict.blockers",
+    "releasePackaging.kgReleaseFiles",
+    "productionMigrationPlan.rehearsalDatabase",
+    "initialGovernedReleaseCandidate.reconciliation",
+    "initialGovernedReleaseCandidate.productionStandardsMasterRows",
+    "approvalReattestationPolicy.recommendedDecisions",
+    "deploymentBranchRecommendation.recommended",
+    "governedReleaseConstruction.manifestReproduced",
+    "governedReleaseConstruction.newMigrationsAdded",
+    "governedReleaseConstruction.legacySeedPipelineGuard.measuredAgainstProductionShapedCorpus",
+    "operatorReleaseCommand.dryRunWrites",
+    "verification.kg5b",
+    "initialGovernedReleaseCandidate.gatesPassAtApprovedRecords",
+    "customerPathEquivalence.deliveryFidelity",
+    "customerPathEquivalence.goldSetProof.proven",
+    "customerPathEquivalence.approved27Classification",
+    "verification.kg5c",
+    "productionOperationAuthorizationState",
+    "programStatus.productionAuthority",
+    "programStatus.shadowState",
+    "programStatus.cutoverState",
+    "openIssues.issues.STAGE1-OP-01",
+    "openIssues.blockers",
+    "productionShadowProtocol.precedingOperations (execution state)",
+    "operationalReadiness",
+    "telemetryPipeline.transportIntegrityConclusion",
+    "telemetryPipeline.probeRequired",
+    "productionEnvironment.database.identityTableCaveat",
+    "productionEnvironment.database.lifetimeTrafficRows",
+    "openIssues.issues.KG5D-DISC-02",
+    "openIssues.issues.KG5D-DISC-03",
+    "openIssues.issues.KG5D-DISC-04",
+    "productionShadowProtocol.stage1ExperimentDesign",
+    "stage1ShadowPreflightPassTwo.status"
+  ],
+  "productionShadow": {
+    "enabled": false,
+    "acknowledgementEverSet": false,
+    "locks": [
+      "SERVER_MODE",
+      "PRINCIPAL_ELIGIBILITY",
+      "GOVERNED_CUTOVER_PRODUCTION_ACK",
+      "PRODUCTION_SHADOW_ACK"
+    ],
+    "productionShadowAckEnv": "GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK",
+    "productionShadowAckSentinel": "I_ACKNOWLEDGE_PRODUCTION_SHADOW",
+    "killSwitchEnv": "GOVERNED_CUTOVER_KILL_SWITCH",
+    "killSwitchSemantics": "engages on ANY non-empty value; runtime latch is immediate, env path carries platform restart characteristics",
+    "stageEnv": "GOVERNED_CUTOVER_SHADOW_STAGE",
+    "defaultStage": "STAGE_0_DISABLED",
+    "stages": [
+      "STAGE_0_DISABLED",
+      "STAGE_1_SINGLE_ACCOUNT",
+      "STAGE_2_SMALL_ALLOWLIST",
+      "STAGE_3_DETERMINISTIC_COHORT",
+      "STAGE_4_BROAD"
+    ],
+    "automaticPromotion": false,
+    "firstCohort": "one internal/test account; never an ordinary customer",
+    "hardInvariantCount": 7,
+    "rateThresholdCount": 4,
+    "metricCount": 17,
+    "alertRuleCount": 16,
+    "eventSchemaVersion": "kg4c.shadow-comparison.v2",
+    "eventFieldCount": 35,
+    "privacyCanaryPatterns": 12,
+    "telemetrySink": "structured application logs (stdout JSONL)",
+    "productionDatabaseSchemaCreated": false,
+    "modulesOnCustomerRequestPath": true,
+    "integrationSeam": "backend/src/standards/cutover/shadow-request-orchestration.ts",
+    "seamCallSites": [
+      "backend/src/safescope-v2/safescope-v2.controller.ts (classify)"
+    ],
+    "persistenceHooks": [
+      "backend/src/inspection/inspection.service.ts (resolveKnowledgeReleaseId)"
+    ],
+    "shadowPipelineExecutions": 4,
+    "legacyPipelineExecutions": 1,
+    "customerPayloadSource": "the pristine legacy run; never the shadow run"
+  },
+  "reportPdfInvariance": {
+    "verified": true,
+    "verifiedAt": "KG-4E",
+    "legacyVsShadowCustomerSemanticsIdentical": true,
+    "shadowTerminologyInReports": 0,
+    "governedMetadataInReports": 0,
+    "nullProvenanceArtifactsInReports": 0,
+    "byteEqualityAssertedWhereMeaningful": "one frozen snapshot rendered twice, and again after poisoning; /CreationDate, /ModDate and /ID normalised, every page byte required to match",
+    "byteEqualityBetweenTwoInspections": "inappropriate -- the inspection uuid is printed as the record reference",
+    "volatileFields": [
+      "Record reference <8 hex> (cover, page 1 line 9)",
+      "PDF /CreationDate",
+      "PDF /ModDate",
+      "PDF /ID"
+    ],
+    "volatilityDerivedNotDeclared": true,
+    "rendererConsumesGovernedState": false,
+    "frozenSnapshotCarriesGovernedState": true,
+    "frozenSnapshotGovernedStateUnderShadow": "NULL on 45/45 analyses and 59/59 findings, with an ACTIVE release and 35 approvals present",
+    "structuralExclusionMechanism": "canonical-report-pdf-renderer.ts projects a closed field allowlist; it never spreads, serialises or enumerates the snapshot",
+    "failureCasesExercised": [
+      "KILL_SWITCH_ENGAGED",
+      "RESOLVER_UNAVAILABLE/STALE_SCHEMA"
+    ],
+    "reportDeliveryUnaffectedByShadowFailure": true,
+    "artifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/phase3-report-invariance.json",
+    "contracts": [
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/report-input-trace.json",
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/report-volatility.json",
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/case-coverage.json"
+    ]
+  },
+  "productionEnvironment": {
+    "measuredAt": "2026-08-21",
+    "measurementMethod": "read-only: Render CLI/API inspection and a read-only Postgres session (SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY)",
+    "nothingModified": true,
+    "backend": {
+      "platform": "Render",
+      "serviceName": "safety-insite-backend",
+      "serviceId": "srv-d7kl74jeo5us73deaor0",
+      "publicUrl": "https://safescope-backend.onrender.com",
+      "instancePlan": "free",
+      "instances": 1,
+      "region": "oregon",
+      "runtime": "node",
+      "autoDeploy": "yes",
+      "autoDeployTrigger": "commit",
+      "trackedBranch": "main",
+      "startCommand": "npm run start:render",
+      "nodeOptions": "--max-old-space-size=1024",
+      "liveCommit": "97941ca23c0be880395fe0d51ceb72ca22d8bfaa",
+      "liveCommitDeployedAt": "2026-08-18T02:15:28Z",
+      "cutoverSubsystemPresentInLiveCommit": false
+    },
+    "frontend": {
+      "platform": "Vercel",
+      "projectName": "safety-insite",
+      "targetEnv": "production"
+    },
+    "database": {
+      "provider": "Neon Postgres",
+      "databaseName": "neondb",
+      "typeormSynchronize": false,
+      "migrationsRunOnBoot": false,
+      "migrationsApplied": 40,
+      "latestAppliedMigration": "RefreshTokens1800000008000",
+      "repoMigrationsNotApplied": [
+        "1800000009000-InspectionRegulatoryContext",
+        "1800000010000-KnowledgeReleaseProvenance",
+        "1800000011000-RegulatoryReleaseLifecycle",
+        "1800000012000-RegulatoryReleaseRecords",
+        "1800000013000-RegulatoryReleaseRecordReviews",
+        "1800000014000-ApprovalProvenanceContract"
+      ],
+      "regulatoryReleaseRows": 0,
+      "activeRelease": null,
+      "regulatoryReleaseRecordsTableExists": false,
+      "regulatoryReleaseRecordReviewsTableExists": false,
+      "standardsMasterRows": 2390,
+      "hazlenzAnalysesHasKnowledgeReleaseIdColumn": false,
+      "hazlenzAnalysesRows": 1,
+      "inspectionFindingsRows": 1,
+      "inspectionReportVersionsRows": 1,
+      "liveUserRows": 15,
+      "softDeletedUserRows": 11,
+      "organizations": 8,
+      "regulatoryReleasesTableExists": true,
+      "regulatoryReleasesTableShape": "PRE-LIFECYCLE. Columns: id, releaseId, releaseVersion, status, manifestChecksum, parserVersion, recordCount, approvedBy, approvedAt, createdAt. There is NO active-pointer column (isActive / activatedAt / activatedBy all absent). The table exists only because migration 1800000004000 RegulatoryReleaseGovernance predates the KG programme. Its presence must NOT be read as partial KG-2 readiness -- the lifecycle pointer pinGovernedRelease() depends on does not exist in production.",
+      "identityTableCaveat": "DO_NOT_REDISCOVER. Production carries TWO identity tables. \"user\" (SINGULAR) is the live auth table: 26 rows, 15 with deletedAt IS NULL, 11 soft-deleted, across 8 rows in \"organization\"; it carries role, planCode and subscriptionStatus. \"users\" (PLURAL) is a vestigial 1-row table with a different column set and no deletedAt column, and is NOT the account population. A count taken against \"users\" reports 1 and is wrong. The Stage-1 account UUID exists in \"user\", not in \"users\".",
+      "reviewSubstrateAbsent": "regulatory_release_records and regulatory_release_record_reviews do not exist, so the correct statement is not \"zero approvals\" but that NO approval, re-attestation, revocation, approval digest or NEW_REVIEW_REQUIRED state can be represented in production today.",
+      "lifetimeTrafficRows": {
+        "inspection": 1,
+        "observations": 1,
+        "hazlenz_analyses": 1,
+        "inspection_findings": 1,
+        "inspection_reports": 1,
+        "inspection_report_versions": 1,
+        "firstAndLastAnalysisTimestamp": "2026-08-19T11:38:38Z",
+        "note": "Lifetime production traffic is ONE analysis. Natural traffic is not low; it is effectively nil."
+      }
+    },
+    "cutoverConfiguration": {
+      "governedCutoverEnvVarsSetInProduction": 0,
+      "governedCutoverEnvVarNamesPresent": [],
+      "nodeEnv": "production",
+      "resolvesTo": "LEGACY",
+      "resolvesReason": "DEFAULT_NO_CONFIGURATION",
+      "note": "Doubly closed: no cutover variable is set AND the cutover code is absent from the live commit."
+    },
+    "remeasuredAt": "2026-08-21 (KG-5D preflight pass two, read-only, BEGIN READ ONLY enforced)"
+  },
+  "telemetryPipeline": {
+    "measuredAt": "2026-08-21",
+    "sinkOfRecord": "stdout JSONL via console.log (StdoutJsonlSink)",
+    "sinkGate": "GOVERNED_CUTOVER_OBSERVABILITY must equal exactly \"enabled\" (lowercase, after trim); otherwise NullSink",
+    "platformCollector": "Render built-in log pipeline",
+    "applicationStdoutIsCollected": true,
+    "applicationStdoutEvidence": "console.log lines emitted by backend/src/main.ts appear verbatim in Render logs, ANSI escapes and multibyte characters preserved",
+    "logRecordShape": "one Render record per stdout line; the line is stored verbatim in a single \"message\" string field",
+    "jsonParsedIntoQueryableFieldsByPlatform": false,
+    "aggregationMethod": "export via Render CLI/API and aggregate offline; the platform cannot GROUP BY event fields",
+    "textSearchAvailable": true,
+    "textSearchVerified": "render logs --text <token> returns matching records",
+    "apiPageLimit": 1000,
+    "apiQueryFloorDays": 30,
+    "retentionObservedDays": 14,
+    "retentionObservedEvidence": "a record timestamped 2026-08-07T15:57:53Z was retrievable on 2026-08-21",
+    "retentionDocumentedByTier": "Hobby 7 days, Pro 14 days, Scale/Enterprise 30 days",
+    "retentionContractTargetDays": 30,
+    "retentionAdequateForStage1": true,
+    "retentionMeetsContractTarget": "NOT_ESTABLISHED",
+    "workspaceTier": "NOT_EXPOSED_BY_CLI",
+    "operatorHasLogAccess": true,
+    "operatorLogAccessEvidence": "authenticated Render CLI; render logs returned records for the production service",
+    "realV2EventMaxLineBytes": 1710,
+    "realV2EventMeanLineBytes": 1644,
+    "realV2EventsChecked": 80,
+    "realV2EventsCarryingEveryRequiredField": 80,
+    "realV2EventsPassingV2PrivacyGuard": 80,
+    "realV2EventDistinctFields": 35,
+    "fieldsOutsideV2Allowlist": 0,
+    "longestProductionLogLineObservedBytes": 319,
+    "longestProductionLogLineSampleSize": 6560,
+    "lineTruncationAtEventSizeVerified": false,
+    "lineTruncationNote": "No line approaching 1.7 KB exists in the retained window and Render documents no line limit, so intact delivery of a full-size v2 event is UNVERIFIED. It is not a customer-safety risk (SHADOW returns the pristine legacy payload); it is a telemetry-usability risk, and it is settled by parsing the first real event.",
+    "remeasuredAt": "2026-08-21 (KG-5D preflight pass two)",
+    "remeasuredWindow": "2026-08-18T00:27:34Z to 2026-08-21T18:22:47Z",
+    "remeasuredDistinctLogRecords": 2900,
+    "remeasuredLongestLineBytes": 317,
+    "remeasuredLineBytesP50": 163,
+    "remeasuredLineBytesP99": 252,
+    "buildLogRecordsInDeployWindow": 29,
+    "buildLogLongestLineBytes": 105,
+    "platformDocumentedLineLengthLimit": "NONE_DOCUMENTED",
+    "platformDocumentedIngestionRateLimit": "6000 application log lines per minute per running instance; excess is dropped and never appears in the log explorer or streams",
+    "ingestionRateLimitRelevanceToStage1": "Not a constraint at Stage-1 volumes (a few events per analysis, operator-paced), but it belongs to the telemetry contract and must be respected by any future high-volume stage.",
+    "emitterCannotSplitOrTruncate": true,
+    "emitterMechanismEstablished": "buildShadowEventV2() constructs field by field and never spreads a caller object; assertShadowEventV2PrivacySafe() enforces MAX_FIELD_LENGTH=200 per string field BEFORE serialization and THROWS (dropping the event) rather than truncating; JSON.stringify() emits no literal newline; StdoutJsonlSink.write() is a single console.log. An oversized event is therefore an ABSENT event, never a corrupt one.",
+    "realV2EventsContainingRawNewlineOrCR": 0,
+    "realV2EventsLongestSingleFieldBytes": 64,
+    "realV2EventsLongestFieldKind": "sha256 hex digest (releaseManifestChecksum / outputInvarianceHash)",
+    "analyticWorstCaseEventBytes": 6585,
+    "analyticWorstCaseBasis": "all 28 string fields simultaneously at the 200-char cap, a state no field type can actually reach; every field is a citation, digest, UUID, enum or number",
+    "transportIntegrityConclusion": "APPLICATION_HALF_PROVEN__PLATFORM_HALF_UNPROVEN",
+    "transportIntegrityConclusionDetail": "The emitter is proven incapable of producing a split, multiline or unbounded event. The single unestablished link is whether Render carries one ~1,700-byte stdout line into one message field intact. The 317-byte ceiling is a property of what this application currently logs, NOT of what the pipeline can carry, so it is neither evidence of a limit nor evidence against one. Render documents no line-length limit. Source inspection, existing logs, existing evidence and local reproduction cannot reach that link because it lies beyond a boundary this repository does not own.",
+    "probeRequired": false,
+    "probeRequiredRationale": "A single controlled production SHADOW event is not necessary and is currently IMPOSSIBLE: emitting one requires the cutover code to exist in production and the live commit 97941ca2 contains no standards/cutover/, so no environment-variable combination can produce a shadow event today. The question is also not SHADOW-shaped (it is a property of the log pipeline), the risk it carries is telemetry-usability rather than customer safety (SHADOW returns the pristine legacy payload, D-50), and it is settled for free by parsing the FIRST real Stage-1 event. The correct response is an abort gate, not a probe.",
+    "resolvedByStage1AbortGate": "G1 -- Stage-1 aborts if event #1 does not retrieve as ONE complete parseable JSON object with all 35 fields passing the v2 allowlist."
+  },
+  "stage1PreflightVerdict": {
+    "performedAt": "2026-08-21",
+    "status": "STAGE1_PRODUCTION_SHADOW_PREFLIGHT_BLOCKED",
+    "productionModifiedByPreflight": false,
+    "stage1AccountIdentified": true,
+    "stage1AccountId": "e9a25131-dfa4-40ce-90ff-8ab3d884d8ef",
+    "stage1AccountBasis": "the operator's own production account; email matches the repository owner; role=Auditor, planCode=company (normalizes to pro), subscription active, so it carries cloudReports/hazlenzFullReview/standardsReasoning",
+    "stage1AccountIsOrdinaryCustomer": false,
+    "allowlistIdentifierType": "users.id UUID, matched against principal.userId derived from the JWT payload; exact string membership in a comma-separated list",
+    "orgAllowlistMustRemainUnset": true,
+    "orgAllowlistRationale": "GOVERNED_CUTOVER_ORG_ALLOWLIST would enable every member of the account's organization, and countNamedPrincipals() sums both lists against the STAGE_1_SINGLE_ACCOUNT ceiling of 1",
+    "blockers": [
+      "B1 CODE NOT SHIPPABLE AS-IS: the entire governed-knowledge subsystem is UNTRACKED in git (backend/src/standards/cutover/, backend/src/standards/releases/, backend/src/standards/display/, backend/src/applicable-standards/citation-structure.ts, backend/src/inspection/knowledge-release-provenance.ts and all five KG migrations). Nothing has ever been committed; the live production commit contains none of it.",
+      "B2 DEPLOYMENT PATH NOT A NO-OP: Render auto-deploys from main on commit. main == origin/main == the live commit. Shipping requires merging four unshipped release-branch commits plus a 114-entry working tree that also contains unrelated frontend theme work, so \"deploy with SHADOW off\" is a first-ever deployment of the whole subsystem, not a marginal change.",
+      "B3 MIGRATIONS UNAPPLIED: six repo migrations are absent from the production database, including all five KG migrations. migrationsRun is false and the start command does not migrate, so this is a separate deliberate action against the production Neon database.",
+      "B4 NO GOVERNED RELEASE EXISTS IN PRODUCTION: regulatory_releases has zero rows, there is no active release, and regulatory_release_records / regulatory_release_record_reviews do not exist. pinGovernedRelease() would return NO_ACTIVE_RELEASE, so 100% of comparisons would classify RESOLVER_FAILURE / REVIEW / resolverHealth=NO_ACTIVE_RELEASE and the run would measure nothing while breaching the 2% RESOLVER_FAILURE_RATE stop threshold once 200 comparisons accrue.",
+      "B5 NO REVIEWER-APPROVED PRODUCTION CORPUS: the 23-emitted-and-approved figure belongs to the 35-record verification seed (manifest 14a34fea). Production standards_master carries 2390 live rows and zero approvals. Which release is finalized and activated in production, and on what reviewer evidence, is an unanswered adjudication."
+    ],
+    "nonBlockingFindings": [
+      "F1 Production traffic is effectively nil (1 analysis, 1 finding, 1 report version ever), so every Stage-1 comparison would be operator-generated. The runbook sample-sufficiency minima (200 analyses / 500 comparisons) will never be met organically.",
+      "F2 The Render instance is the free plan, single instance, bounded to a 1024 MB old-space, with a documented history of memory pressure. SHADOW runs the classify pipeline four times and holds three JSON deep copies of the analysis per eligible request.",
+      "F3 Free instances spin down when idle. Every restart clears the in-process circuit-breaker latch, the runtime kill switch and all 17 in-process counters, so breaker state and metrics do not survive a cold start.",
+      "F4 Render stores each log line as an opaque message string and does not index JSON fields, so mismatch/severity/root-cause aggregation must be done offline from exported events.",
+      "F5 Full-size (about 1.7 KB) log-line fidelity through Render is unverified; nothing that large exists in the retained window."
+    ],
+    "preflightGatesReproduced": {
+      "test:kg4c-production-shadow-contract": "438/438",
+      "test:kg4c-disabled-deployment": "80/80",
+      "test:kg4a-cutover-contract": "146/146",
+      "test:kg4b-shadow-contract": "123/123",
+      "test:kg4d-orchestration": "151/151",
+      "test:kg4d-default-off": "119/119",
+      "test:kg3f-56-14132-predicate": "16/16",
+      "backend npm run build": "exit 0",
+      "frontend-next npx tsc --noEmit": "exit 0"
+    },
+    "reconfirmedAt": "2026-08-21 (KG-5D preflight pass two)",
+    "reconfirmedBlockers": "B1-B5 all reconfirmed by direct read-only measurement. None superseded, none downgraded.",
+    "stage1AccountReconfirmed": "Present in the \"user\" table: role=Auditor, planCode=company, subscriptionStatus=active, not soft-deleted, and the ONLY live user in its organization. GOVERNED_CUTOVER_ORG_ALLOWLIST must still remain unset -- countNamedPrincipals() sums both lists against the STAGE_1_SINGLE_ACCOUNT ceiling of 1 regardless of organization size.",
+    "f1Correction": "F1 said the runbook sample-sufficiency minima (200 analyses / 500 comparisons) will never be met organically. Both halves are true and the conclusion drawn was too strong: those minima do not gate Stage-1. See openIssues KG5D-DISC-03.",
+    "supersededByForEvidenceDesign": "stage1ShadowPreflightPassTwo"
+  },
+  "operationalReadiness": "PRODUCTION_RELEASE_PACKAGE_READY_TO_EXECUTE_UNDER_AUTHORIZATION",
+  "releasePackaging": {
+    "slice": "KG-5A (plan) / Operation 1 (local commit construction, 2026-08-21)",
+    "performedAt": "2026-08-21",
+    "verdict": "KG_RELEASE_PACKAGE_COMMITTED_LOCALLY — PUSH_NOT_AUTHORIZED — PRODUCTION_UNCHANGED",
+    "committed": true,
+    "pushed": false,
+    "merged": false,
+    "deployed": false,
+    "productionMigrationsApplied": false,
+    "productionReleaseCreated": false,
+    "shadowEnabled": false,
+    "worktreePathsClassified": 630,
+    "unclassifiedPaths": 0,
+    "classificationCounts": {
+      "KG_PACKAGE_COMMITTED": 599,
+      "UNRELATED_FRONTEND_THEME_WORK": 18,
+      "UNRELATED_OTHER_LOGOS": 11,
+      "UNRELATED_OTHER_RETIRED_TIER_SCRIPTS": 2
+    },
+    "kgReleaseFiles": 63,
+    "kgFrontendFiles": [
+      "frontend-next/lib/inspection/standardDisplay.ts",
+      "frontend-next/components/inspection/SafeScopeStandardsSection.tsx",
+      "frontend-next/app/inspection-workspace/page.tsx"
+    ],
+    "dependencyChanges": 0,
+    "packagedTreeModifiedTrackedFiles": 22,
+    "packagedTreeThemeFiles": 0,
+    "packagedTreeBackendBuild": "exit 0 (clean checkout at the new HEAD)",
+    "packagedTreeFrontendTypecheck": "exit 0 (clean checkout at the new HEAD)",
+    "commitPlan": [
+      "A schema+lifecycle+approval/provenance",
+      "B corpus+deterministic retrieval+backing contract",
+      "C cutover core",
+      "D operational safety + the one integration boundary",
+      "E KG frontend display contract",
+      "F scripts, docs and verification evidence"
+    ],
+    "artifacts": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5a/",
+    "startingHead": "5f050858227ca11cf90d2f6bf64148e70a018b64",
+    "endingHead": "commit 6 of 6 (a commit cannot record its own SHA; read it with `git rev-parse HEAD`)",
+    "branch": "release/insite-rc-2026-08-18",
+    "upstreamDivergence": "0 behind / 6 ahead of origin/release/insite-rc-2026-08-18 (local only)",
+    "totalFilesCommitted": 599,
+    "commitPlanNote": "The six recorded layers were preserved. Three per-file assignments in the KG-5A prose table were re-derived from the CURRENT import graph and moved, because KG-5B/KG-5C added edges after that table was written: (1) inspection.service.ts A->D, it imports cutover-mode, shadow-provenance-invariant and shadow-operational-metrics; (2) finalize-regulatory-release.ts and the governed-source files A->B, since governed-source-set.ts imports the corpus seed and projection; (3) shadow-provenance-invariant.ts D->C, since governed-provenance.ts imports it. Verified: zero ordering violations across all 62 packaged source files.",
+    "commits": [
+      {
+        "sequence": 1,
+        "sha": "21a8585d5b3dbd2c135a64f9c1f34d6220377133",
+        "subject": "KG-1..KG-3F: governed knowledge schema, release lifecycle and approval contract",
+        "files": 20
+      },
+      {
+        "sequence": 2,
+        "sha": "b357599dd1664c8d4d8893b0760c8ce0777bba8e",
+        "subject": "KG-3C..KG-5C: governed source set, citation identity and the backing contract",
+        "files": 18
+      },
+      {
+        "sequence": 3,
+        "sha": "25f426f6a1356d6a5bc386f54887066ea3fc5aa0",
+        "subject": "KG-4A/KG-4B: governed cutover core, fallback table and shadow comparison",
+        "files": 8
+      },
+      {
+        "sequence": 4,
+        "sha": "17314dc3f369d599c2bd046c6c8bfcace68aa1b3",
+        "subject": "KG-4C/KG-4D/KG-5C: shadow safety rails and the single customer-path integration",
+        "files": 12
+      },
+      {
+        "sequence": 5,
+        "sha": "38115da4342f337a4eca58c500f213c6e621e488",
+        "subject": "KG-3C/KG-3D: frontend governed standards display contract",
+        "files": 3
+      },
+      {
+        "sequence": 6,
+        "sha": "(this commit — self-reference impossible; the five SHAs above are exact)",
+        "subject": "KG-1..KG-5D: operator commands, verification suites, evidence and documentation",
+        "files": 538
+      }
+    ],
+    "excludedFromPackage": {
+      "themeFiles": 18,
+      "logoFiles": 11,
+      "retiredTierRepairScripts": 2,
+      "hunkExclusion": "frontend-next/app/inspection-workspace/page.tsx: the KG5A-DISC-02 <option value=\"unknown\" disabled> line is NOT committed and remains uncommitted in the working tree",
+      "allProtectedFilesByteIdentical": true
+    }
+  },
+  "productionMigrationPlan": {
+    "migrations": [
+      "1800000009000-InspectionRegulatoryContext",
+      "1800000010000-KnowledgeReleaseProvenance",
+      "1800000011000-RegulatoryReleaseLifecycle",
+      "1800000012000-RegulatoryReleaseRecords",
+      "1800000013000-RegulatoryReleaseRecordReviews",
+      "1800000014000-ApprovalProvenanceContract"
+    ],
+    "allAdditive": true,
+    "dataBackfillInUpDirection": false,
+    "allReversible": true,
+    "command": "DATABASE_URL=<production> npm run migration:run   (from backend/)",
+    "revertCommand": "npx typeorm-ts-node-commonjs -d src/database/data-source.ts migration:revert",
+    "rehearsalDatabase": "test_kg5a_prodshape_20260821",
+    "rehearsalDataFingerprintUnchanged": true,
+    "rehearsalIdempotent": true,
+    "rehearsalRevertThenForwardRestoresData": true,
+    "invalidIndexesAfter": 0,
+    "unvalidatedConstraintsAfter": 0,
+    "requiredAtStartup": false,
+    "forwardCompatibleWithPriorCommit": true
+  },
+  "initialGovernedReleaseCandidate": {
+    "releaseId": "federal-core-2026-07-30.1",
+    "recordCount": 35,
+    "manifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+    "reproducedOnProductionSchema": true,
+    "emittedCitationsCovered": "23 of 23",
+    "recordsBeyondEmittedSet": 12,
+    "reviewerApprovedAtFinalization": 0,
+    "activationGatesPassedInRehearsal": 8,
+    "activationRequiresAllRecordsApproved": false,
+    "canBeDerivedFromProductionStandardsMaster": false,
+    "reconciliation": {
+      "PRODUCTION_ROW_IDENTICAL": 0,
+      "PRODUCTION_ROW_CONTENT_DIFFERS": 18,
+      "PRODUCTION_ROW_MISSING": 17,
+      "AMBIGUOUS_MULTIPLE_ROWS": 0
+    },
+    "productionRowsWithSourceKey": 0,
+    "productionStandardsMasterRows": 2390,
+    "constructedWithoutTouchingStandardsMaster": true,
+    "reproducedOnProductionShapedCorpus": true,
+    "gatesPassAtApprovedRecords": "27 of 35, with no gate threshold changed"
+  },
+  "approvalReattestationPolicy": {
+    "existingDecisionsAreV2": false,
+    "existingDecisionsApprovalDigest": "NULL on all 35 KG-4B and all 41 remediation decisions (pre-contract v1)",
+    "importAllowed": false,
+    "backfillAllowed": false,
+    "bulkApprovalPathExists": false,
+    "policy": "Production approvals are newly appended one record at a time by a named human via npm run review:release-record -- approve --expected-checksum, using the recorded KG-3D/3E/4A clause-by-clause comparison as the evidence being confirmed.",
+    "reattestationIsTruthfulBecause": "the rehearsed production release reproduces approvalDigest identically on 35 of 35 records against the KG-4B verification corpus, so a reviewer re-attests to provably identical content",
+    "recommendedDecisions": {
+      "REATTEST": 27,
+      "NEW_REVIEW_REQUIRED": 8,
+      "EXCLUDE_FROM_INITIAL_RELEASE": 0
+    },
+    "reviewPacket": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5a/PRODUCTION_RELEASE_REVIEW_PACKET.md",
+    "kg5bIdentityContinuity": {
+      "recordChecksumMoved": 0,
+      "substantiveContentDigestMoved": 0,
+      "sourceIdentityDigestMoved": 0,
+      "approvalDigestMoved": 0,
+      "manifestPayloadMoved": 0,
+      "approvalPayloadMoved": 0,
+      "conclusion": "The KG-5A review packet applies unchanged: 27 REATTEST, 8 NEW_REVIEW_REQUIRED, 0 EXCLUDE."
+    }
+  },
+  "deploymentBranchRecommendation": {
+    "recommended": "OPTION_A_MERGE_TO_MAIN",
+    "rationale": "Render auto-deploys main on commit; main is exactly the live commit 97941ca2; the release branch is already pushed and in sync. Merging keeps rollback an ordinary redeploy of a main ancestor and reconciles the four unshipped commits in one reviewed step.",
+    "renderConfigurationChanged": false,
+    "frontendDeploymentRequiredForStage1Shadow": false,
+    "frontendRecommendation": "ship the 3 KG display files with the backend because the backend begins emitting backingStatus: CITATION_ONLY on deployment; leave the 18 theme files for a separate decision"
+  },
+  "futureOperationSequence": [
+    "1 commit the KG release package (A-F plus the KG-5B files) -- authorization required",
+    "2 push release/insite-rc-2026-08-18 -- authorization required",
+    "3 merge to main -- authorization required",
+    "4 apply the six production migrations -- authorization required (KG-5B adds none)",
+    "5 deploy with every GOVERNED_CUTOVER_* absent (automatic from main) -- authorization required for the merge that causes it",
+    "6 verify production LEGACY/no-op",
+    "7 npm run release -- prepare --release-id federal-core-2026-07-30.1 [--dry-run] -- authorization required",
+    "8 npm run review:release-record -- approve ... one record at a time by a named human -- authorization required",
+    "9 npm run release -- activate ... --dry-run  (evaluates all eight finalization gates, writes nothing)",
+    "10 npm run release -- activate ... with SHADOW OFF -- authorization required",
+    "11 npm run release -- status, then re-verify LEGACY/no-op with a release active",
+    "12 npm run release -- rollback ... --expected-current <id>  (only if needed)",
+    "13 authorize Stage-1 SHADOW separately, against productionShadowProtocol hypotheses, taxonomy, abort gates and success criteria. KG5B-DISC-01 is RESOLVED by KG-5C and is NOT a precondition (see supersededFindings.KG5B-DISC-01)."
+  ],
+  "governedReleaseConstruction": {
+    "slice": "KG-5B",
+    "closes": [
+      "KG5A-DISC-01",
+      "KG5A-DISC-03"
+    ],
+    "architecture": "Option C -- version-controlled governed source records PLUS an explicit release membership definition, staged through a session-scoped TEMP table inside the construction transaction.",
+    "pipeline": "governed-source-set.ts (zero DB access) -> release-definition.ts + definitions/*.json (explicit membership) -> TEMP staging (ON COMMIT DROP) -> regulatory_release_records (immutable) -> release-manifest.ts (UNCHANGED) -> reviewer decisions (UNCHANGED) -> eight activation gates (UNCHANGED) -> scripts/regulatory-release.ts (NEW operator CLI)",
+    "whyTempStagingNotAPersistedTable": [
+      "no seventh migration, so the six KG-5A rehearsed migrations and old-code forward compatibility are untouched",
+      "cannot drift: staging is materialized from version-controlled sources microseconds before it is read",
+      "cannot leak: ON COMMIT DROP supplies most of the atomicity contract",
+      "orders and types exactly like standards_master, which is what makes manifest reproduction structural rather than a reimplementation of ICU collation and pg type mapping"
+    ],
+    "persistedInspectableArtifact": "a PROVISIONAL release with its records written -- a real lifecycle state, reviewable through review:release-record, impossible to mistake for a finalized release",
+    "legacyCorpusNonMutationInvariant": "GOVERNED RELEASE CONSTRUCTION DOES NOT WRITE TO standards_master. Enforced by assertNoLegacyCorpusWrites() over every statement the builder issues, not merely documented.",
+    "membershipMechanism": "A version-controlled release definition names the exact member citationKeys. Membership is a lookup, never a scan. Adding, deleting or reordering any legacy corpus row cannot change the manifest -- measured.",
+    "initialReleaseDefinition": "backend/src/standards/releases/definitions/federal-core-2026-07-30.1.json",
+    "manifestReproduced": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+    "manifestProjectionChanged": false,
+    "cleanAndProductionShapedCorporaProduceIdenticalRelease": true,
+    "legacyCorpusRowsReadDuringConstruction": 0,
+    "newMigrationsAdded": 0,
+    "schemaIdenticalBeforeAndAfterConstruction": true,
+    "legacySeedPipelineGuard": {
+      "module": "backend/src/standards/seed/legacy-corpus-guard.ts",
+      "wiredIntoStage": "stage 1 (safescope-standards.seed.ts), plus the sync and the finalizer",
+      "rule": "Refuse before the first write on any corpus holding regulations the governed source set does not name.",
+      "lessonRecorded": "The guard was first wired only into stages 2 and 3. It fired correctly at stage 2, by which point stage 1 had already inserted 5 rows and rewritten title/standardText on 1910.219, 1910.146 and 1910.36 -- three of the five rows KG-5A recorded as damaged, corpus at 2,395. A guard placed after the first mutation is not a guard.",
+      "override": "none",
+      "exemption": "a database carrying a KG-4C ownership marker, which production can never carry",
+      "measuredAgainstProductionShapedCorpus": "exit 1, 2,390 rows untouched, 0 with source_key"
+    },
+    "legacyCorpusIsolationMeasured": {
+      "legacyRowsReadDuringConstruction": 0,
+      "legacyRowsMutated": 0,
+      "rowCountUnchanged": true,
+      "perRowContentUnchanged": true,
+      "citationsUnchanged": true,
+      "titlesUnchanged": true,
+      "textUnchanged": true,
+      "sourceMetadataUnchanged": true,
+      "rowsGainedSourceKey": 0,
+      "rowsGainedReleaseId": 0,
+      "rowsGainedGovernedChecksums": 0,
+      "duplicateAgencyCitationPairsCreated": 0,
+      "measuredOn": "a disposable clone holding the reconciled ~2,390-row production-shaped corpus"
+    },
+    "protectedReleaseConstructionInvariant": {
+      "name": "LEGACY_CORPUS_NON_MUTATION",
+      "enforcedBy": "assertNoLegacyCorpusWrites() in backend/src/standards/releases/governed-release-builder.ts",
+      "rule": "Governed release construction issues no INSERT/UPDATE/DELETE/TRUNCATE/ALTER/DROP naming standards_master. Every statement the builder issues passes through the assertion.",
+      "guardPlacement": "Stage 1. KG-5B proved that placing the legacy-write guard only in later stages was insufficient: Stage 1 mutated legacy rows before the later guard fired. This protection must NOT be moved downstream.",
+      "status": "PROTECTED_DECISION"
+    },
+    "legacyCorpusAuthorityStatus": "COMPATIBILITY_EVIDENCE_ONLY. standards_master is not the authority defining governed regulatory content, is not the source of governed release membership, and is not enumerated to derive membership."
+  },
+  "operatorReleaseCommand": {
+    "script": "npm run release  (backend/scripts/regulatory-release.ts)",
+    "subcommands": [
+      "status",
+      "sources",
+      "prepare",
+      "activate",
+      "rollback"
+    ],
+    "activateRequires": [
+      "--release-id (exact)",
+      "--expected-manifest",
+      "--expected-current <id|none>",
+      "--actor"
+    ],
+    "rollbackRequires": [
+      "--release-id (exact)",
+      "--expected-current",
+      "--actor"
+    ],
+    "dryRunAvailableOn": [
+      "prepare",
+      "activate",
+      "rollback"
+    ],
+    "dryRunWrites": 0,
+    "dryRunEmitsLifecycleEvent": false,
+    "deliberatelyAbsent": [
+      "activate --latest",
+      "prefix matching",
+      "fuzzy release lookup",
+      "automatic release creation",
+      "a publish command bundling prepare/approve/finalize/activate"
+    ],
+    "refusalExitCode": 2,
+    "refusalMatrix": [
+      "UNKNOWN_RELEASE",
+      "UNKNOWN_RELEASE for a prefix of a real id",
+      "MANIFEST_MISMATCH",
+      "STALE_EXPECTED_CURRENT",
+      "ACTIVATION_GATES_FAILED",
+      "RELEASE_DEFINITION_INVALID",
+      "USAGE for any missing or value-less flag"
+    ],
+    "concurrencyModel": "compare-and-swap: PointerMoveOptions.expectedCurrentReleaseId is re-checked INSIDE the transaction under pg_advisory_xact_lock. Additive -- the key absent preserves pre-KG-5B behaviour exactly.",
+    "concurrencyDefectFoundAndFixed": "The CLI first checked --expected-current outside the transaction. Two operators on the same stale reading both passed and both committed: every transaction atomic, one active release at the end, and still last-writer-wins. A precondition checked outside the lock is not a precondition.",
+    "lostRaceIsAudited": true,
+    "protectedConcurrencyInvariant": {
+      "name": "TRANSACTIONAL_EXPECTED_CURRENT",
+      "rule": "--expected-current is compared inside the transaction, under pg_advisory_xact_lock, as a compare-and-swap. It may never be evaluated as a pre-flight read only.",
+      "whyProtected": "KG-5B measured that checking it outside the transaction let two stale operators both commit: every transaction atomic, one active release at the end, and still last-writer-wins.",
+      "status": "PROTECTED_DECISION"
+    }
+  },
+  "productionOperationRunbook": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5b/PRODUCTION_RELEASE_RUNBOOK.md",
+  "verificationTaxonomy": {
+    "inventory": "backend/scripts/test-kg4d-default-off.ts -- mutating-suite inventory",
+    "categories": [
+      "GUARDED",
+      "SELF-CONTAINED",
+      "OPERATOR CMD",
+      "NEEDS GUARD"
+    ],
+    "operatorCommandCategoryAddedBy": "KG-5B",
+    "operatorCommandCategoryIsEarned": "A script qualifies only if it is on a one-entry allowlist AND requires explicit expected-state arguments (--expected-manifest, --expected-current). Asserted, not granted.",
+    "totalClassified": "121/121",
+    "doNotCollapse": "The OPERATOR CMD category may not be removed or folded into another category. An operator command must be able to write to production and therefore cannot carry the disposable-database ownership guard; marking it GUARDED would be false and leaving it NEEDS GUARD reports a hazard that does not exist."
+  },
+  "documentationGovernance": {
+    "rule": "Every completed KG phase that changes architecture, authority boundaries, release lifecycle, approval semantics, resolver behaviour, customer-visible provenance, production operation state, protected invariants, known blockers, or verified current state MUST update docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json BEFORE the phase may be declared complete.",
+    "blueprintRole": "the durable architectural record",
+    "currentStateRole": "the machine-readable operational handoff",
+    "constraint": "Neither may knowingly lag behind verified implementation state. If implementation behaviour and documentation disagree, the phase is NOT complete.",
+    "validation": "docs/INSITE_CURRENT_STATE.json must validate as strict JSON after every edit, and the blueprint diff must be inspected for accidental deletion or contradiction.",
+    "status": "PROTECTED_DECISION"
+  },
+  "customerPathEquivalence": {
+    "slice": "KG-5C",
+    "resolves": [
+      "KG5B-DISC-01"
+    ],
+    "centralQuestion": "For a citation actually emitted by HazLenz, does the real customer standards-hydration path deliver content equivalent to the exact governed artifact that was reviewed and approved?",
+    "answer": "YES -- measured through the production code path, not a synthetic matcher.",
+    "authoritativePaths": {
+      "pathB": "finding-scoped standardDecisions: evidence-foundation.applyFindingScopedStandards -> SafescopeV2Service.hydrateFindingScopedStandards -> mark(). Legacy body = plain_language_summary, because mark() deliberately does NOT spread the hydrated standardText.",
+      "pathA": "ApplicableStandardsService.suggest(). Legacy body = standard_text from its own corpus SELECT (the full eCFR ingest).",
+      "bothExercised": true
+    },
+    "legacyResolutionBehaviour": "hydrateStandardReferences() strips subsections to build an ILIKE needle, keys results with normalizeCitationForLookup (agency prefix and subsection PRESERVED), and accepts a base-key match ONLY when the requested citation has no subsection. A subsection-level request therefore resolves NO legacy row when the corpus holds only the section.",
+    "governedSubstitutionSeam": "decideFallback() sets textIsVerified only for APPROVED_EXACT; GovernedCutoverContext returns verifiedText only then; mark() applies it AFTER the hydration spreads so it wins. Two call sites, identical semantics.",
+    "harnessExecutesProductionCode": "hydrateFindingScopedStandards touches only this.applicableStandards (verified by static inspection of its 204-line body), so the suite binds that one collaborator and runs the shipped method rather than a reimplementation.",
+    "deliveryFidelity": {
+      "DELIVERS_REVIEWED_ARTIFACT": 27,
+      "FALLBACK_IDENTICAL_TO_LEGACY": 8,
+      "APPROVED_BADGE_ON_DIFFERENT_CONTENT": 0,
+      "UNAPPROVED_PRESENTED_AS_APPROVED": 0,
+      "FALLBACK_ALTERED_CUSTOMER_OUTPUT": 0
+    },
+    "approved27Classification": {
+      "pathB": {
+        "GOVERNED_REVIEWED_RENDERING": 15,
+        "LEGACY_UNRESOLVED": 12,
+        "CONTENT_DIFFERENCE": 0
+      },
+      "pathA": {
+        "GOVERNED_REVIEWED_RENDERING": 15,
+        "LEGACY_UNRESOLVED": 12,
+        "CONTENT_DIFFERENCE": 0
+      }
+    },
+    "goldSetProof": {
+      "emittedCitations": 23,
+      "proven": 23,
+      "blockers": 0,
+      "emissionTiers": "22 applicability=direct plus 1 candidate-only (30 CFR 56.14132, the KG-3F MSHA-TRAFFIC-01 predicate, CAVEAT-2). KG-3F 23 counts every emitted citation; filtering to direct gives 22. Both true about different things; KG-5C proves all 23.",
+      "goldSetSha256": "93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3",
+      "goldSetModified": false
+    },
+    "newComparisonClass": {
+      "name": "GOVERNED_REVIEWED_RENDERING",
+      "module": "backend/src/standards/display/customer-path-equivalence.ts",
+      "why": "Legacy standard_text is a verbatim eCFR/MSHA ingest; the governed canonicalText is the reviewed rendering KG-3D/3E/4A adjudicated clause by clause. Byte-equality is not achievable by construction, so its absence is not evidence of disagreement.",
+      "mechanicalPreconditions": [
+        "reviewer-approved in the active release against its EXACT checksum",
+        "a clause-by-clause review is RECORDED in a named KG phase artifact",
+        "the delivered text is byte-identical to the release record frozen payload.canonicalText",
+        "the legacy content, where it resolves, carries the same logical citation identity"
+      ],
+      "reachableOnlyAfter": "EXACT, NORMALIZATION_ONLY and proven boundary containment have each been tried and failed",
+      "doesNotProve": "that the rendering is non-contradictory with the underlying regulation. That is a legal reading and is precisely what the recorded review IS. The class reports that the delivered artifact is the reviewed one and that a review exists -- never that the review was correct.",
+      "disciplineDemonstrated": "the 8 NEW_REVIEW_REQUIRED records have no recorded clause review, so the 3 whose legacy row resolves classify CONTENT_DIFFERENCE on Path A and are refused the category."
+    }
+  },
+  "customerDeliveryContract": {
+    "authoritativeText": "After governed cutover the customer-visible text is the EXACT reviewed governed artifact and nothing else. It is never expanded back into unreviewed legacy content.",
+    "requiredNoCodeChange": true,
+    "truthfulnessMechanism": "The \"Verified standard text\" badge is reachable only from APPROVED_GOVERNED_CONTENT, which is reachable only from APPROVED_EXACT, which is reachable only from a reviewer decision bound to that record exact checksum. corpusBacked stays true only for APPROVED_GOVERNED_CONTENT. Placeholder provenance is still refused before the approval check.",
+    "cases": [
+      "1 governed byte-identical to legacy -> governed artifact, APPROVED_GOVERNED_CONTENT",
+      "2 governed is a citation-level unit inside a larger legacy section -> governed artifact, APPROVED_GOVERNED_CONTENT",
+      "3 legacy and governed genuinely differ -> governed artifact, APPROVED_GOVERNED_CONTENT",
+      "4 approved but legacy not equivalent -> governed artifact, APPROVED_GOVERNED_CONTENT",
+      "5 governed content unapproved -> legacy text unchanged, UNAPPROVED_CONTENT, no badge",
+      "6 no governed release covers the citation -> legacy text unchanged, UNAPPROVED_CONTENT or CITATION_ONLY, no badge"
+    ],
+    "customerVisibleTransition": {
+      "reviewedRenderings15": "UNAPPROVED_CONTENT (500-character truncation under \"HazLenz standard summary\") -> APPROVED_GOVERNED_CONTENT (complete reviewed artifact under \"Verified standard text\")",
+      "legacyUnresolved12": "CITATION_ONLY (\"verified text not available\") -> APPROVED_GOVERNED_CONTENT",
+      "unapproved8": "unchanged; LEGACY_TEXT_UNVERIFIED, no governed provenance recorded"
+    }
+  },
+  "productionOperationAuthorizationState": {
+    "operations1to6": "Operation 1 DONE locally; operations 2-6 READY -- separate authorization required per operation",
+    "operations7to11": "READY -- authorization required per operation",
+    "stage1Shadow": "SAFE TO BEGIN, as a SEPARATE explicitly authorized operational stage. Not authorized by KG-5C completing.",
+    "customerCutover": "BLOCKED. Requires its own separate authorization AFTER Stage-1 SHADOW observation. KG-5C proves delivery truthfulness; it does not authorize cutover.",
+    "runbook": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5b/PRODUCTION_RELEASE_RUNBOOK.md",
+    "operation1_commitPackage": "DONE (local only). Six commits on release/insite-rc-2026-08-18. Verified by clean-checkout build/typecheck and the KG contract suites at the new HEAD.",
+    "operation2_push": "NOT AUTHORIZED. The next possible operation is review and, if separately authorized, push the six local commits to origin/release/insite-rc-2026-08-18. Committing locally authorizes nothing further."
+  },
+  "operationalReadinessNote": "Superseded the KG-5A value PRODUCTION_RELEASE_PACKAGE_NOT_READY. Both KG-5A blockers (KG5A-DISC-01 corpus mutation, KG5A-DISC-03 no operator CLI) were closed by KG-5B. The package is ready; the operations are NOT executed. See openIssues.STAGE1-OP-01 and productionShadowProtocol.precedingOperations.",
+  "programStatus": {
+    "currentStage": "KG_PROGRAM_CONVERGENCE_AND_PRODUCTION_SHADOW_READINESS",
+    "lastVerifiedStage": "KG-5C — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED",
+    "nextPermittedStage": "Production release operations 1-11 (each separately authorized), THEN a separately authorized Stage-1 controlled production SHADOW.",
+    "nextPermittedStageIsNotAuthorizedByThisState": true,
+    "productionAuthority": "LEGACY",
+    "productionAuthorityMeaning": "Every production customer response is produced by the legacy path. Governed content reaches no customer. This is the current authority, not a default awaiting promotion.",
+    "shadowState": "OFF — never run in production",
+    "shadowStateEvidence": "Zero GOVERNED_CUTOVER_* variables set in the production environment; GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK has never been set anywhere.",
+    "cutoverState": "OFF — separate explicit authorization boundary; not authorized by SHADOW completing",
+    "readyIsNotStarted": "READY_FOR_CONTROLLED_PRODUCTION_SHADOW is a statement about verified architecture. The governed subsystem is not deployed, the six migrations are not applied, and no governed release exists in production. See openIssues.STAGE1-OP-01.",
+    "blueprintEntryPoint": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 0 (START HERE), then sections 21-27"
+  },
+  "rootCauseGovernance": {
+    "rule": "ROOT_CAUSE_BEFORE_REMEDIATION",
+    "status": "PROTECTED_DECISION / STABLE_INVARIANT",
+    "blueprintSection": "22",
+    "statement": "A failing test, comparator, harness, customer-path observation or production SHADOW discrepancy demonstrates a SYMPTOM. It does NOT by itself identify the component that must be modified.",
+    "requiredSequence": [
+      "identify the violated contract",
+      "identify the authoritative layer that owns that contract",
+      "determine whether the implementation, source data, review state, resolver, presentation layer or instrumentation violates it",
+      "modify ONLY the owning layer unless evidence proves a cross-layer change is required",
+      "verify the correction at the boundary where the contract is observable"
+    ],
+    "forbiddenLoop": "observation -> edit -> rerun -> different observation -> edit again",
+    "prohibitions": [
+      "Do not modify correct upstream or customer-facing behaviour to satisfy incorrect downstream instrumentation. If executable evidence proves the implementation satisfies the documented contract but a test or comparator disagrees, repair the test or comparator and classify the finding INSTRUMENTATION.",
+      "Do not reopen a protected architectural conclusion without new contradictory evidence.",
+      "Do not make multiple speculative edits across layers to make a metric turn green.",
+      "Do not weaken an invariant, threshold, predicate or production control to make a discrepancy disappear.",
+      "Do not create another KG implementation phase because a non-blocking defect was discovered."
+    ],
+    "instrumentationRepairProof": "The proof that a repair was not made to move a number is that the verdict does not move. State the measured verdict before and after. An instrumentation repair that moves the verdict needs its own root-cause analysis.",
+    "ifRootCauseCannotBeEstablished": "Classify UNCLASSIFIED, capture the evidence, and stop progression toward CUTOVER until resolved. Do not edit implementation to make an unexplained observation go away.",
+    "generalisedFrom": [
+      "KG-4B instrumentation defects 1-4",
+      "KG-4C ownership-guard incident (D-47, D-48)",
+      "KG5A-DISC-01 (the missing WHERE clause was a symptom)",
+      "KG5B-DISC-01 (pairing right, classification too coarse)",
+      "KG5C-FIX-01 (fix the field precedence, not severity)"
+    ]
+  },
+  "architecturalOwnership": {
+    "blueprintSection": "23",
+    "rule": "Every newly discovered discrepancy must be assigned an architectural owner BEFORE implementation remediation. If ownership is unclear, investigate until it is established. Do not patch multiple layers because ownership has not yet been determined.",
+    "assignmentProcedure": [
+      "state the observation as a contract violation, naming the contract",
+      "find the contract in the layer tables -> that is the owner",
+      "if it appears in two layers, the owner is the one closest to the contract's definition, not where the symptom surfaced",
+      "if it appears in none, the contract is undocumented: establish and document it before editing",
+      "record the owner in the open-issues register before remediation"
+    ],
+    "layers": {
+      "SOURCE": {
+        "owns": [
+          "authoritative governed text",
+          "citation identity",
+          "governed source membership",
+          "source metadata"
+        ],
+        "modules": [
+          "standards/releases/governed-source-set.ts",
+          "standards/releases/release-definition.ts",
+          "standards/releases/definitions/*.json",
+          "applicable-standards/citation-structure.ts",
+          "standards/releases/citation-identity.ts",
+          "standards/seed/standards-intelligence-projection.ts",
+          "standards/seed/legacy-corpus-guard.ts"
+        ],
+        "typicalSymptoms": [
+          "wrong or incomplete regulatory text",
+          "a citation that does not exist",
+          "a missing source URL",
+          "legacy corpus quality (KG5C-DISC-01)",
+          "a record that should not be in the release"
+        ]
+      },
+      "REVIEW": {
+        "owns": [
+          "human approval",
+          "checksum binding",
+          "re-attestation",
+          "new-review requirements",
+          "revocation",
+          "review provenance"
+        ],
+        "modules": [
+          "standards/releases/release-record-review.service.ts",
+          "standards/releases/approval-contract.ts",
+          "standards/releases/review-state.ts"
+        ],
+        "typicalSymptoms": [
+          "a record is unapproved when it should be reviewed",
+          "an approval no longer names the content it was given for",
+          "the eight NEW_REVIEW_REQUIRED records"
+        ],
+        "hardRule": "Never remediate a REVIEW symptom in RESOLUTION. Making the resolver deliver unreviewed content is REVIEW_STATE_VIOLATION, presumptively a BLOCKER."
+      },
+      "RELEASE": {
+        "owns": [
+          "immutable release snapshots",
+          "deterministic manifests",
+          "finalization",
+          "activation",
+          "rollback",
+          "active release identity"
+        ],
+        "modules": [
+          "standards/releases/regulatory-release-record.entity.ts",
+          "standards/releases/release-manifest.ts",
+          "standards/releases/governed-release-builder.ts",
+          "standards/seed/finalize-regulatory-release.ts",
+          "standards/releases/regulatory-release-lifecycle.service.ts",
+          "backend/scripts/regulatory-release.ts"
+        ],
+        "typicalSymptoms": [
+          "the wrong release is active",
+          "a manifest does not reproduce",
+          "a pin does not match",
+          "NO_ACTIVE_RELEASE",
+          "a missing lifecycle event"
+        ]
+      },
+      "RESOLUTION": {
+        "owns": [
+          "citation lookup",
+          "candidate selection",
+          "governed/legacy selection",
+          "customer-path content delivery"
+        ],
+        "modules": [
+          "applicable-standards/applicable-standards.service.ts",
+          "standards/cutover/governed-resolution.ts",
+          "standards/cutover/fallback-contract.ts",
+          "standards/cutover/governed-cutover-context.ts",
+          "standards/cutover/shadow-request-orchestration.ts",
+          "standards/display/standards-backing-contract.ts"
+        ],
+        "typicalSymptoms": [
+          "the wrong citation is delivered",
+          "governed content delivered for an unapproved record",
+          "a fallback altered customer output",
+          "a subsection collapsed to a base citation"
+        ]
+      },
+      "PRESENTATION": {
+        "owns": [
+          "customer-visible formatting",
+          "badges",
+          "labels",
+          "rendering",
+          "truthful provenance presentation"
+        ],
+        "modules": [
+          "standards/cutover/governed-cutover-context.ts (projectGovernedDisplay)",
+          "safescope-v2/display/guided-finding-response.ts",
+          "reports/canonical-report-pdf-renderer.ts",
+          "frontend-next/components/inspection/SafeScopeStandardsSection.tsx",
+          "frontend-next/lib/inspection/standardDisplay.ts"
+        ],
+        "typicalSymptoms": [
+          "a badge shown where it should not be",
+          "internal vocabulary leaking to a customer surface",
+          "a label that misstates provenance"
+        ],
+        "hardRule": "A truthfulness failure here is never repaired by changing SOURCE or RESOLUTION. If the bytes are right and the badge is wrong, the badge is wrong."
+      },
+      "INSTRUMENTATION": {
+        "owns": [
+          "SHADOW comparison",
+          "harnesses",
+          "equivalence classification",
+          "telemetry",
+          "measurement"
+        ],
+        "modules": [
+          "standards/cutover/shadow-comparison.ts",
+          "standards/cutover/shadow-telemetry-sink.ts",
+          "standards/cutover/customer-output-invariance.ts",
+          "standards/cutover/shadow-circuit-breaker.ts",
+          "standards/cutover/production-shadow-authorization.ts",
+          "standards/display/customer-path-equivalence.ts",
+          "backend/scripts/"
+        ],
+        "typicalSymptoms": [
+          "the comparator observes the wrong field, representation, citation identity or lifecycle state",
+          "an oracle compares two broken observations",
+          "a volatility set derived as values rather than positions",
+          "telemetry that cannot identify the resolver path"
+        ],
+        "hardRule": "When measurement and implementation disagree, INSTRUMENTATION is the first owner to rule out, not the last."
+      }
+    }
+  },
+  "findingClassification": {
+    "blueprintSection": "24",
+    "rule": "Exactly four top-level engineering dispositions. Every finding gets exactly one. Anything that does not fit is UNCLASSIFIED and stops progression toward CUTOVER until resolved.",
+    "dispositions": {
+      "BLOCKER": {
+        "definition": "A verified defect that prevents the next authorized release stage from being executed safely or truthfully.",
+        "effect": "Only a BLOCKER automatically expands the current release-gate work.",
+        "note": "Requires verification, not suspicion. Presumptive blockers: REVIEW_STATE_VIOLATION, CUSTOMER_MUTATION."
+      },
+      "DEFECT_NONBLOCKING": {
+        "definition": "A real defect that does not invalidate the current release gate.",
+        "effect": "Record it, assign ownership, preserve it in openIssues for appropriate remediation.",
+        "prohibitions": [
+          "Do NOT automatically create another KG phase for it.",
+          "Do NOT silently close it because a later stage happens to mask it."
+        ],
+        "currentExample": "KG5C-DISC-01"
+      },
+      "INSTRUMENTATION": {
+        "definition": "The implementation satisfies the authoritative contract, but the measurement, comparator, test or harness does not measure that contract correctly.",
+        "effect": "Repair the instrumentation. Do not change correct production behaviour.",
+        "note": "State the measured verdict before and after. An instrumentation repair that moves the verdict needs its own root-cause analysis; it may be masking a real defect.",
+        "priorExamples": [
+          "KG-4B instrumentation defects 1-4",
+          "KG5C-FIX-01"
+        ]
+      },
+      "EXPECTED_EXPLAINED": {
+        "definition": "The observed difference is an expected consequence of the verified architecture.",
+        "effect": "No remediation required. Record enough explanation to prevent future rediscovery.",
+        "currentExamples": [
+          "GOVERNED_REVIEWED_RENDERING x15",
+          "the 12 LEGACY_UNRESOLVED subsection citations",
+          "the Path A / Path B representation difference",
+          "GOVERNED_MISSING under GOVERNED_WITH_FALLBACK"
+        ]
+      }
+    },
+    "discipline": [
+      "Classify before remediating.",
+      "'Different' and 'wrong' are not the same claim.",
+      "A category may not be invented after seeing results to make an outcome look better.",
+      "A disposition may be revised only on new evidence, and the revision is recorded with it."
+    ]
+  },
+  "supersededFindings": {
+    "blueprintSection": "25",
+    "purpose": "Prevent a future session from rediscovering old evidence and reopening a resolved architectural question. This is NOT a suppression mechanism: new contradictory evidence always wins over documentation. Each entry names the exact condition that would justify reopening it.",
+    "entries": {
+      "KG5B-DISC-01": {
+        "status": "PROTECTED — RESOLVED BY KG-5C",
+        "originalObservation": "Legacy and governed representations differ for governed citations; 15 of 27 approved records measured CONTENT_DIFFERENCE / BLOCKING.",
+        "originalInterpretation": "Potential content-difference blocker.",
+        "correctedInterpretation": "The original pairing was valid, but the classification was too coarse. The count of 15 is confirmed by re-measurement through the real customer path on both body-text tiers. All 15 classify GOVERNED_REVIEWED_RENDERING. The customer receives exactly the reviewed governed artifact.",
+        "whyByteEqualityIsUnreachable": "Legacy standard_text is a verbatim eCFR/MSHA ingest; the governed canonicalText is the reviewed rendering KG-3D/3E/4A adjudicated clause by clause. Byte-equality is not achievable by construction, so its absence is not evidence of disagreement.",
+        "whatItDoesNotAssert": "This classification does NOT assert that the human review was substantively correct. It reports that the delivered artifact is the reviewed one and that a review exists; never that the review was right.",
+        "scopeLimit": "The eight unreviewed records cannot receive this classification. Entry requires a recorded clause review, so the 3 unreviewed records whose legacy row resolves are refused the category and classify CONTENT_DIFFERENCE.",
+        "protectedConclusion": "Do NOT attempt to make governed content byte-identical to legacy content merely to eliminate this difference. Doing so would replace a reviewed artifact with an unreviewed ingest under a 'Verified standard text' badge, inverting the purpose of the governance subsystem.",
+        "reopenOnlyIf": [
+          "customer delivery differs from the reviewed governed artifact",
+          "unreviewed governed content is delivered as approved",
+          "citation identity is incorrect",
+          "another verified contract is violated"
+        ],
+        "evidence": [
+          "kg-5c/STATUS.md sections 3-4",
+          "kg-5c/contracts/customer-path-equivalence.json",
+          "decision KG5C-D2",
+          "decision KG5C-D3"
+        ]
+      },
+      "KG5A-DISC-01": {
+        "status": "PROTECTED — CLOSED BY KG-5B",
+        "originalObservation": "finalize-regulatory-release.ts selected FROM standards_master with no WHERE clause, so release membership was the whole table; building a release rewrote five live customer-facing rows, renamed a citation, hit a unique-index collision and left the corpus at 2,396 rows with a duplicate pair.",
+        "supersededInterpretation": "The bug is the missing WHERE clause.",
+        "correctedInterpretation": "The missing clause was a symptom. The cause was that there was no such thing as a governed candidate record: the only representation of a governed standard was a row in the live customer corpus, so building a release required mutating it.",
+        "protectedConclusion": "Do not 'fix' release construction by adding filters to a query over standards_master. Governed membership is explicit in release-definition.ts, never inferred from database contents.",
+        "reopenOnlyIf": [
+          "governed release construction is observed writing to standards_master",
+          "a manifest fails to reproduce from the version-controlled definition"
+        ],
+        "evidence": [
+          "kg-5b/STATUS.md section 1",
+          "decision KG5B-D1",
+          "decision KG5B-D2"
+        ]
+      },
+      "KG4C-DISC-01": {
+        "status": "PROTECTED",
+        "finding": "The authoritative count of never-observed KG-4B mismatch categories is ELEVEN, not seven.",
+        "correctedInterpretation": "KG-4B STATUS.md prose says seven; CORPUS_AND_ANALYTICS.md, shadow-analytics.json and the 83-event corpus all say eleven. Seven is a prose subset omitting GOVERNED_APPROVED_EXACT, GOVERNED_UNAPPROVED, GOVERNED_CITATION_ONLY and RESOLVER_FAILURE.",
+        "protectedConclusion": "Prefer the measurement. Any prompt, summary or plan saying 'seven' is propagating a prose subset over a measurement; do not carry it forward.",
+        "evidence": [
+          "kg-4b/analytics/shadow-analytics.json",
+          "decision D-49"
+        ]
+      },
+      "KG4E-DISC-01": {
+        "status": "PROTECTED",
+        "finding": "A volatility set of literal VALUES cannot generalise; it must be derived as a position or a role.",
+        "correctedInterpretation": "A third run necessarily carries a third value, in neither derived set, so a value-based oracle reports a difference for a field it already recognised as volatile. The positional oracle was right throughout.",
+        "protectedConclusion": "Volatility must be derived as a position or a role, never as a value. Generalises KG-4B's lesson about deriving rather than declaring volatility.",
+        "evidence": [
+          "blueprint section 13.12",
+          "decision KG4E-D3"
+        ]
+      },
+      "KG4E-DISC-04": {
+        "status": "PROTECTED",
+        "finding": "Dropping the four approval-contract columns does NOT reproduce the STALE_SCHEMA resolver failure.",
+        "correctedInterpretation": "resolveGovernedCitation() selects payload, recordChecksum and the effective review state; it never reads those four columns, so dropping them leaves resolverHealth OK. The documented 'migration 1800000014000 absent -> STALE_SCHEMA' is about the migration being absent IN FULL, and remains true.",
+        "protectedConclusion": "A targeted column drop is not a substitute for the absent migration. Recorded as a measured negative rather than the intended outcome.",
+        "evidence": [
+          "blueprint section 13.15",
+          "decision KG4E-D9"
+        ]
+      },
+      "KG4D-DISC-01": {
+        "status": "PROTECTED",
+        "finding": "A readiness label outran its integration state.",
+        "correctedInterpretation": "KG-4C labelled itself READY_FOR_EXPLICIT_PRODUCTION_SHADOW_AUTHORIZATION while recording in the same report that its six modules were unreferenced by production code. Verified-but-unwired safety machinery protects nothing.",
+        "protectedConclusion": "A readiness label must be checked against integration and operational state. The general form is live now: READY_FOR_CONTROLLED_PRODUCTION_SHADOW does not mean SHADOW may begin; operations 1-11 are unexecuted.",
+        "evidence": [
+          "blueprint section 13.8",
+          "kg-4d/STATUS.md"
+        ]
+      },
+      "KG4C-OWNERSHIP-GUARD-INCIDENT": {
+        "status": "PROTECTED",
+        "finding": "The database ownership guard built in KG-4C caused the exact damage it was built to prevent, and its own suite passed 26/26 while the mechanism was inverted.",
+        "correctedInterpretation": "It treated an absent ownership marker as permission to claim, and every pre-existing evidence database is unmarked. An assertion in its suite stated the defective behaviour was correct.",
+        "protectedConclusion": "A guard must be exercised against the real hazard before it is trusted, and an assertion that describes what the code does is not a test.",
+        "evidence": [
+          "kg-4c/INCIDENT-ownership-guard-caused-the-damage-it-prevents.md",
+          "decision D-47",
+          "decision D-48"
+        ]
+      }
+    }
+  },
+  "openIssues": {
+    "blueprintSection": "26",
+    "rule": "The single authoritative register of what is genuinely unresolved. Where knownCaveats, openItems or the blueprint's section 17 backlog disagree with this register about whether something is open or what class it is, THIS REGISTER WINS.",
+    "blockers": [],
+    "blockersNote": "Zero BLOCKER findings are open against governed release progression on current evidence. KG-5D pass two: the only blockers to Stage-1 remain STAGE1-OP-01 B1-B5, all reconfirmed by direct read-only measurement on 2026-08-21. KG5D-DISC-01 is resolved (disposition A). KG5D-DISC-02/03/04 are new and none is a Stage-1 blocker.",
+    "issues": {
+      "KG5C-DISC-01": {
+        "observation": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows; 634 cut mid-word. That fragment is what a Path B customer reads today under the 'HazLenz standard summary' label.",
+        "classification": "DEFECT_NONBLOCKING",
+        "architecturalOwner": "SOURCE / legacy content-generation path",
+        "customerImpact": "Real but pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY, with no governed subsystem involved.",
+        "releaseGateImpact": "Does NOT block production SHADOW or governed CUTOVER for approved records on current evidence. SHADOW is customer-invisible; cutover repairs it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract's promise.",
+        "evidence": [
+          "kg-5c/STATUS.md section 8",
+          "kg-5c/contracts/customer-path-equivalence.json"
+        ],
+        "nextRequiredAction": "Adjudicate the legacy summary-generation strategy before widening legacy delivery. Not in scope for the current phase.",
+        "conditionForClosure": "Either the generation path is corrected at SOURCE and re-measured, or a recorded adjudication accepts the truncation with a stated rationale.",
+        "secondaryClassification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+        "doNotSilentlyClose": "Do not close this because governed CUTOVER masks it. Cutover repairs it for 15 of 2,390 rows.",
+        "doNotBroadenCurrentPhase": true
+      },
+      "KG5C-OPEN-02": {
+        "observation": "8 of the 35 release records have no recorded clause-by-clause review. They are exactly KG-3D's deferred unsourced records, and none is in the 23-citation emitted set.",
+        "classification": "EXPECTED_EXPLAINED",
+        "architecturalOwner": "REVIEW",
+        "customerImpact": "None, and that is the requirement. Governed customer delivery is WITHHELD: they resolve UNAPPROVED_RECORD, deliver legacy text unchanged, carry no badge and record no provenance. Measured 8/8 identical to LEGACY.",
+        "releaseGateImpact": "Does not block. All eight activation gates pass at 27 of 35 approved with the governedRecordsPresent threshold untouched (KG5B-D7).",
+        "evidence": [
+          "kg-5c/STATUS.md sections 3-4",
+          "kg-5a/PRODUCTION_RELEASE_REVIEW_PACKET.md"
+        ],
+        "nextRequiredAction": "A named human performs clause-by-clause review, one record at a time, through 'npm run review:release-record -- approve' against the exact checksum. Not automatable; there is no bulk path.",
+        "conditionForClosure": "Each record either receives a recorded review, or is explicitly excluded by a recorded decision.",
+        "unreviewedCount": 8,
+        "currentlyClassifyingContentDifference": 3,
+        "contentDifferenceIsExpected": "3 of the 8 classify CONTENT_DIFFERENCE (those whose legacy row resolves). This is EXPECTED until review occurs, and is the classifier correctly refusing to grant GOVERNED_REVIEWED_RENDERING to unreviewed content.",
+        "doNotTreatAsResolverDefect": "Withholding governed customer delivery for these records is the contract, not a resolver defect. Delivering them would be REVIEW_STATE_VIOLATION, presumptively a BLOCKER."
+      },
+      "KG5C-OPEN-03": {
+        "observation": "Every KG-5C measurement was taken on disposable test_kg5c_* databases built to production's exact pre-KG shape (40 migrations, 2,390 legacy rows). Production was not touched. The corpus is production-SHAPED; the traffic is not production traffic.",
+        "classification": "EXPECTED_EXPLAINED",
+        "architecturalOwner": "INSTRUMENTATION",
+        "customerImpact": "None.",
+        "releaseGateImpact": "This is one of the two principal reasons controlled production SHADOW remains necessary; the other is that ELEVEN of fifteen mismatch categories have never been observed in real traffic.",
+        "evidence": [
+          "kg-5c/STATUS.md section 11",
+          "kg-4b/analytics/shadow-analytics.json"
+        ],
+        "nextRequiredAction": "Controlled Stage-1 production SHADOW, as a separately authorized operation.",
+        "conditionForClosure": "A completed Stage-1 SHADOW observation window meeting the frozen success criteria."
+      },
+      "KG4E-DISC-03": {
+        "observation": "CanonicalReportsService.list() uses leftJoinAndSelect('report.versions') and returns raw entities, so every caller receives every version's complete sourceSnapshot (3.4 MB for 41 versions). GET /inspection-reports/:id does not; it maps through metadata().",
+        "classification": "DEFECT_NONBLOCKING for SHADOW; MUST_FIX_BEFORE_CUSTOMER_GOVERNED_DELIVERY",
+        "architecturalOwner": "PRESENTATION (response projection), with a RELEASE-state consequence under governed delivery",
+        "customerImpact": "Payload size today. Under a governed delivery mode it would carry real release ids and full governed state to every list caller.",
+        "releaseGateImpact": "NOT a Stage-1 SHADOW blocker: pre-existing, mode-independent, and every knowledgeReleaseId in the response is null under SHADOW (94 occurrences, one distinct value). IT IS A CUTOVER BLOCKER.",
+        "evidence": [
+          "blueprint section 13.14",
+          "2026-08-21 operational preflight"
+        ],
+        "nextRequiredAction": "Project the list response through metadata() before any governed delivery mode is enabled for customers.",
+        "conditionForClosure": "The list endpoint no longer returns raw sourceSnapshot, proven by a response-shape assertion."
+      },
+      "STAGE1-OP-01": {
+        "observation": "Production has never received this work. The governed subsystem is untracked in git; the live commit 97941ca2 contains no standards/cutover/; six migrations are unapplied in the production database; regulatory_releases has zero rows; production holds zero reviewer approvals against a 2,390-row standards_master.",
+        "classification": "EXPECTED_EXPLAINED",
+        "architecturalOwner": "RELEASE (operations), outside the cutover subsystem",
+        "customerImpact": "None. Production is on LEGACY and unaffected.",
+        "releaseGateImpact": "Gates production SHADOW absolutely. With no active release, pinGovernedRelease() returns NO_ACTIVE_RELEASE, 100% of comparisons classify RESOLVER_FAILURE / REVIEW, the run would measure nothing about the governed/legacy gap, and it would breach the 2% RESOLVER_FAILURE_RATE stop threshold once 200 comparisons accrued.",
+        "evidence": [
+          "stage1PreflightVerdict.blockers B1-B5",
+          "blueprint section 17 Stage-1 preflight"
+        ],
+        "nextRequiredAction": "Operations 1-11 in productionShadowProtocol.precedingOperations, each separately authorized.",
+        "conditionForClosure": "An active governed release exists in production with its approvals recorded, and a preflight re-run reports the expected state.",
+        "subsumesPreflightBlockers": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5"
+        ],
+        "noneIsACodeTask": true
+      },
+      "KG5D-DISC-01": {
+        "observation": "Neither SHADOW_EVENT_ALLOWED_FIELDS (29 v1 fields) nor SHADOW_EVENT_V2_ADDITIONAL_FIELDS (stage, eligibilitySource, outputInvarianceVerdict, outputInvarianceHash, outputInvarianceDifferingPaths, shadowProvenanceNull) contains any field naming which resolver path produced the observation. Both call sites pass findingKey: <citation>, so findingKey cannot separate them either. resolveStandard() memoises the DB resolution by citation but does not suppress emission on a cache hit, so a citation resolved on both paths in one analysis pushes two records with the same eventKey.",
+        "classification": "INSTRUMENTATION",
+        "architecturalOwner": "INSTRUMENTATION",
+        "customerImpact": "None. SHADOW is customer-invisible regardless, and per-path attribution has no customer-visible consequence.",
+        "releaseGateImpact": "Does NOT block Stage-1 SHADOW. It does not make SHADOW unsafe, only partly uninterpretable for one hypothesis. H4 and abort gate 8 were corrected to state what the instrument can actually deliver; the structural guarantee that the two paths cannot disagree comes from their sharing resolveStandard() (D-22, D-51), not from telemetry.",
+        "evidence": [
+          "shadow-comparison.ts:547 (v1 allowlist)",
+          "shadow-telemetry-sink.ts:63 (v2 additions)",
+          "governed-cutover-context.ts:158-161 (cache) and :211 (emission, outside the cache-miss branch)",
+          "applicable-standards.service.ts:2399 and safescope-v2.service.ts:5644 (identical findingKey)"
+        ],
+        "nextRequiredAction": "None in this phase. Adding a field would be a speculative implementation change, which this phase forbids and which KG-4B's eventKey cardinality contract (D-36) would have to be re-derived around. If a future stage needs per-path analytics, add a categorical resolverPath to the v2 additional fields AND extend eventKey, together, with the privacy guard re-run.",
+        "conditionForClosure": "Either a resolverPath field is added with its eventKey consequence resolved and the privacy guard re-run, or a recorded decision states that path-level attribution is not required and H4 remains structural.",
+        "discoveredBy": "KG program convergence phase, 2026-08-21, Phase 15 consistency check between the frozen SHADOW protocol and available instrumentation",
+        "doNotFixByWideningFindingKey": "findingKey is an input to eventKey. KG-4B's idempotency lesson is explicit: an idempotency key that is not unique per analysis is worse than none, because it silently merges observations. Changing what feeds it is a cardinality change, not a labelling change.",
+        "status": "RESOLVED_BY_RECORDED_DECISION -- disposition A, PATH ATTRIBUTION NOT REQUIRED",
+        "resolvedAt": "2026-08-21 (KG-5D preflight pass two)",
+        "disposition": "A -- PATH ATTRIBUTION NOT REQUIRED. Preserve the current instrumentation. Add no telemetry.",
+        "dispositionEvidence": [
+          "No frozen hypothesis requires resolver-path attribution. H4 and H7 already state explicitly that the guarantee is STRUCTURAL (both paths share resolveStandard(), D-22/D-51) and that telemetry does not re-establish it; abort gate 8 was deliberately worded to exclude path attribution so it would not abort every run on its first event.",
+          "LIMB 2 IS UNREACHABLE IN PRODUCTION. Path A never receives a cutover context on ANY production route: safescope-v2.service.ts:1066 (the classify path) calls suggest() with 6 positional arguments and applicable-standards.controller.ts:17 calls it with 4, while cutover is the 7th parameter. Its own doc comment states \"Undefined is the default and the only value any customer produces today.\" With cutover undefined the if (cutover) guard at applicable-standards.service.ts:2392 is false and Path A emits NO shadow events at all.",
+          "EMPIRICALLY CORROBORATED across all 80 real integrated-path v2 events (KG-4D 32 over 9 analyses; KG-4E 24 over 7 and 24 over 7): 80 distinct eventKeys, 0 duplicates, and 0 (correlationId, citation) pairs occurring more than once.",
+          "On the classify path the distinction is degenerate -- every Stage-1 observation is a Path B observation, so a resolverPath field would be a constant."
+        ],
+        "closureConditionSatisfied": "The second branch of the recorded condition for closure: \"a recorded decision states that path-level attribution is not required and H4 remains structural.\"",
+        "doNotReopenUnless": "Path A is wired to the orchestration seam (which would make the eventKey collision reachable and require its own cardinality analysis), or a future stage genuinely requires per-path analytics -- in which case add a categorical resolverPath to the v2 additional fields AND extend eventKey, together, with the privacy guard re-run."
+      },
+      "KG5D-DISC-02": {
+        "observation": "Section 21.5 records two real customer resolver paths, but only ONE is instrumented on the request path. Path A (ApplicableStandardsService.suggest()) never receives a cutover context from any production call site, so it emits zero SHADOW events on every route. Stage-1 will therefore produce ZERO Path A observations.",
+        "classification": "INSTRUMENTATION",
+        "architecturalOwner": "INSTRUMENTATION",
+        "customerImpact": "None. SHADOW is customer-invisible on both paths.",
+        "releaseGateImpact": "Does NOT block Stage-1. H4 is structural and unaffected. It BOUNDS what a Stage-1 corpus may be claimed to cover, and it is a CUTOVER consideration.",
+        "evidence": [
+          "safescope-v2.service.ts:1066 -- suggest() called with 6 positional args, cutover is the 7th",
+          "applicable-standards.controller.ts:17 -- suggest() called with 4 positional args",
+          "applicable-standards.service.ts:1023 -- the cutover parameter and its doc comment",
+          "applicable-standards.service.ts:2392 -- the if (cutover) guard",
+          "80/80 real v2 events carry no Path A observation"
+        ],
+        "nextRequiredAction": "None in this phase. Do NOT wire Path A to the seam here -- that is an implementation change this phase forbids, and it is precisely the condition that makes the KG5D-DISC-01 eventKey collision reachable. Record the scope limit and state it in any Stage-1 claim.",
+        "conditionForClosure": "Either Path A is wired to the seam with its eventKey cardinality consequence resolved, or a recorded decision accepts that governed resolution is a Path B concern on the request path and Stage-1 coverage claims are scoped to Path B.",
+        "discoveredBy": "KG-5D preflight pass two, 2026-08-21, Phase 8 re-derivation of KG5D-DISC-01 from source"
+      },
+      "KG5D-DISC-03": {
+        "observation": "Three distinct numbers were being conflated as \"the ~200 sample requirement\". (1) minimumSample: 200 / 500 in shadow-circuit-breaker.ts is the floor BELOW WHICH A STOP THRESHOLD MAY NOT TRIP -- a suppression guard on the breaker. (2) The Stage-1 -> Stage-2 PROMOTION gate in the KG-4C runbook is >= 100 comparisons and >= 24 hours. (3) The \"Sample sufficiency\" table (200 analyses / 500 comparisons plus regime and family coverage) sits under section 16 POST-RUN REVIEW and describes the corpus adequate to inform a CUTOVER decision, additionally gating Stage 3. None of the three is a Stage-1 acceptance requirement.",
+        "classification": "INSTRUMENTATION",
+        "architecturalOwner": "INSTRUMENTATION",
+        "customerImpact": "None.",
+        "releaseGateImpact": "Removes a phantom Stage-1 blocker. No threshold is weakened: the 200/500 breaker floors are PRESERVED unchanged and continue to govern exactly what they always governed.",
+        "rootCause": "The breakers own recorded basis is explicit -- \"The 200-observation floor is set so a single early failure cannot trip a run: 1/200 = 0.5%, comfortably under the threshold.\" The runbook is equally explicit that \"The first cohort is not a sample; it is a smoke test of the mechanism in production conditions.\" Both were already correct; the summary applied them to the wrong stage.",
+        "safetyArgument": "shadow-circuit-breaker.ts:187 -- \"Hard invariants first, unconditionally, with no sample floor. One is enough.\" evaluateCircuitBreaker() returns STOP_SHADOW on any hard-invariant violation BEFORE any rate condition is evaluated. All seven customer-protecting conditions are threshold-zero with no sample floor, so a small structured Stage-1 leaves every customer protection at full strength while the rate conditions simply never arm -- reported as BELOW_MINIMUM_SAMPLE:<condition> for review, never silently.",
+        "evidence": [
+          "shadow-circuit-breaker.ts:91,104,116,128 (minimumSample)",
+          "shadow-circuit-breaker.ts:183-195 (hard invariants evaluated first, no sample floor)",
+          "shadow-circuit-breaker.ts:209 (comparisons < threshold.minimumSample -> continue)",
+          "kg-4c/PRODUCTION_SHADOW_RUNBOOK.md line 85 (first cohort is not a sample), lines 88-100 (Stage-2 gate), lines 218-232 (post-run sufficiency)"
+        ],
+        "nextRequiredAction": "None. The Stage-1 evidence requirement is now coverage-based; see productionShadowProtocol.stage1ExperimentDesign.",
+        "conditionForClosure": "Closed by this record. Reopen only if a threshold is proposed to be changed, which requires its own root-cause analysis.",
+        "discoveredBy": "KG-5D preflight pass two, 2026-08-21, Phase 6"
+      },
+      "KG5D-DISC-04": {
+        "observation": "At one analysis in the products lifetime, the post-run sample-sufficiency corpus (200 analyses / 500 comparisons / 100 OSHA General Industry / 100 OSHA Construction / 50 MSHA / 12 hazard families) will not be reached organically at Stage 1, Stage 2 or Stage 3, on any timeline. Deterministic-cohort widening cannot manufacture traffic that does not exist.",
+        "classification": "DEFECT_NONBLOCKING for SHADOW; MUST_ADJUDICATE_BEFORE_CUTOVER",
+        "architecturalOwner": "INSTRUMENTATION (evidence design)",
+        "customerImpact": "None.",
+        "releaseGateImpact": "Does NOT block Stage-1 and must not expand the Stage-1 gate (section 24). It is a CUTOVER-path finding: the evidence basis for a future CUTOVER decision cannot be organic production shadow as currently designed.",
+        "evidence": [
+          "productionEnvironment.database.lifetimeTrafficRows -- 1 analysis, 1 finding, 1 report version, ever",
+          "kg-4c/PRODUCTION_SHADOW_RUNBOOK.md \"Sample sufficiency\""
+        ],
+        "nextRequiredAction": "Before CUTOVER is contemplated, a recorded adjudication: either re-derive the sufficiency table for a low-traffic product, or rest the cutover decision on the structured-coverage basis plus the existing KG-4B/4D/4E/5C evidence with the limitation stated explicitly.",
+        "doNotResolveBy": "Padding a corpus to clear a coverage number. KG-4B refused exactly that (section 8.5, D-35), and the runbook refuses it again for MSHA traffic.",
+        "conditionForClosure": "A recorded cutover-evidence adjudication exists, or organic traffic reaches the sufficiency table.",
+        "discoveredBy": "KG-5D preflight pass two, 2026-08-21, Phases 6-7"
+      }
+    },
+    "backlogCarriedForward": [
+      {
+        "item": "137 declared-but-unemitted citations (the GOVERNED_MISSING population)",
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "SOURCE / REVIEW"
+      },
+      {
+        "item": "39 parent/child ambiguities (generates GRANULARITY_DIFFERENCE)",
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "SOURCE"
+      },
+      {
+        "item": "42 duplicate multi-surface declarations (generates APPROVED_SECTION_ONLY)",
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "SOURCE"
+      },
+      {
+        "item": "3 governed records without a source URL",
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "SOURCE"
+      },
+      {
+        "item": "SOURCE_URL_REGISTRY_MISMATCH on 5 OSHA records - classified, deliberately not churned",
+        "classification": "EXPECTED_EXPLAINED",
+        "owner": "SOURCE"
+      },
+      {
+        "item": "Operator-triggered instant kill switch (env path carries platform restart characteristics)",
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "INSTRUMENTATION"
+      },
+      {
+        "item": "Two pre-existing HazLenz core failures, byte-identical at every slice boundary",
+        "classification": "EXPECTED_EXPLAINED",
+        "owner": "baseline"
+      },
+      {
+        "item": "test:entitlement-boundary 429/hang - do NOT weaken the throttle",
+        "classification": "EXPECTED_EXPLAINED",
+        "owner": "INSTRUMENTATION"
+      },
+      {
+        "item": "test:kg3f-customer-path-disconnection cannot see the current seam - superseded, left unmodified as KG-3F evidence",
+        "classification": "INSTRUMENTATION",
+        "owner": "INSTRUMENTATION"
+      }
+    ]
+  },
+  "DO_NOT_REINVESTIGATE_WITHOUT_NEW_EVIDENCE": {
+    "blueprintSection": "20 and 25",
+    "rule": "Each entry is backed by executable evidence. This mechanism must NOT be used to suppress legitimate contradictory evidence. NEW CONTRADICTORY EVIDENCE ALWAYS WINS OVER DOCUMENTATION. If you have such evidence, reopen the entry and say so explicitly.",
+    "entries": {
+      "governedMembershipIsIndependentOfLegacyCorpusEnumeration": {
+        "protectedConclusion": "Governed release membership is explicit by citationKey in a version-controlled definition, and is independent of enumerating the entire legacy standards_master.",
+        "evidencePhase": "KG-5B (release-definition.ts, definitions/*.json, decision KG5B-D2)",
+        "reopenIfAndOnlyIf": "Membership is observed being derived from database contents rather than from the version-controlled definition."
+      },
+      "constructionDoesNotMutateLegacyCorpus": {
+        "protectedConclusion": "Governed release construction does not require, and must not perform, any mutation of the legacy corpus. assertNoLegacyCorpusWrites() enforces this over every statement the builder issues; measured 0 rows changed on a 2,390-row production-shaped corpus.",
+        "evidencePhase": "KG-5B (governed-release-builder.ts, test:kg5b-release-construction 102/102)",
+        "reopenIfAndOnlyIf": "A write to standards_master is observed during governed release construction."
+      },
+      "releaseIdentityIsIndependentOfIncidentalCorpusContents": {
+        "protectedConclusion": "Deterministic governed release identity is independent of incidental legacy corpus contents. Manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b with 35 records reproduces byte-identically on an EMPTY corpus and on a 2,390-row production-shaped corpus, with every record checksum and approval digest identical.",
+        "evidencePhase": "KG-5B, reproducing KG-4A",
+        "reopenIfAndOnlyIf": "The manifest fails to reproduce from the version-controlled definition on a clean database."
+      },
+      "kg5bDisc01IsNotAGenericContentDifferenceBlocker": {
+        "protectedConclusion": "KG5B-DISC-01 is NOT a generic content-difference blocker. All 15 differences classify GOVERNED_REVIEWED_RENDERING. Do not attempt to make governed content byte-identical to legacy content to eliminate the difference.",
+        "evidencePhase": "KG-5C (customer-path-equivalence.ts, test:kg5c-customer-path-equivalence 31/31)",
+        "reopenIfAndOnlyIf": "Customer delivery differs from the reviewed governed artifact, or unreviewed governed content is delivered as approved, or citation identity is incorrect, or another verified contract is violated."
+      },
+      "approvedDeliveryIsTheExactReviewedArtifact": {
+        "protectedConclusion": "Approved governed customer delivery is the EXACT reviewed governed artifact and nothing else. It is never expanded back into a larger unreviewed legacy representation. Measured 27/27 byte-for-byte against the frozen payload.canonicalText, with 0 approved badges on non-reviewed content.",
+        "evidencePhase": "KG-5C (fallback-contract.ts decideFallback, mark(), decision KG5C-D5)",
+        "reopenIfAndOnlyIf": "A governed delivery is observed that is not byte-identical to the frozen reviewed artifact."
+      },
+      "unreviewedGovernedContentRemainsWithheld": {
+        "protectedConclusion": "Unreviewed governed content remains withheld from governed customer delivery and preserves legacy behaviour. Measured 8/8 identical to LEGACY, 0 unapproved records presented as approved. Withholding is the contract, not a resolver defect.",
+        "evidencePhase": "KG-5C (deliveryFidelity, governed-delivery rehearsal 28/28)",
+        "reopenIfAndOnlyIf": "Unreviewed governed content reaches a customer as approved (REVIEW_STATE_VIOLATION)."
+      },
+      "pathAAndPathBExposeDifferentRepresentationsIntentionally": {
+        "protectedConclusion": "Path A (suggest(), standard_text) and Path B (hydrateFindingScopedStandards -> mark(), plain_language_summary) intentionally expose different content representations. Measured for 1910.1200: 56,026 B versus 500 B. A byte-length difference between these representations is NOT a defect.",
+        "evidencePhase": "KG-5C (decision KG5C-D1; KG5C-FIX-01 is the recorded consequence of forgetting this)",
+        "reopenIfAndOnlyIf": "mark() is changed to spread the hydrated standardText, or the two paths are observed disagreeing on backing, citation or release for the same citation."
+      },
+      "subsectionCitationIdentityMustNotCollapse": {
+        "protectedConclusion": "Subsection citation identity must not silently collapse to a base citation. normalizeCitationForLookup accepts a base-key match only when the requested citation carries no subsection. The 12 LEGACY_UNRESOLVED subsection citations are correct behaviour, not a resolver defect.",
+        "evidencePhase": "KG-5C, composing KG-3E granularity contract 48/48 and decision D-08",
+        "reopenIfAndOnlyIf": "A subsection request is observed resolving to a base-citation row, or a base request is observed resolving to a subsection row."
+      },
+      "legacyIsTheCurrentCustomerAuthority": {
+        "protectedConclusion": "LEGACY is the current customer authority in production. SHADOW is observational only and must not alter customer responses; the customer receives the pristine legacy run. CUTOVER is a separate explicit authorization boundary that SHADOW completing does not cross.",
+        "evidencePhase": "KG-4B 43/43 + 576/576, KG-4D 8/8 invariance, KG-4E 8/8 report invariance, decisions D-31, D-39, D-50",
+        "reopenIfAndOnlyIf": "A customer-visible difference is observed under SHADOW (CUSTOMER_MUTATION) - which is a hard abort condition, not a reopening."
+      },
+      "elevenNotSevenUnobservedCategories": {
+        "protectedConclusion": "ELEVEN of fifteen shadow mismatch categories were unobserved at the KG-4B corpus checkpoint, not seven. Prefer the measurement over the prose subset.",
+        "evidencePhase": "KG-4B corpus and analytics; KG-4C mapping; decision D-49",
+        "reopenIfAndOnlyIf": "A new corpus measurement produces a different count, reported with its artifact."
+      }
+    }
+  },
+  "productionShadowProtocol": {
+    "blueprintSection": "27",
+    "frozenAt": "2026-08-21, BEFORE any production SHADOW observation",
+    "authorizesShadow": false,
+    "authorizesCutover": false,
+    "note": "Everything here is frozen BEFORE production SHADOW is enabled, deliberately. Defining what counts as success after seeing results is how an observation becomes a rationalization. This section does NOT authorize production SHADOW.",
+    "primaryHypothesis": "H0 - On real production requests and real production data, the governed resolver operating observationally selects and constructs governed results consistent with the verified release and customer-delivery contracts, while LEGACY remains the sole authoritative customer response.",
+    "secondaryHypotheses": {
+      "H1_citationResolution": {
+        "hypothesis": "For every request, resolvedCitation === requestedCitation; citation identity is never silently broadened or collapsed; subsection requests never fall back to a base citation.",
+        "refutedBy": "any CITATION_DIFFERENCE, or a base-citation fallback for a subsection request"
+      },
+      "H2_approvedArtifactDelivery": {
+        "hypothesis": "For every approved record, the governed artifact the resolver constructs is byte-identical to the frozen payload.canonicalText of the pinned release record.",
+        "refutedBy": "a governed construction that differs from the frozen artifact"
+      },
+      "H3_unreviewedFallback": {
+        "hypothesis": "For every unreviewed record, governed delivery is withheld and legacy behaviour is preserved exactly.",
+        "refutedBy": "any governed content constructed for a record with no effective approval"
+      },
+      "H4_resolverPathBehaviour": {
+        "hypothesis": "Both paths resolve through the single seam and therefore cannot disagree - this is STRUCTURAL (they share resolveStandard()), and SHADOW telemetry does NOT independently re-establish it: the v2 event carries no resolver-path identifier (KG5D-DISC-01). What SHADOW can evaluate is that every observation's resolution is internally consistent with its own pinned release, and that the Path A / Path B representation difference accounts for every content-length difference observed.",
+        "refutedBy": "an observation whose backing, citation or release is inconsistent with its own pinned release",
+        "instrumentationLimit": "KG5D-DISC-01"
+      },
+      "H5_badgeAndProvenanceTruthfulness": {
+        "hypothesis": "customerVisible is false throughout, projectGovernedDisplay() contributes {}, and no governed provenance is written; knowledgeReleaseId is NULL on every row.",
+        "refutedBy": "any governed key in a payload, or any non-NULL provenance"
+      },
+      "H6_absenceOfCustomerMutation": {
+        "hypothesis": "The customer receives the pristine legacy run on every request; the stable field set is identical to LEGACY; customerOutputUnchanged is true on every event.",
+        "refutedBy": "any difference in a field derived as stable, or an INDETERMINATE invariance check"
+      },
+      "H7_instrumentationFidelity": {
+        "hypothesis": "Telemetry distinguishes legacy from governed representations, attributes every observation to its correlation, finding and pinned release, and every event passes the v2 privacy guard. Resolver-path attribution is OUT OF SCOPE - the field does not exist.",
+        "refutedBy": "a comparison that cannot name its release, or a field outside the v2 allowlist",
+        "instrumentationLimit": "KG5D-DISC-01"
+      },
+      "H8_releaseIdentity": {
+        "hypothesis": "Every observation names the single explicitly intended release and its manifest checksum, captured in the same query as the active-pointer read.",
+        "refutedBy": "any observation naming a different release, or a manifest/pointer mismatch"
+      }
+    },
+    "hypothesisEvaluationRule": "A hypothesis is evaluated, not assumed. A hypothesis with zero qualifying observations is UNPROVEN, never 'passed'. The KG-4D per-observation non-vacuity floor (D-54) applies: three slices have been fooled by an equality oracle comparing two broken observations.",
+    "everyObservationMustMapToAHypothesis": "Every SHADOW observation must map to a predefined hypothesis or be explicitly classified as an unexpected observation. Vague goals such as 'see what happens in production' are not permitted.",
+    "frozenDiscrepancyTaxonomy": {
+      "EXPECTED_EQUIVALENCE": {
+        "definition": "Governed and legacy outcomes are materially equivalent under the applicable contract.",
+        "defaultDisposition": "EXPECTED_EXPLAINED"
+      },
+      "EXPECTED_GOVERNED_REVIEWED_RENDERING": {
+        "definition": "The governed representation differs from legacy but exactly matches the reviewed governed artifact. This is NOT a defect merely because the bytes differ.",
+        "entryRequirements": [
+          "reviewer-approved in the active release against the exact checksum",
+          "a clause-by-clause review recorded in a named KG phase artifact",
+          "the delivered text byte-identical to the frozen payload.canonicalText",
+          "the same logical citation identity"
+        ],
+        "defaultDisposition": "EXPECTED_EXPLAINED"
+      },
+      "RESOLUTION_DIFFERENCE": {
+        "definition": "Legacy and governed paths select materially different citation identities or applicability outcomes.",
+        "defaultDisposition": "requires root-cause investigation"
+      },
+      "CONTENT_DIFFERENCE": {
+        "definition": "For a record expected to satisfy the same content contract, the delivered governed artifact differs unexpectedly.",
+        "doNotUseFor": "an already-proven reviewed rendering difference",
+        "defaultDisposition": "requires root-cause investigation"
+      },
+      "MISSING_GOVERNED_RECORD": {
+        "definition": "A request expected to resolve through an approved governed record cannot do so.",
+        "defaultDisposition": "investigate; may be DEFECT_NONBLOCKING corpus backlog"
+      },
+      "REVIEW_STATE_VIOLATION": {
+        "definition": "Unreviewed content is treated as approved/governed customer content, or approval state is otherwise misrepresented.",
+        "defaultDisposition": "presumptively a BLOCKER"
+      },
+      "CUSTOMER_MUTATION": {
+        "definition": "SHADOW changes the authoritative customer response or customer-visible behaviour.",
+        "defaultDisposition": "HARD ABORT"
+      },
+      "INSTRUMENTATION_ERROR": {
+        "definition": "The comparator, telemetry or harness is observing the wrong field, representation, citation identity or lifecycle state - measuring the wrong contract.",
+        "defaultDisposition": "INSTRUMENTATION; repair the measurement, not production"
+      },
+      "UNCLASSIFIED": {
+        "definition": "The evidence does not fit an existing category. Do not immediately edit implementation; capture the evidence and perform root-cause classification first.",
+        "defaultDisposition": "stops progression toward CUTOVER"
+      }
+    },
+    "taxonomyIsFrozen": "Do NOT invent new categories after observing results merely to make SHADOW appear successful. If a genuinely new category is required, document why the frozen taxonomy was insufficient - the taxonomy being wrong is itself a result.",
+    "taxonomyRelationshipToEngineTaxonomy": "This is the OPERATIONAL layer above the 15-category engine taxonomy in shadow-comparison.ts. They are not competing vocabularies: the engine taxonomy classifies a comparison; this taxonomy classifies a finding an operator must act on.",
+    "abortGates": {
+      "rule": "SHADOW must be aborted if evidence indicates any of the following.",
+      "conditions": [
+        "customer responses are being modified (any CUSTOMER_MUTATION)",
+        "SHADOW can influence the authoritative resolver result",
+        "an unreviewed governed artifact can be presented as approved",
+        "release identity is not the explicitly intended release",
+        "citation identity is being silently broadened or collapsed",
+        "production writes occur where observation is required to be read-only",
+        "the comparator cannot reliably distinguish legacy from governed representations",
+        "telemetry cannot attribute an observation to its correlation, finding and pinned release (deliberately NOT 'cannot identify the resolver path': the v2 event carries no resolver-path identifier at all per KG5D-DISC-01, so that stronger wording would abort every run on its first event; path-level attribution is a known instrumentation limit, not an abort condition)",
+        "release/rollback state differs from the expected preflight state",
+        "an unexpected condition makes continued observation unsafe or uninterpretable"
+      ],
+      "doNotContinueForALargerSample": "Do NOT continue collecting data after a hard abort condition merely to obtain a larger sample. A larger sample of uninterpretable observations is not more evidence.",
+      "mechanics": {
+        "killSwitch": "engages on ANY non-empty value including off/false/0 (D-40: brakes are permissive, only locks are exact)",
+        "circuitBreaker": "hard invariants trip at threshold zero with no sample floor (D-42)",
+        "indeterminateCheck": "a missing or indeterminate invariance check is itself a hard violation (D-43): unverified is not verified"
+      }
+    },
+    "successCriteria": {
+      "rule": "A controlled production SHADOW stage is successful ONLY if all of the following hold.",
+      "criteria": [
+        "zero CUSTOMER_MUTATION",
+        "zero REVIEW_STATE_VIOLATION",
+        "zero unexplained citation-identity violations",
+        "zero unresolved BLOCKER findings",
+        "every observed difference is classified into the frozen taxonomy; none left unclassified",
+        "every EXPECTED_GOVERNED_REVIEWED_RENDERING result verified against the actual reviewed governed artifact (the frozen payload.canonicalText, not a re-derivation)",
+        "instrumentation proven to measure the customer contract correctly, including a per-observation non-vacuity floor",
+        "no unexpected production writes",
+        "LEGACY remained the authoritative customer response for the entire observation window",
+        "SHADOW was disabled cleanly after the observation window",
+        "the evidence is sufficient to make a separate CUTOVER decision"
+      ],
+      "successIsNotZeroByteDifferences": "SHADOW success is NOT 'zero byte differences'. That criterion would contradict the verified KG-5C architecture, under which the governed artifact SHOULD differ from the unreviewed legacy ingest for every reviewed rendering. Adopting it would create direct pressure to replace reviewed content with unreviewed content to make a number go to zero.",
+      "completionIsNotCutoverAuthorization": "SHADOW completion is NOT automatic CUTOVER authorization. CUTOVER is a separate explicit human decision taken after this evidence exists, and it additionally requires openIssues.KG4E-DISC-03 to be closed."
+    },
+    "rootCauseProcedure": {
+      "sequence": [
+        "capture",
+        "reproduce",
+        "identify violated contract",
+        "assign architectural owner",
+        "isolate root cause",
+        "classify",
+        "smallest correct remediation",
+        "boundary regression proof",
+        "documentation update"
+      ],
+      "doNot": [
+        "edit production during observation",
+        "patch multiple layers simultaneously",
+        "weaken an invariant to make a discrepancy disappear",
+        "change reviewed governed content without the required review lifecycle",
+        "alter customer behaviour to satisfy instrumentation",
+        "reinterpret a discrepancy after seeing the desired metric"
+      ],
+      "ifRootCauseUncertain": "Classify UNCLASSIFIED and stop progression toward CUTOVER until resolved."
+    },
+    "precedingOperations": {
+      "note": "NONE of these is authorized by this document. Each requires its own explicit authorization. Runbook: kg-5b/PRODUCTION_RELEASE_RUNBOOK.md",
+      "operations": [
+        "1 commit the KG release package (six commits ordered by the real import graph)",
+        "2 push release/insite-rc-2026-08-18",
+        "3 merge to main (Render auto-deploys main; main == the live commit)",
+        "4 apply the six production migrations (all additive, no data backfill, rehearsed byte-identical)",
+        "5 deploy with every GOVERNED_CUTOVER_* absent (proven customer no-op for the tree that would ship)",
+        "6 verify production LEGACY / no-op",
+        "7 npm run release -- prepare --release-id <id> [--dry-run]",
+        "8 npm run review:release-record -- approve ... one record at a time by a named human against an exact checksum (no bulk path, no imported decisions)",
+        "9 npm run release -- activate ... --dry-run (evaluates all eight gates, writes nothing)",
+        "10 npm run release -- activate ... with SHADOW OFF",
+        "11 npm run release -- status, re-verify LEGACY / no-op with a release active",
+        "12 (only if needed) npm run release -- rollback ... --expected-current <id>",
+        "13 authorize Stage-1 SHADOW separately, against the hypotheses, taxonomy, abort gates and success criteria above"
+      ],
+      "stage1AdditionalRequirements": [
+        "the platform log pipeline confirmed to collect and retain kg4c.shadow-comparison.v2 events",
+        "one named internal account, never an ordinary customer; GOVERNED_CUTOVER_ORG_ALLOWLIST must stay UNSET (it would enable the whole organization against a STAGE_1_SINGLE_ACCOUNT ceiling of 1)",
+        "the four locks set in one deliberate change"
+      ]
+    },
+    "stage1ExperimentDesign": {
+      "frozenAt": "2026-08-21 (KG-5D preflight pass two), BEFORE any observation",
+      "authorizesShadow": false,
+      "note": "This is the bounded experiment that should be authorized NEXT, after operations 1-11. Defining it now, before observation, is deliberate: defining success after seeing results is how an observation becomes a rationalization.",
+      "productionPreconditions": [
+        "Operations 1-6 executed and verified: the KG release package committed, pushed, merged to main, the six migrations applied, deployed with every GOVERNED_CUTOVER_* absent, and production re-verified LEGACY / no-op.",
+        "Operations 7-11 executed: a governed release prepared, its records reviewed one at a time by a named human against exact checksums, activation dry-run passing all eight gates, then activated with SHADOW OFF, then release status re-verified.",
+        "A preflight re-run reports the expected state (openIssues.STAGE1-OP-01 condition for closure)."
+      ],
+      "exactReleaseStateRequired": "Exactly one ACTIVE governed release, its releaseId and manifestChecksum recorded in advance and restated in the authorization request. pinGovernedRelease() must return that release and never NO_ACTIVE_RELEASE.",
+      "exactReviewStateRequired": "Every record intended to deliver governed content carries a recorded clause-by-clause review bound to its exact checksum. Records without one remain unreviewed and must be OBSERVED as withheld, not remediated during the run.",
+      "exactFeatureControlPreconditions": {
+        "GOVERNED_CUTOVER_MODE": "SHADOW",
+        "GOVERNED_CUTOVER_PRODUCTION_ACK": "I_ACKNOWLEDGE_GOVERNED_CUTOVER",
+        "GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK": "I_ACKNOWLEDGE_PRODUCTION_SHADOW",
+        "GOVERNED_CUTOVER_SHADOW_STAGE": "STAGE_1_SINGLE_ACCOUNT",
+        "GOVERNED_CUTOVER_OBSERVABILITY": "enabled",
+        "GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST": "e9a25131-dfa4-40ce-90ff-8ab3d884d8ef (exactly one entry)",
+        "GOVERNED_CUTOVER_ORG_ALLOWLIST": "MUST REMAIN UNSET",
+        "GOVERNED_CUTOVER_KILL_SWITCH": "unset at start; any non-empty value engages it"
+      },
+      "trafficSource": "CONTROLLED OPERATOR TRAFFIC from the single named account. Natural traffic is effectively nil (one analysis in the products lifetime) and an observation window over it would accrue zero events; section 27.2 is explicit that a hypothesis with zero qualifying observations is UNPROVEN, never passed.",
+      "claimBoundary": "PRODUCTION EXECUTION PROOF ONLY. Controlled traffic proves that the deployed resolver, pinned release, feature controls and telemetry execute correctly together in production, and that H1, H2, H3, H5, H6, H7 and H8 hold on real production data. It does NOT prove the mismatch distribution under organic customer usage, the rate at which the eleven unobserved categories occur in the wild, behaviour under concurrent load, or the absence of unanticipated observation shapes. Stage-1 must claim only the first, and must not claim the second because the first is proven.",
+      "scenarioCoverageRequired": [
+        "C1 approved governed citation delivering the reviewed artifact -- min 3",
+        "C2 known GOVERNED_REVIEWED_RENDERING case, of the 15 -- min 3",
+        "C3 legacy-identical case -- min 3",
+        "C4 unreviewed record, of the 8 NEW_REVIEW_REQUIRED -- min 2",
+        "C5 known unreviewed CONTENT_DIFFERENCE, of the 3 -- min 1",
+        "C6 subsection citation resolving LEGACY_UNRESOLVED, of the 12 -- min 3",
+        "C7 citation with no governed record (GOVERNED_MISSING / EXPECTED_FALLBACK) -- min 2",
+        "C8 OSHA General Industry 29 CFR 1910 -- min 1",
+        "C9 OSHA Construction 29 CFR 1926 -- min 1",
+        "C10 MSHA 30 CFR 56/62/47 -- min 1",
+        "C11 multi-finding analysis exercising the per-analysis pin, the per-citation memo and mixed provenance -- min 1",
+        "C12 HazLenz gold-set citations, of the 23 emitted -- min 8"
+      ],
+      "requiredObservations": "Approximately 12-20 analyses yielding approximately 30-60 citation comparisons. THE NUMBER IS AN OUTCOME OF THE COVERAGE DESIGN, NOT A TARGET. Coverage and integrity are the acceptance criteria; the count is not.",
+      "sampleSizeDisposition": "The 200/500 minimumSample floors in shadow-circuit-breaker.ts are PRESERVED UNCHANGED. They govern when a STOP threshold may trip, not how much evidence Stage-1 needs. Under a 30-60 comparison Stage-1 the rate conditions never arm, which is correct and safe because all seven hard invariants are threshold-zero with NO sample floor and are fully armed at n=1. See openIssues.KG5D-DISC-03.",
+      "doesNotSatisfyStage2Gate": "This corpus does NOT meet the Stage-1 -> Stage-2 promotion gate (>= 100 comparisons, >= 24 hours) and does not claim to. Promotion is a separate decision with its own evidence; Stage-1 success under section 27.5 does not depend on it.",
+      "telemetryRetrievalMethod": "Export via the Render CLI/API (render logs --text, or GET /v1/logs paged by nextEndTime), filtering on the schemaVersion token kg4c.shadow-comparison.v2, then aggregate OFFLINE. Render stores each line as one opaque message string and does not index JSON fields, so no platform-side GROUP BY is available. Respect the documented 6,000 lines/min/instance ingestion cap and the API paging limit of 1000.",
+      "integrityCheck": [
+        "G1 FIRST-EVENT GATE -- event #1 must retrieve as ONE complete parseable JSON object with all 35 fields, passing the v2 allowlist. If it does not, ABORT. This is what settles the unverified ~1.7 KB log-line fidelity question, at a cost of one observation, and it fails closed.",
+        "G2 every event names the intended releaseId AND its releaseManifestChecksum",
+        "G3 outputInvarianceVerdict = INVARIANT on every analysis; INDETERMINATE count 0 (D-43)",
+        "G4 shadowProvenanceNull = true on every event; knowledgeReleaseId NULL in every written row",
+        "G5 customerOutputUnchanged = true on every event",
+        "G6 hard-invariant violations: 0",
+        "G7 every distinct observation classified into the section 27.3 frozen taxonomy; none UNCLASSIFIED",
+        "G8 per-observation non-vacuity floor (D-54): every compared case returned a real analysis; a 429 is REFUSED, never compared",
+        "G9 every EXPECTED_GOVERNED_REVIEWED_RENDERING verified against the frozen payload.canonicalText, not a re-derivation"
+      ],
+      "discrepancyClassificationProcedure": "Section 27.3 frozen taxonomy for operator findings, over the section 10 fifteen-category engine taxonomy for individual comparisons. Section 27.6 root-cause sequence for anything unexpected. Do NOT invent a category after observing results; if the frozen taxonomy is insufficient, that is itself a finding to be documented.",
+      "abortConditions": "The ten section 27.4 abort gates, plus G1. Note that abort gate 8 deliberately excludes resolver-path attribution (KG5D-DISC-01), so it will not fire on the first event.",
+      "maximumObservationWindow": "The SHORTER of: all twelve coverage rows satisfied with every integrity gate holding, OR 72 hours of wall-clock time from enabling SHADOW, OR any abort gate firing. The window has a finite end by construction. \"Observe until confident\" is not permitted.",
+      "shadowDisableProcedure": "Remove GOVERNED_CUTOVER_MODE (or set GOVERNED_CUTOVER_KILL_SWITCH to any non-empty value for an immediate runtime latch; the env path carries Render restart characteristics). Disabling SHADOW is a MODE CHANGE only: it does not de-activate the release, revoke an approval, roll back the corpus, delete an event or rewrite a customer record. Historical provenance is preserved in both directions.",
+      "evidenceArtifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5d/ -- exported events JSONL, the coverage matrix against C1-C12, the integrity-gate results G1-G9, the classified discrepancy list, and an explicit hold / expand / stop recommendation.",
+      "terminalState": "STAGE1_PRODUCTION_SHADOW_COMPLETE -- EVIDENCE_CAPTURED_FOR_SEPARATE_CUTOVER_DECISION. Stage-1 completing authorizes NEITHER Stage 2 NOR CUTOVER; each is a separate explicit human decision, and CUTOVER additionally requires KG4E-DISC-03 closed and KG5D-DISC-04 adjudicated."
+    }
+  },
+  "stage1ShadowPreflightPassTwo": {
+    "performedAt": "2026-08-21",
+    "scope": "Read-only production inspection, telemetry-integrity root cause, evidence-sufficiency adjudication, traffic-population decision, KG5D-DISC-01 disposition, and a bounded Stage-1 experiment design. No implementation change, no production mutation, nothing enabled.",
+    "status": "PRODUCTION_SHADOW_PREFLIGHT_BLOCKED -- NO_GOVERNED_RELEASE_AND_SUBSYSTEM_NOT_DEPLOYED_IN_PRODUCTION",
+    "productionModifiedByPreflight": false,
+    "readOnlyEnforcement": "Every production SQL session ran inside BEGIN READ ONLY; transaction_read_only=on was asserted INSIDE the session and printed as evidence, so read-only is enforced by PostgreSQL rather than by intention. Render access was GET-only; render deploys create was never invoked.",
+    "blockersToStage1": "STAGE1-OP-01 B1-B5, unchanged and all reconfirmed by direct measurement. No new blocker was found.",
+    "telemetryIntegrityConclusion": "A complete SHADOW event CANNOT YET be proven recoverable end to end. The application half is proven (the emitter cannot split, truncate or produce an unbounded event); the platform half is unproven and unprovable from outside production. NOT proven is stated as not proven.",
+    "probeRequired": false,
+    "probeImpossibleToday": "Emitting a production SHADOW event requires the cutover code to exist in production; the live commit 97941ca2 contains no standards/cutover/. No environment-variable combination can produce one today.",
+    "evidenceSufficiencyDecision": "Coverage-based, not count-based. The 200/500 breaker floors are preserved unchanged and are not a Stage-1 acceptance requirement. See productionShadowProtocol.stage1ExperimentDesign and openIssues.KG5D-DISC-03.",
+    "trafficPopulationDecision": "CONTROLLED OPERATOR TRAFFIC ONLY, with the claim bounded to production execution proof. Natural traffic is effectively nil and cannot become sufficient; organic-population evidence is a separate later requirement (KG5D-DISC-04).",
+    "kg5dDisc01Disposition": "A -- PATH ATTRIBUTION NOT REQUIRED",
+    "newFindings": [
+      "KG5D-DISC-02 Path A emits no SHADOW telemetry on any production route",
+      "KG5D-DISC-03 the 200/500 conflation between breaker floor, Stage-2 gate and post-run sufficiency",
+      "KG5D-DISC-04 organic sample sufficiency is unreachable at this products traffic level"
+    ],
+    "nextAuthorizedOperation": "Operation 1 of section 27.7 -- commit the KG release package as six commits ordered by the real import graph, on release/insite-rc-2026-08-18, excluding the 18 unrelated frontend theme files. Nothing is deployed, merged or activated by it, and it requires its own explicit authorization.",
+    "evidenceArtifact": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5d/PRODUCTION_SHADOW_PREFLIGHT_PASS2.md",
+    "preservation": {
+      "productionWrites": 0,
+      "migrationsApplied": 0,
+      "shadowRemainedOff": true,
+      "cutoverRemainedOff": true,
+      "releaseLifecycleMutations": 0,
+      "envVarChanges": 0,
+      "deploys": 0,
+      "commits": 0,
+      "pushes": 0,
+      "merges": 0,
+      "stashes": 4,
+      "tags": 23,
+      "unrelatedWorktreeManifest": "18/18 OK",
+      "safescopeDevDatabaseTouched": false
+    }
+  }
+}

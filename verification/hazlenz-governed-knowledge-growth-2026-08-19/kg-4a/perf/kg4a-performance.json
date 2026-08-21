@@ -1,0 +1,59 @@
+{
+  "generatedBy": "report-kg4a-performance.ts",
+  "sourceDatabase": "test_kg4a_e2e_20260820",
+  "activeRelease": "federal-core-2026-07-30.1",
+  "analysisShape": {
+    "findings": 10,
+    "distinctCitations": 4
+  },
+  "runs": 40,
+  "warmup": 5,
+  "measurements": [
+    {
+      "label": "LEGACY  — per analysis (context never created)",
+      "runs": 40,
+      "meanMs": 0.002,
+      "p50Ms": 0.001,
+      "p95Ms": 0.006,
+      "maxMs": 0.04
+    },
+    {
+      "label": "GOVERNED — release pin only (once per analysis)",
+      "runs": 40,
+      "meanMs": 0.108,
+      "p50Ms": 0.087,
+      "p95Ms": 0.271,
+      "maxMs": 0.283
+    },
+    {
+      "label": "GOVERNED — full analysis, memoised (as shipped)",
+      "runs": 40,
+      "meanMs": 0.795,
+      "p50Ms": 0.786,
+      "p95Ms": 0.911,
+      "maxMs": 0.975
+    },
+    {
+      "label": "SHADOW   — full analysis (customer gets legacy)",
+      "runs": 40,
+      "meanMs": 0.74,
+      "p50Ms": 0.717,
+      "p95Ms": 0.792,
+      "maxMs": 1.753
+    },
+    {
+      "label": "N+1 SHAPE (rejected) — pin + resolve per finding",
+      "runs": 40,
+      "meanMs": 1.872,
+      "p50Ms": 1.834,
+      "p95Ms": 2.071,
+      "maxMs": 2.937
+    }
+  ],
+  "governedOverheadMsPerAnalysis": 0.793,
+  "governedOverheadMsPerFinding": 0.079,
+  "shadowOverheadMsPerAnalysis": 0.738,
+  "msAvoidedByPinningAndMemoisation": 1.077,
+  "distinctLookupsFor10Findings": 4,
+  "n1Avoided": true
+}

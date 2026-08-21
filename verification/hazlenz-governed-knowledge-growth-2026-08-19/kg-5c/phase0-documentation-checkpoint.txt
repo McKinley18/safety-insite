@@ -1,0 +1,19 @@
+=== DOCUMENTATION CHECKPOINT (Phase 0) ===
+--- strict JSON validation ---
+docs/INSITE_CURRENT_STATE.json: VALID strict JSON
+--- hashes before ---
+24c9b5a831bb1d4f1a8eef880d531cf4fbad1cbcd92accfa7a14d184b1fd5d1e  /tmp/kg5c_blueprint_before.md
+9407a2140b765a28a6371031cdf81e8b990906b1c06f38060fa847ba95177f7e  /tmp/kg5c_state_before.json
+--- hashes after ---
+4ef2e8bd1dd1ca0b6d2c26a92d8ee11d1e84e96bab0eef7e89fa65c9f4899838  docs/INSITE_ENGINEERING_BLUEPRINT.md
+4219a5d6009061667f9dec17d4f382cdc01f4df28aa2ebcd85425cf9f36ea9fc  docs/INSITE_CURRENT_STATE.json
+--- blueprint diff summary ---
+23
+lines removed:
+0
+lines added:
+23
+--- lines REMOVED from blueprint (verify none are historical facts) ---
+--- current-state keys removed? ---
+removed top-level keys: none
+added: ['documentationGovernance', 'verificationTaxonomy']

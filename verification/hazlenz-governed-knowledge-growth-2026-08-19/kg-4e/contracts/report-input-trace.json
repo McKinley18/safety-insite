@@ -1,0 +1,54 @@
+{
+  "artifact": "kg-4e/contracts/report-input-trace.json",
+  "generatedBy": "KG-4E Phase 1",
+  "question": "Between an analysis and a final PDF, what does report generation actually consume -- and does any of it carry governed, shadow or telemetry state?",
+  "path": [
+    "POST /safescope-v2/classify  ->  orchestrateShadowRequest()  ->  the PRISTINE legacy payload",
+    "POST /inspections/observations/:id/analyses  ->  InspectionService.addAnalysis()  ->  hazlenz_analyses.resultSnapshot (jsonb) + knowledgeReleaseId via resolveKnowledgeReleaseId()",
+    "reconcileDecompositionFindings() / finalizeFinding()  ->  inspection_findings (incl. knowledgeReleaseId, sourceCandidate, riskSnapshot, conclusion)",
+    "POST /inspections/:id/reports  ->  CanonicalReportsService.generate()",
+    "  snapshotInspection()   -> frozen sourceSnapshot: spreads the finding row and copies observation.analyses VERBATIM",
+    "  knowledgeProvenance()  -> {findingsWithoutKnowledgeRelease, findingCount, knowledgeReleaseIds}",
+    "  renderInspectionReportPdf()  ->  PDF bytes  ->  StorageService.store()  ->  inspection_report_versions",
+    "GET /inspection-reports/:id/versions/:n/download  ->  the customer's PDF"
+  ],
+  "governedStateReachesTheFrozenSnapshot": {
+    "verdict": "YES, and deliberately",
+    "detail": "snapshotInspection() spreads the whole finding row and copies each analysis verbatim, so hazlenz_analyses.knowledgeReleaseId, inspection_findings.knowledgeReleaseId and the full resultSnapshot are all inside the frozen sourceSnapshot; generate() then adds a knowledgeProvenance block. Verified present in 41/41 frozen snapshots, so their absence from the PDF is exclusion, not absence.",
+    "underShadow": "every one of those values is NULL, on 45/45 analyses and 59/59 findings, with an ACTIVE release and 35 approvals present -- a decision, not an empty corpus"
+  },
+  "governedStateReachesThePDF": {
+    "verdict": "NO -- structurally, not incidentally",
+    "mechanism": "canonical-report-pdf-renderer.ts projects a closed allowlist of snapshot fields. It never spreads the snapshot into a page, never serialises an object, and never enumerates keys. There is no path by which an unknown field can reach a page.",
+    "consumedFields": {
+      "snapshot": ["capturedAt", "site.name", "preparedBy.name", "inspection.id", "inspection.title", "inspection.status", "inspection.completedAt", "inspection.regulatoryContext", "observations", "correctiveActions"],
+      "observation": ["id", "rawText", "analyses", "reviews", "findings"],
+      "finding": ["id", "observationId", "originatingAnalysisId", "conclusion", "observationText", "hazardCategory", "hazardKey", "status", "riskSnapshot", "sourceCandidate", "finalReview"],
+      "riskSnapshot": ["overallRisk", "riskBand", "operationalRisk.severity", "operationalRisk.likelihood", "operationalRisk.matrixScore"],
+      "sourceCandidate": ["observationFragment", "standardCandidates[].applicability", "standardCandidates[].citation", "standardCandidates[].title", "standardCandidates[].family", "standardCandidates[].explanation", "standardCandidates[].plainLanguageSummary", "standardCandidates[].jurisdictionProvenance"],
+      "analysis": ["id", "resultSnapshot.executiveJudgment.topStandard", "resultSnapshot.standardsReasoning.topDefensible[0]", "resultSnapshot.primaryCitation"],
+      "topStandard": ["citation", "heading", "title", "summary", "reasoning"],
+      "finalReview": ["decision", "rationale"],
+      "correctiveAction": ["id", "findingId", "title", "description", "dueDate", "statusCode", "priorityCode", "assignedToName"]
+    },
+    "notConsumed": [
+      "knowledgeReleaseId (analysis or finding)", "knowledgeProvenance", "governedDeliveryState",
+      "governedFallbackReason", "governedTextUnavailable", "backingStatus", "resolverHealth",
+      "releaseManifestChecksum", "approvalDigest", "approvalContractVersion",
+      "correlationId", "eventKey", "findingKey", "mismatch", "severity (shadow taxonomy)", "rootCause",
+      "stage", "eligibilitySource", "outputInvarianceVerdict", "shadowProvenanceNull"
+    ]
+  },
+  "proof": {
+    "suite": "npm run test:kg4e-report-field-exclusion",
+    "result": "33/33 real frozen report snapshots render BYTE-IDENTICAL after being poisoned with 38 governed/shadow/telemetry fields stamped onto EVERY object at EVERY depth",
+    "canaries": [
+      "rendering one snapshot twice, unchanged, is byte-identical once /CreationDate, /ModDate and /ID are normalised -- so an inequality would be the poison",
+      "mutating finding.conclusion and finding.hazardCategory DOES change the bytes",
+      "changing site.name DOES change the bytes (cover, executive summary and running header)"
+    ],
+    "naturalCanary": "KG-4E's own harness wrote the literal string 'kg4e-shadow-A-<case>' into traceId and idempotencyKey. Those strings are inside 8/8 SHADOW frozen report snapshots. The word 'shadow' appears 0 times in all 8 corresponding PDFs. The exclusion was demonstrated by an accident of labelling before it was demonstrated by design."
+  },
+  "productionCodeChanged": false,
+  "productionCodeChangeRationale": "No leakage risk was found. The renderer's allowlist already excludes every governed and shadow field by construction, so there was nothing to correct."
+}

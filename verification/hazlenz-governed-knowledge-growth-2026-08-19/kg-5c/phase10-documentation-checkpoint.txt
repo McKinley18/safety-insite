@@ -1,0 +1,27 @@
+=== FINAL DOCUMENTATION CHECKPOINT (Phase 10) ===
+docs/INSITE_CURRENT_STATE.json: VALID strict JSON
+--- hashes: KG-5C start -> KG-5C end ---
+24c9b5a831bb1d4f1a8eef880d531cf4fbad1cbcd92accfa7a14d184b1fd5d1e  /tmp/kg5c_blueprint_before.md
+9407a2140b765a28a6371031cdf81e8b990906b1c06f38060fa847ba95177f7e  /tmp/kg5c_state_before.json
+775b42ebfe8e1489d89a2af5a2fa70351125473687c169cdd8c17c7805b4e65d  docs/INSITE_ENGINEERING_BLUEPRINT.md
+9e38c89ed9e6117fe5c22f04aeb200a61e80acb60217338333c64866cff4e762  docs/INSITE_CURRENT_STATE.json
+--- blueprint lines removed across all of KG-5C ---
+11
+--- blueprint lines added ---
+106
+--- removed lines (verify only the superseded KG5B-DISC-01 block) ---
+< ### `KG5B-DISC-01` — `MUST_ADJUDICATE_BEFORE_GOVERNED_DELIVERY`
+< 15 of the 27 approved records classify `CONTENT_DIFFERENCE` → `BLOCKING`: production carries the full
+< eCFR section dump (56,026 bytes for `1910.1200`) where the governed record carries the reviewed,
+< clause-accurate 1,141-byte artifact. **Not a release defect** — every BLOCKING record resolved with
+< `resolverHealth: OK` and `governedBackingState: APPROVED_EXACT`, every digest reproduces, the corpus
+< is byte-identical. Cross-checked two ways: KG-5A found 18 `PRODUCTION_ROW_CONTENT_DIFFERS`, three of
+< which are `NEW_REVIEW_REQUIRED` and never reach a content comparison; **18 − 3 = 15**.
+< `BLOCKING` means "would put a materially wrong claim in front of a customer *if governed mode were
+< enabled*". It does not block SHADOW, which is customer-invisible, and it does not block activation
+< with the cutover variables absent. It **must** be adjudicated before any governed **delivery**.
+< | Adjudicate the 15 `CONTENT_DIFFERENCE`/`BLOCKING` records | KG-5B | `KG5B-DISC-01`, classified **`MUST_ADJUDICATE_BEFORE_GOVERNED_DELIVERY`**. Production's full-section text vs the governed clause-accurate artifact. Does not block SHADOW; blocks governed **delivery** |
+--- current-state top-level keys removed? ---
+removed: none
+added: ['customerDeliveryContract', 'customerPathEquivalence', 'documentationGovernance', 'productionOperationAuthorizationState', 'verificationTaxonomy']
+knownCaveats before/after: 19 / 20

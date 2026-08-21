@@ -1,0 +1,967 @@
+{
+  "releaseId": "federal-core-2026-08-20.5",
+  "generatedFrom": "eCFR, title 29 and title 30, up-to-date-as-of 2026-08-18",
+  "sourceDir": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence",
+  "records": [
+    {
+      "citation": "29 CFR 1926.501",
+      "inRelease": true,
+      "governedTitle": "Duty to have fall protection",
+      "codifiedHeading": "§ 1926.501 Duty to have fall protection.",
+      "recordChecksum": "b540a377148106669c24b0bf7c06c8ca26c3d65e0320a604869f14874fd97ab4",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-501.xml",
+        "ecfr-1926-500.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) conformance to 1926.502",
+          "pass": true,
+          "sourcePhrase": "All fall protection required by this section shall conform to the criteria set forth in"
+        },
+        {
+          "check": "source supports: (a)(2) surface strength determination",
+          "pass": true,
+          "sourcePhrase": "The employer shall determine if the walking/working surfaces on which its employees are to work have the strength and structural integrity"
+        },
+        {
+          "check": "source supports: (b)(1) unprotected sides and edges at 6 feet",
+          "pass": true,
+          "sourcePhrase": "with an unprotected side or edge which is 6 feet (1.8 m) or more above a lower level shall be protected from falling by the use of guardrail systems, safety net systems, or personal fall arrest systems"
+        },
+        {
+          "check": "source supports: (b)(4)(i) holes -- MORE THAN 6 feet",
+          "pass": true,
+          "sourcePhrase": "protected from falling through holes (including skylights) more than 6 feet (1.8 m) above lower levels"
+        },
+        {
+          "check": "source supports: (b)(4)(ii) tripping/stepping into holes -- covers, no height threshold",
+          "pass": true,
+          "sourcePhrase": "protected from tripping in or stepping into or through holes (including skylights) by covers"
+        },
+        {
+          "check": "source supports: (b)(4)(iii) objects falling through holes -- covers",
+          "pass": true,
+          "sourcePhrase": "protected from objects falling through holes (including skylights) by covers"
+        },
+        {
+          "check": "source supports: (b)(11) steep roofs at 6 feet",
+          "pass": true,
+          "sourcePhrase": "Each employee on a steep roof with unprotected sides and edges 6 feet (1.8 m) or more above lower levels"
+        },
+        {
+          "check": "source supports: (b)(15) surfaces not otherwise addressed at 6 feet",
+          "pass": true,
+          "sourcePhrase": "Walking/working surfaces not otherwise addressed"
+        },
+        {
+          "check": "source supports: 1926.500(a)(2)(i) scaffolds are subpart L",
+          "pass": true,
+          "sourcePhrase": "Requirements relating to fall protection for employees working on scaffolds are provided in subpart L"
+        },
+        {
+          "check": "source supports: 1926.500(a)(2)(iii) steel erection is subpart R",
+          "pass": true,
+          "sourcePhrase": "Fall protection requirements for employees performing steel erection work"
+        },
+        {
+          "check": "governed summary preserves qualification: names the 6-foot trigger",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names all three permitted system types",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the more-than-6-feet distinction for holes",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the any-height cover rule",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the subpart carve-outs",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.147",
+      "inRelease": true,
+      "governedTitle": "The control of hazardous energy (lockout/tagout)",
+      "codifiedHeading": "§ 1910.147 The control of hazardous energy (lockout/tagout).",
+      "recordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-147.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (c)(1) energy control program is the operative duty",
+          "pass": true,
+          "sourcePhrase": "The employer shall establish a program consisting of energy control procedures, employee training and periodic inspections"
+        },
+        {
+          "check": "source supports: (c)(1) isolate and render inoperative",
+          "pass": true,
+          "sourcePhrase": "the machine or equipment shall be isolated from the energy source, and rendered inoperative"
+        },
+        {
+          "check": "source supports: (c)(2)(ii) lockout preferred over tagout",
+          "pass": true,
+          "sourcePhrase": "shall utilize lockout, unless the employer can demonstrate that the utilization of a tagout system will provide full employee protection"
+        },
+        {
+          "check": "source supports: (a)(2)(ii) normal production operations are outside scope",
+          "pass": true,
+          "sourcePhrase": "Normal production operations are not covered by this standard"
+        },
+        {
+          "check": "source supports: (a)(2)(ii)(A) unless a guard is removed or bypassed",
+          "pass": true,
+          "sourcePhrase": "An employee is required to remove or bypass a guard or other safety device"
+        },
+        {
+          "check": "source supports: Note to (a)(2)(ii) minor servicing exception",
+          "pass": true,
+          "sourcePhrase": "routine, repetitive, and integral to the use of the equipment for production"
+        },
+        {
+          "check": "source supports: (a)(2)(iii)(A) cord-and-plug exception",
+          "pass": true,
+          "sourcePhrase": "Work on cord and plug connected electric equipment"
+        },
+        {
+          "check": "source supports: (a)(1)(ii)(A) construction and agriculture excluded",
+          "pass": true,
+          "sourcePhrase": "Construction and agriculture employment"
+        },
+        {
+          "check": "governed summary preserves qualification: title carries the codified parenthetical",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: states a PROGRAM requirement, not merely a purpose",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the normal-production scope limit",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the cord-and-plug exception",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the construction/agriculture exclusion",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 56.14107(a)",
+      "inRelease": true,
+      "governedTitle": "Moving machine parts",
+      "codifiedHeading": "§ 56.14107 Moving machine parts.",
+      "recordChecksum": "b26287a0b2514f6e1bd7d381acfef71883b074250f8ab79c65613b2220b61b10",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-56-14107.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) enumerated moving parts must be guarded",
+          "pass": true,
+          "sourcePhrase": "Moving machine parts shall be guarded to protect persons from contacting gears, sprockets, chains, drive, head, tail, and takeup pulleys, flywheels, couplings, shafts, fan blades"
+        },
+        {
+          "check": "source supports: (a) catch-all limited to parts that can cause injury",
+          "pass": true,
+          "sourcePhrase": "similar moving parts that can cause injury"
+        },
+        {
+          "check": "source supports: (b) seven-foot exemption",
+          "pass": true,
+          "sourcePhrase": "Guards shall not be required where the exposed moving parts are at least seven feet away from walking or working surfaces"
+        },
+        {
+          "check": "governed summary preserves qualification: names the seven-foot exemption",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: attributes the exemption to paragraph (b)",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: attributes the duty to paragraph (a)",
+          "pass": true
+        },
+        {
+          "check": "not asserted as this record's rule: MSHA taxonomy vocabulary presented as regulatory text",
+          "pass": true,
+          "offending": []
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.451(g)(1)",
+      "inRelease": true,
+      "governedTitle": "General requirements — Fall protection",
+      "codifiedHeading": "§ 1926.451 General requirements.",
+      "recordChecksum": "5ffd58c7429b14ba66363abe21e131c2a3645ba7ffc09398ec833bf9ce9bb6b4",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-451.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (g)(1) fall protection above 10 feet",
+          "pass": true,
+          "sourcePhrase": "Each employee on a scaffold more than 10 feet (3.1 m) above a lower level shall be protected from falling to that lower level"
+        },
+        {
+          "check": "source supports: (g)(1)(i)-(vii) prescribe system by scaffold type",
+          "pass": true,
+          "sourcePhrase": "establish the types of fall protection to be provided to the employees on each type of scaffold"
+        },
+        {
+          "check": "source supports: (g)(2) covers erectors and dismantlers",
+          "pass": true,
+          "sourcePhrase": "addresses fall protection for scaffold erectors and dismantlers"
+        },
+        {
+          "check": "governed summary preserves qualification: names the more-than-10-feet threshold",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: does not claim to fix the system type",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "inRelease": true,
+      "governedTitle": "Requirements for protective systems — Protection of employees in excavations",
+      "codifiedHeading": "§ 1926.652 Requirements for protective systems.",
+      "recordChecksum": "6a827346fa01fef26ede6b5e591ddbe82306196ea8abca47da07036a90ee2e32",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-652.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) cave-in protection duty",
+          "pass": true,
+          "sourcePhrase": "Each employee in an excavation shall be protected from cave-ins by an adequate protective system"
+        },
+        {
+          "check": "source supports: (a)(1)(i) stable rock exception",
+          "pass": true,
+          "sourcePhrase": "Excavations are made entirely in stable rock"
+        },
+        {
+          "check": "source supports: (a)(1)(ii) under-5-feet exception",
+          "pass": true,
+          "sourcePhrase": "Excavations are less than 5 feet (1.52m) in depth and examination of the ground by a competent person provides no indication of a potential cave-in"
+        },
+        {
+          "check": "source supports: (a)(2) capacity to resist loads",
+          "pass": true,
+          "sourcePhrase": "Protective systems shall have the capacity to resist without failure all loads"
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the stable-rock exception",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the 5-foot exception",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the competent-person examination",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.28",
+      "inRelease": true,
+      "governedTitle": "Duty to have fall protection and falling object protection",
+      "codifiedHeading": "§ 1910.28 Duty to have fall protection and falling object protection.",
+      "recordChecksum": "328727df1602f48e203ddfa510b8b392411f52ea4d07e251fc9bd2e5976b8fb6",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-28.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (b)(11)(i) stairway landing at 4 feet",
+          "pass": true,
+          "sourcePhrase": "exposed to an unprotected side or edge of a stairway landing that is 4 feet (1.2 m) or more above a lower level is protected by a guardrail or stair rail system"
+        },
+        {
+          "check": "source supports: (b)(11)(ii) handrails, conditioned on treads and risers",
+          "pass": true,
+          "sourcePhrase": "Each flight of stairs having at least 3 treads and at least 4 risers is equipped with stair rail systems and handrails"
+        },
+        {
+          "check": "source supports: (b)(11)(iii) ship and alternating tread stairs",
+          "pass": true,
+          "sourcePhrase": "Each ship stairs and alternating tread type stairs is equipped with handrails on both sides"
+        },
+        {
+          "check": "source supports: (b)(12)(i) scaffolds are subpart L",
+          "pass": true,
+          "sourcePhrase": "Each employee on a scaffold is protected from falling in accordance 29 CFR part 1926, subpart L"
+        },
+        {
+          "check": "governed summary preserves qualification: names the tread/riser condition rather than assuming it",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: attributes the handrail rule to its paragraph",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: points stairway construction requirements to 1910.25",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.95",
+      "inRelease": true,
+      "governedTitle": "Occupational noise exposure",
+      "codifiedHeading": "§ 1910.95 Occupational noise exposure.",
+      "recordChecksum": "e5632e7e16402cc65c97acc939b08d72edf48b72140bb92ea21c4e9a4f07590a",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-95.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) Table G-16 trigger",
+          "pass": true,
+          "sourcePhrase": "Protection against the effects of noise exposure shall be provided when the sound levels exceed those shown in Table G-16"
+        },
+        {
+          "check": "source supports: (b)(1) controls first, PPE only on failure",
+          "pass": true,
+          "sourcePhrase": "feasible administrative or engineering controls shall be utilized"
+        },
+        {
+          "check": "source supports: (c)(1) hearing conservation at TWA8 85 dBA",
+          "pass": true,
+          "sourcePhrase": "whenever employee noise exposures equal or exceed an 8-hour time-weighted average sound level (TWA) of 85 decibels"
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the control hierarchy",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the 85 dBA program trigger",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the Table G-16 8-hour value",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.1200",
+      "inRelease": true,
+      "governedTitle": "Hazard communication",
+      "codifiedHeading": "§ 1910.1200 Hazard communication.",
+      "recordChecksum": "a53f33a13d3155eb6d07e8fa06099b86274c746dd2fa4658a86efbebf4e1fd63",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-1200.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (f)(6) workplace labeling duty",
+          "pass": true,
+          "sourcePhrase": "the employer shall ensure that each container of hazardous chemicals in the workplace is labeled, tagged or marked"
+        },
+        {
+          "check": "source supports: (f)(1) shipped containers fall on manufacturer/importer/distributor",
+          "pass": true,
+          "sourcePhrase": "The chemical manufacturer, importer, or distributor shall ensure that each container of hazardous chemicals leaving the workplace is labeled"
+        },
+        {
+          "check": "source supports: (f)(7) signs and placards in lieu of labels",
+          "pass": true,
+          "sourcePhrase": "signs, placards, process sheets, batch tickets, operating procedures, or other such written materials in lieu of affixing"
+        },
+        {
+          "check": "governed summary preserves qualification: identifies (f)(6) as the workplace-labeling paragraph",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: distinguishes the shipped-container duty",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the (f)(7)/(f)(8) alternatives",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.1153",
+      "inRelease": true,
+      "governedTitle": "Respirable crystalline silica",
+      "codifiedHeading": "§ 1926.1153 Respirable crystalline silica.",
+      "recordChecksum": "a92e4e554f2ef66c1837c32e18d6e930832d378dc03d81a3caa140263be874ef",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-1153.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (c)(1) Table 1 duty",
+          "pass": true,
+          "sourcePhrase": "the employer shall fully and properly implement the engineering controls, work practices, and respiratory protection specified for the task on Table 1"
+        },
+        {
+          "check": "source supports: Table 1 water-delivery control",
+          "pass": true,
+          "sourcePhrase": "Use saw equipped with integrated water delivery system that continuously feeds water to the blade"
+        },
+        {
+          "check": "source supports: (d)(1) PEL where Table 1 is not followed",
+          "pass": true,
+          "sourcePhrase": "in excess of 50"
+        },
+        {
+          "check": "governed summary preserves qualification: names the integrated water delivery control",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names both the stationary and handheld Table 1 entries",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the (d) alternative route",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 56.14132",
+      "inRelease": true,
+      "governedTitle": "Horns and backup alarms",
+      "codifiedHeading": "§ 56.14132 Horns and backup alarms.",
+      "recordChecksum": "d714d7a3a9ff14ef1cddbece591562abc8437657ac7f7f7993c5f1fb4808353c",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-56-14132.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) horns maintained functional",
+          "pass": true,
+          "sourcePhrase": "Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature shall be maintained in functional condition"
+        },
+        {
+          "check": "source supports: (b)(1) obstructed-view trigger",
+          "pass": true,
+          "sourcePhrase": "When the operator has an obstructed view to the rear"
+        },
+        {
+          "check": "source supports: (b)(1)(iv) an observer is a permitted alternative",
+          "pass": true,
+          "sourcePhrase": "An observer to signal when it is safe to back up"
+        },
+        {
+          "check": "source supports: (c) rail equipment excluded",
+          "pass": true,
+          "sourcePhrase": "This standard does not apply to rail equipment"
+        },
+        {
+          "check": "governed summary preserves qualification: names the obstructed-view condition that triggers (b)(1)",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: keeps (a) horn maintenance distinct from (b)(1) reversing",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the observer alternative",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.22(a)",
+      "inRelease": true,
+      "governedTitle": "General requirements — Surface conditions",
+      "codifiedHeading": "§ 1910.22 General requirements.",
+      "recordChecksum": "02516502072c4d6149cd29d518a99b714f8204be2fdbc5369da23516921ce4aa",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-22.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) clean, orderly, sanitary",
+          "pass": true,
+          "sourcePhrase": "are kept in a clean, orderly, and sanitary condition"
+        },
+        {
+          "check": "source supports: (a)(2) dry condition and drainage, to the extent feasible",
+          "pass": true,
+          "sourcePhrase": "to the extent feasible, in a dry condition"
+        },
+        {
+          "check": "source supports: (a)(3) free of listed hazards",
+          "pass": true,
+          "sourcePhrase": "maintained free of hazards such as sharp or protruding objects, loose boards, corrosion, leaks, spills, snow, and ice"
+        },
+        {
+          "check": "governed summary preserves qualification: restores the (a)(2) drainage duty the prior text dropped",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the \"to the extent feasible\" qualifier",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.303(b)(1)",
+      "inRelease": true,
+      "governedTitle": "Examination, installation, and use of equipment — Examination",
+      "codifiedHeading": "§ 1910.303 General.",
+      "recordChecksum": "d39c7beeda19d1b7227a97744f37f69d2d155c131a47affc7662d82fb60ce877",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-303.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (b)(1) free from recognized hazards",
+          "pass": true,
+          "sourcePhrase": "Electric equipment shall be free from recognized hazards that are likely to cause death or serious physical harm to employees"
+        },
+        {
+          "check": "source supports: (b)(1)(i) suitability",
+          "pass": true,
+          "sourcePhrase": "Suitability for installation and use in conformity with the provisions of this subpart"
+        },
+        {
+          "check": "source supports: (b)(1)(ii) mechanical strength and durability",
+          "pass": true,
+          "sourcePhrase": "Mechanical strength and durability"
+        },
+        {
+          "check": "governed summary preserves qualification: is titled as the Examination paragraph",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: distinguishes itself from the guarding rule at (g)(2)(i)",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.146",
+      "inRelease": true,
+      "governedTitle": "Permit-required confined spaces",
+      "codifiedHeading": "§ 1910.146 Permit-required confined spaces.",
+      "recordChecksum": "64e95d964d97871c19380657d3b9418c53125c264052aefcc66c55791514791e",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-146.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (c)(1) evaluate the workplace",
+          "pass": true,
+          "sourcePhrase": "The employer shall evaluate the workplace to determine if any spaces are permit- required confined spaces"
+        },
+        {
+          "check": "source supports: (c)(2) inform by danger signs",
+          "pass": true,
+          "sourcePhrase": "the employer shall inform exposed employees, by posting danger signs or by any other equally effective means"
+        },
+        {
+          "check": "source supports: (c)(4) written permit space program",
+          "pass": true,
+          "sourcePhrase": "the employer shall develop and implement a written permit space program"
+        },
+        {
+          "check": "source supports: (a) construction/agriculture/shipyard excluded",
+          "pass": true,
+          "sourcePhrase": "This section does not apply to agriculture, to construction, or to shipyard employment"
+        },
+        {
+          "check": "governed summary preserves qualification: states the (c)(4) written-program duty rather than listing topics",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the construction exclusion",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names subpart AA for construction confined spaces",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.178(p)(1)",
+      "inRelease": true,
+      "governedTitle": "Powered industrial trucks - Operation of the truck: removing unsafe or defective trucks from service",
+      "codifiedHeading": "§ 1910.178 Powered industrial trucks.",
+      "recordChecksum": "c45d1cc6c23d6987698b4cebea21ce7994fc5df0c3bf9aa81a70f08c3c36d7ae",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-178.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (p)(1) out-of-service duty",
+          "pass": true,
+          "sourcePhrase": "the truck shall be taken out of service until it has been restored to safe operating condition"
+        },
+        {
+          "check": "source supports: (p)(2) no fuelling with engine running",
+          "pass": true,
+          "sourcePhrase": "Fuel tanks shall not be filled while the engine is running"
+        },
+        {
+          "check": "source supports: (p)(4) no operation with a fuel leak",
+          "pass": true,
+          "sourcePhrase": "No truck shall be operated with a leak in the fuel system until the leak has been corrected"
+        },
+        {
+          "check": "governed summary preserves qualification: states the out-of-service duty",
+          "pass": true
+        },
+        {
+          "check": "not asserted as this record's rule: non-regulatory hedging language",
+          "pass": true,
+          "offending": []
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 56.12016",
+      "inRelease": true,
+      "governedTitle": "Work on electrically powered equipment",
+      "codifiedHeading": "§ 56.12016 Work on electrically-powered equipment.",
+      "recordChecksum": "e14451d4818e95877d9a49d458ec87441832189a318e7ddc3f1be64fb45979a1",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-56-12016.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: deenergize before mechanical work",
+          "pass": true,
+          "sourcePhrase": "Electrically powered equipment shall be deenergized before mechanical work is done on such equipment"
+        },
+        {
+          "check": "source supports: lock out or prevent energization",
+          "pass": true,
+          "sourcePhrase": "Power switches shall be locked out or other measures taken which shall prevent the equipment from being energized"
+        },
+        {
+          "check": "source supports: signed warning notices at the power switch",
+          "pass": true,
+          "sourcePhrase": "Suitable warning notices shall be posted at the power switch and signed by the individuals who are to do the work"
+        },
+        {
+          "check": "source supports: removal restricted to installers or authorized personnel",
+          "pass": true,
+          "sourcePhrase": "removed only by the persons who installed them or by authorized personnel"
+        },
+        {
+          "check": "governed summary preserves qualification: states the signed warning-notice duty",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: states the lock-removal restriction",
+          "pass": true
+        },
+        {
+          "check": "not asserted as this record's rule: hedge not present in the rule",
+          "pass": true,
+          "offending": []
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "inRelease": true,
+      "governedTitle": "Machine guarding - types of guarding methods",
+      "codifiedHeading": "§ 1910.212 General requirements for all machines.",
+      "recordChecksum": "96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-212.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) guarding methods required",
+          "pass": true,
+          "sourcePhrase": "One or more methods of machine guarding shall be provided to protect the operator and other employees in the machine area"
+        },
+        {
+          "check": "source supports: (a)(1) examples of guarding methods",
+          "pass": true,
+          "sourcePhrase": "barrier guards, two-hand tripping devices, electronic safety devices"
+        },
+        {
+          "check": "source supports: (a)(2) guard must not itself be a hazard",
+          "pass": true,
+          "sourcePhrase": "The guard shall be such that it does not offer an accident hazard in itself"
+        },
+        {
+          "check": "governed summary preserves qualification: names the guarding-method examples",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: states the (a)(2) no-hazard-in-itself rule",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.52",
+      "inRelease": true,
+      "governedTitle": "Occupational noise exposure",
+      "codifiedHeading": "§ 1926.52 Occupational noise exposure.",
+      "recordChecksum": "dff7561a7aee2e9def9593a0d690011b1145516ad926211919d08643e34f9e0a",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-52.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) Table D-2 trigger",
+          "pass": true,
+          "sourcePhrase": "Protection against the effects of noise exposure shall be provided when the sound levels exceed those shown in Table D-2"
+        },
+        {
+          "check": "source supports: (b) controls, PPE on failure",
+          "pass": true,
+          "sourcePhrase": "feasible administrative or engineering controls shall be utilized"
+        },
+        {
+          "check": "source supports: (d)(1) hearing conservation program",
+          "pass": true,
+          "sourcePhrase": "a continuing, effective hearing conservation program shall be administered"
+        },
+        {
+          "check": "governed summary preserves qualification: names Table D-2",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the 8-hour 90 dBA value",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.59",
+      "inRelease": true,
+      "governedTitle": "Hazard Communication",
+      "codifiedHeading": "§ 1926.59 Hazard communication.",
+      "recordChecksum": "d01386e464ef647e66fc9e6c53e8d3766e62cadd4e450e3e7bcb2db5efd92bf1",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-59.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: incorporation by reference of 1910.1200",
+          "pass": true,
+          "sourcePhrase": "The requirements applicable to construction work under this section are identical to those set forth at"
+        },
+        {
+          "check": "governed summary preserves qualification: states that it incorporates 1910.1200 rather than restating a separate rule",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 47.41(a)",
+      "inRelease": true,
+      "governedTitle": "Requirement for container labels",
+      "codifiedHeading": "§ 47.41 Requirement for container labels.",
+      "recordChecksum": "0705c5304b046aa62bb1f64b652e209d03788760af2088d3feaa70944fc3e6ae",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-47-41.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) every container labeled",
+          "pass": true,
+          "sourcePhrase": "The operator must ensure that each container of a hazardous chemical has a label"
+        },
+        {
+          "check": "source supports: (a)(1) replace missing or unreadable labels",
+          "pass": true,
+          "sourcePhrase": "The operator must replace a container label immediately if it is missing or if the hazard information on the label is unreadable"
+        },
+        {
+          "check": "source supports: (a)(2) must not remove or deface labels",
+          "pass": true,
+          "sourcePhrase": "The operator must not remove or deface existing labels on containers of hazardous chemicals"
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 62.120",
+      "inRelease": true,
+      "governedTitle": "Action level",
+      "codifiedHeading": "§ 62.120 Action level.",
+      "recordChecksum": "ff19c04db0758fc4e2efd9b788f6e64be8e7c3657173ca115c153d8de5888063",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-62-120.xml",
+        "ecfr-62-101.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: enrollment duty at the action level",
+          "pass": true,
+          "sourcePhrase": "the mine operator must enroll the miner in a hearing conservation program that complies with"
+        },
+        {
+          "check": "source supports: action level defined at 62.101 as TWA8 85 dBA / 50% dose",
+          "pass": true,
+          "sourcePhrase": "An 8-hour time-weighted average sound level (TWA8) of 85 dBA, or equivalently a dose of 50%"
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 62.130",
+      "inRelease": true,
+      "governedTitle": "Permissible exposure level",
+      "codifiedHeading": "§ 62.130 Permissible exposure level.",
+      "recordChecksum": "11a1fcb6f70c8041f9648788fbc9f27f6ca65ee744b92431f6a1fe3075845007",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-62-130.xml",
+        "ecfr-62-101.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) controls and hearing conservation above the PEL",
+          "pass": true,
+          "sourcePhrase": "must use all feasible engineering and administrative controls to reduce the miner"
+        },
+        {
+          "check": "source supports: (c) 115 dBA ceiling",
+          "pass": true,
+          "sourcePhrase": "no miner is exposed at any time to sound levels exceeding 115 dBA"
+        },
+        {
+          "check": "source supports: PEL defined at 62.101 as TWA8 90 dBA / 100% dose",
+          "pass": true,
+          "sourcePhrase": "A TWA8 of 90 dBA or equivalently a dose of 100%"
+        },
+        {
+          "check": "governed summary preserves qualification: names the 115 dBA ceiling",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "pass": 150,
+    "fail": 0
+  }
+}

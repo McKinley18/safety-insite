@@ -1,0 +1,158 @@
+{
+  "releaseId": "federal-core-2026-08-20.5",
+  "families": {
+    "machine guarding": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1926.300(b)(2)"
+      ]
+    },
+    "hazardous energy": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.147"
+      ]
+    },
+    "hazardous energy (mining)": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "30 CFR 56.12016"
+      ]
+    },
+    "electrical": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.303",
+        "29 CFR 1926.416(a)(1)"
+      ]
+    },
+    "powered industrial trucks": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.178(p)(1)"
+      ]
+    },
+    "fall protection": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.28",
+        "29 CFR 1926.501"
+      ]
+    },
+    "emergency egress": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.36",
+        "29 CFR 1926.34(a)"
+      ]
+    },
+    "scaffolds": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    "excavation": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1926.652(a)(1)"
+      ]
+    },
+    "silica": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1926.1153"
+      ]
+    },
+    "machine guarding (mining)": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "30 CFR 56.14107(a)"
+      ]
+    },
+    "mobile equipment (mining)": {
+      "expected": 1,
+      "approved": 0,
+      "unapproved": 0,
+      "missing": 1,
+      "citations": [
+        "30 CFR 56.14132(a)"
+      ]
+    },
+    "noise": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.95",
+        "29 CFR 1926.52"
+      ]
+    },
+    "hazard communication": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "29 CFR 1910.1200",
+        "29 CFR 1926.59"
+      ]
+    },
+    "noise (mining)": {
+      "expected": 2,
+      "approved": 2,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "30 CFR 62.120",
+        "30 CFR 62.130"
+      ]
+    },
+    "hazard communication (mining)": {
+      "expected": 1,
+      "approved": 1,
+      "unapproved": 0,
+      "missing": 0,
+      "citations": [
+        "30 CFR 47.41(a)"
+      ]
+    }
+  },
+  "emptiedFamilies": 1,
+  "queriesReturningZero": 0
+}

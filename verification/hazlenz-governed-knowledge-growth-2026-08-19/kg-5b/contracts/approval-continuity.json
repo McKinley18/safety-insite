@@ -1,0 +1,27 @@
+{
+  "releaseId": "federal-core-2026-07-30.1",
+  "recordCount": 35,
+  "manifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+  "identityContinuityWithKg5a": {
+    "recordChecksumMoved": 0,
+    "substantiveContentDigestMoved": 0,
+    "sourceIdentityDigestMoved": 0,
+    "approvalDigestMoved": 0,
+    "manifestPayloadMoved": 0,
+    "approvalPayloadMoved": 0
+  },
+  "reviewPacket": {
+    "decisions": {
+      "REATTEST": 27,
+      "NEW_REVIEW_REQUIRED": 8
+    },
+    "mismatches": 0
+  },
+  "stage1ApprovalScope": {
+    "approvedRecords": 27,
+    "totalRecords": 35,
+    "unapprovedRecords": 8,
+    "activationEligibleWithPartialApproval": true,
+    "gateThresholdChanged": false
+  }
+}

@@ -1,0 +1,367 @@
+=== test:approval-contract exit=0 ===
+ok    DB-15 editing source_url and retrieval_date on the live row reports NO drift — the KG-3E observation, now an intended and tested property
+ok    DB-16 a live granularity edit is reported as BECOME_INEFFECTIVE on the substantive axis — the change the manifest checksum cannot see
+ok    DB-17 a live source-registry-key edit is attributed to the source-identity axis, not to the regulatory-content axis
+
+57 passed, 0 failed
+=== test:kg3e-citation-granularity exit=1 ===
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+=== test:kg3f-56-14132-predicate exit=0 ===
+   candidates: (none)
+   decisions : (none)
+ok    G: generic mobile-equipment activity emits no 56.14132 citation at all
+
+16 passed, 0 failed
+=== test:kg3f-ranking-adversarial exit=1 ===
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+=== test:kg3f-shadow-invariance exit=0 ===
+
+wrote 4 shadow reports to /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f
+layout databases retained for inspection: test_kg3f_shadow_original, test_kg3f_shadow_citation_desc, test_kg3f_shadow_child_before_parent, test_kg3f_shadow_random_seed_2
+
+7 passed, 0 failed
+=== test:kg3e-citation-granularity exit=1 ===
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+=== test:kg3f-ranking-adversarial exit=0 ===
+   -> 29 CFR 1910.303(b)(1)(37), 29 CFR 1910.178(p)(1)(25), 29 CFR 1910.132(a)(21), 29 CFR 1910.146(19), 29 CFR 1910.147(19)
+ok    GRA-2: '29 CFR 1910.303(b)(1)' outranks '29 CFR 1910.303' (idx 0 vs -1)
+ok    GRA-2: emitted order is non-increasing in score — the tie-break never overrides relevance (37 >= 25 >= 21 >= 19 >= 19)
+ok    GRA-2: keyword contribution stays within the +40 cap for records with no title evidence
+
+54 passed, 0 failed
+=== test:kg3f-retrieval-determinism exit=0 ===
+ok    HC-02 identical under 'random-seed-3' vs 'original' (membership AND order)
+ok    ME-01 identical under 'random-seed-3' vs 'original' (membership AND order)
+ok    ME-02 identical under 'random-seed-3' vs 'original' (membership AND order)
+
+170 passed, 0 failed
+layout databases retained for inspection: test_kg3f_det_original, test_kg3f_det_citation_asc, test_kg3f_det_citation_desc, test_kg3f_det_parent_before_child, test_kg3f_det_child_before_parent, test_kg3f_det_reverse_insertion, test_kg3f_det_random_seed_1, test_kg3f_det_random_seed_2, test_kg3f_det_random_seed_3
+=== test:kg4a-cutover-contract exit=0 ===
+
+--- Part 7 — SHADOW is customer-identical to LEGACY
+ok    HARD: SHADOW matches LEGACY on all 21 applicability x backing combinations (got 21)
+ok    every SHADOW row reports SHADOW_MODE_CUSTOMER_UNAFFECTED regardless of what the resolver found
+
+146 passed, 0 failed
+=== test:kg4a-governed-resolution exit=0 ===
+ok    HARD: source corpus still has no active release
+ok    HARD: no KG-4A fixture decision leaked into the source corpus
+
+owned database 'test_kg4a_resolution_run' dropped
+
+99 passed, 0 failed
+=== test:kg4a-provenance-pinning exit=0 ===
+ok    an allowlisted principal claiming the genuinely active release records it
+ok    a governed principal whose analysis consumed nothing records NULL
+ok    HARD: a snapshot claiming two releases records NULL — pinning was violated
+ok    HARD: SHADOW records NULL even for an allowlisted principal with a truthful claim
+
+53 passed, 0 failed
+=== test:kg4a-default-off exit=0 ===
+ok    with an explicit mode AND allowlist the context IS created
+ok    the enabled context pins the active release — governed data was genuinely reachable all along
+ok    HARD: the enabled seam DOES return verified governed content for 1910.212(a)(1) — so Part 3's silence is a real default-off, not an empty corpus
+ok    HARD: the SAME user, the SAME database, the SAME approved citation — with default config there is no context at all
+
+51 passed, 0 failed
+=== test:kg3e-citation-granularity exit=0 ===
+ok    no record carries synthesized placeholder provenance (found 0)
+ok    every EMITTED citation with a governed record records a source_url a reviewer can compare against (found 0 without)
+note  8 non-emitted records remain unsourced and are deliberately deferred (KG-3D DEFER, carried forward): 1910.219, 29 CFR 1910.132(a), 29 CFR 1926.602(a)(9)(ii), 29 CFR 1926.95(a), 30 CFR 56.14105, 30 CFR 56.15006, 30 CFR 56.9100(a), 30 CFR 57.14107(a)
+
+48 passed, 0 failed
+=== test:kg4b-shadow-contract exit=0 ===
+ok    HARD: msha and MSHA/mining agree
+ok    a genuine regime disagreement IS still detected
+ok    HARD: an unestablished regime on either side is NOT a disagreement
+ok    two unknowns are not a disagreement
+
+123 passed, 0 failed
+=== test:kg4b-shadow-adversarial exit=0 ===
+ok    HARD: no KG-4B fixture decision leaked into the source corpus
+ok    HARD: the source schema was never renamed
+
+owned database 'test_kg4b_adversarial_run' dropped
+
+84 passed, 0 failed
+=== test:kg4b-shadow-determinism exit=1 ===
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'shadow-events.jsonl'
+}
+=== test:kg4b-privacy-review exit=1 ===
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'shadow-events.jsonl'
+}
+=== test:kg4c-production-shadow-contract exit=0 ===
+    14  12-provenance
+    35  18-unobserved
+    64  15-metrics
+    46  16-alerts
+
+kg4c-production-shadow-contract: 438 passed, 0 failed
+=== test:kg4c-disabled-deployment exit=0 ===
+{"schemaVersion":"kg4b.shadow-comparison.v1","event":"governed_shadow_comparison","observedAt":"2026-08-21T16:53:02.571Z","correlationId":"ad767874-5639-4f95-9527-e4dba178a0aa","findingKey":"f1","eventKey":"e93f53764ced8f91cbfeb861eb452197","mode":"SHADOW","releaseId":null,"releaseManifestChecksum":null,"requestedCitation":"29 CFR 1926.501","legacyCitation":"29 CFR 1926.501","governedResolvedCitation":"29 CFR 1926.501","applicability":"SUPPORTED","legacyBackingState":"UNKNOWN","governedBackingState":"NO_ACTIVE_RELEASE","approvalContractVersion":null,"approvalDigest":null,"fallbackState":"LEGACY_TEXT_UNVERIFIED","mismatch":"RESOLVER_FAILURE","dimensions":{"citationDiffers":false,"granularityDiffers":false,"contentDiffers":false,"backingDiffers":true,"applicabilityUncertain":false,"jurisdictionDiffers":false,"orderingDiffers":false,"resolverFailed":true,"integrityFailed":false,"provenanceDiffers":false},"severity":"REVIEW","rootCause":"RESOLVER_FAILURE","resolverHealth":"NO_ACTIVE_RELEASE","legacyTextDigest":null,"governedTextDigest":null,"hazardFamily":null,"jurisdiction":null,"latencyMs":0,"customerOutputUnchanged":true}
+{"event":"governed_resolution","mode":"SHADOW","configuredMode":"SHADOW","enablementReason":"ACCOUNT_ALLOWLISTED","releaseId":null,"requestedCitation":"29 CFR 1926.501","resolvedCitation":"29 CFR 1926.501","granularity":"NONE","applicability":"SUPPORTED","backing":"RESOLVER_UNAVAILABLE","deliveryState":"LEGACY_TEXT_UNVERIFIED","fallbackReason":"SHADOW_MODE_CUSTOMER_UNAFFECTED","failureClass":"NONE","resolverHealth":"QUERY_FAILED","resolverSucceeded":false,"governedProvenanceEligible":false,"analysisTraceId":null,"durationMs":0}
+{"event":"governed_shadow_comparison","mode":"SHADOW","releaseId":null,"citation":"29 CFR 1926.501","applicability":"SUPPORTED","backing":"RESOLVER_UNAVAILABLE","mismatch":"RESOLVER_FAILURE","legacyTextDigest":null,"governedTextDigest":null,"customerOutputUnchanged":true,"analysisTraceId":null,"durationMs":0}
+{"schemaVersion":"kg4b.shadow-comparison.v1","event":"governed_shadow_comparison","observedAt":"2026-08-21T16:53:02.579Z","correlationId":"c3fd94a2-66bc-49bb-a4d4-b9d808127998","findingKey":"f1","eventKey":"6d7916addb8fda60980503a84e4fc2d9","mode":"SHADOW","releaseId":null,"releaseManifestChecksum":null,"requestedCitation":"29 CFR 1926.501","legacyCitation":"29 CFR 1926.501","governedResolvedCitation":"29 CFR 1926.501","applicability":"SUPPORTED","legacyBackingState":"UNKNOWN","governedBackingState":"RESOLVER_UNAVAILABLE","approvalContractVersion":null,"approvalDigest":null,"fallbackState":"LEGACY_TEXT_UNVERIFIED","mismatch":"RESOLVER_FAILURE","dimensions":{"citationDiffers":false,"granularityDiffers":false,"contentDiffers":false,"backingDiffers":true,"applicabilityUncertain":false,"jurisdictionDiffers":false,"orderingDiffers":false,"resolverFailed":true,"integrityFailed":false,"provenanceDiffers":false},"severity":"REVIEW","rootCause":"RESOLVER_FAILURE","resolverHealth":"QUERY_FAILED","legacyTextDigest":null,"governedTextDigest":null,"hazardFamily":null,"jurisdiction":null,"latencyMs":0,"customerOutputUnchanged":true}
+
+kg4c-disabled-deployment: 80 passed, 0 failed
+=== test:kg4b-shadow-determinism exit=0 ===
+--- Database ownership — layouts dropped, source unchanged
+ok    HARD: source record count unchanged (35)
+ok    HARD: the source's active release is unchanged (federal-core-2026-07-30.1)
+      7 layout databases dropped
+
+18 passed, 0 failed
+=== test:kg4b-privacy-review exit=0 ===
+
+--- Phase 11 — the corpus is still analytically useful without the content
+ok    54 events carry both digests, so content equality is still decidable
+ok    HARD: 54/54 agree by digest — equality is provable without ever storing the text
+
+26 passed, 0 failed
+=== test:kg4d-orchestration exit=0 ===
+{"schemaVersion":"kg4b.shadow-comparison.v1","event":"governed_shadow_comparison","observedAt":"2026-08-21T16:53:31.811Z","correlationId":"e351728c-440f-4fd9-b61d-b60def8dbd19","findingKey":"finding-1","eventKey":"b3765e1eac7e39ac47bd217da395c02e","mode":"SHADOW","releaseId":"kg4d-release.1","releaseManifestChecksum":"abc123","requestedCitation":"29 CFR 1926.501","legacyCitation":"29 CFR 1926.501","governedResolvedCitation":"29 CFR 1926.501","applicability":"SUPPORTED","legacyBackingState":"HAZLENZ_AUTHORED","governedBackingState":"NOT_IN_RELEASE","approvalContractVersion":null,"approvalDigest":null,"fallbackState":"LEGACY_TEXT_UNVERIFIED","mismatch":"GOVERNED_MISSING","dimensions":{"citationDiffers":false,"granularityDiffers":false,"contentDiffers":false,"backingDiffers":true,"applicabilityUncertain":false,"jurisdictionDiffers":false,"orderingDiffers":false,"resolverFailed":false,"integrityFailed":false,"provenanceDiffers":false},"severity":"INFORMATIONAL","rootCause":"EXPECTED_FALLBACK","resolverHealth":"OK","legacyTextDigest":"d12568f1b88e61870a96c058cf77b2f9","governedTextDigest":null,"hazardFamily":"fall protection","jurisdiction":"construction","latencyMs":0,"customerOutputUnchanged":true}
+{"event":"governed_resolution","mode":"SHADOW","configuredMode":"SHADOW","enablementReason":"ACCOUNT_ALLOWLISTED","releaseId":"kg4d-release.1","requestedCitation":"29 CFR 1926.501","resolvedCitation":"29 CFR 1926.501","granularity":"NONE","applicability":"SUPPORTED","backing":"NOT_IN_RELEASE","deliveryState":"LEGACY_TEXT_UNVERIFIED","fallbackReason":"SHADOW_MODE_CUSTOMER_UNAFFECTED","failureClass":"NONE","resolverHealth":"OK","resolverSucceeded":true,"governedProvenanceEligible":false,"analysisTraceId":null,"durationMs":0}
+{"event":"governed_shadow_comparison","mode":"SHADOW","releaseId":"kg4d-release.1","citation":"29 CFR 1926.501","applicability":"SUPPORTED","backing":"NOT_IN_RELEASE","mismatch":"MISSING_GOVERNED_RECORD","legacyTextDigest":"d12568f1b88e61870a96c058cf77b2f9","governedTextDigest":null,"customerOutputUnchanged":true,"analysisTraceId":null,"durationMs":0}
+{"schemaVersion":"kg4b.shadow-comparison.v1","event":"governed_shadow_comparison","observedAt":"2026-08-21T16:53:31.811Z","correlationId":"ced3ebfd-7882-4168-98b9-37837d2be70d","findingKey":"finding-1","eventKey":"9eece7aa13faabc14d175ff196e5c038","mode":"SHADOW","releaseId":"kg4d-release.1","releaseManifestChecksum":"abc123","requestedCitation":"29 CFR 1926.501","legacyCitation":"29 CFR 1926.501","governedResolvedCitation":"29 CFR 1926.501","applicability":"SUPPORTED","legacyBackingState":"HAZLENZ_AUTHORED","governedBackingState":"NOT_IN_RELEASE","approvalContractVersion":null,"approvalDigest":null,"fallbackState":"LEGACY_TEXT_UNVERIFIED","mismatch":"GOVERNED_MISSING","dimensions":{"citationDiffers":false,"granularityDiffers":false,"contentDiffers":false,"backingDiffers":true,"applicabilityUncertain":false,"jurisdictionDiffers":false,"orderingDiffers":false,"resolverFailed":false,"integrityFailed":false,"provenanceDiffers":false},"severity":"INFORMATIONAL","rootCause":"EXPECTED_FALLBACK","resolverHealth":"OK","legacyTextDigest":"d12568f1b88e61870a96c058cf77b2f9","governedTextDigest":null,"hazardFamily":"fall protection","jurisdiction":"construction","latencyMs":0,"customerOutputUnchanged":true}
+
+kg4d-orchestration: 151 passed, 0 failed
+=== test:kg4d-default-off exit=1 ===
+    GUARDED        test-release-integrity-and-approval.ts
+    GUARDED        test-reviewer-approval.ts
+    GUARDED        test-standards-backing-contract.ts
+
+kg4d-default-off: 118 passed, 1 failed
+  FAIL  every mutating suite is guarded or self-contained (unprotected: regulatory-release.ts)
+=== test:kg4e-report-field-exclusion exit=1 ===
+
+kg4e-report-field-exclusion: 0 passed, 1 failed
+  FAIL  real frozen report snapshots exist to attack (0)
+=== test:kg4e-report-provenance exit=1 ===
+  ok  HARD: no finding or analysis inside any frozen report snapshot names a governed release (0)
+  ok  HARD: no report's knowledgeProvenance names a knowledge release (0 of 0)
+  FAIL  exactly one governed release is ACTIVE (none) -- NULL provenance below is a decision, not an absence
+  FAIL  approved governed content exists (0 approvals)
+  FAIL  generated report versions exist (0)
+  FAIL  TELEMETRY file not found: 
+=== test:kg4e-telemetry-privacy-v2 exit=1 ===
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:95:10)
+=== test:standards-backing-contract exit=1 ===
+
+  REFUSED BEFORE MUTATION [UNCLAIMED_DATABASE] database=test_kg5b_regression_20260821: This database carries no ownership marker, so it may be an existing evidence corpus. Create your own database and set KG_TEST_DB_INITIALIZE_OWNERSHIP=test_kg5b_regression_20260821 (naming it exactly) to claim it.
+  No mutation was attempted.
+=== test:standards-backing-contract exit=0 ===
+ok  After rollback the resolver returns A's original approved content — content, not just a pointer.
+ok  Release B is preserved historically and still resolves its own approved version.
+
+PASSED 35/35 checks.
+NOTE (Phase 20): approvals above are TEST FIXTURES created through the real KG-3B review mechanism. They prove the contract, not that any real record was substantively reviewed.
+=== test:kg4e-report-field-exclusion exit=0 ===
+  ok  every finding in the frozen snapshot carries NULL provenance (SHADOW obligation, at report time)
+  ok  the generator is deterministic once CreationDate/ModDate/ID are normalised -- so an inequality below is the poison
+  ok  HARD: 41/41 reports are BYTE-IDENTICAL after poisoning with 38 governed/shadow/telemetry fields at every object depth
+  ok  the canary had at least one finding to mutate (1)
+  ok  CANARY: mutating a field the renderer DOES read changes the PDF -- the byte comparison is live
+  ok  CANARY: changing the site name changes the PDF (cover, summary and running header are live)
+=== test:kg4e-report-provenance exit=1 ===
+  ok  generated report versions exist (41)
+  ok  every frozen report snapshot CARRIES the provenance column (41/41) -- the field is present and NULL, not missing
+  ok  every frozen report snapshot carries a knowledgeProvenance block (41/41)
+  ok  HARD: no finding or analysis inside any frozen report snapshot names a governed release (0)
+  ok  HARD: no report's knowledgeProvenance names a knowledge release (0 of 41)
+  FAIL  TELEMETRY file not found: 
+=== test:kg4e-telemetry-privacy-v2 exit=1 ===
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:95:10)
+=== test:kg4e-telemetry-privacy-v2 exit=0 ===
+events                     : 48
+pass the v2 privacy guard  : 48
+violations                 : 0
+distinct fields observed   : 35
+fields OUTSIDE v2 allowlist: 0
+canary patterns applied    : 12
+=== test:kg4e-report-provenance exit=0 ===
+  ok  mixed analysis 49122c8b [APPROVED_EXACT+APPROVED_SECTION_ONLY] recorded NULL customer provenance on every comparison
+  ok  mixed analysis 49122c8b left customer output invariant
+  ok  mixed analysis 49122c8b substituted no citation
+  ok  mixed analysis 49122c8b saw APPROVED_EXACT internally and STILL delivered legacy text for every citation
+  ok  the shadow saw APPROVED_EXACT governed content 12 times -- so "no governed text in the report" is a refusal, not an empty corpus
+  ok  HARD: not one APPROVED_EXACT comparison produced GOVERNED_VERIFIED_TEXT delivery in SHADOW
+=== compare:kg4e-report-invariance exit=1 ===
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+=== compare:kg4e-report-invariance exit=0 ===
+  LOTO-01     INVARIANT  pages 5  lines 70  volatile 1 pos  compared 69 lines, 232 tokens
+  MSHA-01     INVARIANT  pages 5  lines 70  volatile 1 pos  compared 69 lines, 217 tokens
+  ELEC-01     INVARIANT  pages 5  lines 69  volatile 1 pos  compared 68 lines, 216 tokens
+  MULTI-01    INVARIANT  pages 6  lines 113  volatile 1 pos  compared 112 lines, 414 tokens
+  CONTROL-01  INVARIANT  pages 5  lines 67  volatile 1 pos  compared 66 lines, 199 tokens
+  SILICA-01   INVARIANT  pages 5  lines 69  volatile 1 pos  compared 68 lines, 219 tokens
+
+kg4e-report-invariance: PASSED (8/8 invariant, 0 forbidden terms)
+=== test:kg4c-db-ownership exit=0 ===
+  ok  re-running the same suite RECLAIMS rather than failing
+  ok  a reclaim returns the original ownership token
+  ok  the owning suite is PERMITTED to mutate its own database -- the guard is not vacuous
+  ok  a suite that requires a pristine database refuses even its own prior marker
+  ok  the marker table records suite, token and claim time
+  ok  the marker table holds exactly one ownership row
+=== test:kg4d-db-ownership-blackbox exit=0 ===
+  ok  the owned database migrates successfully
+  ok  the owned database seeds successfully
+  ok  the mutating suite SUCCEEDS on a database it explicitly owns (status 0)
+  ok  the owned run actually executed its assertions -- the guard is not vacuously refusing everything
+  ok  the owned database records the claiming suite in its marker
+  ok  the owned database DID get mutated (fixture releases present: 5)
+=== test:kg3f-shadow-invariance exit=0 ===
+ok    SI-5 every distinct expected citation remains governed (24/24)
+
+wrote 4 shadow reports to /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f
+layout databases retained for inspection: test_kg3f_shadow_original, test_kg3f_shadow_citation_desc, test_kg3f_shadow_child_before_parent, test_kg3f_shadow_random_seed_2
+
+7 passed, 0 failed
+=== test:regulatory-release-lifecycle exit=1 ===
+Resolved database target: host=localhost database=test_kg5b_mut_regulatory_release_lifecycle
+
+  REFUSED BEFORE MUTATION [OWNED_BY_ANOTHER_SUITE] database=test_kg5b_mut_regulatory_release_lifecycle: Marker names 'test:standards-backing-contract'. Create your own disposable database instead.
+  No mutation was attempted.
+=== test:governed-corpus-matrix exit=1 ===
+
+  REFUSED BEFORE MUTATION [OWNED_BY_ANOTHER_SUITE] database=test_kg5b_mut_governed_corpus_matrix: Marker names 'test:standards-backing-contract'. Create your own disposable database instead.
+  No mutation was attempted.
+=== test:kg3d-corpus-remediation exit=1 ===
+
+  REFUSED BEFORE MUTATION [OWNED_BY_ANOTHER_SUITE] database=test_kg5b_mut_kg3d_corpus_remediation: Marker names 'test:standards-backing-contract'. Create your own disposable database instead.
+  No mutation was attempted.
+=== test:release-integrity-and-approval exit=1 ===
+
+  REFUSED BEFORE MUTATION [OWNED_BY_ANOTHER_SUITE] database=test_kg5b_mut_release_integrity_and_approval: Marker names 'test:standards-backing-contract'. Create your own disposable database instead.
+  No mutation was attempted.
+=== test:reviewer-approval exit=1 ===
+
+  REFUSED BEFORE MUTATION [OWNED_BY_ANOTHER_SUITE] database=test_kg5b_mut_reviewer_approval: Marker names 'test:standards-backing-contract'. Create your own disposable database instead.
+  No mutation was attempted.
+=== test:regulatory-release-lifecycle exit=0 ===
+  ok  Pointer movements are audited (8 events).
+  ok  A successful promotion records both from- and to-release.
+  ok  The rollback is audited with its exact target.
+  ok  Refused activations are audited too (2 refusals recorded).
+  ok  Shadow interface reports release A scope (3/3 governed).
+  ok  Shadow interface exposes an unreviewed release as contributing zero governed records.
+=== test:governed-corpus-matrix exit=1 ===
+    <Buffer 0a 52 45 46 55 53 45 44 20 42 45 46 4f 52 45 20 4d 55 54 41 54 49 4f 4e 3a 20 73 74 61 6e 64 61 72 64 73 5f 6d 61 73 74 65 72 20 68 6f 6c 64 73 20 33 ... 598 more bytes>
+  ],
+  pid: 36065,
+  stdout: <Buffer >,
+  stderr: <Buffer 0a 52 45 46 55 53 45 44 20 42 45 46 4f 52 45 20 4d 55 54 41 54 49 4f 4e 3a 20 73 74 61 6e 64 61 72 64 73 5f 6d 61 73 74 65 72 20 68 6f 6c 64 73 20 33 ... 598 more bytes>
+}
+=== test:kg3d-corpus-remediation exit=1 ===
+
+--- 1910.36 provenance remediation (Phases 2, 5, 7) ---
+Error: FAILED: BASELINE: 1910.36 carried synthesized placeholder provenance in the pre-remediation release.
+    at assert (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-kg3d-corpus-remediation.ts:39:25)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-kg3d-corpus-remediation.ts:110:3)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+=== test:release-integrity-and-approval exit=1 ===
+Examples: 99 CFR 9999.1(a)
+To build a governed release against a corpus like this, use:
+  npm run release -- prepare --release-id <id>
+which constructs the release from version-controlled governed sources and writes nothing to standards_master.
+
+No mutation was attempted; the transaction was rolled back.
+=== test:reviewer-approval exit=1 ===
+    <Buffer 0a 52 45 46 55 53 45 44 20 42 45 46 4f 52 45 20 4d 55 54 41 54 49 4f 4e 3a 20 73 74 61 6e 64 61 72 64 73 5f 6d 61 73 74 65 72 20 68 6f 6c 64 73 20 33 ... 598 more bytes>
+  ],
+  pid: 36288,
+  stdout: <Buffer >,
+  stderr: <Buffer 0a 52 45 46 55 53 45 44 20 42 45 46 4f 52 45 20 4d 55 54 41 54 49 4f 4e 3a 20 73 74 61 6e 64 61 72 64 73 5f 6d 61 73 74 65 72 20 68 6f 6c 64 73 20 33 ... 598 more bytes>
+}
+=== test:governed-corpus-matrix exit=0 ===
+ok  Every emitted citation carries an explicit difference classification.
+ok  PROOF THE LIVE PATH IS UNCHANGED: hydrateStandardReferences still returns the LATEST live corpus text with no release scope and no approval condition, even while release A is active and holds an approved older version. KG-3B did not enable governed read filtering.
+
+PASSED 60/60 checks.
+NOTE (Phase 20): approvals above are TEST FIXTURES created through the real review mechanism. They prove the governed pipeline, not that any real record was substantively reviewed.
+{"matrixSummary":{"byBacking":{"CORPUS_BACKED":7,"UNAPPROVED_RECORD":16,"NOT_IN_RELEASE":1},"differences":{"IDENTICAL":7,"LEGACY_ONLY_LOSES_BACKING":16,"BOTH_MISSING":1},"citations":24},"displayContract":{"byStatus":{"APPROVED_GOVERNED_CONTENT":7,"UNAPPROVED_CONTENT":16,"CITATION_ONLY":1},"cases":[{"citation":"29 CFR 1910.212(a)(1)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.147","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.12016","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.303","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.178(p)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.28","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.36","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.451(g)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.501","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.652(a)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.1153","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.14107(a)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.14132","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.95","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.1200","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.59","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.52","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.416(a)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.300(b)(2)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.34(a)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 62.120","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 62.130","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 47.41(a)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"99 CFR 9998.2(b)","backing":"NOT_IN_RELEASE","backingStatus":"CITATION_ONLY","corpusBacked":false,"contentDisclosure":"NONE","sourceStatus":"provisional-versioned-regulation","notice":"Verified standard text is not currently available for this citation.","placeholderSource":false,"hasText":false,"textExposed":false}]}}
+=== test:kg3d-corpus-remediation exit=1 ===
+
+--- 1910.36 provenance remediation (Phases 2, 5, 7) ---
+Error: FAILED: BASELINE: 1910.36 carried synthesized placeholder provenance in the pre-remediation release.
+    at assert (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-kg3d-corpus-remediation.ts:39:25)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-kg3d-corpus-remediation.ts:110:3)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+=== test:release-integrity-and-approval exit=0 ===
+  ok  1910.212(a)(1) resolves to release A's ORIGINAL version through the governed interface (rollback restored content, not just a pointer).
+  ok  Release B is preserved historically and still verifies; nothing was destroyed.
+  ok  A KG-1 provenance value of release A still resolves A's full immutable record set after B exists.
+  ok  The exact record version an analysis would have used is still recoverable by checksum.
+  ok  Release A scope reports 36 snapshot records.
+  ok  Legacy/unscoped live rows are reported explicitly (0).
+=== test:reviewer-approval exit=0 ===
+ok  ...while the CONTENT manifest stayed identical throughout every approval and revocation.
+ok  Release B is correctly NOT activatable: it has no reviewer-approved record.
+ok  After every operation, release A still resolves the exact approved version.
+
+PASSED 62/62 checks.
+NOTE (Phase 20): every approval above is a TEST FIXTURE. It proves the workflow, not that any real regulatory record has been substantively reviewed.
+=== test:kg3d-corpus-remediation exit=1 (KG-3D remediation fixture clone) ===
+    <Buffer 5b 6c 65 67 61 63 79 2d 63 6f 72 70 75 73 2d 67 75 61 72 64 5d 20 72 6f 77 73 3d 32 37 20 67 6f 76 65 72 6e 65 64 3d 32 37 20 66 6f 72 65 69 67 6e 3d ... 783 more bytes>
+  ],
+  pid: 37247,
+  stdout: <Buffer >,
+  stderr: <Buffer 5b 6c 65 67 61 63 79 2d 63 6f 72 70 75 73 2d 67 75 61 72 64 5d 20 72 6f 77 73 3d 32 37 20 67 6f 76 65 72 6e 65 64 3d 32 37 20 66 6f 72 65 69 67 6e 3d ... 783 more bytes>
+}
+=== test:kg3d-corpus-remediation exit=0 (KG-3D fixture clone, migrations applied) ===
+    hazlenz_analyses with a non-null knowledgeReleaseId: 4
+ok  CUTOVER: release-scoped analysis provenance remains a KG-1 fixture-only column.
+
+PASSED 31/31 checks.
+NOTE: the 1910.36 approval asserted here is a REAL reviewer decision recorded against authoritative eCFR evidence (see kg-3d/1910-36-content-verification.json), not a test fixture.
+=== test:kg5b-release-construction exit=0 ===
+-------------------------------------------------------------------
+
+============================================================
+KG-5B release construction: 102/102 checks passed
+=== test:kg5b-approval-continuity exit=0 ===
+evidence -> /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5b/contracts/approval-continuity.json
+
+============================================================
+KG-5B approval continuity: 29/29 checks passed
+=== test:kg5b-operator-cli exit=0 ===
+------------------------------------------------
+
+============================================================
+KG-5B operator CLI: 65/65 checks passed

@@ -1,0 +1,409 @@
+{
+  "generatedBy": "compare-kg4e-report-invariance.ts",
+  "left": "legacy-A",
+  "right": "shadow-resolverfail",
+  "volatilityDerivedFrom": [
+    "legacy-A",
+    "legacy-B"
+  ],
+  "expect": "IDENTICAL",
+  "caseCount": 8,
+  "invariant": 8,
+  "differing": 0,
+  "forbiddenTermPatternCount": 38,
+  "forbiddenTermHits": [],
+  "cases": [
+    {
+      "case": "FALL-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        27,
+        6,
+        20,
+        7
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Fall Protection",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 234,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8610,
+        "shadow-resolverfail": 8610
+      },
+      "fileSha256": {
+        "legacy-A": "f8f980b398eac04e31abb1317afca211bd2ac72b8ed4d32ad3ba8f9e448b8519",
+        "shadow-resolverfail": "315fef78c3d9d60210e8738d7ffccfacb52e1376b45b077fad3b2d4f559e976c"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "GUARD-01",
+      "verdict": "INVARIANT",
+      "pageCount": 6,
+      "linesPerPage": [
+        10,
+        25,
+        7,
+        36,
+        22,
+        8
+      ],
+      "totalLines": 108,
+      "headingCount": 7,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Machine Guarding",
+        "Finding 2 — Hot Work",
+        "Finding 2 — Hot Work (continued)",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 107,
+      "stableDistinctTokensCompared": 314,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 11471,
+        "shadow-resolverfail": 11473
+      },
+      "fileSha256": {
+        "legacy-A": "53c4a6dbb09237344ec9b327ba345134273528533e3f40db98758439dc966b8a",
+        "shadow-resolverfail": "c473d33cb1d95af0e7c173a8e3b870daab0ad7e9cbc30a3b505a5b1d8643e88d"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "LOTO-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        23,
+        6
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Lockout Tagout",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 232,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8691,
+        "shadow-resolverfail": 8692
+      },
+      "fileSha256": {
+        "legacy-A": "43d99305d0b2d187a44343cd148569e4b8e93c92103ae7653a0129a3b8408389",
+        "shadow-resolverfail": "171c64a04022eb77c118fbe9d68e630ee1b349d7e1307d6854efe07359e28944"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "MSHA-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        7
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Powered Industrial Trucks",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 217,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8601,
+        "shadow-resolverfail": 8600
+      },
+      "fileSha256": {
+        "legacy-A": "94a36740985ddc2319204fd5d64a4dfaf8eb81e5ce6436bd000c9fd9ba0f6b4a",
+        "shadow-resolverfail": "c5394c2a5fe95360739f8b09c11c53fc37b777dbb945a4895cfc0d062b97a58c"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "ELEC-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        6
+      ],
+      "totalLines": 69,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Electrical",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 68,
+      "stableDistinctTokensCompared": 216,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8481,
+        "shadow-resolverfail": 8482
+      },
+      "fileSha256": {
+        "legacy-A": "b8e7ab36a96e514d4634d2b4e414633efabaa5ee2d969913378990563d29212d",
+        "shadow-resolverfail": "60eba9984068af4ea3330dda588c1185a853357f483ef271e34598a28953ba54"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "MULTI-01",
+      "verdict": "INVARIANT",
+      "pageCount": 6,
+      "linesPerPage": [
+        10,
+        25,
+        7,
+        36,
+        26,
+        9
+      ],
+      "totalLines": 113,
+      "headingCount": 7,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Walking Working Surfaces",
+        "Finding 2 — Hazard Communication",
+        "Finding 2 — Hazard Communication (continued)",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 112,
+      "stableDistinctTokensCompared": 414,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 11782,
+        "shadow-resolverfail": 11784
+      },
+      "fileSha256": {
+        "legacy-A": "0ed91f1c584b67e22c5e196e11e63af3d64c9c39963451727053c17072cab839",
+        "shadow-resolverfail": "08e1fea2817afc7fb1cfb30fa5e7bda2e3975d3a9820f2f24b7bdb04c0295839"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "CONTROL-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        20,
+        6
+      ],
+      "totalLines": 67,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Machine Guarding",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 66,
+      "stableDistinctTokensCompared": 199,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8362,
+        "shadow-resolverfail": 8364
+      },
+      "fileSha256": {
+        "legacy-A": "24ae581ae6c6df2db2f287deae02309750f65910aecf5c481c7aa95ee6016b92",
+        "shadow-resolverfail": "264bd54bd6eda422aad6af274b33a36203fa4755edee5e6a35cdcdc1d8701574"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    },
+    {
+      "case": "SILICA-01",
+      "verdict": "INVARIANT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        6
+      ],
+      "totalLines": 69,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Silica",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 68,
+      "stableDistinctTokensCompared": 219,
+      "structuralDifferences": [],
+      "positionalDifferences": [],
+      "tokenDifferences": [],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8533,
+        "shadow-resolverfail": 8533
+      },
+      "fileSha256": {
+        "legacy-A": "45572ba9116352200ac58e163ee68088157374a26a117c158e128a4d7d20f684",
+        "shadow-resolverfail": "872c9261f73f890516f093c81b3198beff3ca588d3b230fa3fb69b08a28a35d7"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 0
+    }
+  ],
+  "passed": true,
+  "failures": []
+}

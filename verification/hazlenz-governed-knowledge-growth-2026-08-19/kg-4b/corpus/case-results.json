@@ -1,0 +1,985 @@
+{
+  "generatedBy": "run-kg4b-shadow-corpus.ts",
+  "api": "http://127.0.0.1:4340",
+  "goldSetCases": 31,
+  "kg4bFixtures": 12,
+  "totalCases": 43,
+  "regimes": [
+    "osha_general_industry",
+    "msha",
+    "osha_construction",
+    "unknown"
+  ],
+  "shapes": [
+    "positive_hazard",
+    "negative_control",
+    "multi_hazard",
+    "controlled_state",
+    "ambiguous_unknown_jurisdiction",
+    "parent_child",
+    "alternative_compliance",
+    "evidence_unknown",
+    "overlapping_vocabulary",
+    "mixed_provenance"
+  ],
+  "invariance": {
+    "casesCompared": 43,
+    "identical": 43,
+    "shadowCarriedGovernedKeys": 0
+  },
+  "results": [
+    {
+      "caseId": "GI-MG-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - machine guarding",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.212(a)(3)(ii)",
+        "1910.212(a)(1)",
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.212(a)(3)(ii)",
+        "1910.212(a)(1)",
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-MG-02-NEG",
+      "source": "GOLD_SET",
+      "area": "General Industry - machine guarding (negative control)",
+      "regime": "osha_general_industry",
+      "shape": "negative_control",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-LOTO-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - LOTO",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.147"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.147"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-LOTO-01",
+      "source": "GOLD_SET",
+      "area": "MSHA - energy control",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.12032",
+        "30 CFR 56.12016"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.12032",
+        "30 CFR 56.12016"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-ELEC-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - electrical",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(1)",
+        "29 CFR 1910.303"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(1)",
+        "29 CFR 1910.303"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-PIT-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - powered industrial trucks",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.178(p)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.178(p)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-WWS-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - walking-working surfaces / handrail",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.28"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.28"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-EXIT-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - exit routes",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.37(a)(3)",
+        "29 CFR 1910.36"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.37(a)(3)",
+        "29 CFR 1910.36"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-EXIT-02-NEG",
+      "source": "GOLD_SET",
+      "area": "General Industry - exit routes (negative control)",
+      "regime": "osha_general_industry",
+      "shape": "negative_control",
+      "legacyCitations": [
+        "29 CFR 1910.36"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.36"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 0,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-FALL-01",
+      "source": "GOLD_SET",
+      "area": "Construction - fall protection (scaffold)",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-EXC-01",
+      "source": "GOLD_SET",
+      "area": "Construction - excavation",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-EXC-02-NEG",
+      "source": "GOLD_SET",
+      "area": "Construction - excavation (negative control)",
+      "regime": "osha_construction",
+      "shape": "negative_control",
+      "legacyCitations": [
+        "29 CFR 1926.652(a)(1)",
+        "29 CFR 1926.501"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.652(a)(1)",
+        "29 CFR 1926.501"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-SILICA-01",
+      "source": "GOLD_SET",
+      "area": "Construction - silica",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.1153"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.1153"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-GUARD-01",
+      "source": "GOLD_SET",
+      "area": "MSHA - moving machine parts",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-GUARD-02-NEG",
+      "source": "GOLD_SET",
+      "area": "MSHA - moving machine parts (negative control)",
+      "regime": "msha",
+      "shape": "negative_control",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-TRAFFIC-01",
+      "source": "GOLD_SET",
+      "area": "MSHA - traffic control",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-NOISE-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - noise",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.95"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.95"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "GI-HAZCOM-01",
+      "source": "GOLD_SET",
+      "area": "General Industry - HazCom",
+      "regime": "osha_general_industry",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.1200(f)(6)",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200(f)",
+        "29 CFR 1910.1200"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.1200(f)(6)",
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1910.1200(f)",
+        "29 CFR 1910.1200"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CROSS-01",
+      "source": "GOLD_SET",
+      "area": "Cross-regime adversarial: Construction scaffold vs GI walking surface",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-HAZCOM-01",
+      "source": "GOLD_SET",
+      "area": "Construction - hazard communication",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1926.59"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.1200(f)(1)",
+        "29 CFR 1926.59"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-NOISE-01",
+      "source": "GOLD_SET",
+      "area": "Construction - occupational noise over Table D-2",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.52"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.52"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-NOISE-02-NEG",
+      "source": "GOLD_SET",
+      "area": "Construction - noise below Table D-2 (negative control)",
+      "regime": "osha_construction",
+      "shape": "negative_control",
+      "legacyCitations": [
+        "29 CFR 1926.501"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.501"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-ELEC-01",
+      "source": "GOLD_SET",
+      "area": "Construction - electric power circuit contact",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.403(i)(2)(i)",
+        "29 CFR 1926.416(a)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.403(i)(2)(i)",
+        "29 CFR 1926.416(a)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-GUARD-01",
+      "source": "GOLD_SET",
+      "area": "Construction - moving-part guarding of equipment",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.300(b)(2)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.300(b)(2)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-EGRESS-01",
+      "source": "GOLD_SET",
+      "area": "Construction - means of egress",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.34(a)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.501",
+        "29 CFR 1926.34(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-NOISE-01",
+      "source": "GOLD_SET",
+      "area": "MSHA - noise above PEL",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 62.110",
+        "30 CFR 62.120"
+      ],
+      "shadowCitations": [
+        "30 CFR 62.110",
+        "30 CFR 62.120"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-NOISE-02",
+      "source": "GOLD_SET",
+      "area": "MSHA - noise between action level and PEL",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 62.110",
+        "30 CFR 62.120"
+      ],
+      "shadowCitations": [
+        "30 CFR 62.110",
+        "30 CFR 62.120"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-NOISE-03-NEG",
+      "source": "GOLD_SET",
+      "area": "MSHA - noise below action level (negative control)",
+      "regime": "msha",
+      "shape": "negative_control",
+      "legacyCitations": [
+        "30 CFR 62.110"
+      ],
+      "shadowCitations": [
+        "30 CFR 62.110"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "MSHA-HAZCOM-01",
+      "source": "GOLD_SET",
+      "area": "MSHA - hazard communication container label",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.20012",
+        "30 CFR 47.41(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.20012",
+        "30 CFR 47.41(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CON-LOTO-01-GAP",
+      "source": "GOLD_SET",
+      "area": "Construction - servicing without lockout (documented gap, honest empty)",
+      "regime": "osha_construction",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.416(a)(1)",
+        "29 CFR 1926.501"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.416(a)(1)",
+        "29 CFR 1926.501"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "CROSS-02",
+      "source": "GOLD_SET",
+      "area": "Cross-regime adversarial: MSHA vs GI machine guarding",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-MULTI-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Multi-hazard: guarding + energy control in one observation",
+      "regime": "osha_general_industry",
+      "shape": "multi_hazard",
+      "legacyCitations": [
+        "29 CFR 1910.212(a)(3)(ii)",
+        "29 CFR 1910.147(c)(1)",
+        "29 CFR 1910.147",
+        "1910.212(a)(1)",
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.212(a)(3)(ii)",
+        "29 CFR 1910.147(c)(1)",
+        "29 CFR 1910.147",
+        "1910.212(a)(1)",
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-MULTI-02",
+      "source": "KG4B_FIXTURE",
+      "area": "Multi-hazard: fall protection + excavation",
+      "regime": "osha_construction",
+      "shape": "multi_hazard",
+      "legacyCitations": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-CONTROLLED-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Affirmatively controlled state (safe-state control)",
+      "regime": "osha_general_industry",
+      "shape": "controlled_state",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-AMBIG-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Ambiguous observation, regime not established",
+      "regime": "unknown",
+      "shape": "ambiguous_unknown_jurisdiction",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 0,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-AMBIG-02",
+      "source": "KG4B_FIXTURE",
+      "area": "Hazard described without jurisdiction cues",
+      "regime": "unknown",
+      "shape": "ambiguous_unknown_jurisdiction",
+      "legacyCitations": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1926.300(b)(2)",
+        "30 CFR 56.14107(a)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.219(c)",
+        "29 CFR 1910.212(a)(1)",
+        "29 CFR 1926.300(b)(2)",
+        "30 CFR 56.14107(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-PARENT-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Parent/child competition: electrical section vs paragraph",
+      "regime": "osha_general_industry",
+      "shape": "parent_child",
+      "legacyCitations": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(1)",
+        "29 CFR 1910.303"
+      ],
+      "shadowCitations": [
+        "29 CFR 1910.303(g)(2)(i)",
+        "29 CFR 1910.303(g)(1)",
+        "29 CFR 1910.303"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-ALTCOMP-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Alternative compliance satisfies the rule (observer posted)",
+      "regime": "msha",
+      "shape": "alternative_compliance",
+      "legacyCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-ALTCOMP-02",
+      "source": "KG4B_FIXTURE",
+      "area": "Evidence-unknown trigger: rear visibility unstated",
+      "regime": "msha",
+      "shape": "evidence_unknown",
+      "legacyCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.9100",
+        "30 CFR 56.14132(a)",
+        "30 CFR 56.9100(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-MSHA-GUARD-01",
+      "source": "KG4B_FIXTURE",
+      "area": "MSHA moving-part guarding",
+      "regime": "msha",
+      "shape": "positive_hazard",
+      "legacyCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "shadowCitations": [
+        "30 CFR 56.14107",
+        "30 CFR 56.14107(a)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-NEG-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Negative control: fall protection in place",
+      "regime": "osha_construction",
+      "shape": "negative_control",
+      "legacyCitations": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "shadowCitations": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 2,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-OVERLAP-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Overlapping-family vocabulary: noise vs machine guarding",
+      "regime": "osha_general_industry",
+      "shape": "overlapping_vocabulary",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 1,
+      "shadowRecordCount": 0
+    },
+    {
+      "caseId": "KG4B-MIXED-01",
+      "source": "KG4B_FIXTURE",
+      "area": "Mixed governed states across findings in one observation",
+      "regime": "osha_general_industry",
+      "shape": "mixed_provenance",
+      "legacyCitations": [],
+      "shadowCitations": [],
+      "customerOutputIdentical": true,
+      "differingPaths": [],
+      "volatilePathCount": 7,
+      "shadowCarriedGovernedKeys": false,
+      "legacyStatus": 201,
+      "shadowStatus": 201,
+      "findingCount": 3,
+      "shadowRecordCount": 0
+    }
+  ]
+}

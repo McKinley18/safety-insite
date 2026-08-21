@@ -43,7 +43,7 @@ async function main() {
     await client.query(
       `INSERT INTO entitlement_grants
        (id, "userId", source, tier, status, "startsAt", "endsAt", reason)
-       VALUES ($1, $2, 'test', 'expert', 'active', now(), now() + ($3 * interval '1 hour'),
+       VALUES ($1, $2, 'test', 'pro', 'active', now(), now() + ($3 * interval '1 hour'),
                'Disposable authenticated release test')`,
       [grantId, userId, hours],
     );

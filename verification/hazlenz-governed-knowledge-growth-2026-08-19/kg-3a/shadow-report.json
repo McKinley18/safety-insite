@@ -1,0 +1,989 @@
+{
+  "goldSet": {
+    "path": "verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts",
+    "sha256": "93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3",
+    "cases": 31,
+    "applicable": 24
+  },
+  "activeRelease": "federal-core-2026-07-30.1",
+  "selectionPathFinding": "applyFindingScopedStandards() (evidence-foundation) performs citation SELECTION entirely in code with no database access. standards_master is consumed by hydrateStandardReferences() for enrichment (title/summary/sourceKey -> corpusBacked) and by ApplicableStandardsService.suggest() for the separate suggestion path. Governed release filtering of standards_master therefore CANNOT change which citations this engine asserts -- it can only strip their corpus backing.",
+  "corpus": {
+    "liveRows": 26,
+    "currentlyRetrievable": 26,
+    "governedRetrievable": 0,
+    "lostUnderGovernedFiltering": 26
+  },
+  "goldSetOutcome": {
+    "casesEvaluated": 31,
+    "correctUnderCurrentEngine": 31,
+    "correctUnderGovernedFiltering": 31,
+    "wrongRegimeMatches": 0,
+    "distinctExpectedCitations": 24,
+    "expectedCitationsGoverned": 0,
+    "expectedCitationsLosingCorpusBacking": 24
+  },
+  "lostRecords": [
+    {
+      "citation": "30 CFR 47.41(a)",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 56.12016",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 56.14105",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 56.14107(a)",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 56.15006",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 56.9100(a)",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 57.14107(a)",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 62.120",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "30 CFR 62.130",
+      "agency": "MSHA",
+      "sourceKey": "msha-30-cfr-standards",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'msha-30-cfr-standards' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "1910.146",
+      "agency": "OSHA",
+      "sourceKey": "starter-unverified:osha:1910.146",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'unreviewed': Source key 'starter-unverified:osha:1910.146' is a synthesized placeholder, not a registered source."
+    },
+    {
+      "citation": "1910.212(a)(1)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1910",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1910' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "1910.219",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1910",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1910' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "1910.22(a)",
+      "agency": "OSHA",
+      "sourceKey": "starter-unverified:osha:1910.22(a)",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'unreviewed': Source key 'starter-unverified:osha:1910.22(a)' is a synthesized placeholder, not a registered source."
+    },
+    {
+      "citation": "1910.303(b)(1)",
+      "agency": "OSHA",
+      "sourceKey": "starter-unverified:osha:1910.303(b)(1)",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'unreviewed': Source key 'starter-unverified:osha:1910.303(b)(1)' is a synthesized placeholder, not a registered source."
+    },
+    {
+      "citation": "1910.36",
+      "agency": "OSHA",
+      "sourceKey": "starter-unverified:osha:1910.36",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'unreviewed': Source key 'starter-unverified:osha:1910.36' is a synthesized placeholder, not a registered source."
+    },
+    {
+      "citation": "29 CFR 1910.132(a)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1910",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1910' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1910.147",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1910",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1910' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1910.178(p)(1)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1910",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1910' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.300(b)(2)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.34(a)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.416(a)(1)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.501",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.52",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.59",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.602(a)(9)(ii)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    },
+    {
+      "citation": "29 CFR 1926.95(a)",
+      "agency": "OSHA",
+      "sourceKey": "osha-ecfr-1926",
+      "currentlyRetrievable": true,
+      "governedRetrievable": false,
+      "reason": "review state 'mechanically_validated': Record from registered source 'osha-ecfr-1926' passed deterministic transformation checks, but no reviewer has approved it for governed regulatory use."
+    }
+  ],
+  "caseRows": [
+    {
+      "id": "GI-MG-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.212(a)(1)"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.212(a)(1)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.212(a)(1)",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.212(a)(1)"
+      ]
+    },
+    {
+      "id": "GI-MG-02-NEG",
+      "regime": "osha_general_industry",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "GI-LOTO-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.147"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.147"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.147",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.147",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.147"
+      ]
+    },
+    {
+      "id": "MSHA-LOTO-01",
+      "regime": "msha",
+      "expected": [
+        "56.12016"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 56.12016"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "56.12016",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 56.12016",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 56.12016"
+      ]
+    },
+    {
+      "id": "GI-ELEC-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.303"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.303"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.303",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.303",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.303"
+      ]
+    },
+    {
+      "id": "GI-PIT-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.178"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.178(p)(1)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.178",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.178(p)(1)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.178(p)(1)"
+      ]
+    },
+    {
+      "id": "GI-WWS-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.28"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.28"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.28",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.28",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.28"
+      ]
+    },
+    {
+      "id": "GI-EXIT-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.36"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.36"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.36",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.36",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.36"
+      ]
+    },
+    {
+      "id": "GI-EXIT-02-NEG",
+      "regime": "osha_general_industry",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "CON-FALL-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.451(g)(1)",
+        "1926.501"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.451(g)(1)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.451(g)(1)",
+          "governed": false
+        },
+        {
+          "citation": "1926.501",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.451(g)(1)"
+      ]
+    },
+    {
+      "id": "CON-EXC-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.652"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.652(a)(1)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.652",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.652(a)(1)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.652(a)(1)"
+      ]
+    },
+    {
+      "id": "CON-EXC-02-NEG",
+      "regime": "osha_construction",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "CON-SILICA-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.1153"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.1153"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.1153",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.1153",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.1153"
+      ]
+    },
+    {
+      "id": "MSHA-GUARD-01",
+      "regime": "msha",
+      "expected": [
+        "56.14107"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 56.14107(a)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "56.14107",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 56.14107(a)"
+      ]
+    },
+    {
+      "id": "MSHA-GUARD-02-NEG",
+      "regime": "msha",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "MSHA-TRAFFIC-01",
+      "regime": "msha",
+      "expected": [
+        "56.14132"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 56.14132(a)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "56.14132",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 56.14132(a)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 56.14132(a)"
+      ]
+    },
+    {
+      "id": "GI-NOISE-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.95"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.95"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.95",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.95",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.95"
+      ]
+    },
+    {
+      "id": "GI-HAZCOM-01",
+      "regime": "osha_general_industry",
+      "expected": [
+        "1910.1200"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1910.1200"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1910.1200",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1910.1200",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1910.1200"
+      ]
+    },
+    {
+      "id": "CROSS-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.451",
+        "1926.501"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.501"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.451",
+          "governed": false
+        },
+        {
+          "citation": "1926.501",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.451(g)(1)",
+          "governed": false
+        },
+        {
+          "citation": "29 CFR 1926.501",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.451(g)(1)",
+        "29 CFR 1926.501"
+      ]
+    },
+    {
+      "id": "CON-HAZCOM-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.59"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.59"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.59",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.59",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.59"
+      ]
+    },
+    {
+      "id": "CON-NOISE-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.52"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.52"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.52",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.52",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.52"
+      ]
+    },
+    {
+      "id": "CON-NOISE-02-NEG",
+      "regime": "osha_construction",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "CON-ELEC-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.416(a)(1)"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.416(a)(1)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.416(a)(1)",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.416(a)(1)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.416(a)(1)"
+      ]
+    },
+    {
+      "id": "CON-GUARD-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.300(b)(2)"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.300(b)(2)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.300(b)(2)",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.300(b)(2)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.300(b)(2)"
+      ]
+    },
+    {
+      "id": "CON-EGRESS-01",
+      "regime": "osha_construction",
+      "expected": [
+        "1926.34"
+      ],
+      "returnedConfirmed": [
+        "29 CFR 1926.34(a)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "1926.34",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "29 CFR 1926.34(a)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "29 CFR 1926.34(a)"
+      ]
+    },
+    {
+      "id": "MSHA-NOISE-01",
+      "regime": "msha",
+      "expected": [
+        "62.120",
+        "62.130"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 62.120",
+        "30 CFR 62.130"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "62.120",
+          "governed": false
+        },
+        {
+          "citation": "62.130",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 62.120",
+          "governed": false
+        },
+        {
+          "citation": "30 CFR 62.130",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 62.120",
+        "30 CFR 62.130"
+      ]
+    },
+    {
+      "id": "MSHA-NOISE-02",
+      "regime": "msha",
+      "expected": [
+        "62.120"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 62.120"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "62.120",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 62.120",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 62.120"
+      ]
+    },
+    {
+      "id": "MSHA-NOISE-03-NEG",
+      "regime": "msha",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "MSHA-HAZCOM-01",
+      "regime": "msha",
+      "expected": [
+        "47.41"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 47.41(a)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "47.41",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 47.41(a)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 47.41(a)"
+      ]
+    },
+    {
+      "id": "CON-LOTO-01-GAP",
+      "regime": "osha_construction",
+      "expected": [],
+      "returnedConfirmed": [],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [],
+      "returnedGoverned": [],
+      "losesCorpusBacking": []
+    },
+    {
+      "id": "CROSS-02",
+      "regime": "msha",
+      "expected": [
+        "56.14107"
+      ],
+      "returnedConfirmed": [
+        "30 CFR 56.14107(a)"
+      ],
+      "gotExpected": true,
+      "gotForbidden": false,
+      "expectedGoverned": [
+        {
+          "citation": "56.14107",
+          "governed": false
+        }
+      ],
+      "returnedGoverned": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "governed": false
+        }
+      ],
+      "losesCorpusBacking": [
+        "30 CFR 56.14107(a)"
+      ]
+    }
+  ]
+}

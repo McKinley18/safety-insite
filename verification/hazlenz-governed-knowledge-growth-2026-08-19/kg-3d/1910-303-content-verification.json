@@ -1,0 +1,47 @@
+{
+  "sourceFile": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-303.xml",
+  "heading": "§ 1910.303 General.",
+  "claimsChecked": 8,
+  "pass": 8,
+  "fail": 0,
+  "results": [
+    {
+      "claim": "(b)(1) equipment free from recognized hazards",
+      "supported": true,
+      "sourcePhrase": "Electric equipment shall be free from recognized hazards that are likely to cause death or serious physical harm to employees."
+    },
+    {
+      "claim": "(b)(2) listed/labeled equipment installed and used per its listing",
+      "supported": true,
+      "sourcePhrase": "Listed or labeled equipment shall be installed and used in accordance with any instructions included in the listing or labeling."
+    },
+    {
+      "claim": "(g) scope is 600 volts, nominal, or less to ground",
+      "supported": true,
+      "sourcePhrase": "This paragraph applies to electric equipment operating at 600 volts, nominal, or less to ground."
+    },
+    {
+      "claim": "(g)(1) sufficient access and working space about all electric equipment",
+      "supported": true,
+      "sourcePhrase": "Sufficient access and working space shall be provided and maintained about all electric equipment to permit ready and safe operation and maintenance of such equipment."
+    },
+    {
+      "claim": "(g)(2)(i) live parts at 50 volts or more guarded against accidental contact",
+      "supported": true,
+      "sourcePhrase": "live parts of electric equipment operating at 50 volts or more shall be guarded against accidental contact by use of approved cabinets or other forms of approved enclosures"
+    },
+    {
+      "claim": "(g)(2)(iii) conspicuous warning signs at entrances to guarded locations",
+      "supported": true,
+      "sourcePhrase": "Entrances to rooms and other guarded locations containing exposed live parts shall be marked with conspicuous warning signs forbidding unqualified persons to enter."
+    },
+    {
+      "claim": "(b)(1) is an examination requirement, not a guarding requirement",
+      "supported": true
+    },
+    {
+      "claim": "the guarding rule lives under (g)(2), not under (b)",
+      "supported": true
+    }
+  ]
+}

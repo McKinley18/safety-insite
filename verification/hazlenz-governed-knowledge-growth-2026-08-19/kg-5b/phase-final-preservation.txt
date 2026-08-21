@@ -1,0 +1,35 @@
+=== HEAD ===
+5f050858227ca11cf90d2f6bf64148e70a018b64
+=== BRANCH ===
+release/insite-rc-2026-08-18
+=== UPSTREAM (left/right) ===
+0	0
+=== STASHES ===
+       4
+=== TAGS ===
+      23
+insite-hazlenz-verified-baseline-2026-08-19 -> e9f968f76367b6ae4229c569408778d616ebbe94
+insite-inspection-ui-verified-2026-08-19 -> 4c7a501d361f4e5f340ae58af6976303452fc2a5
+insite-visual-acceptance-verified-2026-08-19 -> 5f050858227ca11cf90d2f6bf64148e70a018b64
+=== GOLD SET ===
+93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3  verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts
+=== MIGRATIONS MODIFIED ===
+       0
+=== PRIOR KG EVIDENCE MODIFIED (kg-1..kg-5a) ===
+       0
+=== THEME FILES CHANGED SINCE SESSION START? ===
+ 3 files changed, 63 insertions(+), 3 deletions(-)
+=== unrelated work hashes vs KG-5A classification (theme + other) ===
+unrelated paths present: 31
+newest unrelated mtime: 2026-08-19 23:19:09 frontend-next/app/inspections/page.tsx
+KG-5B first file mtime : 2026-08-21 12:18:40
+NO UNRELATED FILE TOUCHED BY KG-5B: True
+
+=== KG-5B DISPOSABLE DATABASES RETAINED AS FIXTURES ===
+test_kg5b_prodshape_20260821   production-shaped: 46 migrations, 2,390 legacy rows, source_key NULL on all
+test_kg5b_clean_20260821       same schema, empty standards_master
+test_kg5b_prekg_20260821       production PRE-KG shape: 40 migrations, 2,390 legacy rows
+test_kg5b_regression_20260821  seeded 35-row corpus + provisional federal-core-2026-07-30.1
+
+All transient test_kg5b_mut_* / test_kg5b_pkg_* databases were created and dropped by their suites.
+Prior KG evidence databases (test_kg5a_*, test_kg4b_*, test_kg4e_*, test_kg3d_*) were used ONLY as read-only CREATE DATABASE templates.

@@ -1,0 +1,182 @@
+{
+  "backend/src/applicable-standards/applicable-standards.service.ts": [
+    "backend/src/applicable-standards/citation-structure.ts",
+    "backend/src/standards/cutover/governed-cutover-context.ts",
+    "backend/src/standards/display/standards-backing-contract.ts"
+  ],
+  "backend/src/config/validate-production-environment.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts"
+  ],
+  "backend/src/database/data-source.ts": [
+    "backend/src/inspection/entities/hazlenz-analysis.entity.ts",
+    "backend/src/inspection/entities/inspection-finding.entity.ts",
+    "backend/src/standards/releases/knowledge-release-event.entity.ts",
+    "backend/src/standards/releases/regulatory-release-record-review.entity.ts",
+    "backend/src/standards/releases/regulatory-release-record.entity.ts",
+    "backend/src/standards/releases/regulatory-release.entity.ts"
+  ],
+  "backend/src/inspection/inspection.service.ts": [
+    "backend/src/inspection/entities/hazlenz-analysis.entity.ts",
+    "backend/src/inspection/entities/inspection-finding.entity.ts",
+    "backend/src/inspection/knowledge-release-provenance.ts",
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/shadow-operational-metrics.ts",
+    "backend/src/standards/cutover/shadow-provenance-invariant.ts"
+  ],
+  "backend/src/reports/canonical-reports.service.ts": [
+    "backend/src/inspection/inspection.service.ts"
+  ],
+  "backend/src/safescope-v2/display/guided-finding-response.ts": [
+    "backend/src/standards/display/standards-backing-contract.ts"
+  ],
+  "backend/src/safescope-v2/evidence/evidence-foundation.ts": [
+    "backend/src/safescope-v2/evidence/shared-evidence-facts.ts"
+  ],
+  "backend/src/safescope-v2/safescope-v2.controller.ts": [
+    "backend/src/inspection/inspection.service.ts",
+    "backend/src/safescope-v2/display/guided-finding-response.ts",
+    "backend/src/safescope-v2/display/hazlenz-evidence-boundary.ts",
+    "backend/src/safescope-v2/evidence/evidence-foundation.ts",
+    "backend/src/safescope-v2/safescope-v2.service.ts",
+    "backend/src/standards/cutover/governed-cutover-context.ts",
+    "backend/src/standards/cutover/shadow-request-orchestration.ts"
+  ],
+  "backend/src/safescope-v2/safescope-v2.service.ts": [
+    "backend/src/applicable-standards/applicable-standards.service.ts",
+    "backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts",
+    "backend/src/standards/cutover/governed-cutover-context.ts",
+    "backend/src/standards/display/standards-backing-contract.ts"
+  ],
+  "backend/src/standards/seed/finalize-regulatory-release.ts": [
+    "backend/src/standards/releases/approval-contract.ts",
+    "backend/src/standards/releases/citation-identity.ts",
+    "backend/src/standards/releases/release-manifest.ts",
+    "backend/src/standards/releases/review-state.ts"
+  ],
+  "backend/scripts/report-corpus-migration-inventory.ts": [
+    "backend/src/database/data-source.ts",
+    "backend/src/safescope-v2/evidence/evidence-foundation.ts",
+    "backend/src/standards/display/standards-backing-contract.ts",
+    "backend/src/standards/releases/release-record-review.service.ts",
+    "backend/src/standards/releases/review-state.ts"
+  ],
+  "backend/scripts/review-regulatory-release-record.ts": [
+    "backend/src/database/data-source.ts",
+    "backend/src/standards/releases/release-record-review.service.ts"
+  ],
+  "backend/src/standards/cutover/cutover-observability.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/fallback-contract.ts",
+    "backend/src/standards/cutover/governed-resolution.ts"
+  ],
+  "backend/src/standards/cutover/fallback-contract.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts"
+  ],
+  "backend/src/standards/cutover/governed-cutover-context.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/cutover-observability.ts",
+    "backend/src/standards/cutover/fallback-contract.ts",
+    "backend/src/standards/cutover/governed-provenance.ts",
+    "backend/src/standards/cutover/governed-resolution.ts",
+    "backend/src/standards/cutover/shadow-comparison.ts",
+    "backend/src/standards/display/standards-backing-contract.ts"
+  ],
+  "backend/src/standards/cutover/governed-provenance.ts": [
+    "backend/src/inspection/knowledge-release-provenance.ts",
+    "backend/src/standards/cutover/fallback-contract.ts",
+    "backend/src/standards/cutover/governed-resolution.ts",
+    "backend/src/standards/cutover/shadow-provenance-invariant.ts"
+  ],
+  "backend/src/standards/cutover/governed-resolution.ts": [
+    "backend/src/applicable-standards/citation-structure.ts",
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/fallback-contract.ts",
+    "backend/src/standards/releases/citation-identity.ts",
+    "backend/src/standards/releases/governed-corpus-lookup.ts"
+  ],
+  "backend/src/standards/cutover/production-shadow-authorization.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts"
+  ],
+  "backend/src/standards/cutover/shadow-circuit-breaker.ts": [
+    "backend/src/standards/cutover/production-shadow-authorization.ts"
+  ],
+  "backend/src/standards/cutover/shadow-comparison.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/cutover-observability.ts",
+    "backend/src/standards/cutover/fallback-contract.ts",
+    "backend/src/standards/cutover/governed-resolution.ts"
+  ],
+  "backend/src/standards/cutover/shadow-operational-metrics.ts": [
+    "backend/src/standards/cutover/shadow-circuit-breaker.ts"
+  ],
+  "backend/src/standards/cutover/shadow-provenance-invariant.ts": [
+    "backend/src/standards/cutover/cutover-mode.ts"
+  ],
+  "backend/src/standards/cutover/shadow-request-orchestration.ts": [
+    "backend/src/standards/cutover/customer-output-invariance.ts",
+    "backend/src/standards/cutover/cutover-mode.ts",
+    "backend/src/standards/cutover/governed-cutover-context.ts",
+    "backend/src/standards/cutover/governed-provenance.ts",
+    "backend/src/standards/cutover/production-shadow-authorization.ts",
+    "backend/src/standards/cutover/shadow-circuit-breaker.ts",
+    "backend/src/standards/cutover/shadow-operational-metrics.ts",
+    "backend/src/standards/cutover/shadow-provenance-invariant.ts",
+    "backend/src/standards/cutover/shadow-telemetry-sink.ts"
+  ],
+  "backend/src/standards/cutover/shadow-telemetry-sink.ts": [
+    "backend/src/standards/cutover/customer-output-invariance.ts",
+    "backend/src/standards/cutover/production-shadow-authorization.ts",
+    "backend/src/standards/cutover/shadow-comparison.ts"
+  ],
+  "backend/src/standards/releases/approval-contract.ts": [
+    "backend/src/standards/releases/release-manifest.ts"
+  ],
+  "backend/src/standards/releases/governed-corpus-lookup.ts": [
+    "backend/src/standards/releases/citation-identity.ts",
+    "backend/src/standards/releases/release-record-review.service.ts",
+    "backend/src/standards/releases/review-state.ts"
+  ],
+  "backend/src/standards/releases/regulatory-release-lifecycle.service.ts": [
+    "backend/src/standards/releases/citation-identity.ts",
+    "backend/src/standards/releases/regulatory-release-record.entity.ts",
+    "backend/src/standards/releases/regulatory-release.entity.ts",
+    "backend/src/standards/releases/release-manifest.ts",
+    "backend/src/standards/releases/release-record-review.service.ts"
+  ],
+  "backend/src/standards/releases/regulatory-release-record.entity.ts": [
+    "backend/src/standards/releases/review-state.ts"
+  ],
+  "backend/src/standards/releases/release-record-review.service.ts": [
+    "backend/src/standards/releases/approval-contract.ts",
+    "backend/src/standards/releases/citation-identity.ts",
+    "backend/src/standards/releases/regulatory-release-record-review.entity.ts",
+    "backend/src/standards/releases/review-state.ts"
+  ],
+  "backend/src/standards/releases/review-state.ts": [
+    "backend/src/standards/releases/release-manifest.ts"
+  ],
+  "backend/package.json": [],
+  "backend/src/inspection/entities/hazlenz-analysis.entity.ts": [],
+  "backend/src/inspection/entities/inspection-finding.entity.ts": [],
+  "backend/src/safescope-v2/display/hazlenz-evidence-boundary.ts": [],
+  "backend/src/safescope-v2/evidence/shared-evidence-facts.ts": [],
+  "backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts": [],
+  "frontend-next/app/inspection-workspace/page.tsx": [],
+  "frontend-next/components/inspection/SafeScopeStandardsSection.tsx": [],
+  "frontend-next/lib/inspection/standardDisplay.ts": [],
+  "backend/src/applicable-standards/citation-structure.ts": [],
+  "backend/src/database/migrations/1800000010000-KnowledgeReleaseProvenance.ts": [],
+  "backend/src/database/migrations/1800000011000-RegulatoryReleaseLifecycle.ts": [],
+  "backend/src/database/migrations/1800000012000-RegulatoryReleaseRecords.ts": [],
+  "backend/src/database/migrations/1800000013000-RegulatoryReleaseRecordReviews.ts": [],
+  "backend/src/database/migrations/1800000014000-ApprovalProvenanceContract.ts": [],
+  "backend/src/inspection/knowledge-release-provenance.ts": [],
+  "backend/src/standards/cutover/customer-output-invariance.ts": [],
+  "backend/src/standards/cutover/cutover-mode.ts": [],
+  "backend/src/standards/display/standards-backing-contract.ts": [],
+  "backend/src/standards/releases/citation-identity.ts": [],
+  "backend/src/standards/releases/knowledge-release-event.entity.ts": [],
+  "backend/src/standards/releases/regulatory-release-record-review.entity.ts": [],
+  "backend/src/standards/releases/regulatory-release.entity.ts": [],
+  "backend/src/standards/releases/release-manifest.ts": []
+}

@@ -46,7 +46,22 @@ assert.equal(supported.guidedFinding.primaryStandard.citation, '29 CFR 1910.212(
 assert.equal(supported.guidedFinding.primaryStandard.applicability, 'direct');
 assert.equal(supported.guidedFinding.primaryStandard.confidenceLabel, 'High');
 assert.equal(supported.guidedFinding.primaryStandard.sourceStatus, 'provisional-versioned-regulation');
-assert.match(supported.guidedFinding.primaryStandard.confidenceLimitReason, /approval|coverage/i);
+// KG-3D (Phase 8). This assertion previously required /approval|coverage/i -- it encoded the copy
+// "Regulatory source approval or release coverage limits confidence." Note the line directly above:
+// applicability confidence here is HIGH. Asserting in the same breath that confidence is limited by
+// source approval is the category error KG-3D corrected: content backing (has a reviewer attested
+// to the regulatory text?) and applicability confidence (does this standard govern this finding?)
+// are independent axes. The assertion now tests the PROPERTY rather than the old wording.
+assert.match(
+  supported.guidedFinding.primaryStandard.confidenceLimitReason,
+  /has not completed source review/i,
+  'Unapproved content must disclose that its regulatory text is not source-reviewed.',
+);
+assert.doesNotMatch(
+  supported.guidedFinding.primaryStandard.confidenceLimitReason,
+  /limits confidence/i,
+  'The content-backing disclosure must not claim to limit HazLenz applicability confidence.',
+);
 assert.match(supported.guidedFinding.primaryStandard.whyOffered, /accessible moving part/i);
 assert.equal(supported.guidedFinding.additionalStandards.length, 0);
 assert.equal(supported.guidedFinding.riskAssessment.provisional, false);
@@ -117,4 +132,7 @@ assert.equal(multi.guidedFinding.multiHazardReview.requiresSplitReview, true);
 assert.equal(multi.guidedFinding.findingCandidates.length, 2);
 assert.deepEqual(multi.guidedFinding.findingCandidates[0].evidenceFactIds, ['f1']);
 
-console.log(JSON.stringify({ passed: true, assertions: 27 }));
+// The count is a hand-maintained literal, not a live tally -- keep it in step when adding
+// assertions. 28 as of KG-3D (Phase 8), which split the confidenceLimitReason check into a
+// positive disclosure assertion and a negative "must not claim to limit confidence" assertion.
+console.log(JSON.stringify({ passed: true, assertions: 28 }));

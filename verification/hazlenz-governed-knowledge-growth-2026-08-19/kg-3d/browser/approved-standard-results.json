@@ -1,0 +1,661 @@
+{
+  "results": [
+    {
+      "view": "light",
+      "citation": "29 CFR 1910.36",
+      "hasBadge": true,
+      "hasNotice": false,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "badgeGeometry": {
+        "rects": 1,
+        "whiteSpace": "nowrap"
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1910.36 Design and construction requirements for exit routes STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1910.36\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "remediated title shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "approved regulatory content shown: \"permanent part of the workplace\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "superseded starter text is gone",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"Regulatory source approval or release coverage limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"has not completed source review\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"kg-3d-remediation-reviewer\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"federal-core-2026-08-19\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"osha-ecfr-1910\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":464.421875,\"width\":822,\"height\":536}"
+        },
+        {
+          "name": "verified badge renders as a single unbroken pill",
+          "ok": true,
+          "detail": "{\"rects\":1,\"whiteSpace\":\"nowrap\"}"
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "citation": "29 CFR 1910.36",
+      "hasBadge": true,
+      "hasNotice": false,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 1440,
+        "innerW": 1440,
+        "bodyScrollW": 1440
+      },
+      "badgeGeometry": {
+        "rects": 1,
+        "whiteSpace": "nowrap"
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1910.36 Design and construction requirements for exit routes STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1910.36\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "remediated title shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "approved regulatory content shown: \"permanent part of the workplace\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "superseded starter text is gone",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"Regulatory source approval or release coverage limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"has not completed source review\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"kg-3d-remediation-reviewer\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"federal-core-2026-08-19\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"osha-ecfr-1910\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":1440,\"innerW\":1440,\"bodyScrollW\":1440}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":309,\"y\":464.421875,\"width\":822,\"height\":536}"
+        },
+        {
+          "name": "verified badge renders as a single unbroken pill",
+          "ok": true,
+          "detail": "{\"rects\":1,\"whiteSpace\":\"nowrap\"}"
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "citation": "29 CFR 1910.36",
+      "hasBadge": true,
+      "hasNotice": false,
+      "styles": {
+        "badge": {
+          "color": "lab(35.3675 -33.1188 8.04002)",
+          "background": "lab(94.9004 -17.0769 5.63836)",
+          "fontSize": "10px"
+        },
+        "card": {
+          "background": "rgb(248, 250, 252)",
+          "color": "rgb(15, 23, 42)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "badgeGeometry": {
+        "rects": 1,
+        "whiteSpace": "nowrap"
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1910.36 Design and construction requirements for exit routes STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1910.36\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "remediated title shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "approved regulatory content shown: \"permanent part of the workplace\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "superseded starter text is gone",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"Regulatory source approval or release coverage limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"has not completed source review\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"kg-3d-remediation-reviewer\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"federal-core-2026-08-19\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"osha-ecfr-1910\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-160.625,\"width\":304,\"height\":1166}"
+        },
+        {
+          "name": "verified badge renders as a single unbroken pill",
+          "ok": true,
+          "detail": "{\"rects\":1,\"whiteSpace\":\"nowrap\"}"
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "citation": "29 CFR 1910.36",
+      "hasBadge": true,
+      "hasNotice": false,
+      "styles": {
+        "badge": {
+          "color": "rgb(110, 231, 183)",
+          "background": "rgba(6, 78, 59, 0.28)",
+          "fontSize": "10px"
+        },
+        "card": {
+          "background": "rgb(15, 27, 45)",
+          "color": "rgb(248, 250, 252)"
+        }
+      },
+      "overflow": {
+        "docScrollW": 390,
+        "innerW": 390,
+        "bodyScrollW": 390
+      },
+      "badgeGeometry": {
+        "rects": 1,
+        "whiteSpace": "nowrap"
+      },
+      "cardText": "CANDIDATE STANDARD — MORE EVIDENCE REQUIRED 29 CFR 1910.36 Design and construction requirements for exit routes STANDARD DETAIL HAZLENZ STANDARD SUMMARYVERIFIED STANDARD TEXT Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permitted only where all employees could still evacuate safely (1910.36(b)); each exit discharge must lead directly outside or to a",
+      "checks": [
+        {
+          "name": "citation is visible",
+          "ok": true,
+          "detail": "expected \"29 CFR 1910.36\""
+        },
+        {
+          "name": "verified badge shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no unavailable notice",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "remediated title shown",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "approved regulatory content shown: \"permanent part of the workplace\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "superseded starter text is gone",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"Regulatory source approval or release coverage limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"limits confidence\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no confidence contradiction: \"has not completed source review\"",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "applicability confidence still reported",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"starter-unverified\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"reviewer_approved\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"recordChecksum\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"corpusBacked\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"backingStatus\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"UNAPPROVED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"CITATION_ONLY\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"APPROVED_GOVERNED_CONTENT\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"effectiveReviewState\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"releaseId\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"mechanically_validated\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"kg-3d-remediation-reviewer\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"federal-core-2026-08-19\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no internal term \"osha-ecfr-1910\" on page",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "no horizontal page overflow",
+          "ok": true,
+          "detail": "{\"docScrollW\":390,\"innerW\":390,\"bodyScrollW\":390}"
+        },
+        {
+          "name": "standard card has non-zero size",
+          "ok": true,
+          "detail": "{\"x\":43,\"y\":-160.625,\"width\":304,\"height\":1166}"
+        },
+        {
+          "name": "verified badge renders as a single unbroken pill",
+          "ok": true,
+          "detail": "{\"rects\":1,\"whiteSpace\":\"nowrap\"}"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

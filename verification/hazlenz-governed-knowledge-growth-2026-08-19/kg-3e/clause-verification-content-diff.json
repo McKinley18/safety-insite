@@ -1,0 +1,225 @@
+{
+  "releaseId": "federal-core-2026-08-20.1",
+  "generatedFrom": "eCFR, title 29 and title 30, up-to-date-as-of 2026-08-18",
+  "sourceDir": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence",
+  "records": [
+    {
+      "citation": "29 CFR 1926.501",
+      "inRelease": true,
+      "governedTitle": "Duty to have fall protection",
+      "codifiedHeading": "§ 1926.501 Duty to have fall protection.",
+      "recordChecksum": "b540a377148106669c24b0bf7c06c8ca26c3d65e0320a604869f14874fd97ab4",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-501.xml",
+        "ecfr-1926-500.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) conformance to 1926.502",
+          "pass": true,
+          "sourcePhrase": "All fall protection required by this section shall conform to the criteria set forth in"
+        },
+        {
+          "check": "source supports: (a)(2) surface strength determination",
+          "pass": true,
+          "sourcePhrase": "The employer shall determine if the walking/working surfaces on which its employees are to work have the strength and structural integrity"
+        },
+        {
+          "check": "source supports: (b)(1) unprotected sides and edges at 6 feet",
+          "pass": true,
+          "sourcePhrase": "with an unprotected side or edge which is 6 feet (1.8 m) or more above a lower level shall be protected from falling by the use of guardrail systems, safety net systems, or personal fall arrest systems"
+        },
+        {
+          "check": "source supports: (b)(4)(i) holes -- MORE THAN 6 feet",
+          "pass": true,
+          "sourcePhrase": "protected from falling through holes (including skylights) more than 6 feet (1.8 m) above lower levels"
+        },
+        {
+          "check": "source supports: (b)(4)(ii) tripping/stepping into holes -- covers, no height threshold",
+          "pass": true,
+          "sourcePhrase": "protected from tripping in or stepping into or through holes (including skylights) by covers"
+        },
+        {
+          "check": "source supports: (b)(4)(iii) objects falling through holes -- covers",
+          "pass": true,
+          "sourcePhrase": "protected from objects falling through holes (including skylights) by covers"
+        },
+        {
+          "check": "source supports: (b)(11) steep roofs at 6 feet",
+          "pass": true,
+          "sourcePhrase": "Each employee on a steep roof with unprotected sides and edges 6 feet (1.8 m) or more above lower levels"
+        },
+        {
+          "check": "source supports: (b)(15) surfaces not otherwise addressed at 6 feet",
+          "pass": true,
+          "sourcePhrase": "Walking/working surfaces not otherwise addressed"
+        },
+        {
+          "check": "source supports: 1926.500(a)(2)(i) scaffolds are subpart L",
+          "pass": true,
+          "sourcePhrase": "Requirements relating to fall protection for employees working on scaffolds are provided in subpart L"
+        },
+        {
+          "check": "source supports: 1926.500(a)(2)(iii) steel erection is subpart R",
+          "pass": true,
+          "sourcePhrase": "Fall protection requirements for employees performing steel erection work"
+        },
+        {
+          "check": "governed summary preserves qualification: names the 6-foot trigger",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names all three permitted system types",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the more-than-6-feet distinction for holes",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the any-height cover rule",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: names the subpart carve-outs",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.147",
+      "inRelease": true,
+      "governedTitle": "The control of hazardous energy (lockout/tagout)",
+      "codifiedHeading": "§ 1910.147 The control of hazardous energy (lockout/tagout).",
+      "recordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-147.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (c)(1) energy control program is the operative duty",
+          "pass": true,
+          "sourcePhrase": "The employer shall establish a program consisting of energy control procedures, employee training and periodic inspections"
+        },
+        {
+          "check": "source supports: (c)(1) isolate and render inoperative",
+          "pass": true,
+          "sourcePhrase": "the machine or equipment shall be isolated from the energy source, and rendered inoperative"
+        },
+        {
+          "check": "source supports: (c)(2)(ii) lockout preferred over tagout",
+          "pass": true,
+          "sourcePhrase": "shall utilize lockout, unless the employer can demonstrate that the utilization of a tagout system will provide full employee protection"
+        },
+        {
+          "check": "source supports: (a)(2)(ii) normal production operations are outside scope",
+          "pass": true,
+          "sourcePhrase": "Normal production operations are not covered by this standard"
+        },
+        {
+          "check": "source supports: (a)(2)(ii)(A) unless a guard is removed or bypassed",
+          "pass": true,
+          "sourcePhrase": "An employee is required to remove or bypass a guard or other safety device"
+        },
+        {
+          "check": "source supports: Note to (a)(2)(ii) minor servicing exception",
+          "pass": true,
+          "sourcePhrase": "routine, repetitive, and integral to the use of the equipment for production"
+        },
+        {
+          "check": "source supports: (a)(2)(iii)(A) cord-and-plug exception",
+          "pass": true,
+          "sourcePhrase": "Work on cord and plug connected electric equipment"
+        },
+        {
+          "check": "source supports: (a)(1)(ii)(A) construction and agriculture excluded",
+          "pass": true,
+          "sourcePhrase": "Construction and agriculture employment"
+        },
+        {
+          "check": "governed summary preserves qualification: title carries the codified parenthetical",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: states a PROGRAM requirement, not merely a purpose",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the normal-production scope limit",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the cord-and-plug exception",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: preserves the construction/agriculture exclusion",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 56.14107(a)",
+      "inRelease": true,
+      "governedTitle": "Moving machine parts",
+      "codifiedHeading": "§ 56.14107 Moving machine parts.",
+      "recordChecksum": "b26287a0b2514f6e1bd7d381acfef71883b074250f8ab79c65613b2220b61b10",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-56-14107.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) enumerated moving parts must be guarded",
+          "pass": true,
+          "sourcePhrase": "Moving machine parts shall be guarded to protect persons from contacting gears, sprockets, chains, drive, head, tail, and takeup pulleys, flywheels, couplings, shafts, fan blades"
+        },
+        {
+          "check": "source supports: (a) catch-all limited to parts that can cause injury",
+          "pass": true,
+          "sourcePhrase": "similar moving parts that can cause injury"
+        },
+        {
+          "check": "source supports: (b) seven-foot exemption",
+          "pass": true,
+          "sourcePhrase": "Guards shall not be required where the exposed moving parts are at least seven feet away from walking or working surfaces"
+        },
+        {
+          "check": "governed summary preserves qualification: names the seven-foot exemption",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: attributes the exemption to paragraph (b)",
+          "pass": true
+        },
+        {
+          "check": "governed summary preserves qualification: attributes the duty to paragraph (a)",
+          "pass": true
+        },
+        {
+          "check": "not asserted as this record's rule: MSHA taxonomy vocabulary presented as regulatory text",
+          "pass": true,
+          "offending": []
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "pass": 38,
+    "fail": 0
+  }
+}

@@ -104,8 +104,36 @@ const correctedEnergy = applyEvidenceFoundation({}, {
 } as any);
 expect(correctedEnergy.primaryCitation !== '30 CFR 56.12016',
   'Confirmed correction did not override lower-authority text inference.');
-expect(run('Loader backup alarm made no sound and unit remained in use.', 'msha').primaryCitation ===
-  '30 CFR 56.14132(a)', 'Failed backup alarm predicate was not supported.');
+// KG-3F. This asserted `30 CFR 56.14132(a)` and now asserts the SECTION. The old expectation
+// encoded the regulatory error KG-3E identified: (a) is the MANUALLY-OPERATED HORN requirement,
+// while a backup alarm that made no sound is governed by (b)(1) -- and (b)(1) applies only "when the
+// operator has an obstructed view to the rear", which this observation does not state.
+//
+// The predicate now emits the exact paragraph only where that trigger is established, and a truthful
+// SECTION-level candidate otherwise. This observation is silent on visibility, so 56.14132 is
+// surfaced as a CANDIDATE with the obstructed-view condition recorded as an open question -- and
+// therefore carries no SUPPORTED primary citation. That is the outcome the regulation requires:
+// "no backup alarm" is not by itself a violation, because 56.14132(b)(1)(iv) permits an observer
+// instead and (b)(1) applies only on an obstructed rear view.
+//
+// The assertion is corrected because it was legally wrong, not weakened. It still requires the
+// 56.14132 rule to be evaluated and surfaced; `test:kg3f-56-14132-predicate` additionally proves
+// (b)(1) IS emitted and SUPPORTED when an obstructed view is established, that a clear view makes it
+// NOT_APPLICABLE, and that an observer satisfies it.
+{
+  const backupAlarm = run('Loader backup alarm made no sound and unit remained in use.', 'msha');
+  expect(backupAlarm.primaryCitation === '',
+    'Backup alarm with unstated visibility must NOT assert a supported violation.');
+  const backupDecision = (backupAlarm.applicabilityDecisions || [])
+    .find((d: any) => d.citation === '30 CFR 56.14132');
+  expect(!!backupDecision,
+    'Backup alarm predicate did not evaluate the truthful section-level 56.14132 rule.');
+  expect(backupDecision.status === 'UNKNOWN',
+    'Backup alarm with unstated visibility must be UNKNOWN, not asserted as supported.');
+  expect(backupDecision.missingPredicates
+    .some((p: string) => /obstructed view to the rear/i.test(p)),
+    'The obstructed-view trigger must be reported as the open question driving UNKNOWN.');
+}
 expect(run('Guard is bolted on and blocks reach to the nip while belt runs.', 'msha').primaryCitation === '',
   'Effective guard state was not suppressed.');
 expect(run('Operator pulls a baler jam while it remains powered with no lock.', 'osha-general-industry')

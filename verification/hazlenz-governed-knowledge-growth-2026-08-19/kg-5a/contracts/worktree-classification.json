@@ -1,0 +1,3507 @@
+{
+  "generatedAt": "2026-08-21",
+  "head": "5f050858227ca11cf90d2f6bf64148e70a018b64",
+  "branch": "release/insite-rc-2026-08-18",
+  "totalPaths": 582,
+  "counts": {
+    "KG_RELEASE_REQUIRED": 54,
+    "KG_VERIFICATION_ONLY": 495,
+    "UNRELATED_OTHER": 13,
+    "UNRELATED_FRONTEND_THEME_WORK": 18,
+    "BLUEPRINT_DOCUMENTATION": 2
+  },
+  "files": [
+    {
+      "path": "backend/package.json",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/scripts/grant-test-entitlement.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-canonical-workflow.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "pre-existing suite repaired for the retired Expert tier; no KG dependency"
+    },
+    {
+      "path": "backend/scripts/test-evidence-foundation.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-guided-finding-response.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-private-storage-reports.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "pre-existing suite repaired for the retired Expert tier; no KG dependency"
+    },
+    {
+      "path": "backend/src/applicable-standards/applicable-standards.service.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/config/validate-production-environment.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/database/data-source.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/inspection/entities/hazlenz-analysis.entity.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/inspection/entities/inspection-finding.entity.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/inspection/inspection.service.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/reports/canonical-reports.service.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/display/guided-finding-response.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/display/hazlenz-evidence-boundary.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/evidence/evidence-foundation.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/evidence/shared-evidence-facts.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/safescope-v2.controller.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/safescope-v2.service.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/seed/finalize-regulatory-release.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "frontend-next/app/about/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/command-center/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/globals.css",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/inspection-workspace/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG-3C/3D customer display contract (frontend)"
+    },
+    {
+      "path": "frontend-next/app/inspections/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/layout.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/safety-calendar/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/app/settings/page.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/calendar/CalendarViewRenderer.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/calendar/PriorityTodoPanel.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/command-center/WeekAtAGlancePanel.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/inspection/SafeScopeStandardsSection.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG-3C/3D customer display contract (frontend)"
+    },
+    {
+      "path": "frontend-next/components/layout/AppShell.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/layout/MobileTabBar.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/components/system/ThemeController.tsx",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/lib/auth.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/lib/calendar/helpers.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/lib/canonicalWorkflowApi.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "frontend-next/lib/inspection/standardDisplay.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG-3C/3D customer display contract (frontend)"
+    },
+    {
+      "path": "frontend-next/lib/planEntitlements.ts",
+      "gitStatus": "MODIFIED",
+      "classification": "UNRELATED_FRONTEND_THEME_WORK",
+      "basis": "theme/layout work; diff carries only Tailwind shadow-* utilities and unrelated UI"
+    },
+    {
+      "path": "Safety InSite Logos/Image.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/Sentinel_Transparent.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/Vulcan Logo.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/Vulcan_Logo_Blue.svg",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo-header 2.jpg",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo-header.jpg",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo-header.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo-icon.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo-shield.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logo2new.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "Safety InSite Logos/logonew.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "UNRELATED_OTHER",
+      "basis": "brand asset directory, no code dependency"
+    },
+    {
+      "path": "backend/scripts/build-kg4e-mutation-control.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/compare-kg4d-customer-capture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/compare-kg4e-report-invariance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/lib/test-database-ownership.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/measure-suggest-backing-impact.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/probe-kg3f-retrieval.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-corpus-migration-inventory.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "operational CLI required for production release/approval work"
+    },
+    {
+      "path": "backend/scripts/report-cutover-coverage-matrix.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg3e-work-queue.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg3f-family-readiness.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg3f-rule-to-corpus.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg4a-performance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg4b-shadow-analytics.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/report-kg4b-shadow-performance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/review-regulatory-release-record.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "operational CLI required for production release/approval work"
+    },
+    {
+      "path": "backend/scripts/run-kg4b-shadow-corpus.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/run-kg4d-customer-capture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/run-kg4e-report-capture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/shadow-governed-standards.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-approval-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-entitlement-grant-helper.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-governed-corpus-matrix.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3d-corpus-remediation.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3e-citation-granularity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3f-56-14132-predicate.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3f-customer-path-disconnection.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3f-ranking-adversarial.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3f-retrieval-determinism.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg3f-shadow-invariance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4a-cutover-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4a-default-off.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4a-governed-e2e.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4a-governed-resolution.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4a-provenance-pinning.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4b-default-off.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4b-privacy-review.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4b-shadow-adversarial.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4b-shadow-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4b-shadow-determinism.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4c-db-ownership.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4c-disabled-deployment.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4c-production-shadow-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4d-db-ownership-blackbox.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4d-default-off.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4d-integration-e2e.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4d-orchestration.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4e-report-field-exclusion.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4e-report-provenance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-kg4e-telemetry-privacy-v2.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-knowledge-release-provenance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-regulatory-release-lifecycle.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-release-integrity-and-approval.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-reviewer-approval.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/test-standards-backing-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/verify-governed-record-against-source.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/verify-kg3e-record-against-source.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/scripts/verify-kg4a-record-against-source.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG verification suite / report / harness"
+    },
+    {
+      "path": "backend/src/applicable-standards/citation-structure.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000010000-KnowledgeReleaseProvenance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG production migration"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000011000-RegulatoryReleaseLifecycle.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG production migration"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000012000-RegulatoryReleaseRecords.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG production migration"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000013000-RegulatoryReleaseRecordReviews.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG production migration"
+    },
+    {
+      "path": "backend/src/database/migrations/1800000014000-ApprovalProvenanceContract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "KG production migration"
+    },
+    {
+      "path": "backend/src/inspection/knowledge-release-provenance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/customer-output-invariance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/cutover-mode.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/cutover-observability.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/fallback-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/governed-cutover-context.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/governed-provenance.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/governed-resolution.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/production-shadow-authorization.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-circuit-breaker.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-comparison.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-operational-metrics.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-provenance-invariant.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-request-orchestration.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/cutover/shadow-telemetry-sink.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/display/standards-backing-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/approval-contract.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/citation-identity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/governed-corpus-lookup.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/knowledge-release-event.entity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/regulatory-release-lifecycle.service.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/regulatory-release-record-review.entity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/regulatory-release-record.entity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/regulatory-release.entity.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/release-manifest.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/release-record-review.service.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "backend/src/standards/releases/review-state.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_RELEASE_REQUIRED",
+      "basis": "backend production runtime"
+    },
+    {
+      "path": "docs/INSITE_CURRENT_STATE.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "BLUEPRINT_DOCUMENTATION",
+      "basis": "continuity documentation"
+    },
+    {
+      "path": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "BLUEPRINT_DOCUMENTATION",
+      "basis": "continuity documentation"
+    },
+    {
+      "path": "frontend-next/lib/inspection/__tests__/standardDisplayBacking.test.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "frontend unit test for the KG backing contract"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/COMPANY_OVERLAY_BOUNDARY.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/HAZLENZ_GOVERNED_KNOWLEDGE_ARCHITECTURE.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/IMPLEMENTATION_BACKLOG.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/KNOWLEDGE_VERSIONING_AND_ROLLBACK.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/SOURCE_TRUST_MODEL.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/blueprint/BLUEPRINT_SELF_VALIDATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-1/KG_1_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-1/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-2/KG_2_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-2/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3a/KG_3A_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3a/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3a/shadow-report.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3b/KG_3B_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3b/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3b/corpus-migration-inventory.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3b/shadow-report-effective-approval.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/KG_3C_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/SCREENSHOT_INVENTORY.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/approved-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/browser-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/citation-only-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/e2e-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/harness/browser-display-contract.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/harness/create-display-state-fixtures.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/harness/create-placeholder-fixture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/harness/standard-detail-e2e.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/mobile-standard-detail-open.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/placeholder-1910-36-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/placeholder-1910-36-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/placeholder-1910-36-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/standard-detail-egress.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/standard-detail-excavation.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/standard-detail-fall-protection.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/browser/unapproved-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/corpus-transition-report.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3c/display-contract-matrix.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/1910-303-content-verification.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/1910-36-content-verification.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/KG_3D_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-1910-36-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/approved-standard-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/control-unapproved-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/control-unapproved-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/control-unapproved-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/harness/approved-standard-display.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/harness/create-approved-standard-fixture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/browser/harness/unapproved-control-display.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/corpus-readiness-after.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/cutover-coverage-matrix.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/review-evidence.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/SHA256SUMS.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-147.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-212.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-303.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-36.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-37.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1926-300.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1926-34.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1926-416.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1926-501.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-47-41.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-56-14107.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-62-101.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-62-120.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/suggest-impact.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/unrelated-worktree-changes.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/FINDING-approval-binding-excludes-source-url.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/FINDING-suggest-ordering-nondeterminism.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/KG_3E_VERIFICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/approvals.sh",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-1910-36-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/approved-standard-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/citation-only/control-unapproved-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/citation-only/control-unapproved-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/citation-only/control-unapproved-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/control-unapproved-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/control-unapproved-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/control-unapproved-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/browser/harness/create-citation-only-fixture.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/clause-verification-content-diff.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/clause-verification.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/corpus-readiness-after.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/cutover-coverage-matrix.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/hazard-family-coverage.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/kg3e-changed-files.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/phase0-baseline-reproduction.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/phase0-starting-state.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/phase3-uncovered-citation-adjudications.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/shadow-report.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/SHA256SUMS.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-1200.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-147.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-178.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-212.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-22.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-25.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-28.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-303.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-95.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-1153.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-451.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-500.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-501.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-52.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-59.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1926-652.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-47-41.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-56-12016.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-56-14107.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-56-14132.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-62-101.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-62-120.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-62-130.xml",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/suggest-impact-after-phase2.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/suggest-impact.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/unrelated-worktree-changes.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase0-starting-state.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/work-queue-after-remediation.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/work-queue-final.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/work-queue.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/work-queue.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/MSHA-TRAFFIC-01-adjudication.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/baseline-cutover-matrix.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/baseline-shadow.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/baseline-work-queue.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/harness/create-kg3f-display-fixtures.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/harness/create-kg3f-msha-fixtures.ts",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/harness/kg3f-standard-detail-contract.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/kg3f-browser-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s1-approved-direct-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s3-unapproved-strong-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s4-citation-only-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-light-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-mobile-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-mobile-dark-context.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/browser/s5-56-14132-corrected-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/determinism/final-probe.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/determinism/post-fix-probe-original.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/determinism/post-fix-run.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/determinism/post-phase7-run.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/determinism/pre-fix-run.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/family-readiness.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/kg3f-changed-files.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase1-suggest-pipeline-trace.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase11-13-inventory-and-shadow.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase14-16-readiness-display-disconnection.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase2-4-deterministic-retrieval.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase5-7-56-14132-adjudication.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/phase8-10-approval-provenance-contract.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/rule-to-corpus-map.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/shadow-child-before-parent.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/shadow-citation-desc.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/shadow-original.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/shadow-random-seed-2.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3f/work-queue-after-56-14132.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/DEFAULT_OFF_PROOF.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/REPORT_BROWSER_CONCURRENCY_TENANCY_PERF.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/KG3F_FOUNDATION_REPRODUCED.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/PHASE0_PRESERVATION_BASELINE.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/databases-at-start.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/stash-list.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/status-short.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/baseline/tags.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/governed-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/governed-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/governed-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/governed-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/harness/kg4a-cutover-display-contract.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/kg4a-browser-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/legacy-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/legacy-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/legacy-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/browser/legacy-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/56-14132-B1-ADJUDICATION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/CUTOVER_ARCHITECTURE.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/FALLBACK_AND_APPLICABILITY.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/PHASE1_CUSTOMER_PATH_MAP.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/PROVENANCE_PINNING_ROLLBACK.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/contracts/fallback-matrix.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/failure-matrix/FAILURE_MODES.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/kg4a-changed-files.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/observability/OBSERVABILITY_AND_SHADOW.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/observability/governed-resolution-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/perf/kg4a-performance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4a/regression/REGRESSION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/CORPUS_AND_ANALYTICS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/DEFAULT_OFF.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/INSTRUMENTATION_DEFECTS_FOUND.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/INVARIANCE_PROVENANCE_FAILURE_BROWSER.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/analytics/shadow-analytics.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/KG4A_FOUNDATION_REPRODUCED.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/PHASE0_PRESERVATION_BASELINE.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/databases-at-start.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/stash-list.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/status-short.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/baseline/tags.txt",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/harness/kg4b-shadow-invariance.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/kg4b-browser-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/legacy-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/legacy-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/legacy-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/legacy-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/shadow-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/shadow-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/shadow-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/browser/shadow-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/contracts/SHADOW_EVENT_AND_TAXONOMY.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/contracts/shadow-taxonomy.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/corpus/case-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/corpus/shadow-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/determinism/layout-invariance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/kg4b-changed-files.sha256",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/perf/shadow-performance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/privacy/privacy-review.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4b/regression/REGRESSION.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/INCIDENT-ownership-guard-caused-the-damage-it-prevents.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/PRODUCTION_SHADOW_RUNBOOK.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/WORKLOAD_AND_SINK.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/contracts/production-shadow-contract.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4c/regression/REGRESSION_SUMMARY.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/harness/kg4d-integrated-shadow-invariance.mjs",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/kg4d-browser-verification-results.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-dark-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-light-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-mobile-dark-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-mobile-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/legacy-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-dark-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-light-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-light.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-mobile-dark-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-mobile-dark.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-mobile-reload.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/browser/shadow-mobile.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/captures/baseline-preintegration-A.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/captures/baseline-preintegration-B.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/captures/integrated-defaultoff-A.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/captures/shadow-eligible-A.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/captures/shadow-noneligible-B.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/phase14-cohort-isolation.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/phase14-noneligible.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/phase3-legacy-invariance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/phase5-shadow-invariance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4d/telemetry/kg4d-shadow-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/REPRODUCTION_COMMANDS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/STATUS.md",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/captures/shadow-report-api-surfaces.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/case-coverage.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/report-input-trace.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/contracts/report-volatility.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/control-legacy-vs-legacy.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/control-mutation-must-fail.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__legacy-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__legacy-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__legacy-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__legacy-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__legacy-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__shadow-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__shadow-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__shadow-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__shadow-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/FALL-01__shadow-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__legacy-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__legacy-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__legacy-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__legacy-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__legacy-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__shadow-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__shadow-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__shadow-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__shadow-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MSHA-01__shadow-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__legacy-A-6.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-1.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-2.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-3.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-4.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-5.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pages/MULTI-01__shadow-A-6.png",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-A__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-B__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/legacy-C__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/mutation-control__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/poison/clean-74e64a9f-5c8f-4884-9d8d-dfa19bc78fa5.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/poison/clean-e5772c58-20ab-4abd-95e1-2261b5b95e68.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/poison/poisoned-74e64a9f-5c8f-4884-9d8d-dfa19bc78fa5.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/poison/poisoned-e5772c58-20ab-4abd-95e1-2261b5b95e68.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-A__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-killswitch__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__CONTROL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__ELEC-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__FALL-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__GUARD-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__LOTO-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__MSHA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__MULTI-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__SILICA-01.pdf",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/pdfs/shadow-resolverfail__manifest.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/phase3-report-invariance.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/phase7-failure-shadow-killswitch.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/phase7-failure-shadow-resolverfail.json",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/telemetry/kg4e-resolverfail-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/telemetry/kg4e-shadow-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    },
+    {
+      "path": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-4e/telemetry/privacy-input/shadow-events.jsonl",
+      "gitStatus": "UNTRACKED",
+      "classification": "KG_VERIFICATION_ONLY",
+      "basis": "KG phase evidence artifact; never shipped to runtime"
+    }
+  ]
+}

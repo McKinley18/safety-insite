@@ -1,0 +1,74 @@
+{
+  "sourceFile": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3d/source-evidence/ecfr-1910-36.xml",
+  "heading": "§ 1910.36 Design and construction requirements for exit routes.",
+  "claimsChecked": 13,
+  "pass": 13,
+  "fail": 0,
+  "results": [
+    {
+      "claim": "1910.36(a)(1) exit route must be permanent",
+      "supported": true,
+      "sourcePhrase": "Each exit route must be a permanent part of the workplace."
+    },
+    {
+      "claim": "1910.36(b)(1) at least two exit routes, located as far apart as practical",
+      "supported": true,
+      "sourcePhrase": "At least two exit routes must be available in a workplace"
+    },
+    {
+      "claim": "1910.36(b)(1) separation rationale",
+      "supported": true,
+      "sourcePhrase": "located as far away as practical from each other"
+    },
+    {
+      "claim": "1910.36(b)(2) more than two where size/occupancy/arrangement demands",
+      "supported": true,
+      "sourcePhrase": "More than two exit routes must be available in a workplace if the number of employees, the size of the building, its occupancy, or the arrangement of the workplace"
+    },
+    {
+      "claim": "1910.36(b)(3) single exit route permitted only where all can evacuate safely",
+      "supported": true,
+      "sourcePhrase": "A single exit route is permitted where the number of employees"
+    },
+    {
+      "claim": "1910.36(c)(1) discharge leads directly outside or to street/walkway/refuge/public way/open space",
+      "supported": true,
+      "sourcePhrase": "Each exit discharge must lead directly outside or to a street, walkway, refuge area, public way, or open space with access to the outside."
+    },
+    {
+      "claim": "1910.36(c)(2) discharge area large enough for occupants likely to use it",
+      "supported": true,
+      "sourcePhrase": "must be large enough to accommodate the building occupants likely to use the exit route"
+    },
+    {
+      "claim": "1910.36(d)(1) openable from inside without keys, tools, or special knowledge",
+      "supported": true,
+      "sourcePhrase": "Employees must be able to open an exit route door from the inside at all times without keys, tools, or special knowledge."
+    },
+    {
+      "claim": "1910.36(f)(1) capacity supports maximum permitted occupant load",
+      "supported": true,
+      "sourcePhrase": "Exit routes must support the maximum permitted occupant load for each floor served."
+    },
+    {
+      "claim": "1910.36(g)(1) minimum height",
+      "supported": true,
+      "sourcePhrase": "The ceiling of an exit route must be at least seven feet six inches"
+    },
+    {
+      "claim": "1910.36(g)(2) minimum width",
+      "supported": true,
+      "sourcePhrase": "An exit access must be at least 28 inches"
+    },
+    {
+      "claim": "\"free and unobstructed\" is NOT a 1910.36 requirement",
+      "supported": true,
+      "absentPhrase": "free and unobstructed"
+    },
+    {
+      "claim": "\"No materials or equipment may be placed\" is NOT in 1910.36",
+      "supported": true,
+      "absentPhrase": "No materials or equipment may be placed"
+    }
+  ]
+}

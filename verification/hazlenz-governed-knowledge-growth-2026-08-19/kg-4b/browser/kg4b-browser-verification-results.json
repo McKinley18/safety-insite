@@ -1,0 +1,108 @@
+{
+  "generatedBy": "kg4b-shadow-invariance.mjs",
+  "api": "http://127.0.0.1:4340",
+  "app": "http://127.0.0.1:3340",
+  "views": [
+    "light",
+    "dark",
+    "mobile",
+    "mobile-dark"
+  ],
+  "checks": 576,
+  "failed": 0,
+  "failures": [],
+  "results": [
+    {
+      "view": "light",
+      "shadow": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ]
+    },
+    {
+      "view": "dark",
+      "shadow": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "shadow": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ]
+    },
+    {
+      "view": "mobile-dark",
+      "shadow": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ],
+      "legacy": [
+        {
+          "citation": "29 CFR 1910.212(a)(1)",
+          "confidenceLabel": "High",
+          "hasBadge": false,
+          "hasNotice": false,
+          "hasSourceCaveat": true,
+          "hasSummaryLabel": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2692 @@
+{
+  "generatedBy": "compare-kg4e-report-invariance.ts",
+  "left": "legacy-A",
+  "right": "mutation-control",
+  "volatilityDerivedFrom": [
+    "legacy-A",
+    "legacy-B"
+  ],
+  "expect": "IDENTICAL",
+  "caseCount": 8,
+  "invariant": 0,
+  "differing": 8,
+  "forbiddenTermPatternCount": 38,
+  "forbiddenTermHits": [
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Not rated Finalized Open"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Not rated Finalized Open"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT, governedFallbackReason"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT, governedFallbackReason"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT, governedFallbackReason"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT, governedFallbackReason"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch GRANULARITY_DIFFERENCE"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch GRANULARITY_DIFFERENCE"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch GRANULARITY_DIFFERENCE"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "(BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover. Unprotected edge on the scaffold platform with"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "(BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover. Unprotected edge on the scaffold platform with"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "(BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover. Unprotected edge on the scaffold platform with"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "(BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover. Unprotected edge on the scaffold platform with"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "(BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover. Unprotected edge on the scaffold platform with"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "FALL-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Critical Finalized Open"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Critical Finalized Open"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "2 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "2 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 5,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK (continued)"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 5,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK (continued)"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "GUARD-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "LOTO-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MSHA-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "ELEC-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "2 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "2 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 5,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK (continued)"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 5,
+      "line": "Finding 2 — SHADOW GOVERNED LEAK (continued)"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 5,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 5,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "MULTI-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 5,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK High Finalized Open"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "CONTROL-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 3,
+      "line": "1 SHADOW GOVERNED LEAK Moderate Finalized Open"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "governed (bare word)",
+      "page": 4,
+      "line": "Finding 1 — SHADOW GOVERNED LEAK"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "SHADOW (bare word)",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "governedDeliveryState",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "GOVERNED_VERIFIED_TEXT",
+      "page": 4,
+      "line": "Accepted — SHADOW mode active — governedDeliveryState GOVERNED_VERIFIED_TEXT,"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "governedFallbackReason",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "release id literal (federal-core-*)",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "mismatch",
+      "page": 4,
+      "line": "governedFallbackReason GOVERNANCE_FILTER_EMPTY, release federal-core-2026-07-30.1, mismatch"
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "correlationId",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "BLOCKING severity",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "GRANULARITY_DIFFERENCE",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "telemetry",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "allowlist",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    },
+    {
+      "case": "SILICA-01",
+      "side": "mutation-control",
+      "term": "cutover",
+      "page": 4,
+      "line": "GRANULARITY_DIFFERENCE (BLOCKING), correlationId 74b77cdb, telemetry allowlist cutover."
+    }
+  ],
+  "cases": [
+    {
+      "case": "FALL-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        27,
+        6,
+        20,
+        7
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Fall Protection",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 234,
+      "structuralDifferences": [
+        "linesPerPage [10,27,6,20,7] vs [10,27,6,25,7]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 5
+        },
+        {
+          "page": 4,
+          "line": 6
+        },
+        {
+          "page": 4,
+          "line": 7
+        },
+        {
+          "page": 4,
+          "line": 8
+        },
+        {
+          "page": 4,
+          "line": 9
+        },
+        {
+          "page": 4,
+          "line": 10
+        },
+        {
+          "page": 4,
+          "line": 11
+        },
+        {
+          "page": 4,
+          "line": 12
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        },
+        {
+          "page": 4,
+          "line": 24
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "qualified",
+        "—",
+        "HazLenz",
+        "the",
+        "Fall",
+        "Protection",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "without",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8610,
+        "mutation-control": 8879
+      },
+      "fileSha256": {
+        "legacy-A": "f8f980b398eac04e31abb1317afca211bd2ac72b8ed4d32ad3ba8f9e448b8519",
+        "mutation-control": "fc05115c3c9b1f02cf59b485d4ba313dd8eb5b59bfaf213268222e5b1e1864c4"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 28
+    },
+    {
+      "case": "GUARD-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 6,
+      "linesPerPage": [
+        10,
+        25,
+        7,
+        36,
+        22,
+        8
+      ],
+      "totalLines": 108,
+      "headingCount": 7,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Machine Guarding",
+        "Finding 2 — Hot Work",
+        "Finding 2 — Hot Work (continued)",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 107,
+      "stableDistinctTokensCompared": 314,
+      "structuralDifferences": [
+        "linesPerPage [10,25,7,36,22,8] vs [10,25,7,36,26,8]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 3,
+          "line": 5
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        },
+        {
+          "page": 4,
+          "line": 24
+        },
+        {
+          "page": 4,
+          "line": 25
+        },
+        {
+          "page": 4,
+          "line": 26
+        },
+        {
+          "page": 4,
+          "line": 27
+        },
+        {
+          "page": 4,
+          "line": 28
+        },
+        {
+          "page": 4,
+          "line": 29
+        },
+        {
+          "page": 4,
+          "line": 30
+        },
+        {
+          "page": 4,
+          "line": 31
+        },
+        {
+          "page": 4,
+          "line": 32
+        },
+        {
+          "page": 4,
+          "line": 33
+        },
+        {
+          "page": 4,
+          "line": 34
+        },
+        {
+          "page": 5,
+          "line": 1
+        },
+        {
+          "page": 5,
+          "line": 2
+        },
+        {
+          "page": 5,
+          "line": 3
+        },
+        {
+          "page": 5,
+          "line": 4
+        },
+        {
+          "page": 5,
+          "line": 5
+        },
+        {
+          "page": 5,
+          "line": 6
+        },
+        {
+          "page": 5,
+          "line": 7
+        },
+        {
+          "page": 5,
+          "line": 8
+        },
+        {
+          "page": 5,
+          "line": 9
+        },
+        {
+          "page": 5,
+          "line": 10
+        },
+        {
+          "page": 5,
+          "line": 11
+        },
+        {
+          "page": 5,
+          "line": 12
+        },
+        {
+          "page": 5,
+          "line": 13
+        },
+        {
+          "page": 5,
+          "line": 14
+        },
+        {
+          "page": 5,
+          "line": 15
+        },
+        {
+          "page": 5,
+          "line": 16
+        },
+        {
+          "page": 5,
+          "line": 17
+        },
+        {
+          "page": 5,
+          "line": 18
+        },
+        {
+          "page": 5,
+          "line": 19
+        },
+        {
+          "page": 5,
+          "line": 20
+        },
+        {
+          "page": 5,
+          "line": 21
+        },
+        {
+          "page": 5,
+          "line": 22
+        },
+        {
+          "page": 5,
+          "line": 23
+        },
+        {
+          "page": 5,
+          "line": 24
+        },
+        {
+          "page": 5,
+          "line": 25
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "without",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Machine",
+        "Guarding",
+        "Hot",
+        "Work",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 11471,
+        "mutation-control": 11919
+      },
+      "fileSha256": {
+        "legacy-A": "53c4a6dbb09237344ec9b327ba345134273528533e3f40db98758439dc966b8a",
+        "mutation-control": "46bdd0ec3443d2a7dae7c6e5bd63807ebe15d3b06d024406c7fd6eb3f148b02d"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 34
+    },
+    {
+      "case": "LOTO-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        23,
+        6
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Lockout Tagout",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 232,
+      "structuralDifferences": [
+        "linesPerPage [10,25,6,23,6] vs [10,25,6,25,6]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        },
+        {
+          "page": 4,
+          "line": 24
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "without",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Lockout",
+        "Tagout",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8691,
+        "mutation-control": 8900
+      },
+      "fileSha256": {
+        "legacy-A": "43d99305d0b2d187a44343cd148569e4b8e93c92103ae7653a0129a3b8408389",
+        "mutation-control": "2f595000e23980febe0222dee011ed4a6c15fd6b7cc8e07a0398183ef0370956"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 16
+    },
+    {
+      "case": "MSHA-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        7
+      ],
+      "totalLines": 70,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Powered Industrial Trucks",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 69,
+      "stableDistinctTokensCompared": 217,
+      "structuralDifferences": [
+        "linesPerPage [10,25,6,22,7] vs [10,25,6,24,7]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 12
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "without",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Powered",
+        "Industrial",
+        "Trucks",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8601,
+        "mutation-control": 8758
+      },
+      "fileSha256": {
+        "legacy-A": "94a36740985ddc2319204fd5d64a4dfaf8eb81e5ce6436bd000c9fd9ba0f6b4a",
+        "mutation-control": "e201da9a7e17bd34e213d77ec60a98f7355fd83ead5663406fcba508e76569da"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 16
+    },
+    {
+      "case": "ELEC-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        6
+      ],
+      "totalLines": 69,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Electrical",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 68,
+      "stableDistinctTokensCompared": 216,
+      "structuralDifferences": [
+        "linesPerPage [10,25,6,22,6] vs [10,25,6,24,6]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 12
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "without",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Electrical",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8481,
+        "mutation-control": 8697
+      },
+      "fileSha256": {
+        "legacy-A": "b8e7ab36a96e514d4634d2b4e414633efabaa5ee2d969913378990563d29212d",
+        "mutation-control": "f5bbf7e44dde5725218688f0c3bf3d5d1642f2494721e284a147351336d93685"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 16
+    },
+    {
+      "case": "MULTI-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 6,
+      "linesPerPage": [
+        10,
+        25,
+        7,
+        36,
+        26,
+        9
+      ],
+      "totalLines": 113,
+      "headingCount": 7,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Walking Working Surfaces",
+        "Finding 2 — Hazard Communication",
+        "Finding 2 — Hazard Communication (continued)",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 112,
+      "stableDistinctTokensCompared": 414,
+      "structuralDifferences": [
+        "linesPerPage [10,25,7,36,26,9] vs [10,25,7,36,30,9]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 3,
+          "line": 5
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        },
+        {
+          "page": 4,
+          "line": 24
+        },
+        {
+          "page": 4,
+          "line": 25
+        },
+        {
+          "page": 4,
+          "line": 26
+        },
+        {
+          "page": 4,
+          "line": 27
+        },
+        {
+          "page": 4,
+          "line": 28
+        },
+        {
+          "page": 4,
+          "line": 29
+        },
+        {
+          "page": 4,
+          "line": 30
+        },
+        {
+          "page": 4,
+          "line": 31
+        },
+        {
+          "page": 4,
+          "line": 32
+        },
+        {
+          "page": 4,
+          "line": 33
+        },
+        {
+          "page": 4,
+          "line": 34
+        },
+        {
+          "page": 5,
+          "line": 1
+        },
+        {
+          "page": 5,
+          "line": 2
+        },
+        {
+          "page": 5,
+          "line": 3
+        },
+        {
+          "page": 5,
+          "line": 4
+        },
+        {
+          "page": 5,
+          "line": 5
+        },
+        {
+          "page": 5,
+          "line": 6
+        },
+        {
+          "page": 5,
+          "line": 7
+        },
+        {
+          "page": 5,
+          "line": 8
+        },
+        {
+          "page": 5,
+          "line": 9
+        },
+        {
+          "page": 5,
+          "line": 10
+        },
+        {
+          "page": 5,
+          "line": 11
+        },
+        {
+          "page": 5,
+          "line": 12
+        },
+        {
+          "page": 5,
+          "line": 13
+        },
+        {
+          "page": 5,
+          "line": 14
+        },
+        {
+          "page": 5,
+          "line": 15
+        },
+        {
+          "page": 5,
+          "line": 16
+        },
+        {
+          "page": 5,
+          "line": 17
+        },
+        {
+          "page": 5,
+          "line": 18
+        },
+        {
+          "page": 5,
+          "line": 19
+        },
+        {
+          "page": 5,
+          "line": 20
+        },
+        {
+          "page": 5,
+          "line": 21
+        },
+        {
+          "page": 5,
+          "line": 22
+        },
+        {
+          "page": 5,
+          "line": 23
+        },
+        {
+          "page": 5,
+          "line": 24
+        },
+        {
+          "page": 5,
+          "line": 25
+        },
+        {
+          "page": 5,
+          "line": 26
+        },
+        {
+          "page": 5,
+          "line": 27
+        },
+        {
+          "page": 5,
+          "line": 28
+        },
+        {
+          "page": 5,
+          "line": 29
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Walking",
+        "Working",
+        "Surfaces",
+        "Hazard",
+        "Communication",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "without",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 11782,
+        "mutation-control": 12210
+      },
+      "fileSha256": {
+        "legacy-A": "0ed91f1c584b67e22c5e196e11e63af3d64c9c39963451727053c17072cab839",
+        "mutation-control": "dac0ba9b90486c7dc8a9a46f0b9e144b56712958ffd464f23fa452d0677b9c41"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 34
+    },
+    {
+      "case": "CONTROL-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        20,
+        6
+      ],
+      "totalLines": 67,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Machine Guarding",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 66,
+      "stableDistinctTokensCompared": 199,
+      "structuralDifferences": [
+        "linesPerPage [10,25,6,20,6] vs [10,25,6,22,6]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 10
+        },
+        {
+          "page": 4,
+          "line": 11
+        },
+        {
+          "page": 4,
+          "line": 12
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "without",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Machine",
+        "Guarding",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8362,
+        "mutation-control": 8568
+      },
+      "fileSha256": {
+        "legacy-A": "24ae581ae6c6df2db2f287deae02309750f65910aecf5c481c7aa95ee6016b92",
+        "mutation-control": "bd590ec27f202231e5f128c2c4fa3aa2219a4b293651801dc5c75a1fb625f51a"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 16
+    },
+    {
+      "case": "SILICA-01",
+      "verdict": "DIFFERENT",
+      "pageCount": 5,
+      "linesPerPage": [
+        10,
+        25,
+        6,
+        22,
+        6
+      ],
+      "totalLines": 69,
+      "headingCount": 5,
+      "headings": [
+        "Executive Summary",
+        "Findings Summary",
+        "Detailed Findings",
+        "Finding 1 — Silica",
+        "Corrective Action Summary"
+      ],
+      "volatilePositions": 1,
+      "volatilePositionList": [
+        "0:9"
+      ],
+      "stableLinesCompared": 68,
+      "stableDistinctTokensCompared": 219,
+      "structuralDifferences": [
+        "linesPerPage [10,25,6,22,6] vs [10,25,6,24,6]",
+        "section headings/order differ"
+      ],
+      "positionalDifferences": [
+        {
+          "page": 3,
+          "line": 4
+        },
+        {
+          "page": 4,
+          "line": 2
+        },
+        {
+          "page": 4,
+          "line": 12
+        },
+        {
+          "page": 4,
+          "line": 13
+        },
+        {
+          "page": 4,
+          "line": 14
+        },
+        {
+          "page": 4,
+          "line": 15
+        },
+        {
+          "page": 4,
+          "line": 16
+        },
+        {
+          "page": 4,
+          "line": 17
+        },
+        {
+          "page": 4,
+          "line": 18
+        },
+        {
+          "page": 4,
+          "line": 19
+        },
+        {
+          "page": 4,
+          "line": 20
+        },
+        {
+          "page": 4,
+          "line": 21
+        },
+        {
+          "page": 4,
+          "line": 22
+        },
+        {
+          "page": 4,
+          "line": 23
+        }
+      ],
+      "tokenDifferences": [
+        "KG-4E",
+        "—",
+        "HazLenz",
+        "qualified",
+        "the",
+        "Silica",
+        "verification:",
+        "reviewer",
+        "accepted",
+        "assessment",
+        "without",
+        "edit.",
+        "SHADOW",
+        "GOVERNED",
+        "LEAK",
+        "mode",
+        "active",
+        "governedDeliveryState",
+        "GOVERNED_VERIFIED_TEXT,",
+        "governedFallbackReason",
+        "GOVERNANCE_FILTER_EMPTY,",
+        "release",
+        "federal-core-2026-07-30.1,",
+        "mismatch",
+        "GRANULARITY_DIFFERENCE",
+        "(BLOCKING),",
+        "correlationId",
+        "74b77cdb,",
+        "telemetry",
+        "allowlist",
+        "cutover."
+      ],
+      "fonts": [
+        "Helvetica",
+        "Helvetica-Bold",
+        "Helvetica-Oblique"
+      ],
+      "producer": "PDFKit",
+      "pdfVersion": "1.3",
+      "pageSize": "612 x 792 pts (letter)",
+      "fileBytes": {
+        "legacy-A": 8533,
+        "mutation-control": 8750
+      },
+      "fileSha256": {
+        "legacy-A": "45572ba9116352200ac58e163ee68088157374a26a117c158e128a4d7d20f684",
+        "mutation-control": "ba30ba36b4956bbe94218416eb4a3051e6f3d68be038ff01cbdf3ec5760ea77e"
+      },
+      "bytesIdentical": false,
+      "forbiddenTermHits": 16
+    }
+  ],
+  "passed": false,
+  "failures": [
+    "FALL-01: linesPerPage [10,27,6,20,7] vs [10,27,6,25,7]; section headings/order differ; 23 positional line differences; tokens: KG-4E | qualified | — | HazLenz | the | Fall | Protection | verification: | reviewer | accepted | assessment | without",
+    "GUARD-01: linesPerPage [10,25,7,36,22,8] vs [10,25,7,36,26,8]; section headings/order differ; 44 positional line differences; tokens: KG-4E | without | — | HazLenz | qualified | the | Machine | Guarding | Hot | Work | verification: | reviewer",
+    "LOTO-01: linesPerPage [10,25,6,23,6] vs [10,25,6,25,6]; section headings/order differ; 14 positional line differences; tokens: KG-4E | without | — | HazLenz | qualified | the | Lockout | Tagout | verification: | reviewer | accepted | assessment",
+    "MSHA-01: linesPerPage [10,25,6,22,7] vs [10,25,6,24,7]; section headings/order differ; 14 positional line differences; tokens: KG-4E | without | — | HazLenz | qualified | the | Powered | Industrial | Trucks | verification: | reviewer | accepted",
+    "ELEC-01: linesPerPage [10,25,6,22,6] vs [10,25,6,24,6]; section headings/order differ; 14 positional line differences; tokens: KG-4E | without | — | HazLenz | qualified | the | Electrical | verification: | reviewer | accepted | assessment | edit.",
+    "MULTI-01: linesPerPage [10,25,7,36,26,9] vs [10,25,7,36,30,9]; section headings/order differ; 48 positional line differences; tokens: KG-4E | — | HazLenz | qualified | the | Walking | Working | Surfaces | Hazard | Communication | verification: | reviewer",
+    "CONTROL-01: linesPerPage [10,25,6,20,6] vs [10,25,6,22,6]; section headings/order differ; 14 positional line differences; tokens: KG-4E | without | — | HazLenz | qualified | the | Machine | Guarding | verification: | reviewer | accepted | assessment",
+    "SILICA-01: linesPerPage [10,25,6,22,6] vs [10,25,6,24,6]; section headings/order differ; 14 positional line differences; tokens: KG-4E | — | HazLenz | qualified | the | Silica | verification: | reviewer | accepted | assessment | without | edit.",
+    "FORBIDDEN TERMS in generated reports: 176 hit(s)"
+  ]
+}

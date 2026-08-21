@@ -1,0 +1,255 @@
+{
+  "releaseId": "federal-core-2026-08-19.3",
+  "generatedFrom": "eCFR, title 29/30 up-to-date-as-of 2026-08-18",
+  "records": [
+    {
+      "citation": "29 CFR 1910.36",
+      "inRelease": true,
+      "governedTitle": "Design and construction requirements for exit routes",
+      "codifiedHeading": "§ 1910.36 Design and construction requirements for exit routes.",
+      "recordChecksum": "0e13180d1ff835069294987e4ec819343cf6bd7c147ab1cb6a20f9ac02dd003d",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-36.xml",
+        "ecfr-1910-37.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) permanence",
+          "pass": true,
+          "sourcePhrase": "Each exit route must be a permanent part of the workplace."
+        },
+        {
+          "check": "source supports: (b)(1) at least two routes",
+          "pass": true,
+          "sourcePhrase": "At least two exit routes must be available in a workplace"
+        },
+        {
+          "check": "source supports: (c)(1) exit discharge destination",
+          "pass": true,
+          "sourcePhrase": "Each exit discharge must lead directly outside or to a street, walkway, refuge area, public way, or open space"
+        },
+        {
+          "check": "source supports: (d)(1) openable from inside",
+          "pass": true,
+          "sourcePhrase": "without keys, tools, or special knowledge"
+        },
+        {
+          "check": "source supports: (f)(1) capacity",
+          "pass": true,
+          "sourcePhrase": "Exit routes must support the maximum permitted occupant load"
+        },
+        {
+          "check": "source supports: (g)(1) minimum height",
+          "pass": true,
+          "sourcePhrase": "The ceiling of an exit route must be at least seven feet six inches"
+        },
+        {
+          "check": "not asserted as this record's rule: the \"free and unobstructed\" rule belongs to 1910.37(a)(3)",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1910.303",
+      "inRelease": true,
+      "governedTitle": "Electrical - general requirements",
+      "codifiedHeading": "§ 1910.303 General.",
+      "recordChecksum": "e210f940c808a12bec28ca53146235ee5c30a6bd3e973e0d120206411642dee6",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1910-303.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (b)(1) free from recognized hazards",
+          "pass": true,
+          "sourcePhrase": "Electric equipment shall be free from recognized hazards"
+        },
+        {
+          "check": "source supports: (b)(2) installed and used per listing",
+          "pass": true,
+          "sourcePhrase": "shall be installed and used in accordance with any instructions included in the listing or labeling"
+        },
+        {
+          "check": "source supports: (g) 600 V scope",
+          "pass": true,
+          "sourcePhrase": "electric equipment operating at 600 volts, nominal, or less to ground"
+        },
+        {
+          "check": "source supports: (g)(1) working space",
+          "pass": true,
+          "sourcePhrase": "Sufficient access and working space shall be provided and maintained about all electric equipment"
+        },
+        {
+          "check": "source supports: (g)(2)(i) guarding of live parts",
+          "pass": true,
+          "sourcePhrase": "operating at 50 volts or more shall be guarded against accidental contact"
+        },
+        {
+          "check": "source supports: (g)(2)(iii) warning signs",
+          "pass": true,
+          "sourcePhrase": "marked with conspicuous warning signs forbidding unqualified persons to enter"
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.34(a)",
+      "inRelease": true,
+      "governedTitle": "Means of egress - General",
+      "codifiedHeading": "§ 1926.34 Means of egress.",
+      "recordChecksum": "dbf18c496390d9daa1185cbc5d5199a7aae2b5bd8ba415bc7e1067efddc1926a",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-34.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) free and unobstructed egress when occupied",
+          "pass": true,
+          "sourcePhrase": "exits shall be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied"
+        },
+        {
+          "check": "source supports: (c) continually maintained free of obstructions",
+          "pass": true,
+          "sourcePhrase": "Means of egress shall be continually maintained free of all obstructions or impediments to full instant use"
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.416(a)(1)",
+      "inRelease": true,
+      "governedTitle": "Electrical safety-related work practices - General requirements: protection of employees from contact with electric power circuits",
+      "codifiedHeading": "§ 1926.416 General requirements.",
+      "recordChecksum": "e449db0edb582c8b653a64334fcb8214d9a1ee8c8adfbeadaa4bcb05638ca63a",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-416.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a)(1) proximity to energized circuits",
+          "pass": true,
+          "sourcePhrase": "No employer shall permit an employee to work in such proximity to any part of an electric power circuit"
+        },
+        {
+          "check": "source supports: (a)(1) required protection",
+          "pass": true,
+          "sourcePhrase": "deenergizing the circuit and grounding it or by guarding it effectively by insulation or other means"
+        }
+      ]
+    },
+    {
+      "citation": "29 CFR 1926.300(b)(2)",
+      "inRelease": true,
+      "governedTitle": "Tools - Hand and Power, General requirements - Guarding: moving parts of equipment exposed to contact",
+      "codifiedHeading": "§ 1926.300 General requirements.",
+      "recordChecksum": "b94bc1e035549d90a77f53e0a0ecccdf421340c15fdf1e7f3c5e74a816399416",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-1926-300.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (b)(2) transmission parts guarded when exposed",
+          "pass": true,
+          "sourcePhrase": "Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment shall be guarded if such parts are exposed to contact by employees or otherwise create a hazard."
+        },
+        {
+          "check": "source supports: (b)(1) tools designed for guards",
+          "pass": true,
+          "sourcePhrase": "When power operated tools are designed to accommodate guards, they shall be equipped with such guards when in use."
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 47.41(a)",
+      "inRelease": true,
+      "governedTitle": "Requirement for container labels",
+      "codifiedHeading": "§ 47.41 Requirement for container labels.",
+      "recordChecksum": "0705c5304b046aa62bb1f64b652e209d03788760af2088d3feaa70944fc3e6ae",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-47-41.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: (a) each container labeled",
+          "pass": true,
+          "sourcePhrase": "The operator must ensure that each container of a hazardous chemical has a label."
+        },
+        {
+          "check": "source supports: (a)(1) replace missing/unreadable",
+          "pass": true,
+          "sourcePhrase": "must replace a container label immediately if it is missing or if the hazard information on the label is unreadable"
+        },
+        {
+          "check": "source supports: (a)(2) no removal or defacement",
+          "pass": true,
+          "sourcePhrase": "must not remove or deface existing labels on containers of hazardous chemicals"
+        }
+      ]
+    },
+    {
+      "citation": "30 CFR 62.120",
+      "inRelease": true,
+      "governedTitle": "Action level",
+      "codifiedHeading": "§ 62.120 Action level.",
+      "recordChecksum": "ff19c04db0758fc4e2efd9b788f6e64be8e7c3657173ca115c153d8de5888063",
+      "effectiveReviewState": "mechanically_validated",
+      "sourceFiles": [
+        "ecfr-62-120.xml",
+        "ecfr-62-101.xml"
+      ],
+      "results": [
+        {
+          "check": "title consistent with codified heading",
+          "pass": true
+        },
+        {
+          "check": "source supports: enrollment duty at the action level",
+          "pass": true,
+          "sourcePhrase": "the mine operator must enroll the miner in a hearing conservation program that complies with"
+        },
+        {
+          "check": "source supports: action level = TWA8 of 85 dBA (62.101)",
+          "pass": true,
+          "sourcePhrase": "An 8-hour time-weighted average sound level (TWA8) of 85 dBA"
+        },
+        {
+          "check": "source supports: action level equivalently a 50% dose (62.101)",
+          "pass": true,
+          "sourcePhrase": "or equivalently a dose of 50%"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "pass": 32,
+    "fail": 0
+  }
+}

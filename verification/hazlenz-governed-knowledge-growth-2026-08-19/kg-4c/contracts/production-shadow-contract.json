@@ -1,0 +1,390 @@
+{
+  "generatedBy": "test-kg4c-production-shadow-contract.ts",
+  "schemaVersion": "kg4c.shadow-comparison.v2",
+  "locks": [
+    "SERVER_MODE",
+    "PRINCIPAL_ELIGIBILITY",
+    "GOVERNED_CUTOVER_PRODUCTION_ACK",
+    "PRODUCTION_SHADOW_ACK"
+  ],
+  "productionShadowAckSentinel": "I_ACKNOWLEDGE_PRODUCTION_SHADOW",
+  "acknowledgementCases": [
+    {
+      "label": "missing",
+      "verdict": "ACK_MISSING",
+      "accepted": false
+    },
+    {
+      "label": "null",
+      "verdict": "ACK_MISSING",
+      "accepted": false
+    },
+    {
+      "label": "empty",
+      "verdict": "ACK_EMPTY",
+      "accepted": false
+    },
+    {
+      "label": "whitespace",
+      "verdict": "ACK_WHITESPACE_ONLY",
+      "accepted": false
+    },
+    {
+      "label": "tab+newline",
+      "verdict": "ACK_WHITESPACE_ONLY",
+      "accepted": false
+    },
+    {
+      "label": "true",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "TRUE",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "1",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "yes",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "on",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "enabled",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "wrong case",
+      "verdict": "ACK_WRONG_CASE",
+      "accepted": false
+    },
+    {
+      "label": "mixed case",
+      "verdict": "ACK_WRONG_CASE",
+      "accepted": false
+    },
+    {
+      "label": "near match (prefix)",
+      "verdict": "ACK_NEAR_MATCH",
+      "accepted": false
+    },
+    {
+      "label": "near match (suffixed)",
+      "verdict": "ACK_NEAR_MATCH",
+      "accepted": false
+    },
+    {
+      "label": "the KG-4A sentinel",
+      "verdict": "ACK_WRONG_VALUE",
+      "accepted": false
+    },
+    {
+      "label": "exact",
+      "verdict": "ACK_EXACT",
+      "accepted": true
+    },
+    {
+      "label": "exact with transport newline",
+      "verdict": "ACK_EXACT",
+      "accepted": true
+    }
+  ],
+  "stages": [
+    {
+      "stage": "STAGE_0_DISABLED",
+      "constraints": {
+        "maxNamedPrincipals": 0,
+        "cohortSamplingAllowed": false,
+        "maxCohortBps": 0
+      }
+    },
+    {
+      "stage": "STAGE_1_SINGLE_ACCOUNT",
+      "constraints": {
+        "maxNamedPrincipals": 1,
+        "cohortSamplingAllowed": false,
+        "maxCohortBps": 0
+      }
+    },
+    {
+      "stage": "STAGE_2_SMALL_ALLOWLIST",
+      "constraints": {
+        "maxNamedPrincipals": 10,
+        "cohortSamplingAllowed": false,
+        "maxCohortBps": 0
+      }
+    },
+    {
+      "stage": "STAGE_3_DETERMINISTIC_COHORT",
+      "constraints": {
+        "maxNamedPrincipals": 50,
+        "cohortSamplingAllowed": true,
+        "maxCohortBps": 100
+      }
+    },
+    {
+      "stage": "STAGE_4_BROAD",
+      "constraints": {
+        "maxNamedPrincipals": 1000,
+        "cohortSamplingAllowed": true,
+        "maxCohortBps": 2500
+      }
+    }
+  ],
+  "hardInvariants": [
+    "CUSTOMER_OUTPUT_MUTATED",
+    "CUSTOMER_OUTPUT_UNVERIFIED",
+    "GOVERNED_PROVENANCE_WRITTEN_IN_SHADOW",
+    "PRIVACY_SCHEMA_VIOLATION",
+    "APPROVAL_INTEGRITY_IMPOSSIBLE",
+    "NONDETERMINISTIC_RESULT",
+    "CITATION_SUBSTITUTED"
+  ],
+  "rateThresholds": [
+    {
+      "condition": "RESOLVER_FAILURE_RATE",
+      "threshold": 0.02,
+      "minimumSample": 200,
+      "basis": "KG-4B measured resolverHealth OK on 83 of 83 comparisons (100%) across 43 analyses, four regimes and ten observation shapes. The observed failure rate is 0. A 2% ceiling therefore permits roughly a hundredfold degradation from the measured baseline before stopping, which is wide enough to absorb ordinary production transients (a connection reset, a failover) and narrow enough that a systemic resolver fault is caught within a few hundred requests. The 200-observation floor is set so a single early failure cannot trip a run: 1/200 = 0.5%, comfortably under the threshold."
+    },
+    {
+      "condition": "TELEMETRY_FAILURE_RATE",
+      "threshold": 0.05,
+      "minimumSample": 200,
+      "basis": "Telemetry loss degrades the EVIDENCE, not the customer -- KG-4B measured the customer path unaffected by six injected failure modes. It is therefore given a looser ceiling than the resolver. 5% is the point at which the mismatch corpus stops being a usable denominator: above it, an operator can no longer say what fraction of comparisons a rate describes, which is the specific error KG-4B refused when it declined to report a rate without stating its denominator."
+    },
+    {
+      "condition": "BLOCKING_MISMATCH_RATE",
+      "threshold": 0.001,
+      "minimumSample": 500,
+      "basis": "KG-4B measured 0 BLOCKING mismatches in 83 comparisons. Zero observed does not license a zero threshold here, because unlike a hard invariant a blocking mismatch is a finding ABOUT the corpus that shadow exists to discover -- stopping on the first one would defeat the purpose of running shadow at all. 0.1% over at least 500 comparisons means roughly one blocking case is tolerated, captured and reviewed, while a systematic problem (dozens) stops the run. Every individual blocking mismatch is still captured and alerted regardless of rate."
+    },
+    {
+      "condition": "SHADOW_LATENCY_OVERHEAD",
+      "threshold": 12,
+      "minimumSample": 200,
+      "basis": "KG-4B measured SHADOW overhead at 1.187 ms/analysis (p95 1.275 ms, worst observed 1.827 ms) at 10 findings over 6 distinct citations, with query count tracking distinct citations and no N+1. 12 ms is roughly ten times the measured mean and six times the worst single observation, so it cannot fire on ordinary variance, and it will fire on a regression that reintroduces per-finding queries. Against a classify path dominated by seconds of AI inference, 12 ms remains immaterial to the customer -- this threshold protects the SERVER, not the response time."
+    }
+  ],
+  "eventSchema": {
+    "version": "kg4c.shadow-comparison.v2",
+    "v1FieldCount": 29,
+    "v2AdditionalFields": [
+      "stage",
+      "eligibilitySource",
+      "outputInvarianceVerdict",
+      "outputInvarianceHash",
+      "outputInvarianceDifferingPaths",
+      "shadowProvenanceNull"
+    ],
+    "v2FieldCount": 35
+  },
+  "privacyCanaries": [
+    "EMAIL_ADDRESS",
+    "BEARER_TOKEN",
+    "JWT",
+    "PASSWORD_FIELD",
+    "SECRET_FIELD",
+    "PRIVATE_KEY",
+    "AUTHORIZATION_HEADER",
+    "US_PHONE",
+    "SSN",
+    "CREDIT_CARD",
+    "STREET_ADDRESS",
+    "OBSERVATION_PROSE"
+  ],
+  "retention": {
+    "rawEvents": {
+      "target": "30 days",
+      "rationale": "Long enough to reproduce and classify a mismatch discovered late in a shadow run, short enough that the corpus does not become a permanent dataset. Raw events carry no customer content, so the duration is an operational convenience rather than a privacy control.",
+      "enforcedBy": "PLATFORM_LOG_PIPELINE",
+      "applicationControls": false
+    },
+    "aggregateMetrics": {
+      "target": "13 months",
+      "rationale": "Counters and rates only -- no event bodies. Kept across a full year plus one month so a later cutover decision can compare against the first shadow run rather than against memory.",
+      "enforcedBy": "METRICS_BACKEND",
+      "applicationControls": false
+    },
+    "blockingEvidence": {
+      "target": "retained with the KG slice that adjudicates it",
+      "rationale": "A BLOCKING mismatch becomes verification evidence: it is copied into the remediation slice artifact directory, where the ordinary evidence-preservation rules apply and nothing is deleted. This is the one class that deliberately outlives the log window, and it survives as a categorical record in a repository artifact, not as raw telemetry.",
+      "enforcedBy": "REPOSITORY_VERIFICATION_ARTIFACTS",
+      "applicationControls": true
+    }
+  },
+  "unobservedCategories": {
+    "measured": [
+      "CONTENT_EQUIVALENT",
+      "CONTENT_DIFFERENCE",
+      "CITATION_DIFFERENCE",
+      "GOVERNED_APPROVED_EXACT",
+      "GOVERNED_UNAPPROVED",
+      "GOVERNED_CITATION_ONLY",
+      "JURISDICTION_DIFFERENCE",
+      "ORDERING_DIFFERENCE",
+      "RESOLVER_FAILURE",
+      "INTEGRITY_FAILURE",
+      "PROVENANCE_DIFFERENCE"
+    ],
+    "statusMdProseSubset": [
+      "CONTENT_DIFFERENCE",
+      "JURISDICTION_DIFFERENCE",
+      "CITATION_DIFFERENCE",
+      "INTEGRITY_FAILURE",
+      "ORDERING_DIFFERENCE",
+      "CONTENT_EQUIVALENT",
+      "PROVENANCE_DIFFERENCE"
+    ],
+    "observedInKg4bCorpus": [
+      "EXACT_MATCH",
+      "GOVERNED_MISSING",
+      "GRANULARITY_DIFFERENCE",
+      "APPLICABILITY_DIFFERENCE"
+    ]
+  },
+  "metrics": [
+    "shadow_eligible_requests",
+    "shadow_executed",
+    "shadow_skipped",
+    "shadow_comparisons",
+    "shadow_exact_match",
+    "shadow_expected_fallback",
+    "shadow_review_mismatch",
+    "shadow_blocking_mismatch",
+    "shadow_resolver_failure",
+    "shadow_integrity_failure",
+    "shadow_output_hash_mismatch",
+    "shadow_output_hash_unverified",
+    "shadow_provenance_violation",
+    "shadow_privacy_violation",
+    "shadow_telemetry_dropped",
+    "shadow_overhead_p50_ms",
+    "shadow_overhead_p95_ms"
+  ],
+  "metricDimensions": [
+    "hazardFamily",
+    "jurisdiction",
+    "governedBackingState",
+    "mismatch",
+    "severity",
+    "rootCause",
+    "stage",
+    "releaseId"
+  ],
+  "forbiddenMetricDimensions": [
+    "correlationId",
+    "findingKey",
+    "eventKey",
+    "userId",
+    "accountId",
+    "organizationId",
+    "inspectionId",
+    "observationId",
+    "email"
+  ],
+  "zeroToleranceMetrics": [
+    "shadow_output_hash_mismatch",
+    "shadow_output_hash_unverified",
+    "shadow_provenance_violation",
+    "shadow_privacy_violation",
+    "shadow_integrity_failure"
+  ],
+  "alertRules": [
+    {
+      "condition": "hard invariant: CUSTOMER_OUTPUT_MUTATED",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: CUSTOMER_OUTPUT_UNVERIFIED",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: GOVERNED_PROVENANCE_WRITTEN_IN_SHADOW",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: PRIVACY_SCHEMA_VIOLATION",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: APPROVAL_INTEGRITY_IMPOSSIBLE",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: NONDETERMINISTIC_RESULT",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "hard invariant: CITATION_SUBSTITUTED",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": true
+    },
+    {
+      "condition": "RESOLVER_FAILURE_RATE > 0.02 over at least 200 comparisons",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "TELEMETRY_FAILURE_RATE > 0.05 over at least 200 comparisons",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "BLOCKING_MISMATCH_RATE > 0.001 over at least 500 comparisons",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "SHADOW_LATENCY_OVERHEAD > 12 over at least 200 comparisons",
+      "action": "STOP_SHADOW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "RESOLVER_FAILURE_RATE > 0.01 (half the stop threshold) over at least 200 comparisons",
+      "action": "REVIEW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "TELEMETRY_FAILURE_RATE > 0.025 (half the stop threshold) over at least 200 comparisons",
+      "action": "REVIEW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "BLOCKING_MISMATCH_RATE > 0.0005 (half the stop threshold) over at least 500 comparisons",
+      "action": "REVIEW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "SHADOW_LATENCY_OVERHEAD > 6 (half the stop threshold) over at least 200 comparisons",
+      "action": "REVIEW",
+      "zeroTolerance": false
+    },
+    {
+      "condition": "any individual BLOCKING mismatch, at any rate",
+      "action": "REVIEW",
+      "zeroTolerance": false
+    }
+  ],
+  "result": {
+    "passed": 438,
+    "failed": 0
+  }
+}
