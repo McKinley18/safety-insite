@@ -51,6 +51,14 @@ export class InspectionFinding {
   @Column({ type: 'uuid', nullable: true })
   originatingAnalysisId: string | null;
 
+  /**
+   * KG-1. Inherited verbatim from the HazLenz analysis that produced this finding's current
+   * content -- never resolved independently here, so a finding can never claim a knowledge
+   * release its own analysis did not use. NULL when the originating analysis recorded NULL.
+   */
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  knowledgeReleaseId: string | null;
+
   @Column({ type: 'jsonb', nullable: true })
   sourceCandidate: Record<string, unknown> | null;
 

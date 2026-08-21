@@ -22,6 +22,21 @@ export class HazLenzAnalysis {
   @Column({ type: 'varchar', length: 80, nullable: true })
   traceId: string | null;
 
+  /**
+   * KG-1. The governed knowledge release/snapshot that actually and deterministically
+   * informed this analysis, captured once at analysis persistence time and inherited by
+   * every finding derived from it.
+   *
+   * NULL is a truthful, expected value: it means no single release governed the analysis.
+   * The live standards path (ApplicableStandardsService) selects over the whole
+   * `standards_master` corpus filtered only by `is_active`/jurisdiction, plus
+   * `safescope_knowledge_chunks` and in-code shards -- it does not scope to
+   * `release_id`, so no one release can honestly be named. NULL is never backfilled and
+   * never replaced by whichever release happens to exist later.
+   */
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  knowledgeReleaseId: string | null;
+
   @Column({ type: 'varchar', length: 128 })
   idempotencyKey: string;
 

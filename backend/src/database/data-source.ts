@@ -14,6 +14,10 @@ import { Review } from '../reviews/entities/review.entity';
 import { RiskScore } from '../risk/entities/risk-score.entity';
 import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 import { Standard } from '../standards/entities/standard.entity';
+import { RegulatoryRelease } from '../standards/releases/regulatory-release.entity';
+import { KnowledgeReleaseEvent } from '../standards/releases/knowledge-release-event.entity';
+import { RegulatoryReleaseRecord } from '../standards/releases/regulatory-release-record.entity';
+import { RegulatoryReleaseRecordReview } from '../standards/releases/regulatory-release-record-review.entity';
 import { HazardCategoryEntity } from '../standards/entities/hazard-category.entity';
 import { HazardStandardMapping } from '../standards/entities/hazard-standard-mapping.entity';
 import { CorrectiveActionTemplate } from '../standards/entities/corrective-action-template.entity';
@@ -103,6 +107,10 @@ export const dataSource = new DataSource({
     RiskScore,
     CorrectiveAction,
     Standard,
+    RegulatoryRelease,
+    KnowledgeReleaseEvent,
+    RegulatoryReleaseRecord,
+    RegulatoryReleaseRecordReview,
     HazardCategoryEntity,
     HazardStandardMapping,
     CorrectiveActionTemplate,
