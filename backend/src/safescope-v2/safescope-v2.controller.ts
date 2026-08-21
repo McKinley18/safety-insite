@@ -1,5 +1,8 @@
 import { Roles } from '../auth/decorators/roles.decorator';
-import { Body, Controller, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Optional, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { DataSource } from 'typeorm';
+import { GovernedCutoverContext } from '../standards/cutover/governed-cutover-context';
+import { orchestrateShadowRequest } from '../standards/cutover/shadow-request-orchestration';
 import { Throttle } from '@nestjs/throttler';
 import { Request } from 'express';
 import { SafescopeV2Service } from './safescope-v2.service';
@@ -160,6 +163,12 @@ export class SafescopeV2Controller {
   constructor(
     private readonly service: SafescopeV2Service,
     private readonly inspections: InspectionService,
+    /**
+     * KG-4A. Optional so every existing construction site (tests, harnesses, module wiring that
+     * predates KG-4A) keeps working unchanged; without it the cutover context can never pin a
+     * release and every mode degrades to legacy behaviour, which is the safe direction.
+     */
+    @Optional() private readonly dataSource?: DataSource,
   ) {}
 
   /**
@@ -316,18 +325,68 @@ export class SafescopeV2Controller {
         body.priorStructuredObservation,
       );
 
-      const foundation = await this.service.hydrateFindingScopedStandards(
-        applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body), body),
-      );
-      const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
-        sanitizeHazLenzDisplayOutput(
-          applyFinalizationGate(foundation),
-        ),
-        body.text,
-      ), body), body.text);
-      // Re-apply the evidence boundary after the compatibility response adapter
-      // so legacy serialization cannot reintroduce a suppressed citation.
-      return enforceHazLenzEvidenceBoundary(guided, body);
+      // KG-4A / KG-4D. THE customer-visible standards pipeline, as a closure.
+      //
+      // Everything from the evidence boundary to the final serialization lives here so it can be
+      // executed with or without a governed cutover context. It begins AFTER the AI analysis is
+      // complete and closes over that already-computed `result`, so re-running it re-runs
+      // hydration and display -- never a model call.
+      //
+      // `pristine` decides whether this invocation runs on the ORIGINAL analysis object or on a
+      // copy, and the distinction is load-bearing.
+      //
+      //   pristine: true   -- runs on `result` itself, exactly as the pre-integration controller
+      //                       did. This is the invocation whose output the customer receives, so
+      //                       the customer payload is produced by a code path that copies nothing.
+      //   pristine: false  -- runs on a JSON copy, because the chain mutates the foundation in
+      //                       place and two invocations sharing one object would compare an object
+      //                       against itself. Only the shadow comparison uses these.
+      //
+      // WHY NOT `structuredClone`. The analysis result carries a class reference
+      // (`ApprovedKnowledgeRegistryValidator`), and `structuredClone` throws `DataCloneError` on it
+      // -- which turned every classify request into an HTTP 500 the first time this was wired. A
+      // JSON copy drops functions and class references, which is correct here: they are internal
+      // machinery, never customer-visible output. Found by the Phase 3 real-HTTP baseline, not by
+      // a helper test, which is precisely why Phase 3 requires real requests.
+      const runStandardsPipeline = async (
+        cutover: GovernedCutoverContext | null,
+        options: { pristine: boolean },
+      ) => {
+        const source = options.pristine ? result : JSON.parse(JSON.stringify(result));
+        const foundation = await this.service.hydrateFindingScopedStandards(
+          applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(source, body), body), body),
+          cutover,
+        );
+        const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
+          sanitizeHazLenzDisplayOutput(
+            applyFinalizationGate(foundation),
+          ),
+          body.text,
+        ), body), body.text);
+        // Re-apply the evidence boundary after the compatibility response adapter
+        // so legacy serialization cannot reintroduce a suppressed citation.
+        return enforceHazLenzEvidenceBoundary(guided, body);
+      };
+
+      // KG-4D. The ONE orchestration boundary for governed/shadow execution.
+      //
+      // Authorization, the kill switch, the circuit breaker, the customer-output invariance hash,
+      // the SHADOW provenance invariant, privacy-safe telemetry and the operational metrics are all
+      // decided in `orchestrateShadowRequest()` rather than scattered through this controller.
+      //
+      // For a LEGACY request -- every customer today -- it calls the pipeline exactly once with a
+      // null context and returns its payload unchanged; no code in `standards/cutover/` executes.
+      // In SHADOW it returns the LEGACY-branch payload, computed by a run the governed resolver
+      // never touched, which is what makes shadow invisibility structural rather than measured.
+      const orchestrated = await orchestrateShadowRequest({
+        dataSource: this.dataSource ?? null,
+        principal: { userId: req.user?.userId ?? null, organizationId: req.user?.organizationId ?? null },
+        analysisTraceId: (result as any)?.traceId ?? null,
+        jurisdiction: (result as any)?.regulatoryContext?.value ?? null,
+        runPipeline: runStandardsPipeline,
+      });
+
+      return orchestrated.payload;
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);
       throw error; // Rethrow to let Nest handle ForbiddenException etc.

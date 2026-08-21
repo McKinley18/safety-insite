@@ -29,6 +29,75 @@ import { InspectionFinding } from './entities/inspection-finding.entity';
 import { Observation } from './entities/observation.entity';
 import { Inspection } from './inspection.entity';
 import { materialRiskChanged, urgencyForRisk } from './risk-policy';
+import { resolveKnowledgeReleaseProvenance } from './knowledge-release-provenance';
+import {
+  resolveCutoverEnablement, modeInfluencesCustomerOutput,
+} from '../standards/cutover/cutover-mode';
+import { enforceShadowProvenanceInvariant } from '../standards/cutover/shadow-provenance-invariant';
+import { shadowMetrics } from '../standards/cutover/shadow-operational-metrics';
+
+/**
+ * KG-4A. Every governed release id stamped onto a customer-visible standard decision in a result
+ * snapshot, deduplicated.
+ *
+ * Reads the SAME field the two customer paths write (`knowledgeReleaseId`, set only when
+ * `governedProvenanceEligible`), across the same four locations they write it. In LEGACY the field
+ * is never present anywhere in the snapshot, so this returns `[]` and provenance stays NULL --
+ * byte-identical to KG-1.
+ */
+function collectGovernedReleaseIdsFromSnapshot(snapshot: unknown): string[] {
+  const found = new Set<string>();
+  const root = (snapshot && typeof snapshot === 'object' ? snapshot : {}) as Record<string, any>;
+  const take = (items: unknown) => {
+    for (const item of (Array.isArray(items) ? items : [])) {
+      const id = (item as any)?.knowledgeReleaseId;
+      if (typeof id === 'string' && id.trim()) found.add(id.trim());
+    }
+  };
+  for (const key of ['primaryStandards', 'suggestedStandards', 'standardDecisions']) take(root[key]);
+  for (const hazard of (Array.isArray(root?.multiHazardDecomposition?.hazards) ? root.multiHazardDecomposition.hazards : [])) {
+    take((hazard as any)?.standardCandidates);
+  }
+  return [...found];
+}
+
+/**
+ * The release one FINDING may truthfully claim.
+ *
+ * Constrained to the analysis's own release or NULL, never a third value: `analysisReleaseId` is
+ * the only id this function can return, so the KG-1 invariant holds by construction rather than by
+ * agreement between two code paths.
+ *
+ * `narrowPerFinding` is the important argument, and it defaults to the KG-1 behaviour.
+ *
+ * When the snapshot carries NO finding-level governed stamps at all -- every legacy analysis, and
+ * the deterministic release fixture `test:knowledge-release-provenance` substitutes -- there is no
+ * per-finding information to narrow BY. Narrowing anyway would not make provenance more truthful;
+ * it would discard the analysis-level provenance KG-1 established and record NULL on findings whose
+ * analysis genuinely did name a release. So in that case the finding inherits verbatim, exactly as
+ * KG-1 specified.
+ *
+ * Only when a governed mode actually stamped some findings does the narrowing apply -- and then it
+ * is required, because that is precisely the mixed case where inheriting verbatim would label a
+ * fallen-back finding as governed.
+ */
+function findingReleaseId(
+  hazard: Record<string, unknown>,
+  analysisReleaseId: string | null,
+  narrowPerFinding: boolean,
+): string | null {
+  if (!analysisReleaseId) return null;
+  if (!narrowPerFinding) return analysisReleaseId;
+  const candidates = Array.isArray((hazard as any)?.standardCandidates) ? (hazard as any).standardCandidates : [];
+  // The same principle as `narrowPerFinding` itself, applied one level down: narrow only where
+  // there is per-finding information to narrow BY. A hazard with no candidate list of its own
+  // carries no evidence either way, and recording NULL for it would UNDERSTATE -- the finding's
+  // conclusion still rests on an analysis whose customer-visible standard content came from the
+  // release. Inheriting is the truthful answer; narrowing here would be guessing.
+  if (!candidates.length) return analysisReleaseId;
+  const consumed = candidates.some((item: any) => String(item?.knowledgeReleaseId || '').trim() === analysisReleaseId);
+  return consumed ? analysisReleaseId : null;
+}
 import { evaluateRisk } from '../safescope-v2/risk/risk-engine';
 import { hazardFamilyToRiskClassification } from './finding-risk.mapping';
 import { getCorrectiveActionIntelligence } from '../safescope-v2/intelligence/corrective-action-intelligence';
@@ -290,6 +359,123 @@ export class InspectionService {
     return this.accessibleObservation(rawUser, observationId);
   }
 
+  /**
+   * KG-1 authoritative capture point. Knowledge provenance is determined ONCE per analysis,
+   * here, from the server's own measurement of how retrieval is scoped -- never from client
+   * input (so it cannot be spoofed and adds no request parameter or workflow step), and
+   * never recomputed per finding or at report time (so an analysis and the report that
+   * represents it can never disagree about which knowledge informed them).
+   *
+   * Declared protected rather than private only so provenance tests can substitute a
+   * deterministic release fixture; production has exactly one implementation.
+   */
+  protected async resolveKnowledgeReleaseId(
+    snapshot?: unknown,
+    principal?: { userId?: string | null; organizationId?: string | null } | null,
+  ): Promise<string | null> {
+    // KG-4A SECURITY GATE, and the reason this method takes a principal.
+    //
+    // `snapshot` arrives in the REQUEST BODY. A client could therefore post a snapshot with a
+    // `knowledgeReleaseId` it invented and, without this gate, have the server persist it as
+    // governed provenance -- exactly the spoofing KG-1 forbade when it said provenance is decided
+    // "never from client input". The snapshot is treated as an untrusted CLAIM about which findings
+    // consumed governed content, and it is honoured only when the SERVER independently agrees that:
+    //
+    //   1. this principal is enabled for a mode that can influence customer output, and
+    //   2. the claimed release is the one actually active on this server right now.
+    //
+    // Fail either check and the answer is NULL. A client that lies gains nothing; a client that
+    // tells the truth adds no authority the server did not already have.
+    const enablement = resolveCutoverEnablement({
+      userId: principal?.userId ?? null,
+      organizationId: principal?.organizationId ?? null,
+    });
+    if (!modeInfluencesCustomerOutput(enablement.effectiveMode)) {
+      // LEGACY and SHADOW both land here. This is the only branch any customer reaches today.
+      const resolved = resolveKnowledgeReleaseProvenance().knowledgeReleaseId;
+
+      // KG-4D. The LAST gate before a release id can be persisted, wired into the REAL persistence
+      // path rather than only into the contract module.
+      //
+      // In SHADOW this is belt-and-braces: `resolveKnowledgeReleaseProvenance()` with no argument
+      // already yields NULL, and the mode check above already excluded SHADOW from the governed
+      // branch. That is two mechanisms, and two mechanisms agreeing is not the same as one that
+      // cannot be bypassed. If a future edit changes either of them, this coerces to the safe value
+      // and REPORTS, so the breach becomes a counted hard-invariant violation that stops shadow --
+      // rather than a false provenance stamp silently persisted on a real customer record.
+      //
+      // It coerces rather than throws: the caller is inside a customer write, and a governance bug
+      // must not become a customer 500.
+      if (enablement.effectiveMode === 'SHADOW') {
+        const enforced = enforceShadowProvenanceInvariant('SHADOW', {
+          analysisKnowledgeReleaseId: resolved,
+          findingKnowledgeReleaseIds: {},
+        });
+        if (enforced.violated) {
+          shadowMetrics.increment('shadow_provenance_violation');
+          console.error(
+            '[kg-4d] SHADOW provenance invariant coerced a persisted release id to NULL: ' +
+            enforced.violations.join(', '),
+          );
+        }
+        return enforced.result.analysisKnowledgeReleaseId;
+      }
+
+      return resolved;
+    }
+
+    const claimed = collectGovernedReleaseIdsFromSnapshot(snapshot);
+    if (claimed.length !== 1) {
+      return resolveKnowledgeReleaseProvenance(claimed.length > 1 ? {
+        mode: 'unscoped_corpus',
+        reason: `Snapshot claims ${claimed.length} distinct governed releases; no single release governed this analysis.`,
+      } : undefined).knowledgeReleaseId;
+    }
+
+    // The server's own active-release pointer is the authority on which release exists.
+    let activeReleaseId: string | null = null;
+    try {
+      const rows = await this.dataSource.query(
+        `SELECT "releaseId" FROM regulatory_releases WHERE status = 'active' LIMIT 1`,
+      );
+      activeReleaseId = rows?.[0]?.releaseId ? String(rows[0].releaseId) : null;
+    } catch {
+      activeReleaseId = null;
+    }
+    if (!activeReleaseId || activeReleaseId !== claimed[0]) {
+      return resolveKnowledgeReleaseProvenance({
+        mode: 'unscoped_corpus',
+        reason:
+          `The snapshot claimed governed release '${claimed[0]}' but the server's active release is ` +
+          `'${activeReleaseId ?? 'none'}'. An unverifiable provenance claim is recorded as unknown.`,
+      }).knowledgeReleaseId;
+    }
+
+    return this.resolveVerifiedKnowledgeReleaseId(snapshot, activeReleaseId);
+  }
+
+  /** The truthful-claim path, reached only after the server has verified mode and release. */
+  private resolveVerifiedKnowledgeReleaseId(snapshot: unknown, activeReleaseId: string): string | null {
+    // KG-4A. The evidence that governed data was actually consumed is IN the snapshot: the two
+    // customer paths stamp a finding-level `knowledgeReleaseId` on a standard decision only when
+    // `decideFallback()` returned `governedProvenanceEligible`, i.e. only when governed content
+    // changed what the customer sees. Reading it back here keeps the KG-1 rule intact -- provenance
+    // is still decided ONCE, at this layer, from the server's own measurement rather than from
+    // client input -- while giving that measurement something truthful to measure.
+    //
+    // Deliberately NOT the active-release pointer. "A release is active" and "this analysis used
+    // it" remain different claims, and consulting the pointer here would resurrect exactly the
+    // false provenance KG-1 exists to prevent.
+    return resolveKnowledgeReleaseProvenance({
+      mode: 'single_release',
+      releaseId: activeReleaseId,
+      reason:
+        `Customer-visible standard content in this analysis was supplied by governed release ` +
+        `${activeReleaseId}, verified against the server's active-release pointer and pinned once ` +
+        'for the whole analysis.',
+    }).knowledgeReleaseId;
+  }
+
   async addAnalysis(rawUser: unknown, observationId: string, dto: CreateAnalysisSnapshotDto) {
     const user = requireAuthenticatedUser(rawUser);
     const { observation } = await this.accessibleObservation(user, observationId);
@@ -326,6 +512,7 @@ export class InspectionService {
           resultSnapshot: dto.resultSnapshot,
           advisoryStatus: 'advisory',
           requestedByUserId: user.userId,
+          knowledgeReleaseId: await this.resolveKnowledgeReleaseId(dto.resultSnapshot, user),
         }));
         await this.reconcileDecompositionFindings(manager, observation, saved);
         return saved;
@@ -542,6 +729,11 @@ export class InspectionService {
       (snapshot.risk as any)?.operationalRisk?.profileId as 'simple_4x4' | 'standard_5x5' | 'advanced_6x6' | undefined
     ) || 'standard_5x5';
 
+    // KG-4A (Phase 8). Whether per-finding narrowing applies at all is decided ONCE, from the
+    // snapshot, before the loop: it applies only when a governed mode actually stamped findings.
+    // Deciding it per finding would let an analysis narrow some findings and inherit for others.
+    const narrowPerFinding = collectGovernedReleaseIdsFromSnapshot(snapshot).length > 0;
+
     const repository = manager.getRepository(InspectionFinding);
     const current = await repository.find({
       where: { observationId: observation.id },
@@ -579,6 +771,16 @@ export class InspectionService {
         const previousRiskSnapshot = existing.riskSnapshot;
         existing.selectedAnalysisId = analysis.id;
         existing.originatingAnalysisId = existing.originatingAnalysisId || analysis.id;
+        // KG-1: this branch re-derives the finding's whole content (conclusion,
+        // sourceCandidate, risk) from THIS analysis, so the finding's knowledge provenance
+        // follows the analysis that produced that content. Inherited, never re-resolved.
+        //
+        // KG-4A (Phase 8): inherited but NARROWED. A finding claims the analysis's release only
+        // when its OWN standard candidates consumed governed content; otherwise NULL. The KG-1
+        // invariant is preserved in the direction that matters -- a finding can never claim a
+        // release its analysis did not use -- while a mixed analysis stays truthful per finding
+        // instead of labelling a fallen-back finding as governed.
+        existing.knowledgeReleaseId = findingReleaseId(hazard, analysis.knowledgeReleaseId, narrowPerFinding);
         existing.hazardCategory = family;
         existing.sourceCandidate = candidate;
         existing.conclusion = mechanism;
@@ -610,6 +812,11 @@ export class InspectionService {
           observationId: observation.id,
           selectedAnalysisId: analysis.id,
           originatingAnalysisId: analysis.id,
+          // KG-1 + KG-4A (Phase 8): a finding carries its analysis's release only when its own
+          // standard candidates actually consumed governed content. Findings cannot disagree about
+          // WHICH release informed them -- one analysis pins one release -- but they may
+          // truthfully differ on WHETHER governed content reached them.
+          knowledgeReleaseId: findingReleaseId(hazard, analysis.knowledgeReleaseId, narrowPerFinding),
           finalReviewId: null,
           status: 'pending_review',
           hazardCategory: family,
@@ -713,6 +920,12 @@ export class InspectionService {
     }
     const status = review.decision === 'dismissed' ? 'dismissed' : 'finalized';
     const segmentKey = (dto.segmentKey || 'primary').trim().toLowerCase();
+    // KG-1: a finding first materialized at finalization (rather than by decomposition
+    // reconciliation) inherits its provenance from the analysis the review was made against.
+    // Resolved by lookup, never re-derived, and NULL when the review cites no analysis.
+    const reviewedAnalysis = review.analysisId
+      ? await this.analyses.findOne({ where: { id: review.analysisId, observationId } })
+      : null;
     return this.dataSource.transaction(async manager => {
       const repository = manager.getRepository(InspectionFinding);
       const existing = await repository.findOne({
@@ -722,6 +935,10 @@ export class InspectionService {
       if (existing && existing.status !== 'superseded') {
         existing.inspectionId = inspection.id;
         existing.selectedAnalysisId = review.analysisId;
+        // KG-1: knowledgeReleaseId is intentionally NOT reassigned here. Finalization is a
+        // human review act, not a re-analysis -- the finding keeps the provenance of the
+        // analysis that produced its regulatory content. A legacy NULL therefore stays NULL
+        // rather than acquiring whichever release happens to exist at finalization time.
         existing.finalReviewId = review.id;
         existing.status = status as 'finalized' | 'dismissed';
         existing.hazardCategory = dto.hazardCategory || existing.hazardCategory;
@@ -762,6 +979,7 @@ export class InspectionService {
         observationId: observation.id,
         selectedAnalysisId: review.analysisId,
         originatingAnalysisId: review.analysisId,
+        knowledgeReleaseId: reviewedAnalysis?.knowledgeReleaseId ?? null,
         finalReviewId: review.id,
         status,
         hazardCategory: dto.hazardCategory || null,

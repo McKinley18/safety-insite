@@ -94,6 +94,28 @@ export class CanonicalReportsService {
     }));
   }
 
+  /**
+   * KG-1 report provenance. Summarises which governed knowledge releases informed the
+   * findings this report represents, derived ONLY from the provenance already persisted on
+   * those findings and their analyses -- never from whichever release is "current" at export
+   * time, which would make an old inspection appear to have been analysed with newer
+   * knowledge. A report that legitimately spans several analyses reports each distinct
+   * release rather than collapsing them into one.
+   */
+  private knowledgeProvenance(snapshot: Record<string, any>) {
+    const findings = (snapshot.observations || []).flatMap((observation: any) => observation.findings || []);
+    const releaseIds = Array.from(new Set(
+      findings.map((finding: any) => finding.knowledgeReleaseId).filter(Boolean),
+    )).sort();
+    return {
+      // Findings whose analysis could not truthfully name a single knowledge release. This
+      // is the expected state until standards retrieval is release-scoped (KG-3).
+      findingsWithoutKnowledgeRelease: findings.filter((finding: any) => !finding.knowledgeReleaseId).length,
+      findingCount: findings.length,
+      knowledgeReleaseIds: releaseIds,
+    };
+  }
+
   private snapshotFingerprint(snapshot: Record<string, any>) {
     const stable = { ...snapshot };
     delete stable.capturedAt;
@@ -114,6 +136,10 @@ export class CanonicalReportsService {
     const assignees = assigneeIds.length ? await this.users.find({ where: assigneeIds.map(id => ({ id })) }) : [];
     const assigneeNamesByUserId = new Map(assignees.filter(user => user.name).map(user => [user.id, user.name]));
     const sourceSnapshot = this.snapshotInspection(inspection, actions, site, preparedBy, assigneeNamesByUserId);
+    // KG-1: persisted into the frozen report snapshot alongside the per-finding provenance
+    // the snapshot already carries, so regenerating or re-reading an old report reproduces
+    // the historical provenance instead of recomputing it from present-day knowledge.
+    sourceSnapshot.knowledgeProvenance = this.knowledgeProvenance(sourceSnapshot);
     const sourceFingerprint = this.snapshotFingerprint(sourceSnapshot);
     return this.dataSource.transaction(async manager => {
       await manager.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`inspection-report:${inspectionId}`]);

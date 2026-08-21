@@ -5,6 +5,9 @@ import { evaluateRisk } from "./risk/risk-engine";
 import { ActionEngineService } from "../action-engine/action-engine.service";
 import { EvidenceFusionService } from "./evidence/evidence-fusion.service";
 import { ApplicableStandardsService } from "../applicable-standards/applicable-standards.service";
+import { resolveStandardsBacking } from "../standards/display/standards-backing-contract";
+import { projectGovernedDisplay } from "../standards/cutover/governed-cutover-context";
+import type { GovernedCutoverContext } from "../standards/cutover/governed-cutover-context";
 import type { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
 import { STANDARDS_INTELLIGENCE_SEED } from "./standards-intelligence/standards-intelligence.seed";
 
@@ -5505,16 +5508,214 @@ export class SafescopeV2Service {
    * metadata whenever a row exists, and fall back to family + explanation (disclosed as such)
    * only when it genuinely does not.
    */
-  async hydrateFindingScopedStandards(result: any): Promise<any> {
+  async hydrateFindingScopedStandards(
+    result: any,
+    /**
+     * KG-4A. The governed cutover context for this analysis, or null/undefined.
+     *
+     * NULL IS THE DEFAULT AND THE ONLY VALUE ANY CUSTOMER PRODUCES TODAY --
+     * `GovernedCutoverContext.create()` returns null unless a server-side mode AND a server-side
+     * allowlist both say otherwise. When it is null every line below behaves exactly as it did
+     * before KG-4A, including its database behaviour, because `governed` stays undefined and
+     * `resolveStandardsBacking()` takes the same branch it takes today.
+     */
+    cutover?: GovernedCutoverContext | null,
+  ): Promise<any> {
     if (!result || typeof result !== 'object' || typeof this.applicableStandards?.hydrateStandardReferences !== 'function') return result;
     const hydrate = this.applicableStandards.hydrateStandardReferences.bind(this.applicableStandards);
-    const mark = (item: any, hydrated: any) => ({
-      ...item,
-      ...(hydrated?.title && hydrated.title !== item.citation ? { title: hydrated.title } : {}),
-      ...(hydrated?.plainLanguageSummary ? { plainLanguageSummary: hydrated.plainLanguageSummary } : {}),
-      ...(hydrated?.sourceKey ? { sourceKey: hydrated.sourceKey, sourceName: hydrated.sourceName, sourceType: hydrated.sourceType } : {}),
-      corpusBacked: Boolean(hydrated?.sourceKey),
-    });
+
+    /**
+     * KG-4A. Governed decisions are resolved ONCE, up front, for every citation this result
+     * mentions -- not lazily inside `mark()`, which must stay synchronous, and not per call site,
+     * which would re-resolve the same citation for a primary standard, its decision row and its
+     * hazard candidate. The context memoises per citation on top of this, so a multi-finding
+     * analysis performs one governed lookup per DISTINCT citation against ONE pinned release.
+     */
+    const governedByCitation = new Map<string, Awaited<ReturnType<GovernedCutoverContext['resolveStandard']>>>();
+    interface CitationContext {
+      citation: string; status: unknown; applicabilityStatus: unknown; family: string | null;
+      legacyText: string | null; legacyBackingState: string | null;
+    }
+    const collectCitations = (): CitationContext[] => {
+      const found: CitationContext[] = [];
+      const push = (item: any, family: string | null) => {
+        if (!item?.citation) return;
+        found.push({
+          citation: String(item.citation),
+          status: item?.status,
+          applicabilityStatus: item?.applicabilityStatus,
+          family: family ?? (item?.family ? String(item.family) : null),
+          // KG-4B: what the LEGACY path has for this citation, so the shadow comparison compares the
+          // customer's actual result against the governed answer rather than against a re-derivation.
+          legacyText: item?.standardText ?? item?.plainLanguageSummary ?? item?.summary ?? null,
+          legacyBackingState: item?.backingStatus ? String(item.backingStatus) : null,
+        });
+      };
+      for (const key of ['primaryStandards', 'suggestedStandards', 'standardDecisions']) {
+        for (const item of (Array.isArray(result[key]) ? result[key] : [])) push(item, null);
+      }
+      for (const hazard of (Array.isArray(result?.multiHazardDecomposition?.hazards) ? result.multiHazardDecomposition.hazards : [])) {
+        const family = hazard?.hazardFamily ? String(hazard.hazardFamily)
+          : hazard?.domainId ? String(hazard.domainId) : null;
+        for (const item of (Array.isArray(hazard?.standardCandidates) ? hazard.standardCandidates : [])) push(item, family);
+      }
+      return found;
+    };
+    if (cutover) {
+      // KG-4B. The legacy text must be the text the CUSTOMER would actually be shown for this
+      // citation -- i.e. the HYDRATED corpus text -- not whatever the pre-hydration decision object
+      // happens to carry, which is the rule-family explanation.
+      //
+      // Found by the KG-4B corpus run: comparing the pre-hydration field reported CONTENT_DIFFERENCE
+      // (a BLOCKING severity) on 31 of 83 comparisons. Every one was an artifact -- the legacy digest
+      // matched no corpus column at all, while `standards_master.standard_text`,
+      // `plain_language_summary`, `payload.canonicalText` and `payload.summary` all digest
+      // identically. It was comparing a decision explanation against regulatory text.
+      //
+      // One extra hydration call per analysis, issued once for every distinct citation.
+      const collected = collectCitations();
+      // KG-4B. The AUTHORITATIVE applicability axis is `applicabilityDecisions[].status`
+      // (a `PredicateStatus`: SUPPORTED / UNKNOWN / CONTRADICTED). A standard decision's `status`
+      // field is `applicable_after_human_review` -- a review-state label, not applicability -- and
+      // reading it made almost every comparison look applicability-uncertain.
+      const applicabilityByCitation = new Map<string, string>();
+      for (const decision of (Array.isArray(result?.applicabilityDecisions) ? result.applicabilityDecisions : [])) {
+        const citation = String((decision as any)?.citation || '').trim();
+        if (citation && (decision as any)?.status) {
+          applicabilityByCitation.set(citation, String((decision as any).status));
+        }
+      }
+      const distinct = [...new Set(collected.map(c => c.citation))];
+      const legacyTextByCitation = new Map<string, string | null>();
+      // KG-5C. THE FIELD PRECEDENCE MUST BE `mark()`'s, NOT HYDRATION'S.
+      //
+      // This read was `row?.standardText ?? row?.plainLanguageSummary`, which is the same class of
+      // defect KG-4B fixed one tier up: it compares a field the customer on THIS path is never
+      // shown. `mark()` spreads `title`, `plainLanguageSummary` and the source metadata from
+      // hydration -- but deliberately NOT `standardText`. So a finding-scoped decision's
+      // customer-visible body is the decision's own `standardText` when it has one, and otherwise
+      // the hydrated `plainLanguageSummary`; the hydrated `standardText` never reaches it.
+      //
+      // On the production-shaped corpus the two are very different artifacts: `standard_text` is
+      // the full eCFR ingest (56,026 bytes for 1910.1200) while `plain_language_summary` is a
+      // 500-character truncation of it on 996 of 2,390 rows. Comparing against the former reports
+      // a difference between the governed record and text no customer on this path is shown.
+      //
+      // Measured consequence of this correction on the KG-5C corpus: the mismatch VERDICT is
+      // unchanged (the governed rendering differs from both tiers), so nothing was fixed to move a
+      // number -- what changes is that the comparison now describes the customer's actual result,
+      // which is the property the surrounding KG-4B comment already claims.
+      const decisionTextByCitation = new Map<string, string | null>();
+      for (const context of collected) {
+        if (!decisionTextByCitation.has(context.citation)) {
+          decisionTextByCitation.set(context.citation, context.legacyText ?? null);
+        }
+      }
+      try {
+        const hydratedLegacy = await hydrate(distinct.map(citation => ({ citation })));
+        distinct.forEach((citation, index) => {
+          const row: any = hydratedLegacy[index];
+          legacyTextByCitation.set(citation,
+            decisionTextByCitation.get(citation) ?? row?.plainLanguageSummary ?? null);
+        });
+      } catch {
+        // A hydration failure must not break the customer request; the comparison simply records
+        // no legacy text, which classifies as GOVERNED_APPROVED_EXACT rather than as a difference.
+      }
+
+      // The regime HazLenz actually evaluated under, for the jurisdiction-disagreement dimension.
+      // `regulatoryContext` is an OBJECT (`{ value, provenance, source, basis }`), so the string
+      // must be reached through `.value` -- reading the object itself stringifies to
+      // "[object Object]", which is what the first KG-4B corpus run recorded on all 83 events.
+      const legacyJurisdiction =
+        (typeof result?.regulatoryContext === 'object' && result?.regulatoryContext !== null
+          ? (result.regulatoryContext as any).value
+          : result?.regulatoryContext)
+        ?? result?.activeJurisdiction
+        ?? result?.evidenceSnapshot?.jurisdiction
+        ?? null;
+      for (const context of collected) {
+        if (governedByCitation.has(context.citation)) continue;
+        governedByCitation.set(context.citation, await cutover.resolveStandard({
+          citation: context.citation,
+          // Authoritative first, per-decision display vocabulary second. Never the review-state label.
+          applicabilityStatus: applicabilityByCitation.get(context.citation)
+            ?? (context.applicabilityStatus as string | null | undefined),
+          findingKey: context.citation,
+          legacyCitation: context.citation,
+          legacyText: legacyTextByCitation.get(context.citation) ?? null,
+          legacyBackingState: context.legacyBackingState ?? undefined,
+          hazardFamily: context.family,
+          jurisdiction: legacyJurisdiction ? String(legacyJurisdiction) : null,
+          legacyJurisdiction: legacyJurisdiction ? String(legacyJurisdiction) : null,
+        }));
+      }
+    }
+
+    const mark = (item: any, hydrated: any) => {
+      // KG-4A. The governed decision for this citation, or undefined in LEGACY. `verifiedText` is
+      // non-null ONLY for APPROVED_EXACT, and is null for every fallback state and for SHADOW, so
+      // unattested governed text can never reach this object.
+      const governedDecision = item?.citation ? governedByCitation.get(String(item.citation)) : undefined;
+      // KG-3C. This was `corpusBacked: Boolean(hydrated?.sourceKey)`, which is a false
+      // equivalence: `finalize-regulatory-release.ts` synthesizes a `starter-unverified:` source
+      // key for every corpus row lacking source metadata, so a field literally named "unverified"
+      // was conferring corpus backing on the weakest-provenance records in the corpus.
+      //
+      // `corpusBacked` is now DERIVED from the canonical backing status and is true only for
+      // reviewer-approved governed content. `governed` is deliberately not resolved here: this is
+      // the live customer path, KG-3C does not enable the governed read-path cutover, and with no
+      // active release and zero approved records "not governed-approved" is the truthful answer
+      // for every citation today. No citation, ranking or text changes -- only the truthfulness
+      // of the backing claim attached to them.
+      const verified = governedDecision?.verifiedText ?? null;
+      const backing = resolveStandardsBacking({
+        citation: item?.citation,
+        sourceKey: hydrated?.sourceKey ?? item?.sourceKey,
+        title: hydrated?.title ?? item?.title,
+        standardText: hydrated?.standardText ?? item?.standardText,
+        plainLanguageSummary: hydrated?.plainLanguageSummary ?? item?.plainLanguageSummary,
+        // The KG-4A seam, in one line. `undefined` in LEGACY -- identical to the pre-KG-4A call.
+        governed: governedDecision?.governedBackingInput ?? undefined,
+      });
+      return {
+        ...item,
+        ...(hydrated?.title && hydrated.title !== item.citation ? { title: hydrated.title } : {}),
+        ...(hydrated?.plainLanguageSummary ? { plainLanguageSummary: hydrated.plainLanguageSummary } : {}),
+        ...(hydrated?.sourceKey ? { sourceKey: hydrated.sourceKey, sourceName: hydrated.sourceName, sourceType: hydrated.sourceType } : {}),
+        // KG-4A. Governed APPROVED text REPLACES the HazLenz-authored text, and only then. This is
+        // the one place governed content becomes customer-visible, and it is reachable only from
+        // `textIsVerified`, which only `APPROVED_EXACT` sets. Ordered after the hydration spreads
+        // so it wins over them -- an approved release is more authoritative than a live corpus row.
+        ...(verified
+          ? {
+              ...(verified.standardText ? { standardText: verified.standardText } : {}),
+              ...(verified.plainLanguageSummary ? { plainLanguageSummary: verified.plainLanguageSummary } : {}),
+              ...(verified.title ? { title: verified.title } : {}),
+            }
+          : {}),
+        backingStatus: backing.backingStatus,
+        contentDisclosure: backing.contentDisclosure,
+        corpusBacked: backing.corpusBacked,
+        // KG-4A fallback disclosure. Present ONLY when a governed mode ran, so a legacy payload is
+        // byte-identical to today's -- no new keys, not even with null values.
+        // KG-4A. Delivery state LAST, so it overrides both the hydration spreads and the backing
+        // status when a mode withholds text. Empty object in LEGACY.
+        ...projectGovernedDisplay(governedDecision),
+        // KG-4B: `customerVisible` is false in SHADOW, so a shadow payload gains no key here either.
+        // A null-valued key is still a key, and a shadow customer's response must be
+        // indistinguishable from a legacy customer's by inspection, not merely by value.
+        ...(governedDecision?.customerVisible
+          ? {
+              // Finding-level provenance (Phase 8). NULL unless THIS citation consumed governed
+              // content, which is what makes a mixed-provenance analysis truthful per finding.
+              knowledgeReleaseId: governedDecision.decision.governedProvenanceEligible
+                ? governedDecision.resolution.releaseId
+                : null,
+            }
+          : {}),
+      };
+    };
     try {
       // standardDecisions is the report-facing list that survives the display sanitizer (the
       // primary/suggested arrays are stripped for size before the guided response is attached).

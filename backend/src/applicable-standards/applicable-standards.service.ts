@@ -2,9 +2,18 @@ import { Injectable, Optional } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Standard } from "../standards/entities/standard.entity";
+import { resolveStandardsBacking } from "../standards/display/standards-backing-contract";
+import { projectGovernedDisplay } from "../standards/cutover/governed-cutover-context";
+import type { GovernedCutoverContext } from "../standards/cutover/governed-cutover-context";
 import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
 import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
 import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
+
+import {
+  citationSortKey,
+  citationSpecificity,
+  isSameOrAncestorCitation,
+} from "./citation-structure";
 
 function canonicalizeCitation(cit: string): string {
   return cit
@@ -13,10 +22,25 @@ function canonicalizeCitation(cit: string): string {
     .replace(/[^a-z0-9]/g, "");
 }
 
+/**
+ * KG-3F. This previously compared canonicalised citations by bidirectional SUBSTRING containment:
+ *
+ *     canonicalizeCitation("29 CFR 1926.501") -> "1926501"
+ *     canonicalizeCitation("29 CFR 1926.50")  -> "192650"
+ *     "1926501".includes("192650")            -> true
+ *
+ * Because canonicalisation strips the dot, a shorter section number is a literal prefix of a longer
+ * one, so unrelated sections collided: 1926.50 with 1926.501, 1910.9 with 1910.95, 1910.13 with
+ * 1910.132(a). This function drives the retrieval dedup, which keeps only the FIRST of any matching
+ * pair, so a collision could silently drop a distinct citation from a customer's results.
+ *
+ * Comparing citations as structure (part, section, subsection path) removes the collisions while
+ * preserving what all four call sites want: "is this candidate the section I named, or a paragraph
+ * inside it". Sibling paragraphs remain distinct, which the 1910.303(b)(1) / (g)(2)(i) granularity
+ * contract requires.
+ */
 function isCitationMatch(dbCit: string, targetCit: string): boolean {
-  const c1 = canonicalizeCitation(dbCit);
-  const c2 = canonicalizeCitation(targetCit);
-  return c1.includes(c2) || c2.includes(c1);
+  return isSameOrAncestorCitation(dbCit, targetCit);
 }
 
 type CachedKnowledgeChunk = Pick<
@@ -987,6 +1011,16 @@ export class ApplicableStandardsService {
     limit = 5,
     routeHints?: ApplicableStandardsRouteHints,
     diagnostics?: Record<string, any>,
+    /**
+     * KG-4A. The governed cutover context for this analysis, or null/undefined.
+     *
+     * Undefined is the default and the only value any customer produces today. When it is absent,
+     * every stage of `suggest()` -- including the SQL it issues, the candidate set it builds, the
+     * order it ranks in, the dedup, the truncation and the backing annotation -- is identical to
+     * the pre-KG-4A implementation. Governed resolution is annotation-only even when it IS present:
+     * it runs AFTER `rankedAndLimited`, so it can never change which standards a customer sees.
+     */
+    cutover?: GovernedCutoverContext | null,
   ) {
     const sourceMode = String(source || "");
     const isCoalSource = /COAL/i.test(sourceMode);
@@ -1138,7 +1172,12 @@ export class ApplicableStandardsService {
           "d.sourceType",
         ]);
 
-        const chunks = await queryBuilder.take(50).getMany();
+        // KG-3F: explicit ORDER BY. Without one, PostgreSQL returns matching rows in heap-scan
+        // order, and that arrival order became the input order of the stable ranking sort
+        // downstream. The ranking comparator now has a terminal tie-break so the final result no
+        // longer depends on this, but ordering the retrieval too removes the leak at its source
+        // and keeps behaviour stable if the corpus ever grows past the row cap.
+        const chunks = await queryBuilder.orderBy("c.citation", "ASC").addOrderBy("c.id", "ASC").take(50).getMany();
         knowledgeChunksCount = chunks.length;
 
         const mappedChunks = chunks.map((chunk) => ({
@@ -1273,7 +1312,12 @@ export class ApplicableStandardsService {
 
         if (citationConditions.length > 0) {
           focusedQuery.andWhere(`(${citationConditions.join(" OR ")})`, params);
-          focusedStandards = await focusedQuery.take(25).getMany();
+          // KG-3F: explicit ORDER BY. Without one, PostgreSQL returns matching rows in heap-scan
+          // order, and that arrival order became the input order of the stable ranking sort
+          // downstream. The ranking comparator now has a terminal tie-break so the final result no
+          // longer depends on this, but ordering the retrieval too removes the leak at its source
+          // and keeps behaviour stable if the corpus ever grows past the row cap.
+          focusedStandards = await focusedQuery.orderBy("s.citation", "ASC").addOrderBy("s.id", "ASC").take(25).getMany();
         }
       }
 
@@ -1296,6 +1340,12 @@ export class ApplicableStandardsService {
           "s.severityWeight",
           "s.isActive",
           "s.requiredControls",
+          // KG-3F: `keywords` is what the WHERE clause matches on (`s.keywords ILIKE :term`), but
+          // it was never selected, so `standard.keywords` was undefined by the time scoring ran.
+          // The corpus's richest relevance signal was used to RETRIEVE and was literally
+          // unavailable to RANK -- which is why a silica observation could not rank the silica
+          // standard above the noise standard: every candidate tied on the generic scope score.
+          "s.keywords",
         ])
         .where("s.is_active = true");
 
@@ -1331,7 +1381,12 @@ export class ApplicableStandardsService {
         query.andWhere(`(${orConditions.join(" OR ")})`, params);
       }
 
-      fallbackStandards = await query.take(50).getMany();
+      // KG-3F: explicit ORDER BY. Without one, PostgreSQL returns matching rows in heap-scan
+      // order, and that arrival order became the input order of the stable ranking sort
+      // downstream. The ranking comparator now has a terminal tie-break so the final result no
+      // longer depends on this, but ordering the retrieval too removes the leak at its source
+      // and keeps behaviour stable if the corpus ever grows past the row cap.
+      fallbackStandards = await query.orderBy("s.citation", "ASC").addOrderBy("s.id", "ASC").take(50).getMany();
     } catch (error: any) {
       console.error("Applicable standards repository query failed:", error);
     }
@@ -1650,6 +1705,42 @@ export class ApplicableStandardsService {
             matchingReasons.push(`title: ${word}`);
           }
         }
+
+        // KG-3F. The `keywords` column is what the SQL retrieval MATCHES on, but nothing scored it
+        // -- only `title` was compared against the observation. That left records whose relevance
+        // lives entirely in their tags scoring identically to records that merely share a family.
+        //
+        // Measured example: for "dry-cutting concrete with a masonry saw, generating a visible dust
+        // cloud", all five construction candidates scored exactly 15, because no title word
+        // ("respirable", "crystalline", "silica", "occupational", "noise") appears in the
+        // observation -- while 1926.1153's keywords ("masonry saw", "concrete", "dry cutting",
+        // "dust") match it precisely. The silica standard could not outrank the noise standard for
+        // a silica observation.
+        //
+        // This was invisible while ordering was heap-dependent: the "right" answer surfaced first
+        // by luck often enough to look fine. Making retrieval deterministic exposed it, so it is
+        // fixed here rather than papered over with a tie-break that happens to favour the expected
+        // citation.
+        //
+        // Deliberately conservative: whole comma-delimited tags only (so "masonry saw" counts as
+        // one specific phrase rather than two loose words), weighted BELOW title matches, and
+        // capped -- otherwise records carrying many tags would outrank better-matched records
+        // purely by verbosity.
+        const KEYWORD_HIT_SCORE = 4;
+        const KEYWORD_SCORE_CAP = 40;
+        let keywordScore = 0;
+        const keywordTags = String((standard as any).keywords || "")
+          .split(",")
+          .map((tag) => tag.trim().toLowerCase())
+          .filter((tag) => tag.length >= 4);
+        for (const tag of [...new Set(keywordTags)]) {
+          if (keywordScore >= KEYWORD_SCORE_CAP) break;
+          if (observation.includes(tag)) {
+            keywordScore += KEYWORD_HIT_SCORE;
+            matchingReasons.push(`keyword: ${tag}`);
+          }
+        }
+        score += Math.min(keywordScore, KEYWORD_SCORE_CAP);
 
         if (siteType && standard.scopeCode === siteType) {
           score += 15;
@@ -2221,7 +2312,36 @@ export class ApplicableStandardsService {
           return priB - priA;
         }
 
-        return b.score - a.score;
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+
+        // KG-3F terminal tie-break. Everything above this line is semantic; everything below it
+        // fires ONLY when two candidates are semantically indistinguishable (equal scaffold
+        // priority, equal priority, equal score).
+        //
+        // Without it, Array.prototype.sort's stability meant equal-scoring candidates kept their
+        // INPUT order -- which is the order rows arrived from `getMany()`, i.e. PostgreSQL heap
+        // order. The dedup below keeps the first survivor and the final slice truncates by order,
+        // so heap position decided which citation a customer saw. KG-3E proved this causally with
+        // a CLUSTER experiment; the KG-3F harness measured 98 of 170 invariance checks failing
+        // across nine physically-different-but-logically-identical corpora.
+        //
+        // 1) Prefer the LESS specific citation at equal relevance. If the evidence did not
+        //    distinguish a section from one of its own paragraphs, the section is the safer
+        //    citation -- promoting to a narrower paragraph asserts qualifiers the observation never
+        //    established, which is exactly the error KG-3D refused for 1910.303(g)(2)(i) and KG-3E
+        //    refused for 56.14132(b)(1). This only applies at a genuine tie: a properly established
+        //    paragraph scores higher and wins before this line is reached.
+        const specA = citationSpecificity(a.citation);
+        const specB = citationSpecificity(b.citation);
+        if (specA !== specB) {
+          return specA - specB;
+        }
+
+        // 2) A stable total order. Citations are unique in the corpus, so this makes the comparator
+        //    total -- there is no residual case where input order can decide the outcome.
+        return citationSortKey(a.citation).localeCompare(citationSortKey(b.citation));
       })
       .filter(
         (item, index, arr) =>
@@ -2245,10 +2365,73 @@ export class ApplicableStandardsService {
       observation,
       activeJurisdiction,
     );
-    const results = [
+    const rankedAndLimited = [
       ...evidenceFittedResults.filter((item) => item.candidateStatus === "active"),
       ...evidenceFittedResults.filter((item) => item.candidateStatus !== "active"),
     ].slice(0, finalLimit);
+
+    // KG-3C. suggest() returns corpus rows DIRECTLY, so unlike the enrichment path it is the
+    // place where governed filtering would change WHICH standards a customer sees, not merely how
+    // they are decorated (KG-3B measured 2 of 3 results backed under a reviewed fixture release).
+    //
+    // This annotates every result with the same canonical backing status used everywhere else.
+    // It deliberately does NOT filter: removing unapproved rows today would delete real results
+    // for every customer, because the real corpus has 0 of 26 records approved. Contract
+    // readiness, not cutover -- ordering, membership and count are untouched.
+    //
+    // KG-4A. Governed resolution is applied HERE, to `rankedAndLimited` -- after ranking, after the
+    // dedup, after the jurisdiction filter and after the final slice. Deliberately: it means the
+    // governed layer sees the candidate set the customer would have received anyway, and cannot
+    // add, remove, reorder or re-truncate it. The KG-3B recommendation that a governance gap must
+    // never delete an evidence-derived citation is therefore structural here, not merely a policy
+    // the fallback table happens to implement.
+    //
+    // One governed lookup per DISTINCT citation in the (at most 10) surviving results, against the
+    // release pinned once for the whole analysis.
+    const governedByCitation = new Map<string, Awaited<ReturnType<GovernedCutoverContext['resolveStandard']>>>();
+    if (cutover) {
+      for (const item of rankedAndLimited as any[]) {
+        const citation = String(item?.citation || '');
+        if (!citation || governedByCitation.has(citation)) continue;
+        governedByCitation.set(citation, await cutover.resolveStandard({
+          citation,
+          applicabilityStatus: item?.applicabilityStatus ?? item?.status,
+          findingKey: citation,
+          legacyText: item?.standardText ?? item?.plainLanguageSummary ?? item?.summary ?? null,
+        }));
+      }
+    }
+
+    const results = rankedAndLimited.map((item: any) => {
+      const governedDecision = item?.citation ? governedByCitation.get(String(item.citation)) : undefined;
+      const verified = governedDecision?.verifiedText ?? null;
+      const backing = resolveStandardsBacking({
+        citation: item?.citation,
+        sourceKey: item?.sourceKey,
+        title: item?.title ?? item?.heading,
+        standardText: item?.standardText,
+        plainLanguageSummary: item?.plainLanguageSummary ?? item?.summary,
+        // The KG-4A seam. `undefined` in LEGACY -- identical to the pre-KG-4A call.
+        governed: governedDecision?.governedBackingInput ?? undefined,
+      });
+      return {
+        ...item,
+        // Approved governed text replaces corpus text, and only when `textIsVerified` is set.
+        ...(verified
+          ? {
+              ...(verified.standardText ? { standardText: verified.standardText } : {}),
+              ...(verified.plainLanguageSummary ? { plainLanguageSummary: verified.plainLanguageSummary } : {}),
+              ...(verified.title ? { title: verified.title } : {}),
+            }
+          : {}),
+        backingStatus: backing.backingStatus,
+        contentDisclosure: backing.contentDisclosure,
+        corpusBacked: backing.corpusBacked,
+        // KG-4A. Delivery state LAST, so it overrides the backing status when a mode withholds
+        // text. Empty object in LEGACY.
+        ...projectGovernedDisplay(governedDecision),
+      };
+    });
 
     if (diagnostics) {
       const matchedFocused = results.some((item) =>

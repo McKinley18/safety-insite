@@ -1,3 +1,5 @@
+import { assertCutoverConfigurationSafeForProduction } from '../standards/cutover/cutover-mode';
+
 const INSECURE_JWT_VALUES = new Set([
   'dev-only-secret-change-me',
   'development-only-secret-change-me',
@@ -23,6 +25,11 @@ function requireHttpsUrl(name: string): string {
 }
 
 export function validateProductionEnvironment(): void {
+  // KG-4A. Runs FIRST and unconditionally, because it must also refuse an unrecognised
+  // GOVERNED_CUTOVER_MODE value -- a class of misconfiguration that resolves to LEGACY at runtime
+  // (safe) but that an operator almost certainly intended to be something else (worth failing on).
+  assertCutoverConfigurationSafeForProduction();
+
   if (process.env.NODE_ENV !== 'production') return;
 
   if (process.env.DEV_AUTH_BYPASS === 'true' ||
