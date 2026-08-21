@@ -124,6 +124,12 @@ const SINGLETON_FACT_TYPES = new Set([
   'fallZonePermittedTask', 'guardState', 'backupAlarmState', 'fallExposure',
   'fallProtectionState', 'chemicalLabelState', 'silicaGeneratingTask', 'airborneDust',
   'silicaControlState', 'workHeightFeet', 'pitState',
+  // KG-3F (Phase 5). 30 CFR 56.14132 is TWO rules: (a) horns that are provided must be maintained
+  // functional, and (b)(1) reversing with an OBSTRUCTED REAR VIEW must have one of four warning
+  // methods -- one of which is an observer. The predicate previously asserted "reverse warning
+  // required" as a hard-coded `true` and never established the obstructed-view condition, and it
+  // ignored the observer alternative entirely. These three facts make both conditions evidence-borne.
+  'rearViewState', 'reverseWarningAlternative', 'hornState',
 ]);
 
 function fact(
@@ -478,6 +484,40 @@ export function buildEvidenceFacts(input: SharedEvidenceFactInput): ExtractedEvi
     fact(facts, 'backupAlarmState', 'failed');
   } else if (/\b(?:backup|reverse) alarm\b.{0,35}\b(?:sounded|passed|working|function(?:ed|al)?)\b/i.test(text)) {
     fact(facts, 'backupAlarmState', 'functional');
+  }
+
+  // KG-3F (Phase 5). The obstructed-rear-view condition that TRIGGERS 30 CFR 56.14132(b)(1).
+  // Extracted rather than assumed: a haul truck reversing is conventionally obstructed-view, but
+  // "conventionally" is not "established", and promoting a citation on an unestablished condition
+  // is the exact error KG-3D refused for 1910.303(g)(2)(i). Where the observation is silent this
+  // stays UNSET, and the rule falls back to a truthful section-level candidate.
+  if (/\b(?:obstructed|blocked|restricted|limited|no|poor)\s+(?:rear\s+)?(?:view|visibility|sight\s*line)\b/i.test(text) ||
+      /\b(?:blind\s+(?:spot|area|corner))\b/i.test(text) ||
+      /\b(?:cannot|could not|couldn't|unable to)\s+see\s+(?:behind|to the rear|the rear)\b/i.test(text)) {
+    fact(facts, 'rearViewState', 'obstructed');
+  } else if (/\b(?:clear|unobstructed|good|full)\s+(?:rear\s+)?(?:view|visibility|sight\s*line)\b/i.test(text) ||
+             /\brear\s+view\s+(?:is|was)\s+(?:clear|unobstructed)\b/i.test(text)) {
+    fact(facts, 'rearViewState', 'clear');
+  }
+
+  // 56.14132(b)(1)(iv) makes an OBSERVER one of four compliant alternatives, so "no backup alarm"
+  // is not by itself a violation. A negated spotter ("no spotter present") must NOT register as an
+  // alternative, so the negative form is tested first.
+  if (/\b(?:no|without|lacking|lacks?|absent)\s+(?:a\s+|an\s+)?(?:spotter|observer|signal\s*(?:er|person)|flagger)\b/i.test(text)) {
+    fact(facts, 'reverseWarningAlternative', 'absent');
+  } else if (/\b(?:spotter|observer|signal\s*(?:er|person)|flagger)\b[^.,;]{0,40}\b(?:present|posted|stationed|assigned|directing|guiding|in place)\b/i.test(text) ||
+             /\b(?:a|an)\s+(?:spotter|observer|signal\s*(?:er|person)|flagger)\s+(?:was|is)\s+(?:used|signall?ing|directing)\b/i.test(text)) {
+    fact(facts, 'reverseWarningAlternative', 'observer_present');
+  }
+
+  // 56.14132(a) -- a HORN or other manually-operated audible warning device that is PROVIDED must be
+  // maintained functional. This is a different rule from the backing-warning rule in (b)(1), and
+  // conflating them is what made the emitted citation legally wrong.
+  if (/\bhorn\b[^.,;]{0,45}\b(?:inoperative|inoperable|not working|does not work|doesn't work|broken|failed|missing|disconnected|not function\w*)\b/i.test(text) ||
+      /\b(?:no|without|lacks?|lacking|missing|broken|inoperative|inoperable)\s+(?:a\s+|an\s+)?(?:working\s+|functional\s+|operable\s+)?horn\b/i.test(text)) {
+    fact(facts, 'hornState', 'inoperative');
+  } else if (/\bhorn\b[^.,;]{0,45}\b(?:works|worked|working|functional|operable|sounded)\b/i.test(text)) {
+    fact(facts, 'hornState', 'functional');
   }
   // Ordinary field phrasings for an unprotected fall exposure: "open side", "unprotected edge",
   // "no guardrail or personal fall arrest system", "without fall protection", "missing handrail".

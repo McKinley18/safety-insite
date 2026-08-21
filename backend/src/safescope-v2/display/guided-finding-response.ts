@@ -1,5 +1,11 @@
 import { createHash } from 'crypto';
 import { ClassifyDto } from '../dto/classify.dto';
+import {
+  StandardsBackingStatus,
+  customerBackingNotice,
+  mapBackingToSourceStatus,
+  resolveStandardsBacking,
+} from '../../standards/display/standards-backing-contract';
 
 type DecisionStatus = 'SUPPORTED' | 'UNKNOWN' | 'CONTRADICTED' | 'NOT_APPLICABLE' | 'NOT_SUPPORTED';
 
@@ -190,6 +196,18 @@ export function attachGuidedFindingResponse(response: any, request: ClassifyDto)
     ...list<string>(primaryDecision?.missingPredicates),
     ...list<string>(response?.evidenceSnapshot?.criticalUnknowns),
   ]);
+  // The hydrated record already carries the canonical status when
+  // `hydrateFindingScopedStandards()` ran. When it did not (an API-boundary placeholder record,
+  // or a citation with no corpus row at all), the SAME resolver is applied to whatever the record
+  // does carry, so there is exactly one rule set rather than a fallback that could disagree.
+  const backingStatus: StandardsBackingStatus = record?.backingStatus
+    ?? resolveStandardsBacking({
+      citation,
+      sourceKey: record?.sourceKey,
+      title: record?.title,
+      standardText: record?.standardText,
+      plainLanguageSummary: record?.plainLanguageSummary,
+    }).backingStatus;
   const questions = questionContract(response);
   const risk = riskContract(response, primaryStatus !== 'SUPPORTED' || missing.length > 0);
   const family = text(primaryDecision?.family || response.classification || response.hazardCategory) ||
@@ -215,14 +233,39 @@ export function attachGuidedFindingResponse(response: any, request: ClassifyDto)
     evidenceSupporting: supporting,
     evidenceMissing: missing,
     contradictoryEvidence: unique(list<string>(primaryDecision?.contradictoryEvidence)),
-    sourceStatus: record?.reviewerApproved === true
-      ? 'approved-versioned-regulation'
-      : text(primaryDecision?.source?.authority) === 'regulation'
-        ? 'provisional-versioned-regulation'
-        : 'source-review-required',
-    confidenceLimitReason: record?.reviewerApproved === true
+    // KG-3C. This previously read `record?.reviewerApproved === true`. That field is not part of
+    // the column list `hydrateStandardReferences()` selects, so it was never populated and the
+    // approved branch was unreachable -- every customer received a non-approved value regardless
+    // of any real approval. Reviving the read would have created a SECOND, independent notion of
+    // approval competing with `backingStatus`; instead both fields are now derived from the one
+    // canonical status that `hydrateFindingScopedStandards()` attaches (which runs before this
+    // adapter, at safescope-v2.controller.ts:319). The three wire values are unchanged.
+    backingStatus: backingStatus,
+    sourceStatus: mapBackingToSourceStatus(
+      backingStatus, text(primaryDecision?.source?.authority) === 'regulation'),
+    // KG-3D (Phase 8). This line renders directly beneath "Confidence: <applicability label>",
+    // and it previously read "Regulatory source approval or release coverage limits confidence."
+    // That is a category error: it attributes a limit on HAZLENZ APPLICABILITY CONFIDENCE -- how
+    // sure HazLenz is that this standard governs this finding -- to a CONTENT BACKING fact, which
+    // is whether a reviewer has attested to the regulatory text. The two are independent. Whether
+    // a reviewer has signed off on the corpus text of 1926.501 says nothing about how confident
+    // HazLenz is that a fall finding falls under it.
+    //
+    // KG-3C flagged the contradiction this creates (§20.13) but could not exercise it: with 0 of
+    // 26 records approved, nothing reached APPROVED_GOVERNED_CONTENT on any path. KG-3D approves
+    // real records, so it becomes reachable and the wording is now a hard acceptance criterion.
+    //
+    // The gate itself was already correct -- the claim is suppressed for approved content -- so
+    // the fix is the wording only: state the content-backing fact, and say plainly that it does
+    // not bear on the applicability assessment above. Applicability confidence is untouched, and
+    // the evidence-gap messaging ("Details that would increase confidence", driven by
+    // evidenceMissing) is a separate field and is deliberately left alone.
+    confidenceLimitReason: backingStatus === 'APPROVED_GOVERNED_CONTENT'
       ? null
-      : 'Regulatory source approval or release coverage limits confidence.',
+      : 'The regulatory text shown for this standard has not completed source review. This does not affect how HazLenz assessed applicability.',
+    // Customer-facing, product voice, no governance vocabulary. Null unless the citation has no
+    // usable standard text at all -- see `customerBackingNotice`.
+    backingNotice: customerBackingNotice(backingStatus),
     sourceRelease: primaryDecision?.source || null,
   } : null;
   const contractPayload = {

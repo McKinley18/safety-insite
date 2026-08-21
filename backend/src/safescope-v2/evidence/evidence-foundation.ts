@@ -165,13 +165,51 @@ function evaluate(e: Extracted): ApplicabilityDecision[] {
       ['guard absent or ineffective', protectedState ? false : true, ids(e, 'guardState')],
     ], protectedState));
   }
-  if (mineGate && has(e, 'backupAlarmState')) {
-    const functional = has(e, 'backupAlarmState', 'functional');
-    output.push(decision(e, '30 CFR 56.14132(a)', 'MSHA backup alarm', [
+  // KG-3F (Phases 5-7). 30 CFR 56.14132 is TWO distinct rules, and this predicate previously
+  // collapsed them onto the wrong one.
+  //
+  //   (a)    Manually-operated horns or other audible warning devices PROVIDED on self-propelled
+  //          mobile equipment as a safety feature must be maintained in functional condition.
+  //   (b)(1) When the operator has an OBSTRUCTED VIEW TO THE REAR, the equipment must have one of:
+  //          (i) an automatic reverse-activated signal alarm; (ii) a wheel-mounted bell alarm;
+  //          (iii) a discriminating backup alarm; or (iv) AN OBSERVER to signal when it is safe to
+  //          back up.
+  //
+  // The old rule emitted `(a)` -- horn maintenance -- for a backup-alarm predicate, hard-coded its
+  // 'reverse warning required' condition to `true` (so the obstructed-view trigger was ASSERTED,
+  // never established), and ignored the observer alternative entirely, so "no backup alarm" was
+  // treated as a violation even where (b)(1)(iv) permits an observer instead.
+  //
+  // Split below. `(b)(1)` is emitted ONLY where the obstructed-view condition is actually
+  // established by evidence; where the observation is silent the rule falls back to a truthful
+  // SECTION-level candidate rather than promoting to a paragraph whose trigger nobody observed --
+  // the same discipline KG-3D applied refusing 1910.303(g)(2)(i) on unestablished voltage.
+  if (mineGate && has(e, 'hornState')) {
+    const hornOk = has(e, 'hornState', 'functional');
+    output.push(decision(e, '30 CFR 56.14132(a)', 'MSHA manually-operated horn maintenance', [
       ['MSHA jurisdiction', mineJur, ids(e, 'jurisdiction')],
-      ['reverse warning required', true, ids(e, 'backupAlarmState')],
-      ['audible warning failed', functional ? false : true, ids(e, 'backupAlarmState')],
-    ], functional));
+      ['audible warning device provided as a safety feature', true, ids(e, 'hornState')],
+      ['device not maintained in functional condition', hornOk ? false : true, ids(e, 'hornState')],
+    ], hornOk));
+  }
+  if (mineGate && (has(e, 'backupAlarmState') || has(e, 'rearViewState'))) {
+    const alarmFunctional = has(e, 'backupAlarmState', 'functional');
+    const observerPresent = has(e, 'reverseWarningAlternative', 'observer_present');
+    // undefined = an open question, NOT evidence against the rule.
+    const obstructed = has(e, 'rearViewState', 'obstructed') ? true
+      : has(e, 'rearViewState', 'clear') ? false : undefined;
+    // Any ONE of the four (b)(1) methods satisfies the rule.
+    const compliantMethodPresent = alarmFunctional || observerPresent;
+    // Exact paragraph only when its trigger is established; otherwise the section.
+    const citation = obstructed === true ? '30 CFR 56.14132(b)(1)' : '30 CFR 56.14132';
+    output.push(decision(e, citation, 'MSHA reverse-warning method for obstructed rear view', [
+      ['MSHA jurisdiction', mineJur, ids(e, 'jurisdiction')],
+      ['operator has an obstructed view to the rear', obstructed,
+        ids(e, 'rearViewState')],
+      ['no compliant reverse-warning method (alarm, bell, discriminating alarm, or observer)',
+        compliantMethodPresent ? false : true,
+        [...ids(e, 'backupAlarmState'), ...ids(e, 'reverseWarningAlternative')]],
+    ], compliantMethodPresent || obstructed === false));
   }
   if (mineGate && has(e, 'fallExposure')) output.push(decision(e, '30 CFR 56.15005', 'MSHA fall protection', [
     ['MSHA jurisdiction', mineJur, ids(e, 'jurisdiction')],
@@ -646,6 +684,20 @@ export interface FindingStandardCandidate {
   sourceKey?: string;
   sourceName?: string;
   sourceType?: string;
+  /**
+   * KG-3C canonical backing status. THIS is the field to read; it is the only statement about
+   * whether governed, reviewer-approved regulatory content backs this citation.
+   * See `standards/display/standards-backing-contract.ts`.
+   */
+  backingStatus?: 'APPROVED_GOVERNED_CONTENT' | 'UNAPPROVED_CONTENT' | 'CITATION_ONLY';
+  /** Whose words the displayed body text is. Never infer authority from the presence of text. */
+  contentDisclosure?: 'GOVERNED_APPROVED' | 'HAZLENZ_AUTHORED' | 'NONE';
+  /**
+   * Retained for wire compatibility and DERIVED from `backingStatus` -- true only for
+   * `APPROVED_GOVERNED_CONTENT`. Do NOT compute this from `sourceKey`: the finalizer synthesizes
+   * a `starter-unverified:` key for rows with no provenance, so a non-empty source key is not
+   * evidence of backing (KG-3C root cause).
+   */
   corpusBacked?: boolean;
 }
 

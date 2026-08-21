@@ -1,10 +1,21 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Standard, AgencyCode, StandardScope } from '../entities/standard.entity';
+import { Standard } from '../entities/standard.entity';
 import { STANDARDS_INTELLIGENCE_SEED } from '../../safescope-v2/standards-intelligence/standards-intelligence.seed';
+import { normalizeAgency, normalizeCitationForMatch, toPayload } from './standards-intelligence-projection';
+import { LegacyCorpusGuardRefused, assertSeedableCorpus } from './legacy-corpus-guard';
 
 type AnyRecord = Record<string, any>;
+
+/**
+ * KG-5B (Phase 2). The projection functions this script used to declare inline
+ * (`normalizeCitationForMatch`, `normalizeAgency`, `normalizeScope`, `normalizePart`, `asArray`,
+ * `dedupe`, `severityWeight`, `standardText`, `toPayload`) now live in
+ * `standards-intelligence-projection.ts`, unchanged, so that governed release construction can
+ * apply the identical projection WITHOUT writing to the live corpus. This script's behaviour is
+ * unaffected: same inputs, same functions, same writes.
+ */
 
 const databaseUrl = process.env.DATABASE_URL;
 const dryRun = !process.argv.includes('--apply');
@@ -21,139 +32,21 @@ const ds = new DataSource({
   synchronize: false,
 });
 
-// The curated 19-standard seed (safescope-standards.seed.ts, run before this
-// script) and this larger intelligence catalog do not agree on a citation
-// string format for the same regulation -- one uses "1910.147", the other
-// "29 CFR 1910.147". Matching on the raw citation string treats those as two
-// different standards and inserts a duplicate row for the same regulation.
-// Reuse the same "strip agency/part prefix, compare digits and punctuation"
-// normalization already used by this repo's own standards test harnesses
-// (see canonicalizeCitation() in golden-standards-tests.ts) so a sync run
-// recognizes and updates the existing row instead of duplicating it.
-function normalizeCitationForMatch(citation: string): string {
-  return String(citation || '')
-    .toLowerCase()
-    .replace(/^(msha|osha|29|30|cfr|part|subpart|\s|-|§|\.)+/g, '')
-    .replace(/[^a-z0-9]/g, '');
-}
-
-function normalizeAgency(agency: string): AgencyCode | null {
-  const normalized = String(agency || '').toUpperCase();
-  if (normalized.includes('MSHA')) return 'MSHA' as AgencyCode;
-  if (normalized.includes('OSHA')) return 'OSHA' as AgencyCode;
-  return null;
-}
-
-function normalizeScope(scope: string | undefined, citation: string): StandardScope {
-  const text = `${scope || ''} ${citation || ''}`.toLowerCase();
-
-  if (text.includes('1926')) return 'construction' as StandardScope;
-  if (text.includes('1910')) return 'general_industry' as StandardScope;
-
-  if (
-    text.includes('msha') ||
-    text.includes('mining') ||
-    text.includes('30 cfr') ||
-    /\b(?:56|57|75|77)\./.test(text)
-  ) {
-    return 'mining' as StandardScope;
-  }
-
-  return (scope || 'general') as StandardScope;
-}
-
-function normalizePart(part: string | undefined, citation: string): string | undefined {
-  if (part) return String(part);
-
-  const match = String(citation || '').match(/\b(1910|1926|1904|56|57|75|77)\b/);
-  return match?.[1];
-}
-
-function asArray(value: unknown): string[] {
-  if (Array.isArray(value)) return value.map(String).filter(Boolean);
-  if (typeof value === 'string' && value.trim()) return [value.trim()];
-  return [];
-}
-
-function dedupe(values: string[]): string[] {
-  return [...new Set(values.map((value) => String(value || '').trim()).filter(Boolean))];
-}
-
-function severityWeight(record: AnyRecord): number {
-  const severity = String(record.severityDefault || '').toLowerCase();
-
-  if (severity === 'critical') return 5;
-  if (severity === 'high') return 4;
-  if (severity === 'medium') return 3;
-  return 2;
-}
-
-function standardText(record: AnyRecord): string {
-  return (
-    record.plainLanguageSummary ||
-    record.title ||
-    `Standard intelligence metadata for ${record.citation}`
-  );
-}
-
-function toPayload(record: AnyRecord): Partial<Standard> | null {
-  const agencyCode = normalizeAgency(record.agency);
-  const citation = String(record.citation || '').trim();
-
-  if (!agencyCode || !citation) return null;
-
-  const hazardCodes = dedupe([
-    ...asArray(record.hazardFamilies),
-    ...asArray(record.crossDomainLinks),
-  ]);
-
-  const keywords = dedupe([
-    ...asArray(record.searchBoostTerms),
-    ...asArray(record.equipmentTags),
-    ...asArray(record.taskTags),
-    ...asArray(record.exposureTags),
-    ...asArray(record.controlTags),
-    ...asArray(record.consequenceTags),
-  ]);
-
-  const requiredControls = dedupe([
-    ...asArray(record.controlTags),
-  ]);
-
-  return {
-    agencyCode,
-    citation,
-    partNumber: normalizePart(record.part, citation),
-    subpart: record.subpart || null,
-    title: record.title || citation,
-    standardText: standardText(record),
-    plainLanguageSummary: record.plainLanguageSummary || record.title || citation,
-    scopeCode: normalizeScope(record.scope, citation),
-
-    sourceKey: record.sourceKey || null,
-    sourceName: record.sourceName || null,
-    sourceType: record.sourceType || null,
-    authorityTier: Number(record.authorityTier || 1),
-    allowedUse: record.allowedUse || null,
-    requiresApproval: Boolean(record.requiresApproval || false),
-    approvedForAutoIngestion: Boolean(record.approvedForAutoIngestion ?? true),
-
-    // Provenance for records verified against a primary source (additive; older seed records
-    // without these fields keep null, exactly as before).
-    ...(record.sourceUrl ? { sourceUrl: String(record.sourceUrl) } : {}),
-    ...(record.retrievalDate ? { retrievalDate: record.retrievalDate as any } : {}),
-
-    hazardCodes,
-    requiredControls,
-    keywords,
-    severityWeight: severityWeight(record),
-    isActive: true,
-  };
-}
-
 async function run() {
   await ds.initialize();
   const repo = ds.getRepository(Standard);
+
+  // KG-5B. Refuse BEFORE the first mutation if this corpus holds regulations the governed source
+  // set does not name. The apply path below rewrites matched rows and renames their citations,
+  // which KG-5A measured destroying a production-shaped corpus (KG5A-DISC-01). A dry run is
+  // read-only and is always allowed, so an operator can still inspect what would happen.
+  if (!dryRun) {
+    const corpus = await assertSeedableCorpus(sql => ds.query(sql));
+    console.log(
+      `[legacy-corpus-guard] rows=${corpus.totalRows} governed=${corpus.governedRows} ` +
+      `foreign=${corpus.foreignRows} ownedDisposable=${corpus.ownedDisposable}`,
+    );
+  }
 
   const allExisting = await repo.find();
   const existingByNormalizedCitation = new Map<string, Standard>();
@@ -270,6 +163,14 @@ async function run() {
 }
 
 run().catch(async (error) => {
+  if (error instanceof LegacyCorpusGuardRefused) {
+    console.error('');
+    console.error(error.message);
+    console.error('');
+    console.error('No mutation was attempted.');
+    await ds.destroy().catch(() => undefined);
+    process.exit(1);
+  }
   console.error(error);
   await ds.destroy().catch(() => undefined);
   process.exit(1);

@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "insite.governed-release-definition.v1",
+  "releaseId": "federal-core-2026-07-30.1",
+  "releaseVersion": "2026-07-30.1",
+  "parserVersion": "standards-release-normalizer-v1",
+  "applicabilitySchemaVersion": "hazlenz-applicability-v1",
+  "description": "KG-5B. The initial governed federal-core release: the 35 reviewed regulatory records that cover all 23 emitted gold-set citations, with 12 records of headroom. Membership is stated here and nowhere else -- it is NOT derived from standards_master, and adding, removing or reordering any legacy corpus row cannot change it. The pins below are the identities KG-5A measured on the verified clean corpus; the builder REFUSES if construction does not reproduce them, and never adjusts anything to satisfy them.",
+  "expectedRecordCount": 35,
+  "expectedManifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+  "members": [
+    {
+      "citationKey": "30cfr47.41(a)",
+      "citation": "30 CFR 47.41(a)",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "0705c5304b046aa62bb1f64b652e209d03788760af2088d3feaa70944fc3e6ae"
+    },
+    {
+      "citationKey": "30cfr56.12016",
+      "citation": "30 CFR 56.12016",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "e14451d4818e95877d9a49d458ec87441832189a318e7ddc3f1be64fb45979a1"
+    },
+    {
+      "citationKey": "30cfr56.14105",
+      "citation": "30 CFR 56.14105",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "f2d30441f1f0266a4aafa6538dfc3b7102fabf7031d7643033b21d875b6afe3c"
+    },
+    {
+      "citationKey": "30cfr56.14107(a)",
+      "citation": "30 CFR 56.14107(a)",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "b26287a0b2514f6e1bd7d381acfef71883b074250f8ab79c65613b2220b61b10"
+    },
+    {
+      "citationKey": "30cfr56.14132",
+      "citation": "30 CFR 56.14132",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "d714d7a3a9ff14ef1cddbece591562abc8437657ac7f7f7993c5f1fb4808353c"
+    },
+    {
+      "citationKey": "30cfr56.14132(b)(1)",
+      "citation": "30 CFR 56.14132(b)(1)",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "388a349c2b0a6f6d5c0deba02d43f54717b54a2c1e6957e5c6f4c3eb5f616d5a"
+    },
+    {
+      "citationKey": "30cfr56.15006",
+      "citation": "30 CFR 56.15006",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "de35dd40141a33111be38f8a1a36b86038787e23c395e0edce00f73cbcb3799a"
+    },
+    {
+      "citationKey": "30cfr56.9100(a)",
+      "citation": "30 CFR 56.9100(a)",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "d34e27050f25cf89e338742c6340bec3b688877b89c5fccfae29cb51e4f59590"
+    },
+    {
+      "citationKey": "30cfr57.14107(a)",
+      "citation": "30 CFR 57.14107(a)",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "01ee27d50058a43801b657603848a0260e4697a963d52a67738a853949433865"
+    },
+    {
+      "citationKey": "30cfr62.120",
+      "citation": "30 CFR 62.120",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "ff19c04db0758fc4e2efd9b788f6e64be8e7c3657173ca115c153d8de5888063"
+    },
+    {
+      "citationKey": "30cfr62.130",
+      "citation": "30 CFR 62.130",
+      "agency": "MSHA",
+      "expectedRecordChecksum": "11a1fcb6f70c8041f9648788fbc9f27f6ca65ee744b92431f6a1fe3075845007"
+    },
+    {
+      "citationKey": "29cfr1910.212(a)(1)",
+      "citation": "1910.212(a)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94"
+    },
+    {
+      "citationKey": "29cfr1910.219",
+      "citation": "1910.219",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "d90f12ba713a5ef19c73ec34629f7b356e0e4fdf95b13af8a73297666c018c34"
+    },
+    {
+      "citationKey": "29cfr1910.1200",
+      "citation": "29 CFR 1910.1200",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "a53f33a13d3155eb6d07e8fa06099b86274c746dd2fa4658a86efbebf4e1fd63"
+    },
+    {
+      "citationKey": "29cfr1910.132(a)",
+      "citation": "29 CFR 1910.132(a)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "15006f645f90bf9c3ceae4ef70fe7e306b3e77e283c7d9464e32cb15d1c9f9a0"
+    },
+    {
+      "citationKey": "29cfr1910.146",
+      "citation": "29 CFR 1910.146",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "64e95d964d97871c19380657d3b9418c53125c264052aefcc66c55791514791e"
+    },
+    {
+      "citationKey": "29cfr1910.147",
+      "citation": "29 CFR 1910.147",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10"
+    },
+    {
+      "citationKey": "29cfr1910.178(p)(1)",
+      "citation": "29 CFR 1910.178(p)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "c45d1cc6c23d6987698b4cebea21ce7994fc5df0c3bf9aa81a70f08c3c36d7ae"
+    },
+    {
+      "citationKey": "29cfr1910.22(a)",
+      "citation": "29 CFR 1910.22(a)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "02516502072c4d6149cd29d518a99b714f8204be2fdbc5369da23516921ce4aa"
+    },
+    {
+      "citationKey": "29cfr1910.28",
+      "citation": "29 CFR 1910.28",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "328727df1602f48e203ddfa510b8b392411f52ea4d07e251fc9bd2e5976b8fb6"
+    },
+    {
+      "citationKey": "29cfr1910.303",
+      "citation": "29 CFR 1910.303",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "e210f940c808a12bec28ca53146235ee5c30a6bd3e973e0d120206411642dee6"
+    },
+    {
+      "citationKey": "29cfr1910.303(b)(1)",
+      "citation": "29 CFR 1910.303(b)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "d39c7beeda19d1b7227a97744f37f69d2d155c131a47affc7662d82fb60ce877"
+    },
+    {
+      "citationKey": "29cfr1910.36",
+      "citation": "29 CFR 1910.36",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "0e13180d1ff835069294987e4ec819343cf6bd7c147ab1cb6a20f9ac02dd003d"
+    },
+    {
+      "citationKey": "29cfr1910.95",
+      "citation": "29 CFR 1910.95",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "e5632e7e16402cc65c97acc939b08d72edf48b72140bb92ea21c4e9a4f07590a"
+    },
+    {
+      "citationKey": "29cfr1926.1153",
+      "citation": "29 CFR 1926.1153",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "a92e4e554f2ef66c1837c32e18d6e930832d378dc03d81a3caa140263be874ef"
+    },
+    {
+      "citationKey": "29cfr1926.300(b)(2)",
+      "citation": "29 CFR 1926.300(b)(2)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "b94bc1e035549d90a77f53e0a0ecccdf421340c15fdf1e7f3c5e74a816399416"
+    },
+    {
+      "citationKey": "29cfr1926.34(a)",
+      "citation": "29 CFR 1926.34(a)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "dbf18c496390d9daa1185cbc5d5199a7aae2b5bd8ba415bc7e1067efddc1926a"
+    },
+    {
+      "citationKey": "29cfr1926.416(a)(1)",
+      "citation": "29 CFR 1926.416(a)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "e449db0edb582c8b653a64334fcb8214d9a1ee8c8adfbeadaa4bcb05638ca63a"
+    },
+    {
+      "citationKey": "29cfr1926.451(g)(1)",
+      "citation": "29 CFR 1926.451(g)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "5ffd58c7429b14ba66363abe21e131c2a3645ba7ffc09398ec833bf9ce9bb6b4"
+    },
+    {
+      "citationKey": "29cfr1926.501",
+      "citation": "29 CFR 1926.501",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "b540a377148106669c24b0bf7c06c8ca26c3d65e0320a604869f14874fd97ab4"
+    },
+    {
+      "citationKey": "29cfr1926.52",
+      "citation": "29 CFR 1926.52",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "dff7561a7aee2e9def9593a0d690011b1145516ad926211919d08643e34f9e0a"
+    },
+    {
+      "citationKey": "29cfr1926.59",
+      "citation": "29 CFR 1926.59",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "d01386e464ef647e66fc9e6c53e8d3766e62cadd4e450e3e7bcb2db5efd92bf1"
+    },
+    {
+      "citationKey": "29cfr1926.602(a)(9)(ii)",
+      "citation": "29 CFR 1926.602(a)(9)(ii)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "6fa6e31a41ef2ee389f4cc628e8d048ca82e6713ba708b8f88f055278df8ba1e"
+    },
+    {
+      "citationKey": "29cfr1926.652(a)(1)",
+      "citation": "29 CFR 1926.652(a)(1)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "6a827346fa01fef26ede6b5e591ddbe82306196ea8abca47da07036a90ee2e32"
+    },
+    {
+      "citationKey": "29cfr1926.95(a)",
+      "citation": "29 CFR 1926.95(a)",
+      "agency": "OSHA",
+      "expectedRecordChecksum": "35b3ed703af6e1b4584a54118603563290fac3c99085dd93a903e4cd6235ab54"
+    }
+  ]
+}

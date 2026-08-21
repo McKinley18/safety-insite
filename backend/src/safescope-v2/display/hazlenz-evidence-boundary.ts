@@ -40,10 +40,43 @@ function standardCandidates(result: any): Array<Record<string, unknown>> {
       standardText: record?.standardText || record?.text || null,
       source: record?.source || record?.authority || null,
       applicabilityStatus: record?.applicabilityStatus || record?.candidateStatus || null,
+      // KG-3C. This projection is a fixed allowlist, and the controller applies this boundary
+      // TWICE, so anything not listed here is silently dropped from the report-facing
+      // `standardDecisions` on the second pass. `corpusBacked` was already being lost this way
+      // before KG-3C -- which is why it never appeared in any API response despite being set.
+      // The backing annotation must survive, because a consumer that cannot see it would have to
+      // fall back to inferring authority from `sourceKey` or from the presence of text, which is
+      // exactly the false-equivalence this slice removes. Carried through unchanged; no citation,
+      // status, ordering or membership is affected.
+      backingStatus: record?.backingStatus ?? null,
+      contentDisclosure: record?.contentDisclosure ?? null,
+      corpusBacked: record?.corpusBacked ?? null,
+      sourceKey: record?.sourceKey ?? null,
+      // KG-4A. Same reasoning as the KG-3C note above, one slice later. These four fields are
+      // written by `hydrateFindingScopedStandards()` and would otherwise be dropped on the second
+      // pass -- and `knowledgeReleaseId` in particular MUST survive, because it is the per-finding
+      // record of which findings actually consumed governed content, and a mixed-provenance
+      // analysis cannot be represented truthfully without it.
+      //
+      // Spread with `...(x !== undefined ? {...} : {})` rather than `?? null`, so that a LEGACY
+      // payload gains no new keys at all -- not even null-valued ones. That is what keeps the
+      // default response byte-identical to the pre-KG-4A one, which `test:kg4a-default-off`
+      // asserts directly.
+      ...(record?.governedDeliveryState !== undefined ? { governedDeliveryState: record.governedDeliveryState } : {}),
+      ...(record?.governedFallbackReason !== undefined ? { governedFallbackReason: record.governedFallbackReason } : {}),
+      ...(record?.governedTextUnavailable !== undefined ? { governedTextUnavailable: record.governedTextUnavailable } : {}),
+      ...(record?.knowledgeReleaseId !== undefined ? { knowledgeReleaseId: record.knowledgeReleaseId } : {}),
     });
   }
   const primary = String(result?.primaryCitation || '').trim();
-  if (primary && !seen.has(primary)) output.unshift({ citation: primary, title: null, standardText: null, source: null });
+  if (primary && !seen.has(primary)) {
+    // A citation recovered from `primaryCitation` alone has no corpus record behind it here, so
+    // it is CITATION_ONLY by construction rather than by an absent field.
+    output.unshift({
+      citation: primary, title: null, standardText: null, source: null,
+      backingStatus: 'CITATION_ONLY', contentDisclosure: 'NONE', corpusBacked: false, sourceKey: null,
+    });
+  }
   return output;
 }
 
