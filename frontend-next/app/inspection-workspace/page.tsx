@@ -24,6 +24,7 @@ import {
   type RegulatoryContext,
 } from "@/lib/canonicalWorkflowApi";
 import { StandardCitationHeading } from "@/components/inspection/SafeScopeStandardsSection";
+import { getStandardBackingPresentation } from "@/lib/inspection/standardDisplay";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { getStoredPlanCode, getVerifiedPlanCode, hasPlanEntitlement, type BillingTier } from "@/lib/planEntitlements";
 
@@ -119,6 +120,8 @@ type FindingStandardView = {
   confidenceLimitReason?: string | null;
   evidenceMissing: string[];
   jurisdictionProvenance?: "USER_CONFIRMED" | "HAZLENZ_INFERRED" | "UNKNOWN";
+  /** KG-3C canonical backing status. The ONLY basis for claiming verified regulatory backing. */
+  backingStatus?: "APPROVED_GOVERNED_CONTENT" | "UNAPPROVED_CONTENT" | "CITATION_ONLY";
   source: "finding-scoped" | "observation-primary";
 } | null;
 
@@ -134,6 +137,8 @@ type PersistedStandardCandidate = {
   /** Corpus-backed fields (present when standards_master has a row for the citation). */
   title?: string;
   plainLanguageSummary?: string;
+  /** KG-3C canonical backing status; `corpusBacked` is derived from it, never from `sourceKey`. */
+  backingStatus?: "APPROVED_GOVERNED_CONTENT" | "UNAPPROVED_CONTENT" | "CITATION_ONLY";
   corpusBacked?: boolean;
 };
 
@@ -190,6 +195,9 @@ function resolveSelectedFindingStandard(
         confidenceLimitReason: sameAsPrimary ? primaryRaw!.confidenceLimitReason : null,
         evidenceMissing: best.missingPredicates || [],
         jurisdictionProvenance: best.jurisdictionProvenance,
+        // KG-3C: carried from the finding's OWN persisted candidate, so the panel describes the
+        // backing of the record it is actually rendering rather than the observation primary's.
+        backingStatus: best.backingStatus,
         source: "finding-scoped",
       };
     }
@@ -1102,6 +1110,7 @@ export default function InspectionWorkspacePage() {
     inspection?.findings || [],
     selectedFindingId,
   );
+  const selectedFindingStandardBacking = getStandardBackingPresentation(selectedFindingStandard);
 
   return (
     <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
@@ -1434,17 +1443,45 @@ export default function InspectionWorkspacePage() {
             )}
             {selectedFindingStandard && (
               <>
-                {selectedFindingStandard.simplifiedRequirement && (
+                {/* KG-3C: `simplifiedRequirement` falls back to the observation primary's value
+                    when the finding's own candidate carries no corpus summary, so for a
+                    CITATION_ONLY citation it holds the match rationale rather than a description
+                    of the standard. `allowsContentText` gates that tier off in exactly that
+                    state — the notice below is then the whole answer. */}
+                {selectedFindingStandard.simplifiedRequirement && selectedFindingStandardBacking.allowsContentText && (
                   <p className="mt-2">
                     <span className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">HazLenz standard summary</span>
+                    {/* KG-3C: positive-only verification marker, derived from backingStatus.
+                        Never inferred from sourceKey — see standardDisplay.ts. `whitespace-nowrap`
+                        keeps the pill intact: at a 390px viewport the phrase otherwise breaks
+                        across two lines and renders as two separate rounded fragments. */}
+                    {selectedFindingStandardBacking.verifiedBadge && (
+                      <span className="ml-2 whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                        {selectedFindingStandardBacking.verifiedBadge}
+                      </span>
+                    )}
                     <br />
                     {selectedFindingStandard.simplifiedRequirement}
                   </p>
                 )}
+                {selectedFindingStandardBacking.notice && (
+                  <p className="guided-muted mt-2 text-sm">{selectedFindingStandardBacking.notice}</p>
+                )}
                 <h4 className="mt-3 font-bold">Why HazLenz selected this</h4>
                 <p>{selectedFindingStandard.whyOffered}</p>
                 <p className="mt-3"><strong>Confidence:</strong> {selectedFindingStandard.confidenceLabel}</p>
-                {selectedFindingStandard.confidenceLimitReason && (
+                {/* KG-3D (Phase 8). `confidenceLimitReason` is a CONTENT-BACKING caveat, but it
+                    is computed by the guided-finding adapter, while the verified badge beside the
+                    summary comes from this finding's own persisted candidate. Two independent
+                    computations of one fact can disagree, and when they do the card says "Verified
+                    standard text" and "has not completed source review" at the same time — the
+                    contradiction KG-3C flagged (§20.13) but could not reproduce, because no record
+                    was approved yet. KG-3D approves real records, so it became reachable.
+
+                    Gating the caveat on the same presentation the badge uses makes the card
+                    internally consistent whichever layer resolved the backing first. This does not
+                    touch applicability confidence, and the evidence-gap list below is unaffected. */}
+                {!selectedFindingStandardBacking.verifiedBadge && selectedFindingStandard.confidenceLimitReason && (
                   <p className="guided-muted mt-1 text-sm">{selectedFindingStandard.confidenceLimitReason}</p>
                 )}
                 {selectedFindingStandard.evidenceMissing.length > 0 && (

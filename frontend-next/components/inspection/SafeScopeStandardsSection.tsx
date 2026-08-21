@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
-import { formatStandardDisplay, getStandardCitation, getStandardDisplayText, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+import { formatStandardDisplay, getStandardBackingPresentation, getStandardCitation, getStandardDisplayText, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
 
 export function StandardCitationHeading({ citation, title }: { citation: string; title: string }) {
@@ -292,6 +292,7 @@ export default function SafeScopeStandardsSection({
     );
 
     const standardDisplayText = getStandardDisplayText(standard);
+    const standardBacking = getStandardBackingPresentation(standard);
     const standardTitle = getStandardTitle(standard);
     const explanation = getStandardMatchExplanation(standard);
     const isPrimary = !isSupporting && index === 0;
@@ -336,8 +337,16 @@ export default function SafeScopeStandardsSection({
         <StandardCitationHeading citation={formatStandardDisplay(standard)} title={standardTitle} />
 
         <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-slate-800 dark:bg-slate-950">
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
-            {standardDisplayText.label}
+          <p className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            <span>{standardDisplayText.label}</span>
+            {/* KG-3C: positive marker only. Measured contrast — emerald-800 on emerald-100 is
+                6.78:1 (light); emerald-300 on emerald-950 is 9.94:1, and 13.23:1 against this
+                card's dark:bg-slate-950 surface. All clear WCAG AA for normal text. */}
+            {standardBacking.verifiedBadge && (
+              <span className="whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                {standardBacking.verifiedBadge}
+              </span>
+            )}
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-100">
             {standardDisplayText.text}

@@ -210,8 +210,74 @@ export function getStandardDisplayText(standard: any): StandardDisplayText {
 
   return {
     label: "Unavailable",
-    text: "No standard text or approved summary is available for this matched standard.",
+    // KG-3C: customer-facing wording for the citation-only state. The previous copy ("for this
+    // matched standard") described an internal matching step rather than telling the reader what
+    // they can rely on.
+    text: "Verified standard text is not currently available for this citation.",
   };
+}
+
+/**
+ * KG-3C -- how a standard's regulatory backing is presented.
+ *
+ * The single source of truth is `backingStatus`, set by the backend contract
+ * (`standards/display/standards-backing-contract.ts`). Backing is NEVER inferred here from
+ * `sourceKey`, from the presence of text, or from any generic truthy field — inferring it from a
+ * source key is precisely the defect KG-3C fixes, because the corpus finalizer synthesizes a
+ * `starter-unverified:` key for records with no provenance.
+ *
+ * Presentation is deliberately POSITIVE-ONLY: approved content earns a "Verified standard text"
+ * marker, and everything else simply does not carry one. The alternative — a caution badge on
+ * unapproved content — would today attach a warning to every standard in the product, since 0 of
+ * 26 corpus records are approved. That reads as a broken product rather than as precision, and it
+ * would train users to ignore the warning by the time it becomes meaningful. Unapproved text is
+ * already truthfully labelled "HazLenz standard summary" by the P1 label-integrity contract, so
+ * it is never presented as official regulation either way.
+ */
+export type StandardBackingPresentation = {
+  /** Short positive marker, or null when none is warranted. */
+  verifiedBadge: string | null;
+  /** Customer-facing notice, or null. Product voice, no governance vocabulary. */
+  notice: string | null;
+  isApproved: boolean;
+  /**
+   * Whether a body-text tier may be rendered for this standard at all.
+   *
+   * False for CITATION_ONLY. That state means no usable governed content backs the citation, so
+   * any text a caller still has on hand necessarily describes something OTHER than the standard —
+   * in the Standard Detail panel it falls back to the observation primary's `simplifiedRequirement`,
+   * which for an unbacked citation is the match rationale ("Supported by submitted evidence for
+   * …; qualified review remains required"). Rendering that under the "HazLenz standard summary"
+   * label presents a selection rationale as a description of the regulation, and it sits directly
+   * above the notice saying no verified text is available. Callers must consult this flag rather
+   * than deciding from the presence of their own text, for the same reason backing is never
+   * inferred from a source key: the text's existence says nothing about what it is.
+   */
+  allowsContentText: boolean;
+};
+
+export function getStandardBackingPresentation(standard: any): StandardBackingPresentation {
+  const status = String(standard?.backingStatus || "");
+
+  if (status === "APPROVED_GOVERNED_CONTENT") {
+    return {
+      verifiedBadge: "Verified standard text",
+      notice: null,
+      isApproved: true,
+      allowsContentText: true,
+    };
+  }
+  if (status === "CITATION_ONLY") {
+    return {
+      verifiedBadge: null,
+      notice: "Verified standard text is not currently available for this citation.",
+      isApproved: false,
+      allowsContentText: false,
+    };
+  }
+  // UNAPPROVED_CONTENT, or a payload predating the contract. No badge, no alarm — the summary is
+  // shown under its honest "HazLenz standard summary" label.
+  return { verifiedBadge: null, notice: null, isApproved: false, allowsContentText: true };
 }
 
 export function formatStandardDisplay(standard: any) {
