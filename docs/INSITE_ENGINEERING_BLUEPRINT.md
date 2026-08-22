@@ -1,6 +1,7 @@
 # InSite / HazLenz — Engineering Blueprint and Continuity Reference
 
-**Generated:** 2026-08-21 · **Last slice:** KG-5D (production SHADOW preflight, pass two) · **Checkpoint:** `KG_5C_COMPLETE — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED — READY_FOR_CONTROLLED_PRODUCTION_SHADOW`
+**Generated:** 2026-08-22 · **Last slice:** HazLenz capability acceptance (§28) · **Checkpoint:** `KG_5C_COMPLETE — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED — READY_FOR_CONTROLLED_PRODUCTION_SHADOW`
+**HazLenz capability gate:** `HAZLENZ_CAPABILITY_GATE_BLOCKED — RC-01…RC-05, RC-07, RC-08` (§28). Maturity measured **LEVEL_1 — RULE ASSISTANT** against a LEVEL_3 minimum; 13 SAFETY_BLOCKERs open. **The governed-knowledge subsystem being converged does not make the reasoning engine deployable.**
 **Preflight verdict:** `PRODUCTION_SHADOW_PREFLIGHT_BLOCKED — NO_GOVERNED_RELEASE_AND_SUBSYSTEM_NOT_DEPLOYED_IN_PRODUCTION` (§17.4)
 **Repository:** `/Users/mckinley/Desktop/Safety_InSite` · **Branch:** `release/insite-rc-2026-08-18`
 **Local HEAD:** the sixth of six commits placed on top of `5f050858` — the KG release package is now committed locally.
@@ -24,6 +25,7 @@ from it, and where a question is answered in both, **§§21–27 win**.
 | Whether a finding you just "discovered" is already adjudicated | **§25 — Superseded findings register** |
 | What is genuinely still open | **§26 — Open issues register** |
 | What production SHADOW is for, and what would abort it | **§27 — Production SHADOW protocol** |
+| Whether the HazLenz **engine** meets the capability bar for a checkpoint deploy | **§28 — HazLenz capability acceptance** |
 | Current stage / what may happen next | `docs/INSITE_CURRENT_STATE.json` → `programStatus` |
 
 ### The four things that are true right now
@@ -1849,6 +1851,9 @@ standard summary" label. Pre-existing and unrelated to governance. Not a SHADOW 
 (customer-invisible) and not a cutover blocker — cutover *repairs* it for the 15 approved reviewed
 renderings and leaves it unchanged for unapproved records.
 Classification: `LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY`.
+**Superseded 2026-08-22 — see the authoritative §26 entry**, reclassified
+`DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT` after the truncation was observed
+printed in a real generated customer report under LEGACY (§28.10).
 
 ### The production operation sequence is now fully commanded
 
@@ -2652,12 +2657,12 @@ customer impact · release-gate impact · evidence · next required action · co
 | Field | Value |
 |---|---|
 | **Observation** | `plain_language_summary` is a hard 500-character cut of `standard_text` on **996 of 2,390** production rows; **634 cut mid-word** (e.g. `1910.219` ends *"…thirteen thirty-seconds () inch or less. 1/2 (2"*). That fragment is what a **Path B** customer reads today under the "HazLenz standard summary" label. |
-| **Classification** | **`DEFECT_NONBLOCKING`** — unless new evidence proves otherwise. |
+| **Classification** | **`DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT`** · reclassified 2026-08-22 on new executable evidence (§28.10). **Supersedes** the prior `DEFECT_NONBLOCKING` entry, whose customer-impact scope named only the Path B workspace surface. |
 | **Owner** | **SOURCE** / the legacy content-generation path. Not RESOLUTION, not PRESENTATION. |
-| **Customer impact** | Real but pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY, with no governed subsystem involved. |
-| **Release-gate impact** | **Blocks neither production SHADOW nor governed CUTOVER for approved records** on current evidence. SHADOW is customer-invisible. Cutover *repairs* it for the 15 approved reviewed renderings (the complete reviewed artifact replaces the fragment) and leaves it unchanged for unapproved records, which is exactly the fallback contract's promise. |
-| **Evidence** | `kg-5c/STATUS.md` §8; `kg-5c/contracts/customer-path-equivalence.json`. |
-| **Next required action** | Adjudicate the legacy summary-generation strategy **before widening legacy delivery**. Not in scope for the current phase. |
+| **Customer impact** | Real, pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY. **Newly proven 2026-08-22:** the truncation also reaches the **generated inspection report** — a mid-sentence cut of `29 CFR 1926.501` (*"…the requisite strength and s"*) was printed in a real PDF produced by `CanonicalReportsService.generate()` under LEGACY. That is a second customer surface, and it is one of §16's five surfaces that must remain truthful. |
+| **Release-gate impact** | **Blocks neither production SHADOW nor governed CUTOVER for approved records** on current evidence — unchanged by the reclassification. SHADOW remains customer-invisible; "customer-invisible" was always a statement about **SHADOW**, never about the truncation, and the 2026-08-22 evidence does not contradict it. Cutover *repairs* it for the 15 approved reviewed renderings (the complete reviewed artifact replaces the fragment) and leaves it unchanged for unapproved records, which is exactly the fallback contract's promise. |
+| **Evidence** | `kg-5c/STATUS.md` §8; `kg-5c/contracts/customer-path-equivalence.json`. Report-surface evidence: `verification/hazlenz-capability-acceptance-2026-08-22/STATUS.md` §9 (7 generated PDFs inspected with poppler). |
+| **Next required action** | Adjudicate the legacy summary-generation strategy at **SOURCE**, now with report-surface priority rather than workspace-only. **Deliberately not remediated in the 2026-08-22 closure operation** — reclassification only. |
 | **Condition for closure** | Either the generation path is corrected at SOURCE and re-measured, or a recorded adjudication accepts the truncation with a stated rationale. |
 
 > **Do not silently close this because governed CUTOVER masks it.** Cutover repairs it for 15 of
@@ -3104,6 +3109,198 @@ results, the classified discrepancy list, and an explicit hold / expand / stop r
 **Terminal state:** `STAGE1_PRODUCTION_SHADOW_COMPLETE — EVIDENCE_CAPTURED_FOR_SEPARATE_CUTOVER_DECISION`.
 Stage-1 completing authorizes **neither** Stage 2 **nor** CUTOVER; each is a separate explicit human
 decision, and CUTOVER additionally requires `KG4E-DISC-03` closed and `KG5D-DISC-04` adjudicated.
+
+---
+
+## 28 — HAZLENZ CAPABILITY ACCEPTANCE (2026-08-22)
+
+> ### `HAZLENZ_CAPABILITY_GATE_BLOCKED — RC-01, RC-02, RC-03, RC-04, RC-05, RC-07, RC-08`
+
+Evidence: `verification/hazlenz-capability-acceptance-2026-08-22/` (`STATUS.md`,
+`ROOT_CAUSE_CLUSTERS.md`, `contracts/`, `results/`). Baseline `e723b62d`, clean `git archive`
+checkout, production-shaped 2,390-row corpus. Matrix: 66 scenarios, **frozen before execution**, sha256
+`ef405d60ce4ba073970c1902560c6e8703fa8c297f3cf3cf0c2e6b88ee538111` **as frozen**.
+The artifact committed at `contracts/hazlenz-acceptance-matrix.json` is sha256
+`c298f14865fe823d0b8250aff759f9b7cdaf7875a573c3a69fc96ab704149040`; it differs from the frozen bytes
+by exactly the recorded `TEST_ORACLE_ERROR #2` (scenario B08's PPE family pattern widened from
+`ppe|eye|face|struck_by` to `ppe|personal_protective|eye|face|struck_by`, a correction **in HazLenz's
+favour**), the added `oracleCorrections` provenance key, and JSON re-serialisation. No scenario text,
+no scenario count and no other expectation changed. See `contracts/ORACLE_CORRECTION.md`.
+**No implementation file was modified. Nothing was deployed.**
+
+This section answers a different question from §§21–27. Those establish that the *governed knowledge
+subsystem* is architecturally converged. This one measures whether the *HazLenz reasoning engine* meets
+the capability standard a checkpoint deployment requires. It does not.
+
+### 28.1 `DO_NOT_REINVESTIGATE_WITHOUT_NEW_EVIDENCE` — newly proven
+
+| Question | Answer | Where |
+|---|---|---|
+| Does HazLenz call a language model? | **NO.** No LLM dependency in `backend/package.json`; no inference endpoint in source; `SafescopeV2Service` injects no repository; 66 full analyses in 9.85 s total | §28.2 |
+| Is §12's "a classify path dominated by seconds of AI inference" accurate? | **NO** — superseded. Measured ~0.15 s per analysis. The phrase should not be carried forward | §28.2 |
+| Does HazLenz demonstrate closed-loop learning? | **NO.** Corrections are captured durably and read by nothing in the reasoning path | §28.5 |
+| Is `learningMemory` in the classify payload a learning mechanism? | **NO** — it is a static literal policy object | §28.5 |
+| Does anything re-check regulatory sources on a schedule? | **NO.** Zero `@Cron` / `ScheduleModule` / `setInterval` / `node-cron` in `backend/src`; all ingestion is manual | §28.6 |
+| Is the top-level `conditionState` the axis a condition-state contract should be measured on? | **NO** — it is `UNKNOWN` on 62 of 66. The authoritative axis is per-hazard `multiHazardDecomposition.hazards[].conditionState`, which is also what reaches the customer via `additionalHazards` | `contracts/ORACLE_CORRECTION.md` |
+| Is `test:kg3f-56-14132-predicate` passing 16/16 sufficient to claim the MSHA-TRAFFIC-01 adjudication holds for customers? | **NO.** A second, unguarded citation source (`msha-inspection-intelligence.service.ts:201`) emits the refused `(a)` paragraph on the customer path while that suite is green | RC-03 |
+| Does the seed-corpus size explain the capability result? | **NO** — the measurement used a clone of the 2,390-row production-shaped corpus, not the 35-record seed | §28.2 |
+
+### 28.2 What actually decides a HazLenz result `STABLE_INVARIANT` (measured, not inferred)
+
+Hand-authored rule registries · weighted lexical classification · regex evidence extraction · a canned
+corrective-action template library · regex post-processing in `safescope-v2.controller.ts`. The
+repository's own 2026-08-08 audit already recorded that the response path demonstrates no external
+model call; this phase confirms it executably and quantifies the consequence.
+
+### 28.3 Results
+
+PASS **16** · PASS_WITH_LIMITATION **13** · DEFECT **24** · **SAFETY_BLOCKER 13** ·
+TEST_ORACLE_ERROR 1 · HARNESS_ERROR 2 (both corrected and recorded).
+
+Clean by cohort: historical 14% · novel adversarial 20% · realistic field 42% · negative controls 25% ·
+regulatory 25% · **total 24%**. Meanwhile `test:hazlenz-core` reproduces **28 of 30** — the two
+documented failures (§13.1) and no third. **The repository's own fixtures pass while re-worded
+versions of the same failure modes do not.**
+
+Controlled perturbation, the clearest single demonstration: `"back-up alarm"` emits
+`30 CFR 57.14132(a)` + `57.9100`; `"backup alarm"` emits **nothing**; `"reverse signal alarm"` emits
+**nothing**; adding explicit surface-mine wording moves the same hazard from Part **57** to Part **56**.
+
+### 28.4 Root-cause clusters
+
+Full table in `ROOT_CAUSE_CLUSTERS.md`. Blocking: **RC-01** default-ACTIVE condition state
+(CONDITION_STATE) · **RC-02** mine-type keyword collision, `\bback\b` matching "back-up"
+(TAXONOMY/RESOLUTION) · **RC-03** PROTECTED_DECISION bypass on a second citation path
+(STANDARDS_MATCHING) · **RC-04** lexical brittleness producing high-consequence false negatives
+(TAXONOMY) · **RC-05** template corrective actions with invented evidence (CORRECTIVE_ACTION) ·
+**RC-07** phantom / over-decomposed findings reaching the report (REASONING_ORCHESTRATOR) ·
+**RC-08** evidence fragment inverting a negation on a customer report (PRESENTATION).
+Non-blocking: **RC-06** template-driven clarification · **RC-09** regime mixing under `unknown` ·
+**RC-10** near-constant top-level condition state.
+
+### 28.5 Learning — `NOT ACTIVE`
+
+`IMPLEMENTED_NOT_ACTIVE`: human reviews · reviewer-confirmed risk · `SafeScopeFeedback` ·
+legacy feedback tables. `DOCUMENTED_ONLY`: `learningMemory` / `learningGovernance` payload objects.
+`IMPLEMENTED_AND_ACTIVE`: the governed knowledge review queue (retrieval tier only, connected to no
+correction source) and the regression corpus as a code-change gate. Unchanged from 2026-08-18.
+
+### 28.6 Knowledge freshness — architecture real, operation absent
+
+Registry, allow-listed primary-source connectors, normalization, checksums and the governed release
+lifecycle all exist. **No scheduler exists.** On the production-shaped corpus **0 of 2,390** rows carry
+`source_document_checksum` and **0** carry `retrieval_date`; `safescope_knowledge_sources` is empty.
+Truthful claim: *a governed regulatory knowledge architecture with reviewed releases*. Not truthful:
+automatically staying current, periodic ingestion, continuous learning. The product makes none of
+those claims.
+
+### 28.7 AI maturity — `LEVEL_1 — RULE ASSISTANT`
+
+Assigned on the framework's own terms: LEVEL_2 requires classification *using AI-assisted reasoning*,
+and there is none. Genuine LEVEL_2 capabilities were measured working — negation-aware extraction,
+condition-state modelling, per-finding predicates with named open questions, conservative and truthful
+jurisdiction inference, correct granular citation selection — but are not reliable enough to carry the
+level. LEVEL_2 requires closing RC-01/02/03/04; LEVEL_3 additionally RC-05/06/07/08; LEVEL_4 requires
+activating the captured-correction loop; LEVEL_5 requires post-deployment production evidence.
+
+**The checkpoint minimum is LEVEL_3 with zero unresolved SAFETY_BLOCKERs. Neither condition is met.**
+
+### 28.8 Regulatory-context decision — `HYBRID` `PROTECTED_DECISION`
+
+Explicit context: **1 of 50 (2%)** scenarios emits citations spanning more than one regime. `unknown`:
+**11 of 43 (26%)**, including OSHA General Industry citations for a mine hazard. Inference itself is
+sound — it fires on only 11 of 66, was correct on every obvious case, held `unknown` on the genuinely
+ambiguous one, and is always labelled `HAZLENZ_INFERRED`.
+
+Retain "Not sure / Let HazLenz determine", but require the regime to be **established** — by inference
+or by one targeted clarification — before regulatory conclusions are emitted, and refuse to emit a
+cross-regime candidate set.
+
+> **The uncommitted 8-line worktree change implements `REQUIRE_EXPLICIT`, not `HYBRID`. It must not be
+> packaged.** It is not discarded here; removal or restoration is a separately authorized cleanup step.
+
+### 28.9 What was measured and found sound
+
+Governance posture is correct on every real workflow (0 governed keys, NULL provenance, LEGACY
+authority). 7 generated PDFs carry **0** governance/shadow vocabulary. The finalization gate correctly
+refuses an inspection with unreviewed decomposed findings. Negation is handled correctly wherever the
+phrasing is enumerated. Customer-facing capability language is restrained and well-disclaimed. No new
+regression: `test:hazlenz-core` 28/30, the two documented failures only.
+
+### 28.10 New evidence against an existing classification
+
+`KG5C-DISC-01` (634 mid-word-truncated legacy summaries) was recorded in §26 as
+`DEFECT_NONBLOCKING`, with its customer-impact scope naming only the Path B workspace surface. This
+phase observed a mid-sentence truncation of `1926.501` printed in a **generated customer report today,
+under LEGACY** — a second customer surface, and one of §16's five that must remain truthful.
+
+**Reclassified 2026-08-22 to `DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT`** in the §26
+register. The release-gate conclusion is unchanged: it blocks neither SHADOW nor CUTOVER. What changes
+is the recorded customer-visibility scope and the priority of the SOURCE adjudication.
+**Not remediated** — reclassification only, by explicit authorization.
+
+---
+
+### 28.11 Capability decision — recorded 2026-08-22 `PROTECTED_DECISION`
+
+Authorized by the repository owner after reviewing the §28 evidence. This is a **strategy** decision,
+not a remediation, and it is recorded so a future session does not re-derive it.
+
+> **Incremental LEVEL_2 patching is NOT the primary strategy.**
+
+| Cluster | Disposition |
+|---|---|
+| **RC-01** default-ACTIVE condition state | **Input to the LEVEL_3 reasoning-engine architecture.** Do not patch incrementally. |
+| **RC-04** lexical brittleness | Same. |
+| **RC-05** template corrective actions | Same. |
+| **RC-07** phantom / over-decomposed findings | Same. |
+| **RC-08** evidence fragment inverting a negation | Same. |
+| **RC-02** mine-type keyword collision (`\bback\b` matching "back-up") | **Preserved as an independently actionable deterministic defect. Do NOT fix yet.** |
+| **RC-03** PROTECTED_DECISION bypass on a second citation path | Same — independently actionable, **not fixed yet**. |
+
+**Why RC-01/04/05/07/08 are not patched.** Each is a design property of the reasoning substrate, not a
+defect in an owning layer: RC-01 is the absence of a safe-state default, RC-04 and RC-05 are lexical
+retrieval standing in for reasoning, RC-07 is the decomposition contract itself, RC-08 is fragment
+selection without negation scope. Patching them one at a time would be the observation → edit → rerun
+loop §22 exists to make unavailable, and would produce a system that passes a wider fixture set without
+reasoning any better.
+
+**Why RC-02 and RC-03 are preserved rather than fixed.** Both *are* narrow enough to repair
+(a signal-ordering bug and a second unguarded citation source). They are held because a checkpoint
+still gated on RC-01/04/05/07/08 gains nothing from a partial repair, and because fixing a
+PROTECTED_DECISION bypass deserves its own authorization and its own regression contract rather than
+being folded into a documentation operation. **RC-03 in particular must not be closed by editing
+`evidence-foundation.ts`** — that file is already correct and its suite already passes 16/16; the
+defect is the *second* path at `msha-inspection-intelligence.service.ts:201`.
+
+> **Next authorized phase: LEVEL_3 reasoning-architecture / implementation planning.**
+> It is **not** started by this record, and must not be begun automatically.
+
+### 28.12 Regulatory-context disposition — `HYBRID` recorded, `REQUIRE_EXPLICIT` superseded `PROTECTED_DECISION`
+
+Recorded 2026-08-22 on the §28.8 evidence (explicit context 1/50 regime mixing; `unknown` 11/43).
+
+**Decision: `HYBRID`.** Retain "Not sure / Let HazLenz determine". Require the regime to be
+*established* — by HazLenz inference or by one targeted clarification — **before** regulatory
+conclusions are emitted, and refuse to emit a cross-regime candidate set.
+
+**The uncommitted `REQUIRE_EXPLICIT` implementation in the working tree is a SUPERSEDED PROPOSAL.**
+
+| | |
+|---|---|
+| What it does | Removes "Not sure / Let HazLenz determine" from the option list and blocks inspection start on `unknown` |
+| Why it is superseded | It discards a working, truthful, conservative inference capability (fires on 11 of 66, correct on every obvious case, always labelled `HAZLENZ_INFERRED`) and forces users to answer a question HazLenz can often answer itself — contradicting the §2 autonomy invariant |
+| Committed? | **NO — deliberately excluded from the 2026-08-22 closure commit** |
+| Discarded or restored? | **NO — preserved byte-for-byte in the working tree** |
+| Disposition | Pending a **separately authorized cleanup step**. Not this operation's to perform |
+
+Affected uncommitted paths, preserved unchanged: `frontend-next/lib/canonicalWorkflowApi.ts` ·
+`frontend-next/app/inspections/page.tsx` · `frontend-next/app/inspection-workspace/page.tsx`
+(the `KG5A-DISC-02` hunk).
+
+**Presentation follow-up (not remediated):** the Settings label *"Let HazLenz AI Evaluate — HazLenz AI
+decides the likely agency context"* promises more than an 11-of-66 inference rate supports.
+`PRESENTATION_OVERCLAIM`, owner PRESENTATION.
 
 ---
 

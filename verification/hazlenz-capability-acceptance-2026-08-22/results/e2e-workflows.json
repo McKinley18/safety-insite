@@ -1,0 +1,213 @@
+[
+ {
+  "key": "W1",
+  "ctx": "osha-general-industry",
+  "steps": {
+   "inspectionId": "7ce06623-f31c-4c20-bfe9-b5b56db171f2",
+   "regulatoryContextPersisted": "osha-general-industry",
+   "classification": "Lockout / Stored Energy",
+   "citations": [
+    "29 CFR 1910.212(a)(3)(ii)",
+    "1910.243",
+    "29 CFR 1910.212(a)(1)"
+   ],
+   "riskBand": "Critical",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "request",
+    "basis": []
+   },
+   "observationId": "333278a7-8335-484b-9736-20d7804048b7",
+   "analysisId": "2a4b3f49-68f3-4109-a0fd-347170ce47dd",
+   "knowledgeReleaseId": null,
+   "reviewId": "b74e9683-ce30-4599-a1a1-9bb7efc499a9",
+   "findingId": "e426697d-917e-49e9-92df-f8d5d0ec0c71",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 2,
+   "findingsRequiringReview": 2,
+   "finalStatus": "completed",
+   "reportId": "578fb68d-6974-45f7-9c85-7bc647c8e6e1",
+   "reportVersion": 1
+  },
+  "ok": true
+ },
+ {
+  "key": "W2",
+  "ctx": "osha-construction",
+  "steps": {
+   "inspectionId": "c528901b-5feb-4797-abdc-2ecb20e30a9c",
+   "regulatoryContextPersisted": "osha-construction",
+   "classification": "Walking/Working Surfaces",
+   "citations": [
+    "1926.501",
+    "1926.1423",
+    "1926.502",
+    "29 CFR 1926.501(b)(1)"
+   ],
+   "riskBand": "Moderate",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "request",
+    "basis": []
+   },
+   "observationId": "c6dac880-12a1-4a13-b172-cbb2d782d436",
+   "analysisId": "9a6ca039-3864-428a-ae3a-7b9346c1e76f",
+   "knowledgeReleaseId": null,
+   "reviewId": "75fae9ea-43dc-4f78-b28e-cb638e4d01b3",
+   "findingId": "3a4be0ff-a6da-4eb5-a655-58e899c41770",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 2,
+   "findingsRequiringReview": 2,
+   "finalStatus": "completed",
+   "reportId": "aba9e808-73d1-42fb-abf6-e7ba1c3a28a0",
+   "reportVersion": 1
+  },
+  "ok": true
+ },
+ {
+  "key": "W3",
+  "ctx": "msha",
+  "steps": {
+   "inspectionId": "b6d0942d-405b-4372-8d44-3a80e7ccc583",
+   "regulatoryContextPersisted": "msha",
+   "classification": "Lockout / Stored Energy",
+   "citations": [
+    "30 CFR 56.14107",
+    "30 CFR 56.11009",
+    "30 CFR 56.14109",
+    "30 CFR 56.14113",
+    "30 CFR 56.14201",
+    "30 CFR 56.14202",
+    "30 CFR 56.14107(a)"
+   ],
+   "riskBand": "High",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "request",
+    "basis": []
+   },
+   "observationId": "d9f73ff1-3be2-4d40-bf8b-d9c58fdd7831",
+   "analysisId": "37991ece-edfe-46ad-ab97-ad328e14a3a0",
+   "knowledgeReleaseId": null,
+   "reviewId": "77a52f91-dc66-49cb-bc2e-6a57081cb26a",
+   "findingId": "42c3d510-088a-4e6e-9af9-4fbe1746343b",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 4,
+   "findingsRequiringReview": 4,
+   "finalStatus": "completed",
+   "reportId": "305354bf-f7a9-4217-9c68-af899447d76e",
+   "reportVersion": 1
+  },
+  "ok": true
+ },
+ {
+  "key": "W4",
+  "ctx": "osha-general-industry",
+  "steps": {
+   "inspectionId": "4ec61573-a979-40e4-862e-d08ecfa83194",
+   "regulatoryContextPersisted": "osha-general-industry",
+   "classification": "Emergency Egress",
+   "citations": [
+    "29 CFR 1910.37(a)(3)",
+    "1910.101"
+   ],
+   "riskBand": "High",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "request",
+    "basis": []
+   },
+   "observationId": "7a0cad6d-9d8a-43b2-9319-2571ba94049f",
+   "analysisId": "160050a1-d960-42d5-aa83-ef64fdfd53d2",
+   "knowledgeReleaseId": null,
+   "reviewId": "604fcbb8-d6a9-469b-a1ae-b1ae2a49d268",
+   "findingId": "f506d4d2-ca8e-4ba7-9dcb-96ecae61eea6",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 3,
+   "findingsRequiringReview": 3,
+   "finalStatus": "completed",
+   "reportId": "67642393-ca39-4349-b891-55e0350c3e79",
+   "reportVersion": 1
+  },
+  "ok": true
+ },
+ {
+  "key": "W5",
+  "ctx": "osha-general-industry",
+  "steps": {
+   "inspectionId": "50a2e1c3-da9d-4eff-ad92-fc8f82a1e6c8",
+   "regulatoryContextPersisted": "osha-general-industry",
+   "classification": "Controlled Condition",
+   "citations": [],
+   "riskBand": "Controlled",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "request",
+    "basis": []
+   },
+   "observationId": "e967a399-54f4-435e-88ec-766b99d0a105",
+   "analysisId": "9f5b7e99-d36d-4682-98e5-6955ad4da949",
+   "knowledgeReleaseId": null,
+   "reviewId": "1a0b72df-5610-4b5e-89fa-a2f74f6c495e",
+   "findingId": "c79f6249-f9b4-4402-8039-93a5bafa0c86",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 1,
+   "findingsRequiringReview": 1,
+   "finalStatus": "completed",
+   "reportId": "344d5420-365c-487b-af37-5ad723ca79a3",
+   "reportVersion": 1
+  },
+  "ok": true
+ },
+ {
+  "key": "W6",
+  "ctx": "unknown",
+  "steps": {
+   "inspectionId": "d78c410f-7300-4ca9-9fc0-d2c18f2e1265",
+   "regulatoryContextPersisted": "unknown",
+   "classification": "Fall Protection",
+   "citations": [
+    "29 CFR 1910.23(b)",
+    "1910.140",
+    "1910.23",
+    "1910.28",
+    "1910.29"
+   ],
+   "riskBand": "High",
+   "governedKeysInPayload": [],
+   "regulatoryContextEcho": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "basis": []
+   },
+   "observationId": "e91bce5e-62e8-4592-bdd8-d00ae490479e",
+   "analysisId": "972e7e63-b6fe-4764-b8c4-e6ead757f77d",
+   "knowledgeReleaseId": null,
+   "reviewId": "faabd1c0-ad11-46bd-a715-4c710c2da509",
+   "findingId": "de1aff12-f7b1-4e5f-95ba-132010ff7e52",
+   "reloadOk": true,
+   "reloadObservations": 1,
+   "reloadFindings": 2,
+   "findingsRequiringReview": 2,
+   "finalStatus": "completed",
+   "reportId": "1e29c5ff-a072-46bd-a455-8fcbe6d1aa32",
+   "reportVersion": 1
+  },
+  "ok": true
+ }
+]

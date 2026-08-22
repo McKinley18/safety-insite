@@ -1,0 +1,2139 @@
+[
+ {
+  "id": "A01",
+  "cohort": "historical",
+  "title": "negation: no spotter present",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "mobile_equipment",
+   "powered_industrial_trucks",
+   "traffic_control"
+  ],
+  "citations": [
+   "29 CFR 1910.178",
+   "29 CFR 1910.178(l)",
+   "29 CFR 1910.178(p)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A02",
+  "cohort": "historical",
+  "title": "safe-state: locked out, zero energy verified",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "SAFE_VERIFIED",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Controlled",
+  "riskScore": 0,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A03",
+  "cohort": "historical",
+  "title": "multi-hazard decomposition, three independent hazards",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['machine-energy-state']"
+   },
+   {
+    "check": "UNDER_DECOMPOSITION",
+    "detail": "expected >= 3 distinct families, got 2: ['fire_protection', 'machine_guarding']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "fire_protection",
+   "machine_guarding"
+  ],
+  "citations": [
+   "1910.243",
+   "29 CFR 1910.157(c)(1)",
+   "29 CFR 1910.212(a)(1)",
+   "29 CFR 1910.212(a)(3)(ii)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "machine-energy-state"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Critical",
+  "riskScore": 19,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A04",
+  "cohort": "historical",
+  "title": "first-match domain-slot error control",
+  "checks": [
+   {
+    "check": "FORBIDDEN_CONCEPT",
+    "detail": "'ladder' appears in output"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['electrical-damage-exposure']"
+   },
+   {
+    "check": "WRONG_HAZARD_ACTION",
+    "detail": "corrective action references 'ladder' (not in the observation)"
+   },
+   {
+    "check": "WRONG_HAZARD_ACTION",
+    "detail": "corrective action references 'tie off top' (not in the observation)"
+   },
+   {
+    "check": "WRONG_HAZARD_ACTION",
+    "detail": "corrective action references 'ladder levelers' (not in the observation)"
+   },
+   {
+    "check": "WRONG_HAZARD_ACTION",
+    "detail": "corrective action references 'spotter at the base' (not in the observation)"
+   },
+   {
+    "check": "INVENTED_EVIDENCE",
+    "detail": "output asserts 'damaged' which the observation never states"
+   }
+  ],
+  "nFail": 7,
+  "families": [
+   "electrical"
+  ],
+  "citations": [
+   "29 CFR 1910.22(a)",
+   "29 CFR 1910.22(a)(3)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "electrical-damage-exposure"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "invented/wrong-hazard/forbidden-citation output"
+ },
+ {
+  "id": "A05",
+  "cohort": "historical",
+  "title": "confined-space 'tank' false positive control",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /NO_VIOLATION|SAFE_VERIFIED|CONTROLLED|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   },
+   {
+    "check": "WRONG_CITATION",
+    "detail": "forbidden citation 1910.146 emitted: ['29 CFR 1910.146']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "confined_space"
+  ],
+  "citations": [
+   "29 CFR 1910.146"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "invented/wrong-hazard/forbidden-citation output"
+ },
+ {
+  "id": "A06",
+  "cohort": "historical",
+  "title": "hypothetical/reference language must not become ACTIVE",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /NO_VIOLATION|HISTORICAL|UNKNOWN|SAFE_VERIFIED|CONTROLLED/); states=['ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['machine-controls']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "machine_guarding"
+  ],
+  "citations": [
+   "1910.243",
+   "29 CFR 1910.212(a)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "machine-controls"
+  ],
+  "advisoryQ": 3,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A07",
+  "cohort": "historical",
+  "title": "equipment removed from service",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /CONTROLLED|SAFE_VERIFIED|NO_VIOLATION|HISTORICAL|UNKNOWN/); states=['ACTIVE', 'ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "material_handling",
+   "walking_working_surfaces"
+  ],
+  "citations": [
+   "29 CFR 1910.147",
+   "29 CFR 1910.22(a)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Controlled",
+  "riskScore": 0,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A08",
+  "cohort": "historical",
+  "title": "damaged cord clarification duplication control",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['electrical-damage-exposure']"
+   },
+   {
+    "check": "REDUNDANT_CLARIFICATION",
+    "detail": "asks for a fact already stated: Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?"
+   },
+   {
+    "check": "REDUNDANT_CLARIFICATION",
+    "detail": "asks for a fact already stated: Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?"
+   }
+  ],
+  "nFail": 3,
+  "families": [
+   "electrical"
+  ],
+  "citations": [
+   "1910.137",
+   "1910.155",
+   "1910.303",
+   "29 CFR 1910.303(g)(2)(i)",
+   "29 CFR 1910.305(g)",
+   "29 CFR 1910.305(g)(2)(iii)",
+   "29 CFR 1910.334(a)(2)(ii)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "electrical-damage-exposure"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A09",
+  "cohort": "historical",
+  "title": "standards must not be empty under unknown jurisdiction",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['jurisdiction-work-environment', 'fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection",
+   "machine_guarding",
+   "walking_working_surfaces"
+  ],
+  "citations": [
+   "29 CFR 1910.28(b)",
+   "29 CFR 1910.28(b)(1)",
+   "29 CFR 1910.28(b)(3)",
+   "29 CFR 1926.501",
+   "29 CFR 1926.501(b)(4)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "jurisdiction-work-environment",
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 8,
+  "jurisdiction": {
+   "value": "unknown",
+   "provenance": "UNKNOWN"
+  },
+  "why": ""
+ },
+ {
+  "id": "A10",
+  "cohort": "historical",
+  "title": "finding-scoped rather than observation-wide standards",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /respiratory|ventilation|air_contaminant|chemical|welding/ not found; got families=['egress', 'emergency_egress', 'hot_work'] classification=Emergency Egress"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "egress",
+   "emergency_egress",
+   "hot_work"
+  ],
+  "citations": [
+   "1910.101",
+   "1910.1010",
+   "1910.1011",
+   "1910.1012",
+   "1910.1013",
+   "1910.1014",
+   "1910.1015",
+   "1910.1016",
+   "29 CFR 1910.37(a)(3)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "A11",
+  "cohort": "historical",
+  "title": "duplicate/phantom fragment control",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-energy-state', 'machine-controls']"
+   },
+   {
+    "check": "OVER_DECOMPOSITION",
+    "detail": "expected <= 1 distinct families, got 2: ['hot_work', 'machine_guarding']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "hot_work",
+   "machine_guarding"
+  ],
+  "citations": [
+   "1910.243"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "machine-energy-state",
+   "machine-controls"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 8,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A12",
+  "cohort": "historical",
+  "title": "citation granularity",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection",
+   "walking_working_surfaces"
+  ],
+  "citations": [
+   "1926.1423",
+   "1926.501",
+   "1926.502",
+   "29 CFR 1926.501(b)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A13",
+  "cohort": "historical",
+  "title": "MSHA-TRAFFIC-01 protected adjudication",
+  "checks": [
+   {
+    "check": "MISSING_CITATION",
+    "detail": "none of ['56.14132'] emitted; got ['30 CFR 57.14132(a)', '30 CFR 57.9100']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "powered_industrial_trucks"
+  ],
+  "citations": [
+   "30 CFR 57.14132(a)",
+   "30 CFR 57.9100"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "A14",
+  "cohort": "historical",
+  "title": "documented baseline failure: tagged but not locked",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-energy-state', 'gap-conveyor-loto']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "lockout_tagout"
+  ],
+  "citations": [
+   "1910.243",
+   "29 CFR 1910.147",
+   "29 CFR 1910.212(a)(1)",
+   "29 CFR 1910.212(a)(3)(ii)",
+   "29 CFR 1910.219(c)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "machine-energy-state",
+   "gap-conveyor-loto"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B01",
+  "cohort": "novel_adversarial",
+  "title": "misleading keyword: 'confined to'",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /CONTROLLED|SAFE_VERIFIED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "confined_space"
+  ],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B02",
+  "cohort": "novel_adversarial",
+  "title": "contradictory evidence in one observation",
+  "checks": [
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 4,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B03",
+  "cohort": "novel_adversarial",
+  "title": "incomplete observation, insufficient evidence",
+  "checks": [
+   {
+    "check": "MISSED_CRITICAL_CLARIFICATION",
+    "detail": "expected a decision-critical question (what condition was actually observed); forced=0 advisory=3"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B04",
+  "cohort": "novel_adversarial",
+  "title": "safe state stated with dense hazard vocabulary",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection",
+   "machine_guarding"
+  ],
+  "citations": [
+   "1910.140",
+   "1910.23",
+   "1910.28",
+   "1910.29",
+   "29 CFR 1910.28(b)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B05",
+  "cohort": "novel_adversarial",
+  "title": "hypothetical future condition",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['excavation-control-state']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "excavation",
+   "excavation_trenching"
+  ],
+  "citations": [
+   "1926.28",
+   "1926.501",
+   "1926.651",
+   "1926.652",
+   "1926.913",
+   "1926.95",
+   "1926.954",
+   "1926.97",
+   "29 CFR 1926.652(a)(1)"
+  ],
+  "conditionState": "PLANNED_FUTURE",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "excavation-control-state"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B06",
+  "cohort": "novel_adversarial",
+  "title": "hazard corrected during the inspection",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN/); states=['ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['chemical-substance']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "hazard_communication"
+  ],
+  "citations": [
+   "1910.119",
+   "1910.1200",
+   "1910.161",
+   "29 CFR 1910.1200",
+   "29 CFR 1910.1200(f)",
+   "29 CFR 1910.1200(f)(1)",
+   "29 CFR 1910.1200(f)(6)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "chemical-substance"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B07",
+  "cohort": "novel_adversarial",
+  "title": "guarded and interlocked condition",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "guarding_interlocks",
+   "machine_guarding"
+  ],
+  "citations": [
+   "1910.1020"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Controlled",
+  "riskScore": 0,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B08",
+  "cohort": "novel_adversarial",
+  "title": "unusual simultaneous hazard combination",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /fall|scaffold/ not found; got families=['excavation_trenching', 'hot_work', 'mobile_equipment', 'personal_protective_equipment', 'powered_industrial_trucks'] classification=Compressed Gas Cylinders"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "excavation_trenching",
+   "hot_work",
+   "mobile_equipment",
+   "personal_protective_equipment",
+   "powered_industrial_trucks"
+  ],
+  "citations": [
+   "29 CFR 1910.178",
+   "29 CFR 1910.178(p)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "B09",
+  "cohort": "novel_adversarial",
+  "title": "irrelevant context padding around one real hazard",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /chemical|respiratory|ventilation|air_contaminant/ not found; got families=['confined_space'] classification=Confined Space"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-controls', 'chemical-substance']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "confined_space"
+  ],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "machine-controls",
+   "chemical-substance"
+  ],
+  "advisoryQ": 2,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "B10",
+  "cohort": "novel_adversarial",
+  "title": "genuinely ambiguous wording",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /UNKNOWN|NO_VIOLATION/); states=['ACTIVE']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1910.140",
+   "1910.23",
+   "1910.28",
+   "1910.29",
+   "1910.66"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B11",
+  "cohort": "novel_adversarial",
+  "title": "negation placed late in a long sentence",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /chemical|spill|containment|hazmat|environmental/ not found; got families=['hazard_communication'] classification=Hazard Communication"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['chemical-substance']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "hazard_communication"
+  ],
+  "citations": [
+   "1910.119",
+   "1910.161",
+   "29 CFR 1910.1200",
+   "29 CFR 1910.1200(f)(1)",
+   "29 CFR 1910.1200(f)(6)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "chemical-substance"
+  ],
+  "advisoryQ": 2,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "B12",
+  "cohort": "novel_adversarial",
+  "title": "double negative",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-energy-state', 'machine-controls']"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [
+   "1910.243"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "machine-energy-state",
+   "machine-controls"
+  ],
+  "advisoryQ": 2,
+  "riskBand": "Controlled",
+  "riskScore": 0,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B13",
+  "cohort": "novel_adversarial",
+  "title": "guard removed then reinstalled",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN/); states=['ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-energy-state', 'machine-controls']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "machine_guarding"
+  ],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "machine-energy-state",
+   "machine-controls"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B14",
+  "cohort": "novel_adversarial",
+  "title": "lockout by contractor verified by host",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [
+   "29 CFR 1910.147"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B15",
+  "cohort": "novel_adversarial",
+  "title": "misleading use of the word 'fall'",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B16",
+  "cohort": "novel_adversarial",
+  "title": "below the regulatory trigger height",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1910.140",
+   "1910.28",
+   "1910.29",
+   "29 CFR 1910.28",
+   "29 CFR 1910.28(b)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B17",
+  "cohort": "novel_adversarial",
+  "title": "reference to a past incident",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B18",
+  "cohort": "novel_adversarial",
+  "title": "planned future work",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /NO_VIOLATION|UNKNOWN|HISTORICAL|CONTROLLED|SAFE_VERIFIED/); states=['ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1926.1423",
+   "1926.501",
+   "1926.502",
+   "29 CFR 1926.501(b)(1)"
+  ],
+  "conditionState": "PLANNED_FUTURE",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B19",
+  "cohort": "novel_adversarial",
+  "title": "MSHA berm present and adequate",
+  "checks": [
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "30 CFR 56.9100",
+   "30 CFR 56.9300"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "B20",
+  "cohort": "novel_adversarial",
+  "title": "conflicting jurisdiction cues",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C01",
+  "cohort": "realistic_field",
+  "title": "abbreviations and fragments",
+  "checks": [
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['machine-energy-state']"
+   }
+  ],
+  "nFail": 2,
+  "families": [],
+  "citations": [
+   "1910.147",
+   "29 CFR 1910.147",
+   "29 CFR 1910.147(c)(1)",
+   "29 CFR 1910.212(a)(1)",
+   "29 CFR 1910.212(a)(3)(ii)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "machine-energy-state"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C02",
+  "cohort": "realistic_field",
+  "title": "run-on with location and equipment context",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['machine-energy-state', 'machine-controls']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection",
+   "machine_guarding"
+  ],
+  "citations": [
+   "29 CFR 1926.300(b)(2)",
+   "29 CFR 1926.501(b)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "machine-energy-state",
+   "machine-controls"
+  ],
+  "advisoryQ": 2,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C03",
+  "cohort": "realistic_field",
+  "title": "mixed safe and unsafe in one paragraph",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "material_handling"
+  ],
+  "citations": [
+   "1910.22(a)(3)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C04",
+  "cohort": "realistic_field",
+  "title": "colloquial terminology",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /fall|walking_working_surfaces|hole|opening/ not found; got families=[] classification=Mobile Equipment / Traffic"
+   },
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   }
+  ],
+  "nFail": 2,
+  "families": [],
+  "citations": [
+   "29 CFR 1910.178(l)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Controlled",
+  "riskScore": 0,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "C05",
+  "cohort": "realistic_field",
+  "title": "MSHA field shorthand",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['machine-controls']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "conveyors",
+   "machine_guarding"
+  ],
+  "citations": [
+   "30 CFR 56.11009",
+   "30 CFR 56.14107",
+   "30 CFR 56.14107(a)",
+   "30 CFR 56.14109",
+   "30 CFR 56.14113",
+   "30 CFR 56.14201",
+   "30 CFR 56.14202",
+   "30 CFR 56.7013"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "machine-controls"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C06",
+  "cohort": "realistic_field",
+  "title": "worker report, second hand",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /chemical|ventilation|respiratory|battery|air_contaminant|fire/ not found; got families=[] classification=Confined Space"
+   },
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['chemical-substance']"
+   }
+  ],
+  "nFail": 3,
+  "families": [],
+  "citations": [
+   "29 CFR 1910.1200"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "chemical-substance"
+  ],
+  "advisoryQ": 2,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "high-consequence hazard missed"
+ },
+ {
+  "id": "C07",
+  "cohort": "realistic_field",
+  "title": "trenching field note",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "excavation",
+   "excavation_trenching",
+   "pressure",
+   "pressure_systems"
+  ],
+  "citations": [
+   "1926.501",
+   "1926.502",
+   "29 CFR 1926.651(c)(2)",
+   "29 CFR 1926.652(a)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C08",
+  "cohort": "realistic_field",
+  "title": "electrical panel field note",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['electrical-damage-exposure']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "electrical"
+  ],
+  "citations": [
+   "1910.137",
+   "1910.303",
+   "1910.305",
+   "29 CFR 1910.303(g)(1)",
+   "29 CFR 1910.303(g)(2)(i)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "electrical-damage-exposure"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "Critical",
+  "riskScore": 19,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C09",
+  "cohort": "realistic_field",
+  "title": "ambiguous PPE note",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [
+   "1910.103",
+   "1910.119",
+   "1910.137",
+   "1910.140",
+   "1910.144",
+   "1910.242",
+   "1910.244",
+   "29 CFR 1910.132(d)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C10",
+  "cohort": "realistic_field",
+  "title": "forklift field note with several conditions",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "conveyors",
+   "powered_industrial_trucks"
+  ],
+  "citations": [
+   "1910.178",
+   "1910.180",
+   "1910.67",
+   "29 CFR 1910.178(l)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C11",
+  "cohort": "realistic_field",
+  "title": "hot work field note",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "fire_protection",
+   "hot_work",
+   "material_handling"
+  ],
+  "citations": [
+   "1910.254",
+   "1910.255",
+   "29 CFR 1910.252(a)(2)(iv)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "C12",
+  "cohort": "realistic_field",
+  "title": "noise exposure field note",
+  "checks": [
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [
+   "1910.1020",
+   "1910.1450",
+   "1910.95"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D01",
+  "cohort": "negative_control",
+  "title": "properly guarded equipment",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "2 ACTIVE hazard(s) on a negative control: ['machine_guarding', 'machine_guarding']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "machine_guarding"
+  ],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D02",
+  "cohort": "negative_control",
+  "title": "de-energized and locked",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "suspended_loads"
+  ],
+  "citations": [],
+  "conditionState": "SAFE_VERIFIED",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D03",
+  "cohort": "negative_control",
+  "title": "compliant chemical storage",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "3 ACTIVE hazard(s) on a negative control: ['material_handling', 'hazard_communication', 'material_handling']"
+   },
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1910.119']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 3,
+  "families": [
+   "hazard_communication",
+   "material_handling"
+  ],
+  "citations": [
+   "1910.119"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "fabricated ACTIVE hazard WITH citations on a safe observation"
+ },
+ {
+  "id": "D04",
+  "cohort": "negative_control",
+  "title": "previously corrected condition",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "1 ACTIVE hazard(s) on a negative control: ['fall_protection']"
+   },
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1910.28', '1910.29', '1910.66', '29 CFR 1910.28(b)(1)', '29 CFR 1910.28(b)(11)', '29 CFR 1910.29(f)']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN/); states=['ACTIVE']"
+   }
+  ],
+  "nFail": 3,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1910.28",
+   "1910.29",
+   "1910.66",
+   "29 CFR 1910.28(b)(1)",
+   "29 CFR 1910.28(b)(11)",
+   "29 CFR 1910.29(f)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "Critical",
+  "riskScore": 19,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "fabricated ACTIVE hazard WITH citations on a safe observation"
+ },
+ {
+  "id": "D05",
+  "cohort": "negative_control",
+  "title": "irrelevant hazard terminology",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "5 ACTIVE hazard(s) on a negative control: ['loto', 'confined_space', 'fall_protection', 'lockout_tagout', 'fall_protection']"
+   },
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1910.146', '29 CFR 1910.146(c)(1)']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /NO_VIOLATION|SAFE_VERIFIED|CONTROLLED|UNKNOWN/); states=['ACTIVE', 'ACTIVE', 'ACTIVE', 'ACTIVE', 'ACTIVE']"
+   },
+   {
+    "check": "WRONG_CITATION",
+    "detail": "forbidden citation 1910.146 emitted: ['1910.146', '29 CFR 1910.146(c)(1)']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 5,
+  "families": [
+   "confined_space",
+   "fall_protection",
+   "lockout_tagout",
+   "loto"
+  ],
+  "citations": [
+   "1910.146",
+   "29 CFR 1910.146(c)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Critical",
+  "riskScore": 25,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "fabricated ACTIVE hazard WITH citations on a safe observation; invented/wrong-hazard/forbidden-citation output"
+ },
+ {
+  "id": "D06",
+  "cohort": "negative_control",
+  "title": "good housekeeping",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "5 ACTIVE hazard(s) on a negative control: ['material_handling', 'walking_working_surfaces', 'environmental', 'material_handling', 'environmental_spill']"
+   },
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1910.22(a)(3)']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE', 'ACTIVE', 'ACTIVE', 'ACTIVE']"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['chemical-substance']"
+   }
+  ],
+  "nFail": 4,
+  "families": [
+   "environmental",
+   "environmental_spill",
+   "material_handling",
+   "walking_working_surfaces"
+  ],
+  "citations": [
+   "1910.22(a)(3)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "chemical-substance"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": "fabricated ACTIVE hazard WITH citations on a safe observation"
+ },
+ {
+  "id": "D07",
+  "cohort": "negative_control",
+  "title": "PPE worn correctly",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1926.100', '1926.101', '1926.102', '1926.103', '1926.150', '1926.24', '1926.501', '1926.96']"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [
+   "1926.100",
+   "1926.101",
+   "1926.102",
+   "1926.103",
+   "1926.150",
+   "1926.24",
+   "1926.501",
+   "1926.96"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D08",
+  "cohort": "negative_control",
+  "title": "complete guardrail system",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D09",
+  "cohort": "negative_control",
+  "title": "nothing found",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['1910.107']"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [
+   "1910.107"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D10",
+  "cohort": "negative_control",
+  "title": "MSHA compliant condition",
+  "checks": [],
+  "nFail": 0,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D11",
+  "cohort": "negative_control",
+  "title": "fire equipment current",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_ACTIVE",
+    "detail": "2 ACTIVE hazard(s) on a negative control: ['fire_protection', 'fire_protection']"
+   },
+   {
+    "check": "FABRICATED_ACTIVE_STATE",
+    "detail": "per-hazard ACTIVE on a non-active observation (expected /SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN/); states=['ACTIVE', 'ACTIVE']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "fire_protection"
+  ],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "D12",
+  "cohort": "negative_control",
+  "title": "compliant confined space program in practice",
+  "checks": [
+   {
+    "check": "FALSE_POSITIVE_CITATION",
+    "detail": "citations emitted on a negative control: ['29 CFR 1910.146(c)(1)']"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [
+   "29 CFR 1910.146(c)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E01",
+  "cohort": "regulatory",
+  "title": "obvious OSHA General Industry under unknown context",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "machine_guarding",
+   "slips_trips_falls",
+   "walking_working_surfaces"
+  ],
+  "citations": [
+   "29 CFR 1910.212(a)(1)",
+   "29 CFR 1910.212(a)(3)(ii)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 1,
+  "riskBand": "Critical",
+  "riskScore": 19,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E02",
+  "cohort": "regulatory",
+  "title": "obvious OSHA Construction under unknown context",
+  "checks": [
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 2,
+  "families": [],
+  "citations": [
+   "1926.502",
+   "29 CFR 1926.451(g)(1)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E03",
+  "cohort": "regulatory",
+  "title": "obvious MSHA surface under unknown context",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "30 CFR 56.11027",
+   "30 CFR 56.15005",
+   "30 CFR 56.19038"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E04",
+  "cohort": "regulatory",
+  "title": "obvious MSHA underground coal under unknown context",
+  "checks": [],
+  "nFail": 0,
+  "families": [
+   "machine_guarding"
+  ],
+  "citations": [
+   "30 CFR 56.14107(a)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS",
+  "forcedQ": [],
+  "advisoryQ": 0,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E05",
+  "cohort": "regulatory",
+  "title": "genuinely ambiguous regime",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "2 forced question(s): ['jurisdiction-work-environment', 'fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1910.140",
+   "1910.23",
+   "1910.28",
+   "1910.29",
+   "29 CFR 1910.23(b)"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "jurisdiction-work-environment",
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "unknown",
+   "provenance": "UNKNOWN"
+  },
+  "why": ""
+ },
+ {
+  "id": "E06",
+  "cohort": "regulatory",
+  "title": "ambiguous GI vs Construction \u2014 maintenance vs construction",
+  "checks": [
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['fall-height']"
+   }
+  ],
+  "nFail": 1,
+  "families": [
+   "fall_protection"
+  ],
+  "citations": [
+   "1910.140"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "PASS_WITH_LIMITATION",
+  "forcedQ": [
+   "fall-height"
+  ],
+  "advisoryQ": 1,
+  "riskBand": "High",
+  "riskScore": 15,
+  "jurisdiction": {
+   "value": "osha-general-industry",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E07",
+  "cohort": "regulatory",
+  "title": "MSHA explicit context, electrical",
+  "checks": [
+   {
+    "check": "CONDITION_STATE_NOT_ACTIVE",
+    "detail": "expected an ACTIVE hazard; per-hazard states=none"
+   }
+  ],
+  "nFail": 1,
+  "families": [],
+  "citations": [],
+  "conditionState": "UNKNOWN",
+  "classification": "DEFECT",
+  "forcedQ": [],
+  "advisoryQ": 3,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "msha",
+   "provenance": "USER_CONFIRMED"
+  },
+  "why": ""
+ },
+ {
+  "id": "E08",
+  "cohort": "regulatory",
+  "title": "strong construction cue, unknown context",
+  "checks": [
+   {
+    "check": "FALSE_NEGATIVE_HAZARD",
+    "detail": "expected family /impalement|struck_by|construction|rebar|fall/ not found; got families=['ground_control'] classification=Unclassified"
+   },
+   {
+    "check": "UNNECESSARY_CLARIFICATION",
+    "detail": "1 forced question(s): ['jurisdiction-work-environment']"
+   }
+  ],
+  "nFail": 2,
+  "families": [
+   "ground_control"
+  ],
+  "citations": [
+   "1926.960"
+  ],
+  "conditionState": "UNKNOWN",
+  "classification": "SAFETY_BLOCKER",
+  "forcedQ": [
+   "jurisdiction-work-environment"
+  ],
+  "advisoryQ": 0,
+  "riskBand": "Moderate",
+  "riskScore": 6,
+  "jurisdiction": {
+   "value": "osha-construction",
+   "provenance": "HAZLENZ_INFERRED"
+  },
+  "why": "high-consequence hazard missed"
+ }
+]

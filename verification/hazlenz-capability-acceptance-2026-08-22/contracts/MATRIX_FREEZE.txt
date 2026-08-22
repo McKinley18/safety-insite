@@ -1,0 +1,7 @@
+MATRIX FROZEN 2026-08-22T00:46:53Z
+matrixId: hazlenz-capability-acceptance-2026-08-22
+sha256: ef405d60ce4ba073970c1902560c6e8703fa8c297f3cf3cf0c2e6b88ee538111
+scenarios: 66 (historical 14 / novel_adversarial 20 / realistic_field 12 / negative_control 12 / regulatory 8)
+FROZEN BEFORE ANY MATRIX SCENARIO WAS EXECUTED.
+baseline: e723b62d7c773f281600fcbd40082d9b8ad12683 (clean git-archive checkout)
+corpus: test_hazlenz_capability_prodshape_20260822 (clone of prod-shaped 2390-row corpus, 46 migrations)

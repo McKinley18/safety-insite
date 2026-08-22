@@ -1,0 +1,94 @@
+[
+ {
+  "id": "OF1",
+  "title": "VERBATIM in-repo smoke fixture",
+  "text": "Surface metal nonmetal mine conveyor tail pulley has exposed moving machine parts and the guard is missing.",
+  "classification": "Lockout / Stored Energy",
+  "citations": [
+   "30 CFR 56.14107",
+   "30 CFR 56.11009",
+   "30 CFR 56.14109",
+   "30 CFR 56.14113",
+   "30 CFR 56.14201",
+   "30 CFR 56.14202",
+   "30 CFR 56.14107(a)"
+  ],
+  "perHazardStates": [
+   "ACTIVE",
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "OF2",
+  "title": "same hazard, natural rewording",
+  "text": "At the surface pit, the tail pulley on the conveyor is not guarded and the moving parts can be reached from the walkway.",
+  "classification": "Machine Guarding",
+  "citations": [
+   "30 CFR 56.14107"
+  ],
+  "perHazardStates": [
+   "ACTIVE",
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "OF3",
+  "title": "same hazard, inspector shorthand",
+  "text": "conveyor tail pulley unguarded, surface mine, miners walk right by it",
+  "classification": "Machine Guarding",
+  "citations": [
+   "30 CFR 56.14107",
+   "30 CFR 56.11009",
+   "30 CFR 56.14109",
+   "30 CFR 56.14113",
+   "30 CFR 56.14201",
+   "30 CFR 56.14202",
+   "30 CFR 56.7013",
+   "30 CFR 56.14107(a)"
+  ],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "OF4",
+  "title": "VERBATIM-style LOTO fixture",
+  "text": "A technician is servicing the press and hazardous energy has not been isolated or locked out.",
+  "classification": "Lockout / Stored Energy",
+  "citations": [
+   "1910.177",
+   "29 CFR 1910.147"
+  ],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "OF5",
+  "title": "same LOTO hazard, reworded",
+  "text": "The maintenance guy had the press apart with the power still on and nothing locked.",
+  "classification": "Lockout / Stored Energy",
+  "citations": [
+   "1910.37",
+   "29 CFR 1910.212(a)(1)",
+   "29 CFR 1910.212(a)(3)(ii)"
+  ],
+  "perHazardStates": []
+ },
+ {
+  "id": "OF6",
+  "title": "VERBATIM-style safe-state fixture",
+  "text": "The equipment was locked out and zero energy was verified before servicing began.",
+  "classification": "Controlled Condition",
+  "citations": [],
+  "perHazardStates": []
+ },
+ {
+  "id": "OF7",
+  "title": "same safe state, reworded",
+  "text": "Before they opened it up, the crew put their locks on and checked it was dead.",
+  "classification": "Unclassified",
+  "citations": [],
+  "perHazardStates": []
+ }
+]

@@ -1,0 +1,24 @@
+=== PRESERVATION RECORD 2026-08-22T00:37:41Z ===
+HEAD: e723b62d7c773f281600fcbd40082d9b8ad12683
+BRANCH: release/insite-rc-2026-08-18
+UPSTREAM: origin/release/insite-rc-2026-08-18 = e723b62d7c773f281600fcbd40082d9b8ad12683
+DIVERGENCE: 0	0
+--- uncommitted file hashes ---
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  backend/scripts/test-private-storage-reports.ts
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  frontend-next/lib/planEntitlements.ts
+--- untracked dirs ---
+Safety InSite Logos/ :       11 files
+verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5e/ :        1 files
+--- stash ---
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+--- doc hashes ---
+b76143325903e37e099151e52dc1431fad36ac70d88fd7e202dc008c3886fba1  docs/INSITE_ENGINEERING_BLUEPRINT.md
+aa5784b7c045e95497c8af0ce86780076fbe982d19f495b3b09364234aa225ab  docs/INSITE_CURRENT_STATE.json

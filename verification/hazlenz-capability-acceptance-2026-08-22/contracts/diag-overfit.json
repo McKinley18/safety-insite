@@ -1,0 +1,9 @@
+{"scenarios":[
+ {"id":"OF1","cohort":"diagnostic","regime":"msha","title":"VERBATIM in-repo smoke fixture","text":"Surface metal nonmetal mine conveyor tail pulley has exposed moving machine parts and the guard is missing."},
+ {"id":"OF2","cohort":"diagnostic","regime":"msha","title":"same hazard, natural rewording","text":"At the surface pit, the tail pulley on the conveyor is not guarded and the moving parts can be reached from the walkway."},
+ {"id":"OF3","cohort":"diagnostic","regime":"msha","title":"same hazard, inspector shorthand","text":"conveyor tail pulley unguarded, surface mine, miners walk right by it"},
+ {"id":"OF4","cohort":"diagnostic","regime":"osha-general-industry","title":"VERBATIM-style LOTO fixture","text":"A technician is servicing the press and hazardous energy has not been isolated or locked out."},
+ {"id":"OF5","cohort":"diagnostic","regime":"osha-general-industry","title":"same LOTO hazard, reworded","text":"The maintenance guy had the press apart with the power still on and nothing locked."},
+ {"id":"OF6","cohort":"diagnostic","regime":"osha-general-industry","title":"VERBATIM-style safe-state fixture","text":"The equipment was locked out and zero energy was verified before servicing began."},
+ {"id":"OF7","cohort":"diagnostic","regime":"osha-general-industry","title":"same safe state, reworded","text":"Before they opened it up, the crew put their locks on and checked it was dead."}
+]}

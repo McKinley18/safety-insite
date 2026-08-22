@@ -1,6 +1,6 @@
 {
   "schemaVersion": "insite.current-state.v1",
-  "generatedAt": "2026-08-21",
+  "generatedAt": "2026-08-22",
   "generatedBy": "KG-5C customer-path equivalence, consolidated 2026-08-21 by the KG program convergence phase (documentation, architecture convergence and production SHADOW readiness only; no implementation change, no commit, no production operation) Amended 2026-08-21 by the KG-5D production SHADOW preflight (pass two): read-only production inspection, telemetry-integrity root cause, evidence-sufficiency adjudication and Stage-1 experiment design. No implementation change, no production mutation, nothing enabled. Amended 2026-08-21 by Operation 1 (governed release package local commit construction): the KG release package was converted into six ordered local commits. No push, no merge, no deploy, no migration applied to production, no release created/finalized/activated/rolled back, no environment variable changed. SHADOW OFF, CUTOVER OFF, production unchanged.",
   "documentContract": {
     "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
@@ -25,7 +25,7 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "KG_5C_COMPLETE — KG_RELEASE_PACKAGE_COMMITTED_LOCALLY",
+  "checkpoint": "KG_5C_COMPLETE \u2014 KG_RELEASE_PACKAGE_COMMITTED_LOCALLY",
   "readiness": "CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED_READY_FOR_CONTROLLED_PRODUCTION_SHADOW",
   "nextSlice": {
     "id": "KG-6",
@@ -558,7 +558,7 @@
   "knownCaveats": [
     {
       "id": "CAVEAT-1",
-      "title": "HazLenz core — two pre-existing baseline failures",
+      "title": "HazLenz core \u2014 two pre-existing baseline failures",
       "detail": "Golden Hardening Scenarios Test ('7. LOTO energized maintenance (Not Guarding alone)') and HazLenz Production Path Regression ('FAIL tagged but not locked'). 28 of 30 suites pass. Byte-identical at every slice boundary; the only two.",
       "blocking": false
     },
@@ -702,7 +702,7 @@
     {
       "id": "KG5C-DISC-01",
       "title": "634 legacy plain_language_summary values are truncated mid-word",
-      "classification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+      "classification": "LEGACY_CORPUS_QUALITY \u2014 MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
       "detail": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows, and 634 of those cut mid-word (1910.219 ends \"...thirteen thirty-seconds () inch or less. 1/2 (2\"). That fragment is what a Path B customer reads TODAY under the \"HazLenz standard summary\" label. Pre-existing and unrelated to governance. Not a SHADOW blocker (SHADOW is customer-invisible). Not a cutover blocker: cutover REPAIRS it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract promise.",
       "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5c/STATUS.md section 8",
       "blocking": false
@@ -1086,7 +1086,7 @@
   "releasePackaging": {
     "slice": "KG-5A (plan) / Operation 1 (local commit construction, 2026-08-21)",
     "performedAt": "2026-08-21",
-    "verdict": "KG_RELEASE_PACKAGE_COMMITTED_LOCALLY — PUSH_NOT_AUTHORIZED — PRODUCTION_UNCHANGED",
+    "verdict": "KG_RELEASE_PACKAGE_COMMITTED_LOCALLY \u2014 PUSH_NOT_AUTHORIZED \u2014 PRODUCTION_UNCHANGED",
     "committed": true,
     "pushed": false,
     "merged": false,
@@ -1161,7 +1161,7 @@
       },
       {
         "sequence": 6,
-        "sha": "(this commit — self-reference impossible; the five SHAs above are exact)",
+        "sha": "(this commit \u2014 self-reference impossible; the five SHAs above are exact)",
         "subject": "KG-1..KG-5D: operator commands, verification suites, evidence and documentation",
         "files": 538
       }
@@ -1486,14 +1486,14 @@
   "operationalReadinessNote": "Superseded the KG-5A value PRODUCTION_RELEASE_PACKAGE_NOT_READY. Both KG-5A blockers (KG5A-DISC-01 corpus mutation, KG5A-DISC-03 no operator CLI) were closed by KG-5B. The package is ready; the operations are NOT executed. See openIssues.STAGE1-OP-01 and productionShadowProtocol.precedingOperations.",
   "programStatus": {
     "currentStage": "KG_PROGRAM_CONVERGENCE_AND_PRODUCTION_SHADOW_READINESS",
-    "lastVerifiedStage": "KG-5C — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED",
+    "lastVerifiedStage": "KG-5C \u2014 CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED",
     "nextPermittedStage": "Production release operations 1-11 (each separately authorized), THEN a separately authorized Stage-1 controlled production SHADOW.",
     "nextPermittedStageIsNotAuthorizedByThisState": true,
     "productionAuthority": "LEGACY",
     "productionAuthorityMeaning": "Every production customer response is produced by the legacy path. Governed content reaches no customer. This is the current authority, not a default awaiting promotion.",
-    "shadowState": "OFF — never run in production",
+    "shadowState": "OFF \u2014 never run in production",
     "shadowStateEvidence": "Zero GOVERNED_CUTOVER_* variables set in the production environment; GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK has never been set anywhere.",
-    "cutoverState": "OFF — separate explicit authorization boundary; not authorized by SHADOW completing",
+    "cutoverState": "OFF \u2014 separate explicit authorization boundary; not authorized by SHADOW completing",
     "readyIsNotStarted": "READY_FOR_CONTROLLED_PRODUCTION_SHADOW is a statement about verified architecture. The governed subsystem is not deployed, the six migrations are not applied, and no governed release exists in production. See openIssues.STAGE1-OP-01.",
     "blueprintEntryPoint": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 0 (START HERE), then sections 21-27"
   },
@@ -1729,7 +1729,7 @@
     "purpose": "Prevent a future session from rediscovering old evidence and reopening a resolved architectural question. This is NOT a suppression mechanism: new contradictory evidence always wins over documentation. Each entry names the exact condition that would justify reopening it.",
     "entries": {
       "KG5B-DISC-01": {
-        "status": "PROTECTED — RESOLVED BY KG-5C",
+        "status": "PROTECTED \u2014 RESOLVED BY KG-5C",
         "originalObservation": "Legacy and governed representations differ for governed citations; 15 of 27 approved records measured CONTENT_DIFFERENCE / BLOCKING.",
         "originalInterpretation": "Potential content-difference blocker.",
         "correctedInterpretation": "The original pairing was valid, but the classification was too coarse. The count of 15 is confirmed by re-measurement through the real customer path on both body-text tiers. All 15 classify GOVERNED_REVIEWED_RENDERING. The customer receives exactly the reviewed governed artifact.",
@@ -1751,7 +1751,7 @@
         ]
       },
       "KG5A-DISC-01": {
-        "status": "PROTECTED — CLOSED BY KG-5B",
+        "status": "PROTECTED \u2014 CLOSED BY KG-5B",
         "originalObservation": "finalize-regulatory-release.ts selected FROM standards_master with no WHERE clause, so release membership was the whole table; building a release rewrote five live customer-facing rows, renamed a citation, hit a unique-index collision and left the corpus at 2,396 rows with a duplicate pair.",
         "supersededInterpretation": "The bug is the missing WHERE clause.",
         "correctedInterpretation": "The missing clause was a symptom. The cause was that there was no such thing as a governed candidate record: the only representation of a governed standard was a row in the live customer corpus, so building a release required mutating it.",
@@ -1827,19 +1827,24 @@
     "issues": {
       "KG5C-DISC-01": {
         "observation": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows; 634 cut mid-word. That fragment is what a Path B customer reads today under the 'HazLenz standard summary' label.",
-        "classification": "DEFECT_NONBLOCKING",
+        "classification": "DEFECT_NONBLOCKING \u2014 CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
         "architecturalOwner": "SOURCE / legacy content-generation path",
-        "customerImpact": "Real but pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY, with no governed subsystem involved.",
-        "releaseGateImpact": "Does NOT block production SHADOW or governed CUTOVER for approved records on current evidence. SHADOW is customer-invisible; cutover repairs it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract's promise.",
+        "customerImpact": "Real, pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY. Newly proven 2026-08-22: the truncation also reaches the GENERATED INSPECTION REPORT surface.",
+        "releaseGateImpact": "UNCHANGED by the reclassification. Does NOT block production SHADOW or governed CUTOVER for approved records. SHADOW remains customer-invisible - 'customer-invisible' was always a statement about SHADOW, never about the truncation. Cutover repairs it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract's promise.",
         "evidence": [
           "kg-5c/STATUS.md section 8",
-          "kg-5c/contracts/customer-path-equivalence.json"
+          "kg-5c/contracts/customer-path-equivalence.json",
+          "verification/hazlenz-capability-acceptance-2026-08-22/STATUS.md section 9 (7 generated PDFs inspected with poppler)"
         ],
-        "nextRequiredAction": "Adjudicate the legacy summary-generation strategy before widening legacy delivery. Not in scope for the current phase.",
+        "nextRequiredAction": "Adjudicate the legacy summary-generation strategy at SOURCE, now with report-surface priority rather than workspace-only. Deliberately NOT remediated in the 2026-08-22 closure operation - reclassification only.",
         "conditionForClosure": "Either the generation path is corrected at SOURCE and re-measured, or a recorded adjudication accepts the truncation with a stated rationale.",
-        "secondaryClassification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+        "secondaryClassification": "LEGACY_CORPUS_QUALITY \u2014 MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
         "doNotSilentlyClose": "Do not close this because governed CUTOVER masks it. Cutover repairs it for 15 of 2,390 rows.",
-        "doNotBroadenCurrentPhase": true
+        "doNotBroadenCurrentPhase": true,
+        "previousClassification": "DEFECT_NONBLOCKING",
+        "reclassified": "2026-08-22",
+        "reclassificationBasis": "New executable evidence: a mid-sentence truncation of 29 CFR 1926.501 (\"...the requisite strength and s\") was printed in a real PDF produced by CanonicalReportsService.generate() under LEGACY. The generated inspection report is a SECOND customer surface, and one of section 16's five surfaces that must remain truthful. The prior entry's customer-impact scope named only the Path B workspace surface.",
+        "remediatedInThisOperation": false
       },
       "KG5C-OPEN-02": {
         "observation": "8 of the 35 release records have no recorded clause-by-clause review. They are exactly KG-3D's deferred unsourced records, and none is in the 23-citation emitted set.",
@@ -2086,7 +2091,17 @@
         "evidencePhase": "KG-4B corpus and analytics; KG-4C mapping; decision D-49",
         "reopenIfAndOnlyIf": "A new corpus measurement produces a different count, reported with its artifact."
       }
-    }
+    },
+    "hazlenzCapability2026_08_22": [
+      "HazLenz calls no language model. No LLM dependency, no inference endpoint, no repository injected into SafescopeV2Service; 66 analyses in 9.85 s.",
+      "Blueprint section 12's 'seconds of AI inference' is superseded by measurement.",
+      "HazLenz does not demonstrate closed-loop learning; the classify path reads no feedback, review or correction store.",
+      "learningMemory / learningGovernance in the classify payload are static literal policy objects, not mechanisms.",
+      "Nothing re-checks regulatory sources on a schedule; there is no scheduler in backend/src.",
+      "The authoritative condition-state axis is per-hazard multiHazardDecomposition.hazards[].conditionState, not the top-level conditionState (UNKNOWN on 62 of 66).",
+      "test:kg3f-56-14132-predicate passing 16/16 does NOT establish the MSHA-TRAFFIC-01 adjudication for customers; a second unguarded path emits the refused (a) paragraph.",
+      "The regulatory-context decision is HYBRID; the uncommitted 8-line worktree change implements REQUIRE_EXPLICIT and must not be packaged."
+    ]
   },
   "productionShadowProtocol": {
     "blueprintSection": "27",
@@ -2360,5 +2375,206 @@
       "unrelatedWorktreeManifest": "18/18 OK",
       "safescopeDevDatabaseTouched": false
     }
+  },
+  "hazlenzCapabilityAcceptance": {
+    "verdict": "HAZLENZ_CAPABILITY_GATE_BLOCKED",
+    "blockingClusters": [
+      "RC-01",
+      "RC-02",
+      "RC-03",
+      "RC-04",
+      "RC-05",
+      "RC-07",
+      "RC-08"
+    ],
+    "date": "2026-08-22",
+    "baselineHead": "e723b62d7c773f281600fcbd40082d9b8ad12683",
+    "baselineIsolation": "clean git-archive checkout; backend/src byte-identical to worktree apart from .DS_Store",
+    "corpus": "test_hazlenz_capability_prodshape_20260822 \u2014 clone of the 2,390-row production-shaped corpus, 46 migrations",
+    "matrixId": "hazlenz-capability-acceptance-2026-08-22",
+    "expectationsFrozenBeforeExecution": true,
+    "scenarios": 66,
+    "results": {
+      "PASS": 16,
+      "PASS_WITH_LIMITATION": 13,
+      "DEFECT": 24,
+      "SAFETY_BLOCKER": 13,
+      "TEST_ORACLE_ERROR": 1,
+      "HARNESS_ERROR": 2
+    },
+    "cleanByCohortPct": {
+      "historical": 14,
+      "novelAdversarial": 20,
+      "realisticField": 42,
+      "negativeControls": 25,
+      "regulatory": 25,
+      "total": 24
+    },
+    "safetyPerformance": {
+      "scenariosExpectingHazard": 32,
+      "highConsequenceFalseNegatives": 7,
+      "negativeControls": 12,
+      "negativeControlsWithActiveHazard": 6,
+      "negativeControlsEmittingCitations": 7,
+      "fabricatedActiveStates": 17,
+      "actionTemplatesNamingAbsentHazard": "16 of 66",
+      "forbiddenCitationsEmitted": 2,
+      "fabricatedCitations": 0
+    },
+    "clarification": {
+      "forcedQuestions": 38,
+      "scenariosWithUnnecessaryForcedQuestion": 29,
+      "decisionCriticalRequired": 2,
+      "decisionCriticalAsked": 1,
+      "decisionCriticalMissed": 1,
+      "fallHeightFiredTimes": 11
+    },
+    "modelInference": {
+      "present": false,
+      "evidence": "no LLM dependency in backend/package.json; no inference endpoint in source; SafescopeV2Service injects no repository; 66 full customer-path analyses in 9.85 s total (~0.15 s each)",
+      "supersedes": "blueprint section 12 prose 'a classify path dominated by seconds of AI inference'"
+    },
+    "aiMaturity": {
+      "level": "LEVEL_1",
+      "label": "RULE ASSISTANT",
+      "checkpointMinimum": "LEVEL_3",
+      "met": false,
+      "toReachLevel2": [
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04"
+      ],
+      "toReachLevel3": [
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "RC-08"
+      ],
+      "toReachLevel4": "activate the captured-correction loop and demonstrate measured improvement",
+      "toReachLevel5": "scheduled governed ingestion with change detection plus post-deployment production evidence"
+    },
+    "regulatoryContextDecision": {
+      "decision": "HYBRID",
+      "multiRegimeCitationSetsExplicitContext": "1 of 50 (2%)",
+      "multiRegimeCitationSetsUnknownContext": "11 of 43 (26%)",
+      "inferenceFiredScenarios": "11 of 66",
+      "inferenceCorrectOnObviousCases": true,
+      "uncommittedProposalImplements": "REQUIRE_EXPLICIT",
+      "uncommittedProposalDisposition": "pending a separately authorized cleanup step",
+      "recorded": "2026-08-22",
+      "status": "PROTECTED_DECISION",
+      "uncommittedProposalStatus": "SUPERSEDED_PROPOSAL",
+      "uncommittedProposalCommitted": false,
+      "uncommittedProposalDiscardedOrRestored": false,
+      "uncommittedProposalPreservedByteForByte": true,
+      "uncommittedProposalPaths": [
+        "frontend-next/lib/canonicalWorkflowApi.ts",
+        "frontend-next/app/inspections/page.tsx",
+        "frontend-next/app/inspection-workspace/page.tsx"
+      ]
+    },
+    "learningStatus": {
+      "closedLoopLearningDemonstrated": false,
+      "humanReviews": "IMPLEMENTED_NOT_ACTIVE",
+      "reviewerConfirmedRisk": "IMPLEMENTED_NOT_ACTIVE",
+      "safeScopeFeedback": "IMPLEMENTED_NOT_ACTIVE",
+      "legacyFeedbackTables": "IMPLEMENTED_NOT_ACTIVE",
+      "learningMemoryPayloadObject": "DOCUMENTED_ONLY",
+      "governedKnowledgeReviewQueue": "IMPLEMENTED_AND_ACTIVE \u2014 retrieval tier only, connected to no correction source",
+      "regressionCorpus": "IMPLEMENTED_AND_ACTIVE \u2014 code-change gate, not a learning loop"
+    },
+    "knowledgeFreshness": {
+      "schedulerExists": false,
+      "schedulerEvidence": "zero @Cron / ScheduleModule / setInterval / node-cron in backend/src",
+      "corpusRowsWithSourceChecksum": "0 of 2390",
+      "corpusRowsWithRetrievalDate": "0 of 2390",
+      "knowledgeSourceRegistryRows": 0,
+      "truthfulClaim": "governed regulatory knowledge architecture with reviewed releases",
+      "untruthfulClaims": [
+        "automatically stays current",
+        "periodically ingests sources",
+        "continuously learning"
+      ],
+      "productMakesUntruthfulClaims": false
+    },
+    "fullProductWorkflows": {
+      "run": 6,
+      "completedEndToEnd": 6,
+      "surfaces": "inspection creation -> regulatory context -> observation -> analysis -> decomposition -> standards -> risk -> corrective action -> human review -> finalization -> lifecycle transition -> report -> persistence -> reload",
+      "governedKeysInAnyPayload": 0,
+      "knowledgeReleaseIdAllRows": "NULL",
+      "authority": "LEGACY"
+    },
+    "reportAcceptance": {
+      "pdfsGenerated": 7,
+      "governanceVocabularyHits": 0,
+      "defectsReachingReport": [
+        "phantom findings from the top-level classification",
+        "context clauses rendered as rated findings with open corrective actions",
+        "evidence fragment inverting a negation on a fall-protection finding",
+        "boilerplate corrective actions",
+        "KG5C-DISC-01 mid-word truncation printed in a customer report under LEGACY",
+        "false 'missing: worker exposure' where exposure is stated"
+      ]
+    },
+    "customerTruthfulness": {
+      "overallAssessment": "restrained and well-disclaimed; no learning/currency/guarantee claims",
+      "presentationOverclaims": [
+        "Settings: 'Let HazLenz AI Evaluate \u2014 HazLenz AI decides the likely agency context' (inference fires on 11 of 66)",
+        "/hazlenz: 'processes natural language safety observations' (outcome changes on back-up vs backup)"
+      ]
+    },
+    "regressionBaseline": {
+      "hazlenzCore": "28 of 30 \u2014 the two documented pre-existing failures only, no third",
+      "kg3f5614132Predicate": "16/16 PASS while the customer path emits the refused (a) paragraph \u2014 see RC-03",
+      "evidenceFoundation": "35 assertions PASS"
+    },
+    "implementationChanges": "NONE",
+    "committedOrPushed": false,
+    "evidenceDir": "verification/hazlenz-capability-acceptance-2026-08-22/",
+    "capabilityDecision": {
+      "recorded": "2026-08-22",
+      "status": "PROTECTED_DECISION",
+      "incrementalLevel2PatchingIsPrimaryStrategy": false,
+      "level3ArchitectureInputs": [
+        "RC-01",
+        "RC-04",
+        "RC-05",
+        "RC-07",
+        "RC-08"
+      ],
+      "independentlyActionableDeterministicDefects": [
+        "RC-02",
+        "RC-03"
+      ],
+      "rc02Rc03FixedYet": false,
+      "rc03Note": "must NOT be closed by editing evidence-foundation.ts \u2014 that file is correct and its suite passes 16/16; the defect is the second path at msha-inspection-intelligence.service.ts:201",
+      "nextAuthorizedPhase": "LEVEL_3 reasoning-architecture / implementation planning",
+      "nextPhaseStarted": false,
+      "implementationStarted": false
+    },
+    "capabilityDatabases": {
+      "preserveUntil": "this documentation/evidence closure is committed AND remotely verified",
+      "droppedInThisOperation": false,
+      "names": [
+        "test_hazlenz_capability_20260822",
+        "test_hazlenz_capability_prodshape_20260822"
+      ],
+      "templateSource": "test_kg5b_prodshape_20260821 \u2014 read-only template, unmodified at 2,390 rows"
+    },
+    "kg5cDisc01Reclassification": {
+      "previousClassification": "DEFECT_NONBLOCKING",
+      "newClassification": "DEFECT_NONBLOCKING \u2014 CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
+      "basis": "mid-sentence truncation of 29 CFR 1926.501 printed in a real PDF from CanonicalReportsService.generate() under LEGACY",
+      "secondCustomerSurface": "generated inspection report \u2014 one of section 16's five surfaces that must remain truthful",
+      "releaseGateImpactChanged": false,
+      "remediatedInThisOperation": false,
+      "owner": "SOURCE",
+      "registerLocation": "blueprint section 26 (authoritative)"
+    },
+    "matrixShaAsFrozen": "ef405d60ce4ba073970c1902560c6e8703fa8c297f3cf3cf0c2e6b88ee538111",
+    "matrixShaAsCommitted": "c298f14865fe823d0b8250aff759f9b7cdaf7875a573c3a69fc96ab704149040",
+    "matrixShaDelta": "The committed artifact differs from the frozen bytes by exactly the recorded TEST_ORACLE_ERROR #2 (scenario B08 PPE family pattern widened, a correction in HazLenz's favour), the added oracleCorrections provenance key, and JSON re-serialisation. No scenario text, no scenario count and no other expectation changed."
   }
 }

@@ -1,0 +1,7 @@
+{"scenarios":[
+ {"id":"DX1","cohort":"diagnostic","regime":"msha","title":"back-up alarm (hyphen)","text":"A haul truck at the surface pit was observed operating with an inoperative back-up alarm."},
+ {"id":"DX2","cohort":"diagnostic","regime":"msha","title":"backup alarm (one word)","text":"A haul truck at the surface pit was observed operating with an inoperative backup alarm."},
+ {"id":"DX3","cohort":"diagnostic","regime":"msha","title":"reverse alarm (no 'back')","text":"A haul truck at the surface pit was observed operating with an inoperative reverse signal alarm."},
+ {"id":"DX4","cohort":"diagnostic","regime":"msha","title":"back-up alarm + explicit surface mine words","text":"A haul truck at the surface metal and nonmetal mine haul road was observed operating with an inoperative back-up alarm."},
+ {"id":"DX5","cohort":"diagnostic","regime":"msha","title":"underground coal conveyor guard","text":"In the underground coal mine, the conveyor belt drive was operating with the guard removed near the tailpiece where miners travel."}
+]}

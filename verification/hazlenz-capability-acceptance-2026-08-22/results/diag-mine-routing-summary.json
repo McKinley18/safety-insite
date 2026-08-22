@@ -1,0 +1,60 @@
+[
+ {
+  "id": "DX1",
+  "title": "back-up alarm (hyphen)",
+  "text": "A haul truck at the surface pit was observed operating with an inoperative back-up alarm.",
+  "classification": "Mobile Equipment / Traffic",
+  "citations": [
+   "30 CFR 57.14132(a)",
+   "30 CFR 57.9100"
+  ],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "DX2",
+  "title": "backup alarm (one word)",
+  "text": "A haul truck at the surface pit was observed operating with an inoperative backup alarm.",
+  "classification": "Mobile Equipment / Traffic",
+  "citations": [],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "DX3",
+  "title": "reverse alarm (no 'back')",
+  "text": "A haul truck at the surface pit was observed operating with an inoperative reverse signal alarm.",
+  "classification": "Mobile Equipment / Traffic",
+  "citations": [],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "DX4",
+  "title": "back-up alarm + explicit surface mine words",
+  "text": "A haul truck at the surface metal and nonmetal mine haul road was observed operating with an inoperative back-up alarm.",
+  "classification": "Mobile Equipment / Traffic",
+  "citations": [
+   "30 CFR 56.9100",
+   "30 CFR 56.14132(a)"
+  ],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ },
+ {
+  "id": "DX5",
+  "title": "underground coal conveyor guard",
+  "text": "In the underground coal mine, the conveyor belt drive was operating with the guard removed near the tailpiece where miners travel.",
+  "classification": "Machine Guarding",
+  "citations": [
+   "30 CFR 56.14107(a)"
+  ],
+  "perHazardStates": [
+   "ACTIVE"
+  ]
+ }
+]
