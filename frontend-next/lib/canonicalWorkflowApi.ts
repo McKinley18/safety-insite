@@ -230,6 +230,19 @@ export async function createPersistedSite(name: string) {
   });
 }
 
+export async function updatePersistedSite(id: string, name: string) {
+  return apiJson<PersistedSite>(`/sites/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({ name }),
+  });
+}
+
+export async function deletePersistedSite(id: string) {
+  return apiJson<PersistedSite>(`/sites/${id}`, {
+    method: "DELETE",
+  });
+}
+
 export async function listPersistedInspections() {
   return apiJson<PersistedInspection[]>("/inspections");
 }

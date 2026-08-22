@@ -1,9 +1,9 @@
 "use client";
 
 import EmptyState from "@/components/ui/EmptyState";
-import PageHeader from "@/components/ui/PageHeader";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
 import {
   archivePersistedReport,
   downloadPersistedReport,
@@ -90,11 +90,17 @@ export default function ReportsPage() {
 
   return (
     <main className="mx-auto w-full max-w-5xl p-4 sm:p-6">
-      <PageHeader
-        eyebrow="Server-backed records"
-        title="Inspection reports"
-        description="Generated reports are immutable, versioned, and retrieved through an authorized private-file route."
-      />
+      <HeroPanel align="center" className="mb-4 sm:mb-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Server-backed records
+        </p>
+        <h1 className="mx-auto mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-white sm:text-4xl">
+          Inspection Reports
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Generated reports are immutable, versioned, and retrieved through an authorized private-file route.
+        </p>
+      </HeroPanel>
 
       {message && (
         <p role="alert" className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-semibold text-red-800">
@@ -103,13 +109,14 @@ export default function ReportsPage() {
       )}
 
       {status === "loading" && (
-        <AppPanel aria-live="polite">
+        <AppPanel aria-live="polite" className="generated-report-card">
           <p className="text-sm font-semibold text-app-text-muted">Loading persisted reports…</p>
         </AppPanel>
       )}
 
       {status === "error" && (
         <EmptyState
+          className="generated-report-card"
           title="Reports are unavailable"
           description="Nothing local is being shown as a successful report. Retry after the server connection is restored."
           actionLabel="Retry"
@@ -119,6 +126,7 @@ export default function ReportsPage() {
 
       {status === "ready" && reports.length === 0 && (
         <EmptyState
+          className="generated-report-card"
           icon={FileText}
           title="No generated reports"
           description="Complete an inspection and generate a report to create the first durable version."
@@ -128,7 +136,7 @@ export default function ReportsPage() {
       {status === "ready" && reports.length > 0 && (
         <div className="space-y-4">
           {reports.map((report) => (
-            <AppPanel key={report.id} as="article" className="space-y-4">
+            <AppPanel key={report.id} as="article" className="generated-report-card space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="text-base font-black text-app-text">

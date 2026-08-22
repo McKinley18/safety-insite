@@ -1,7 +1,11 @@
-import { AppPanel } from "@/components/ui/AppPanel";
+import { useState } from "react";
+
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { getTodayDateKey } from "@/lib/safetyCalendar";
+import { createPersonalCalendarTask, getTodayDateKey } from "@/lib/safetyCalendar";
+import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 
 export function WeekAtAGlancePanel({
   weekAtGlance,
@@ -10,14 +14,46 @@ export function WeekAtAGlancePanel({
   getWeekDayTone,
   getWeekBadgeTone,
   formatCalendarMonthLabel,
+  onEventsChanged,
 }: {
-  weekAtGlance: any[];
+  weekAtGlance: Array<{
+    date: Date;
+    dateKey: string;
+    events: SafetyCalendarEvent[];
+  }>;
   selectedWeekDateKey: string;
   setSelectedWeekDateKey: (key: string) => void;
-  getWeekDayTone: (dateKey: string, events: any[]) => string;
-  getWeekBadgeTone: (events: any[]) => string;
+  getWeekDayTone: (dateKey: string, events: SafetyCalendarEvent[]) => string;
+  getWeekBadgeTone: (events: SafetyCalendarEvent[]) => string;
   formatCalendarMonthLabel: (dateKey: string) => string;
+  onEventsChanged: () => Promise<void>;
 }) {
+  const [taskTitle, setTaskTitle] = useState("");
+  const [taskPriority, setTaskPriority] = useState<SafetyCalendarEvent["priority"]>("Medium");
+  const [taskMessage, setTaskMessage] = useState("");
+
+  async function addTask() {
+    if (!taskTitle.trim()) {
+      setTaskMessage("Add a task title first.");
+      return;
+    }
+
+    try {
+      createPersonalCalendarTask({
+        title: taskTitle,
+        date: selectedWeekDateKey,
+        priority: taskPriority,
+        status: "Open",
+      });
+      await onEventsChanged();
+      setTaskTitle("");
+      setTaskPriority("Medium");
+      setTaskMessage("Task added.");
+    } catch (error) {
+      setTaskMessage(error instanceof Error ? error.message : "Unable to add task.");
+    }
+  }
+
   return (
     <div className="rounded-xl border border-slate-200/80 bg-white p-4 text-slate-950 shadow-none dark:border-white/15 dark:bg-[#0B1320] dark:text-white sm:p-6">
       <div className="flex items-start justify-between gap-3">
@@ -36,7 +72,7 @@ export function WeekAtAGlancePanel({
         </AppLinkButton>
       </div>
 
-      <div className="mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-none ring-1 ring-slate-900/10">
+      <div className="command-center-month-box mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-none ring-1 ring-slate-900/10">
         {formatCalendarMonthLabel(weekAtGlance[0]?.dateKey || getTodayDateKey())}
       </div>
 
@@ -72,6 +108,57 @@ export function WeekAtAGlancePanel({
             )}
           </button>
         ))}
+      </div>
+
+      <div className="mt-4 border-t border-slate-200 pt-4 dark:border-white/15">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
+          <label className="min-w-0 flex-1">
+            <span className="mb-1 block text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+              Add task for {selectedWeekDateKey}
+            </span>
+            <AppInput
+              value={taskTitle}
+              onChange={(event) => {
+                setTaskTitle(event.target.value);
+                if (taskMessage) setTaskMessage("");
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") void addTask();
+              }}
+              placeholder="Task title"
+              fieldSize="sm"
+            />
+          </label>
+
+          <AppSelect
+            value={taskPriority}
+            onChange={(event) => setTaskPriority(event.target.value as SafetyCalendarEvent["priority"])}
+            fieldSize="sm"
+            aria-label="Task priority"
+            className="sm:w-32"
+          >
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </AppSelect>
+
+          <AppButton
+            type="button"
+            size="sm"
+            variant="accent"
+            onClick={() => void addTask()}
+            className="command-center-add-task self-center bg-[#F47C20] px-3 !text-white hover:bg-[#D96510] sm:w-24"
+          >
+            Add Task
+          </AppButton>
+        </div>
+
+        {taskMessage && (
+          <p className="mt-2 text-xs font-bold text-slate-600 dark:text-slate-300" role="status">
+            {taskMessage}
+          </p>
+        )}
       </div>
     </div>
   );

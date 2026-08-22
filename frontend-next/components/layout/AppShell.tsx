@@ -107,6 +107,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     (route) => pathname === route || pathname.startsWith(route + "/"),
   );
 
+  // The public account journey has a fixed brand presentation. Keep these pages on
+  // their designed light-card/navy palette regardless of the signed-in app preference.
+  const usesFixedAccountTheme = isAuthPublicPage || isMarketingPage;
+
   // Auth and marketing pages should keep the public layout.
   // A stale local token should not make public pages show the signed-in profile badge.
   const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
@@ -115,6 +119,26 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   // Public/auth/marketing pages show the marketing footer.
   // Signed-in app pages use app navigation only.
   const showPublicFooter = isPublicPage;
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (usesFixedAccountTheme) {
+      root.classList.remove("dark");
+      root.classList.add("light");
+      root.setAttribute("data-theme", "light");
+      root.style.colorScheme = "light";
+      return;
+    }
+
+    const savedTheme = window.localStorage.getItem("safety_insite_theme") === "dark"
+      ? "dark"
+      : "light";
+    root.classList.remove("light", "dark");
+    root.classList.add(savedTheme);
+    root.setAttribute("data-theme", savedTheme);
+    root.style.colorScheme = savedTheme;
+  }, [usesFixedAccountTheme]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -230,7 +254,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [isPublicPage, pathname, router]);
 
   return (
-    <div className="sentinel-modern-shell min-h-svh overflow-x-hidden bg-app-page text-app-primary transition-colors">
+    <div
+      className={`sentinel-modern-shell min-h-svh overflow-x-hidden bg-app-page text-app-primary transition-colors ${
+        pathname === "/command-center" ? "command-center-page-background" : ""
+      } ${showAppNav ? "dark-app-gradient-background" : ""}`}
+    >
       <ToastContainer />
       <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/15 bg-gradient-to-r from-[#020f24] via-[#061f3f] to-[#0a355f] px-3 py-3 text-white shadow-lg shadow-slate-950/35 backdrop-blur-xl sm:px-5 sm:py-4">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
@@ -242,7 +270,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <img
               src={BRAND_HEADER_LOGO}
               alt="Safety InSite powered by HazLenz AI"
-              className="absolute left-[-21px] top-[-38px] h-[150px] w-auto max-w-none object-contain sm:left-[-30px] sm:top-[-49px] sm:h-[204px]"
+              className="absolute left-[-24px] top-[-48px] h-[170px] w-auto max-w-none object-contain sm:left-[-34px] sm:top-[-62px] sm:h-[230px]"
             />
           </Link>
 
@@ -291,7 +319,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     ref={profileButtonRef}
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-app-brand-soft text-xs font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-12 sm:w-12 sm:text-sm"
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#1D72B8] ring-2 ring-[#1D72B8]/30 transition hover:bg-white active:scale-95 sm:h-12 sm:w-12 sm:text-sm"
                     aria-label="Open profile menu"
                   >
                     {profileInitials}
@@ -378,6 +406,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           )}
         </div>
       </header>
+
+      <div className="mx-auto flex w-full max-w-[1200px] justify-end px-3 pt-2 sm:px-5 md:px-6">
+        <span
+          className="py-1 text-[11px] font-black uppercase tracking-[0.24em] text-[#39FF88] drop-shadow-[0_0_7px_rgba(57,255,136,0.9)] sm:text-xs"
+          title="Safety InSite beta release"
+        >
+          Beta
+        </span>
+      </div>
 
       <main
         className={`sentinel-app-main mx-auto w-full max-w-[1200px] overflow-visible px-3 pt-3 pb-32 sm:px-5 sm:pt-5 sm:pb-16 md:px-6 md:pt-6 ${showAppNav ? "" : "pb-8 sm:pb-10"}`}

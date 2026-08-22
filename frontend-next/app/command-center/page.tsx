@@ -146,10 +146,10 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
   }
 
   if (dateKey === todayKey) {
-    return "border-[#1D72B8] bg-[#E8F4FF] dark:bg-[#102A43]";
+    return "calendar-light-box calendar-today-box border-[#1D72B8] bg-[#E8F4FF]";
   }
 
-  return "border-slate-200/80 bg-white dark:border-white/15 dark:bg-[#0B1320]";
+  return "calendar-light-box border-slate-200/80 bg-white";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -434,8 +434,8 @@ export default function DashboardPage() {
                     primary, so the hierarchy reads primary -> secondary. */}
                 <AppLinkButton
                   href="/reports"
-                  variant="secondary"
-                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full border border-white/20 bg-[#FFFFFF] px-5 py-3 text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100"
+                  variant="accent"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full bg-[#F47C20] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#D96510]"
                 >
                   View Reports
                 </AppLinkButton>
@@ -454,6 +454,7 @@ export default function DashboardPage() {
         getWeekDayTone={getWeekDayTone}
         getWeekBadgeTone={getWeekBadgeTone}
         formatCalendarMonthLabel={formatCalendarMonthLabel}
+        onEventsChanged={refreshCalendarEvents}
       />
 
       <PriorityTodoSection events={calendarEvents} onEventsChanged={refreshCalendarEvents} />

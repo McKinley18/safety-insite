@@ -17,6 +17,11 @@ const THEME_INIT = `
   try {
     var key = "safety_insite_theme";
     var legacyDarkKey = "sentinel_dark_mode";
+    var path = window.location.pathname;
+    var fixedPublicPrefixes = ["/login", "/register", "/create-account", "/forgot-password", "/reset-password", "/unlock", "/about", "/legal", "/security", "/hazlenz", "/pricing"];
+    var fixedPublicTheme = path === "/" || fixedPublicPrefixes.some(function (prefix) {
+      return path === prefix || path.indexOf(prefix + "/") === 0;
+    });
     var stored = window.localStorage.getItem(key);
     if (stored !== "light" && stored !== "dark") {
       var legacyDark = window.localStorage.getItem(legacyDarkKey);
@@ -29,7 +34,8 @@ const THEME_INIT = `
       }
     }
 
-    window.localStorage.setItem(key, stored);
+    if (fixedPublicTheme) stored = "light";
+    else window.localStorage.setItem(key, stored);
     window.localStorage.removeItem(legacyDarkKey);
     window.localStorage.removeItem("sentinel_theme_version");
 

@@ -10,6 +10,26 @@ import {
   type ThemePreference,
 } from "@/lib/theme";
 
+const FIXED_PUBLIC_THEME_PREFIXES = [
+  "/login",
+  "/register",
+  "/create-account",
+  "/forgot-password",
+  "/reset-password",
+  "/unlock",
+  "/about",
+  "/legal",
+  "/security",
+  "/hazlenz",
+  "/pricing",
+];
+
+function usesFixedPublicTheme(pathname: string) {
+  return pathname === "/" || FIXED_PUBLIC_THEME_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
+
 export function setThemePreference(preference: ThemePreference) {
   if (typeof window === "undefined") return;
 
@@ -32,7 +52,7 @@ export default function ThemeController() {
       window.localStorage.setItem(THEME_STORAGE_KEY, preference);
       window.localStorage.removeItem(LEGACY_DARK_MODE_KEY);
       window.localStorage.removeItem(LEGACY_THEME_VERSION_KEY);
-      applyThemeToDocument(preference);
+      applyThemeToDocument(usesFixedPublicTheme(window.location.pathname) ? "light" : preference);
     };
 
     applyStoredPreference();

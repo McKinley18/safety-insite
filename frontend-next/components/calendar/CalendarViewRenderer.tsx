@@ -191,7 +191,7 @@ export function CalendarViewRenderer({
                           </div>
                         ))
                       ) : (
-                        <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">No safety work is scheduled for this day.</p>
+                        <p className="calendar-light-box rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">No safety work is scheduled for this day.</p>
                       )}
                       {dayEvents.length > 0 && (
                         <AppButton
@@ -226,7 +226,7 @@ export function CalendarViewRenderer({
             const dateKey = toDateKey(day);
             const dayEvents = eventsByDate[dateKey] || [];
             return (
-              <div key={dateKey} className="app-surface px-3 py-3">
+              <div key={dateKey} className="calendar-light-box rounded-xl border border-slate-200 bg-white px-3 py-3">
                 <button type="button" onClick={() => selectDate(day)} className="text-left">
                   <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">{WEEKDAY_LABELS[day.getDay()]}</p>
                   <p className="mt-1 text-lg font-black text-app-text">{day.getDate()}</p>
@@ -289,7 +289,7 @@ export function CalendarViewRenderer({
                           </div>
                         ))
                       ) : (
-                    <p className="app-card app-text-soft rounded-lg border border-dashed px-2 py-2 text-xs font-semibold">No work.</p>
+                    <p className="calendar-light-box rounded-lg border border-dashed border-slate-300 bg-slate-50 px-2 py-2 text-xs font-semibold text-slate-600">No work.</p>
                   )}
                 </div>
               </div>
@@ -386,7 +386,7 @@ export function CalendarViewRenderer({
                 </div>
             ))
           ) : (
-            <p className="app-card app-text-soft rounded-lg border border-dashed px-4 py-4 text-sm font-bold">No safety work is scheduled for this day.</p>
+            <p className="calendar-light-box rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-600">No safety work is scheduled for this day.</p>
           )}
         </div>
       </AppPanel>

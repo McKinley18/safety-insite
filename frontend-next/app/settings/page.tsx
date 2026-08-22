@@ -14,6 +14,14 @@ import {
 import { setThemePreference } from "@/components/system/ThemeController";
 import { CustomRiskMatrixBuilder } from "@/components/settings/CustomRiskMatrixBuilder";
 import { readCustomRiskMatrix, type CustomRiskMatrix } from "@/lib/customRiskMatrix";
+import { Pencil, Trash2 } from "lucide-react";
+import {
+  createPersistedSite,
+  deletePersistedSite,
+  listPersistedSites,
+  updatePersistedSite,
+  type PersistedSite,
+} from "@/lib/canonicalWorkflowApi";
 
 type StorageMode = "local" | "cloud" | "ask";
 type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6" | "custom";
@@ -60,8 +68,8 @@ function SelectorCard({
       className={[
         "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "settings-selected-card border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:border-sky-400 dark:bg-[#102A43] dark:text-white"
-          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800",
+          ? "settings-selected-card border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:border-[#5DB7FF] dark:bg-[#1B4F78] dark:text-white"
+          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-600 dark:bg-[#16283D] dark:hover:border-[#5DB7FF]/60 dark:hover:bg-[#1D3A55]",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
@@ -77,10 +85,10 @@ function SelectorCard({
             "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-black",
             selected
               ? "border-[#1D72B8] bg-[#1D72B8] text-white dark:border-sky-300 dark:bg-sky-400 dark:text-slate-950"
-              : "border-slate-300 bg-white text-transparent dark:border-slate-600 dark:bg-slate-900",
+              : "border-slate-300 bg-white text-transparent dark:border-slate-500 dark:bg-[#20364D]",
           ].join(" ")}
         >
-          ✓
+          {selected ? "✓" : null}
         </span>
       </div>
     </button>
@@ -111,6 +119,12 @@ export default function SettingsHubPage() {
   const [themePreference, setThemePreferenceState] = useState<ThemePreference>("light");
   const [planCode, setPlanCode] = useState("free");
   const [customMatrix, setCustomMatrix] = useState<CustomRiskMatrix | null>(null);
+  const [sites, setSites] = useState<PersistedSite[]>([]);
+  const [newSiteName, setNewSiteName] = useState("");
+  const [editingSiteId, setEditingSiteId] = useState<string | null>(null);
+  const [editingSiteName, setEditingSiteName] = useState("");
+  const [siteStatus, setSiteStatus] = useState("Loading saved sites…");
+  const [siteSaving, setSiteSaving] = useState(false);
 
   useEffect(() => {
     const storedPlanCode = getStoredPlanCode();
@@ -137,7 +151,75 @@ export default function SettingsHubPage() {
     });
 
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
+    listPersistedSites()
+      .then((result) => {
+        setSites(result.data);
+        setSiteStatus(result.data.length ? `${result.data.length} saved site${result.data.length === 1 ? "" : "s"}.` : "No saved sites yet.");
+      })
+      .catch((error) => {
+        setSiteStatus(error instanceof Error ? error.message : "Unable to load saved sites.");
+      });
   }, []);
+
+  async function addSite() {
+    const name = newSiteName.trim();
+    if (name.length < 2) {
+      setSiteStatus("Enter a site name with at least 2 characters.");
+      return;
+    }
+    setSiteSaving(true);
+    setSiteStatus("Adding site…");
+    try {
+      const site = await createPersistedSite(name);
+      setSites((current) => [site, ...current]);
+      setNewSiteName("");
+      setSiteStatus("Site added.");
+    } catch (error) {
+      setSiteStatus(error instanceof Error ? error.message : "Unable to add site.");
+    } finally {
+      setSiteSaving(false);
+    }
+  }
+
+  async function saveSiteName(siteId: string) {
+    const name = editingSiteName.trim();
+    if (name.length < 2) {
+      setSiteStatus("Enter a site name with at least 2 characters.");
+      return;
+    }
+    setSiteSaving(true);
+    setSiteStatus("Saving site…");
+    try {
+      const updated = await updatePersistedSite(siteId, name);
+      setSites((current) => current.map((site) => site.id === siteId ? updated : site));
+      setEditingSiteId(null);
+      setEditingSiteName("");
+      setSiteStatus("Site updated.");
+    } catch (error) {
+      setSiteStatus(error instanceof Error ? error.message : "Unable to update site.");
+    } finally {
+      setSiteSaving(false);
+    }
+  }
+
+  async function removeSite(site: PersistedSite) {
+    if (!window.confirm(`Delete “${site.name}” from your saved sites?`)) return;
+    setSiteSaving(true);
+    setSiteStatus("Deleting site…");
+    try {
+      await deletePersistedSite(site.id);
+      setSites((current) => current.filter((item) => item.id !== site.id));
+      if (editingSiteId === site.id) {
+        setEditingSiteId(null);
+        setEditingSiteName("");
+      }
+      setSiteStatus("Site deleted.");
+    } catch (error) {
+      setSiteStatus(error instanceof Error ? error.message : "Unable to delete site.");
+    } finally {
+      setSiteSaving(false);
+    }
+  }
 
   function updateStorageMode(value: StorageMode) {
     setStorageMode(value);
@@ -197,6 +279,125 @@ export default function SettingsHubPage() {
           <OverviewItem label="Storage" value={storageLabel} />
           <OverviewItem label="Risk Matrix" value={riskLabel} />
           <OverviewItem label="HazLenz AI Scope" value={scopeLabel} />
+        </div>
+      </AppPanel>
+
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Sites"
+          title="Saved sites"
+          description="Add, rename, or remove the sites available when starting an inspection."
+        />
+
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-end">
+          <label className="min-w-0 flex-1">
+            <span className="mb-1.5 block text-xs font-black uppercase tracking-[0.12em] text-slate-600 dark:text-slate-200">
+              Add a site
+            </span>
+            <input
+              value={newSiteName}
+              onChange={(event) => setNewSiteName(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") void addSite();
+              }}
+              maxLength={160}
+              placeholder="Site name"
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:ring-2 focus:ring-[#1D72B8]/20 dark:border-slate-500 dark:bg-[#16283D] dark:text-white"
+            />
+          </label>
+          <button
+            type="button"
+            disabled={siteSaving || newSiteName.trim().length < 2}
+            onClick={() => void addSite()}
+            className="self-center rounded-full bg-[#F47C20] px-4 py-2 text-xs font-black text-white transition hover:bg-[#D96510] disabled:cursor-not-allowed disabled:opacity-50 sm:self-end"
+          >
+            Add Site
+          </button>
+        </div>
+
+        <p className="mt-3 text-xs font-semibold text-slate-600 dark:text-slate-200" role="status">
+          {siteStatus}
+        </p>
+
+        <div className="mt-4 grid gap-2">
+          {sites.map((site) => {
+            const editing = editingSiteId === site.id;
+            return (
+              <div
+                key={site.id}
+                className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-600 dark:bg-[#16283D]"
+              >
+                {editing ? (
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <input
+                      value={editingSiteName}
+                      onChange={(event) => setEditingSiteName(event.target.value)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") void saveSiteName(site.id);
+                        if (event.key === "Escape") setEditingSiteId(null);
+                      }}
+                      maxLength={160}
+                      autoFocus
+                      aria-label={`Rename ${site.name}`}
+                      className="min-w-0 flex-1 rounded-lg border border-[#1D72B8] bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none ring-2 ring-[#1D72B8]/20 dark:bg-[#20364D] dark:text-white"
+                    />
+                    <div className="flex justify-center gap-2">
+                      <button
+                        type="button"
+                        disabled={siteSaving || editingSiteName.trim().length < 2}
+                        onClick={() => void saveSiteName(site.id)}
+                        className="rounded-full bg-[#1D72B8] px-4 py-2 text-xs font-black text-white transition hover:bg-[#155A91] disabled:opacity-50"
+                      >
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        disabled={siteSaving}
+                        onClick={() => {
+                          setEditingSiteId(null);
+                          setEditingSiteName("");
+                        }}
+                        className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-100 dark:border-slate-500 dark:bg-[#20364D] dark:text-white"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="min-w-0 truncate text-sm font-black text-slate-950 dark:text-white">
+                      {site.name}
+                    </p>
+                    <div className="flex shrink-0 gap-2">
+                      <button
+                        type="button"
+                        disabled={siteSaving}
+                        onClick={() => {
+                          setEditingSiteId(site.id);
+                          setEditingSiteName(site.name);
+                        }}
+                        aria-label={`Edit ${site.name}`}
+                        title={`Edit ${site.name}`}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1D72B8]/40 bg-[#E8F4FF] text-[#1D72B8] transition hover:bg-[#D7ECFF] disabled:opacity-50 dark:border-[#5DB7FF]/50 dark:bg-[#20364D] dark:text-[#8DD0FF]"
+                      >
+                        <Pencil className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                      <button
+                        type="button"
+                        disabled={siteSaving}
+                        onClick={() => void removeSite(site)}
+                        aria-label={`Delete ${site.name}`}
+                        title={`Delete ${site.name}`}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-red-300 bg-red-50 text-red-700 transition hover:bg-red-100 disabled:opacity-50 dark:border-red-400/40 dark:bg-red-950/40 dark:text-red-200"
+                      >
+                        <Trash2 className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </AppPanel>
 

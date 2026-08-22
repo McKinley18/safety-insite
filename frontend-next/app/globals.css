@@ -1065,6 +1065,81 @@ body {
   background-color: var(--app-surface-strong) !important;
 }
 
+/* Priority Work empty buckets must remain visibly lighter than their parent panel in dark mode. */
+.dark :is(.priority-work-empty, .calendar-light-box) {
+  background-color: #294763 !important;
+  border-color: #6b8aa5 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark .calendar-today-box {
+  background-color: #315f83 !important;
+  border-color: #5db7ff !important;
+}
+
+.command-center-month-box,
+.dark .command-center-month-box {
+  background: linear-gradient(90deg, #172334 0%, #34465a 50%, #172334 100%) !important;
+  border-color: #94a3b8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.24), 0 0 14px rgba(93, 183, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .command-center-add-task {
+  background: #f47c20 !important;
+  border-color: #f47c20 !important;
+  color: #ffffff !important;
+}
+
+.dark .command-center-add-task:hover {
+  background: #d96510 !important;
+}
+
+.generated-report-card {
+  background: rgba(225, 237, 247, 0.52) !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.dark .generated-report-card {
+  background: rgba(15, 35, 53, 0.48) !important;
+  border-color: rgba(141, 208, 255, 0.16) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24) !important;
+}
+
+.command-center-page-background {
+  background:
+    radial-gradient(ellipse at 12% -8%, rgba(93, 183, 255, 0.3), transparent 38rem),
+    radial-gradient(ellipse at 102% 24%, rgba(37, 99, 235, 0.18), transparent 34rem),
+    radial-gradient(ellipse at 38% 105%, rgba(56, 189, 248, 0.1), transparent 38rem),
+    linear-gradient(145deg, #c7dae9 0%, #b5cde0 48%, #96b5cd 100%) !important;
+  background-attachment: fixed !important;
+}
+
+.dark :is(.command-center-page-background, .dark-app-gradient-background) {
+  background:
+    radial-gradient(ellipse at 12% -8%, rgba(56, 189, 248, 0.2), transparent 38rem),
+    radial-gradient(ellipse at 102% 22%, rgba(37, 99, 235, 0.22), transparent 36rem),
+    radial-gradient(ellipse at 42% 108%, rgba(29, 114, 184, 0.15), transparent 40rem),
+    linear-gradient(145deg, #01050c 0%, #030e1c 46%, #061426 72%, #020913 100%) !important;
+}
+
+:is(.command-center-page-background, .dark-app-gradient-background) .sentinel-mobile-page {
+  padding-bottom: 0.5rem !important;
+}
+
+:is(.command-center-page-background, .dark-app-gradient-background) .sentinel-app-main {
+  padding-bottom: calc(var(--sentinel-mobile-tabbar-height, 76px) + env(safe-area-inset-bottom, 0px) + 0.75rem) !important;
+}
+
+@media (min-width: 1024px) {
+  :is(.command-center-page-background, .dark-app-gradient-background) .sentinel-app-main {
+    padding-bottom: 1.25rem !important;
+  }
+}
+
 .dark :where(.border-white/15, .border-white/15\/80, .border-gray-200, .border-gray-200\/80) {
   border-color: var(--app-border) !important;
 }

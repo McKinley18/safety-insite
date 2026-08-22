@@ -125,7 +125,7 @@ export function PriorityTodoPanel({
                   </div>
                 ))
               ) : (
-                <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">
+                <p className="priority-work-empty calendar-light-box rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
                   Nothing here.
                 </p>
               )}

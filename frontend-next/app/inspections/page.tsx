@@ -105,6 +105,7 @@ export default function InspectionsPage() {
   const [sites, setSites] = useState<PersistedSite[]>([]);
   const [persistedInspections, setPersistedInspections] = useState<PersistedInspection[]>([]);
   const [selectedSiteId, setSelectedSiteId] = useState("");
+  const [showNewSiteForm, setShowNewSiteForm] = useState(false);
   const [newSiteName, setNewSiteName] = useState("");
   const [persistenceStatus, setPersistenceStatus] = useState("Loading saved workspace…");
   const [saving, setSaving] = useState(false);
@@ -119,19 +120,28 @@ export default function InspectionsPage() {
       setRegulatoryContext(regulatoryContextFromSettingsScope(storedScope));
     });
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
-    Promise.all([listPersistedSites(), listPersistedInspections()])
-      .then(([siteResult, inspections]) => {
-        setSites(siteResult.data);
-        setPersistedInspections(inspections);
-        setSelectedSiteId(siteResult.data[0]?.id || "");
-        setPersistenceStatus("Saved to Safety InSite");
-      })
-      .catch((error) => {
-        setPersistenceStatus(
-          error instanceof Error && error.message === "AUTH_REQUIRED"
-            ? "Sign in to load saved inspections."
-            : "Server unavailable — new work cannot be finalized.",
-        );
+    Promise.allSettled([listPersistedSites(), listPersistedInspections()])
+      .then(([siteResult, inspectionResult]) => {
+        if (siteResult.status === "fulfilled") {
+          setSites(siteResult.value.data);
+          setSelectedSiteId(siteResult.value.data[0]?.id || "");
+        }
+
+        if (inspectionResult.status === "fulfilled") {
+          setPersistedInspections(inspectionResult.value);
+        }
+
+        if (siteResult.status === "rejected") {
+          setPersistenceStatus(
+            siteResult.reason instanceof Error && siteResult.reason.message === "AUTH_REQUIRED"
+              ? "Sign in to load saved sites."
+              : "Server unavailable — saved sites could not be loaded.",
+          );
+        } else if (inspectionResult.status === "rejected") {
+          setPersistenceStatus("Saved sites loaded — inspection history is temporarily unavailable.");
+        } else {
+          setPersistenceStatus("Saved to Safety InSite");
+        }
       });
   }, []);
 
@@ -191,6 +201,7 @@ export default function InspectionsPage() {
       const site = await createPersistedSite(name);
       setSites((current) => [site, ...current]);
       setSelectedSiteId(site.id);
+      setShowNewSiteForm(false);
       setNewSiteName("");
       setPersistenceStatus("Site saved to Safety InSite");
     } catch (error) {
@@ -240,39 +251,61 @@ export default function InspectionsPage() {
         </div>
       </HeroPanel>
 
-      <AppPanel padding="lg" className="inspections-start-panel overflow-visible pb-10 sm:pb-12">
-        <div className="mx-auto mb-6 max-w-3xl rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-            <label className="flex-1 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+      <AppPanel padding="lg" className="inspections-start-panel overflow-visible">
+        <SectionHeader
+          eyebrow="Start"
+          title="Choose inspection type"
+          description="Use Quick Inspection for fast free capture, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
+        />
+
+        <div className="mx-auto mt-5 mb-6 max-w-3xl border-b border-slate-200 pb-6 dark:border-white/15">
+          <div>
+            <label className="block text-xs font-black uppercase tracking-[0.12em] text-slate-600">
               Saved site
               <select
                 aria-label="Saved site"
-                value={selectedSiteId}
-                onChange={(event) => setSelectedSiteId(event.target.value)}
+                value={showNewSiteForm ? "__new__" : selectedSiteId}
+                onChange={(event) => {
+                  if (event.target.value === "__new__") {
+                    setShowNewSiteForm(true);
+                    setSelectedSiteId("");
+                    return;
+                  }
+                  setShowNewSiteForm(false);
+                  setNewSiteName("");
+                  setSelectedSiteId(event.target.value);
+                }}
                 className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
               >
                 <option value="">Select a site</option>
                 {sites.map((site) => <option key={site.id} value={site.id}>{site.name}</option>)}
+                <option value="__new__">Add new site</option>
               </select>
             </label>
-            <label className="flex-1 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
-              New site
-              <input
-                aria-label="New site name"
-                value={newSiteName}
-                onChange={(event) => setNewSiteName(event.target.value)}
-                maxLength={160}
-                className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
-              />
-            </label>
-            <button
-              type="button"
-              disabled={saving || !newSiteName.trim()}
-              onClick={addSite}
-              className="rounded-full bg-[#102A43] px-5 py-2.5 text-sm font-black text-white disabled:opacity-50"
-            >
-              Save site
-            </button>
+
+            {showNewSiteForm && (
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
+                <label className="flex-1 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+                  New site
+                  <input
+                    aria-label="New site name"
+                    value={newSiteName}
+                    onChange={(event) => setNewSiteName(event.target.value)}
+                    maxLength={160}
+                    autoFocus
+                    className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
+                  />
+                </label>
+                <button
+                  type="button"
+                  disabled={saving || !newSiteName.trim()}
+                  onClick={addSite}
+                  className="self-center rounded-full bg-[#F47C20] px-4 py-2 text-xs font-black text-white transition hover:bg-[#D96510] disabled:opacity-50 sm:self-end"
+                >
+                  Save site
+                </button>
+              </div>
+            )}
           </div>
           <label className="mt-3 block text-xs font-black uppercase tracking-[0.12em] text-slate-600">
             Regulatory context
@@ -282,6 +315,7 @@ export default function InspectionsPage() {
               onChange={(event) => setRegulatoryContext(event.target.value as RegulatoryContext)}
               className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
             >
+              <option value="unknown" disabled>Select regulatory context</option>
               {REGULATORY_CONTEXT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label} · {option.description}
@@ -297,12 +331,6 @@ export default function InspectionsPage() {
             {persistedInspections.length === 1 ? "" : "s"}
           </p>
         </div>
-        <SectionHeader
-          eyebrow="Start"
-          title="Choose inspection type"
-          description="Use Quick Inspection for fast free capture, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
-        />
-
         <div className="mx-auto mt-4 grid max-w-3xl justify-items-center gap-3 sm:grid-cols-2">
           {workflowOptions.map((workflow) => {
             const selected = selectedWorkflow.id === workflow.id;
@@ -430,9 +458,6 @@ export default function InspectionsPage() {
 
 
       </AppPanel>
-
-
-      <div aria-hidden="true" className="h-28 shrink-0 sm:h-32 lg:h-16" />
     </section>
   );
 }

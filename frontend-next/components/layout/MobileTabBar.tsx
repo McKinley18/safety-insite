@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { APP_NAME } from "@/lib/brand";
 
 const tabs = [
   { href: "/command-center", label: "Home", icon: "🏠" },
@@ -67,20 +68,23 @@ export default function MobileTabBar() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex min-h-[36px] flex-col items-center justify-center rounded-lg px-1 text-center transition ${
+              className={`flex min-h-[44px] flex-col items-center justify-center rounded-lg px-1 text-center transition ${
                 active
                   ? "bg-white/15 text-white shadow-sm shadow-blue-950/30 ring-1 ring-white/20"
                   : "text-white/80 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <span className="text-[13px] leading-none">{tab.icon}</span>
-              <span className="mt-0.5 text-[8px] font-black uppercase tracking-wide">
+              <span className="text-[22px] leading-none">{tab.icon}</span>
+              <span className="mt-1 text-[9px] font-black uppercase tracking-wide">
                 {tab.label}
               </span>
             </Link>
           );
         })}
       </div>
+      <p className="mt-1.5 border-t border-white/10 pt-1.5 text-center text-[10px] font-semibold leading-4 text-slate-300">
+        © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+      </p>
     </nav>
   );
 }

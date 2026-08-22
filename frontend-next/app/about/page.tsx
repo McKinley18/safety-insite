@@ -56,23 +56,25 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#1D72B8]/10 blur-3xl" />
         <div className="pointer-events-none absolute -left-24 top-52 h-64 w-64 rounded-full bg-[#0B1320]/5 blur-3xl" />
 
-        <div className="relative border-b border-slate-200/80 pb-7 sm:pb-10">
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-5 py-7 text-white shadow-none sm:px-8 sm:py-10">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#1D72B8]/25 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-28 left-1/3 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
-              <h1 className="max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-6xl">
+              <h1 className="relative max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
                 Safety inspections, built for action.
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
+              <p className="relative mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-200 sm:text-lg sm:leading-8">
                 Safety InSite helps safety professionals turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
               </p>
             </div>
 
-            <div className="border-l-4 border-[#1D72B8] pl-4">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+            <div className="relative border-l-4 border-[#5DB7FF] pl-4">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-[#5DB7FF]">
                 Built for clarity
               </p>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">
                 A cleaner way to manage inspection details, evidence, follow-ups, and records that need to hold up later.
               </p>
             </div>
@@ -82,9 +84,9 @@ export default function AboutPage() {
             {outcomes.map((item) => (
               <div
                 key={item}
-                className="border-l-2 border-[#1D72B8]/40 pl-3"
+                className="relative rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15"
               >
-                <p className="text-sm font-black leading-5 text-slate-800">
+                <p className="text-sm font-black leading-5 text-white">
                   {item}
                 </p>
               </div>

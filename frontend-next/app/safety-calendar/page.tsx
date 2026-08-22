@@ -99,10 +99,10 @@ function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
   }
 
   if (sameDateKey(day, todayKey)) {
-    return "border-app-primary bg-app-brand-soft";
+    return "calendar-light-box calendar-today-box border-app-primary bg-app-brand-soft";
   }
 
-  return "app-surface";
+  return "calendar-light-box app-surface";
 }
 
 function getDayWorkSummary(dayEvents: SafetyCalendarEvent[]) {
