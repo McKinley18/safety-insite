@@ -1,0 +1,38 @@
+L3-2f — SECURITY AND BOUNDARY
+checked 2026-08-23T02:15:19Z
+
+== dependency graph ==
+package-lock.json modified: 0  (0 = byte-identical to HEAD)
+package.json diff (scripts only):
++    "test:l31-reasoning-contract": "ts-node scripts/test-l31-reasoning-contract.ts",
++    "test:l32-semantic-contract": "ts-node scripts/test-l32-semantic-contract.ts",
++    "test:l32b-binder-precision": "ts-node scripts/test-l32b-binder-precision.ts",
++    "test:l32c-gate-polarity": "ts-node scripts/test-l32c-gate-polarity.ts",
++    "test:l32d-clarification-scope": "ts-node scripts/test-l32d-clarification-scope.ts",
++    "score:l32c": "ts-node scripts/score-l32c-reasoning.ts",
++    "test:l32e-syntactic-role": "ts-node scripts/test-l32e-syntactic-role.ts",
++    "score:l32d": "ts-node scripts/score-l32d-reasoning.ts",
++    "score:l32e": "ts-node scripts/score-l32e-reasoning.ts",
+-    "test:kg4e-telemetry-privacy-v2": "ts-node scripts/test-kg4e-telemetry-privacy-v2.ts"
++    "test:kg4e-telemetry-privacy-v2": "ts-node scripts/test-kg4e-telemetry-privacy-v2.ts",
++    "test:l32f-predicate-scope": "ts-node scripts/test-l32f-predicate-scope.ts",
++    "score:l32f": "ts-node scripts/score-l32f-reasoning.ts"
+
+== Level-3 holds no Nest / repository / persistence authority ==
+Nest or TypeORM decorators inside reasoning-l3: 0
+importers of reasoning-l3 outside it:           0
+nestjs/typeorm imports inside reasoning-l3:     0
+
+== egress: every network destination reachable from reasoning-l3 ==
+http://127.0.0.1:11434
+
+== credentials / secrets ==
+credential literals in reasoning-l3: 0
+.env paths in the working tree diff: 0
+
+== production boundary ==
+SHADOW / CUTOVER flags changed: 0
+migrations added or modified:   0
+commits / pushes / tags made:   0 (HEAD unchanged at 1feda622, verified in preservation-evidence.txt)
+disposable database created:    test_l32f_invariance_20260823 (createdb -T from the prodshape template)
+protected databases targeted:   none — safescope / sentinel_dev / sentinel_safety were never a resolved target

@@ -1,0 +1,234 @@
+{
+ "method": "a family is SEALED_VALIDATED when a sealed scenario declaring it had its hazard established at the shipped tier, in any prior set or in L3-2e. `exactLabelEmittedInL32e` is reported separately because familyPattern permits alternatives and passing under an alternative is not the same as the label being exercised.",
+ "rows": [
+  {
+   "family": "chemical_storage",
+   "declaredPriorSets": 26,
+   "declaredL32e": 5,
+   "l32eScenariosEstablished": "4 of 5",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "compressed_air_hose_safety",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": false,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "compressed_gas_cylinders",
+   "declaredPriorSets": 1,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "confined_space",
+   "declaredPriorSets": 4,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "drowning_hazards",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "electrical",
+   "declaredPriorSets": 49,
+   "declaredL32e": 5,
+   "l32eScenariosEstablished": "5 of 5",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "emergency_egress",
+   "declaredPriorSets": 0,
+   "declaredL32e": 2,
+   "l32eScenariosEstablished": "2 of 2",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "falls",
+   "declaredPriorSets": 35,
+   "declaredL32e": 24,
+   "l32eScenariosEstablished": "23 of 24",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "fire_explosion",
+   "declaredPriorSets": 0,
+   "declaredL32e": 5,
+   "l32eScenariosEstablished": "5 of 5",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "first_aid_eyewash_safety_shower_access",
+   "declaredPriorSets": 0,
+   "declaredL32e": 2,
+   "l32eScenariosEstablished": "1 of 2",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": false,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "ground_control",
+   "declaredPriorSets": 3,
+   "declaredL32e": 2,
+   "l32eScenariosEstablished": "1 of 2",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "hazard_communication",
+   "declaredPriorSets": 24,
+   "declaredL32e": 2,
+   "l32eScenariosEstablished": "2 of 2",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "lifting_rigging",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "loto_stored_energy",
+   "declaredPriorSets": 6,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "machine_guarding",
+   "declaredPriorSets": 67,
+   "declaredL32e": 24,
+   "l32eScenariosEstablished": "24 of 24",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "material_handling",
+   "declaredPriorSets": 2,
+   "declaredL32e": 2,
+   "l32eScenariosEstablished": "2 of 2",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "mobile_equipment",
+   "declaredPriorSets": 8,
+   "declaredL32e": 0,
+   "l32eScenariosEstablished": "n/a",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "noise_exposure",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "0 of 1",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": false,
+   "status": "NOT_YET_SEALED_VALIDATED"
+  },
+  {
+   "family": "personal_protective_equipment",
+   "declaredPriorSets": 4,
+   "declaredL32e": 3,
+   "l32eScenariosEstablished": "2 of 3",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "respirable_dust_silica",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": false,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "scaffolds",
+   "declaredPriorSets": 5,
+   "declaredL32e": 21,
+   "l32eScenariosEstablished": "20 of 21",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "trenching_shoring",
+   "declaredPriorSets": 3,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "walking_working_surfaces",
+   "declaredPriorSets": 41,
+   "declaredL32e": 25,
+   "l32eScenariosEstablished": "24 of 25",
+   "exactLabelEmittedInL32e": true,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  },
+  {
+   "family": "welding_cutting_hot_work",
+   "declaredPriorSets": 0,
+   "declaredL32e": 1,
+   "l32eScenariosEstablished": "1 of 1",
+   "exactLabelEmittedInL32e": false,
+   "highConsequenceExample": true,
+   "status": "SEALED_VALIDATED"
+  }
+ ],
+ "notYetSealedValidated": [
+  "noise_exposure"
+ ],
+ "declaredButLabelNeverEmitted": [
+  "confined_space",
+  "ground_control",
+  "hazard_communication",
+  "lifting_rigging",
+  "material_handling",
+  "noise_exposure",
+  "personal_protective_equipment",
+  "welding_cutting_hot_work"
+ ]
+}

@@ -1,0 +1,29 @@
+{
+  "method": "volatility derived empirically from two runs of identical post-L3-2 code, then pristine-HEAD vs post-L3-2 compared excluding only those paths (KG-4B / KG-4E / L3-1 precedent)",
+  "before": "git archive of 1feda622 -- carries neither the L3-1 nor the L3-2 uncommitted work",
+  "after": "the same archive plus every uncommitted L3-1 and L3-2 file",
+  "scenariosCompared": 66,
+  "empiricallyVolatilePaths": [
+    "generatedActions#0.dueDate",
+    "generatedActions#0.originalSuggestion.riskReasoning.riskReasoningId",
+    "generatedActions#0.reportId",
+    "intelligenceMetadata.generatedAt",
+    "lcq.candidateId",
+    "reasoningSnapshotId",
+    "riskReasoning.riskReasoningId"
+  ],
+  "volatileFieldRoles": [
+    "candidateId",
+    "dueDate",
+    "generatedAt",
+    "reasoningSnapshotId",
+    "reportId",
+    "riskReasoningId"
+  ],
+  "scenariosWithNonVolatileDifference": 0,
+  "differences": {},
+  "captureErrors": [],
+  "beforeHash": "e5581e0b72e7233524e59c5fa33ef6ecf83269033458574d2c9ad1dbd37d52e8",
+  "afterHash": "7ed69e4e97241f26a7ed3cc86bd69bab95930f687bc379fc775d23582e76d9bc",
+  "verdict": "CUSTOMER_AUTHORITY_UNCHANGED"
+}

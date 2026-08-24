@@ -1,0 +1,151 @@
+{
+  "left": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2j-carrier-activation-2026-08-24/rootcause/locked-restored-V_B_LADDER.json",
+    "variant": "V_B_LADDER",
+    "model": "qwen3-coder:30b",
+    "generatedAt": "2026-08-24T11:52:27.067Z"
+  },
+  "right": {
+    "path": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/e5348836-4120-4b2a-9fd5-be2b690b616b/scratchpad/l32j4-gemini-V_B_LADDER.json",
+    "variant": "V_B_LADDER",
+    "model": "gemini-3.1-pro-preview",
+    "generatedAt": "2026-08-24T12:33:10.217Z"
+  },
+  "fieldsCompared": [
+    "outcome",
+    "candidateCount",
+    "modelStates",
+    "modelAssertsActive",
+    "raisedClarification",
+    "derivedAssertsActive",
+    "derivedClarification"
+  ],
+  "scenariosCompared": 24,
+  "comparisonsMade": 168,
+  "differingFields": 15,
+  "differingScenarios": [
+    "B10",
+    "C-CS-05",
+    "C11",
+    "F-CL-01",
+    "F-CL-03",
+    "F-CL-04",
+    "F-OA-01",
+    "F-TB-02",
+    "F-WC-09",
+    "H-NG-02"
+  ],
+  "differences": [
+    {
+      "scenarioId": "F-WC-09",
+      "field": "modelStates",
+      "left": [
+        "CONTROLLED"
+      ],
+      "right": [
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "field": "modelAssertsActive",
+      "left": false,
+      "right": true
+    },
+    {
+      "scenarioId": "F-OA-01",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-04",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 2
+    },
+    {
+      "scenarioId": "F-CL-04",
+      "field": "modelStates",
+      "left": [
+        "ACTIVE"
+      ],
+      "right": [
+        "ACTIVE",
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "C11",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 2
+    },
+    {
+      "scenarioId": "C11",
+      "field": "modelStates",
+      "left": [
+        "ACTIVE"
+      ],
+      "right": [
+        "ACTIVE",
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 2
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "field": "modelStates",
+      "left": [
+        "ACTIVE"
+      ],
+      "right": [
+        "ACTIVE",
+        "NEGATED"
+      ]
+    },
+    {
+      "scenarioId": "B10",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-TB-02",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 0
+    },
+    {
+      "scenarioId": "F-TB-02",
+      "field": "modelStates",
+      "left": [
+        "NEGATED"
+      ],
+      "right": []
+    }
+  ]
+}

@@ -1,0 +1,679 @@
+{
+ "phase": "L3-2l",
+ "role": "ARCHITECTURE_DECISION_EVIDENCE -- READ ONLY OVER ALREADY-OPEN ARTIFACTS, ZERO INFERENCE",
+ "generatedAt": "2026-08-24T14:48:41.466Z",
+ "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+ "corpus": {
+  "artifactsScanned": 34,
+  "recordsCarryingBinderOutput": 1871,
+  "rejectionOccurrences": 84,
+  "distinctScenarioStatePairs": 52,
+  "distinctScenarios": 46
+ },
+ "structuralFinding": {
+  "statesThisCheckCanRefuse": [
+   "CORRECTED",
+   "REMOVED_FROM_SERVICE",
+   "NEGATED",
+   "HYPOTHETICAL",
+   "CONTROLLED"
+  ],
+  "activeIsOutOfScope": true,
+  "everRefusedAnActiveCandidate": false,
+  "consequence": "checkStateSupported can only ever refuse a NON-ACTIVE state. Every candidate it deletes was already non-ACTIVE, so deletion and demotion are BOTH non-asserting. The delete-vs-demote choice therefore cannot move hazard detection, false ACTIVE, or the high-consequence gate."
+ },
+ "breakdown": {
+  "REAL_HAZARD": 8,
+  "NEGATIVE_CONTROL": 39,
+  "NO_GROUND_TRUTH": 5
+ },
+ "dispositionCounterfactual": {
+  "A_DELETE": {
+   "hazardRecovered": 0,
+   "highConsequenceRecovered": 0,
+   "highConsequenceStillMissed": 7,
+   "falseActiveIntroduced": 0,
+   "falseActiveIds": [],
+   "negativeControlCandidatesPreserved": 0,
+   "unnecessaryClarificationsIntroduced": 0,
+   "unnecessaryClarificationIds": [],
+   "candidatesStillDeleted": 52
+  },
+  "B_DEMOTE_UNDECIDED": {
+   "hazardRecovered": 0,
+   "highConsequenceRecovered": 0,
+   "highConsequenceStillMissed": 7,
+   "falseActiveIntroduced": 0,
+   "falseActiveIds": [],
+   "negativeControlCandidatesPreserved": 39,
+   "unnecessaryClarificationsIntroduced": 31,
+   "unnecessaryClarificationIds": [
+    "DEV-28",
+    "H-CS-02",
+    "H-CS-04",
+    "H-OF7",
+    "C-CS-01",
+    "D-CQ-05",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-03",
+    "H-CS-01",
+    "H-CS-06",
+    "C-NC-01",
+    "C-CS-02",
+    "C-CS-04",
+    "D-NC-04",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-04",
+    "DEVNC-01",
+    "DEVCS-01",
+    "DEVCS-03",
+    "DEV-E1-02",
+    "E-CS-01",
+    "X-WC-04",
+    "X-WC-05",
+    "DEV-E1-04",
+    "F-WC-06",
+    "F-NEG-03",
+    "F-CIP-01",
+    "F-CIP-02",
+    "F-COR-01"
+   ],
+   "candidatesStillDeleted": 0
+  },
+  "C_REDERIVE_ACTIVE": {
+   "hazardRecovered": 8,
+   "highConsequenceRecovered": 7,
+   "highConsequenceStillMissed": 0,
+   "falseActiveIntroduced": 39,
+   "falseActiveIds": [
+    "B06",
+    "B14",
+    "B17",
+    "D02",
+    "B06",
+    "B14",
+    "B17",
+    "D02",
+    "DEV-28",
+    "H-CS-02",
+    "H-CS-04",
+    "H-OF7",
+    "C-CS-01",
+    "D-CQ-05",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-03",
+    "H-CS-01",
+    "H-CS-06",
+    "C-NC-01",
+    "C-CS-02",
+    "C-CS-04",
+    "D-NC-04",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-04",
+    "DEVNC-01",
+    "DEVCS-01",
+    "DEVCS-03",
+    "DEV-E1-02",
+    "E-CS-01",
+    "X-WC-04",
+    "X-WC-05",
+    "DEV-E1-04",
+    "F-WC-06",
+    "F-NEG-03",
+    "F-CIP-01",
+    "F-CIP-02",
+    "F-COR-01"
+   ],
+   "negativeControlCandidatesPreserved": 39,
+   "unnecessaryClarificationsIntroduced": 0,
+   "unnecessaryClarificationIds": [],
+   "candidatesStillDeleted": 0
+  },
+  "D_PRESERVE_REJECT": {
+   "hazardRecovered": 0,
+   "highConsequenceRecovered": 0,
+   "highConsequenceStillMissed": 7,
+   "falseActiveIntroduced": 0,
+   "falseActiveIds": [],
+   "negativeControlCandidatesPreserved": 39,
+   "unnecessaryClarificationsIntroduced": 31,
+   "unnecessaryClarificationIds": [
+    "DEV-28",
+    "H-CS-02",
+    "H-CS-04",
+    "H-OF7",
+    "C-CS-01",
+    "D-CQ-05",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-03",
+    "H-CS-01",
+    "H-CS-06",
+    "C-NC-01",
+    "C-CS-02",
+    "C-CS-04",
+    "D-NC-04",
+    "D-CS-01",
+    "D-CS-02",
+    "D-CS-04",
+    "DEVNC-01",
+    "DEVCS-01",
+    "DEVCS-03",
+    "DEV-E1-02",
+    "E-CS-01",
+    "X-WC-04",
+    "X-WC-05",
+    "DEV-E1-04",
+    "F-WC-06",
+    "F-NEG-03",
+    "F-CIP-01",
+    "F-CIP-02",
+    "F-COR-01"
+   ],
+   "candidatesStillDeleted": 0
+  }
+ },
+ "realHazardRows": [
+  {
+   "scenario": "C-FLD-048",
+   "proposedState": "NEGATED",
+   "expectState": "ACTIVE",
+   "highConsequence": false,
+   "controlAdequacy": [],
+   "occurrences": 1,
+   "artifacts": [
+    "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json"
+   ]
+  },
+  {
+   "scenario": "E-FLD-147",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [],
+   "occurrences": 3,
+   "artifacts": [
+    "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json",
+    "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json",
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json"
+   ]
+  },
+  {
+   "scenario": "X-WC-02",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ],
+   "occurrences": 2,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json"
+   ]
+  },
+  {
+   "scenario": "F-WC-03",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ],
+   "occurrences": 2,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json"
+   ]
+  },
+  {
+   "scenario": "F-WC-09",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "strapped down",
+     "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ],
+   "occurrences": 2,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json"
+   ]
+  },
+  {
+   "scenario": "X-WC-02#r0",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ],
+   "occurrences": 1,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json"
+   ]
+  },
+  {
+   "scenario": "X-WC-02#r1",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ],
+   "occurrences": 1,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json"
+   ]
+  },
+  {
+   "scenario": "X-WC-02#r2",
+   "proposedState": "CONTROLLED",
+   "expectState": "ACTIVE",
+   "highConsequence": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ],
+   "occurrences": 1,
+   "artifacts": [
+    "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json"
+   ]
+  }
+ ],
+ "negativeControlRows": [
+  {
+   "scenario": "B06",
+   "proposedState": null,
+   "text": "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "B14",
+   "proposedState": null,
+   "text": "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "B17",
+   "proposedState": null,
+   "text": "Two years ago an employee was injured at this press before the light curtain was installed. The light curtain has been in service since then and was function tested last month.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D02",
+   "proposedState": null,
+   "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "B06",
+   "proposedState": "CORRECTED",
+   "text": "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "B14",
+   "proposedState": "CONTROLLED",
+   "text": "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "B17",
+   "proposedState": "CORRECTED",
+   "text": "Two years ago an employee was injured at this press before the light curtain was installed. The light curtain has been in service since then and was function tested last month.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D02",
+   "proposedState": "CONTROLLED",
+   "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "DEV-28",
+   "proposedState": "CORRECTED",
+   "text": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 2
+  },
+  {
+   "scenario": "H-CS-02",
+   "proposedState": "CORRECTED",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 3
+  },
+  {
+   "scenario": "H-CS-04",
+   "proposedState": "CORRECTED",
+   "text": "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 3
+  },
+  {
+   "scenario": "H-OF7",
+   "proposedState": "CONTROLLED",
+   "text": "Before they opened it up, the crew put their locks on and checked it was dead.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "C-CS-01",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "text": "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 2
+  },
+  {
+   "scenario": "D-CQ-05",
+   "proposedState": "CORRECTED",
+   "text": "The split hydraulic hose on the baler was found leaking and the fitter swapped it for a new assembly and pressure tested it before the line restarted.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 3
+  },
+  {
+   "scenario": "D-CS-01",
+   "proposedState": "CONTROLLED",
+   "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 2
+  },
+  {
+   "scenario": "D-CS-02",
+   "proposedState": "CORRECTED",
+   "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 2
+  },
+  {
+   "scenario": "D-CS-03",
+   "proposedState": "CORRECTED",
+   "text": "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 3
+  },
+  {
+   "scenario": "H-CS-01",
+   "proposedState": "CORRECTED",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "H-CS-06",
+   "proposedState": "CONTROLLED",
+   "text": "The leading edge is protected by a cabled guardrail on all four sides and the crew is tied off to an engineered anchor while they work inside it.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "C-NC-01",
+   "proposedState": "CONTROLLED",
+   "text": "The roof edge on the east elevation is protected by a compliant guardrail with top rail, mid rail and toeboard, and the anchor points were proof loaded last month.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "C-CS-02",
+   "proposedState": "CORRECTED",
+   "text": "The frayed pendant cable on the jib crane was found during the walk and the millwright swapped it for a new one before the next lift.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "C-CS-04",
+   "proposedState": "CORRECTED",
+   "text": "The mezzanine handrail was struck by a forklift last spring and was rebuilt to the original detail; this inspection found it sound and correctly fixed at every post.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D-NC-04",
+   "proposedState": "CORRECTED",
+   "text": "The fall arrest harnesses were returned from inspection with new tags and were hung back on the rack in the site office.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D-CS-01",
+   "proposedState": "CORRECTED",
+   "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D-CS-02",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "D-CS-04",
+   "proposedState": "CORRECTED",
+   "text": "The riser opening on level two is closed with a bolted steel plate stencilled HOLE and rated for the load, and all four bolts were in place.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "DEVNC-01",
+   "proposedState": "CONTROLLED",
+   "text": "Every point of operation on the punch press line is enclosed by a fixed barrier guard, the interlocks were function tested at the start of shift, and the test log was signed.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "DEVCS-01",
+   "proposedState": "CORRECTED",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 3
+  },
+  {
+   "scenario": "DEVCS-03",
+   "proposedState": "CORRECTED",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 4
+  },
+  {
+   "scenario": "DEV-E1-02",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "text": "The damaged extension lead was found at the panel and was discarded before we left the area.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 1
+  },
+  {
+   "scenario": "E-CS-01",
+   "proposedState": "CORRECTED",
+   "text": "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift.",
+   "clarificationExpected": false,
+   "controlAdequacy": [],
+   "occurrences": 2
+  },
+  {
+   "scenario": "X-WC-04",
+   "proposedState": "CONTROLLED",
+   "text": "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "plate",
+     "detail": "'plate' describes a control that prevents contact with the hazard"
+    }
+   ],
+   "occurrences": 3
+  },
+  {
+   "scenario": "X-WC-05",
+   "proposedState": "CONTROLLED",
+   "text": "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "open_hole",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ],
+   "occurrences": 3
+  },
+  {
+   "scenario": "DEV-E1-04",
+   "proposedState": "CONTROLLED",
+   "text": "The crew stopped work and a full lockout was applied at the disconnect before the guard came off.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "guard",
+     "detail": "'guard' describes a control that prevents contact with the hazard"
+    }
+   ],
+   "occurrences": 1
+  },
+  {
+   "scenario": "F-WC-06",
+   "proposedState": "CONTROLLED",
+   "text": "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "void_hazard",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "boarded",
+     "detail": "'boarded' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ],
+   "occurrences": 2
+  },
+  {
+   "scenario": "F-NEG-03",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "text": "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "tagged out",
+     "detail": "'tagged out' describes a control that prevents contact with the hazard"
+    }
+   ],
+   "occurrences": 2
+  },
+  {
+   "scenario": "F-CIP-01",
+   "proposedState": "CORRECTED",
+   "text": "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "locked out",
+     "detail": "'locked out' describes a control that prevents contact with the hazard"
+    }
+   ],
+   "occurrences": 2
+  },
+  {
+   "scenario": "F-CIP-02",
+   "proposedState": "CONTROLLED",
+   "text": "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact with the hazard"
+    }
+   ],
+   "occurrences": 2
+  },
+  {
+   "scenario": "F-COR-01",
+   "proposedState": "CORRECTED",
+   "text": "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room.",
+   "clarificationExpected": false,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ],
+   "occurrences": 2
+  }
+ ]
+}

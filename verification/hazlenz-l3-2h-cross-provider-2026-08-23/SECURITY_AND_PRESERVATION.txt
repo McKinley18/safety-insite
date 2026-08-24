@@ -1,0 +1,50 @@
+L3-2h — PRESERVATION, CUSTOMER AUTHORITY, SEALED CORPUS, EGRESS
+generated 2026-08-24T00:12:29Z
+
+== 1. production code changed by L3-2h ==
+  (no CHANGED lines above = zero production or script files touched)
+
+== 2. reasoning-l3 byte-identical to phase start ==
+  IDENTICAL — no module under test was modified
+
+== 3. locked experiment byte-identical ==
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+  57064e2ff9b734885ebec8f19448519cc2b95508b15739ed404d91e219acba2f  backend/scripts/rederive-l32g-resolution.ts
+  4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+
+== 4. worktree vs baseline, excluding this phase's own dir ==
+  IDENTICAL — no unrelated work touched
+
+== 5. stash / HEAD / tags unchanged ==
+  stash: IDENTICAL (4 entries, no stash operation executed this phase)
+  HEAD:  UNCHANGED 1feda622
+  tags:  IDENTICAL (23)
+
+== 6. customer authority ==
+  seam, call site and standards/ byte-unmodified vs HEAD
+  importers of reasoning-l3 outside itself: 0
+  importers of state-facts outside reasoning-l3: 0
+  SHADOW/CUTOVER: not enabled by this phase (no config touched)
+
+== 7. sealed corpus NOT consumed ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  references to these files in any L3-2h run artifact: 0
+
+== 8. egress ==
+  destinations contacted this phase: http://127.0.0.1:11434 (local Ollama) ONLY
+  hosted-provider calls: 0 (no credential available)
+  inference calls issued: 96 (72 baseline-repro + 24 repeat-isolated)
+  credentials read/printed/logged/persisted: NONE
+  production data sent anywhere: NONE (all scenarios are opened diagnostic material)
+
+== 9. frozen holdouts re-verified ==
+  41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+  e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+  33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+  bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+  b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json
+  47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json
+  bbda27d6dbad4752b48c987c8e85929c0d3d891d7f69b4d6d8842f9750c0af51  backend/src/safescope-v2/reasoning-l3/eval/development-l32f.json

@@ -1,0 +1,341 @@
+{
+  "capturedAt": "2026-08-22T15:22:19.616Z",
+  "providerId": "ollama:qwen3-coder:30b",
+  "traces": [
+    {
+      "id": "B08",
+      "defect": "evidence-span selectivity over-rejection",
+      "text": "An employee on a rolling scaffold at nine feet was using an angle grinder without a face shield while a propane forklift idled directly underneath refueling from a portable cylinder.",
+      "expected": "ANALYZED with >=1 ACTIVE high-consequence hazard",
+      "stage1_rawProposal": {
+        "outcome": "ANALYZED",
+        "candidates": [
+          {
+            "key": "face shield missing during angle grinder use",
+            "family": "personal_protective_equipment",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "using an angle grinder without a face shield",
+                "span": [
+                  51,
+                  95
+                ]
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the employee was using an angle grinder without a face shield, which constitutes a missing personal protective equipment control. This is an active hazard because the required safety equipment is absent and the employee is exposed to potential eye injury from the grinding operation.",
+            "independentHazardRationale": "This represents a distinct hazard from the propane forklift situation because it concerns the specific absence of eye protection equipment during a cutting/grinding operation, which is a separate safety control requirement than the fueling operation below.",
+            "clarification": null
+          },
+          {
+            "key": "propane forklift refueling without proper controls",
+            "family": "compressed_gas_cylinders",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "a propane forklift idled directly underneath refueling from a portable cylinder",
+                "span": [
+                  102,
+                  181
+                ]
+              }
+            ],
+            "conditionRationale": "The observation describes a propane forklift that was idling while being refueled from a portable cylinder. This constitutes an active hazard because the forklift engine was running during fueling operations, which creates a fire/explosion risk due to potential ignition sources near the flammable gas.",
+            "independentHazardRationale": "This is a separate hazard from the face shield issue because it involves the specific unsafe practice of operating a vehicle while refueling, which is a different safety control requirement than personal protective equipment for grinding operations.",
+            "clarification": null
+          }
+        ]
+      },
+      "stage2_mechanicalBinding": {
+        "total": 2,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "stage3_deterministicValidator": {
+        "state": "VALID",
+        "issues": [],
+        "validatedHazardCount": 2
+      },
+      "stage4_semanticBinder": {
+        "issues": [
+          {
+            "code": "SEMANTIC_NEGATION_UNADDRESSED",
+            "candidateKey": "propane forklift refueling without proper controls",
+            "detail": "'without' governs the clause containing the cited span but appears neither in the span nor in the rationale"
+          }
+        ],
+        "rejected": [
+          {
+            "candidateKey": "propane forklift refueling without proper controls",
+            "codes": [
+              "SEMANTIC_NEGATION_UNADDRESSED"
+            ]
+          }
+        ],
+        "survivingHazardCount": 1,
+        "surviving": [
+          "personal_protective_equipment/ACTIVE"
+        ]
+      },
+      "stage5_finalOutcome": "VALIDATED",
+      "finalHazards": [
+        "personal_protective_equipment/ACTIVE"
+      ]
+    },
+    {
+      "id": "C11",
+      "defect": "comma-clause negation governance",
+      "text": "welding on the mezz rail, no fire watch, cardboard and pallets stacked under where the sparks were landing, extinguisher in the area was last inspected 2 yrs ago per the tag",
+      "expected": "ANALYZED with an ACTIVE fire/hot-work hazard",
+      "stage1_rawProposal": {
+        "outcome": "ANALYZED",
+        "candidates": [
+          {
+            "key": "fire_explosion",
+            "family": "fire_explosion",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "welding on the mezz rail, no fire watch, cardboard and pallets stacked under where the sparks were landing",
+                "span": [
+                  0,
+                  106
+                ]
+              }
+            ],
+            "conditionRationale": "The observation describes welding activity with no fire watch in place. Sparks from the welding were landing on cardboard and pallets stacked underneath, which constitutes an active fire hazard. The presence of combustible materials (cardboard and pallets) directly under the welding area, combined with the absence of a fire watch, creates a hazardous condition that is currently present and uncontrolled.",
+            "independentHazardRationale": "This represents a distinct fire hazard separate from any other potential hazards in the observation. The fire hazard is specifically created by the combination of welding operations, combustible materials in the immediate area, and the absence of fire watch personnel to monitor and control the fire risk. This is not a general electrical hazard or a material handling hazard, but specifically a fire/explosion hazard related to welding operations and combustible material proximity.",
+            "clarification": null
+          },
+          {
+            "key": "fire_explosion",
+            "family": "fire_explosion",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "extinguisher in the area was last inspected 2 yrs ago per the tag",
+                "span": [
+                  108,
+                  173
+                ]
+              }
+            ],
+            "conditionRationale": "The observation indicates that the extinguisher in the area was last inspected two years ago according to its tag. This represents an active hazard because fire protection equipment that is not current with required inspections is not functioning properly and cannot be relied upon in case of emergency. The age of the inspection indicates a potential failure of the fire suppression system when needed.",
+            "independentHazardRationale": "This represents a separate fire hazard from the primary welding/fire watch hazard. While both relate to fire safety, this hazard specifically concerns the adequacy and reliability of fire protection equipment (fire extinguisher) rather than the immediate fire risk from welding operations. The expired inspection status creates an independent hazard that could compromise emergency response capabilities.",
+            "clarification": null
+          }
+        ]
+      },
+      "stage2_mechanicalBinding": {
+        "total": 2,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "stage3_deterministicValidator": {
+        "state": "VALID",
+        "issues": [],
+        "validatedHazardCount": 2
+      },
+      "stage4_semanticBinder": {
+        "issues": [],
+        "rejected": [],
+        "survivingHazardCount": 2,
+        "surviving": [
+          "fire_explosion/ACTIVE",
+          "fire_explosion/ACTIVE"
+        ]
+      },
+      "stage5_finalOutcome": "VALIDATED",
+      "finalHazards": [
+        "fire_explosion/ACTIVE"
+      ]
+    },
+    {
+      "id": "B10",
+      "defect": "subjective ambiguity became ACTIVE",
+      "text": "The rail on the platform did not look right to me.",
+      "expected": "NOT ACTIVE -- UNKNOWN / INSUFFICIENT_EVIDENCE, ideally with a decision-critical clarification",
+      "stage1_rawProposal": {
+        "outcome": "ANALYZED",
+        "candidates": [
+          {
+            "key": "walking_working_surfaces",
+            "family": "walking_working_surfaces",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "The rail on the platform did not look right to me.",
+                "span": [
+                  0,
+                  50
+                ]
+              }
+            ],
+            "conditionRationale": "The observation indicates that the rail on the platform was not in proper condition or installation, which constitutes an active hazard related to walking/working surfaces.",
+            "independentHazardRationale": "This hazard is independent from others because it specifically addresses the condition of a rail on a platform, which is a distinct safety concern from other potential hazards like chemical storage, electrical issues, etc. The presence of a faulty rail directly impacts the safety of workers walking or working on the platform surface and represents a specific category of walking/working surfaces hazard as defined by the regulatory context.",
+            "clarification": null
+          }
+        ]
+      },
+      "stage2_mechanicalBinding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "stage3_deterministicValidator": {
+        "state": "VALID",
+        "issues": [],
+        "validatedHazardCount": 1
+      },
+      "stage4_semanticBinder": {
+        "issues": [],
+        "rejected": [],
+        "survivingHazardCount": 1,
+        "surviving": [
+          "walking_working_surfaces/ACTIVE"
+        ]
+      },
+      "stage5_finalOutcome": "INSUFFICIENT_EVIDENCE",
+      "finalHazards": []
+    },
+    {
+      "id": "D02",
+      "defect": "CONTROLLED refused despite isolation language",
+      "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+      "expected": "NOT ACTIVE -- CONTROLLED or equivalent, surviving the binder",
+      "stage1_rawProposal": {
+        "outcome": "ANALYZED",
+        "candidates": [
+          {
+            "key": "loto_stored_energy-1",
+            "family": "loto_stored_energy",
+            "state": "CONTROLLED",
+            "evidence": [
+              {
+                "quote": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+                "span": [
+                  0,
+                  160
+                ]
+              }
+            ],
+            "conditionRationale": "The observation describes a controlled lockout/tagout procedure where the line was shut down, the main disconnect was locked out with personal locks, and voltage was verified absent at the load side. This indicates that stored energy hazards were properly controlled.",
+            "independentHazardRationale": "This represents a single, complete hazard control scenario involving electrical energy isolation and verification, which is distinct from other potential hazards like machine guarding or fall protection that would require separate observations to establish their presence or absence in this context. The LOTO procedure described directly addresses stored energy hazards specifically related to electrical systems, making it an independent hazard category from others such as walking/working surfaces or lifting rigging that would be addressed separately if present in the same work environment but not mentioned here.",
+            "clarification": null
+          }
+        ]
+      },
+      "stage2_mechanicalBinding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "stage3_deterministicValidator": {
+        "state": "VALID",
+        "issues": [],
+        "validatedHazardCount": 1
+      },
+      "stage4_semanticBinder": {
+        "issues": [
+          {
+            "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+            "candidateKey": "loto_stored_energy-1",
+            "detail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it"
+          }
+        ],
+        "rejected": [
+          {
+            "candidateKey": "loto_stored_energy-1",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "survivingHazardCount": 0,
+        "surviving": []
+      },
+      "stage5_finalOutcome": "NO_HAZARD_ESTABLISHED",
+      "finalHazards": []
+    },
+    {
+      "id": "A10",
+      "defect": "negation flagged on a sibling clause",
+      "text": "The welding bay had no local exhaust ventilation in use during stainless welding, and separately the exit door at the north end of the same bay was blocked by a stack of gas cylinders.",
+      "expected": "TWO independent ACTIVE hazards, neither dropped",
+      "stage1_rawProposal": {
+        "outcome": "ANALYZED",
+        "candidates": [
+          {
+            "key": "rootcause:A10-1",
+            "family": "welding_cutting_hot_work",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "The welding bay had no local exhaust ventilation in use during stainless welding",
+                "span": [
+                  0,
+                  80
+                ]
+              }
+            ],
+            "conditionRationale": "The observation states that local exhaust ventilation was not in use during stainless welding, which is a required control for managing fumes and vapors. This absence constitutes an active hazard.",
+            "independentHazardRationale": "This represents a distinct safety issue from the blocked exit door - it concerns the adequacy of respiratory protection measures during welding operations, which is a separate hazard category from egress obstruction.",
+            "clarification": null
+          },
+          {
+            "key": "rootcause:A10-2",
+            "family": "emergency_egress",
+            "state": "ACTIVE",
+            "evidence": [
+              {
+                "quote": "the exit door at the north end of the same bay was blocked by a stack of gas cylinders",
+                "span": [
+                  97,
+                  183
+                ]
+              }
+            ],
+            "conditionRationale": "The observation states that the exit door was blocked by gas cylinders, which prevents safe evacuation from the area. This is an active hazard because the emergency egress path is obstructed.",
+            "independentHazardRationale": "This represents a separate safety issue from the lack of ventilation - it concerns the ability to evacuate safely from the workspace, which is a distinct hazard category from respiratory protection during welding.",
+            "clarification": null
+          }
+        ]
+      },
+      "stage2_mechanicalBinding": {
+        "total": 2,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "stage3_deterministicValidator": {
+        "state": "VALID",
+        "issues": [],
+        "validatedHazardCount": 2
+      },
+      "stage4_semanticBinder": {
+        "issues": [
+          {
+            "code": "SEMANTIC_NEGATION_UNADDRESSED",
+            "candidateKey": "rootcause:A10-2",
+            "detail": "'no' governs the clause containing the cited span but appears neither in the span nor in the rationale"
+          }
+        ],
+        "rejected": [
+          {
+            "candidateKey": "rootcause:A10-2",
+            "codes": [
+              "SEMANTIC_NEGATION_UNADDRESSED"
+            ]
+          }
+        ],
+        "survivingHazardCount": 1,
+        "surviving": [
+          "welding_cutting_hot_work/ACTIVE"
+        ]
+      },
+      "stage5_finalOutcome": "VALIDATED",
+      "finalHazards": [
+        "welding_cutting_hot_work/ACTIVE"
+      ]
+    }
+  ]
+}

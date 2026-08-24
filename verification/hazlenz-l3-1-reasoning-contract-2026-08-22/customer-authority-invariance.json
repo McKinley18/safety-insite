@@ -1,0 +1,24 @@
+{
+ "method": "volatility derived empirically from two runs of identical post-L3-1 code, then before/after compared excluding only those paths (KG-4B/KG-4E precedent)",
+ "scenariosCompared": 66,
+ "empiricallyVolatilePaths": [
+  ".generatedActions[0].dueDate",
+  ".generatedActions[0].originalSuggestion.riskReasoning.riskReasoningId",
+  ".generatedActions[0].reportId",
+  ".intelligenceMetadata.generatedAt",
+  ".lcq.candidateId",
+  ".reasoningSnapshotId",
+  ".riskReasoning.riskReasoningId"
+ ],
+ "volatileFieldRoles": [
+  "candidateId",
+  "dueDate",
+  "generatedAt",
+  "reasoningSnapshotId",
+  "reportId",
+  "riskReasoningId"
+ ],
+ "scenariosWithNonVolatileDifference": 0,
+ "differences": {},
+ "verdict": "CUSTOMER_AUTHORITY_UNCHANGED"
+}

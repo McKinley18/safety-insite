@@ -1,0 +1,92 @@
+{
+  "stage": "L3-2e OLD vs NEW CHECK BEHAVIOUR",
+  "generatedAt": "2026-08-23T00:44:32.068Z",
+  "stateRows": [
+    {
+      "id": "E-FLD-147",
+      "kind": "stateSupport/CONTROLLED",
+      "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+      "shouldSupport": false,
+      "oldSupports": false,
+      "newSupports": false,
+      "changedByL32e": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "E-CS-01",
+      "kind": "stateSupport/CORRECTED",
+      "text": "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift.",
+      "shouldSupport": true,
+      "oldSupports": true,
+      "newSupports": false,
+      "changedByL32e": true,
+      "verdict": "REGRESSED_BY_L3_2E"
+    },
+    {
+      "id": "PAIR/CORRECTED-predicate",
+      "kind": "stateSupport/CORRECTED",
+      "text": "The cracked socket outlet at the bench was replaced with a new one before the end of the shift.",
+      "shouldSupport": true,
+      "oldSupports": true,
+      "newSupports": true,
+      "changedByL32e": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "PAIR/CONTROLLED-real",
+      "kind": "stateSupport/CONTROLLED",
+      "text": "A double guardrail with toeboard was in place along the open edge and was fixed at every standard.",
+      "shouldSupport": true,
+      "oldSupports": true,
+      "newSupports": true,
+      "changedByL32e": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    }
+  ],
+  "negRows": [
+    {
+      "id": "E-FAM-04",
+      "text": "Operators are working a full shift beside the pneumatic hammer in the fettling bay with no hearing protection issued and no signage at the entrance.",
+      "shouldFire": false,
+      "oldFires": true,
+      "newFires": true,
+      "negatedHead": "issued",
+      "matchedObject": "issue",
+      "changedByL32e": false,
+      "verdict": "UNCHANGED_PRE_EXISTING_GAP"
+    },
+    {
+      "id": "DISC-03/labels",
+      "text": "A plastic jug of solvent is stored on the open shelf without hazard warning labels of any kind.",
+      "shouldFire": false,
+      "oldFires": true,
+      "newFires": false,
+      "negatedHead": null,
+      "matchedObject": null,
+      "changedByL32e": true,
+      "verdict": "IMPROVED_BY_L3_2E"
+    },
+    {
+      "id": "PAIR/negated-hazard",
+      "text": "The inspection of the switch room found no damage and no exposed conductors anywhere on the panels.",
+      "shouldFire": true,
+      "oldFires": true,
+      "newFires": true,
+      "negatedHead": "damage",
+      "matchedObject": "damage",
+      "changedByL32e": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "PAIR/no-deficiencies",
+      "text": "The audit recorded no deficiencies against the storage standard.",
+      "shouldFire": true,
+      "oldFires": true,
+      "newFires": false,
+      "negatedHead": null,
+      "matchedObject": null,
+      "changedByL32e": true,
+      "verdict": "REGRESSED_BY_L3_2E"
+    }
+  ]
+}

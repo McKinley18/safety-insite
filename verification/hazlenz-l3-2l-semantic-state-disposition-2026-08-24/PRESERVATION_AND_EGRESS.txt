@@ -1,0 +1,83 @@
+L3-2l -- PRESERVATION AND EGRESS
+recorded 2026-08-24T14:49:05Z
+
+== git ==
+HEAD    : 1feda622dbb93d7e05d156838ab37db3e21db507
+branch  : release/insite-rc-2026-08-18
+upstream: origin/release/insite-rc-2026-08-18  divergence(behind/ahead): 0/0
+worktree porcelain entries: 79
+  -- added by THIS phase: 1 (this evidence directory). No script, no production file.
+tags: 23  -- TAG OBJECTS, section 38.8 method
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  checkpoint-pre-ui-consolidation-20260528-172809
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  checkpoint-pre-ui-consolidation-f699d98
+  176d1ec93702517a4c9e31dc7d95a6c67888efc9  checkpoint/pre-modularization-theme-consolidation-20260528-195809
+  e9f248b722c5b63cbaee0c1cfff493e50fc7b1ab  checkpoint/shared-ui-primitives-auth-settings-complete-20260528
+  3c9bae76217ccad8f71d375c70678f8f9862251e  checkpoint/shared-ui-primitives-low-risk-pages-20260528
+  02fb824815e8149d500de68b206f6ac19e0735f3  insite-hazlenz-verified-baseline-2026-08-19
+  b25103b0534098cbdde967dc77c85b56a2bcf050  insite-inspection-ui-verified-2026-08-19
+  7bf58ec6a152061631017262b9aba2497ece035c  insite-visual-acceptance-verified-2026-08-19
+  73aadbc49e49cedf037d877417199b94cb34ebac  local-expanded-scoped-knowledge-regressions-20260527
+  3b67a52482522877e6b5ae30e2425207a2493224  local-msha-scoped-knowledge-retrieval-20260527
+  06d2048b1a20efe00f66959e9f4f7fe645fc681c  local-safescope-knowledge-scoring-checkpoint-20260527
+  66a47e0e42f8e37babbbe495e449d160c29392c7  production-standards-engine-live
+  f984922db3e50347f28f720fa730ac74e18abfc7  release-critical-standards-coverage-local
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  safescope-ai-upgrade-prework-20260528-173000
+  6d8a796242159e583b654d2bbc36aa0a334883c8  safescope-brain-green-2026-06-01
+  29efa94247abdbe756e9ceb5f248712e59ef96d0  safescope-production-classify-working-20260524
+  9da6c5214f0fef7939a83d1abff3eed7e3ae3a37  safescope-report-workflow-live
+  05aafadc042eb3ba4b89ae040fd49b0e9ff74e04  safescope-understanding-precision-green-001
+  2c997e30cb3f2fe2b58e562d40938cc62ae719b4  safescope-v2-standards-ui-live
+  8a9e6439f0434b559d7658f9750577c750e1a51f  safety-insite-cleanup-2026-06-17
+  6b2cd84d977633d6ea5112c0aa536077c2b72c2c  theme-overhaul-before-reset-verified
+  41b1078ec7875b92e9768a42c2db6bd950740b93  v1-backend-stable
+  eb8c664352dd036255ae41c2d43feaae18790403  v1.0-condition-engine-verified
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== SHIPPED PROMPT AND SCHEMA -- NEVER TOUCHED BY THIS PHASE ==
+  promptVersion: hazlenz.l3.prompt.v6
+  reasoning-prompt.ts sha256    : 426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5
+  (L3-2k PRESERVATION_POST recorded 426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5)
+
+== ALL 19 reasoning-l3 MODULES ==
+  b3a1160357f89cb9a71c2968b0a42e9b57af5dd97a045a1b9f1031561210b12d  backend/src/safescope-v2/reasoning-l3/control-adequacy.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  c7feec5ce601b44c6396756c6840c7d4460e12ebecb91de10d99489a1f3388bc  backend/src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider.ts
+  7a5b6270dc5c6728d5b003bfb472bf175798e6ea6c671e6b80b7e2d6e0e4bc6c  backend/src/safescope-v2/reasoning-l3/impression-scope.ts
+  72f47bb4267e83a0cd8434025c89c23b0e4f191375e91b3af2709aeee0784956  backend/src/safescope-v2/reasoning-l3/negation-scope.ts
+  ec69582ee6a2bcf4d52c8d78e63ab8ad37dff9bc7fce12d408e45a8c0e051af1  backend/src/safescope-v2/reasoning-l3/observation-availability.ts
+  cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+  2c6ab7a434b6772c0014093142728b62b622bde6d7379706ee7b8eaa1902b8d5  backend/src/safescope-v2/reasoning-l3/predicate-role.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+  4339b96a3b1a546c56bce2456ca26034a8860135ff8f498f8c725f48a4d0797b  backend/src/safescope-v2/reasoning-l3/reasoning-outcome.ts
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  63c32d64de66239c8d29e4ef08748500e658310434634222338cccd750405a8e  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  2098ac936267c2a0badd8ab26017f03c2204bd77e0d249f60fae0d53c159cbc7  backend/src/safescope-v2/reasoning-l3/state-facts.ts
+  0cb98e9faca3c18f2d9776f16625a8eb42fb26f709fcab2e423d01b5a64ddc22  backend/src/safescope-v2/reasoning-l3/unavailable-reasoning-provider.ts
+  aaf3a1777b15db58da41275363e9e737ae0bf283cf38135172d818fe99969fd4  backend/src/safescope-v2/reasoning-l3/validated-reasoning.types.ts
+  2f3ded72ef8630122facf98452d94ff5df2308219d204059090dbd8d51bf11fb  backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+  0bf96758887aa2db24841b71f12863e6ff5749305b382c27961bffa35e305ed2  backend/src/safescope-v2/reasoning-l3/word-classes.ts
+
+== SEALED ACCEPTANCE CORPUS -- HASH-VERIFIED, NOT OPENED ==
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  matches L3-2k PRESERVATION_POST lines 63-65: YES
+
+== EGRESS ==
+  local inference calls (127.0.0.1:11434) : 0
+  hosted inference calls                  : 0
+  metadata / auth calls                   : 0
+  scenario ids transmitted                : NONE
+  destinations contacted                  : NONE
+  customer or production data touched     : NONE
+  sealed-corpus content read              : NONE (hash only)
+  credential read or referenced           : NONE
+  This phase ran ZERO model inference. It is a read-only analysis over already-open artifacts
+  plus the offline deterministic suites.

@@ -1,0 +1,561 @@
+{
+  "phase": "L3-2g",
+  "role": "FACT_LEVEL_COHERENCE_AND_CORRECTNESS_FOR_QUESTION_C",
+  "generatedAt": "2026-08-24T00:12:39.378Z",
+  "checks": [
+    {
+      "id": "DENIED_AND_ASSERTED",
+      "why": "the same condition cannot be both explicitly denied and asserted as fact"
+    },
+    {
+      "id": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing"
+    },
+    {
+      "id": "ASSERTED_WITHOUT_QUOTE",
+      "why": "hazardAsserted is true but no span was supplied to carry it"
+    },
+    {
+      "id": "MISSING_WITHOUT_FACT",
+      "why": "decisionCriticalFactMissing is true but the missing fact was not named"
+    },
+    {
+      "id": "CONTROL_CLAIMED_WITHOUT_QUOTE",
+      "why": "a specific control reading was asserted with no span describing any control"
+    },
+    {
+      "id": "CORRECTED_AND_ABSENT_CONTROL",
+      "why": "the hazard is said to have been put right while a required control is said to be absent"
+    }
+  ],
+  "expectedControlReadings": {
+    "E-FLD-147": {
+      "expect": [
+        "WARNS_ONLY"
+      ],
+      "why": "standard warning tape marks the opening; it prevents no contact"
+    },
+    "F-WC-02": {
+      "expect": [
+        "WARNS_ONLY"
+      ],
+      "why": "a DANGER sign fixed to a post beside an open pit is a warning"
+    },
+    "F-WC-03": {
+      "expect": [
+        "WARNS_ONLY"
+      ],
+      "why": "a morning briefing and an instruction to step around it are administrative"
+    },
+    "F-WC-09": {
+      "expect": [
+        "DEFEATED"
+      ],
+      "why": "the two-hand control has been strapped down with tape"
+    },
+    "E-OA-07": {
+      "expect": [
+        "ABSENT"
+      ],
+      "why": "\"unsupported roof\" states the required support is absent"
+    },
+    "F-COR-01": {
+      "expect": [
+        "PREVENTS_CONTACT"
+      ],
+      "why": "a proper blanking plate was fitted"
+    }
+  },
+  "byVariant": {
+    "V_S_STRUCT": {
+      "candidates": 28,
+      "incoherent": 2,
+      "byCheck": {
+        "CONDITIONAL_AND_ASSERTED": 1,
+        "CORRECTED_AND_ABSENT_CONTROL": 1
+      },
+      "controlScored": 6,
+      "controlCorrect": 5,
+      "incoherencePct": 7.1,
+      "controlAccuracy": "5/6"
+    },
+    "V_S_STRUCT_MOVE1": {
+      "candidates": 25,
+      "incoherent": 3,
+      "byCheck": {
+        "CONDITIONAL_AND_ASSERTED": 2,
+        "CORRECTED_AND_ABSENT_CONTROL": 1
+      },
+      "controlScored": 6,
+      "controlCorrect": 6,
+      "incoherencePct": 12,
+      "controlAccuracy": "6/6"
+    },
+    "V_S_STRUCT_REPEAT": {
+      "candidates": 58,
+      "incoherent": 4,
+      "byCheck": {
+        "CONDITIONAL_AND_ASSERTED": 2,
+        "CORRECTED_AND_ABSENT_CONTROL": 2
+      },
+      "controlScored": 12,
+      "controlCorrect": 11,
+      "incoherencePct": 6.9,
+      "controlAccuracy": "11/12"
+    }
+  },
+  "incoherenceRows": [
+    {
+      "scenarioId": "F-CL-03",
+      "variant": "V_S_STRUCT",
+      "check": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "One of the chain slings on the rack might be stretched",
+        "controlReading": "ABSENT",
+        "controlQuote": null,
+        "framing": "CONDITIONAL",
+        "disposition": "NONE",
+        "decisionCriticalFactMissing": true,
+        "missingFact": "Whether the chain sling is actually stretched or not",
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "variant": "V_S_STRUCT_MOVE1",
+      "check": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "One of the chain slings on the rack might be stretched",
+        "controlReading": "NOT_STATED",
+        "controlQuote": null,
+        "framing": "CONDITIONAL",
+        "disposition": "NONE",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "variant": "V_S_STRUCT_REPEAT",
+      "check": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "One of the chain slings on the rack might be stretched",
+        "controlReading": "ABSENT",
+        "controlQuote": null,
+        "framing": "CONDITIONAL",
+        "disposition": "NONE",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "variant": "V_S_STRUCT_MOVE1",
+      "check": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket",
+        "controlReading": "NOT_STATED",
+        "controlQuote": null,
+        "framing": "CONDITIONAL",
+        "disposition": "NONE",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "variant": "V_S_STRUCT",
+      "check": "CORRECTED_AND_ABSENT_CONTROL",
+      "why": "the hazard is said to have been put right while a required control is said to be absent",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "The frayed lifting sling was cut from the crane hook at the start of the shift",
+        "controlReading": "ABSENT",
+        "controlQuote": "null",
+        "framing": "ACTUAL",
+        "disposition": "CORRECTED",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "variant": "V_S_STRUCT_MOVE1",
+      "check": "CORRECTED_AND_ABSENT_CONTROL",
+      "why": "the hazard is said to have been put right while a required control is said to be absent",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "The frayed lifting sling was cut from the crane hook",
+        "controlReading": "ABSENT",
+        "controlQuote": "no guardrail, safety net or personal fall arrest system in use",
+        "framing": "ACTUAL",
+        "disposition": "CORRECTED",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "variant": "V_S_STRUCT_REPEAT",
+      "check": "CORRECTED_AND_ABSENT_CONTROL",
+      "why": "the hazard is said to have been put right while a required control is said to be absent",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "The frayed lifting sling was cut from the crane hook at the start of the shift",
+        "controlReading": "ABSENT",
+        "controlQuote": null,
+        "framing": "ACTUAL",
+        "disposition": "CORRECTED",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "variant": "V_S_STRUCT_REPEAT",
+      "check": "CONDITIONAL_AND_ASSERTED",
+      "why": "a purely contingent framing cannot also assert the condition as presently existing",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "One of the chain slings on the rack might be stretched",
+        "controlReading": "ABSENT",
+        "controlQuote": null,
+        "framing": "CONDITIONAL",
+        "disposition": "NONE",
+        "decisionCriticalFactMissing": true,
+        "missingFact": "Whether the chain sling is actually stretched or not",
+        "hazardExplicitlyDenied": false
+      }
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "variant": "V_S_STRUCT_REPEAT",
+      "check": "CORRECTED_AND_ABSENT_CONTROL",
+      "why": "the hazard is said to have been put right while a required control is said to be absent",
+      "facts": {
+        "hazardAsserted": true,
+        "hazardAssertionQuote": "The frayed lifting sling was cut from the crane hook at the start of the shift",
+        "controlReading": "ABSENT",
+        "controlQuote": "null",
+        "framing": "ACTUAL",
+        "disposition": "CORRECTED",
+        "decisionCriticalFactMissing": false,
+        "missingFact": null,
+        "hazardExplicitlyDenied": false
+      }
+    }
+  ],
+  "controlRows": [
+    {
+      "scenarioId": "E-FLD-147",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "standard warning tape marks the opening; it prevents no contact"
+    },
+    {
+      "scenarioId": "E-FLD-147",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "standard warning tape marks the opening; it prevents no contact"
+    },
+    {
+      "scenarioId": "E-FLD-147",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "standard warning tape marks the opening; it prevents no contact"
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "ABSENT"
+      ],
+      "got": [
+        "ABSENT",
+        "ABSENT",
+        "ABSENT"
+      ],
+      "correct": true,
+      "why": "\"unsupported roof\" states the required support is absent"
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "ABSENT"
+      ],
+      "got": [
+        "ABSENT"
+      ],
+      "correct": true,
+      "why": "\"unsupported roof\" states the required support is absent"
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "ABSENT"
+      ],
+      "got": [
+        "ABSENT",
+        "ABSENT",
+        "ABSENT"
+      ],
+      "correct": true,
+      "why": "\"unsupported roof\" states the required support is absent"
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "ABSENT"
+      ],
+      "correct": false,
+      "why": "a DANGER sign fixed to a post beside an open pit is a warning"
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a DANGER sign fixed to a post beside an open pit is a warning"
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a DANGER sign fixed to a post beside an open pit is a warning"
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a morning briefing and an instruction to step around it are administrative"
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a morning briefing and an instruction to step around it are administrative"
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a morning briefing and an instruction to step around it are administrative"
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "DEFEATED"
+      ],
+      "got": [
+        "DEFEATED",
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "the two-hand control has been strapped down with tape"
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "DEFEATED"
+      ],
+      "got": [
+        "DEFEATED"
+      ],
+      "correct": true,
+      "why": "the two-hand control has been strapped down with tape"
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "DEFEATED"
+      ],
+      "got": [
+        "DEFEATED",
+        "PREVENTS_CONTACT"
+      ],
+      "correct": true,
+      "why": "the two-hand control has been strapped down with tape"
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "variant": "V_S_STRUCT",
+      "expected": [
+        "PREVENTS_CONTACT"
+      ],
+      "got": [
+        "PREVENTS_CONTACT"
+      ],
+      "correct": true,
+      "why": "a proper blanking plate was fitted"
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "variant": "V_S_STRUCT_MOVE1",
+      "expected": [
+        "PREVENTS_CONTACT"
+      ],
+      "got": [
+        "PREVENTS_CONTACT"
+      ],
+      "correct": true,
+      "why": "a proper blanking plate was fitted"
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "PREVENTS_CONTACT"
+      ],
+      "got": [
+        "PREVENTS_CONTACT"
+      ],
+      "correct": true,
+      "why": "a proper blanking plate was fitted"
+    },
+    {
+      "scenarioId": "E-FLD-147",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "standard warning tape marks the opening; it prevents no contact"
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "ABSENT"
+      ],
+      "got": [
+        "ABSENT",
+        "ABSENT",
+        "ABSENT"
+      ],
+      "correct": true,
+      "why": "\"unsupported roof\" states the required support is absent"
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "ABSENT"
+      ],
+      "correct": false,
+      "why": "a DANGER sign fixed to a post beside an open pit is a warning"
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "WARNS_ONLY"
+      ],
+      "got": [
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "a morning briefing and an instruction to step around it are administrative"
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "DEFEATED"
+      ],
+      "got": [
+        "DEFEATED",
+        "WARNS_ONLY"
+      ],
+      "correct": true,
+      "why": "the two-hand control has been strapped down with tape"
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expected": [
+        "PREVENTS_CONTACT"
+      ],
+      "got": [
+        "PREVENTS_CONTACT"
+      ],
+      "correct": true,
+      "why": "a proper blanking plate was fitted"
+    }
+  ]
+}

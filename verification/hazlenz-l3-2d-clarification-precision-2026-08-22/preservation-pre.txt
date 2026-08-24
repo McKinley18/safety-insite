@@ -1,0 +1,46 @@
+=== L3-2d PRESERVATION SNAPSHOT 2026-08-22T23:08:03Z ===
+HEAD: 1feda622dbb93d7e05d156838ab37db3e21db507
+BRANCH: release/insite-rc-2026-08-18
+UPSTREAM: 1feda622dbb93d7e05d156838ab37db3e21db507
+DIVERGENCE(behind ahead): 0	0
+--- MODIFIED FILE HASHES ---
+b9406b442949040d33f483715ed92ebd71115432e3c120d0a70545bc72741d36  backend/package.json
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  backend/scripts/test-private-storage-reports.ts
+b1cca8c7a76e8a4a5bf45420c912c3eeaddf083bd2003573d87babcc8be66040  docs/INSITE_CURRENT_STATE.json
+f445b06a69957cf3e8d8fbbbb7813f6e99c2c2f17b946f639cba47126fd314c9  docs/INSITE_ENGINEERING_BLUEPRINT.md
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  frontend-next/lib/planEntitlements.ts
+--- STASHES ---
+stash@{0} b7ee2d048e63689c18f6ca39d4fcf2d76190391a On main: hold corrective action routing patch
+stash@{1} df9bc6e00fa0db87ac9d36d023737c195ff3f731 On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2} 9141dc76fd09901de889c7a8944ae2b411913d5a On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3} b128c1975d630d8f2aa2f80da321ec592c5ac2b9 On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+--- TAGS ---
+count: 23
+checkpoint-pre-ui-consolidation-20260528-172809 -> f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint-pre-ui-consolidation-f699d98 -> f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint/pre-modularization-theme-consolidation-20260528-195809 -> 176d1ec93702517a4c9e31dc7d95a6c67888efc9
+checkpoint/shared-ui-primitives-auth-settings-complete-20260528 -> e9f248b722c5b63cbaee0c1cfff493e50fc7b1ab
+checkpoint/shared-ui-primitives-low-risk-pages-20260528 -> 3c9bae76217ccad8f71d375c70678f8f9862251e
+insite-hazlenz-verified-baseline-2026-08-19 -> e9f968f76367b6ae4229c569408778d616ebbe94
+insite-inspection-ui-verified-2026-08-19 -> 4c7a501d361f4e5f340ae58af6976303452fc2a5
+insite-visual-acceptance-verified-2026-08-19 -> 5f050858227ca11cf90d2f6bf64148e70a018b64
+local-expanded-scoped-knowledge-regressions-20260527 -> 73aadbc49e49cedf037d877417199b94cb34ebac
+local-msha-scoped-knowledge-retrieval-20260527 -> 3b67a52482522877e6b5ae30e2425207a2493224
+local-safescope-knowledge-scoring-checkpoint-20260527 -> 06d2048b1a20efe00f66959e9f4f7fe645fc681c
+production-standards-engine-live -> 66a47e0e42f8e37babbbe495e449d160c29392c7
+release-critical-standards-coverage-local -> f984922db3e50347f28f720fa730ac74e18abfc7
+safescope-ai-upgrade-prework-20260528-173000 -> f699d9859bb9e24919ed6cecabbb7027bf517d62
+safescope-brain-green-2026-06-01 -> 6d8a796242159e583b654d2bbc36aa0a334883c8
+safescope-production-classify-working-20260524 -> 29efa94247abdbe756e9ceb5f248712e59ef96d0
+safescope-report-workflow-live -> 9da6c5214f0fef7939a83d1abff3eed7e3ae3a37
+safescope-understanding-precision-green-001 -> 05aafadc042eb3ba4b89ae040fd49b0e9ff74e04
+safescope-v2-standards-ui-live -> 2c997e30cb3f2fe2b58e562d40938cc62ae719b4
+safety-insite-cleanup-2026-06-17 -> 8a9e6439f0434b559d7658f9750577c750e1a51f
+theme-overhaul-before-reset-verified -> 6b2cd84d977633d6ea5112c0aa536077c2b72c2c
+v1-backend-stable -> d0d79642b0d5d40b22af990a85e12bc632f81c78
+v1.0-condition-engine-verified -> eb8c664352dd036255ae41c2d43feaae18790403

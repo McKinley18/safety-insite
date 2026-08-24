@@ -1,0 +1,198 @@
+{
+  "stage": "PRE_PATCH",
+  "generatedAt": "2026-08-22T22:33:34.871Z",
+  "records": [
+    {
+      "id": "H-AM-01",
+      "expectClarification": true,
+      "text": "The overhead door track struck me as odd when I walked underneath it.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [
+        {
+          "key": "walking_working_surfaces",
+          "family": "walking_working_surfaces",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific nature of the condition that 'struck me as odd' about the overhead door track",
+            "affectedDecision": "risk",
+            "branches": [
+              "ACTIVE - if the odd condition represents a physical hazard such as structural instability or obstruction",
+              "INSUFFICIENT_EVIDENCE - if the oddness is merely subjective perception without physical evidence of danger",
+              "NO_HAZARD_ESTABLISHED - if the oddness does not represent a safety concern"
+            ],
+            "question": "What specific physical condition or hazard was present in the overhead door track that caused it to 'strike me as odd'?"
+          }
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "walking_working_surfaces",
+          "family": "walking_working_surfaces",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific nature of the condition that 'struck me as odd' about the overhead door track",
+            "affectedDecision": "risk",
+            "branches": [
+              "ACTIVE - if the odd condition represents a physical hazard such as structural instability or obstruction",
+              "INSUFFICIENT_EVIDENCE - if the oddness is merely subjective perception without physical evidence of danger",
+              "NO_HAZARD_ESTABLISHED - if the oddness does not represent a safety concern"
+            ],
+            "question": "What specific physical condition or hazard was present in the overhead door track that caused it to 'strike me as odd'?"
+          }
+        }
+      ],
+      "clarificationRaisedPre": true,
+      "clarificationRaisedShipped": true,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY"
+        }
+      ]
+    },
+    {
+      "id": "H-AM-02",
+      "expectClarification": true,
+      "text": "One of the sling legs on the spreader bar may be cut.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [
+        {
+          "key": "sling_leg_cut",
+          "family": "lifting_rigging",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The actual physical condition of the sling leg",
+            "affectedDecision": "risk",
+            "branches": [
+              "ACTIVE - if the sling leg is cut, it represents an active hazard",
+              "NO_HAZARD_ESTABLISHED - if the sling leg is not cut, no hazard exists"
+            ],
+            "question": "Is the sling leg actually cut or not?"
+          }
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "sling_leg_cut",
+          "family": "lifting_rigging",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The actual physical condition of the sling leg",
+            "affectedDecision": "risk",
+            "branches": [
+              "ACTIVE - if the sling leg is cut, it represents an active hazard",
+              "NO_HAZARD_ESTABLISHED - if the sling leg is not cut, no hazard exists"
+            ],
+            "question": "Is the sling leg actually cut or not?"
+          }
+        }
+      ],
+      "clarificationRaisedPre": true,
+      "clarificationRaisedShipped": true,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    },
+    {
+      "id": "H-AM-03",
+      "expectClarification": true,
+      "text": "There was a puddle of something under the parts washer and I could not tell what it was or where it came from.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [
+        {
+          "key": "chemical_storage",
+          "family": "chemical_storage",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific type of liquid in the puddle and its source",
+            "affectedDecision": "hazard_identity",
+            "branches": [
+              "chemical_storage",
+              "walking_working_surfaces",
+              "material_handling"
+            ],
+            "question": "What is the substance in the puddle and where did it originate?"
+          }
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "chemical_storage",
+          "family": "chemical_storage",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific type of liquid in the puddle and its source",
+            "affectedDecision": "hazard_identity",
+            "branches": [
+              "chemical_storage",
+              "walking_working_surfaces",
+              "material_handling"
+            ],
+            "question": "What is the substance in the puddle and where did it originate?"
+          }
+        }
+      ],
+      "clarificationRaisedPre": true,
+      "clarificationRaisedShipped": true,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY"
+        }
+      ]
+    },
+    {
+      "id": "H-AM-06-control",
+      "expectClarification": false,
+      "text": "The guard on the drill press is missing; I am not certain whether it was taken off this morning or last week.",
+      "outcomeKind": "VALIDATED",
+      "preSemanticCandidates": [
+        {
+          "key": "machine_guarding-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "machine_guarding-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    },
+    {
+      "id": "H-EV-02-control",
+      "expectClarification": false,
+      "text": "The bottom guard on the compound mitre saw does not return over the blade when the arm is raised.",
+      "outcomeKind": "VALIDATED",
+      "preSemanticCandidates": [
+        {
+          "key": "machine_guarding-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "machine_guarding-1",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    }
+  ]
+}

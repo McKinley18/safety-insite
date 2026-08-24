@@ -1,0 +1,54 @@
+=== L3-2c FINAL STATE — REPOSITORY PRESERVATION 2026-08-22T23:04:47Z ===
+
+TERMINAL STATE: L3_2C_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED
+AUTHORITY:      CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+
+-- HEAD / branch / upstream --
+HEAD:      1feda622dbb93d7e05d156838ab37db3e21db507      (expected 1feda622dbb93d7e05d156838ab37db3e21db507)
+BRANCH:    release/insite-rc-2026-08-18
+UPSTREAM:  1feda622dbb93d7e05d156838ab37db3e21db507
+DIVERGENCE (behind ahead): 0	0
+
+-- PROTECTED UNCOMMITTED WORK: hashes now vs the snapshot taken before any mutation --
+FILE                                                     STATUS    NOTE
+backend/scripts/test-canonical-workflow.ts               IDENTICAL byte-for-byte preserved
+backend/scripts/test-private-storage-reports.ts          IDENTICAL byte-for-byte preserved
+frontend-next/app/inspection-workspace/page.tsx          IDENTICAL byte-for-byte preserved
+frontend-next/app/inspections/page.tsx                   IDENTICAL byte-for-byte preserved
+frontend-next/lib/auth.ts                                IDENTICAL byte-for-byte preserved
+frontend-next/lib/canonicalWorkflowApi.ts                IDENTICAL byte-for-byte preserved
+frontend-next/lib/planEntitlements.ts                    IDENTICAL byte-for-byte preserved
+backend/package.json                                     CHANGED   intended by this phase
+docs/INSITE_CURRENT_STATE.json                           CHANGED   intended by this phase
+docs/INSITE_ENGINEERING_BLUEPRINT.md                     CHANGED   intended by this phase
+
+-- STASHES: identities unchanged --
+stash@{0} b7ee2d048e63689c18f6ca39d4fcf2d76190391a On main: hold corrective action routing patch
+stash@{1} df9bc6e00fa0db87ac9d36d023737c195ff3f731 On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2} 9141dc76fd09901de889c7a8944ae2b411913d5a On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3} b128c1975d630d8f2aa2f80da321ec592c5ac2b9 On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+-- TAGS: count unchanged, none created or moved --
+tags now: 23
+
+-- PRIOR-PHASE EVIDENCE: L3-1 / L3-2 / L3-2b / architecture artifact hashes --
+ALL 90 prior-phase evidence files IDENTICAL — no prior verdict rewritten or artifact altered
+
+-- FILES ADDED BY L3-2c --
+production source (1):
+  backend/src/safescope-v2/reasoning-l3/impression-scope.ts
+production source MODIFIED (4, all inside the unreachable reasoning-l3/ tree):
+  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts   (R1 gate polarity, R3 demotion)
+  backend/src/safescope-v2/reasoning-l3/negation-scope.ts              (R2 bare-conjunction scope)
+  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts            (R3 ladder placement)
+  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts            (R3 outcome coherence)
+eval set (1): backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+harness (6): build-l32c-holdout, score-l32c-reasoning, test-l32c-gate-polarity, prove-l32c-rootcause, prove-l32c-clarification, diff-l32c-gate-behaviour
+harness MODIFIED (1): run-l32-reasoning.ts (captures provenanceClass and semanticDemoted)
+docs: INSITE_ENGINEERING_BLUEPRINT.md section 33; INSITE_CURRENT_STATE.json l32cGatePolarity
+
+-- OPERATIONS NOT PERFORMED --
+  no commit, push, merge, rebase, reset, stash, checkout --, restore, clean, tag
+  no deploy, no production access, no production env var change, no release create/finalize/activate/rollback
+  no migration, no seed, no write to the safescope development database
+  no dependency added, removed or upgraded

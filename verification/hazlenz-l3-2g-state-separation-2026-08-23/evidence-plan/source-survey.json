@@ -1,0 +1,261 @@
+{
+  "phase": "L3-2g",
+  "role": "INDEPENDENT_EVIDENCE_SOURCE_SURVEY_NO_EVALUATION_PERFORMED",
+  "generatedAt": "2026-08-23T12:59:52.465Z",
+  "programmeStart": "2026-08-22 (L3-2)",
+  "openedCorpus": {
+    "ids": 750,
+    "texts": 538,
+    "files": 11
+  },
+  "candidates": [
+    {
+      "file": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json",
+      "present": true,
+      "sha256": "6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "mtime": "2026-06-16T03:34:20.878Z",
+      "predatesProgramme": true,
+      "rows": 117,
+      "rowsWithObservationText": 117,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 3,
+        "ambiguityish": 92,
+        "highConsequenceish": 36
+      }
+    },
+    {
+      "file": "safescope-data/field-test-scenarios/full-hazard-coverage-expansion-v1.json",
+      "present": true,
+      "sha256": "50e43fe4a069ec4cf9e5123bd02ff9e36dcca4ad535c4e79950d70001357ef62",
+      "mtime": "2026-06-11T12:10:00.645Z",
+      "predatesProgramme": true,
+      "rows": 30,
+      "rowsWithObservationText": 30,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 6
+      }
+    },
+    {
+      "file": "safescope-data/field-test-scenarios/generalization-unseen-scenarios-v1.json",
+      "present": true,
+      "sha256": "1d5ed902f745afe654ff0810b976b9d9fa6081ac04273d782243fb19d404da57",
+      "mtime": "2026-06-11T12:10:00.645Z",
+      "predatesProgramme": true,
+      "rows": 20,
+      "rowsWithObservationText": 20,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 1
+      }
+    },
+    {
+      "file": "safescope-data/field-test-scenarios/field-test-scenario-pack-v1.json",
+      "present": true,
+      "sha256": "61e2cbff08bf1f8e6509ad90657a9533b364879cfa4dfcd95cdfe8b981511f33",
+      "mtime": "2026-06-11T12:10:00.645Z",
+      "predatesProgramme": true,
+      "rows": 6,
+      "rowsWithObservationText": 0,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 0
+      }
+    },
+    {
+      "file": "safescope-data/field-test-scenarios/failure-mode-calibration-pack-v1.json",
+      "present": true,
+      "sha256": "281273782f9cce1d542dc5c7fa2c62edd4dd59241b331af62a1521f85f9fd869",
+      "mtime": "2026-06-11T12:10:00.644Z",
+      "predatesProgramme": true,
+      "rows": 20,
+      "rowsWithObservationText": 20,
+      "distinctFamilyLabels": 7,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 2
+      }
+    },
+    {
+      "file": "safescope-data/scenario-expansion/safescope-scenario-expansion-pack.v1.json",
+      "present": true,
+      "sha256": "cd721a471989285332713a08bcf4832c92bc976e678014cea9017426f20db952",
+      "mtime": "2026-06-11T12:10:00.650Z",
+      "predatesProgramme": true,
+      "rows": 60,
+      "rowsWithObservationText": 60,
+      "distinctFamilyLabels": 15,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 8
+      }
+    },
+    {
+      "file": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json",
+      "present": true,
+      "sha256": "a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "mtime": "2026-06-11T12:10:00.646Z",
+      "predatesProgramme": true,
+      "rows": 150,
+      "rowsWithObservationText": 150,
+      "distinctFamilyLabels": 21,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 46
+      }
+    },
+    {
+      "file": "safescope-data/gauntlets/safescope-gauntlet.seed.json",
+      "present": true,
+      "sha256": "49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe",
+      "mtime": "2026-06-11T12:10:00.646Z",
+      "predatesProgramme": true,
+      "rows": 100,
+      "rowsWithObservationText": 100,
+      "distinctFamilyLabels": 16,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 18
+      }
+    },
+    {
+      "file": "safescope-data/benchmarks/safescope-precision-batch-001.v1.json",
+      "present": true,
+      "sha256": "1594020bbe83c1800d79854ad46bc73391aefb333f43dcc1711ded5592bb8361",
+      "mtime": "2026-06-11T12:10:00.642Z",
+      "predatesProgramme": true,
+      "rows": 10,
+      "rowsWithObservationText": 10,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 2
+      }
+    },
+    {
+      "file": "safescope-data/benchmarks/safescope-precision-batch-002.v1.json",
+      "present": true,
+      "sha256": "e0d3a3a6bb39521f1009920615093d31397bc985db0ccaf03b3ebfa76940bea7",
+      "mtime": "2026-06-11T12:10:00.643Z",
+      "predatesProgramme": true,
+      "rows": 10,
+      "rowsWithObservationText": 10,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 3
+      }
+    },
+    {
+      "file": "safescope-data/benchmarks/safescope-precision-batch-003.v1.json",
+      "present": true,
+      "sha256": "0428d58c692174dc32749dcd629a7dc22ab6eb64d522c02cf8416ea570c7dff1",
+      "mtime": "2026-06-11T12:10:00.644Z",
+      "predatesProgramme": true,
+      "rows": 10,
+      "rowsWithObservationText": 10,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 0,
+        "highConsequenceish": 2
+      }
+    },
+    {
+      "file": "safescope-data/benchmarks/safescope-finding-audit.v1.json",
+      "present": true,
+      "sha256": "a1c3862141ae941afc4e527da9d7185895d8592379d6bd350d0a03de07375c37",
+      "mtime": "2026-06-11T12:10:00.632Z",
+      "predatesProgramme": true,
+      "rows": 50,
+      "rowsWithObservationText": 50,
+      "distinctFamilyLabels": 0,
+      "overlapWithOpened": {
+        "ids": 0,
+        "texts": 0
+      },
+      "complementSignals": {
+        "negativeControlish": 0,
+        "correctedStateish": 0,
+        "ambiguityish": 2,
+        "highConsequenceish": 10
+      }
+    }
+  ],
+  "eligible": [
+    "safescope-data/gauntlets/safescope-gauntlet.source.v1.json",
+    "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json",
+    "safescope-data/gauntlets/safescope-gauntlet.seed.json",
+    "safescope-data/benchmarks/safescope-finding-audit.v1.json",
+    "safescope-data/scenario-expansion/safescope-scenario-expansion-pack.v1.json"
+  ],
+  "recommended": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json"
+}

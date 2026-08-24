@@ -1,0 +1,59 @@
+L3-2j — PRESERVATION, AFTER
+recorded 2026-08-24T12:00:34Z
+
+== HEAD / branch / tags / stash — compare against preservation-pre.txt ==
+1feda622dbb93d7e05d156838ab37db3e21db507
+release/insite-rc-2026-08-18
+tags: 23
+stash entries: 4
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+committed : NO    pushed : NO    deployed : NO    stash operations : NONE
+
+== SEALED ACCEPTANCE CORPUS — re-verified AFTER the phase ==
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+expected (recorded pre, and by L3-2i):
+  49aa40fd... seed    a95e5480... source.v1    6f6897f1... field-realism-pack-v2
+The sealed corpus appears in ZERO artifacts of this phase and was seen by no provider.
+
+== LOCKED INSTRUMENT — byte-unchanged ==
+73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+e1008cc464b7588c1a51300976d81732cf66e080316efb8f6d73b6ef209c437f  backend/scripts/rederive-l32g-resolution.ts
+3a9f56dc597c226c905d807d197c88b7b04c8f9f4dc2c50315d187aab3cfb6d7  backend/scripts/prove-l32i-clarification-carrier.ts
+c21fa7de9656e8520828bf75c290a44732bec99597101ac18d4c510428346f83  backend/scripts/prove-l32g-binder-residual.ts
+a9d1fd8cdb764164efe40430462522e6e1f781f32dbb3ad53eabe7d936844268  backend/scripts/test-l32g-state-separation.ts
+
+== THE SHIPPED PROMPT — declared, measured, and PUT BACK ==
+426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+L3_SYSTEM_PROMPT sha256 (the string, not the file):
+  b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf   version hazlenz.l3.prompt.v6
+  byte-identical to v6 (b8cc50fc...): true
+
+== MODULES — after ==
+b3a1160357f89cb9a71c2968b0a42e9b57af5dd97a045a1b9f1031561210b12d  backend/src/safescope-v2/reasoning-l3/control-adequacy.ts
+942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+c7feec5ce601b44c6396756c6840c7d4460e12ebecb91de10d99489a1f3388bc  backend/src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider.ts
+7a5b6270dc5c6728d5b003bfb472bf175798e6ea6c671e6b80b7e2d6e0e4bc6c  backend/src/safescope-v2/reasoning-l3/impression-scope.ts
+72f47bb4267e83a0cd8434025c89c23b0e4f191375e91b3af2709aeee0784956  backend/src/safescope-v2/reasoning-l3/negation-scope.ts
+ec69582ee6a2bcf4d52c8d78e63ab8ad37dff9bc7fce12d408e45a8c0e051af1  backend/src/safescope-v2/reasoning-l3/observation-availability.ts
+cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+2c6ab7a434b6772c0014093142728b62b622bde6d7379706ee7b8eaa1902b8d5  backend/src/safescope-v2/reasoning-l3/predicate-role.ts
+5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+4339b96a3b1a546c56bce2456ca26034a8860135ff8f498f8c725f48a4d0797b  backend/src/safescope-v2/reasoning-l3/reasoning-outcome.ts
+426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+63c32d64de66239c8d29e4ef08748500e658310434634222338cccd750405a8e  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+2098ac936267c2a0badd8ab26017f03c2204bd77e0d249f60fae0d53c159cbc7  backend/src/safescope-v2/reasoning-l3/state-facts.ts
+0cb98e9faca3c18f2d9776f16625a8eb42fb26f709fcab2e423d01b5a64ddc22  backend/src/safescope-v2/reasoning-l3/unavailable-reasoning-provider.ts
+aaf3a1777b15db58da41275363e9e737ae0bf283cf38135172d818fe99969fd4  backend/src/safescope-v2/reasoning-l3/validated-reasoning.types.ts
+2f3ded72ef8630122facf98452d94ff5df2308219d204059090dbd8d51bf11fb  backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+0bf96758887aa2db24841b71f12863e6ff5749305b382c27961bffa35e305ed2  backend/src/safescope-v2/reasoning-l3/word-classes.ts

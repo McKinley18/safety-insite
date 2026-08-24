@@ -1,0 +1,70 @@
+L3_2E_SCOPE_CONTRADICTION — RECORDED, NOT ACTED ON
+
+The L3-2e entry contract fences off negation handling:
+
+    "Do NOT modify: binder family relevance; binder syntactic-role matching; NEGATION HANDLING;
+     impression-scope implementation; predicate-boundary implementation; unless new executable
+     evidence proves a direct causal requirement for E1 or E2. If such evidence emerges, stop and
+     record a scope contradiction rather than silently broadening L3-2e."
+
+That evidence emerged. It is recorded here and the module was NOT touched.
+
+THE EVIDENCE
+------------
+On the retired L3-2d holdout, run under L3-2e code as regression evidence, `D-NG-04` -- one of the
+two named E2 blockers -- is deleted at the BINDER by `SEMANTIC_NEGATION_UNADDRESSED`:
+
+  TEXT      "No flammable atmosphere was detected at the manway, and the fitter went inside the
+             vessel with the agitator still on line and nobody at the opening."
+  PROVIDER  confined_space / ACTIVE, quoting only the second clause -- which is CORRECT, and is
+            exactly the behaviour the E2 prompt repair was written to produce
+  BINDER    'No' governs [0,147) -- the whole sentence -- so the correctly-quoted second clause is
+            read as negated, and a high-consequence confined-space finding is deleted
+
+MEASURED CAUSE, not inferred:
+
+  "No flammable atmosphere was detected at the manway, and the fitter WAS inside the vessel ..."
+      -> scope correctly ends at the comma
+  "No flammable atmosphere was detected at the manway, and the fitter WENT inside the vessel ..."
+      -> scope runs to the end of the sentence
+
+The only difference is the verb. `negation-scope.ts::hasPredicate()` decides whether a comma ends a
+negation's scope, and it recognises a predicate two ways:
+
+  * `FINITE_VERB_MARKERS` -- a closed list of AUXILIARIES (is/was/has/does/will/...). Lexical verbs
+    are absent, so `went`, `climbed`, `entered`, `operated`, `fell` are invisible to it.
+  * `hasParticiple()` -- `/\b[a-z]{5,}(?:ing|ed)\b/`, which requires FIVE letters BEFORE the suffix.
+    `opening` is seven letters total and does not match; nor do `broken`, `cut`, `bent`, `torn`.
+
+So a clause whose verb is lexical and short carries no detectable predicate, the comma does not end
+the scope, and the negation swallows the rest of the sentence.
+
+WHY THIS IS A CONTRADICTION AND NOT A BUG REPORT
+-------------------------------------------------
+It is the SEVENTH instance of the architectural pattern section 32.5 named -- a closed vocabulary
+consulted as though membership were meaning -- and it sits in the one module L3-2e is forbidden to
+change. Repairing it is the same structural treatment L3-2c applied to the impression gate and L3-2e
+applied to `checkContradiction` and `checkStateSupported`, but applying it here would broaden this
+phase into negation handling, which the entry contract prohibits.
+
+INTERACTION WITH THE E2 REPAIR — WHY IT SURFACED NOW
+-----------------------------------------------------
+This defect is PRE-EXISTING and is not caused by anything L3-2e changed. It became visible because
+the E2 repair works: the model now quotes the hazard clause NARROWLY and correctly instead of
+retreating to INSUFFICIENT_EVIDENCE. Under L3-2c and L3-2d the candidate never reached the binder, so
+the binder never had the chance to delete it. `checkNegationAddressed` steps aside when the cited span
+carries its own negation, so a broad quote survives and a correct narrow one does not.
+
+  >> A repair that improves provider behaviour can EXPOSE a binder defect that was always there.
+     That is worth recording as a programme lesson: stage-attributed metrics can move a loss from one
+     stage to another without anything getting worse, and only per-stage capture makes that visible.
+
+It is intermittent for the same reason -- it fires only when the model quotes narrowly. On the fresh
+L3-2e sealed holdout it did not fire at all; `D-NG-04` passed end-to-end in the E2 root-cause prover.
+
+SCOPE FOR THE NEXT PHASE
+------------------------
+Give `hasPredicate()` in `negation-scope.ts` the same structural treatment: a clause carries a
+predicate when it has a SUBJECT followed by a finite verb, decided by position and morphology rather
+than by membership of an auxiliary list. The paired fixtures already exist -- RC-08's negated list
+must still cross its commas while `D-NG-04`'s second clause must end the scope.

@@ -1,0 +1,699 @@
+{
+  "phase": "L3-2k",
+  "role": "SHIPPED_LADDER_RESIDUAL_ROOT_CAUSE_DIAGNOSIS_ONLY",
+  "generatedAt": "2026-08-24",
+  "sequenceTraced": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (the reasoning-runner.ts:81 order). NO PRIOR ARTIFACT REACHED THE FINAL STAGE.",
+  "F-WC-09": {
+    "qwen": [
+      {
+        "variant": "D_WC09_LADDER",
+        "label": "F-WC-09 + the F-WC-03 control, SHIPPED v6 ladder",
+        "pid": 74855,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "machine_guarding_1"
+        ],
+        "hazardFamilies": [
+          "machine_guarding"
+        ],
+        "modelConditionStates": [
+          "CONTROLLED"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation describes a situation where the hazard exists but an effective control is in place. The two-hand control has been secured with tape, which prevents accidental activation of the press mechanism. This physical control prevents contact with the hazard and makes the condition controlled."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [
+          "machine_guarding_1"
+        ],
+        "binderRejectionCodes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "controlAdequacy": [
+          {
+            "candidateKey": "machine_guarding_1",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "strapped down",
+            "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 0,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_WC09_LADDER_REPEAT",
+        "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?",
+        "pid": 75162,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "machine_guarding_1"
+        ],
+        "hazardFamilies": [
+          "machine_guarding"
+        ],
+        "modelConditionStates": [
+          "CONTROLLED"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation describes a situation where the hazard exists but an effective control is in place. The two-hand control has been secured with tape, which prevents accidental activation of the press mechanism. This physical control prevents contact with the hazard and makes the condition controlled."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [
+          "machine_guarding_1"
+        ],
+        "binderRejectionCodes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "controlAdequacy": [
+          {
+            "candidateKey": "machine_guarding_1",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "strapped down",
+            "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 0,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      }
+    ],
+    "gemini": [
+      {
+        "variant": "D_WC09_LADDER",
+        "label": "F-WC-09 + the F-WC-03 control, SHIPPED v6 ladder",
+        "pid": 75285,
+        "model": "gemini-3.1-pro-preview",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "machine_guarding_bypassed_two_hand_control"
+        ],
+        "hazardFamilies": [
+          "machine_guarding"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The two-hand control is a required engineering control designed to keep the operator's hands out of the danger zone. Strapping it down bypasses the control, making the hazard active. Verbal instructions and gloves are administrative/PPE measures that do not physically prevent contact and do not render the hazard controlled."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "machine_guarding_bypassed_two_hand_control",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "strapped down",
+            "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_WC09_LADDER_REPEAT",
+        "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?",
+        "pid": 75331,
+        "model": "gemini-3.1-pro-preview",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "machine_guarding_bypassed_two_hand_control"
+        ],
+        "hazardFamilies": [
+          "machine_guarding"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The two-hand control is a required engineering control designed to keep the operator's hands out of the danger zone. Strapping it down bypasses the control, making the hazard active. Verbal instructions and gloves are administrative/PPE measures that do not physically prevent contact and do not render the hazard controlled."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "machine_guarding_bypassed_two_hand_control",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "strapped down",
+            "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      }
+    ]
+  },
+  "F-WC-03_control": {
+    "qwen": [
+      {
+        "variant": "D_WC09_LADDER",
+        "label": "F-WC-09 + the F-WC-03 control, SHIPPED v6 ladder",
+        "pid": 74855,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "fall_hazard_from_missing_floor_plate"
+        ],
+        "hazardFamilies": [
+          "falls"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation explicitly states that a floor plate is missing from the mezzanine walkway, creating an exposed opening. This missing floor plate constitutes an active fall hazard as it creates an unprotected opening that workers could fall through or over."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "fall_hazard_from_missing_floor_plate",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "missing",
+            "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_WC09_LADDER_REPEAT",
+        "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?",
+        "pid": 75162,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "fall_hazard_from_missing_floor_plate"
+        ],
+        "hazardFamilies": [
+          "falls"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation explicitly states that a floor plate is missing from the mezzanine walkway, creating an exposed opening. This missing floor plate constitutes an active fall hazard as it creates an unprotected opening that workers could fall through or over."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "fall_hazard_from_missing_floor_plate",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "missing",
+            "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      }
+    ],
+    "gemini": [
+      {
+        "variant": "D_WC09_LADDER",
+        "label": "F-WC-09 + the F-WC-03 control, SHIPPED v6 ladder",
+        "pid": 75285,
+        "model": "gemini-3.1-pro-preview",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "missing-floor-plate-mezzanine"
+        ],
+        "hazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "A floor plate is missing, creating an open hole on a walking surface. The verbal instruction to step around it is a warning, not a physical control that prevents contact, so the hazard is active."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "missing-floor-plate-mezzanine",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "missing",
+            "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_WC09_LADDER_REPEAT",
+        "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?",
+        "pid": 75331,
+        "model": "gemini-3.1-pro-preview",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "ANALYZED",
+        "candidateKeys": [
+          "missing_floor_plate_walkway"
+        ],
+        "hazardFamilies": [
+          "walking_working_surfaces"
+        ],
+        "modelConditionStates": [
+          "ACTIVE"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation explicitly states a floor plate is missing. The verbal instruction to step around it is a warning, not a physical control, so the hazard remains active."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [
+          {
+            "candidateKey": "missing_floor_plate_walkway",
+            "adequacy": "CONTROL_ABSENT",
+            "matchedTerm": "missing",
+            "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+          }
+        ],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": true,
+        "FINAL_carriesClarification": false
+      }
+    ]
+  },
+  "C-CS-05": {
+    "qwen": [
+      {
+        "variant": "D_CS05_LADDER_A",
+        "label": "C-CS-05, \u00a736.7 variant A -- the one-block move that moved it",
+        "pid": 74887,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "conditional_hazard"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "modelRaisedClarification": true,
+        "modelClarificationQuestions": [
+          "Is the level probe on the caustic tank currently failing closed during a transfer?"
+        ],
+        "conditionRationale": [
+          "The observation describes a hypothetical failure scenario rather than a current condition. The phrase 'If the level probe...were to fail' indicates a conditional or potential hazard rather than an established one."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": true
+      },
+      {
+        "variant": "D_CS05_LADDER_A_REPEAT",
+        "label": "D_CS05_LADDER_A again, OWN PROCESS -- noise floor (\u00a738.3)",
+        "pid": 74901,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": true,
+        "modelClarificationQuestions": [
+          "Is the level probe on the caustic tank currently operating within normal parameters?"
+        ],
+        "conditionRationale": [
+          "The observation presents a conditional scenario about what would happen if a level probe fails closed, describing a potential hazard that exists only under hypothetical circumstances."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CLARIFICATION_ON_DECIDED_STATE"
+        ],
+        "section342GateFired": true,
+        "clarificationsDropped": [
+          {
+            "candidateKey": "hypothetical-pressure-release",
+            "conditionState": "HYPOTHETICAL",
+            "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+          }
+        ],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_A_REPEAT2",
+        "label": "variant A, third isolated process",
+        "pid": 75119,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": true,
+        "modelClarificationQuestions": [
+          "Is the level probe on the caustic tank currently operating within normal parameters?"
+        ],
+        "conditionRationale": [
+          "The observation presents a conditional scenario about what would happen if a level probe fails closed, describing a potential hazard that exists only under hypothetical circumstances."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CLARIFICATION_ON_DECIDED_STATE"
+        ],
+        "section342GateFired": true,
+        "clarificationsDropped": [
+          {
+            "candidateKey": "hypothetical-pressure-release",
+            "conditionState": "HYPOTHETICAL",
+            "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+          }
+        ],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_A_REPEAT3",
+        "label": "variant A, fourth isolated process",
+        "pid": 75133,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": true,
+        "modelClarificationQuestions": [
+          "Is the level probe on the caustic tank currently operating within normal parameters?"
+        ],
+        "conditionRationale": [
+          "The observation presents a conditional scenario about what would happen if a level probe fails closed, describing a potential hazard that exists only under hypothetical circumstances."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CLARIFICATION_ON_DECIDED_STATE"
+        ],
+        "section342GateFired": true,
+        "clarificationsDropped": [
+          {
+            "candidateKey": "hypothetical-pressure-release",
+            "conditionState": "HYPOTHETICAL",
+            "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+          }
+        ],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_B",
+        "label": "C-CS-05, SHIPPED v6 ladder (\u00a736.7 variant B) -- the BEFORE",
+        "pid": 74879,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation describes a conditional scenario where a failure of the level probe would lead to pressurization and potential gasket lifting. This is explicitly stated as a hypothetical situation rather than an observed condition."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_B_REPEAT",
+        "label": "D_CS05_LADDER_B again, OWN PROCESS -- noise floor (\u00a738.3)",
+        "pid": 74914,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation states a conditional scenario about what would happen if a level probe fails closed. This describes a potential hazard that exists only under specific hypothetical conditions."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_B_REPEAT2",
+        "label": "variant B, third isolated process",
+        "pid": 75146,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation states a conditional scenario about what would happen if a level probe fails closed. This describes a potential hazard that exists only under specific hypothetical conditions."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      },
+      {
+        "variant": "D_CS05_LADDER_B_REPEAT3",
+        "label": "variant B, fourth isolated process",
+        "pid": 75154,
+        "model": "qwen3-coder:30b",
+        "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+        "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+        "rawOutcome": "INSUFFICIENT_EVIDENCE",
+        "candidateKeys": [
+          "hypothetical-pressure-release"
+        ],
+        "hazardFamilies": [
+          "chemical_storage"
+        ],
+        "modelConditionStates": [
+          "HYPOTHETICAL"
+        ],
+        "modelRaisedClarification": false,
+        "modelClarificationQuestions": [],
+        "conditionRationale": [
+          "The observation states a conditional scenario about what would happen if a level probe fails closed. This describes a potential hazard that exists only under specific hypothetical conditions."
+        ],
+        "validationState": "VALID",
+        "validationIssues": [],
+        "semanticIssues": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ],
+        "section342GateFired": false,
+        "clarificationsDropped": [],
+        "binderRejectedCandidates": [],
+        "binderRejectionCodes": [],
+        "controlAdequacy": [],
+        "boundHazardCount": 1,
+        "FINAL_assertsActive": false,
+        "FINAL_carriesClarification": false
+      }
+    ]
+  }
+}

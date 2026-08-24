@@ -1,0 +1,342 @@
+{
+  "setId": "l3-2-development-2026-08-22",
+  "role": "DEVELOPMENT",
+  "scoredAt": "2026-08-22T14:42:41.380Z",
+  "gates": {
+    "fabricatedEvidenceQuotes": 0,
+    "falseActiveOnNoActiveExpected": "0 of 8",
+    "highConsequenceMisses": 0,
+    "highConsequenceMissIds": [],
+    "falseActiveIds": []
+  },
+  "quality": {
+    "hazardDetection": "7 of 7",
+    "conditionStateAccuracy": 100,
+    "familyAccuracy": "6 of 7",
+    "decompositionWithinTolerance": "1 of 1",
+    "clarificationsRaised": "0 of 15",
+    "ambiguousNotScored": 0
+  },
+  "pipeline": {
+    "providerFailures": 0,
+    "malformedOutput": 0,
+    "validatorRejections": 0,
+    "retries": 0,
+    "semanticCandidateRejections": 0,
+    "quotesEmitted": 12,
+    "quotesNotVerbatim": 0,
+    "verbatimQuoteRate": 100
+  },
+  "operational": {
+    "requests": 15,
+    "medianLatencyMs": 4112,
+    "p90LatencyMs": 6810,
+    "p95LatencyMs": 6949,
+    "maxLatencyMs": 6949,
+    "meanInputTokens": 932,
+    "meanOutputTokens": 243,
+    "totalInputTokens": 13984,
+    "totalOutputTokens": 3645
+  },
+  "rows": [
+    {
+      "id": "DEV-01",
+      "cohort": null,
+      "failureMode": "negation_blindness",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "falls|scaffolds|walking_working_surfaces",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4112
+    },
+    {
+      "id": "DEV-02",
+      "cohort": null,
+      "failureMode": "multi_hazard",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 2,
+      "states": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "families": [
+        "falls",
+        "chemical_storage"
+      ],
+      "familyExpected": "machine_guarding",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 6810
+    },
+    {
+      "id": "DEV-03",
+      "cohort": null,
+      "failureMode": "removed_from_service",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "REMOVED_FROM_SERVICE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4922
+    },
+    {
+      "id": "DEV-04",
+      "cohort": null,
+      "failureMode": "hypothetical",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "HYPOTHETICAL"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 3907
+    },
+    {
+      "id": "DEV-05",
+      "cohort": null,
+      "failureMode": "action_not_evidence",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1473
+    },
+    {
+      "id": "DEV-06",
+      "cohort": null,
+      "failureMode": "corrected_condition",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1573
+    },
+    {
+      "id": "DEV-07",
+      "cohort": null,
+      "failureMode": "missing_control_is_active",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "loto_stored_energy",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4462
+    },
+    {
+      "id": "DEV-08",
+      "cohort": null,
+      "failureMode": "negative_control_safe",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "CONTROLLED"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 3948
+    },
+    {
+      "id": "DEV-09",
+      "cohort": null,
+      "failureMode": "irrelevant_nearby_text",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1340
+    },
+    {
+      "id": "DEV-10",
+      "cohort": null,
+      "failureMode": "mixed_positive_and_negative",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "scaffolds"
+      ],
+      "familyExpected": "scaffolds|falls",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4745
+    },
+    {
+      "id": "DEV-11",
+      "cohort": null,
+      "failureMode": "insufficient_evidence",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1522
+    },
+    {
+      "id": "DEV-12",
+      "cohort": null,
+      "failureMode": "high_consequence_recall",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "trenching_shoring"
+      ],
+      "familyExpected": "trenching_shoring|ground_control",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4156
+    },
+    {
+      "id": "DEV-13",
+      "cohort": null,
+      "failureMode": "distant_governing_negation",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "respirable_dust_silica"
+      ],
+      "familyExpected": "respirable_dust_silica|personal_protective_equipment",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4359
+    },
+    {
+      "id": "DEV-14",
+      "cohort": null,
+      "failureMode": "domain_collision",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 2,
+      "states": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "families": [
+        "mobile_equipment",
+        "mobile_equipment"
+      ],
+      "familyExpected": "mobile_equipment",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 6949
+    },
+    {
+      "id": "DEV-15",
+      "cohort": null,
+      "failureMode": "advisory_hint_wrong",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": null,
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1397
+    }
+  ]
+}

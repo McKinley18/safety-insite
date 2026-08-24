@@ -1,0 +1,134 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T15:58:12.180Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_CS05_LADDER_B",
+    "pid": 95849
+  },
+  "provider": {
+    "model": "gemini-3.6-flash",
+    "endpoint": "http://127.0.0.1:11437",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_CS05_LADDER_B",
+    "label": "C-CS-05, SHIPPED v6 ladder (§36.7 variant B) -- the BEFORE"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 1,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "D_CS05_LADDER_B",
+      "expectActive": false,
+      "expectClarification": false,
+      "observationText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation presents a hypothetical failure scenario involving a caustic tank level probe and subsequent pressurization risk.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "caustic-tank-pressurization-hypothetical",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "HYPOTHETICAL",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The text explicitly describes a contingent scenario ('If the level probe... were to fail closed... could pressurise') rather than an existing defect or active failure.",
+            "independentHazardRationale": "This is the single hazard scenario evaluated in the observation.",
+            "uncertainties": [
+              "Whether the probe has an independent high-level trip or secondary relief that mitigates this scenario."
+            ],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": {
+              "consequenceSeverity": "serious",
+              "exposureLikelihood": "unlikely",
+              "affectedPersons": "unknown",
+              "existingControls": [],
+              "uncertainty": [
+                "Likelihood depends on failure rate of probe and presence of secondary relief."
+              ]
+            },
+            "regulatoryCandidateRefs": []
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "caustic-tank-pressurization-hypothetical",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "conditionRationale": "The text explicitly describes a contingent scenario ('If the level probe... were to fail closed... could pressurise') rather than an existing defect or active failure.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "caustic-tank-pressurization-hypothetical",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "caustic-tank-pressurization-hypothetical",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "caustic-tank-pressurization-hypothetical",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": false,
+      "latencyMs": 3917
+    }
+  ]
+}

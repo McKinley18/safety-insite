@@ -1,0 +1,156 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T13:31:04.031Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_CS05_LADDER_A",
+    "pid": 74887
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_CS05_LADDER_A",
+    "label": "C-CS-05, §36.7 variant A -- the one-block move that moved it"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 1,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "D_CS05_LADDER_A",
+      "expectActive": false,
+      "expectClarification": false,
+      "observationText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a conditional scenario about a level probe failure, but does not establish whether this condition currently exists or has occurred.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "conditional_hazard",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation describes a hypothetical failure scenario rather than a current condition. The phrase 'If the level probe...were to fail' indicates a conditional or potential hazard rather than an established one.",
+            "independentHazardRationale": "This represents a potential chemical storage hazard related to tank venting and pressure relief systems, but the observation does not confirm whether this condition currently exists or has occurred.",
+            "uncertainties": [
+              "Whether the level probe is currently failing closed",
+              "Whether the vent has pressurized and lifted the manway gasket"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether the level probe on the caustic tank is currently failing closed or has failed closed during a transfer",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "The level probe is currently failing closed (ACTIVE hazard)",
+                "The level probe is not failing closed (NEGATED hazard)"
+              ],
+              "question": "Is the level probe on the caustic tank currently failing closed during a transfer?"
+            }
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "conditional_hazard",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "conditionRationale": "The observation describes a hypothetical failure scenario rather than a current condition. The phrase 'If the level probe...were to fail' indicates a conditional or potential hazard rather than an established one.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether the level probe on the caustic tank is currently failing closed or has failed closed during a transfer",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "The level probe is currently failing closed (ACTIVE hazard)",
+              "The level probe is not failing closed (NEGATED hazard)"
+            ],
+            "question": "Is the level probe on the caustic tank currently failing closed during a transfer?"
+          }
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "conditional_hazard",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "Whether the level probe on the caustic tank is currently failing closed or has failed closed during a transfer",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "The level probe is currently failing closed (ACTIVE hazard)",
+              "The level probe is not failing closed (NEGATED hazard)"
+            ],
+            "question": "Is the level probe on the caustic tank currently failing closed during a transfer?"
+          }
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "conditional_hazard",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "Whether the level probe on the caustic tank is currently failing closed or has failed closed during a transfer",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "The level probe is currently failing closed (ACTIVE hazard)",
+              "The level probe is not failing closed (NEGATED hazard)"
+            ],
+            "question": "Is the level probe on the caustic tank currently failing closed during a transfer?"
+          }
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "conditional_hazard",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": true,
+      "latencyMs": 7631
+    }
+  ]
+}

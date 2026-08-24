@@ -1,0 +1,474 @@
+{
+  "phase": "L3-2g",
+  "role": "DETERMINISTIC_RESOLUTION_ABLATION_OVER_FROZEN_FACTS",
+  "generatedAt": "2026-08-24T02:01:56.362Z",
+  "source": [
+    "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2h-cross-provider-2026-08-23/results/baseline-repro.json"
+  ],
+  "providerVariance": "ZERO_BY_CONSTRUCTION -- no inference is performed; facts are read from the source run",
+  "caveat": "orderings selected against KNOWN cases. ARCHITECTURE SELECTION ONLY. NOT generalisation evidence.",
+  "scorerVersion": "hazlenz.l32g.resolution-scorer.v2",
+  "rowsScored": {
+    "candidateConditioned": 60,
+    "allScenarios": 72
+  },
+  "metricDefinitions": {
+    "candidateConditionedClarificationRecall": "clarHit / clarExpected over CLARIFICATION_REQUIRED scenarios in which the provider emitted at least one hazard candidate. Zero-candidate scenarios are EXCLUDED from the denominator. DIAGNOSTIC ONLY -- it measures the resolver given facts, not the pipeline given an observation. This is the metric behind the 75% recorded in blueprint 37.2/37.4 and 38.2.",
+    "scenarioLevelClarificationRecall": "clarHit / clarExpected over ALL CLARIFICATION_REQUIRED scenarios. A scenario in which the provider emitted zero candidates, and therefore could carry no clarification, counts as a MISS. ADVANCEMENT-RELEVANT -- the inspector was owed a question and did not get one. Corrects the 75% figure to 60% for qwen (blueprint 39.5.2, D-56).",
+    "clarificationPrecision": "clarHit / clarRaised. IDENTICAL under both denominators by construction: a zero-candidate row raises nothing, so it can move neither the numerator nor clarRaised. Reported once.",
+    "highConsequenceAndFalseActive": "UNCHANGED by L3-2i and deliberately still candidate-conditioned. Facts that were never emitted cannot be resolved, and these figures are recorded under this filter in 37, 38 and 39."
+  },
+  "orderings": {
+    "R0_HAZARD_FIRST": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 0,
+        "clarHit": 0,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 3,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": null,
+        "clarificationRecall": 0
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 0,
+        "clarHit": 0,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 5,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "C-CS-05"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": null,
+        "clarificationRecall": 0
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 0,
+        "clarHit": 0,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 3,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": null,
+        "clarificationRecall": 0
+      }
+    },
+    "R1_MISSING_FIRST": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 3,
+        "clarHit": 3,
+        "clarMissedIds": [
+          "F-CL-01"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 75
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 3,
+        "clarHit": 3,
+        "clarMissedIds": [
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 2,
+        "falseActiveIds": [
+          "F-CL-03",
+          "C-CS-05"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 75
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 2,
+        "clarHit": 2,
+        "clarMissedIds": [
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 1,
+        "falseActiveIds": [
+          "F-CL-03"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 50
+      }
+    },
+    "R2_MISSING_UNLESS_CONTROL_STATED": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 0,
+        "clarHit": 0,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 3,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": null,
+        "clarificationRecall": 0
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 1,
+        "clarHit": 1,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 4,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03",
+          "C-CS-05"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 25
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 0,
+        "clarHit": 0,
+        "clarMissedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "clarUnnecessaryIds": [],
+        "falseActive": 3,
+        "falseActiveIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": null,
+        "clarificationRecall": 0
+      }
+    }
+  },
+  "scenarioLevelClarification": {
+    "R0_HAZARD_FIRST": {
+      "V_S_STRUCT": {
+        "clarExpected": 5,
+        "clarHit": 0,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 0,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_MOVE1": {
+        "clarExpected": 5,
+        "clarHit": 0,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 0,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_REPEAT": {
+        "clarExpected": 5,
+        "clarHit": 0,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 0,
+        "zeroCandidateClarificationMisses": 1
+      }
+    },
+    "R1_MISSING_FIRST": {
+      "V_S_STRUCT": {
+        "clarExpected": 5,
+        "clarHit": 3,
+        "missedIds": [
+          "F-CL-01",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-CL-01"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 60,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_MOVE1": {
+        "clarExpected": 5,
+        "clarHit": 3,
+        "missedIds": [
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 60,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_REPEAT": {
+        "clarExpected": 5,
+        "clarHit": 2,
+        "missedIds": [
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 40,
+        "zeroCandidateClarificationMisses": 1
+      }
+    },
+    "R2_MISSING_UNLESS_CONTROL_STATED": {
+      "V_S_STRUCT": {
+        "clarExpected": 5,
+        "clarHit": 0,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 0,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_MOVE1": {
+        "clarExpected": 5,
+        "clarHit": 1,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 20,
+        "zeroCandidateClarificationMisses": 1
+      },
+      "V_S_STRUCT_REPEAT": {
+        "clarExpected": 5,
+        "clarHit": 0,
+        "missedIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "zeroCandidateMissIds": [
+          "B10"
+        ],
+        "candidateBearingMissIds": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03"
+        ],
+        "zeroCandidateScenarioIds": [
+          "B10",
+          "F-PS-04",
+          "F-NT-01",
+          "F-TB-02"
+        ],
+        "clarificationRecall": 0,
+        "zeroCandidateClarificationMisses": 1
+      }
+    }
+  }
+}

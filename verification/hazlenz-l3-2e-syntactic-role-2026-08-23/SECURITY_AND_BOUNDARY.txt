@@ -1,0 +1,55 @@
+=== L3-2e SECURITY / PRODUCTION-BOUNDARY VERIFICATION 2026-08-23T01:18:10Z ===
+
+-- 1. sealed holdout unmodified since freeze --
+post-execution sha256: b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06
+freeze-record sha256:  b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06
+
+-- 2. all four prior sealed holdouts unmodified --
+  41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+  e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+  33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+  bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+  expected 41ae3c22 / e3a3c7ee / 33c69b36 / bd5f0c2d
+
+-- 3. dependency graph --
+package-lock.json diff vs HEAD:   (empty = unchanged)
+  dependency blocks IDENTICAL to HEAD -- nothing added, removed or upgraded
+  package.json delta is npm script lines only:
+
+-- 4. no credential or secret introduced --
+  (empty above = none)
+
+-- 5. provider egress surface --
+  31:  endpoint: string;
+  46:  endpoint: process.env.L3_OLLAMA_ENDPOINT || 'http://127.0.0.1:11434',
+  110:      response = await fetch(`${this.config.endpoint}/api/chat`, {
+
+-- 6. Level-3 remains unreachable from the customer path --
+  Nest/repository decorators in reasoning-l3: 0
+  importers of reasoning-l3 outside itself:    0
+  seam + standards diff vs HEAD:              
+  (0 / 0 / empty = no persistence authority, no reporting authority, no governed-content authority)
+
+-- 7. databases --
+  present: safescope
+  present: sentinel_dev
+  present: sentinel_safety
+  present: test_l32e_invariance_20260823
+  created disposable: test_l32e_invariance_20260823
+  template read-only: test_hazlenz_capability_prodshape_20260822
+  protected 'safescope' public tables (read-only check): 46
+
+-- 8. release / production mutation --
+  no commit, push, merge, rebase, reset, tag, deploy, migration, SHADOW or CUTOVER
+  HEAD: 1feda622dbb93d7e05d156838ab37db3e21db507
+
+-- 3b. package.json delta (corrected listing) --
+    +    "test:l31-reasoning-contract": "ts-node scripts/test-l31-reasoning-contract.ts",
+    +    "test:l32-semantic-contract": "ts-node scripts/test-l32-semantic-contract.ts",
+    +    "test:l32b-binder-precision": "ts-node scripts/test-l32b-binder-precision.ts",
+    +    "test:l32c-gate-polarity": "ts-node scripts/test-l32c-gate-polarity.ts",
+    +    "test:l32d-clarification-scope": "ts-node scripts/test-l32d-clarification-scope.ts",
+    +    "score:l32c": "ts-node scripts/score-l32c-reasoning.ts",
+    +    "test:l32e-syntactic-role": "ts-node scripts/test-l32e-syntactic-role.ts",
+    +    "score:l32d": "ts-node scripts/score-l32d-reasoning.ts",
+    +    "score:l32e": "ts-node scripts/score-l32e-reasoning.ts",

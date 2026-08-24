@@ -1,0 +1,421 @@
+{
+  "setId": "l3-2b-development-2026-08-22",
+  "role": "DEVELOPMENT",
+  "visibleDuringTuning": true,
+  "authoredBy": "L3-2 implementation phase",
+  "provenanceNote": "Authored by the phase implementing the adapter. This set is USED FOR TUNING and is therefore NOT an advancement gate. It exists so prompt work has somewhere legitimate to happen that is not the holdout. DEV-01..DEV-05 were the ad-hoc probes run before the adapter existed; they are recorded here rather than discarded so that no tuning input is unaccounted for. L3-2b ADDITIONS (DEV-16..DEV-30) target the four root-caused defects. They are NEWLY WRITTEN, not the B08/C11/B10 sentences: the L3-2 holdout has been opened and this phase does not tune against it. Those original sentences appear only in the Phase-2 root-cause reproduction and as unit fixtures for the specific rules they falsified, which Phase 2/4 requires by name.",
+  "scenarios": [
+    {
+      "id": "DEV-01",
+      "failureMode": "negation_blindness",
+      "regime": "osha-construction",
+      "text": "A worker was on the leading edge at 18 feet with no guardrail, safety net or personal fall arrest system in use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|scaffolds|walking_working_surfaces",
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-02",
+      "failureMode": "multi_hazard",
+      "regime": "osha-general-industry",
+      "text": "The unguarded pulley sits beside an open floor hole, and the nearby drum of solvent is unlabeled.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "minCandidates": 2,
+        "maxCandidates": 4
+      }
+    },
+    {
+      "id": "DEV-03",
+      "failureMode": "removed_from_service",
+      "regime": "osha-general-industry",
+      "text": "The forklift was tagged out of service and removed from the floor after the mast hydraulic line failed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "REMOVED_FROM_SERVICE",
+          "CORRECTED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-04",
+      "failureMode": "hypothetical",
+      "regime": "osha-general-industry",
+      "text": "If the guard were removed during cleaning, the operator could reach the point of operation.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-05",
+      "failureMode": "action_not_evidence",
+      "regime": "osha-general-industry",
+      "text": "We will schedule a lockout/tagout refresher for the maintenance crew next quarter.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "HYPOTHETICAL"
+        ]
+      }
+    },
+    {
+      "id": "DEV-06",
+      "failureMode": "corrected_condition",
+      "regime": "osha-general-industry",
+      "text": "The bench grinder tongue guard was replaced yesterday and the work rest was reset to one eighth of an inch.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CORRECTED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-07",
+      "failureMode": "missing_control_is_active",
+      "regime": "osha-general-industry",
+      "text": "The maintenance technician was servicing the conveyor drive while it remained energized, and no lock was applied to the disconnect.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy",
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-08",
+      "failureMode": "negative_control_safe",
+      "regime": "osha-general-industry",
+      "text": "The fixed machine guard is interlocked, was function tested this morning, and prevents access to the point of operation.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "NEGATED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-09",
+      "failureMode": "irrelevant_nearby_text",
+      "regime": "osha-general-industry",
+      "text": "The safety committee reviewed the fall protection policy binder in the conference room and updated the training roster.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "NEGATED"
+        ]
+      }
+    },
+    {
+      "id": "DEV-10",
+      "failureMode": "mixed_positive_and_negative",
+      "regime": "osha-construction",
+      "text": "The east scaffold platform was fully planked with guardrails installed, but the west scaffold had no midrail and the plank ends were not cleated.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "scaffolds|falls"
+      }
+    },
+    {
+      "id": "DEV-11",
+      "failureMode": "insufficient_evidence",
+      "regime": "unknown",
+      "text": "Checked the north bay.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-12",
+      "failureMode": "high_consequence_recall",
+      "regime": "osha-construction",
+      "text": "An employee was working in a seven foot deep trench in sandy soil with no shoring, shielding or sloping.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "trenching_shoring|ground_control",
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-13",
+      "failureMode": "distant_governing_negation",
+      "regime": "osha-general-industry",
+      "text": "At no point during the shift was the respirator program followed, and cartridges were reused across the silica cutting task.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "respirable_dust_silica|personal_protective_equipment"
+      }
+    },
+    {
+      "id": "DEV-14",
+      "failureMode": "domain_collision",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was backing toward the dump point without a functioning backup alarm and no spotter was posted.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment"
+      }
+    },
+    {
+      "id": "DEV-15",
+      "failureMode": "advisory_hint_wrong",
+      "regime": "osha-general-industry",
+      "text": "Housekeeping in the parts washer area was excellent and all containers were closed and labeled.",
+      "advisorySignals": [
+        {
+          "signalId": "s1",
+          "kind": "lexical_family_hint",
+          "value": "hazard_communication"
+        }
+      ],
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    {
+      "id": "DEV-16",
+      "failureMode": "whole_sentence_evidence_multi_hazard",
+      "regime": "osha-construction",
+      "text": "A pipefitter was standing on the second rung from the top of a stepladder cutting threaded rod with an abrasive wheel and wearing no eye protection while an unattended oxygen cylinder lay on its side beside the ladder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|personal_protective_equipment|compressed_gas_cylinders",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-17",
+      "failureMode": "single_sentence_two_clauses_one_negation",
+      "regime": "osha-general-industry",
+      "text": "The dust collector had no spark arrestor fitted while the adjacent belt sander discharged directly into the same duct run.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire_explosion|respirable_dust_silica|machine_guarding"
+      }
+    },
+    {
+      "id": "DEV-18",
+      "failureMode": "comma_field_note_negation_scope",
+      "regime": "osha-general-industry",
+      "text": "grinding in bay 4, no screen up, sparks reaching the paint locker door, extinguisher tag blank since march",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire_explosion|welding_cutting_hot_work"
+      }
+    },
+    {
+      "id": "DEV-19",
+      "failureMode": "negated_list_must_stay_negated",
+      "regime": "osha-construction",
+      "text": "Crew on the roof edge at twenty two feet with no warning line, no monitor and no anchor points set.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-20",
+      "failureMode": "negation_then_affirmative_clause",
+      "regime": "osha-general-industry",
+      "text": "There was no oil on the walkway, but the mezzanine handrail was missing across the full span of the landing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-21",
+      "failureMode": "subjective_impression_only",
+      "regime": "osha-general-industry",
+      "text": "The hoist chain seemed off to me when I walked past it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "DEV-22",
+      "failureMode": "hedged_fact_only",
+      "regime": "osha-general-industry",
+      "text": "The flexible conduit into the pump might be damaged.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "DEV-23",
+      "failureMode": "impression_plus_hard_fact",
+      "regime": "osha-general-industry",
+      "text": "The pallet racking looked wrong to me and the second upright is bowed with the base plate lifted clear of the floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "material_handling|walking_working_surfaces"
+      }
+    },
+    {
+      "id": "DEV-24",
+      "failureMode": "clarification_decision_critical",
+      "regime": "unknown",
+      "text": "Something was leaking under the compressor and I could not tell what it was.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "DEV-25",
+      "failureMode": "clarification_not_needed",
+      "regime": "osha-general-industry",
+      "text": "The exit door at the south wall is chained shut with a padlock during the production shift.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "emergency_egress",
+        "clarificationExpected": false,
+        "highConsequence": true
+      }
+    },
+    {
+      "id": "DEV-26",
+      "failureMode": "clarification_not_needed_negative",
+      "regime": "osha-general-industry",
+      "text": "All four aisles were clear, marked and free of stored material at the time of the walk.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEV-27",
+      "failureMode": "energy_isolation_is_control",
+      "regime": "osha-general-industry",
+      "text": "The press was de-energized at the disconnect, each fitter applied a personal lock, and stored hydraulic pressure was bled down and verified at zero before entry.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEV-28",
+      "failureMode": "contradiction_in_broad_evidence",
+      "regime": "osha-general-industry",
+      "text": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEV-29",
+      "failureMode": "unrelated_nearby_hazard_language",
+      "regime": "osha-general-industry",
+      "text": "The safety data sheet binder for the solvent store was reindexed and the fall protection training matrix was posted on the notice board.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "NEGATED"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEV-30",
+      "failureMode": "hazard_negation_not_control_negation",
+      "regime": "osha-general-industry",
+      "text": "The guarding survey of the packaging line found no exposed nip points and no access to any rotating shaft.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    }
+  ]
+}

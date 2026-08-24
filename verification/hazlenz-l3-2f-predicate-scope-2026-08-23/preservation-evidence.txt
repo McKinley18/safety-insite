@@ -1,0 +1,68 @@
+L3-2f PRESERVATION — POST-PHASE EVIDENCE
+captured 2026-08-23T02:44:00Z
+
+HEAD              1feda622dbb93d7e05d156838ab37db3e21db507   EXPECTED 1feda622dbb93d7e05d156838ab37db3e21db507
+branch            release/insite-rc-2026-08-18
+upstream          origin/release/insite-rc-2026-08-18 1feda622dbb93d7e05d156838ab37db3e21db507
+divergence L/R    0	0
+stashes           4  (baseline 4)
+tags              23  (baseline 23)
+commits made      0        pushes 0        merges 0        rebases 0        resets 0
+
+== tracked files modified: baseline 10, now 10 ==
+ M backend/package.json
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+
+Of these, L3-2f touched exactly ONE: backend/package.json (two npm script entries).
+The other nine were already modified at phase entry and are preserved BYTE-FOR-BYTE:
+  backend/scripts/test-canonical-workflow.ts                       6907ea8cc6bf8fbf
+  backend/scripts/test-private-storage-reports.ts                  d18037fbeffd3d2c
+  frontend-next/app/inspection-workspace/page.tsx                  086e0d50c751160d
+  frontend-next/app/inspections/page.tsx                           da4dcb1b882eb3d7
+  frontend-next/lib/auth.ts                                        15c4e443fc67f9cf
+  frontend-next/lib/canonicalWorkflowApi.ts                        25c0c8b6679d7ad1
+  frontend-next/lib/planEntitlements.ts                            f41b0775a4abc42d
+  (docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json are updated by this phase, as its contract requires)
+
+== stash identities, unchanged ==
+b7ee2d048e63689c18f6ca39d4fcf2d76190391a stash@{0} On main: hold corrective action routing patch
+df9bc6e00fa0db87ac9d36d023737c195ff3f731 stash@{1} On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+9141dc76fd09901de889c7a8944ae2b411913d5a stash@{2} On antigravity/render-memory-standards-compression: scratch files before memory merge
+b128c1975d630d8f2aa2f80da321ec592c5ac2b9 stash@{3} On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== tag targets, unchanged (count only; full list in preservation-pre.txt) ==
+8c575fc83f899d9ad5d0b6dc106ee35d4a337f0871b74d9623a399ad5d01dbaa  -
+
+== ALL SIX SEALED HOLDOUT HASHES ==
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json
+47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json
+
+The five PRIOR hashes are identical to preservation-pre.txt. The sixth is L3-2f's own,
+frozen before any repair code and byte-identical to $P/contracts/holdout-l32f.frozen.json:
+  HOLDOUT UNCHANGED FROM FREEZE THROUGH ACCEPTANCE
+
+== prior-phase evidence directories, untouched ==
+  hazlenz-l3-2-semantic-reasoning-2026-08-22           38 files, modified-by-this-phase: 0
+  hazlenz-l3-2b-binder-precision-2026-08-22            39 files, modified-by-this-phase: 0
+  hazlenz-l3-2c-gate-polarity-2026-08-22               41 files, modified-by-this-phase: 0
+  hazlenz-l3-2d-clarification-precision-2026-08-22     38 files, modified-by-this-phase: 0
+  hazlenz-l3-2e-syntactic-role-2026-08-23              44 files, modified-by-this-phase: 0
+
+== databases ==
+created (disposable):  test_l32f_invariance_20260823
+protected, untouched:  safescope, sentinel_dev, sentinel_safety
+  still present: safescope
+  still present: sentinel_dev
+  still present: sentinel_safety

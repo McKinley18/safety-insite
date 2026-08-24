@@ -1,0 +1,12 @@
+{"setId":"l32f-f5-confirm","role":"DIAGNOSTIC","scenarios":[
+ {"id":"OA07-explicitAbsence","regime":"msha","cohort":"f5","provenanceClass":"DIAGNOSTIC","failureMode":"CONFIRM: same clause position and same vocabulary, absent control stated EXPLICITLY instead of by the un- prefix","expect":{},
+  "text":"The methane monitor read zero at the face, and the roof bolter was operating under a section of roof that had no support set and had already taken weight."},
+ {"id":"OA07-noReassure-implicit","regime":"msha","cohort":"f5","provenanceClass":"DIAGNOSTIC","failureMode":"CONFIRM: neutral (non-reassuring) first clause, implicit un- encoding kept","expect":{},
+  "text":"The face was surveyed at the start of the shift, and the roof bolter was operating under a section of unsupported roof that had already taken weight."},
+ {"id":"OA07-reassure-explicitHazardVerb","regime":"msha","cohort":"f5","provenanceClass":"DIAGNOSTIC","failureMode":"CONFIRM: reassuring first clause kept, hazard clause given an explicit absent-control predication","expect":{},
+  "text":"The methane monitor read zero at the face, and no roof support had been set over the section where the roof bolter was operating."},
+ {"id":"FLD147-tapeOnlyNoEdge","regime":"osha-construction","cohort":"f6","provenanceClass":"DIAGNOSTIC","failureMode":"CONFIRM: warning marker alone, no second reassuring element","expect":{},
+  "text":"An open floor hole in the walkway has warning tape strung around it."},
+ {"id":"FLD147-ppeOnly","regime":"osha-construction","cohort":"f6","provenanceClass":"DIAGNOSTIC","failureMode":"CONFIRM: a PPE/administrative control offered against a physical hazard","expect":{},
+  "text":"An open floor hole in the walkway has been pointed out to the crew in the toolbox talk and everyone has been told to watch for it."}
+]}

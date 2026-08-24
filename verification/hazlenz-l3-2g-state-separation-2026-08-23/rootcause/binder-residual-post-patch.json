@@ -1,0 +1,342 @@
+{
+  "phase": "L3-2g",
+  "role": "BINDER_RESIDUAL_ROOT_CAUSE_AND_PAIRED_REGRESSION",
+  "generatedAt": "2026-08-23T13:05:19.734Z",
+  "findings": {
+    "R1_fixed_token": {
+      "mechanism": "CORRECTION_TOKENS is consulted by checkContradiction (B) to REJECT. `fixed` is ambiguous between REPAIRED and ATTACHED, so an asserted `is fixed` predicated of a SIGN deletes a correct high-consequence ACTIVE finding.",
+      "rule": "35.1 -- a vocabulary used to REJECT must be unambiguous; a vocabulary used to ADMIT may be permissive",
+      "precedent": "L3-2e removed bare `removed` from the rejection path for this exact reason (UNAMBIGUOUS_SERVICE_WITHDRAWAL)",
+      "rows": [
+        {
+          "fixture": "F-WC-02 (sealed, the recorded loss)",
+          "mustSurvive": true,
+          "sense": "ATTACHMENT -- \"is fixed\" is predicated of the SIGN, not of the hazard",
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "fixture": "F-WC-02 broad quote (whole note)",
+          "mustSurvive": true,
+          "sense": "ATTACHMENT, with the ambiguous token inside the cited span",
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "fixture": "paired counter-fixture -- \"was fixed before we left\"",
+          "mustSurvive": false,
+          "acceptedTreatmentCost": true,
+          "sense": "REPAIR -- an asserted correction of the hazard itself",
+          "costNote": "refused BEFORE the repair, admitted AFTER it. Precision risk only; it can never delete a hazard. Same class and same direction as DISC-02, and the same trade L3-2e accepted for bare `removed`.",
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        }
+      ]
+    },
+    "R2_rejection_half_audit": {
+      "question": "which other members of the rejection half are ambiguous in the same way as `fixed`?",
+      "method": "the cited span DELIBERATELY contains the token, because checkContradiction reads citedText(h) only",
+      "note": "rows with mustSurvive=true that did NOT survive are the same defect as `fixed`",
+      "rows": [
+        {
+          "token": "reset",
+          "sense": "NON-CORRECTION -- a breaker reset onto a live fault",
+          "fixture": "reset: The breaker feeding the mixer was reset twice this shif...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "applied",
+          "sense": "SAME SENSE, DIFFERENT OBJECT -- retained in the rejection half",
+          "fixture": "applied: A hazard label was applied to the drum rack this mornin...",
+          "mustSurvive": true,
+          "acceptedTreatmentCost": true,
+          "costNote": "RETAINED in the rejection half. Its non-correction reading is the SAME sense attached to a different object, which needs a broad cited span AND a rationale without `still` to bite. Removing it broke two prior-phase gates that are right. DISC-02-shaped; recorded, not closed.",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'applied' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "addressed",
+          "sense": "NON-CORRECTION -- raised in a meeting, condition left in place",
+          "fixture": "addressed: The damaged handrail was addressed at the safety meetin...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "closed out",
+          "sense": "NON-CORRECTION -- a permit closed out, hazard still present",
+          "fixture": "closed out: The hot work permit was closed out at the end of the jo...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "restored",
+          "sense": "NON-CORRECTION -- supply restored, defect untouched",
+          "fixture": "restored: Power was restored to the packing hall after the outage...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "made good",
+          "sense": "CORRECTION -- a genuine asserted repair of the hazard",
+          "fixture": "made good: The gouged section of flooring outside the press shop w...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'made good' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "repaired",
+          "sense": "CORRECTION -- unambiguous, must remain in the rejection half",
+          "fixture": "repaired: The torn conveyor belt was repaired with a vulcanised j...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'repaired' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "destroyed",
+          "sense": "NON-CORRECTION -- `destroyed` describing DAMAGE, which is the hazard itself",
+          "fixture": "destroyed: The insulation on the oven feed cable has been destroye...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "scrapped",
+          "sense": "CORRECTION -- equipment scrapped is a genuine withdrawal",
+          "fixture": "scrapped: The cracked lifting eye was scrapped at the end of the ...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'scrapped' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "discarded",
+          "sense": "CORRECTION -- asserted disposal of the defective item",
+          "fixture": "discarded: The frayed sling was discarded into the scrap bin after...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'discarded' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "replaced",
+          "sense": "NON-CORRECTION -- something OTHER than the hazard was replaced",
+          "fixture": "replaced: The battery on the pallet truck was replaced at the sta...",
+          "mustSurvive": true,
+          "acceptedTreatmentCost": true,
+          "costNote": "RETAINED in the rejection half. Its non-correction reading is the SAME sense attached to a different object, which needs a broad cited span AND a rationale without `still` to bite. Removing it broke two prior-phase gates that are right. DISC-02-shaped; recorded, not closed.",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'replaced' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "reinstalled",
+          "sense": "NON-CORRECTION -- the equipment reinstalled, the control still absent",
+          "fixture": "reinstalled: The transfer pump was reinstalled after its overhaul an...",
+          "mustSurvive": true,
+          "acceptedTreatmentCost": true,
+          "costNote": "RETAINED in the rejection half. Its non-correction reading is the SAME sense attached to a different object, which needs a broad cited span AND a rationale without `still` to bite. Removing it broke two prior-phase gates that are right. DISC-02-shaped; recorded, not closed.",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'reinstalled' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "resolved",
+          "sense": "NON-CORRECTION -- a ticket resolved, the condition untouched",
+          "fixture": "resolved: The maintenance ticket was resolved on the system yeste...",
+          "quoteContainsToken": true,
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "token": "corrected",
+          "sense": "CORRECTION -- takes the defect as its object by definition",
+          "fixture": "corrected: The reversed polarity on the socket outlet was correcte...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'corrected' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "rectified",
+          "sense": "CORRECTION -- unambiguous",
+          "fixture": "rectified: The earth fault on the distribution board was rectified...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'rectified' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "token": "remediated",
+          "sense": "CORRECTION -- unambiguous",
+          "fixture": "remediated: The contaminated section of floor was remediated and th...",
+          "quoteContainsToken": true,
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'remediated' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        }
+      ]
+    },
+    "R3_admission_half_unchanged": {
+      "rule": "checkStateSupported corroborates a state the model already claimed; a false positive there cannot delete a hazard",
+      "requirement": "every row here must hold its recorded value across the repair",
+      "rows": [
+        {
+          "label": "CORRECTED admitted on `fixed`",
+          "state": "CORRECTED",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "label": "CORRECTED admitted on `replaced`",
+          "state": "CORRECTED",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "label": "CORRECTED admitted on `made good`",
+          "state": "CORRECTED",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "label": "CORRECTED admitted on `reset`",
+          "state": "CORRECTED",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "label": "CORRECTED admitted on nominal correction (L3-2f F4, must not regress)",
+          "state": "CORRECTED",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "label": "CORRECTED still REFUSED on a negated correction (L3-2f guard)",
+          "state": "CORRECTED",
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ],
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "label": "CORRECTED still REFUSED on a mention (L3-2f guard)",
+          "state": "CORRECTED",
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ],
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        }
+      ]
+    },
+    "R4_prior_phase_rejection_fixtures": {
+      "rows": [
+        {
+          "fixture": "UNAMBIGUOUS_SERVICE_WITHDRAWAL still rejects ACTIVE",
+          "mustSurvive": false,
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+          ],
+          "detail": "cited evidence asserts 'removed from service' as a predicate, which contradicts ACTIVE, and the rationale does not address it"
+        },
+        {
+          "fixture": "L3-2e -- bare `removed` of a CONTROL must still survive as ACTIVE",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "fixture": "L3-2d DISC-03 -- `discarded` as a modifier must still survive",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        },
+        {
+          "fixture": "L3-2c DISC-04 -- `applied` inside a negation must still survive",
+          "mustSurvive": true,
+          "survived": true,
+          "fatalCodes": [],
+          "detail": ""
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalFixtures": 30,
+    "holding": 26,
+    "deviating": 4,
+    "unexplainedDeviations": [],
+    "acceptedTreatmentCosts": [
+      "paired counter-fixture -- \"was fixed before we left\"",
+      "applied: A hazard label was applied to the drum rack this mornin...",
+      "replaced: The battery on the pallet truck was replaced at the sta...",
+      "reinstalled: The transfer pump was reinstalled after its overhaul an..."
+    ]
+  }
+}

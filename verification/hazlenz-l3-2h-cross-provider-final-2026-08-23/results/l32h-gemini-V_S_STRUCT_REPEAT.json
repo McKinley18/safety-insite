@@ -1,0 +1,1059 @@
+{
+  "phase": "L3-2g",
+  "role": "ARCHITECTURE_SELECTION_ABLATION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T01:14:26.824Z",
+  "heldConstant": {
+    "model": "gemini-3.1-pro-preview",
+    "endpoint": "http://127.0.0.1:11435",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192,
+    "timeoutMs": 300000,
+    "userPromptBuilder": "buildUserPrompt (shipped, unmodified)",
+    "observationText": "identical per scenario across all variants",
+    "allowedHazardFamilies": 24
+  },
+  "variedVariable": "CONDITION_STATE_REPRESENTATION_ONLY",
+  "variantAConstruction": {
+    "method": "the ABSENT CONTROLS + CONTROL ADEQUACY block MOVED, verbatim, into the ACTIVE rung",
+    "movedLineCount": 31,
+    "sameCharacterMultiset": true,
+    "byteReproductionOfL32fVariantA": false,
+    "reconstructionBasis": "blueprint §36.7 -- \"the absent-control material elaborated INSIDE the condition-state ladder\"",
+    "validationRule": "A must diverge from B in §36.7's direction, or the ablation is measuring noise"
+  },
+  "variants": [
+    {
+      "id": "V_S_STRUCT_REPEAT",
+      "label": "V_S_STRUCT repeated verbatim -- provider noise floor",
+      "structural": true,
+      "promptSha256": "128a783814a6320b58284512dcb0b2fe9a30bb87e0e92204b2a73d7e0d29daa5",
+      "promptLines": 111
+    }
+  ],
+  "scenarios": 24,
+  "rows": [
+    {
+      "scenarioId": "E-FLD-147",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32e",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "floor_opening_tape",
+          "family": "falls",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "An active floor opening",
+            "controlReading": "WARNS_ONLY",
+            "controlQuote": "marked with standard warning tape",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        },
+        {
+          "candidateKey": "unprotected_edge",
+          "family": "falls",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "unprotected edge",
+            "controlReading": "ABSENT",
+            "controlQuote": "unprotected",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9243
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32e",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "ground_control_unsupported_roof",
+          "family": "ground_control",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the roof bolter was operating under a section of unsupported roof that had already taken weight.",
+            "controlReading": "ABSENT",
+            "controlQuote": "unsupported roof",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 7428
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "open-pit-walkway",
+          "family": "walking_working_surfaces",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the pit is left open across the walkway.",
+            "controlReading": "WARNS_ONLY",
+            "controlQuote": "A DANGER OPEN PIT sign is fixed to the handrail post",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 8349
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "missing-floor-plate-mezzanine",
+          "family": "walking_working_surfaces",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "The missing floor plate at the end of the mezzanine walkway",
+            "controlReading": "WARNS_ONLY",
+            "controlQuote": "raised in the morning briefing and the crew were told to step around it.",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9078
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "machine_guarding_swage_press",
+          "family": "machine_guarding",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the two-hand control on the press has been strapped down with tape.",
+            "controlReading": "DEFEATED",
+            "controlQuote": "the two-hand control on the press has been strapped down with tape.",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_DEFEATED_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 8984
+    },
+    {
+      "scenarioId": "F-FLD-159",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "forklift-warning-devices",
+          "family": "mobile_equipment",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "Found a forklift reversing in the loading bay with a broken backup horn and no working flashing strobe light.",
+            "controlReading": "ABSENT",
+            "controlQuote": "broken backup horn and no working flashing strobe light.",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 8059
+    },
+    {
+      "scenarioId": "F-OA-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "UNKNOWN"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": false,
+      "derivedClarification": true,
+      "derived": [
+        {
+          "candidateKey": "fall_protection_boom_platform",
+          "family": "falls",
+          "facts": {
+            "hazardAsserted": false,
+            "hazardAssertionQuote": "",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": true,
+            "missingFact": "whether the harness lanyard was clipped to the basket anchor",
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "INSUFFICIENT_EVIDENCE",
+          "rule": "DECISION_CRITICAL_FACT_MISSING",
+          "clarificationOwed": true,
+          "modelState": "UNKNOWN",
+          "agrees": false,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9079
+    },
+    {
+      "scenarioId": "F-OA-02",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": false,
+      "derivedClarification": true,
+      "derived": [
+        {
+          "candidateKey": "loto_verification_unknown",
+          "family": "loto_stored_energy",
+          "facts": {
+            "hazardAsserted": false,
+            "hazardAssertionQuote": "",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": true,
+            "missingFact": "Whether the breaker was actually opened.",
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "INSUFFICIENT_EVIDENCE",
+          "rule": "DECISION_CRITICAL_FACT_MISSING",
+          "clarificationOwed": true,
+          "modelState": "INSUFFICIENT_EVIDENCE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 12714
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": false,
+      "derivedClarification": true,
+      "derived": [
+        {
+          "candidateKey": "davit-anchor-impression",
+          "family": "lifting_rigging",
+          "facts": {
+            "hazardAsserted": false,
+            "hazardAssertionQuote": "",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": true,
+            "missingFact": "The specific physical defect or condition of the anchor bracket",
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "INSUFFICIENT_EVIDENCE",
+          "rule": "DECISION_CRITICAL_FACT_MISSING",
+          "clarificationOwed": true,
+          "modelState": "INSUFFICIENT_EVIDENCE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9972
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": false,
+      "derivedClarification": true,
+      "derived": [
+        {
+          "candidateKey": "chain_sling_stretch",
+          "family": "lifting_rigging",
+          "facts": {
+            "hazardAsserted": false,
+            "hazardAssertionQuote": "",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": true,
+            "missingFact": "Confirmation of whether the sling is actually stretched.",
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "INSUFFICIENT_EVIDENCE",
+          "rule": "DECISION_CRITICAL_FACT_MISSING",
+          "clarificationOwed": true,
+          "modelState": "INSUFFICIENT_EVIDENCE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 10464
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "HYPOTHETICAL"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": false,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "hypothetical-caustic-tank-pressure",
+          "family": "chemical_storage",
+          "facts": {
+            "hazardAsserted": false,
+            "hazardAssertionQuote": "",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "CONDITIONAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "HYPOTHETICAL",
+          "rule": "CONDITIONAL_FRAMING",
+          "clarificationOwed": false,
+          "modelState": "HYPOTHETICAL",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 8709
+    },
+    {
+      "scenarioId": "F-CL-04",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "chain_sling_stretched_links",
+          "family": "lifting_rigging",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "The chain sling on the second rack has three stretched links",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_CONTROL_NOT_STATED",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        },
+        {
+          "candidateKey": "chain_sling_missing_tag",
+          "family": "lifting_rigging",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the safe working load tag has been ground off the master link.",
+            "controlReading": "ABSENT",
+            "controlQuote": "the safe working load tag has been ground off",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9676
+    },
+    {
+      "scenarioId": "B08",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "retired holdout-l32",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "ppe_face_shield",
+          "family": "personal_protective_equipment",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "using an angle grinder without a face shield",
+            "controlReading": "ABSENT",
+            "controlQuote": "without a face shield",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        },
+        {
+          "candidateKey": "forklift_refueling_idling",
+          "family": "fire",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "a propane forklift idled directly underneath refuelling.",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_CONTROL_NOT_STATED",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 11599
+    },
+    {
+      "scenarioId": "C11",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "retired holdout-l32",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "hot_work_combustibles",
+          "family": "hot_work",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "cardboard and pallets stacked under where the sparks were landing",
+            "controlReading": "ABSENT",
+            "controlQuote": "no fire watch",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        },
+        {
+          "candidateKey": "fire_extinguisher_inspection",
+          "family": "fire",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "extinguisher in the area was last inspected two years ago",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_CONTROL_NOT_STATED",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 10898
+    },
+    {
+      "scenarioId": "RC-08",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "fall_protection_steel_erection",
+          "family": "falls",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "Steel erectors were connecting at the second tier with no guardrail, safety net or personal fall arrest system in use.",
+            "controlReading": "ABSENT",
+            "controlQuote": "no guardrail, safety net or personal fall arrest system in use",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9907
+    },
+    {
+      "scenarioId": "H-AM-05",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "mezzanine-gate-broken",
+          "family": "falls",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+            "controlReading": "DEFEATED",
+            "controlQuote": "the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_DEFEATED_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 7710
+    },
+    {
+      "scenarioId": "H-FLD-141",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "loto_granulator_knives",
+          "family": "loto_stored_energy",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "no LOTO is applied",
+            "controlReading": "ABSENT",
+            "controlQuote": "no LOTO is applied",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        },
+        {
+          "candidateKey": "machine_guard_missing",
+          "family": "machine_guarding",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the guard is missing",
+            "controlReading": "ABSENT",
+            "controlQuote": "the guard is missing",
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_WITH_INADEQUATE_CONTROL",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 9559
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": true,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "electrical-damaged-cord",
+          "family": "electrical",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "the flexible cord feeding the pedestal fan has its outer jacket worn through to the conductors.",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "NONE",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "ACTIVE",
+          "rule": "ASSERTED_CONTROL_NOT_STATED",
+          "clarificationOwed": false,
+          "modelState": "ACTIVE",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 7127
+    },
+    {
+      "scenarioId": "B10",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 4965
+    },
+    {
+      "scenarioId": "F-PS-04",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 4344
+    },
+    {
+      "scenarioId": "F-NT-01",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 4262
+    },
+    {
+      "scenarioId": "F-TB-02",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 4606
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "pole": "DECIDED_NON_ACTIVE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "CORRECTED"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": false,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "frayed-lifting-sling",
+          "family": "lifting_rigging",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "frayed lifting sling",
+            "controlReading": "NOT_STATED",
+            "controlQuote": null,
+            "framing": "ACTUAL",
+            "disposition": "CORRECTED",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "CORRECTED",
+          "rule": "CORRECTED_DISPOSITION",
+          "clarificationOwed": false,
+          "modelState": "CORRECTED",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 10368
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "pole": "DECIDED_NON_ACTIVE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_S_STRUCT_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "CORRECTED"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": false,
+      "derivedClarification": false,
+      "derived": [
+        {
+          "candidateKey": "electrical-missing-knockout",
+          "family": "electrical",
+          "facts": {
+            "hazardAsserted": true,
+            "hazardAssertionQuote": "missing knockout blank on the distribution board",
+            "controlReading": "ABSENT",
+            "controlQuote": "missing knockout blank",
+            "framing": "ACTUAL",
+            "disposition": "CORRECTED",
+            "decisionCriticalFactMissing": false,
+            "missingFact": null,
+            "hazardExplicitlyDenied": false
+          },
+          "derivedState": "CORRECTED",
+          "rule": "CORRECTED_DISPOSITION",
+          "clarificationOwed": false,
+          "modelState": "CORRECTED",
+          "agrees": true,
+          "disagreementLosesHazard": false
+        }
+      ],
+      "latencyMs": 10192
+    }
+  ]
+}

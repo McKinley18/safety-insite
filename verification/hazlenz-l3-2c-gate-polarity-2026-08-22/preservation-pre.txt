@@ -1,0 +1,21 @@
+=== PRESERVATION SNAPSHOT 2026-08-22T22:12:08Z ===
+HEAD: 1feda622dbb93d7e05d156838ab37db3e21db507
+BRANCH: release/insite-rc-2026-08-18
+UPSTREAM: 1feda622dbb93d7e05d156838ab37db3e21db507
+DIVERGENCE(behind/ahead): 0	0
+--- MODIFIED FILE HASHES ---
+5af72fc377c58f85d138d8651fc065ba9451b7fe49516b69905ab640f0349525  backend/package.json
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  backend/scripts/test-private-storage-reports.ts
+817c2176d0d0e28400d40111664dad0b097a9b0fbeae2390074f0c1e2dc1a631  docs/INSITE_CURRENT_STATE.json
+52a23edcba6d70411be215f5744646f8ebd5d863e8c117612956ee596ea91f02  docs/INSITE_ENGINEERING_BLUEPRINT.md
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  frontend-next/lib/planEntitlements.ts
+--- STASHES ---
+stash@{0} b7ee2d048e63689c18f6ca39d4fcf2d76190391a On main: hold corrective action routing patch
+stash@{1} df9bc6e00fa0db87ac9d36d023737c195ff3f731 On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2} 9141dc76fd09901de889c7a8944ae2b411913d5a On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3} b128c1975d630d8f2aa2f80da321ec592c5ac2b9 On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP

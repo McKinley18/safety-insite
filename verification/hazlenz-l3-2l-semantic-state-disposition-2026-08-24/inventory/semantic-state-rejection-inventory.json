@@ -1,0 +1,2713 @@
+{
+ "rows": [
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B06",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified.",
+   "candidateKey": "chemical_storage",
+   "hazardFamily": null,
+   "proposedState": null,
+   "evidence": [],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 0,
+   "rejectedCount": 1,
+   "keptAfterBinder": -1,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B14",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started.",
+   "candidateKey": "l3-2-holdout-2026-08-22:B14:1",
+   "hazardFamily": null,
+   "proposedState": null,
+   "evidence": [],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 0,
+   "rejectedCount": 1,
+   "keptAfterBinder": -1,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B17",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "Two years ago an employee was injured at this press before the light curtain was installed. The light curtain has been in service since then and was function tested last month.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": null,
+   "proposedState": null,
+   "evidence": [],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 0,
+   "rejectedCount": 1,
+   "keptAfterBinder": -1,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "D02",
+   "cohort": "negative_control",
+   "regime": "osha-general-industry",
+   "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+   "candidateKey": "l3-2-holdout-2026-08-22:D02",
+   "hazardFamily": null,
+   "proposedState": null,
+   "evidence": [],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 0,
+   "rejectedCount": 1,
+   "keptAfterBinder": -1,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B06",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified.",
+   "candidateKey": "chemical_storage",
+   "hazardFamily": "chemical_storage",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B14",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started.",
+   "candidateKey": "l3-2-holdout-2026-08-22:B14:1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "B17",
+   "cohort": "novel_adversarial",
+   "regime": "osha-general-industry",
+   "text": "Two years ago an employee was injured at this press before the light curtain was installed. The light curtain has been in service since then and was function tested last month.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The light curtain has been in service since then and was function tested last month."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v1\"}",
+   "scenario": "D02",
+   "cohort": "negative_control",
+   "regime": "osha-general-industry",
+   "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+   "candidateKey": "l3-2-holdout-2026-08-22:D02",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectFamily": "",
+   "expectHC": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/dev-run-1.json",
+   "setId": "l3-2b-development-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "DEV-28",
+   "cohort": null,
+   "regime": "osha-general-industry",
+   "text": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break.",
+   "candidateKey": "ladder_cracked_rail",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+    "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+   ],
+   "soleCode": false,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/dev-run-2.json",
+   "setId": "l3-2b-development-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "DEV-28",
+   "cohort": null,
+   "regime": "osha-general-industry",
+   "text": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break.",
+   "candidateKey": "ladder_condition",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "H-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical-1",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "H-CS-04",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight.",
+   "candidateKey": "chemical_storage",
+   "hazardFamily": "chemical_storage",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "Two winters ago the dust collector ducting cracked and was rebuilt"
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "H-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical-1",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v2\"}",
+   "scenario": "H-CS-04",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight.",
+   "candidateKey": "chemical_storage",
+   "hazardFamily": "chemical_storage",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "Two winters ago the dust collector ducting cracked and was rebuilt"
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "H-OF7",
+   "cohort": "diagnostic_safe",
+   "regime": "osha-general-industry",
+   "text": "Before they opened it up, the crew put their locks on and checked it was dead.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "Before they opened it up, the crew put their locks on and checked it was dead."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "C-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CQ-05",
+   "cohort": "decided_no_question",
+   "regime": "osha-general-industry",
+   "text": "The split hydraulic hose on the baler was found leaking and the fitter swapped it for a new assembly and pressure tested it before the line restarted.",
+   "candidateKey": "split_hydraulic_hose_leaking",
+   "hazardFamily": "compressed_air_hose_safety",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The split hydraulic hose on the baler was found leaking"
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+   "candidateKey": "mobile_equipment",
+   "hazardFamily": "mobile_equipment",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CQ-05",
+   "cohort": "decided_no_question",
+   "regime": "osha-general-industry",
+   "text": "The split hydraulic hose on the baler was found leaking and the fitter swapped it for a new assembly and pressure tested it before the line restarted.",
+   "candidateKey": "split_hydraulic_hose_leaking",
+   "hazardFamily": "compressed_air_hose_safety",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The split hydraulic hose on the baler was found leaking"
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+   "candidateKey": "mobile_equipment",
+   "hazardFamily": "mobile_equipment",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v4\"}",
+   "scenario": "D-CS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "H-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "candidateKey": "loto_stored_energy",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "H-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "H-CS-04",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight.",
+   "candidateKey": "chemical_storage",
+   "hazardFamily": "chemical_storage",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "setId": "l3-2b-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "H-CS-06",
+   "cohort": "condition_state",
+   "regime": "osha-construction",
+   "text": "The leading edge is protected by a cabled guardrail on all four sides and the crew is tied off to an engineered anchor while they work inside it.",
+   "candidateKey": "fall_protection",
+   "hazardFamily": "falls",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The leading edge is protected by a cabled guardrail on all four sides and the crew is tied off to an engineered anchor while they work inside it."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "C-FLD-048",
+   "cohort": "field_positive",
+   "regime": "osha-general-industry",
+   "text": "The Safety Data Sheet (SDS) for a newly introduced industrial solvent is missing from the shop binder.",
+   "candidateKey": "hazard_communication",
+   "hazardFamily": "hazard_communication",
+   "proposedState": "NEGATED",
+   "evidence": [
+    "The Safety Data Sheet (SDS) for a newly introduced industrial solvent is missing from the shop binder."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'NEGATED' requires negation language, and none appears in any cited span or the coordinated clause containing it",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "hazard_communication|chemical_storage",
+   "expectHC": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "C-NC-01",
+   "cohort": "negative_control",
+   "regime": "osha-construction",
+   "text": "The roof edge on the east elevation is protected by a compliant guardrail with top rail, mid rail and toeboard, and the anchor points were proof loaded last month.",
+   "candidateKey": "falls",
+   "hazardFamily": "falls",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The roof edge on the east elevation is protected by a compliant guardrail with top rail, mid rail and toeboard, and the anchor points were proof loaded last month."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "C-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "C-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The frayed pendant cable on the jib crane was found during the walk and the millwright swapped it for a new one before the next lift.",
+   "candidateKey": "electrical",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The frayed pendant cable on the jib crane was found during the walk and the millwright swapped it for a new one before the next lift."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "setId": "l3-2c-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "C-CS-04",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The mezzanine handrail was struck by a forklift last spring and was rebuilt to the original detail; this inspection found it sound and correctly fixed at every post.",
+   "candidateKey": "mezzanine_handrail_condition",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The mezzanine handrail was struck by a forklift last spring and was rebuilt to the original detail; this inspection found it sound and correctly fixed at every post."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-CQ-05",
+   "cohort": "decided_no_question",
+   "regime": "osha-general-industry",
+   "text": "The split hydraulic hose on the baler was found leaking and the fitter swapped it for a new assembly and pressure tested it before the line restarted.",
+   "candidateKey": "1",
+   "hazardFamily": "compressed_air_hose_safety",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The split hydraulic hose on the baler was found leaking",
+    "the fitter swapped it for a new assembly",
+    "and pressure tested it before the line restarted"
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-NC-04",
+   "cohort": "negative_control",
+   "regime": "osha-construction",
+   "text": "The fall arrest harnesses were returned from inspection with new tags and were hung back on the rack in the site office.",
+   "candidateKey": "harnesses_in_use",
+   "hazardFamily": "falls",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The fall arrest harnesses were returned from inspection with new tags and were hung back on the rack in the site office."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+   "candidateKey": "loto_stored_energy",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-CS-02",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+   "candidateKey": "mobile_equipment",
+   "hazardFamily": "mobile_equipment",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-CS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "setId": "l3-2d-sealed-holdout-2026-08-22",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "D-CS-04",
+   "cohort": "condition_state",
+   "regime": "osha-construction",
+   "text": "The riser opening on level two is closed with a bolted steel plate stencilled HOLE and rated for the load, and all four bolts were in place.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The riser opening on level two is closed with a bolted steel plate stencilled HOLE and rated for the load, and all four bolts were in place."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2e-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "DEVNC-01",
+   "cohort": "negative_control",
+   "regime": "osha-general-industry",
+   "text": "Every point of operation on the punch press line is enclosed by a fixed barrier guard, the interlocks were function tested at the start of shift, and the test log was signed.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "Every point of operation on the punch press line is enclosed by a fixed barrier guard, the interlocks were function tested at the start of shift, and the test log was signed."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2e-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "DEVCS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "candidateKey": "loto_stored_energy",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2e-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "DEVCS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2e-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "DEV-E1-02",
+   "cohort": "e1_syntactic_role",
+   "regime": "osha-general-industry",
+   "text": "The damaged extension lead was found at the panel and was discarded before we left the area.",
+   "candidateKey": "electrical",
+   "hazardFamily": "electrical",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The damaged extension lead was found at the panel and was discarded before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2e-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "E-FLD-147",
+   "cohort": "field_positive",
+   "regime": "osha-construction",
+   "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An active floor opening is marked with standard warning tape next to an unprotected edge."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "falls|scaffolds|walking_working_surfaces",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2e-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "E-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift.",
+   "candidateKey": "lifting_rigging",
+   "hazardFamily": "lifting_rigging",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2e-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "E-FLD-147",
+   "cohort": "field_positive",
+   "regime": "osha-construction",
+   "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An active floor opening is marked with standard warning tape next to an unprotected edge."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "falls|scaffolds|walking_working_surfaces",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2e-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "E-CS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift.",
+   "candidateKey": "lifting_rigging",
+   "hazardFamily": "lifting_rigging",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A damaged sling was found on the crane hook and the slinger cut it up and drew a replacement from the store before the next lift."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEVCS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "de-energized",
+     "detail": "'de-energized' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEVCS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-04",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-construction",
+   "text": "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading.",
+   "candidateKey": "hazard-1",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "plate",
+     "detail": "'plate' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-1.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-05",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well.",
+   "candidateKey": "open_hole",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "open_hole",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEVCS-01",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+   "candidateKey": "loto_stored_energy",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "de-energized",
+     "detail": "'de-energized' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEVCS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical_001",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEV-E1-04",
+   "cohort": "e1_syntactic_role",
+   "regime": "osha-general-industry",
+   "text": "The crew stopped work and a full lockout was applied at the disconnect before the guard came off.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The crew stopped work and a full lockout was applied at the disconnect before the guard came off."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "guard",
+     "detail": "'guard' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-02",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "candidateKey": "hazard-1",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-04",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-construction",
+   "text": "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading.",
+   "candidateKey": "hazard-1",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "plate",
+     "detail": "'plate' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-05",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well.",
+   "candidateKey": "hazard-1",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "hazard-1",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "DEVCS-03",
+   "cohort": "condition_state",
+   "regime": "osha-general-industry",
+   "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+   "candidateKey": "electrical_001",
+   "hazardFamily": "electrical",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "E-FLD-147",
+   "cohort": "field_positive",
+   "regime": "osha-construction",
+   "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+   "candidateKey": "fall_hazard_1",
+   "hazardFamily": "falls",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An active floor opening is marked with standard warning tape next to an unprotected edge."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "falls|scaffolds|walking_working_surfaces",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "fall_hazard_1",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "unprotected",
+     "detail": "'unprotected' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-02",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "walking_working_surfaces",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-04",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-construction",
+   "text": "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The lift-shaft opening on the second floor is closed with a bolted steel plate rated for the slab loading."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "walking_working_surfaces",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "plate",
+     "detail": "'plate' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "setId": "l3-2f-development-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-05",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The drainage sump in the packing hall is covered by a secured chequer plate and warning tape is run around the cover as well."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "walking_working_surfaces",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-03",
+   "cohort": "control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it.",
+   "candidateKey": "0",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-06",
+   "cohort": "control_adequacy",
+   "regime": "osha-construction",
+   "text": "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well.",
+   "candidateKey": "void_hazard",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "void_hazard",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "boarded",
+     "detail": "'boarded' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-09",
+   "cohort": "control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "machine_guarding|loto_stored_energy",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "strapped down",
+     "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-NEG-03",
+   "cohort": "negative_control",
+   "regime": "osha-general-industry",
+   "text": "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair.",
+   "candidateKey": "0",
+   "hazardFamily": "lifting_rigging",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "tagged out",
+     "detail": "'tagged out' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-CIP-01",
+   "cohort": "control_in_place",
+   "regime": "osha-general-industry",
+   "text": "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "locked out",
+     "detail": "'locked out' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-CIP-02",
+   "cohort": "control_in_place",
+   "regime": "osha-general-industry",
+   "text": "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-COR-01",
+   "cohort": "corrected_state",
+   "regime": "osha-general-industry",
+   "text": "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-03",
+   "cohort": "control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it.",
+   "candidateKey": "0",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-06",
+   "cohort": "control_adequacy",
+   "regime": "osha-construction",
+   "text": "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well.",
+   "candidateKey": "void_hazard",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "void_hazard",
+     "adequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+     "matchedTerm": "boarded",
+     "detail": "'boarded' describes a control that prevents contact, alongside the warning 'warning tape'; the effective control is what decides"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-WC-09",
+   "cohort": "control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "machine_guarding|loto_stored_energy",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "strapped down",
+     "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-NEG-03",
+   "cohort": "negative_control",
+   "regime": "osha-general-industry",
+   "text": "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair.",
+   "candidateKey": "0",
+   "hazardFamily": "lifting_rigging",
+   "proposedState": "REMOVED_FROM_SERVICE",
+   "evidence": [
+    "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'REMOVED_FROM_SERVICE' requires removal-from-service language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "0",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "tagged out",
+     "detail": "'tagged out' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-CIP-01",
+   "cohort": "control_in_place",
+   "regime": "osha-general-industry",
+   "text": "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "locked out",
+     "detail": "'locked out' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-CIP-02",
+   "cohort": "control_in_place",
+   "regime": "osha-general-industry",
+   "text": "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run.",
+   "candidateKey": "machine_guarding",
+   "hazardFamily": "machine_guarding",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "machine_guarding",
+     "adequacy": "CONTROL_EFFECTIVE",
+     "matchedTerm": "cover",
+     "detail": "'cover' describes a control that prevents contact with the hazard"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "setId": "l3-2f-sealed-holdout-2026-08-23",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "F-COR-01",
+   "cohort": "corrected_state",
+   "regime": "osha-general-industry",
+   "text": "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room.",
+   "candidateKey": "loto_stored_energy-1",
+   "hazardFamily": "loto_stored_energy",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": false,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "loto_stored_energy-1",
+     "adequacy": "CONTROL_ABSENT",
+     "matchedTerm": "missing",
+     "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-confirm-run.json",
+   "setId": "l32f-f5-confirm",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "FLD147-tapeOnlyNoEdge",
+   "cohort": "f6",
+   "regime": "osha-construction",
+   "text": "An open floor hole in the walkway has warning tape strung around it.",
+   "candidateKey": "1",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An open floor hole in the walkway has warning tape strung around it."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-f6-ablation-run.json",
+   "setId": "l32f-f5-f6-ablation",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "FLD147-orig",
+   "cohort": "f6",
+   "regime": "osha-construction",
+   "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An active floor opening is marked with standard warning tape next to an unprotected edge."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-f6-ablation-run.json",
+   "setId": "l32f-f5-f6-ablation",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "FLD147-sign",
+   "cohort": "f6",
+   "regime": "osha-construction",
+   "text": "An active floor opening is marked with a warning sign next to an unprotected edge.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "An active floor opening is marked with a warning sign next to an unprotected edge."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-f6-ablation-run.json",
+   "setId": "l32f-f5-f6-ablation",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "FLD147-cover",
+   "cohort": "f6",
+   "regime": "osha-construction",
+   "text": "The floor opening is closed off with a secured steel cover rated for the load and fixed down at every corner.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CORRECTED",
+   "evidence": [
+    "The floor opening is closed off with a secured steel cover rated for the load and fixed down at every corner."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-f6-ablation-run.json",
+   "setId": "l32f-f5-f6-ablation",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v5\"}",
+   "scenario": "FLD147-guardrail",
+   "cohort": "f6",
+   "regime": "osha-construction",
+   "text": "The floor opening is protected by a fixed standard guardrail with toeboard on all four sides.",
+   "candidateKey": "walking_working_surfaces",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "The floor opening is protected by a fixed standard guardrail with toeboard on all four sides."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": []
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json",
+   "setId": "l32f-stability",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-02#r0",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "candidateKey": "deep_pit_hazard",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json",
+   "setId": "l32f-stability",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-02#r1",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "candidateKey": "deep_pit_hazard",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ]
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json",
+   "setId": "l32f-stability",
+   "provider": "{\"providerId\":\"ollama:qwen3-coder:30b\",\"config\":{\"endpoint\":\"<local>\",\"model\":\"qwen3-coder:30b\",\"temperature\":0,\"seed\":20260822,\"numCtx\":8192,\"timeoutMs\":60000},\"promptVersion\":\"hazlenz.l3.prompt.v6\"}",
+   "scenario": "X-WC-02#r2",
+   "cohort": "f6_control_adequacy",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "candidateKey": "deep_pit_hazard",
+   "hazardFamily": "walking_working_surfaces",
+   "proposedState": "CONTROLLED",
+   "evidence": [
+    "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+   ],
+   "codes": [
+    "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+   ],
+   "soleCode": true,
+   "binderDetail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+   "expectHazard": true,
+   "expectState": "ACTIVE",
+   "expectFamily": "walking_working_surfaces|falls",
+   "expectHC": true,
+   "expectClar": false,
+   "preSemanticCount": 1,
+   "rejectedCount": 1,
+   "keptAfterBinder": 0,
+   "emptiedAllCandidates": true,
+   "controlAdequacy": [
+    {
+     "candidateKey": "deep_pit_hazard",
+     "adequacy": "CONTROL_MENTION",
+     "matchedTerm": "notice",
+     "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+    }
+   ]
+  }
+ ],
+ "fileStats": [
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-run-1.json",
+   "records": 15,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-run-2.json",
+   "records": 15,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json",
+   "records": 66,
+   "recordsWithAnyRejection": 8,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json",
+   "records": 66,
+   "recordsWithAnyRejection": 7,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/dev-run-1.json",
+   "records": 30,
+   "recordsWithAnyRejection": 6,
+   "rejectionsWithThisCode": 1
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/dev-run-2.json",
+   "records": 30,
+   "recordsWithAnyRejection": 2,
+   "rejectionsWithThisCode": 1
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/dev-run-3.json",
+   "records": 30,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-1.json",
+   "records": 81,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 2
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-2.json",
+   "records": 81,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 2
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "records": 81,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/dev-run-1.json",
+   "records": 30,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-1.json",
+   "records": 72,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-2.json",
+   "records": 72,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "records": 81,
+   "recordsWithAnyRejection": 2,
+   "rejectionsWithThisCode": 1
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "records": 72,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 1
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/dev-run-1.json",
+   "records": 22,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json",
+   "records": 77,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json",
+   "records": 77,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json",
+   "records": 81,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json",
+   "records": 72,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 5
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json",
+   "records": 77,
+   "recordsWithAnyRejection": 7,
+   "rejectionsWithThisCode": 6
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/dev-run-1.json",
+   "records": 38,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json",
+   "records": 84,
+   "recordsWithAnyRejection": 3,
+   "rejectionsWithThisCode": 2
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json",
+   "records": 84,
+   "recordsWithAnyRejection": 3,
+   "rejectionsWithThisCode": 2
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/rootcause/e2-clause-position-ablation.json",
+   "records": 6,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-1.json",
+   "records": 63,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-2.json",
+   "records": 63,
+   "recordsWithAnyRejection": 6,
+   "rejectionsWithThisCode": 6
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/dev-run-3.json",
+   "records": 63,
+   "recordsWithAnyRejection": 5,
+   "rejectionsWithThisCode": 5
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+   "records": 97,
+   "recordsWithAnyRejection": 9,
+   "rejectionsWithThisCode": 7
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+   "records": 97,
+   "recordsWithAnyRejection": 9,
+   "rejectionsWithThisCode": 7
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-confirm-run.json",
+   "records": 5,
+   "recordsWithAnyRejection": 1,
+   "rejectionsWithThisCode": 1
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/f5-f6-ablation-run.json",
+   "records": 13,
+   "recordsWithAnyRejection": 4,
+   "rejectionsWithThisCode": 4
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run-2.json",
+   "records": 15,
+   "recordsWithAnyRejection": 0,
+   "rejectionsWithThisCode": 0
+  },
+  {
+   "artifact": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/rootcause/stability-run.json",
+   "records": 15,
+   "recordsWithAnyRejection": 3,
+   "rejectionsWithThisCode": 3
+  }
+ ]
+}

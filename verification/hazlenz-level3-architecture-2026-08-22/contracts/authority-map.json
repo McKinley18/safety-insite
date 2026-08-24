@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "hazlenz-l3.authority-map.v1",
+  "status": "TARGET_NOT_YET_IMPLEMENTED",
+  "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
+  "seam": {
+    "module": "backend/src/safescope-v2/orchestration/intelligence-orchestrator.service.ts",
+    "symbol": "evaluate()",
+    "callSite": "backend/src/safescope-v2/safescope-v2.service.ts:1576",
+    "callSiteCount": 1,
+    "rationale": "owns multiHazardDecomposition, observationUnderstanding, sharedEvidenceFacts and confidence; single guarded call site; downstream pipeline, persistence and reports consume its output shape unchanged; does NOT own standards retrieval or governed content, so L3-INV-01/03/09 hold structurally"
+  },
+  "authorities": [
+    {"concern":"observationInterpretation","today":"weighted lexical classifier","level3":"SEMANTIC","validated":true,"slice":"L3-2"},
+    {"concern":"hazardDecomposition","today":"multiHazardEngine.decompose regex","level3":"SEMANTIC","validated":true,"slice":"L3-3"},
+    {"concern":"conditionState","today":"inferConditionState regex cascade, default ACTIVE","level3":"SEMANTIC","validated":true,"slice":"L3-3"},
+    {"concern":"evidenceBinding","today":"fragment slicing","level3":"SEMANTIC_SPANS_VALIDATED_AGAINST_SOURCE","validated":true,"slice":"L3-2"},
+    {"concern":"jurisdiction","today":"lexical inference","level3":"SEMANTIC_PROPOSES_USER_CONTEXT_CONSTRAINS","validated":true,"slice":"L3-4"},
+    {"concern":"regulatoryRetrieval","today":"applicableStandards.suggest()","level3":"DETERMINISTIC_UNCHANGED","validated":false,"slice":null},
+    {"concern":"regulatoryApplicability","today":"evidence-foundation.ts predicates","level3":"SEMANTIC_OVER_RETRIEVED_CANDIDATES_ONLY","validated":true,"slice":"L3-4"},
+    {"concern":"citationIdentity","today":"citation-structure.ts","level3":"DETERMINISTIC_UNCHANGED","validated":false,"slice":null},
+    {"concern":"governedContent","today":"KG subsystem","level3":"DETERMINISTIC_UNCHANGED","validated":false,"slice":null},
+    {"concern":"risk","today":"evaluateRisk matrix","level3":"HYBRID_SEMANTIC_FACTORS_DETERMINISTIC_SCORING","validated":true,"slice":"L3-5"},
+    {"concern":"correctiveAction","today":"canned template library","level3":"SEMANTIC_INTENT_DETERMINISTIC_GROUNDING_TEMPLATE_RENDERING","validated":true,"slice":"L3-5"},
+    {"concern":"clarification","today":"per-family question registry","level3":"SEMANTIC_DECISION_BOUNDARY","validated":true,"slice":"L3-5"},
+    {"concern":"presentation","today":"includes regex repair","level3":"RENDERING_ONLY","validated":false,"slice":"L3-6"},
+    {"concern":"persistenceProvenanceFinalizationReport","today":"deterministic","level3":"DETERMINISTIC_UNCHANGED","validated":false,"slice":null}
+  ],
+  "invariants": [
+    {"id":"L3-INV-01","statement":"No invented citations; all candidates originate from deterministic eligible retrieval","guarantee":"structural"},
+    {"id":"L3-INV-02","statement":"Evidence-bound findings only","guarantee":"validator"},
+    {"id":"L3-INV-03","statement":"No model governance authority","guarantee":"structural"},
+    {"id":"L3-INV-04","statement":"No default ACTIVE from uncertainty","guarantee":"schema+validator"},
+    {"id":"L3-INV-05","statement":"Safe failure: truthful bounded failure state","guarantee":"design"},
+    {"id":"L3-INV-06","statement":"Clarification only at a decision boundary","guarantee":"schema+validator"},
+    {"id":"L3-INV-07","statement":"Structured output only; prose is never authoritative","guarantee":"schema"},
+    {"id":"L3-INV-08","statement":"Model output is a proposal until validation succeeds","guarantee":"structural"},
+    {"id":"L3-INV-09","statement":"Regulatory text remains governed; pretrained memory never substitutes","guarantee":"structural"},
+    {"id":"L3-INV-10","statement":"No silent Level-1 fallback","guarantee":"design"},
+    {"id":"L3-INV-11","statement":"Negation scope preserved in every evidence span","guarantee":"validator"},
+    {"id":"L3-INV-12","statement":"Deterministic signals are advisory and may not re-acquire customer authority","guarantee":"reachability assertion"}
+  ]
+}

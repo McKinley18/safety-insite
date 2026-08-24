@@ -1,0 +1,611 @@
+{
+  "setId": "l32e-probe",
+  "role": "DIAGNOSTIC",
+  "capturedAt": "2026-08-23T00:18:05.331Z",
+  "provider": {
+    "providerId": "ollama:qwen3-coder:30b",
+    "config": {
+      "endpoint": "<local>",
+      "model": "qwen3-coder:30b",
+      "temperature": 0,
+      "seed": 20260822,
+      "numCtx": 8192,
+      "timeoutMs": 60000
+    },
+    "promptVersion": "hazlenz.l3.prompt.v4"
+  },
+  "allowedHazardFamilyCount": 24,
+  "egressSample": {
+    "contractVersion": "hazlenz.l3.input.v1",
+    "analysisIdSent": true,
+    "sourceCount": 1,
+    "sourceIds": [
+      "observation-1"
+    ],
+    "sourceTypes": [
+      "observation"
+    ],
+    "totalSourceChars": 148,
+    "regulatoryContextValue": "osha-general-industry",
+    "regulatoryContextProvenance": "USER_CONFIRMED",
+    "allowedHazardFamilyCount": 24,
+    "regulatoryCandidateIdsSent": [],
+    "regulatoryCitationStringsSent": false,
+    "establishedFindingFamiliesSent": [],
+    "advisorySignalCount": 0,
+    "excludedStructurally": [
+      "personal names",
+      "inspector identity",
+      "company/site name",
+      "site address",
+      "account id",
+      "authentication material",
+      "billing data",
+      "unrelated inspection records",
+      "governed review state",
+      "release lifecycle state",
+      "standards corpus text",
+      "arbitrary database rows",
+      "photos/attachments"
+    ]
+  },
+  "records": [
+    {
+      "id": "NG04-orig",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-general-industry",
+      "text": "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+      "expect": {
+        "hazardEstablished": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 7126,
+      "telemetry": {
+        "latencyMs": 7122,
+        "promptTokens": 1608,
+        "outputTokens": 474,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "hazard-1",
+          "hazardFamily": "confined_space",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening."
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether proper lockout/tagout procedures were followed for the agitator before entry",
+            "affectedDecision": "risk",
+            "branches": [
+              "If proper LOTO was followed, then the hazard would be controlled or corrected",
+              "If no LOTO was followed, then there is an active hazard"
+            ],
+            "question": "Was lockout/tagout procedure properly implemented for the agitator before the fitter entered the vessel?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32e-probe:NG04-orig",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a situation where no flammable atmosphere was detected at the manway, but it does not provide sufficient information to determine if there is a present hazard. The fact that the fitter went inside the vessel with the agitator still on line and nobody at the opening suggests potential safety concerns, but without more specific details about the vessel's condition, the nature of the work being performed, or whether proper lockout/tagout procedures were followed, it is not possible to definitively classify this as an active hazard.",
+        "hazards": [
+          {
+            "candidateKey": "hazard-1",
+            "hazardFamily": "confined_space",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 148,
+                "quotedText": "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening."
+              }
+            ],
+            "conditionRationale": "The observation mentions a vessel and a fitter going inside, which could indicate confined space work. However, it does not provide sufficient information about the specific hazards present or whether proper procedures were followed.",
+            "independentHazardRationale": "This candidate focuses on the potential confined space hazard related to entry without proper atmospheric monitoring and control of equipment within the vessel.",
+            "uncertainties": [
+              "Whether proper lockout/tagout procedures were followed for the agitator",
+              "Whether adequate ventilation was provided",
+              "Whether proper entry permits and safety protocols were implemented"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether proper lockout/tagout procedures were followed for the agitator before entry",
+              "affectedDecision": "risk",
+              "branches": [
+                "If proper LOTO was followed, then the hazard would be controlled or corrected",
+                "If no LOTO was followed, then there is an active hazard"
+              ],
+              "question": "Was lockout/tagout procedure properly implemented for the agitator before the fitter entered the vessel?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:17:39.052Z"
+        }
+      }
+    },
+    {
+      "id": "NG04-noNegation",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-general-industry",
+      "text": "The atmosphere was tested at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+      "expect": {
+        "hazardEstablished": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 7057,
+      "telemetry": {
+        "latencyMs": 7056,
+        "promptTokens": 1606,
+        "outputTokens": 473,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "confined_space_entry",
+          "hazardFamily": "confined_space",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "The atmosphere was tested at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening."
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether proper lockout/tagout procedures were implemented for the agitator before entry",
+            "affectedDecision": "risk",
+            "branches": [
+              "If lockout/tagout was properly implemented, then the hazard would be controlled or corrected",
+              "If lockout/tagout was not properly implemented, then there is an active hazard"
+            ],
+            "question": "Was proper lockout/tagout implemented for the agitator before the fitter entered the vessel?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32e-probe:NG04-noNegation",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a situation where atmospheric testing was conducted at a manway, and a fitter entered a vessel with an agitator still connected to power sources, with no one stationed at the opening. This description does not provide sufficient information to determine if there is a present hazard related to confined space entry or proper lockout/tagout procedures.",
+        "hazards": [
+          {
+            "candidateKey": "confined_space_entry",
+            "hazardFamily": "confined_space",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 137,
+                "quotedText": "The atmosphere was tested at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening."
+              }
+            ],
+            "conditionRationale": "The observation does not clearly establish whether proper confined space entry procedures were followed. While it mentions atmospheric testing and a person entering with equipment still connected, it lacks sufficient detail about lockout/tagout procedures or adequate supervision.",
+            "independentHazardRationale": "This candidate addresses the potential hazard related to confined space entry practices, which is distinct from other safety concerns like electrical hazards or proper guarding. The focus here is on the procedural aspects of confined space work rather than physical equipment conditions.",
+            "uncertainties": [
+              "Whether proper lockout/tagout procedures were followed for the agitator",
+              "Whether adequate supervision was provided at the opening during entry",
+              "Whether the atmospheric testing results were sufficient for safe entry"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether proper lockout/tagout procedures were implemented for the agitator before entry",
+              "affectedDecision": "risk",
+              "branches": [
+                "If lockout/tagout was properly implemented, then the hazard would be controlled or corrected",
+                "If lockout/tagout was not properly implemented, then there is an active hazard"
+              ],
+              "question": "Was proper lockout/tagout implemented for the agitator before the fitter entered the vessel?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:17:46.113Z"
+        }
+      }
+    },
+    {
+      "id": "NG04-secondClauseAlone",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-general-industry",
+      "text": "The fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+      "expect": {
+        "hazardEstablished": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4452,
+      "telemetry": {
+        "latencyMs": 4447,
+        "promptTokens": 1596,
+        "outputTokens": 295,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "confined_space",
+          "hazardFamily": "confined_space",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The fitter went inside the vessel with the agitator still on line and nobody at the opening."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32e-probe:NG04-secondClauseAlone",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a fitter entered a vessel with an agitator still connected to power/source, and no one was present at the vessel opening to monitor or control access.",
+        "hazards": [
+          {
+            "candidateKey": "confined_space",
+            "hazardFamily": "confined_space",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 92,
+                "quotedText": "The fitter went inside the vessel with the agitator still on line and nobody at the opening."
+              }
+            ],
+            "conditionRationale": "The observation describes a fitter entering a vessel (confined space) with an agitator that is still connected to power/source, indicating a hazardous energy source present. The absence of personnel at the opening suggests inadequate monitoring or control of access, which is a critical safety requirement for confined space entry.",
+            "independentHazardRationale": "This represents a confined space hazard because the observation specifically mentions entry into a vessel, which is the defining characteristic of a confined space. The presence of an agitator connected to power and lack of monitoring personnel at the opening creates a hazardous condition requiring proper confined space entry procedures.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:17:50.562Z"
+        }
+      }
+    },
+    {
+      "id": "NG04-negationLast",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-general-industry",
+      "text": "The fitter went inside the vessel with the agitator still on line and nobody at the opening, and no flammable atmosphere was detected at the manway.",
+      "expect": {
+        "hazardEstablished": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4807,
+      "telemetry": {
+        "latencyMs": 4805,
+        "promptTokens": 1608,
+        "outputTokens": 319,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "confined_space",
+          "hazardFamily": "confined_space",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The fitter went inside the vessel with the agitator still on line and nobody at the opening"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32e-probe:NG04-negationLast",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a fitter entered a vessel with an agitator still connected to power source, and there was no one stationed at the vessel opening. No flammable atmosphere was detected at the manway.",
+        "hazards": [
+          {
+            "candidateKey": "confined_space",
+            "hazardFamily": "confined_space",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 91,
+                "quotedText": "The fitter went inside the vessel with the agitator still on line and nobody at the opening"
+              }
+            ],
+            "conditionRationale": "The observation describes a fitter entering a vessel (confined space) with an agitator still connected to power source, indicating that the vessel is not properly isolated from energy sources. The absence of personnel at the opening suggests inadequate monitoring or control of entry/exit procedures, which are required for confined space safety.",
+            "independentHazardRationale": "This represents a confined space hazard because the observation describes entry into a vessel (confined space) with an agitator still connected to power source. This is a distinct hazard from other potential hazards like electrical or machine guarding because it specifically involves the safety requirements for confined spaces, including proper isolation of energy sources and adequate monitoring during entry.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:17:55.371Z"
+        }
+      }
+    },
+    {
+      "id": "CR04-orig",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-construction",
+      "text": "Two men were on the roof near the edge; I was too far away to see whether they were tied off to anything.",
+      "expect": {
+        "hazardEstablished": false
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4139,
+      "telemetry": {
+        "latencyMs": 4138,
+        "promptTokens": 1599,
+        "outputTokens": 263,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "falls",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "Two men were on the roof near the edge"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32e-probe:CR04-orig",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation describes two men on a roof near the edge without any indication they were using fall protection equipment. The inspector could not determine from their distance whether the men were tied off.",
+        "hazards": [
+          {
+            "candidateKey": "falls",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 38,
+                "quotedText": "Two men were on the roof near the edge"
+              }
+            ],
+            "conditionRationale": "The observation states that two men were positioned on a roof near the edge, which constitutes a fall hazard. The fact that they were not tied off to anything indicates that required fall protection was not in use.",
+            "independentHazardRationale": "This represents a distinct fall hazard because it describes workers at risk of falling from an elevated surface (roof) without proper fall protection measures. This is separate from other potential hazards like electrical or chemical exposures that might also be present on a roof but are not described in this observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:17:59.512Z"
+        }
+      }
+    },
+    {
+      "id": "CR04-observeFirst",
+      "cohort": "probe",
+      "provenanceClass": null,
+      "failureMode": null,
+      "regime": "osha-construction",
+      "text": "I was too far away to see whether the two men on the roof were tied off to anything.",
+      "expect": {
+        "hazardEstablished": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5818,
+      "telemetry": {
+        "latencyMs": 5818,
+        "promptTokens": 1594,
+        "outputTokens": 386,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_protection",
+          "hazardFamily": "falls",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "I was too far away to see whether the two men on the roof were tied off to anything."
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether the two men on the roof were tied off to anything",
+            "affectedDecision": "risk",
+            "branches": [
+              "The workers were using proper fall protection (ACTIVE hazard - falls)",
+              "The workers were not using fall protection (ACTIVE hazard - falls)"
+            ],
+            "question": "Were the two men on the roof properly secured with personal fall arrest systems?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32e-probe:CR04-observeFirst",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation states that the inspector was too far away to see whether the two men on the roof were tied off to anything. This means there is insufficient evidence to determine if fall protection was being used by the workers.",
+        "hazards": [
+          {
+            "candidateKey": "fall_protection",
+            "hazardFamily": "falls",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 84,
+                "quotedText": "I was too far away to see whether the two men on the roof were tied off to anything."
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the inspector could not determine from their vantage point whether workers were using fall protection. This is a direct statement about insufficient visibility to assess compliance with fall protection requirements.",
+            "independentHazardRationale": "This represents a single hazard condition - the lack of determination regarding fall protection use by workers on a roof. It's not two separate hazards but one hazard condition that cannot be assessed due to visibility limitations.",
+            "uncertainties": [
+              "Whether the workers were using fall protection",
+              "Whether the workers were properly secured with personal fall arrest systems"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether the two men on the roof were tied off to anything",
+              "affectedDecision": "risk",
+              "branches": [
+                "The workers were using proper fall protection (ACTIVE hazard - falls)",
+                "The workers were not using fall protection (ACTIVE hazard - falls)"
+              ],
+              "question": "Were the two men on the roof properly secured with personal fall arrest systems?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T00:18:05.330Z"
+        }
+      }
+    }
+  ]
+}

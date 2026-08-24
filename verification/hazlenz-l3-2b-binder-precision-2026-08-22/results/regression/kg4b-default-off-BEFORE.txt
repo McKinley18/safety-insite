@@ -1,0 +1,55 @@
+
+> safety-insite-backend@1.0.0 test:kg4b-default-off
+> ts-node scripts/test-kg4b-default-off.ts
+
+
+--- Phase 19 — configuration cannot drift into a governed or shadow mode
+ok    HARD: no mode at all -> effective mode LEGACY
+ok    HARD: no mode at all -> no cutover context is created at all
+ok    HARD: empty mode -> effective mode LEGACY
+ok    HARD: empty mode -> no cutover context is created at all
+ok    HARD: whitespace mode -> effective mode LEGACY
+ok    HARD: whitespace mode -> no cutover context is created at all
+ok    HARD: malformed mode -> effective mode LEGACY
+ok    HARD: malformed mode -> no cutover context is created at all
+ok    HARD: truthy mode value -> effective mode LEGACY
+ok    HARD: truthy mode value -> no cutover context is created at all
+ok    HARD: numeric mode value -> effective mode LEGACY
+ok    HARD: numeric mode value -> no cutover context is created at all
+ok    HARD: SHADOW without an allowlist -> effective mode LEGACY
+ok    HARD: SHADOW without an allowlist -> no cutover context is created at all
+ok    HARD: SHADOW with an EMPTY allowlist -> effective mode LEGACY
+ok    HARD: SHADOW with an EMPTY allowlist -> no cutover context is created at all
+ok    HARD: allowlist without a mode -> effective mode LEGACY
+ok    HARD: allowlist without a mode -> no cutover context is created at all
+ok    HARD: org allowlist without a mode -> effective mode LEGACY
+ok    HARD: org allowlist without a mode -> no cutover context is created at all
+ok    HARD: SHADOW in production without the acknowledgement -> effective mode LEGACY
+ok    HARD: SHADOW in production without the acknowledgement -> no cutover context is created at all
+ok    HARD: GOVERNED_STRICT in production without the acknowledgement -> effective mode LEGACY
+ok    HARD: GOVERNED_STRICT in production without the acknowledgement -> no cutover context is created at all
+ok    HARD: startup refuses production 'SHADOW' without GOVERNED_CUTOVER_PRODUCTION_ACK
+ok    HARD: startup refuses production 'GOVERNED_WITH_FALLBACK' without GOVERNED_CUTOVER_PRODUCTION_ACK
+ok    HARD: startup refuses production 'GOVERNED_STRICT' without GOVERNED_CUTOVER_PRODUCTION_ACK
+ok    HARD: the ambient environment this suite runs in resolves to LEGACY
+
+--- Phase 19 — a client cannot request SHADOW or any governed mode
+ok    HARD: no request body, query, param or header selects a cutover mode (none)
+ok    HARD: cutover configuration is read ONLY inside standards/cutover/ (standards/cutover/cutover-mode.ts, standards/cutover/production-shadow-authorization.ts)
+
+--- Phase 19 — on a server RUNNING in SHADOW, a non-allowlisted customer is untouched
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:14976:13
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async call (/private/tmp/claude-501/-Users-mckinley/f68ca7df-f18a-4480-b76c-090e1b478201/scratchpad/l32b-invariance/before/backend/scripts/test-kg4b-default-off.ts:42:20)
+    at async login (/private/tmp/claude-501/-Users-mckinley/f68ca7df-f18a-4480-b76c-090e1b478201/scratchpad/l32b-invariance/before/backend/scripts/test-kg4b-default-off.ts:54:22)
+    at async main (/private/tmp/claude-501/-Users-mckinley/f68ca7df-f18a-4480-b76c-090e1b478201/scratchpad/l32b-invariance/before/backend/scripts/test-kg4b-default-off.ts:139:23) {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:4340
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16) {
+    errno: -61,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 4340
+  }
+}

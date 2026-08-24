@@ -1,0 +1,289 @@
+{
+  "phase": "L3-2c",
+  "stage": "ROOT_CAUSE_PROOF_BEFORE_ANY_PATCH",
+  "generatedAt": "2026-08-22T22:23:59.083Z",
+  "R1": {
+    "H_AM_05_whole_sentence_span": {
+      "text": "The mezzanine gate did not look right to me and the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+      "expectedByHoldout": "ACTIVE survives (high-consequence)",
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [
+          "c1"
+        ],
+        "fatal": [],
+        "issues": [
+          {
+            "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+          }
+        ]
+      },
+      "defectDemonstrated": false,
+      "isolatedFromR2": true
+    },
+    "negation_free_isolate": {
+      "text": "The mezzanine gate seemed wrong to me and the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+      "negationScopesInText": [],
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [
+          "c1"
+        ],
+        "fatal": [],
+        "issues": [
+          {
+            "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+          }
+        ]
+      },
+      "defectDemonstrated": false,
+      "isolatedFromR2": true
+    },
+    "H_AM_05_narrow_span_second_path": {
+      "text": "The mezzanine gate did not look right to me and the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [
+          "c1"
+        ],
+        "fatal": [],
+        "issues": [
+          {
+            "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+          }
+        ]
+      },
+      "negationScopes": [
+        {
+          "tokenStart": 23,
+          "token": "not",
+          "from": 23,
+          "to": 44,
+          "governs": "not look right to me "
+        }
+      ],
+      "note": "fails through SEMANTIC_NEGATION_UNADDRESSED -- the R2 defect, not the R1 defect"
+    },
+    "H_AM_02_precision_pole": {
+      "text": "One of the sling legs on the spreader bar may be cut.",
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [
+          "c1"
+        ],
+        "fatal": [],
+        "issues": [
+          {
+            "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "no vocabulary for family 'material_handling' in the cited evidence or its sentence; grounding is weak"
+          }
+        ]
+      },
+      "currentlyRejected": false
+    }
+  },
+  "R2": {
+    "H_FLD_141": {
+      "text": "Crew was changing the knives on the granulator; no LOTO is applied and the guard is missing.",
+      "negationScopes": [
+        {
+          "tokenStart": 48,
+          "token": "no",
+          "from": 48,
+          "to": 67,
+          "governs": "no LOTO is applied "
+        }
+      ],
+      "governingNegationOverGuardSpan": null,
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [
+          "guard"
+        ],
+        "fatal": [
+          {
+            "candidateKey": "loto",
+            "codes": [
+              "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+            ]
+          }
+        ],
+        "issues": [
+          {
+            "code": "SEMANTIC_EVIDENCE_CONTRADICTS_STATE",
+            "severity": "FATAL",
+            "key": "loto",
+            "detail": "cited evidence carries 'applied', which contradicts ACTIVE, and the rationale does not address it"
+          }
+        ]
+      },
+      "defectDemonstrated": false
+    },
+    "RC08_negated_list_and": {
+      "text": "Two carpenters were framing the parapet at twenty six feet with no guardrail and no safety monitor assigned.",
+      "negationScopes": [
+        {
+          "tokenStart": 64,
+          "token": "no",
+          "from": 64,
+          "to": 107,
+          "governs": "no guardrail and no safety monitor assigned"
+        },
+        {
+          "tokenStart": 81,
+          "token": "no",
+          "from": 81,
+          "to": 107,
+          "governs": "no safety monitor assigned"
+        }
+      ]
+    },
+    "RC08_negated_list_commas": {
+      "text": "working with no guardrail, safety net or personal fall arrest system in use",
+      "negationScopes": [
+        {
+          "tokenStart": 13,
+          "token": "no",
+          "from": 13,
+          "to": 75,
+          "governs": "no guardrail, safety net or personal fall arrest system in use"
+        }
+      ]
+    },
+    "bare_and_no_predicate": {
+      "text": "The opening had no guardrail and no toeboard.",
+      "negationScopes": [
+        {
+          "tokenStart": 16,
+          "token": "no",
+          "from": 16,
+          "to": 44,
+          "governs": "no guardrail and no toeboard"
+        },
+        {
+          "tokenStart": 33,
+          "token": "no",
+          "from": 33,
+          "to": 44,
+          "governs": "no toeboard"
+        }
+      ]
+    }
+  },
+  "controls": {
+    "B10": {
+      "text": "The rail on the platform did not look right to me.",
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [],
+        "fatal": [
+          {
+            "candidateKey": "c1",
+            "codes": [
+              "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE"
+            ]
+          }
+        ],
+        "issues": [
+          {
+            "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+          },
+          {
+            "code": "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+            "severity": "FATAL",
+            "key": "c1",
+            "detail": "ACTIVE rests on the observer's impression ('look right') -- every predication in the cited evidence is a perception, a first-person judgement or governed by a hedge, and none asserts a condition of the thing observed"
+          },
+          {
+            "code": "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "a decision-critical clarification was warranted and none was supplied"
+          }
+        ]
+      },
+      "currentlyRejected": true
+    },
+    "H_AM_01": {
+      "text": "The overhead door track struck me as odd when I walked underneath it.",
+      "observed": {
+        "validatorState": "VALID",
+        "validatorIssues": [],
+        "survived": [],
+        "fatal": [
+          {
+            "candidateKey": "c1",
+            "codes": [
+              "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE"
+            ]
+          }
+        ],
+        "issues": [
+          {
+            "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "no vocabulary for family 'machine_guarding' in the cited evidence or its sentence; grounding is weak"
+          },
+          {
+            "code": "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+            "severity": "FATAL",
+            "key": "c1",
+            "detail": "ACTIVE rests on the observer's impression ('struck me') -- every predication in the cited evidence is a perception, a first-person judgement or governed by a hedge, and none asserts a condition of the thing observed"
+          },
+          {
+            "code": "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED",
+            "severity": "ADVISORY",
+            "key": "c1",
+            "detail": "a decision-critical clarification was warranted and none was supplied"
+          }
+        ]
+      },
+      "currentlyRejected": true
+    },
+    "B08": {
+      "text": "An employee on a rolling scaffold at nine feet was using an angle grinder without a face shield while a propane forklift idled directly underneath refueling from a portable cylinder.",
+      "negationScopes": [
+        {
+          "tokenStart": 74,
+          "token": "without",
+          "from": 74,
+          "to": 96,
+          "governs": "without a face shield "
+        }
+      ]
+    },
+    "C11": {
+      "text": "welding on the mezz rail, no fire watch, cardboard and pallets stacked under where the sparks were landing",
+      "negationScopes": [
+        {
+          "tokenStart": 26,
+          "token": "no",
+          "from": 26,
+          "to": 39,
+          "governs": "no fire watch"
+        }
+      ]
+    }
+  }
+}

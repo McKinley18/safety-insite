@@ -1,0 +1,1383 @@
+{
+  "setId": "l3-2c-sealed-holdout-2026-08-22",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "visibleDuringTuning": false,
+  "frozenBeforeFirstExecution": true,
+  "frozenBeforeRepairCodeWritten": true,
+  "supersedes": "l3-2b-sealed-holdout-2026-08-22 (e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060) -- opened, now REGRESSION_EVIDENCE only",
+  "sharesNoScenarioWith": [
+    "holdout-l32.json",
+    "holdout-l32b.json",
+    "development-l32.json"
+  ],
+  "overlapCheck": {
+    "textClashes": 0,
+    "idClashes": 0,
+    "method": "exact trimmed text and id comparison against all three prior sets, asserted at build time"
+  },
+  "provenance": {
+    "A_independent": {
+      "artifact": "safescope-data/benchmarks/safescope-field-validation-dataset.v1.json",
+      "sha256": "a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2",
+      "authoredBy": "an earlier programme phase; never executed against any Level-3 code",
+      "selection": "deterministic -- indices where i % 5 === 2 over the id-sorted dataset",
+      "disjointFromL32b": "L3-2b used i % 5 === 0; the two strides cannot intersect",
+      "count": 40
+    },
+    "B_authoredComplement": {
+      "authoredBy": "the L3-2c implementation phase",
+      "count": 32,
+      "why": "source A is entirely positive hazards and contains no negative control, corrected or controlled state, subjective wording or clarification case",
+      "limitation": "authored by the implementer -- the weakest provenance in this set. Mitigated: written and frozen BEFORE the repair code was written, expectations declared here rather than derived from a run, and no text reused from any prior set."
+    }
+  },
+  "highConsequenceFamilies": [
+    "fall",
+    "trench",
+    "excavation",
+    "cave_in",
+    "loto",
+    "energy",
+    "confined",
+    "electrical",
+    "struck_by",
+    "mobile_equipment",
+    "scaffold",
+    "hole",
+    "opening",
+    "impalement",
+    "rebar",
+    "explosion",
+    "ground_control"
+  ],
+  "composition": {
+    "total": 72,
+    "byProvenance": {
+      "INDEPENDENT": 40,
+      "AUTHORED_COMPLEMENT": 32
+    },
+    "byCohort": {
+      "field_positive": 40,
+      "negative_control": 6,
+      "condition_state": 6,
+      "ambiguity": 7,
+      "negation": 7,
+      "evidence": 6
+    },
+    "positives": 54,
+    "negativesOrNonActive": 18,
+    "explicitNegativeControls": 8,
+    "clarificationExpected": 3
+  },
+  "scenarios": [
+    {
+      "id": "C-FLD-003",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The rotating pump shaft on water pump #2 is completely exposed, guard was not replaced after motor maintenance.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-008",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "An unlabeled secondary chemical container containing an unknown clear liquid is sitting on a workbench.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-013",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Exposed rotating coupling on the main fan motor shaft; the guard is missing, creating an entanglement hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-018",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A plastic jug containing chemical solvent is stored without any hazard warning labels or GHS identifiers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-023",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The drive shaft on the slurry pump is running with no safety guard installed, exposing rotating parts to maintenance workers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-028",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Workers are handling corrosive acid cleaning solutions without chemical splash goggles or protective aprons.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-033",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Found the rotating shaft of the main compressor motor completely unguarded in the plant room.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-038",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Found several secondary chemical containers in the shop with handwritten names but no hazard warnings.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-043",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The coupling on pump #1 is running with the guard removed, leaving the rotating shaft exposed in the walk area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-048",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "The Safety Data Sheet (SDS) for a newly introduced industrial solvent is missing from the shop binder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-053",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Exposed rotating shaft on the secondary water pump; no guard is installed over the motor shaft coupling.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-058",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A chemical container containing corrosive hydraulic fluid is unlabeled, and the SDS binder is locked.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-063",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Observed an unguarded rotating motor shaft on the primary screen drive unit, creating a severe entanglement risk.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-068",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "An employee is transferring bulk chemical solvent into an unlabeled plastic spray bottle on the shop floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-073",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The pump drive shaft is running completely exposed; the metal guard was removed during service and not reinstalled.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-078",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Workers are decanting hazardous chemicals with no eye wash station or protective chemical gloves available.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-083",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "A rotating shaft coupling on the hydraulic pump skid is unguarded, exposing moving parts in the walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-088",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Found an unlabeled container of hazardous solvent sitting on a shelf without GHS labeling.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-093",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Found the rotating shaft on fan blower #3 unguarded, exposing rotating couplings to employees in the compressor room.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-098",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "The chemical storage cabinet has several containers with missing labels and no corresponding SDS records.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-103",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The drive coupling on slurry pump 5 is running unguarded, exposing rotating shaft components.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-108",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "An employee is using a strong corrosive cleaner without heavy-duty chemical gloves or face protection.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-113",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The motor shaft on water pump #4 is exposed and unguarded; the guard is missing from the motor pump interface.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-118",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Unlabeled plastic drum containing chemical waste is stored in an open yard without hazard warnings.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-123",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Rotating shaft coupling on the secondary fan drive is unguarded, creating an open rotating hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-128",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A plastic container filled with corrosive battery acid is stored in the workshop without any GHS hazard labels.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-133",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The pump motor coupling on pump B is running completely unguarded; the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-138",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A shop mechanic is performing heavy solvent degreasing in an enclosed room with no local exhaust ventilation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-143",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Exposed rotating pump shaft on the primary wash plant water supply system, no guard installed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-148",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Workers are welding steel pipes in a tight, unventilated mechanical closet, causing dense weld fumes to accumulate.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-153",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "An unguarded rotating coupling on the main product pump motor shaft represents a severe hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-158",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A worker is spray-painting metal parts in a confined workshop bay with no spray booth or ventilation running.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-163",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The drive shaft coupling on the primary air compressor is running unguarded, exposing the rotating shaft.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-168",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Heavy silica dust is accumulating in the air near the primary screen chute because the dust collector is broken.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-173",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Found the main motor coupling on water pump 12 running completely unguarded after repairs.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-178",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "An employee is using a gasoline generator indoors, creating a severe carbon monoxide inhalation hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-183",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "Rotating pump shaft on pump C is unguarded, exposing the rotating coupling to workers passing by.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-188",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "Dense exhaust fumes are accumulating in the unventilated maintenance garage where several engines are running.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-FLD-193",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / rotating_shaft_guarding",
+      "regime": "msha",
+      "text": "The main motor drive shaft on the ventilation fan is completely exposed with no protective cage or guard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "C-FLD-198",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "hazcom / chemical_label_sds_gap",
+      "regime": "osha-general-industry",
+      "text": "A worker is grinding concrete walls in an unventilated basement room, generating thick clouds of respirable dust.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication|chemical_storage",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "C-NC-01",
+      "cohort": "negative_control",
+      "failureMode": "compliant fall protection",
+      "regime": "osha-construction",
+      "text": "The roof edge on the east elevation is protected by a compliant guardrail with top rail, mid rail and toeboard, and the anchor points were proof loaded last month.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NC-02",
+      "cohort": "negative_control",
+      "failureMode": "hazard itself negated",
+      "regime": "osha-general-industry",
+      "text": "A full survey of the packaging hall found no unguarded nip points, no exposed drive shafts and no defeated interlocks on any of the six lines.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NC-03",
+      "cohort": "negative_control",
+      "failureMode": "paperwork only",
+      "regime": "osha-general-industry",
+      "text": "The respirator fit test records for the paint crew were scanned into the system and the medical clearance dates were confirmed with occupational health.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NC-04",
+      "cohort": "negative_control",
+      "failureMode": "hazard vocabulary in a safe statement",
+      "regime": "osha-construction",
+      "text": "The trench box inventory was counted and the shoring calculations for the sanitary main were signed by the engineer before the dig starts next month.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NC-05",
+      "cohort": "negative_control",
+      "failureMode": "positive impression plus control-in-place fact",
+      "regime": "osha-general-industry",
+      "text": "The whole grinding bay looked right to me and the wheel guards are all fitted with the tool rests set within an eighth of an inch.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NC-06",
+      "cohort": "negative_control",
+      "failureMode": "negated hazard across a bare conjunction",
+      "regime": "osha-general-industry",
+      "text": "The battery room was checked and no acid spillage was present and the eyewash discharged clear within the first second.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-01",
+      "cohort": "condition_state",
+      "failureMode": "energy isolation in place",
+      "regime": "osha-general-industry",
+      "text": "The bagging line was shut down at the main disconnect, three personal locks were hung on the hasp and the residual air was bled down and verified at zero before the guard came off.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-02",
+      "cohort": "condition_state",
+      "failureMode": "corrected on the spot, uncommon verb",
+      "regime": "osha-general-industry",
+      "text": "The frayed pendant cable on the jib crane was found during the walk and the millwright swapped it for a new one before the next lift.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-03",
+      "cohort": "condition_state",
+      "failureMode": "removed from service",
+      "regime": "osha-general-industry",
+      "text": "The chain hoist with the stretched hook throat was tagged out and taken out of use pending replacement of the load chain.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-04",
+      "cohort": "condition_state",
+      "failureMode": "historical and closed",
+      "regime": "osha-general-industry",
+      "text": "The mezzanine handrail was struck by a forklift last spring and was rebuilt to the original detail; this inspection found it sound and correctly fixed at every post.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-05",
+      "cohort": "condition_state",
+      "failureMode": "hypothetical",
+      "regime": "osha-general-industry",
+      "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-CS-06",
+      "cohort": "condition_state",
+      "failureMode": "controlled, hazard genuinely present",
+      "regime": "osha-construction",
+      "text": "The floor opening at grid C4 is covered with a secured plate marked HOLE and rated for the load, and the cover was screwed down at all four corners.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-01",
+      "cohort": "ambiguity",
+      "failureMode": "pure impression, perception predicate",
+      "regime": "osha-general-industry",
+      "text": "The way the pallet racking in aisle six was loaded did not sit right with me.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-02",
+      "cohort": "ambiguity",
+      "failureMode": "hedge governs the only fact",
+      "regime": "osha-general-industry",
+      "text": "The flexible conduit into the mixer junction box might be damaged where it passes the frame.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-03",
+      "cohort": "ambiguity",
+      "failureMode": "unidentified condition, decision-critical",
+      "regime": "unknown",
+      "text": "There is a smell of something sharp near the plating tanks and I could not work out which tank it was coming from.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-04",
+      "cohort": "ambiguity",
+      "failureMode": "impression plus a hard fact, unlisted predicate",
+      "regime": "osha-general-industry",
+      "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-05",
+      "cohort": "ambiguity",
+      "failureMode": "impression plus a hard fact, second unlisted predicate",
+      "regime": "osha-construction",
+      "text": "I was uneasy about the scaffold on the north face and the two lower braces have been unpinned and are swinging free of the standards.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "scaffolds|falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-06",
+      "cohort": "ambiguity",
+      "failureMode": "uncertainty that changes no decision",
+      "regime": "osha-general-industry",
+      "text": "The tongue guard on the bench grinder is gone; I could not say whether maintenance removed it or it broke off.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-AM-07",
+      "cohort": "ambiguity",
+      "failureMode": "nothing said at all",
+      "regime": "unknown",
+      "text": "Walked the north yard before lunch.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-01",
+      "cohort": "negation",
+      "failureMode": "bare and, following clause has a finite verb",
+      "regime": "osha-general-industry",
+      "text": "Crew was changing the knives on the granulator; no lockout is applied and the infeed guard is missing from the hopper throat.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|loto_stored_energy",
+        "minCandidates": 2,
+        "maxCandidates": 3,
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-02",
+      "cohort": "negation",
+      "failureMode": "negated list across a bare and",
+      "regime": "osha-construction",
+      "text": "A roofer was working four feet from the unprotected edge at thirty feet with no guardrail and no personal fall arrest and no warning line.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-03",
+      "cohort": "negation",
+      "failureMode": "negated list across commas (RC-08 shape)",
+      "regime": "osha-construction",
+      "text": "Steel erectors were connecting at the second tier with no guardrail, safety net or personal fall arrest system in use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|scaffolds",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-04",
+      "cohort": "negation",
+      "failureMode": "negation in clause one, hazard in clause two",
+      "regime": "osha-general-industry",
+      "text": "There was no oil on the walkway anywhere in the pump house, and the grating panel over the sump has lifted at one corner and rocks underfoot.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-05",
+      "cohort": "negation",
+      "failureMode": "contrastive after a negation",
+      "regime": "osha-general-industry",
+      "text": "The extension ladder showed no split rails, however the shoes are worn smooth and it was set at close to eighty degrees on a painted floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-06",
+      "cohort": "negation",
+      "failureMode": "bare while after a negation (B08 shape)",
+      "regime": "osha-construction",
+      "text": "A fitter was grinding overhead without a face shield while an oxygen cylinder stood unsecured against the column behind him.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "personal_protective_equipment|compressed_gas_cylinders|chemical_storage",
+        "minCandidates": 2,
+        "maxCandidates": 3,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-NG-07",
+      "cohort": "negation",
+      "failureMode": "negated hazard, not a negated control",
+      "regime": "osha-general-industry",
+      "text": "The annual survey of the finishing department recorded no exposure above the action level and no employee reported any symptoms.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-01",
+      "cohort": "evidence",
+      "failureMode": "single sentence is the only evidence",
+      "regime": "osha-general-industry",
+      "text": "The interlock on the blender access door has been taped over so the paddle keeps turning with the door open.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-02",
+      "cohort": "evidence",
+      "failureMode": "safe statement adjacent to a real hazard",
+      "regime": "osha-general-industry",
+      "text": "The spill kit beside the decanter was fully stocked and sealed, and the sight glass on the solvent day tank is cracked and weeping onto the bund floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical_storage|hazard_communication",
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-03",
+      "cohort": "evidence",
+      "failureMode": "multi hazard in one sentence",
+      "regime": "osha-construction",
+      "text": "A labourer was in a five foot trench in wet clay with no shoring, the spoil pile was heaped against the lip, and the only way out was a ladder lying flat on the bottom.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "trenching_shoring|excavation|ground_control",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-04",
+      "cohort": "evidence",
+      "failureMode": "field shorthand, multi hazard",
+      "regime": "msha",
+      "text": "conveyor 7 walkway, guard off the tail pulley, handrail missing north side, lot of spill under the belt",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|walking_working_surfaces|falls",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-05",
+      "cohort": "evidence",
+      "failureMode": "planned action only",
+      "regime": "osha-general-industry",
+      "text": "We plan to install a second emergency stop on the palletiser during the August shutdown.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "C-EV-06",
+      "cohort": "evidence",
+      "failureMode": "high consequence, confined space",
+      "regime": "osha-general-industry",
+      "text": "A cleaner climbed into the flour silo through the top hatch with the sweep auger still energised and nobody stationed at the opening.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "confined_space|machine_guarding|loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2c implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    }
+  ]
+}

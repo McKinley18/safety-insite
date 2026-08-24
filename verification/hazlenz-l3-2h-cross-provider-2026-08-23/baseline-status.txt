@@ -1,0 +1,66 @@
+ M backend/package.json
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+?? "Safety InSite Logos/"
+?? backend/scripts/ablate-l32d-prompt.ts
+?? backend/scripts/ablate-l32g-state-separation.ts
+?? backend/scripts/build-l32-holdout.ts
+?? backend/scripts/build-l32b-holdout.ts
+?? backend/scripts/build-l32c-holdout.ts
+?? backend/scripts/build-l32d-devset.ts
+?? backend/scripts/build-l32d-holdout.ts
+?? backend/scripts/build-l32e-holdout.ts
+?? backend/scripts/build-l32f-devset.ts
+?? backend/scripts/build-l32f-holdout.ts
+?? backend/scripts/classify-l32d-disc-severity.ts
+?? backend/scripts/compare-l32-customer-invariance.ts
+?? backend/scripts/compare-l32-level1-level3.ts
+?? backend/scripts/compare-l32b-reproducibility.ts
+?? backend/scripts/diff-l32c-gate-behaviour.ts
+?? backend/scripts/diff-l32e-check-behaviour.ts
+?? backend/scripts/freeze-l32d-prompt-variants.ts
+?? backend/scripts/prove-l32c-clarification.ts
+?? backend/scripts/prove-l32c-rootcause.ts
+?? backend/scripts/prove-l32e-e1-rootcause.ts
+?? backend/scripts/prove-l32e-e2-rootcause.ts
+?? backend/scripts/prove-l32f-rootcause.ts
+?? backend/scripts/prove-l32g-binder-residual.ts
+?? backend/scripts/rederive-l32g-resolution.ts
+?? backend/scripts/run-l32-reasoning.ts
+?? backend/scripts/score-l32-reasoning.ts
+?? backend/scripts/score-l32b-reasoning.ts
+?? backend/scripts/score-l32c-reasoning.ts
+?? backend/scripts/score-l32d-reasoning.ts
+?? backend/scripts/score-l32e-reasoning.ts
+?? backend/scripts/score-l32f-reasoning.ts
+?? backend/scripts/score-l32g-fact-coherence.ts
+?? backend/scripts/score-l32g-order-sensitivity.ts
+?? backend/scripts/survey-l32g-evidence-sources.ts
+?? backend/scripts/test-l31-reasoning-contract.ts
+?? backend/scripts/test-l32-semantic-contract.ts
+?? backend/scripts/test-l32b-binder-precision.ts
+?? backend/scripts/test-l32c-gate-polarity.ts
+?? backend/scripts/test-l32d-clarification-scope.ts
+?? backend/scripts/test-l32e-syntactic-role.ts
+?? backend/scripts/test-l32f-predicate-scope.ts
+?? backend/scripts/test-l32g-state-separation.ts
+?? backend/scripts/trace-l32b-rootcause.ts
+?? backend/src/safescope-v2/reasoning-l3/
+?? verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5e/
+?? verification/hazlenz-l3-1-reasoning-contract-2026-08-22/
+?? verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/
+?? verification/hazlenz-l3-2b-binder-precision-2026-08-22/
+?? verification/hazlenz-l3-2c-gate-polarity-2026-08-22/
+?? verification/hazlenz-l3-2d-clarification-precision-2026-08-22/
+?? verification/hazlenz-l3-2e-syntactic-role-2026-08-23/
+?? verification/hazlenz-l3-2f-predicate-scope-2026-08-23/
+?? verification/hazlenz-l3-2g-state-separation-2026-08-23/
+?? verification/hazlenz-l3-2h-cross-provider-2026-08-23/
+?? verification/hazlenz-level3-architecture-2026-08-22/

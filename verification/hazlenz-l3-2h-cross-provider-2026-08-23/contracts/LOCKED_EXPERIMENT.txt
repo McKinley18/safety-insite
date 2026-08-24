@@ -1,0 +1,22 @@
+L3-2h — LOCKED EXPERIMENT RECORD
+recorded 2026-08-23T13:23:10Z BEFORE any L3-2h change
+
+== the locked experiment and its scorers ==
+73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+57064e2ff9b734885ebec8f19448519cc2b95508b15739ed404d91e219acba2f  backend/scripts/rederive-l32g-resolution.ts
+7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+a9d1fd8cdb764164efe40430462522e6e1f781f32dbb3ad53eabe7d936844268  backend/scripts/test-l32g-state-separation.ts
+c21fa7de9656e8520828bf75c290a44732bec99597101ac18d4c510428346f83  backend/scripts/prove-l32g-binder-residual.ts
+
+== the modules under test ==
+2098ac936267c2a0badd8ab26017f03c2204bd77e0d249f60fae0d53c159cbc7  backend/src/safescope-v2/reasoning-l3/state-facts.ts
+fae187ef02ca761f16d165db8c399a66b95de3ff7d6b3910dd21d02a8ae887a2  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+52a59757adc9533f5c72b90837966ec947d47913489523dc7f2a942b07cfb1dd  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+
+== L3-2g recorded results (the baseline to reproduce) ==
+bc5f1cd8c6339adb7c845aefbd377fe4291ac9a4bcc61597b7b7a20598adb548  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/ablation-run-1.json
+f09551c74fa299ce99034c72231a5146868ea69c1848995ae08e2a619d78d02e  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/ablation-run-2.json
+437d95756b011f297555604925a03145a21ea788968d2b739c19595a513168eb  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/order-sensitivity.json
+36bd4914ff8c88988862a0dbfc96db75874458ff33bf9a89160bf5edb5c226bf  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/resolution-ablation.json
+c3351508c54671fb88ff170cd42130860f97e7e2b50d2b2f0850a9a9c2263365  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/fact-coherence.json

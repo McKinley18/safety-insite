@@ -1,0 +1,1646 @@
+{
+  "mode": "L3_COMPARE",
+  "note": "Comparison evidence only. The Level-1 result was and remains the customer result; nothing in this artifact was consumed by the customer path.",
+  "adjudicationBasis": "frozen holdout expectations, authored before either result existed",
+  "level1ConditionStateAxis": "additionalHazards[].conditionState (per ORACLE_CORRECTION.md)",
+  "classification": {
+    "AGREE_BOTH_CORRECT": 42,
+    "AGREE_BOTH_INCORRECT": 2,
+    "L3_CORRECT_L1_INCORRECT": 36,
+    "L1_CORRECT_L3_INCORRECT": 1,
+    "BOTH_ACCEPTABLE": 0,
+    "GENUINELY_AMBIGUOUS": 0,
+    "COMPARISON_NOT_APPLICABLE": 0
+  },
+  "axes": {
+    "hazardEstablishedAgree": 44,
+    "hazardEstablishedDisagree": 37,
+    "familyOverlap": 15,
+    "familyNoOverlap": 17,
+    "familyNotComparable": 49,
+    "l1TopLevelUnknownOnEstablishedHazard": 38,
+    "l1ClarificationsRaised": 68,
+    "l3ClarificationsRaised": 1,
+    "l1MultiHazardCount": 6,
+    "l3MultiHazardCount": 4,
+    "l3EvidenceGroundedFindings": 64,
+    "l1EvidenceGroundedFindings": 0
+  },
+  "rows": [
+    {
+      "id": "H-FLD-001",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding",
+        "conveyors"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-006",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-011",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-016",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "electrical"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-021",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "conveyors"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-026",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-031",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-036",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-041",
+      "cohort": "field_positive",
+      "class": "L1_CORRECT_L3_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-046",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "electrical"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-051",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-056",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-061",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-066",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "electrical",
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-071",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "machine_guarding",
+        "lockout_tagout"
+      ],
+      "l3Families": [
+        "loto_stored_energy",
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-076",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "slips_trips_falls"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-081",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-086",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-091",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-096",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "slips_trips_falls"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-101",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-106",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-111",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-116",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-121",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-126",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-131",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-136",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-141",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-146",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-151",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-156",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-161",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding",
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-166",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-171",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-176",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-181",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-186",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "electrical"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-191",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-FLD-196",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-DX1",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-DX2",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-DX3",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-DX4",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-DX5",
+      "cohort": "diagnostic_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF1",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_haulage"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF2",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF3",
+      "cohort": "diagnostic_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF4",
+      "cohort": "diagnostic_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "lockout_tagout"
+      ],
+      "l3Families": [
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF5",
+      "cohort": "diagnostic_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF6",
+      "cohort": "diagnostic_safe",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "SAFE_VERIFIED",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-OF7",
+      "cohort": "diagnostic_safe",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NC-01",
+      "cohort": "negative_control",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NC-02",
+      "cohort": "negative_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "material_handling"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NC-03",
+      "cohort": "negative_control",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NC-04",
+      "cohort": "negative_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 2,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "excavation_trenching",
+        "training_competency"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NC-05",
+      "cohort": "negative_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-01",
+      "cohort": "condition_state",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "CONTRADICTORY",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-02",
+      "cohort": "condition_state",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "hot_work"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-03",
+      "cohort": "condition_state",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-04",
+      "cohort": "condition_state",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-05",
+      "cohort": "condition_state",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-CS-06",
+      "cohort": "condition_state",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-01",
+      "cohort": "ambiguity",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-02",
+      "cohort": "ambiguity",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+        "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-03",
+      "cohort": "ambiguity",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "chemical_storage"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-04",
+      "cohort": "ambiguity",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-05",
+      "cohort": "ambiguity",
+      "class": "AGREE_BOTH_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+        "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-AM-06",
+      "cohort": "ambiguity",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NG-01",
+      "cohort": "negation",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NG-02",
+      "cohort": "negation",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "electrical"
+      ],
+      "l3Families": [
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NG-03",
+      "cohort": "negation",
+      "class": "AGREE_BOTH_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "REJECTED_OUTPUT",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NG-04",
+      "cohort": "negation",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-NG-05",
+      "cohort": "negation",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "ground_control"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-01",
+      "cohort": "evidence",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-02",
+      "cohort": "evidence",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-03",
+      "cohort": "evidence",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "chemical_storage"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-04",
+      "cohort": "evidence",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "fall_protection",
+        "hot_work"
+      ],
+      "l3Families": [
+        "personal_protective_equipment",
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-05",
+      "cohort": "evidence",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 3,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [
+        "walking_working_surfaces",
+        "electrical"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-06",
+      "cohort": "evidence",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "excavation_trenching"
+      ],
+      "l3Families": [
+        "trenching_shoring"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "H-EV-07",
+      "cohort": "evidence",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "confined_space"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "stage": "PRE_PATCH",
+  "generatedAt": "2026-08-22T22:17:28.758Z",
+  "records": [
+    {
+      "id": "H-AM-01",
+      "expectClarification": true,
+      "text": "The overhead door track struck me as odd when I walked underneath it.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [],
+      "shippedCandidates": [],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    },
+    {
+      "id": "H-AM-02",
+      "expectClarification": true,
+      "text": "One of the sling legs on the spreader bar may be cut.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [
+        {
+          "key": "lifting_rigging-0",
+          "family": "lifting_rigging",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "shippedCandidates": [],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [
+        "lifting_rigging-0"
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+          "severity": "FATAL"
+        },
+        {
+          "code": "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED",
+          "severity": "ADVISORY"
+        }
+      ]
+    },
+    {
+      "id": "H-AM-03",
+      "expectClarification": true,
+      "text": "There was a puddle of something under the parts washer and I could not tell what it was or where it came from.",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "preSemanticCandidates": [
+        {
+          "key": "chemical_storage",
+          "family": "chemical_storage",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific chemical composition of the substance in the puddle",
+            "affectedDecision": "risk",
+            "branches": [
+              "If the substance is hazardous, then a chemical storage hazard exists",
+              "If the substance is non-hazardous, then no chemical storage hazard exists"
+            ],
+            "question": "What type of chemical or substance was found in the puddle under the parts washer?"
+          }
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "chemical_storage",
+          "family": "chemical_storage",
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clarification": {
+            "unresolvedFact": "The specific chemical composition of the substance in the puddle",
+            "affectedDecision": "risk",
+            "branches": [
+              "If the substance is hazardous, then a chemical storage hazard exists",
+              "If the substance is non-hazardous, then no chemical storage hazard exists"
+            ],
+            "question": "What type of chemical or substance was found in the puddle under the parts washer?"
+          }
+        }
+      ],
+      "clarificationRaisedPre": true,
+      "clarificationRaisedShipped": true,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY"
+        }
+      ]
+    },
+    {
+      "id": "H-AM-06-control",
+      "expectClarification": false,
+      "text": "The guard on the drill press is missing; I am not certain whether it was taken off this morning or last week.",
+      "outcomeKind": "VALIDATED",
+      "preSemanticCandidates": [
+        {
+          "key": "machine_guarding",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "machine_guarding",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    },
+    {
+      "id": "H-EV-02-control",
+      "expectClarification": false,
+      "text": "The bottom guard on the compound mitre saw does not return over the blade when the arm is raised.",
+      "outcomeKind": "VALIDATED",
+      "preSemanticCandidates": [
+        {
+          "key": "machine_guarding-0",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "shippedCandidates": [
+        {
+          "key": "machine_guarding-0",
+          "family": "machine_guarding",
+          "state": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "clarificationRaisedPre": false,
+      "clarificationRaisedShipped": false,
+      "binderSaidClarificationExpected": [],
+      "semanticIssues": []
+    }
+  ]
+}

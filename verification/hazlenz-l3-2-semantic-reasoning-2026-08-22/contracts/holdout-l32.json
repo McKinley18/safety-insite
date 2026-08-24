@@ -1,0 +1,1518 @@
+{
+  "setId": "l3-2-holdout-2026-08-22",
+  "role": "FINAL_HOLDOUT",
+  "visibleDuringTuning": false,
+  "derivedFrom": {
+    "artifact": "verification/hazlenz-capability-acceptance-2026-08-22/contracts/hazlenz-acceptance-matrix.json",
+    "matrixId": "hazlenz-capability-acceptance-2026-08-22",
+    "sha256": "c298f14865fe823d0b8250aff759f9b7cdaf7875a573c3a69fc96ab704149040",
+    "frozenBeforeExecution": true
+  },
+  "provenanceNote": "Scenario text and expectations authored by the capability-acceptance phase and frozen before that phase executed. Not authored by, and not visible to, the L3-2 prompt-tuning work. The translation onto Level-3 axes is the deterministic rule in scripts/build-l32-holdout.ts, fixed before the first holdout run.",
+  "limitation": "These scenarios are novel to the Level-3 implementation but were previously executed against the Level-1 engine. They are therefore a valid holdout for Level 3 and NOT an unseen set for Level 1; the Level-1 side of the comparison must be read with that in mind.",
+  "highConsequenceFamilies": [
+    "fall",
+    "trench",
+    "excavation",
+    "cave_in",
+    "loto",
+    "energy",
+    "confined",
+    "electrical",
+    "struck_by",
+    "mobile_equipment",
+    "scaffold",
+    "hole",
+    "opening",
+    "impalement",
+    "rebar",
+    "explosion",
+    "ground_control"
+  ],
+  "counts": {
+    "hazard_expected": 32,
+    "no_active_expected": 31,
+    "ambiguous": 3
+  },
+  "scenarios": [
+    {
+      "id": "A01",
+      "cohort": "historical",
+      "failureMode": "negation: no spotter present",
+      "regime": "osha-general-industry",
+      "text": "A forklift was backing through the shipping aisle with no spotter present and pedestrians were walking in the same aisle.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment|powered_industrial_truck|struck_by|forklift",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "a compliant spotter was present",
+        "spotter provided"
+      ],
+      "sourceContract": "Negation tested first: 'no spotter present' is an ABSENT control, never a satisfied one.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A02",
+      "cohort": "historical",
+      "failureMode": "safe-state: locked out, zero energy verified",
+      "regime": "osha-general-industry",
+      "text": "The press was locked out and zero energy was verified before servicing began. The lock and tag were applied by the servicing technician.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "active LOTO violation",
+        "hazardous energy not isolated"
+      ],
+      "sourceContract": "An affirmatively controlled state must not become an ACTIVE violation because hazard vocabulary appears.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "A03",
+      "cohort": "historical",
+      "failureMode": "multi-hazard decomposition, three independent hazards",
+      "regime": "osha-general-industry",
+      "text": "In the maintenance bay the drill press guard was missing, a fire extinguisher was blocked by stacked pallets, and the emergency eyewash station had no water pressure.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|guarding|fire|emergency|egress|fire_protection|emergency|eyewash|medical|chemical",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Materially different hazards must not collapse into one finding.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A04",
+      "cohort": "historical",
+      "failureMode": "first-match domain-slot error control",
+      "regime": "osha-general-industry",
+      "text": "An extension cord was run across the main walkway in the shipping area where employees pass on foot.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|slip_trip_fall|electrical|housekeeping",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "ladder",
+        "scaffold",
+        "fall from height"
+      ],
+      "sourceContract": "Corrective actions must be specific to the observed hazard and must not import another hazard family's template.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A05",
+      "cohort": "historical",
+      "failureMode": "confined-space 'tank' false positive control",
+      "regime": "osha-general-industry",
+      "text": "A 55 gallon tank of hydraulic oil is stored on a rack outside the maintenance shop. The rack is in good condition and the tank is upright and closed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "confined space",
+        "permit-required confined space",
+        "entry permit"
+      ],
+      "sourceContract": "The word 'tank' must not trigger a confined-space finding without entry evidence.",
+      "frozenExpectedConditionState": "NO_VIOLATION|SAFE_VERIFIED|CONTROLLED|UNKNOWN"
+    },
+    {
+      "id": "A06",
+      "cohort": "historical",
+      "failureMode": "hypothetical/reference language must not become ACTIVE",
+      "regime": "osha-general-industry",
+      "text": "During the toolbox talk the crew reviewed what would happen if a machine guard were removed while the equipment was running.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "guard is missing",
+        "unguarded machine"
+      ],
+      "sourceContract": "Hypothetical/training language is not an observed condition.",
+      "frozenExpectedConditionState": "NO_VIOLATION|HISTORICAL|UNKNOWN|SAFE_VERIFIED|CONTROLLED"
+    },
+    {
+      "id": "A07",
+      "cohort": "historical",
+      "failureMode": "equipment removed from service",
+      "regime": "osha-general-industry",
+      "text": "The damaged pallet jack was tagged out of service, removed from the floor and placed in the locked repair cage pending repair.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "employees are exposed",
+        "in use",
+        "active exposure"
+      ],
+      "sourceContract": "Equipment removed from service is a controlled condition, not an active exposure.",
+      "frozenExpectedConditionState": "CONTROLLED|SAFE_VERIFIED|NO_VIOLATION|HISTORICAL|UNKNOWN"
+    },
+    {
+      "id": "A08",
+      "cohort": "historical",
+      "failureMode": "damaged cord clarification duplication control",
+      "regime": "osha-general-industry",
+      "text": "An extension cord in the tool crib has a cut outer jacket with the inner conductors clearly visible and it is plugged in and energized.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Do not ask the user to reconfirm a fact the observation already states.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A09",
+      "cohort": "historical",
+      "failureMode": "standards must not be empty under unknown jurisdiction",
+      "regime": "unknown",
+      "text": "A floor opening approximately four feet across was left uncovered and unguarded next to an active work area where employees walk.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|walking_working_surfaces|hole|opening",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "An unestablished regime must not silently produce zero standards.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A10",
+      "cohort": "historical",
+      "failureMode": "finding-scoped rather than observation-wide standards",
+      "regime": "osha-general-industry",
+      "text": "The welding bay had no local exhaust ventilation in use during stainless welding, and separately the exit door at the north end of the same bay was blocked by a stack of gas cylinders.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "respiratory|ventilation|air_contaminant|chemical|welding|egress|exit|fire|emergency",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Each finding carries its own standards; one finding's citation must not be attached to another.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A11",
+      "cohort": "historical",
+      "failureMode": "duplicate/phantom fragment control",
+      "regime": "osha-general-industry",
+      "text": "The guard on the bench grinder is missing. The bench grinder guard has been off since last week and the grinder guard was never replaced.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|guarding",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Multiple cues describing ONE condition must not create phantom duplicate hazards.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A12",
+      "cohort": "historical",
+      "failureMode": "citation granularity",
+      "regime": "osha-construction",
+      "text": "On the second floor deck of the building under construction, employees were working within two feet of an unprotected leading edge approximately eighteen feet above the ground with no guardrail, safety net or personal fall arrest system in use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|fall_protection",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Construction fall protection resolves to 29 CFR 1926.501, not the General Industry analogue.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A13",
+      "cohort": "historical",
+      "failureMode": "MSHA-TRAFFIC-01 protected adjudication",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was observed operating with an inoperative back-up alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment|traffic|struck_by",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "PROTECTED (D-19): obstructed view is NOT established, so the truthful SECTION 56.14132 is emitted with the open question named; (b)(1) must not be asserted.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "A14",
+      "cohort": "historical",
+      "failureMode": "documented baseline failure: tagged but not locked",
+      "regime": "osha-general-industry",
+      "text": "A maintenance technician was replacing a belt on the conveyor. The disconnect was tagged but no lock had been applied and the technician's hands were inside the pinch point.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto|energy|machine_guarding|electrical",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "energy was isolated",
+        "locked out"
+      ],
+      "sourceContract": "KNOWN_CAVEAT baseline: this case is one of the two documented pre-existing HazLenz core failures. Recorded as a regression control, not a new defect.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "B01",
+      "cohort": "novel_adversarial",
+      "failureMode": "misleading keyword: 'confined to'",
+      "regime": "osha-general-industry",
+      "text": "Sanding operations are confined to the east bay so dust does not migrate into the assembly area. The bay has a working dust collection system that was running during the observation.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "confined space",
+        "permit required"
+      ],
+      "sourceContract": "'confined to' is ordinary prose, not a confined-space trigger.",
+      "frozenExpectedConditionState": "CONTROLLED|SAFE_VERIFIED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B02",
+      "cohort": "novel_adversarial",
+      "failureMode": "contradictory evidence in one observation",
+      "regime": "osha-general-industry",
+      "text": "The operator stated the machine was locked out, however the lock box was empty and the machine's spindle was turning when I approached.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto|energy|machine_guarding",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "equipment was verified de-energized"
+      ],
+      "sourceContract": "Physical evidence overrides an unsupported verbal claim; the contradiction should be surfaced rather than silently resolved.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "B03",
+      "cohort": "novel_adversarial",
+      "failureMode": "incomplete observation, insufficient evidence",
+      "regime": "osha-general-industry",
+      "text": "Something looked wrong near the back of the shop.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Insufficient evidence must produce a request for the decision-critical fact, not a manufactured hazard.",
+      "frozenExpectedConditionState": "UNKNOWN|NO_VIOLATION"
+    },
+    {
+      "id": "B04",
+      "cohort": "novel_adversarial",
+      "failureMode": "safe state stated with dense hazard vocabulary",
+      "regime": "osha-general-industry",
+      "text": "The fall arrest anchor points, guardrails and toe boards on the mezzanine were all inspected this morning, found intact, and the inspection tag was signed and current.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "no fall protection",
+        "unprotected edge",
+        "missing guardrail"
+      ],
+      "sourceContract": "Hazard vocabulary in a compliant description must not become a violation.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B05",
+      "cohort": "novel_adversarial",
+      "failureMode": "hypothetical future condition",
+      "regime": "osha-construction",
+      "text": "If the excavation is extended past six feet next week, a protective system will be required before anyone enters.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "employees are in an unprotected excavation",
+        "cave-in exposure exists"
+      ],
+      "sourceContract": "A conditional future statement is not present exposure.",
+      "frozenExpectedConditionState": "NO_VIOLATION|UNKNOWN|HISTORICAL|CONTROLLED|SAFE_VERIFIED"
+    },
+    {
+      "id": "B06",
+      "cohort": "novel_adversarial",
+      "failureMode": "hazard corrected during the inspection",
+      "regime": "osha-general-industry",
+      "text": "The chemical drum was found unlabeled. The area supervisor applied the correct GHS label while I was standing there and the drum is now properly identified.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "drum remains unlabeled",
+        "ongoing exposure"
+      ],
+      "sourceContract": "A hazard corrected on the spot is a corrected condition, distinct from an active one.",
+      "frozenExpectedConditionState": "CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B07",
+      "cohort": "novel_adversarial",
+      "failureMode": "guarded and interlocked condition",
+      "regime": "osha-general-industry",
+      "text": "The robotic cell perimeter is fully fenced and the access gate is interlocked so the robot stops when the gate opens. The interlock was function tested this shift and stopped the robot.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "unguarded",
+        "no interlock",
+        "exposed moving parts"
+      ],
+      "sourceContract": "A tested engineering control is an affirmatively controlled state.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B08",
+      "cohort": "novel_adversarial",
+      "failureMode": "unusual simultaneous hazard combination",
+      "regime": "osha-general-industry",
+      "text": "An employee on a rolling scaffold at nine feet was using an angle grinder without a face shield while a propane forklift idled directly underneath refueling from a portable cylinder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|scaffold|ppe|personal_protective|eye|face|struck_by|fire|explosion|flammable|chemical|hot_work",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Independent simultaneous hazards must decompose, including hot work near a fuel transfer.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "B09",
+      "cohort": "novel_adversarial",
+      "failureMode": "irrelevant context padding around one real hazard",
+      "regime": "osha-general-industry",
+      "text": "Weather was clear and the parking lot was recently resurfaced. The vending machine in the break room is out of order and payroll paperwork is due Friday. In the plating room, the ventilation hood over the chromic acid tank was not operating while plating was in progress.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical|respiratory|ventilation|air_contaminant",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "vending machine",
+        "parking lot",
+        "payroll"
+      ],
+      "sourceContract": "Irrelevant context must not generate findings; the real hazard must still be found.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "B10",
+      "cohort": "novel_adversarial",
+      "failureMode": "genuinely ambiguous wording",
+      "regime": "osha-general-industry",
+      "text": "The rail on the platform did not look right to me.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Ambiguity must be preserved and resolved by one decision-critical question.",
+      "frozenExpectedConditionState": "UNKNOWN|NO_VIOLATION"
+    },
+    {
+      "id": "B11",
+      "cohort": "novel_adversarial",
+      "failureMode": "negation placed late in a long sentence",
+      "regime": "osha-general-industry",
+      "text": "The chemical storage room, which is well lit, clearly signed, temperature controlled and inspected weekly by the shift supervisor, does not have any secondary containment under the acid drums.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical|spill|containment|hazmat|environmental",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "secondary containment is provided"
+      ],
+      "sourceContract": "A negation late in a long compliant-sounding sentence must still register as an absent control.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "B12",
+      "cohort": "novel_adversarial",
+      "failureMode": "double negative",
+      "regime": "osha-general-industry",
+      "text": "It is not correct that the machine was left unguarded; the fixed guard was in place and secured with tamper resistant fasteners throughout the shift.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "machine was unguarded",
+        "guard missing"
+      ],
+      "sourceContract": "A double negative resolves to the affirmative safe state.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B13",
+      "cohort": "novel_adversarial",
+      "failureMode": "guard removed then reinstalled",
+      "regime": "osha-general-industry",
+      "text": "The guard on the mixer was removed for cleaning at the start of the shift and was reinstalled and verified in place before the mixer was restarted.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "guard is currently missing",
+        "operating unguarded"
+      ],
+      "sourceContract": "A sequence ending in restoration is not an active violation.",
+      "frozenExpectedConditionState": "CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B14",
+      "cohort": "novel_adversarial",
+      "failureMode": "lockout by contractor verified by host",
+      "regime": "osha-general-industry",
+      "text": "The contractor applied their own lock and tag to the disconnect and our supervisor verified zero energy at the motor terminals with a meter before work started.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "energy not isolated",
+        "no lockout applied"
+      ],
+      "sourceContract": "A verified multi-employer lockout is a controlled state.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B15",
+      "cohort": "novel_adversarial",
+      "failureMode": "misleading use of the word 'fall'",
+      "regime": "osha-general-industry",
+      "text": "Production fell behind schedule this week and orders for the drop forge line fell off, so the second shift was cancelled.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "fall hazard",
+        "fall protection",
+        "fall from height"
+      ],
+      "sourceContract": "Business use of 'fell/fall' is not a fall hazard.",
+      "frozenExpectedConditionState": "NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B16",
+      "cohort": "novel_adversarial",
+      "failureMode": "below the regulatory trigger height",
+      "regime": "osha-general-industry",
+      "text": "An employee was working on a platform approximately three feet above the floor with no guardrail on the open side.",
+      "expect": {
+        "hazardEstablished": null,
+        "acceptableStates": [
+          "ACTIVE",
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": true
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "General Industry fall protection triggers at four feet; three feet does not establish the 1910.28 duty. Correct outcomes are no violation, or an open question naming the trigger.",
+      "frozenExpectedConditionState": "NO_VIOLATION|UNKNOWN|ACTIVE"
+    },
+    {
+      "id": "B17",
+      "cohort": "novel_adversarial",
+      "failureMode": "reference to a past incident",
+      "regime": "osha-general-industry",
+      "text": "Two years ago an employee was injured at this press before the light curtain was installed. The light curtain has been in service since then and was function tested last month.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "employee is currently exposed",
+        "no light curtain"
+      ],
+      "sourceContract": "A historical incident with a since-installed control is not a present violation.",
+      "frozenExpectedConditionState": "HISTORICAL|SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B18",
+      "cohort": "novel_adversarial",
+      "failureMode": "planned future work",
+      "regime": "osha-construction",
+      "text": "Next month the crew will begin steel erection on the north bay and will need a fall protection plan before that work starts.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "employees are exposed to a fall",
+        "currently working without fall protection"
+      ],
+      "sourceContract": "Planned future work is not an observed condition.",
+      "frozenExpectedConditionState": "NO_VIOLATION|UNKNOWN|HISTORICAL|CONTROLLED|SAFE_VERIFIED"
+    },
+    {
+      "id": "B19",
+      "cohort": "novel_adversarial",
+      "failureMode": "MSHA berm present and adequate",
+      "regime": "msha",
+      "text": "The elevated haul road along the east highwall has a berm along the outer edge that is above mid-axle height of the largest haul truck using the road.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "no berm",
+        "berm is inadequate",
+        "missing berm"
+      ],
+      "sourceContract": "A compliant berm description must not become a berm violation.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "B20",
+      "cohort": "novel_adversarial",
+      "failureMode": "conflicting jurisdiction cues",
+      "regime": "unknown",
+      "text": "At the plant's construction laydown yard, a contractor was building a new equipment foundation next to the operating production line.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Genuinely mixed GI/Construction cues must not produce a confidently asserted single regime.",
+      "frozenExpectedConditionState": "UNKNOWN|NO_VIOLATION"
+    },
+    {
+      "id": "C01",
+      "cohort": "realistic_field",
+      "failureMode": "abbreviations and fragments",
+      "regime": "osha-general-industry",
+      "text": "Wh #3 - LOTO not applied, tech w/ hands in machine, mach still had air press. no lock on discon.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto|energy|machine_guarding|pneumatic",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Ordinary imperfect field shorthand must be understood without regulatory keywords.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C02",
+      "cohort": "realistic_field",
+      "failureMode": "run-on with location and equipment context",
+      "regime": "osha-construction",
+      "text": "walked bldg 2 3rd flr today framing crew going strong but guys on the leading edge no harnesses on and the perimeter cable is down on the east side about 25 ft to the deck below, also saw a cut off saw with the guard tied back",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|fall_protection|machine_guarding|guarding|tool",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Messy grammar with two hazards must still decompose and cite correctly.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C03",
+      "cohort": "realistic_field",
+      "failureMode": "mixed safe and unsafe in one paragraph",
+      "regime": "osha-general-industry",
+      "text": "Housekeeping in the warehouse was good and aisles were marked and clear. PPE compliance was 100 percent. However the rack upright at bay 14 has a significant impact dent and the load beam above it is deflecting noticeably.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "storage|racking|struck_by|walking_working_surfaces|material_handling|structural",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "housekeeping is poor",
+        "aisles blocked",
+        "PPE not worn"
+      ],
+      "sourceContract": "Compliant statements in the same paragraph must not be converted into findings.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C04",
+      "cohort": "realistic_field",
+      "failureMode": "colloquial terminology",
+      "regime": "osha-general-industry",
+      "text": "The pit under the paint line has been open all week and nobody put anything around it. Guys walk right past it going to the mix room.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|walking_working_surfaces|hole|opening",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "confined space entry"
+      ],
+      "sourceContract": "Colloquial description of an unguarded floor opening must be understood.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C05",
+      "cohort": "realistic_field",
+      "failureMode": "MSHA field shorthand",
+      "regime": "msha",
+      "text": "surface pit - conveyor #4 tail pulley guard off, belt running, no barricade, oper says it came off yesterday",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|guarding|conveyor",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "MSHA surface metal/nonmetal guarding resolves to Part 56.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C06",
+      "cohort": "realistic_field",
+      "failureMode": "worker report, second hand",
+      "regime": "osha-general-industry",
+      "text": "An employee reported that the ventilation in the battery charging room has not worked for about a month. I could smell a strong acid odor when I opened the door.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical|ventilation|respiratory|battery|air_contaminant|fire",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "A worker report corroborated by direct sensory evidence is usable evidence.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C07",
+      "cohort": "realistic_field",
+      "failureMode": "trenching field note",
+      "regime": "osha-construction",
+      "text": "open trench behind bldg approx 7 ft deep, spoil pile right at the edge, no shoring no box no sloping, laborer down in it setting pipe",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "excavation|trench|cave_in|struck_by",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "High-consequence excavation hazard with an employee in the trench must be detected.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C08",
+      "cohort": "realistic_field",
+      "failureMode": "electrical panel field note",
+      "regime": "osha-general-industry",
+      "text": "panel A3 in the compressor room missing 2 breaker knockout covers, live parts visible, panel is unlocked and the room is not restricted",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Exposed live parts must be detected and cited at an established granularity.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C09",
+      "cohort": "realistic_field",
+      "failureMode": "ambiguous PPE note",
+      "regime": "osha-general-industry",
+      "text": "Grinding at the bench, guy had safety glasses on.",
+      "expect": {
+        "hazardEstablished": null,
+        "acceptableStates": [
+          "ACTIVE",
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": true
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Safety glasses worn is a control present; a face shield question is optional, not decision-critical, so no clarification should be forced.",
+      "frozenExpectedConditionState": "UNKNOWN|NO_VIOLATION|ACTIVE"
+    },
+    {
+      "id": "C10",
+      "cohort": "realistic_field",
+      "failureMode": "forklift field note with several conditions",
+      "regime": "osha-general-industry",
+      "text": "fork truck 12 - horn dont work, seatbelt cut, operator not wearing it, load was above eye level going forward through the dock",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment|powered_industrial_truck|forklift|struck_by",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Multiple defects on one vehicle should be recognized without fabricating unrelated families.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C11",
+      "cohort": "realistic_field",
+      "failureMode": "hot work field note",
+      "regime": "osha-general-industry",
+      "text": "welding on the mezz rail, no fire watch, cardboard and pallets stacked under where the sparks were landing, extinguisher in the area was last inspected 2 yrs ago per the tag",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire|hot_work|welding",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Hot work without a fire watch over combustibles is a high-consequence fire hazard.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "C12",
+      "cohort": "realistic_field",
+      "failureMode": "noise exposure field note",
+      "regime": "osha-general-industry",
+      "text": "stamping dept is loud enough you have to shout at arms length, most operators wearing plugs but two were not, no posted noise survey that I could find",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "noise|hearing|ppe|occupational_health",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Noise exposure inferred from shouting distance is probable, not established; a measurement is the open question.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "D01",
+      "cohort": "negative_control",
+      "failureMode": "properly guarded equipment",
+      "regime": "osha-general-industry",
+      "text": "All point of operation guards on the punch presses were in place, secured, and the two hand controls were function tested and working correctly.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D02",
+      "cohort": "negative_control",
+      "failureMode": "de-energized and locked",
+      "regime": "osha-general-industry",
+      "text": "The line was shut down, the main disconnect was locked out with each worker's personal lock, and voltage was verified absent at the load side before work began.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D03",
+      "cohort": "negative_control",
+      "failureMode": "compliant chemical storage",
+      "regime": "osha-general-industry",
+      "text": "Flammable liquids were stored in a listed flammable storage cabinet, the cabinet was closed and labeled, quantities were within the cabinet rating and safety data sheets were available in the binder next to it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D04",
+      "cohort": "negative_control",
+      "failureMode": "previously corrected condition",
+      "regime": "osha-general-industry",
+      "text": "The missing handrail section on the mezzanine stairs identified in last quarter's inspection has been fabricated, installed and painted. I verified it is secure.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "CORRECTED|SAFE_VERIFIED|CONTROLLED|HISTORICAL|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D05",
+      "cohort": "negative_control",
+      "failureMode": "irrelevant hazard terminology",
+      "regime": "osha-general-industry",
+      "text": "The safety committee reviewed the lockout tagout procedure, the confined space program and the fall protection plan during the monthly meeting. All three documents were current and signed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Program names in a meeting minute are not hazards.",
+      "frozenExpectedConditionState": "NO_VIOLATION|SAFE_VERIFIED|CONTROLLED|UNKNOWN"
+    },
+    {
+      "id": "D06",
+      "cohort": "negative_control",
+      "failureMode": "good housekeeping",
+      "regime": "osha-general-industry",
+      "text": "Aisles were clear and marked, floors were dry, spill kits were stocked and the mop station was clean and organized.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D07",
+      "cohort": "negative_control",
+      "failureMode": "PPE worn correctly",
+      "regime": "osha-construction",
+      "text": "All personnel on the site wore hard hats, high visibility vests, eye protection and appropriate footwear throughout the walkthrough.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D08",
+      "cohort": "negative_control",
+      "failureMode": "complete guardrail system",
+      "regime": "osha-construction",
+      "text": "The perimeter of the second floor deck was protected by a complete guardrail system with top rail at forty two inches, a mid rail and toe boards installed continuously.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D09",
+      "cohort": "negative_control",
+      "failureMode": "nothing found",
+      "regime": "osha-general-industry",
+      "text": "Walked the finishing department for forty five minutes. No deficiencies were identified.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "NO_VIOLATION|UNKNOWN|SAFE_VERIFIED|CONTROLLED"
+    },
+    {
+      "id": "D10",
+      "cohort": "negative_control",
+      "failureMode": "MSHA compliant condition",
+      "regime": "msha",
+      "text": "All miners on the crew had current annual refresher training and the training records were available at the mine office.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D11",
+      "cohort": "negative_control",
+      "failureMode": "fire equipment current",
+      "regime": "osha-general-industry",
+      "text": "Portable fire extinguishers were mounted, unobstructed, fully charged and carried current monthly inspection initials on the tags.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "No hazard is present.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "D12",
+      "cohort": "negative_control",
+      "failureMode": "compliant confined space program in practice",
+      "regime": "osha-general-industry",
+      "text": "Before entry into the digester the crew completed the permit, tested the atmosphere, ran continuous ventilation, posted an attendant and maintained communication throughout.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [
+        "no permit",
+        "atmosphere not tested",
+        "no attendant"
+      ],
+      "sourceContract": "A correctly executed permit entry is compliant, despite dense confined-space vocabulary.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN"
+    },
+    {
+      "id": "E01",
+      "cohort": "regulatory",
+      "failureMode": "obvious OSHA General Industry under unknown context",
+      "regime": "unknown",
+      "text": "On the manufacturing plant's production floor, the fixed guard was missing from the in-running nip point of the packaging line conveyor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|guarding|conveyor",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Strong single-regime wording should support an inferred regime, labelled as inferred.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E02",
+      "cohort": "regulatory",
+      "failureMode": "obvious OSHA Construction under unknown context",
+      "regime": "unknown",
+      "text": "On the construction site, employees erecting scaffold on the third lift were not tied off and the scaffold had no guardrails installed at the working level.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|scaffold|fall_protection",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "'Construction site' plus scaffold erection is strong Construction wording.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E03",
+      "cohort": "regulatory",
+      "failureMode": "obvious MSHA surface under unknown context",
+      "regime": "unknown",
+      "text": "At the surface metal and nonmetal mine, the crusher operator was working on the elevated platform above the primary jaw crusher with no handrail on the open side.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|walking_working_surfaces|handrail",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "'Surface metal and nonmetal mine' is unambiguous MSHA wording.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E04",
+      "cohort": "regulatory",
+      "failureMode": "obvious MSHA underground coal under unknown context",
+      "regime": "unknown",
+      "text": "In the underground coal mine, the conveyor belt drive was operating with the guard removed near the tailpiece where miners travel.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|guarding|conveyor",
+        "highConsequence": false,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "'Underground coal mine' is unambiguous MSHA wording.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E05",
+      "cohort": "regulatory",
+      "failureMode": "genuinely ambiguous regime",
+      "regime": "unknown",
+      "text": "An employee was working from a portable ladder that was not secured at the top and extended only two rungs above the landing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fall|ladder",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Ladder use occurs in both regimes; regime must remain unestablished or be asked, never fabricated.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E06",
+      "cohort": "regulatory",
+      "failureMode": "ambiguous GI vs Construction — maintenance vs construction",
+      "regime": "unknown",
+      "text": "A worker was replacing a section of roof decking above the warehouse using a personal fall arrest system anchored to a temporary anchor point.",
+      "expect": {
+        "hazardEstablished": null,
+        "acceptableStates": [
+          "ACTIVE",
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "familyPattern": "",
+        "highConsequence": false,
+        "ambiguous": true
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Repair vs construction is a genuine regime boundary; certainty must not be manufactured, and the described control is in use.",
+      "frozenExpectedConditionState": "SAFE_VERIFIED|CONTROLLED|NO_VIOLATION|UNKNOWN|ACTIVE"
+    },
+    {
+      "id": "E07",
+      "cohort": "regulatory",
+      "failureMode": "MSHA explicit context, electrical",
+      "regime": "msha",
+      "text": "At the underground metal mine, a technician was troubleshooting a starter box that had not been deenergized or locked out.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical|loto|energy",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Under an explicit MSHA context, OSHA General Industry citations must not be returned.",
+      "frozenExpectedConditionState": "ACTIVE"
+    },
+    {
+      "id": "E08",
+      "cohort": "regulatory",
+      "failureMode": "strong construction cue, unknown context",
+      "regime": "unknown",
+      "text": "The general contractor's crew was pouring the foundation wall forms when the rebar cage shifted; exposed vertical rebar ends had no protective caps where employees were working alongside.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "impalement|struck_by|construction|rebar|fall",
+        "highConsequence": true,
+        "ambiguous": false
+      },
+      "expectedNonHazards": [],
+      "sourceContract": "Uncapped rebar impalement is a Construction hazard with strong regime wording.",
+      "frozenExpectedConditionState": "ACTIVE"
+    }
+  ]
+}

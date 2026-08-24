@@ -1,0 +1,137 @@
+{
+  "phase": "L3-2g",
+  "role": "ORDER_SENSITIVITY_AGAINST_MEASURED_NOISE_FLOOR",
+  "generatedAt": "2026-08-24T01:18:09.280Z",
+  "noiseFloor": {
+    "modelLabel": 1,
+    "derivedR1": 1,
+    "scenarios": 24,
+    "rows": [
+      {
+        "scenarioId": "F-CL-01",
+        "pole": "CLARIFICATION_REQUIRED",
+        "V_S_STRUCT": ".-",
+        "V_S_STRUCT_REPEAT": ".?"
+      }
+    ],
+    "derivedRows": [
+      {
+        "scenarioId": "F-CL-01",
+        "pole": "CLARIFICATION_REQUIRED",
+        "V_S_STRUCT": "NONE",
+        "V_S_STRUCT_REPEAT": ".?"
+      }
+    ],
+    "note": "byte-identical prompts at temperature 0. Differences here are provider variance and are the floor below which no ordering difference may be read as an effect."
+  },
+  "comparisons": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "LADDER"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "scenarios": 24,
+      "differing": 2,
+      "rows": [
+        {
+          "scenarioId": "F-CL-01",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": ".-",
+          "V_S_STRUCT_MOVE1": ".?"
+        },
+        {
+          "scenarioId": "B10",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": ".-",
+          "V_S_STRUCT_MOVE1": ".?"
+        }
+      ],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "scenarios": 24,
+      "differing": 2,
+      "rows": [
+        {
+          "scenarioId": "F-CL-01",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": "NONE",
+          "V_S_STRUCT_MOVE1": ".?"
+        },
+        {
+          "scenarioId": "B10",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": "NONE",
+          "V_S_STRUCT_MOVE1": ".?"
+        }
+      ],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_DERIVED"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_DERIVED"
+    }
+  ],
+  "interpretation": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 2,
+      "exceedsNoiseFloor": true
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 2,
+      "exceedsNoiseFloor": true
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    }
+  ]
+}

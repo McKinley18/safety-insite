@@ -1,0 +1,228 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T13:33:35.731Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_WC09_LADDER_REPEAT",
+    "pid": 75162
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_WC09_LADDER_REPEAT",
+    "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 2,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "F-WC-09",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "D_WC09_LADDER_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "observationText": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation describes a situation where operators have been issued gloves and instructed to keep their hands clear, while the two-hand control on a swage press has been secured with tape. The key hazard is related to machine guarding, specifically the operation of a swage press that requires proper guarding to prevent injury from moving parts.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "machine_guarding_1",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "CONTROLLED",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape."
+              }
+            ],
+            "conditionRationale": "The observation describes a situation where the hazard exists but an effective control is in place. The two-hand control has been secured with tape, which prevents accidental activation of the press mechanism. This physical control prevents contact with the hazard and makes the condition controlled.",
+            "independentHazardRationale": "This candidate addresses the specific machine guarding hazard related to the swage press operation, focusing on the two-hand control mechanism that requires a physical barrier (tape) to prevent accidental activation.",
+            "uncertainties": [],
+            "clarification": null
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "machine_guarding_1",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CONTROLLED",
+          "conditionRationale": "The observation describes a situation where the hazard exists but an effective control is in place. The two-hand control has been secured with tape, which prevents accidental activation of the press mechanism. This physical control prevents contact with the hazard and makes the condition controlled.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "machine_guarding_1",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CONTROLLED",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "candidateKey": "machine_guarding_1",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "machine_guarding_1",
+          "detail": "no vocabulary for family 'machine_guarding' in the cited evidence or its sentence; grounding is weak"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "candidateKey": "machine_guarding_1",
+          "detail": "CONTROL_ABSENT: 'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [
+        {
+          "candidateKey": "machine_guarding_1",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "controlAdequacy": [
+        {
+          "candidateKey": "machine_guarding_1",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "strapped down",
+          "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": false,
+      "latencyMs": 5011
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "D_WC09_LADDER_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "observationText": "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation describes a missing floor plate at the end of a mezzanine walkway. The inspector notes that this condition was raised during the morning briefing and that the crew was told to step around it. The missing floor plate represents an exposed opening that could result in a fall hazard.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "fall_hazard_from_missing_floor_plate",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "The missing floor plate at the end of the mezzanine walkway"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that a floor plate is missing from the mezzanine walkway, creating an exposed opening. This missing floor plate constitutes an active fall hazard as it creates an unprotected opening that workers could fall through or over.",
+            "independentHazardRationale": "This represents a distinct fall hazard separate from other potential hazards because it specifically addresses the absence of protective flooring at a mezzanine walkway edge, which creates an exposed opening that directly increases fall risk.",
+            "uncertainties": [],
+            "clarification": null
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "fall_hazard_from_missing_floor_plate",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "conditionRationale": "The observation explicitly states that a floor plate is missing from the mezzanine walkway, creating an exposed opening. This missing floor plate constitutes an active fall hazard as it creates an unprotected opening that workers could fall through or over.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "fall_hazard_from_missing_floor_plate",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "fall_hazard_from_missing_floor_plate",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "candidateKey": "fall_hazard_from_missing_floor_plate",
+          "detail": "CONTROL_ABSENT: 'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [
+        {
+          "candidateKey": "fall_hazard_from_missing_floor_plate",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "missing",
+          "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "finalAssertsActive": true,
+      "finalCarriesClarification": false,
+      "latencyMs": 4567
+    }
+  ]
+}

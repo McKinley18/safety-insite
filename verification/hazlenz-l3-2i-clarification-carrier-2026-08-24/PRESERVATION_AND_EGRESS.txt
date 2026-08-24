@@ -1,0 +1,81 @@
+L3-2i -- PRESERVATION, CONTAINMENT AND EGRESS
+generated: 2026-08-24T02:30:11Z
+
+== HEAD / branch / upstream ==
+HEAD:      1feda622dbb93d7e05d156838ab37db3e21db507
+branch:    release/insite-rc-2026-08-18
+upstream:  origin/release/insite-rc-2026-08-18 @ 1feda622dbb93d7e05d156838ab37db3e21db507
+divergence vs upstream: 0	0
+
+== STASH -- 4 entries, NO stash operation of any kind was executed ==
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== TAGS -- 23, recorded as tag OBJECTS per the section 38.8 methodology ==
+count: 23   all targets identical to the pre-phase snapshot: YES
+
+== LOCKED L3-2g/L3-2h INSTRUMENT -- byte-unchanged ==
+73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+NOTE: rederive-l32g-resolution.ts is DELIBERATELY changed by this phase -- it is the D-56 scorer
+correction and is the reason the phase exists. Its pre-phase digest was
+57064e2ff9b734885ebec8f19448519cc2b95508b15739ed404d91e219acba2f; it is now
+e1008cc464b7588c1a51300976d81732cf66e080316efb8f6d73b6ef209c437f
+Every metric it previously reported re-scores IDENTICALLY -- see rootcause/frozen-rescore-*.json.
+
+== THE SHIPPED SYSTEM PROMPT -- byte-unchanged, which is what keeps the locked instrument valid ==
+L3_SYSTEM_PROMPT sha256: b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+L3_PROMPT_VERSION:       hazlenz.l3.prompt.v6  (unchanged -- the prompt did not change)
+
+== SEALED ACCEPTANCE CORPUS -- hash-verified, NOT OPENED, in zero artifacts ==
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== FROZEN HOLDOUTS + DEVSETS -- all 11 identical to the pre-phase snapshot ==
+85a657577e3dc92cb54f4df4d36c2f8b627d4b459211a0e51ef39f7713f29966  development-l32.json
+7ddc75a4a04af0e33db78a6a3ebc42e998e96f3a987e6787a9dd28f07be6fed0  development-l32d.json
+19e1b54069b4a4b1ed167413ed0be9437c6b7f386f5ba2fcfa200d30fc4175bb  development-l32e.json
+bbda27d6dbad4752b48c987c8e85929c0d3d891d7f69b4d6d8842f9750c0af51  development-l32f.json
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  holdout-l32c.json
+bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  holdout-l32d.json
+b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  holdout-l32e.json
+47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5  holdout-l32f.json
+d320c1264891c29cd78e5efc365a0628f923099b9f8d572cb8a3473244436e9d  prompt-variants-frozen.json
+
+== L3-2h FINAL EVIDENCE PACKAGE -- all 21 files identical ==
+verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/  UNCHANGED
+
+== CUSTOMER AUTHORITY -- verified by source inspection at the documented seam ==
+seam:       backend/src/safescope-v2/orchestration/intelligence-orchestrator.service.ts  UNMODIFIED vs HEAD
+call site:  backend/src/safescope-v2/safescope-v2.service.ts:1576                        UNMODIFIED vs HEAD
+governed:   backend/src/standards/ (whole tree)                                          UNMODIFIED vs HEAD
+importers of reasoning-l3 outside the module:                                            0
+Level-3 vocabulary in safescope-v2.service.ts / safescope-v2.controller.ts:              0 occurrences
+Nest / TypeORM decorators inside reasoning-l3:                                           0
+=> CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+
+== CREDENTIALS REQUIRED FOR NORMAL CUSTOMER EXECUTION ==
+env vars declared anywhere in reasoning-l3:  L3_OLLAMA_ENDPOINT, L3_OLLAMA_MODEL, L3_OLLAMA_TIMEOUT_MS
+hosted-provider credential names:            NONE
+=> No hosted model credential became required for customer execution.
+
+== EGRESS ==
+network destinations reachable from reasoning-l3:  http://127.0.0.1:11434  (one, local)
+local ollama inference calls, this phase:          60  (4 proof runs x 5 scenarios, plus two
+                                                    superseded iterations retained in the count)
+hosted-provider inference calls:                   0
+hosted-provider auth/metadata calls:               0
+diagnostic scenarios transmitted:                  5, all already-opened -- F-CL-01, B10, C-CS-05,
+                                                    F-PS-04, H-FLD-141, each asserted byte-identical
+                                                    to the locked harness's text at run start
+sealed-corpus content transmitted:                 NONE
+customer or production data transmitted:           NONE
+credential values in any artifact:                 NONE (no credential was read; the Gemini gate was
+                                                    checked by variable presence only)
+unexpected destinations:                           NONE

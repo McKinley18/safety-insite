@@ -1,6 +1,10 @@
 # InSite / HazLenz — Engineering Blueprint and Continuity Reference
 
 **Generated:** 2026-08-22 · **Last slice:** HazLenz capability acceptance (§28) · **Checkpoint:** `KG_5C_COMPLETE — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED — READY_FOR_CONTROLLED_PRODUCTION_SHADOW`
+**L3-2b:** `L3_2B_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED` (§32, uncommitted) — every L3-2 defect repaired and proven on a fresh sealed holdout, but one high-consequence miss and clarification recall of 1/3 remain. Next: **L3-2c**, not L3-3.
+**L3-2:** `L3_2_PARTIAL — SEMANTIC_REASONING_NOT_VALIDATED_FOR_ADVANCEMENT` (§31, uncommitted) — the historical result, preserved unchanged.
+**L3-1:** `L3_1_COMPLETE — CUSTOMER_AUTHORITY_UNCHANGED` (§30, uncommitted).
+**Level-3 architecture:** `HAZLENZ_LEVEL3_ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION_PLANNING` (§29) — TARGET; §31 is the first slice with executable semantic evidence.
 **HazLenz capability gate:** `HAZLENZ_CAPABILITY_GATE_BLOCKED — RC-01…RC-05, RC-07, RC-08` (§28). Maturity measured **LEVEL_1 — RULE ASSISTANT** against a LEVEL_3 minimum; 13 SAFETY_BLOCKERs open. **The governed-knowledge subsystem being converged does not make the reasoning engine deployable.**
 **Preflight verdict:** `PRODUCTION_SHADOW_PREFLIGHT_BLOCKED — NO_GOVERNED_RELEASE_AND_SUBSYSTEM_NOT_DEPLOYED_IN_PRODUCTION` (§17.4)
 **Repository:** `/Users/mckinley/Desktop/Safety_InSite` · **Branch:** `release/insite-rc-2026-08-18`
@@ -26,6 +30,8 @@ from it, and where a question is answered in both, **§§21–27 win**.
 | What is genuinely still open | **§26 — Open issues register** |
 | What production SHADOW is for, and what would abort it | **§27 — Production SHADOW protocol** |
 | Whether the HazLenz **engine** meets the capability bar for a checkpoint deploy | **§28 — HazLenz capability acceptance** |
+| What the engine is being rebuilt into, and in what order | **§29 — Level-3 reasoning architecture (TARGET)** |
+| What L3-1 actually built, and why it changes nothing yet | **§30 — L3-1 reasoning contract + validator** |
 | Current stage / what may happen next | `docs/INSITE_CURRENT_STATE.json` → `programStatus` |
 
 ### The four things that are true right now
@@ -2028,6 +2034,24 @@ describes the customer's actual result.
 | `KG5D-D3` | KG-5D | **No single-event production probe.** Settle log-line fidelity with Stage-1 abort gate **G1** instead | The probe is impossible today (the live commit has no `standards/cutover/`), the question is not SHADOW-shaped, the risk is telemetry-usability not customer safety, and the first real event answers it for free. **The correct response to an unverifiable transport assumption is an abort gate, not a probe** | **ACTIVE** | same, §8.5 |
 | `KG5D-D4` | KG-5D | `minimumSample: 200/500` is a **stop-threshold suppression floor**, not a Stage-1 evidence requirement; **preserved unchanged** | Traced to source: the breaker's own basis says the floor exists so one early failure cannot trip a run. The Stage-2 gate (≥ 100, ≥ 24 h) and the post-run sufficiency table (200/500 + coverage) are two further, different things. All seven hard invariants are threshold-zero with **no** sample floor, so a small Stage-1 is safe | **ACTIVE** | same, §10; §26 `KG5D-DISC-03` |
 | `KG5D-D5` | KG-5D | Stage-1 evidence is **coverage-based, not count-based**; traffic is **controlled operator traffic** with the claim bounded to production execution proof | Natural traffic is one analysis in the product's lifetime, and a zero-event window proves nothing (§27.2). 200 repetitions would exercise one taxonomy path 200 times and satisfy an equality oracle vacuously — the class `D-54` exists to prevent | **ACTIVE** | same, §10.4, §11; §27.8 |
+| D-55 | L3-2h | **`qwen3-coder:30b` is NOT validated to carry Level-3 advancement.** The §37.5 structural-state incoherence mechanism is **provider-capability-bound**, established at **n = 2**; the order-sensitivity improvement is **real but narrow**; `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`; **L3-3 remains unauthorized** | Across 74 Gemini candidates in three variants the pre-registered `CONDITIONAL_AND_ASSERTED` class is **empty** against qwen's 1/2/2, and `C-CS-05` — the case §37.5 cited as flipping `asserted` under block order — returns identical facts on all three runs. That satisfies the entry contract's Terminal A rule on the axis it was pre-registered against. The order-sensitivity half is **2/24 against a floor of 1/24** on a best-effort seed and must stay qualified wherever it is cited. A hosted **preview** model measured on 24 diagnostic scenarios is architecture-selection evidence, never a production recommendation, and §31.2's privacy boundary is unadjudicated for a hosted provider | **ACTIVE — PROTECTED** | §39.3–§39.6; `hazlenz-l3-2h-cross-provider-final-2026-08-23/` |
+| D-56 | L3-2h | **Clarification is structurally coupled to `hazardCandidate` existence.** A zero-candidate `INSUFFICIENT_EVIDENCE` outcome **cannot currently carry a required clarification**; `rederive-l32g-resolution.ts` excludes zero-candidate rows before clarification scoring, so the historical **75%** recall is **scorer-filtered (3/4)** and corrected scenario-level recall is **3/5 = 60%**. §37's and §38's figures are **preserved as historical reported values and are not silently rewritten** | The scorer cannot see the exact failure the contract creates — a provider is never charged for a clarification it failed to raise by emitting nothing at all — so the filtered figure flatters both providers. Correcting the *record* rather than the *artifact* preserves what each phase actually measured (`UPDATE POLICY` §4) while making 60% the figure every future statement must use. The scorer is **reported, not patched**: patching it is the **first** ordered step of L3-2i, taken **before** any contract change, so the corrected baseline exists before the thing that will move it | **ACTIVE — PROTECTED** | §39.5; `results/qwen-resolution.json`, `results/l32h-gemini-merged.json` |
+| D-57 | L3-2i | **A clarification must not require a `hazardCandidate` to exist.** `ReasoningProposal.unresolvedDecisions` carries a decision-critical clarification at proposal level; it is legitimate only where a decision was actually left open, and a refused one is **dropped, never fatal** | §39.5.1 measured a correct `INSUFFICIENT_EVIDENCE` with zero candidates having nowhere to carry the question it owed — the pipeline destroyed the clarification in exactly the case that most needed one. The carrier is additive and the proposal contract version is **unbumped**, so every frozen L3-2…L3-2h artifact stays readable. Decision-criticality is `§34.2`'s rule lifted, not re-invented, and `L3_UNDECIDED_STATES` now has ONE definition shared by the validator and the binder so the two cannot drift. The refusal is non-fatal because `§34.2` is explicit that a superfluous question never touches the hazard — measured wrong first, when a fatal refusal discarded `C-CS-05`'s correct HYPOTHETICAL candidate | **ACTIVE — PROTECTED** | §40.3–§40.6; `hazlenz-l3-2i-clarification-carrier-2026-08-24/` |
+| D-58 | L3-2i | **Candidate-conditioned and scenario-level clarification recall are TWO METRICS and are never renamed into each other.** Both definitions are written into every scorer artifact; high-consequence and false-ACTIVE scoring stay candidate-conditioned and unchanged | One number travelled through §37 and §38 meaning something narrower than it appeared (`D-56`). Keeping the old metric preserves what those phases actually measured (`UPDATE POLICY` item 4) while the new one carries the advancement claim; deleting or redefining it would rewrite history, and silently promoting it would repeat the confusion. Re-scoring both frozen providers changed **zero** pre-existing keys, and `TERMINAL_A`'s two pre-registered axes are computed by two scorers this phase did not modify — so the correction provably cannot reach it | **ACTIVE — PROTECTED** | §40.2; `rootcause/frozen-rescore-{qwen,gemini}.json` |
+| D-59 | L3-2j | **The candidate-independent carrier is NOT activated in the shipped prompt or schema, and this is a MEASURED refusal, not an omission.** The L3-2i capability — contract field, validator codes, shared undecided-state vocabulary — stays byte-unchanged and fully tested; what is refused is the declaration that would make a provider emit one | `D-56`'s zero-candidate loss was measured on `V_S_STRUCT`, the structural representation, which is architecture-selection evidence and is not what ships. On the shipped ladder the question already rides a candidate **5/5**, reproduced by two harnesses ten days apart, so activation had nothing to gain — and cost: declaration rev 1 took high-consequence recall **12/13 → 9/13** and fired a question on a MUST-NOT-ASK scenario, rev 2 → **10/13** while using the carrier zero times in 24 scenarios, and the schema half alone still regressed `C-CS-05`. Three cross-process repeat pairs give a **0-difference** noise floor, so none of it is variance. Both rejected revisions are kept, with the sha256 each must reproduce pinned, because a rejection nobody can re-run is folklore | **ACTIVE — PROTECTED** | §41.1–§41.4; `hazlenz-l3-2j-carrier-activation-2026-08-24/` |
+| D-60 | L3-2j | **The JSON schema is an INPUT and its KEY ORDER is part of it.** Every corpus artifact records `schemaSha256`, and the serialised shipped schema is pinned by assertion | Rebuilding a schema with one key **appended** where the original **inserted** it moved **six measured fields** across the corpus — two scenarios lost their candidate, three changed which carrier held the question — on a prompt whose sha256 was identical. The schema is sent to the provider as `format`, so key position changes the bytes the model is constrained by. A property-by-property assertion would not have caught it; a hash does | **ACTIVE — PROTECTED** | §41.6; `results/reproduction/harness-side-V_ACTIVATED_REV2.json` |
+| D-61 | L3-2j | **A prompt change invalidates the locked L3-2h comparison until it is re-derived.** `L3_SYSTEM_PROMPT` may not be edited without re-running `V_B_LADDER` and `V_A_LADDER` and reporting the diff against the frozen L3-2g rows | The locked harness is byte-unchanged but reads the shipped prompt as `V_B_LADDER`, the baseline every L3-2g and L3-2h number is read against. Under the activated prompt it moved on **11 of 24** rows and lost two high-consequence cases; `V_A_LADDER` moved on 12. After the revert it reproduced the frozen rows with **zero** differences. §36.7 and §37 both measured how much prompt position moves behaviour, and this is the operational consequence stated as a rule rather than rediscovered by the next phase | **ACTIVE — PROTECTED** | §41.5; `rootcause/locked-under-activation/`, `rootcause/locked-restored-V_B_LADDER.json` |
+| D-62 | L3-2j item (4) | **On the SHIPPED v6 ladder the two providers tie at ceiling on every clarification axis and on false ACTIVE, and the measured provider delta is TWO scenarios.** `gemini-3.1-pro-preview` and `qwen3-coder:30b` both score **5/5 candidate-conditioned and 5/5 scenario-level** clarification recall at **100% precision**, on the **same five scenario identities**, every one carried on a hazard candidate, with the proposal-level carrier used **zero times by either**. They differ on `F-WC-09` (high-consequence: 13/13 vs 12/13) and `C-CS-05` (order sensitivity: 0/24 vs 1/24). **`D-55` is NOT weakened and NOT rewritten — it is SCOPE-BOUNDED: its decisive axis, `CONDITIONAL_AND_ASSERTED`, is computed from `stateFacts` and DOES NOT EXIST on the shipped ladder, so `D-55` governs architecture selection and may not be cited as a shipped-path statement.** `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN` | §41.9 asked whether activation is provider-conditioned; it is not, so `D-59` is strengthened at `n = 2` rather than qualified. `B10` and `F-CL-01` — the two cases that DEFINED §39.5.1's zero-candidate defect — carry the question on a candidate for **both** providers, establishing from both directions that the defect belongs to the representation and not to a provider. `D-55`'s evidence was re-measured rather than assumed: a `V_S_STRUCT` **model-drift control** reproduces the frozen L3-2h figures (`CONDITIONAL_AND_ASSERTED` 0, incoherence 4.2% vs 4.3%, control-reading 5/6 with the same miss), differing on 2 of 24 rows against L3-2h's own 1/24 floor — so the preview label had not moved under the measurement. The shipped-path delta must be cited with two qualifications that cut opposite ways: Gemini's `thinkingLevel: low` still spent a mean **592 thought tokens per call** against qwen's none, and Gemini's noise floor is **instrument-dependent** (0/24 locked, 2/24 shipped-runner), though every floor difference sits on a `NEGATIVE_CONTROL` row and none on a clarification or high-consequence one | **ACTIVE — PROTECTED** | §42.1–§42.7; `hazlenz-l3-2j-cross-provider-closure-2026-08-24/` |
+| D-63 | L3-2k | **`F-WC-09` is a provider-stage `ASSERTION_STATE_SELECTION` fault whose SHIPPED consequence is DELETION, not mislabelling — and the deterministic layer already holds the fact that would decide it.** qwen proposes ONE candidate on cleanly bound evidence, labels it **`CONTROLLED`**, passes the validator `VALID`, and is then **REJECTED by the semantic binder** (`SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE`), leaving `boundHazards: []` — the customer receives **no hazard at all** on a high-consequence scenario. Gemini labels the same candidate `ACTIVE`, survives the binder and delivers it. **`control-adequacy.ts` is recording-only by design (§36.4, `L3-INV-12`) and records `CONTROL_ABSENT / "strapped down"` on that very candidate.** | The recorded `HC (model-asserted) 12/13` (§41.2, §42.3) is a MODEL-TIER figure: no artifact in the programme had ever run `bindEvidenceSemantically`, which executes AFTER the validator at `reasoning-runner.ts:81`, so the severity was invisible rather than misreported. The `F-WC-03` control run in the same process on the same prompt produced the same `CONTROL_ABSENT` advisory and — because the model chose `ACTIVE` — was kept and delivered, which exonerates the binder as the ORIGIN and indicts it only as the AMPLIFIER: a **correct** refusal deletes the candidate rather than demoting it. Deterministic (13 of 14 recorded qwen ladder-family runs, plus 2 of 2 here) and NOT order-sensitive (`V_A_LADDER` also returns `CONTROLLED`). Exposure is bounded and measured: qwen chooses `CONTROLLED` on **1 of 24** scenarios, Gemini on **0 of 24**. §24 disposition `DEFECT_NONBLOCKING`. **Not repaired — remediation was not authorized, and `§22` forbids answering it by editing the binder to make one scenario pass** | **ACTIVE — PROTECTED** | §43.1–§43.2; `hazlenz-l3-2k-shipped-residual-rootcause-2026-08-24/rootcause/CASE_TRACES.json` |
+| D-64 | L3-2k | **A GATE CONDITIONED ON THE CANDIDATE'S STATE IS DEFEATED BY ANY MOVE THAT CHANGES THAT STATE.** §34.2's clarification drop is exempt on `L3_UNDECIDED_STATES` by deliberate design. §41.3 recorded the **drop** form of the defeat (the candidate was removed, so the gate never fired); L3-2k measures the **demote** form (the candidate survives at `INSUFFICIENT_EVIDENCE` and the gate is inert for the same structural reason). `C-CS-05` under §36.7's one-block move: the question is raised **deterministically 4 of 4**, the state is demoted **1 of 4** on byte-identical prompts in separate processes, and the false question reaches the customer only when both occur | Two mechanically unrelated perturbations — a prompt declaration and a prompt-block move — defeat the same control by one route, which is why this is a rule and not an observation. **The gate is load-bearing, not lax**: on the same cohort its undecided-state exemption is exactly what lets all **5 of 5** `CLARIFICATION_REQUIRED` scenarios carry their legitimate question on both providers, and the vacuity control is MEASURED — in the three runs where the state returned `HYPOTHETICAL` the gate DID fire and suppressed the question. The two tiers must never be reported as one number: at the MODEL tier the difference is a deterministic FIELD-LEVEL difference (4/4), at the SHIPPED DECISION tier it is SEMANTIC DECISION VARIANCE (1/4); the hazard decision, false ACTIVE and high-consequence axes never move. §24 disposition `DEFECT_NONBLOCKING` — the shipped configuration is variant **B**, under which the failure does not occur in 4 of 4 runs. `C-CS-05` is the ONLY scenario in the cohort producing a `HYPOTHETICAL` candidate on either provider | **ACTIVE — PROTECTED** | §43.1, §43.3; `results/qwen/D_CS05_LADDER_{A,B}*.json` |
+| D-65 | L3-2l | **A REFUSAL MAY DEMOTE TO AN UNDECIDED STATE ONLY WHERE THE REFUSAL ITSELF ESTABLISHED THAT THE DECISION IS OPEN — so `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE` CONTINUES TO DELETE.** `checkStateSupported`'s `required` map covers only `CORRECTED`, `REMOVED_FROM_SERVICE`, `NEGATED`, `HYPOTHETICAL` and `CONTROLLED`; **`ACTIVE` is not in it**, and the code has never once refused an `ACTIVE` candidate in 84 firings across 1,871 records. It therefore cannot prevent a false `ACTIVE`, and delete-versus-demote moves a candidate between two non-asserting states — **a null move on every hard §29.8 gate, including the one that motivated the question.** `control-adequacy.ts` **remains recording-only** | §33.4's impression gate may demote because it establishes positively that *nothing was asserted* and raises `SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED` in the same breath, so demotion asserts nothing the check did not prove. `checkStateSupported` establishes only that the marker vocabulary is absent from the cited span; demoting there would assert *"the decision was not made"* — **false on 39 of 52 measured rows**, where the model's state is right and the binder's admission vocabulary simply cannot read a textbook lockout (`D02`, `B14`, `H-OF7`). That is deterministic SEMANTIC INFERENCE, not validation, and a conclusion the provider never proposed (`L3-INV-08`). Measured counterfactual over the whole open corpus: demotion recovers **0 of 7** high-consequence misses and introduces **39** preserved negative-control candidates and up to **31** unnecessary clarifications; re-derivation to `ACTIVE` closes the high-consequence axis and introduces **39 false ACTIVE**. **B and D are strictly dominated by A; C is forbidden by `L3-INV-08` and `L3-INV-04`.** Deletion is RETAINED, not exonerated — on four high-consequence identities (`E-FLD-147`, `X-WC-02`, `F-WC-03`, `F-WC-09`) the customer receives no hazard record at all — but that loss originates at `D-63`'s provider-stage state choice and **is not repairable at the binder** | **ACTIVE — PROTECTED** | §44.1–§44.5; `hazlenz-l3-2l-semantic-state-disposition-2026-08-24/inventory/DISPOSITION_ANALYSIS.json` |
+| D-66 | L3-2m | **HOSTED INFERENCE IS AUTHORIZED IN PRINCIPLE AS AN INTERNAL HazLenz REASONING COMPONENT — the §31.2 / §10 privacy boundary is ADJUDICATED and is no longer the binding gap.** HazLenz remains the customer-facing system; the hosted model is an internal reasoning dependency and **does not become customer-authoritative**. `L3-INV-01`…`L3-INV-12`, the deterministic validator, the semantic binder, evidence binding, regulatory governance and every customer-facing safety control remain in force. **This authorizes NO provider, NO model, and NOT the sealed run** — §29.8 keeps the single-use acceptance corpus a separate explicit decision, and `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN` | §42.10, §43.8 and §44.7 each handed back the same unadjudicated policy question, and three engineering phases correctly refused to answer it with measurement. It is a product/policy call and the user made it. Recording it as a decision rather than folding it into a phase result is what stops a fourth phase re-deriving that the gap is not measurable. **What a hosted provider actually receives is inspector-authored narrative prose**: §31.2's exclusion is structural at the FIELD level, and the second-layer redactor is PATTERN-based over seven rules (`email`, `phone`, `ssn`, `street_address`, `mine_id`, `employee_id`, `url`) which cannot catch a personal name or an informal site reference. That is the module's documented scope, and it is what changes meaning once the destination stops being `127.0.0.1` | **ACTIVE — PROTECTED** | §45.1, §45.5; `hazlenz-l3-2m-hosted-inference-policy-2026-08-24/` |
+| D-67 | L3-2m | **THE FINAL SEALED ACCEPTANCE RUN IS BLOCKED ON PROVIDER MODEL IDENTITY: there is NO stable non-preview Gemini Pro at the measured tier, and NO Gemini model of any tier is pinnable by content digest.** Measured from the provider's own catalogue (`GET /v1beta/models`, 1 request, credential header only, ZERO content): **50 models, 37 supporting `generateContent`**, and **exactly three assert stability in their own description — `gemini-2.5-pro` @ `2.5`, `gemini-2.5-flash` @ `001`, `gemini-2.5-flash-lite` @ `001`, all the 2.5 generation.** Every 3.x Pro text model is a preview at `3.1-pro-preview-01-2026`; the stable 3.x models are Flash tier only and assert no stability; `gemini-pro-latest` and its siblings are silently updated by definition. **`D-62`'s entire result is a `gemini-3.1-pro-preview` fact**, so the preview branch fails `P-07` and the stable branch has zero measured evidence — and §29.8 spends the corpus ONCE | `P-07` requires an addressable, non-silently-updated model id *because a silent model change would invalidate a passed gate*. Neither branch survives that: a preview dated 01-2026 against a catalogue now at 3.7 cannot carry a defensible acceptance result, and a blind run on an unmeasured stable model spends a single-use asset on an unknown. **Google was ALSO never scored against `P-01`…`P-14`** — `PROVIDER_SELECTION.md` scored only Anthropic Claude and the local model and records `GEMINI_API_KEY` as unset; Google entered at §39 purely as the architecture-selection comparator `D-55` fenced. **And there is no production hosted path at all**: `reasoning-l3` declares only `L3_OLLAMA_*`, `backend/src` contains zero hosted references and `backend/package.json` zero hosted SDKs — every Gemini measurement came through the verification-only shim outside `backend/src`. **`P-05` binds the acceptance run and not only production: a provider that trains on submitted data would contaminate the single-use corpus permanently.** The minimum action is `PROVIDER_REQUIREMENTS.md`'s own never-executed steps 1–3, which measure the PROVIDER and not HazLenz | **ACTIVE — PROTECTED** | §45.2–§45.6, §45.8; `provider/GEMINI_MODEL_CATALOGUE.json` |
+| D-68 | L3-2n | **HOSTED DATA HANDLING IS SATISFIABLE AND IS NOT THE BLOCKER — but the gate is TIER-CONDITIONAL.** `P-05` PASSES on the **paid** tier (*"Google doesn't use your prompts…or responses to improve our products"*) and **FAILS on the free tier**, where content improves Google products and *"human reviewers may read, annotate, and process your API input and output"*. `P-06` PASSES: paid-tier abuse-monitoring retention is a **stated 55 days**, held separately and not used to train any model beyond policy enforcement, and **Zero Data Retention is available on approved request** for paid projects, clearing all user content and identifiable metadata before logging. **HazLenz uses none of the ZDR-incompatible features** (Search/Maps grounding, Interactions API, File API, explicit caching) | §42.10, §43.8 and §44.7 each deferred this and `D-66` adjudicated it only in principle; this is the documented evidence, every assertion carrying a source URL and a 2026-08-24 retrieval date as `PROVIDER_REQUIREMENTS.md` demands. **A billing-enabled project is therefore a PRECONDITION, not a preference** — the same credential on an unpaid project would place customer observation text into model improvement, which `D-66`'s authorization explicitly forbids | **ACTIVE — PROTECTED** | §46.1; `provider/OFFICIAL_DOCUMENTATION.md`, `provider/P01_P14_SCORECARD.md` |
+| D-69 | L3-2n | **NO CURRENTLY CALLABLE STABLE HOSTED MODEL MEETS THE REQUIREMENTS: the only stable Pro is NOT CALLABLE, and the stable Flash models fail `P-02`.** `gemini-2.5-pro` returns **HTTP 404 — *"no longer available to new users … use models/gemini-3.1-pro-preview"*** on all 48 cohort calls, while a `gemini-3.7-flash` control returned 200 in the same probe. `gemini-3.7-flash` reaches **71%** schema-contract validity and `gemini-3.6-flash` **83%**, against `P-02`'s **≥99%** bar; **every** rejection is `UNGROUNDED_CORRECTIVE_ACTION`, and **6 of 7** reproduce across two isolated processes so the permitted single retry cannot be assumed to rescue them. **MODEL tier is 13/13 for both** — the corrective-action field takes a correct proposal down with it, costing 5–6 high-consequence findings. **`F-WC-09`, `F-WC-03` and `C-CS-05` are ALL CORRECT on both stable Flash models** through the full binder path, so **`D-63`'s residual is a `qwen` property that reproduces on no Gemini model tested** | `LISTMODELS PRESENCE IS NOT CALLABILITY, AND A DOCUMENTED "STABLE" LABEL IS NOT AVAILABILITY` — both must be probed, which is `D-67` in operational form and stronger than the documentation reading that produced it. The validator rule is `L3-INV-02` applied to corrective action, §29.6 specifies rejection on contract violation, and **two other providers satisfy it at 23 of 24**, so under §22 and §24 this is **provider non-conformance with a correct pre-existing contract — not a HazLenz defect and not a reason to weaken the validator.** Every model ties at ceiling on false ACTIVE (0/11) and both clarification denominators (5/5, 5/5, 100%), so the separation is entirely at the validator. Measured on the SAME instrument as `D-62` — schema `a522cf5a`, prompt `b8cc50fc` v6, shim `0ba265bb` — under §38.3 isolation, on already-open material only | **ACTIVE — PROTECTED** | §46.2–§46.4; `hazlenz-l3-2n-provider-qualification-2026-08-24/results/` |
+| D-70 | L3-2o | **ANTHROPIC `claude-sonnet-5` CLEARS EVERY REQUIREMENT THAT DISQUALIFIED GEMINI, AND PRODUCES THE BEST REASONING RESULT ON RECORD.** `P-05` PASSES **unconditionally** on the Commercial Terms (*"Anthropic may not train models on Customer Content from Services"*) rather than on a billing tier as `D-68` required; `P-06` PASSES at a stated **30 days** with **ZDR available on request**, the Messages API explicitly ZDR-eligible and `claude-sonnet-5` **not** a 30-day Covered Model; `P-07` PASSES on *"Every Claude model ID is a pinned snapshot … not an evergreen pointer"*, Active, retirement *"not sooner than June 30, 2027"*, ≥60 days' notice; `P-12` PASSES by **measurement** — Models API 200 and Messages 200. **MODEL tier 13/13 and VALIDATED tier 13/13 on BOTH isolated runs** — the only stable, callable model to reach the validated ceiling, tying the disqualified `gemini-3.1-pro-preview` and beating both stable Flash models by 3–6 high-consequence findings | **`D-67`'s blocker is NOT a permanent property of hosted inference** — a hosted provider can satisfy `P-07`, which no prior phase had evidence for. §45.4's separate ceiling stands unchanged: a pinned-snapshot label is still not a content digest. Scored from **current official documentation with source URL and 2026-08-24 retrieval date for every mutable claim**, and measured on the SAME instrument as `D-62` and `D-69` — schema `a522cf5a`, prompt `b8cc50fc` v6, cohort 24/24 with 0 disagreements — under §38.3 isolation, on already-open material only. The `P-05` claim carries one unverifiable precondition: the organization behind the credential must be under those Commercial Terms | **ACTIVE — PROTECTED** | §47.1–§47.2; `hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/provider/` |
+| D-71 | L3-2o | **ANTHROPIC IS STILL NOT QUALIFIED: `claude-sonnet-5` FAILS `P-02` ON A REPRODUCING REJECTION.** Schema-contract validity is **23/24 = 95.8%** (run A) and **22/24 = 91.7%** (run B) against `P-02`'s **≥99%** bar. The rejection common to both runs — `F-COR-01`, `UNGROUNDED_CORRECTIVE_ACTION` — **reproduces across two isolated processes**, so the permitted single retry cannot be assumed to rescue it. A second, non-reproducing rejection (`F-NC-01`) appears in run B only. **Both Anthropic rejections land on `DECIDED_NON_ACTIVE` rows, so NO high-consequence finding is lost** — the validated tier stays 13/13, where the same code cost `gemini-3.7-flash` 5–6 findings | **The verdict does not depend on how `P-02` is read** — strict numeric (95.8% < 99%) and `D-69`'s applied reading (a non-reproducing rejection is rescued by retry, a reproducing one is not) **both give FAIL**. The ≥99% bar was NOT moved and nothing in HazLenz was changed to make Anthropic pass. The mechanism is `D-69`'s, not a new one: `L3-INV-02` applied to corrective action, §29.6 rejects on contract violation, and two providers satisfy it at 23/24 — **provider non-conformance with a correct pre-existing contract under §22/§24, not a HazLenz defect and not a reason to weaken the validator.** The three transport strips were proved benign: across all 51 rows, occurrences of every code they could have caused are **zero** | **ACTIVE — PROTECTED** | §47.2, §47.6; `hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/results/` |
+| D-72 | L3-2o | **`P-08` FAILS STRUCTURALLY: ON CLAUDE 4.7 AND LATER THERE IS NO DETERMINISM CONTROL AT ALL.** `temperature`/`top_p`/`top_k` are deprecated and *"Return a 400 error when set to a non-default value"*, and there is **no `seed` parameter** — so the harness's `temperature: 0` and `seed: 20260822` are **inexpressible**, not discarded by choice. Measured consequence: **6 of 24 rows differ across two isolated processes**, against 0/24–2/24 for `D-62`, 2/24 for `gemini-3.7-flash` and 3/24 for `gemini-3.6-flash` — **the worst reproducibility of any provider measured**. Separately, **clarification precision discriminates for the first time**: `B08` asks a question it should not on **both** runs, giving **5/6 = 83%** where every model in `D-62` and `D-69` tied at 5/5 | `DO_NOT_REDISCOVER`. `P-08` exists because *"evaluation must be re-runnable"*; this is a property of the provider surface, not of sampling luck, and no client setting removes it. **It may make `P-08` unobtainable from any current hosted model** as frontier providers withdraw sampling controls — if so, `PROVIDER_REQUIREMENTS.md` itself needs a decision, and **changing a requirement is the user's call, never a response to a provider failing it.** The instability lands in the same clarification/uncertainty cohort §38.4 identified, now corroborated at **n = 3 providers**. All figures were taken at **provider defaults** (adaptive thinking, effort `high`); lower effort levels are supported and **untested**, and tuning them to obtain a pass was not attempted | **ACTIVE — PROTECTED** | §47.3–§47.4; `hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/results/SCORE.txt` |
 
 ---
 
@@ -3304,6 +3328,3602 @@ decides the likely agency context"* promises more than an 11-of-66 inference rat
 
 ---
 
+## 29 — LEVEL-3 REASONING ARCHITECTURE — `TARGET, NOT YET IMPLEMENTED`
+
+> ### `HAZLENZ_LEVEL3_ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION_PLANNING`
+
+**Nothing in this section describes current behaviour.** It is the approved target. Zero implementation
+files were changed by the phase that produced it; no model dependency, no provider code, no migration.
+Evidence: `verification/hazlenz-level3-architecture-2026-08-22/`.
+
+### 29.1 What decides customer behaviour today (measured, §28 + Phase-3 trace)
+
+Every substantive semantic judgement a customer sees — what the hazard is, how many there are, whether
+it is active, what evidence supports it, what to do — is made by deterministic lexical machinery
+(`weighted-classifier`, `multiHazardEngine.decompose`, `inferConditionState`, the corrective-action
+template library) and then patched by regex in the presentation layer
+(`ensureVisiblePrimaryCitationContract`, `enforceVerifiedControlDisplay`). Stages that are deterministic
+**and correct** — `suggest()` retrieval, citation identity, governed content, persistence, the
+provenance gate, human review, finalization, report/PDF — are untouched by this design.
+
+### 29.2 Root-cause consolidation `PROTECTED_DECISION`
+
+**RC-01, RC-04, RC-05, RC-07 and RC-08 are ONE architectural cause with five surfaces** — the absence
+of semantic reasoning authority. Confirmed from source: they co-occur, respond to the same perturbation
+(rewording alone moves classification, condition state and citation together), and share one input
+(`fusedText` matched against registries) and one failure mode (unrecognized phrasing falls through to a
+default). **RC-02 and RC-03 are genuinely independent deterministic defects** that remain wrong after
+Level 3, because Level 3 keeps deterministic retrieval and jurisdiction filtering.
+
+### 29.3 The seam `STABLE_INVARIANT` (target)
+
+`intelligence-orchestrator.service.ts::evaluate()`, called from **exactly one place**
+(`safescope-v2.service.ts:1576`), already inside a try/catch. It owns the four artifacts behind
+RC-01/04/07/08, its output shape is already consumed by persistence and reports, and it owns **neither**
+standards retrieval **nor** governed content — which is what makes `L3-INV-01`, `L3-INV-03` and
+`L3-INV-09` structural rather than policy.
+
+### 29.4 Authority map (target)
+
+Moving to **SEMANTIC (validated)**: observation interpretation · hazard decomposition · condition state ·
+evidence binding · jurisdiction proposal · regulatory applicability **over retrieved candidates only** ·
+risk *factors* · corrective-action *intent* · clarification decision.
+
+Remaining **DETERMINISTIC and unchanged**: standards retrieval (`suggest()`) · citation identity ·
+governed content, review state, release membership, provenance, badges · risk *scoring* · persistence ·
+the server-side provenance gate · human review · finalization · report and PDF rendering.
+
+Machine-readable: `contracts/authority-map.json`.
+
+### 29.5 Protected Level-3 invariants (target)
+
+`L3-INV-01` no invented citations (structural) · `L3-INV-02` evidence-bound findings ·
+`L3-INV-03` no model governance authority (structural) · `L3-INV-04` **no default ACTIVE** ·
+`L3-INV-05` safe failure · `L3-INV-06` decision-boundary clarification · `L3-INV-07` structured output
+only · `L3-INV-08` model output is a proposal · `L3-INV-09` regulatory text remains governed
+(structural) · `L3-INV-10` **no silent Level-1 fallback** · `L3-INV-11` negation scope preserved in
+every evidence span · `L3-INV-12` deterministic signals are advisory and may not re-acquire authority.
+
+> **`buildDegradedHazLenzIntelligence()` (`safescope-v2.service.ts:1392`) violates `L3-INV-10` today.**
+> It emits family-keyed `evidenceGaps` and `classReason` prose and tells the customer that
+> classification, risk, standards and corrective actions "were still generated". It retires at L3-6.
+
+### 29.6 Failure behaviour (target)
+
+Timeout → one bounded retry → `ANALYSIS_UNAVAILABLE`. Schema violation → one retry → reject. **Invented
+evidence → reject with no retry.** Citation outside the retrieved set → reject. All candidates rejected
+→ `INSUFFICIENT_EVIDENCE`. The customer is told plainly that **HazLenz reasoning did not complete** and
+receives **no** family, condition state, risk band, citation or corrective action from lexical fallback.
+
+### 29.7 Implementation sequence (target, six slices)
+
+**L3-1** contract + provider abstraction + validator skeleton (no authority change) ·
+**L3-2** semantic interpretation + evidence binding (dual-run only) ·
+**L3-3** decomposition + condition-state authority transition — closes RC-01/04/07 ·
+**L3-4** regulatory applicability + **RC-02** + **RC-03** ·
+**L3-5** clarification + risk + corrective action — closes RC-05/06 ·
+**L3-6** full integration, retire presentation-layer compensation, sealed acceptance.
+
+Dual-run mode is named **`L3_COMPARE`** and deliberately does **not** reuse KG SHADOW vocabulary — the
+contracts differ (KG SHADOW compares governed vs legacy *content resolution*; `L3_COMPARE` compares two
+*reasoning engines*).
+
+### 29.8 Evaluation `PROTECTED_DECISION`
+
+Three separate corpora: **REGRESSION** (the committed 66-case matrix `c298f148…`, frozen `ef405d60…`,
+plus DX/OF diagnostics and `test:hazlenz-core`), **DEVELOPMENT**, and a **SEALED HOLDOUT** of ~40 novel
+scenarios authored by a party not tuning the implementation, opened once per acceptance run and then
+retired. Hard safety gates sit at zero (fabricated citations, fabricated evidence, default-ACTIVE from
+uncertainty, unsupported findings, unreviewed-as-governed, unsafe corrective action, silent L1 fallback).
+Quality thresholds are set above the measured baseline with margin. Generalization gate: **sealed
+holdout within 10 points of development.**
+
+### 29.9 Multimodal scope `PROTECTED_DECISION` — `TEXT_FIRST_LEVEL3`
+
+`real-image-analysis.service.ts` operates on `simulatedVisionFindings`, captions and metadata; no
+image-decoding or vision library exists in `backend/package.json`. **HazLenz performs no image inference
+today.** Every measured Level-3 blocker is a text-reasoning failure. Photo reasoning is a later,
+separately scoped slice.
+
+### 29.10 Checkpoint deployment `PROTECTED_DECISION` — `DO_NOT_DEPLOY_LEVEL1_CHECKPOINT`
+
+Commit `1feda622` is immutable and verified on the remote, so the checkpoint value is already realized.
+Production has **one analysis in the product's lifetime**, so deployment buys no traffic evidence; KG
+deployment is separately staged and independently blocked; six full workflows and seven PDFs already
+executed locally. Deploying would expose a **LEVEL_1** engine carrying **13 SAFETY_BLOCKERs** to real
+safety professionals. **No technical evidence requires production.**
+
+### 29.11 RC-02 / RC-03 and KG5C-DISC-01 placement
+
+RC-02 and RC-03 are **preserved, unfixed, and scheduled into L3-4** — the slice owning retrieval,
+jurisdiction filtering and candidate-set membership. Fixing earlier is premature; fixing later would let
+Level 3 inherit a corrupted candidate set. **RC-03 must not be closed by editing `evidence-foundation.ts`.**
+
+`KG5C-DISC-01` keeps `DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT`, owner SOURCE. It is a
+legacy content-generation defect, **independent of and outside** the Level-3 scope, repaired in a SOURCE
+slice at the owner's discretion.
+
+### 29.12 KG compatibility
+
+**The KG architecture remains valid and is not reopened.** The interface between the Level-3 engine and
+KG has exactly two directions: KG supplies eligible candidates and reviewed artifact bytes; the engine
+returns a selection among those candidates. Nothing else crosses. Level 3 adds runtime reasoning only —
+learning remains Level 4, and knowledge freshness remains governed.
+
+---
+
+## 30 — L3-1 REASONING CONTRACT + VALIDATOR (2026-08-22) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_1_COMPLETE — REASONING_CONTRACT_AND_VALIDATOR_ESTABLISHED — CUSTOMER_AUTHORITY_UNCHANGED`
+
+Evidence: `verification/hazlenz-l3-1-reasoning-contract-2026-08-22/`. **Uncommitted.** No model
+inference, no provider selected, no SDK, no network, no migration, production untouched.
+
+### 30.1 Current authority `STABLE_INVARIANT` for this slice
+
+> **`CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`.**
+
+Level 3 is **not** operational. What exists is a typed contract and a deterministic validation
+boundary that nothing on the customer path invokes.
+
+### 30.2 Implemented now
+
+`backend/src/safescope-v2/reasoning-l3/` — versioned input contract (`hazlenz.l3.input.v1`),
+proposal contract (`hazlenz.l3.proposal.v1`), eight explicit condition states, evidence-reference type,
+provider abstraction with six failure kinds, an inference-free `UnavailableReasoningProvider`,
+validation states with 22 stable reason codes, the deterministic validator, the `ValidatedReasoning`
+type, and the safe-failure outcome union. Plus a 48-assertion pure suite
+(`npm run test:l31-reasoning-contract`) and one added `package.json` script line — dependencies
+byte-identical to HEAD.
+
+### 30.3 NOT implemented
+
+Actual model/provider · semantic inference · customer-path integration · the semantic authority
+transition · regulatory applicability reasoning · Level-3 corrective action · Level-3 risk factors ·
+`L3_COMPARE` · sealed acceptance.
+
+### 30.4 How "no customer authority" is proven
+
+1. **Reachability** — no pre-existing source file imports `reasoning-l3`; it is in no Nest module, so
+   it cannot be injected; the only importer is its own test.
+2. **Zero modification** — `git diff` over `intelligence-orchestrator.service.ts` and
+   `safescope-v2.service.ts` is empty; the seam and its call site were not touched.
+3. **Measured behavioural invariance** — the frozen 66-scenario matrix re-run post-L3-1, with
+   volatility **derived empirically** from two runs of identical code (7 volatile paths, all per-run
+   ids/timestamps). Excluding only those: **0 non-volatile differences across 66 scenarios.**
+
+> `DO_NOT_REDISCOVER` — a first comparison used a **declared** volatility list and reported all 66 as
+> differing while every customer-decisive field was identical. The declared list was wrong, not the
+> engine. Volatility must be derived, per `KG4E-D3` and the KG-4B precedent. This is the third time
+> the programme has learned this; the corrected method is in
+> `customer-authority-invariance.json`.
+
+### 30.5 What the validator can and cannot do `STABLE_INVARIANT`
+
+It enforces **contracts**, not meaning. Mechanical today: source existence, offset bounds, exact
+`quotedText` equality, immediately-preceding governing-negation truncation, corrective-action grounding
+within the candidate's own evidence, candidate-id membership, taxonomy closure, condition-state
+legality, duplicate detection, outcome coherence, governance/regulatory-text refusal.
+
+**`L3-INV-11`'s semantic half is explicitly NOT claimed at L3-1** — whether the chosen span is the
+*right* evidence, and whether a distant negation still governs, is L3-2's work. The validator must
+never grow into a second reasoning engine (section 29 contradiction C-1).
+
+### 30.6 Regression posture
+
+`test:hazlenz-core` reproduces **28/30** — the two documented failures (§13.1) and no third.
+KG contracts unchanged: KG-4A 146/146, KG-4B 123/123, KG-3F `56.14132` 16/16, evidence-foundation 35.
+`backend/src/standards/` is byte-unmodified.
+
+---
+
+## 31 — L3-2 SEMANTIC REASONING, EVIDENCE BINDING AND DUAL RUN (2026-08-22) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2_PARTIAL — SEMANTIC_REASONING_NOT_VALIDATED_FOR_ADVANCEMENT`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Nothing committed or pushed. Evidence:
+`verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/`.
+
+**This section records what executable evidence proved. Where a thing was implemented but not
+verified, or measured but not made authoritative, it says so.**
+
+### 31.1 Provider — VERIFIED for evaluation, OPEN for production
+
+Selected for L3-2's controlled dual run: a **locally hosted model via Ollama**, `qwen3-coder:30b`,
+pinned by content digest `06c1097efce0…`, at `temperature 0`, `seed 20260822`, `num_ctx 8192`,
+60 s timeout. Zero SDK added — transport is the platform `fetch`, and `backend/package.json`
+dependencies are byte-identical to HEAD.
+
+> #### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+
+It was **not** chosen on convenience. `PROVIDER_REQUIREMENTS.md` requires candidates to be scored
+from official documentation **and then run** against the DEVELOPMENT cohort. No hosted-provider
+credential is resolvable on this machine (`ANTHROPIC_API_KEY` unset, no `ant` profile, the
+`OPENAI_API_KEY` present is an 11-character placeholder, no key in any of nine project `.env`
+files), so the second step could not run for any hosted candidate and a paper selection was refused.
+Anthropic Claude is documented as the strongest hosted candidate — constrained-decoding structured
+output, zero-data-retention agreements available against a 30-day default — with sources and
+retrieval dates in `PROVIDER_SELECTION.md`.
+
+**Portability finding:** the L3-2 schema uses `minLength` and `minItems: 2`, neither of which
+Anthropic's structured outputs support. Nothing is lost, because the validator enforces both
+independently — the payoff of putting guarantees in the validator rather than the schema.
+
+### 31.2 Inference input boundary — VERIFIED
+
+`reasoning-input-builder.ts` is the only sanctioned constructor, and exclusion is **structural**:
+`ReasoningInputRequest` has no field for a personal name, site identity, account id, credential,
+billing datum, unrelated record, governed review state, release id or standards text. The suite
+asserts this by reading the interface's own source. Redaction (email, phone, SSN, street address,
+mine id, employee id, URL) runs **before** the text becomes the canonical source, so evidence offsets
+index the redacted string and a span cannot quote something never sent.
+
+### 31.3 Semantic interpretation and evidence binding — IMPLEMENTED and MEASURED
+
+The model supplies quotations; **the adapter computes offsets by exact substring search**, and
+binding is non-repairing — an unbindable quote gets `[-1,-1]` and is rejected as
+`EVIDENCE_OUT_OF_BOUNDS` rather than snapped to a nearby real span. Measured: **153 quotations, 0
+non-verbatim.**
+
+The validation sequence is four stages and nothing may skip one:
+
+```
+provider → offset binding → deterministic validator → semantic evidence binder → outcome
+```
+
+`semantic-evidence-binding.ts` answers L3-INV-11's semantic half with six checks —
+`SEMANTIC_NEGATION_UNADDRESSED`, `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE`,
+`SEMANTIC_ACTION_NOT_CONDITION_EVIDENCE`, `SEMANTIC_EVIDENCE_NOT_SELECTIVE`,
+`SEMANTIC_CANDIDATES_NOT_INDEPENDENT`, `SEMANTIC_ADVISORY_ECHO`.
+
+**Stated precisely, because overclaiming here would be the worst error in this section: this is not
+an entailment prover.** It tests falsifiable consequences of a claim against the cited span and the
+clause containing it. No L3-1 file was modified; the validator still enforces contracts only.
+
+### 31.4 The measured result, and why the phase closes PARTIAL
+
+| | Hazard detection | High-consequence misses | False ACTIVE (31 negative rows) |
+|---|---|---|---|
+| Model + deterministic validator | **32/32** | **0** | 1 |
+| **Shipped pipeline** (+ semantic binder) | 30/32 | **1** | 1 |
+| Level-1 baseline | 25/32 | — | 6 of 12 negative controls |
+
+The high-consequence miss is a **hard gate**. Its cause is the binder this phase built, not the
+provider: on `B08` and `C11` the binder rejected correct candidates because `clauseAround()` treats a
+comma-delimited run as one clause. **Deliberately not fixed after seeing the holdout** — the
+remediation is specified in `NEXT_ACTION.md` and needs a new holdout.
+
+One genuine reasoning error: `B10` ("the rail … did not look right to me") became `ACTIVE` where a
+clarification was owed. **0 clarifications were raised across 66 scenarios**, so the "≤5 unnecessary"
+threshold passes trivially while "0 decision-critical missed" does not.
+
+### 31.5 Dual run and comparison — VERIFIED
+
+> #### `L3_COMPARE` — comparison evidence only, never customer output
+
+The harness boots no Nest module and touches no database. Adjudicated against frozen expectations,
+not against Level 1: **Level-3 correct / Level-1 incorrect on 25**; Level-1 correct / Level-3
+incorrect on 2; both correct on 36; both incorrect on 0; ambiguous 3. Level 1 attaches an evidence
+span to none of its hazards and asks questions on 50 of 66; Level 3 attaches a verified span to every
+hazard and asks none.
+
+### 31.6 Customer-authority invariance — MEASURED
+
+Pristine `git archive` of HEAD versus the same archive plus every uncommitted L3-1 and L3-2 file,
+through the real customer pipeline. Volatility **derived empirically** from two same-code runs — the
+same 7 per-run id/timestamp paths L3-1 derived. **0 scenarios with a non-volatile difference over
+66.** `test:hazlenz-core` remains 28/30, the two documented failures only.
+
+### 31.7 Operational — MEASURED, PROPOSED as future budgets, NOT authoritative
+
+162 analyses: median **4.3 s**, p90 5.7 s, p95 9.0 s, max 13.6 s; 936 input / 257 output tokens mean;
+retry 0%, malformed 0%, timeout 0%; marginal cost $0. Proposed future budgets: p95 ≤ 12 s, ≤ 1 200
+input and ≤ 900 output tokens. **Reproducibility is ~98.5%, not 100%** — two seeded runs at
+temperature 0 agreed on 65 of 66 scenarios.
+
+### 31.8 Holdout identity
+
+`backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json`, sha256
+`41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d`, frozen **before** the first
+inference run, derived by a fixed deterministic translation from the capability-acceptance matrix
+(`c298f148…`, itself frozen before execution by an earlier phase). It has now been opened and is
+**retired for gate purposes**; it remains valid as a development set.
+
+### 31.9 Deferred to L3-3 and later
+
+Applicability reasoning as a **second scoped call** (decided, not built — D-L32-1); hazard
+decomposition and condition state becoming semantic (L3-3); jurisdiction (L3-4); risk and corrective
+action (L3-5). **L3-3 must not start until L3-2b closes** with zero high-consequence misses through
+the full shipped pipeline.
+
+---
+
+## 32 — L3-2b SEMANTIC BINDER PRECISION AND FRESH SEALED HOLDOUT (2026-08-22) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2B_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2b-binder-precision-2026-08-22/`. **§31 is not rewritten — L3-2 closed
+PARTIAL and that remains the historical record.**
+
+### 32.1 What L3-2 got wrong about its own failure — VERIFIED
+
+`NEXT_ACTION.md` attributed `B08` to the selectivity check. Re-execution with full per-stage traces
+showed `B08` failing through **`SEMANTIC_NEGATION_UNADDRESSED`** instead. Both failure modes are real
+and which one fires depends on how the model chose spans, so both were remediated — and the
+mis-attribution is recorded rather than quietly corrected.
+
+**The dominant root cause was one line:** `clauseAround()` treated only `.;:!?` as clause boundaries,
+so on a field note the whole note was one "clause" and any negation in it governed every span in it.
+Three of five reproductions failed through exactly that.
+
+### 32.2 The five repairs — IMPLEMENTED
+
+| # | Repair | Measured effect |
+|---|---|---|
+| R1 | negation **scope** replaces negation **proximity** (new `negation-scope.ts`) | the rule fired once in 81 sealed scenarios |
+| R2 | issues are **FATAL or ADVISORY**; selectivity and family relevance advisory | whole-sentence evidence no longer rejected |
+| R3 | control-in-place vocabulary gains isolation/verification language | energy isolation now reads as a control, as it should |
+| R4 | clarification policy + carrier-candidate rule in the prompt | precision 1/1, **0 unnecessary** |
+| R5 | the volatile analysis id removed from the prompt | **reproducibility 100%**, up from 98.5% |
+
+Two defects were found by the work itself: a **regex alternation-order bug** where `no` shadowed
+`not`/`none`/`nor`/`neither` (negation blindness reintroduced by a regex detail, caught by a paired
+fixture before any corpus run), and an **over-aggressive family-relevance rule** which deleted 8
+candidates in 30 development scenarios before being demoted to advisory.
+
+### 32.3 The fresh sealed holdout — VERIFIED
+
+`holdout-l32b.json`, sha256 `e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060`,
+81 scenarios, frozen before first execution, sharing no scenario with the retired L3-2 holdout.
+Provenance is three-part and the weak part is named: **40** deterministically sampled (every 5th) from
+`safescope-field-validation-dataset.v1.json` and **12** from the capability-acceptance diagnostics —
+both authored by earlier phases and never run against Level-3 — plus **29 authored by this phase**,
+because neither independent source contains a single negative control, corrected state, subjective
+observation or clarification case.
+
+### 32.4 The result, at three tiers — MEASURED
+
+| | RAW | POST-VALIDATOR | **SHIPPED** |
+|---|---|---|---|
+| Hazard detection | 60/62 | 60/62 | **59/62** |
+| High-consequence misses (33 HC) | 0 | 0 | **1** |
+| False ACTIVE (19 non-active) | 1 | 1 | **0** |
+| Condition state | 96.3% | 96.3% | **96.3%** |
+| Clarification recall / precision | 1/3 · 1/1 | 1/3 · 1/1 | **1/3 · 1/1** |
+
+**The binder now earns its place** — it removed the model's only false ACTIVE and took negative
+controls to zero. It also still costs one correct high-consequence finding, which is why this closes
+PARTIAL. Fabricated quotations: **0 of 75**. Reproducibility: **81/81**.
+
+### 32.5 Why the gate still fails — ROOT-CAUSED, NOT FIXED
+
+`H-AM-05`: "the lower hinge pin **is sheared off**" was not recognised as factual because `sheared`
+is absent from `FACTUAL_CONDITION_TOKENS`, so the new impression gate deleted a correct
+high-consequence ACTIVE. **Not fixed after the holdout was opened**, which is the only reason the
+number means anything.
+
+> **The pattern is now the finding.** Three times in two phases a *closed vocabulary list used as a
+> gate* has produced a false rejection: control-in-place (L3-2), family relevance (L3-2b
+> development), factual condition (L3-2b holdout). L3-2c should change the polarity of such tests —
+> ask whether a sentence is *only* an impression rather than whether a listed word appears — instead
+> of extending lists a fourth time.
+
+### 32.6 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD vs HEAD plus all uncommitted L3-1/L3-2/L3-2b work, through the real
+customer pipeline, volatility derived empirically: **0 non-volatile differences over 66 scenarios**,
+the same 7 volatile paths every prior phase derived. `test:hazlenz-core` 28/30 — the two documented
+failures only. Two prerequisite-dependent suites fail **byte-identically from pristine HEAD**.
+
+### 32.7 Deferred to L3-2c
+
+Three specified, unimplemented fixes: impression-gate polarity, `hasPredicate()` at bare-conjunction
+boundaries, and clarification recall. `NEXT_ACTION.md` carries the fixtures. **L3-3 must not start
+until L3-2c closes** with zero high-consequence misses and clarification recall ≥ 2/3.
+
+> **Outcome, recorded by §33:** all three were implemented and all three work. L3-2c nonetheless
+> closed **PARTIAL** — on clarification *precision* and a new provider-stage high-consequence
+> regression, neither of which existed when this paragraph was written.
+
+---
+
+## 33 — L3-2c GATE POLARITY, CONJUNCTION SCOPE AND CLARIFICATION CARRIAGE (2026-08-22) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2C_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2c-gate-polarity-2026-08-22/`. **§31 and §32 are not rewritten — L3-2 and
+L3-2b each closed PARTIAL and that remains the historical record.** No dependency changed.
+
+### 33.1 The pattern that L3-2b named is now closed as a mechanism `STABLE_INVARIANT`
+
+> #### `CLOSED_POSITIVE_VOCABULARY_MUST_NOT_BE_AN_ADMISSION_GATE`
+
+L3-2b recorded that a closed vocabulary list used as a gate had produced three false rejections in
+two phases. L3-2c confirms a **fourth**, in the same check, failing the *other* way: the gate's
+ENTRY condition was also a list, `struck me as` was absent from it, and `H-AM-01` was therefore
+admitted as **ACTIVE** with no gate run at all — a latent false ACTIVE that L3-2b's pipeline result
+concealed because its model happened to return no candidate. `L3-2C-DISC-01`.
+
+**Why extending the list was refused for a fourth time.** English has an unbounded supply of ways to
+say a thing is broken. Every word missing from an admission list deletes a real hazard, and the L3-2b
+holdout proved that costs a high-consequence finding. The polarity was inverted instead:
+
+| | asks | fails by |
+|---|---|---|
+| retired (L3-2b) | *does this evidence contain one of our known factual-condition words?* | deleting a valid fact whose verb nobody listed |
+| current (L3-2c) | *is this evidence ONLY an unsupported, subjective impression?* | admitting a hedged claim whose hedge nobody listed |
+
+The remaining vocabularies sit on the **impression** side, where a missing word costs precision —
+measurable against negative controls and recoverable — rather than a hazard. **That asymmetry is the
+mechanism, not an implementation detail.**
+
+### 33.2 What replaced the vocabulary test — `impression-scope.ts`
+
+A new module parallel to `negation-scope.ts`, deliberately **not** importing it, because negation
+scope and impression scope answer different questions and must change independently. Evidence is
+split into predication segments and each is classified by the SHAPE of what it asserts:
+
+| class | test | example |
+|---|---|---|
+| `IMPRESSION` | a perception or epistemic predicate about the observer, or an epistemic hedge governing the whole predication | "did not look right to me", "may be cut" |
+| `OBSERVER_ACTION` | a first-person report of what the inspector did | "I walked underneath it" |
+| `FACTUAL` | a **non-observer subject with an unhedged predication of any kind** | "the lower hinge pin is sheared off" |
+| `NEITHER` | no predication at all | a bare noun phrase |
+
+Evidence is *only an impression* when at least one segment is `IMPRESSION` and **no** segment is
+`FACTUAL`. **No condition vocabulary is consulted at any point** — `sheared`, `parted`, `unpinned`
+and every word nobody has thought of yet are factual for the same structural reason.
+
+Two rules are load-bearing and were both found by a failing paired fixture, not by design:
+
+* **`OBSERVER_ACTION` must be distinct from `IMPRESSION`.** Collapsing them deletes
+  "I saw the guard was missing".
+* **The hedge test must run BEFORE the predication test.** "may be cut" carries no finite verb this
+  module recognises, so a predication-first order classified `H-AM-02` as `NEITHER` and let a hedged
+  claim through as ACTIVE — the precision pole failing while the recall pole passed. A **copula does
+  not count** as a predication preceding a hedge: "the drum IS possibly leaking" is hedged.
+
+### 33.3 Bare-conjunction predicate scope — `H-FLD-141`
+
+`negationScopes()` applied `hasPredicate()` at commas and nowhere else; `and` sat in
+`CLAUSE_STARTERS` only as `and separately`. The same test now runs at bare conjunctions —
+**one missing call site, as L3-2b predicted.**
+
+**The bare conjunction is held to a STRICTER test than the comma, deliberately.** A comma is already
+a syntactic break, so a participle suffices; a bare `and` is the ordinary way to continue a negated
+list, so only a **finite verb** ends scope there. `or` and `nor` never end scope.
+
+```
+"no LOTO is applied and the guard IS missing"   finite verb -> new clause, scope ends
+"no guardrail and no toeboard"                  none        -> continuation, scope crosses
+"no guardrail, safety net or personal fall arrest system in use"   RC-08, scope crosses (unchanged)
+```
+
+B08's bare `while`, C11's comma behaviour, A10's `and separately` and the alternation-order fix are
+all measured unchanged.
+
+### 33.4 Clarification carriage — the pipeline was discarding its own conclusion
+
+Root-cause execution separated two different failures behind "recall 1 of 3": `H-AM-01` produced
+**no candidate at all**, and `H-AM-02` produced an ACTIVE with `clarification: null`. On the second,
+the binder raised `SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE` **and**
+`SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED` — then deleted the candidate, destroying the only
+carrier the question could travel on.
+
+The repair is **demotion, not deletion**, for that one code only and only from ACTIVE: the candidate
+is kept at `INSUFFICIENT_EVIDENCE` with a clarification derived mechanically from its own cited
+evidence. Any other fatal code still deletes, and a candidate carrying a second fatal code alongside
+it is deleted rather than demoted — an impression is a reason to ask a question, fabricated or
+contradicted evidence is not. **This is not a redesign of clarification transport:** a clarification
+remains a field on a hazard candidate, which is L3-2b's carrier-candidate architecture. It stops the
+pipeline destroying the carrier it had just decided it needed.
+
+`H-AM-01` cannot be repaired in the binder — the binder may refuse a candidate, never invent one
+(L3-INV-08) — so the prompt moved the impression branch **into** the condition-state ladder as a
+required output shape. That worked, and §33.6 records what it cost.
+
+### 33.5 The result on a fresh sealed holdout — MEASURED
+
+`holdout-l32c.json`, sha256 `33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2`,
+72 scenarios, frozen **before the repair code was written** and byte-identical after execution.
+40 independent (field dataset, stride `i % 5 === 2`, provably disjoint from L3-2b's `i % 5 === 0`)
+plus 32 authored by this phase. Overlap against all three prior sets: **0 ids, 0 texts**, enforced by
+a throw in the builder.
+
+| | RAW | POST-VALIDATOR | **SHIPPED** |
+|---|---|---|---|
+| Hazard detection | 51/54 | 51/54 | **47/54** |
+| High-consequence misses | **0** | **0** | **0** |
+| False ACTIVE (18 non-active) | 0 | 0 | **0** |
+| Negative-control false ACTIVE (8) | 0 | 0 | **0** |
+| Condition state | 95.8% | 95.8% | **90.3%** |
+| Clarification recall / precision | 3/3 · 3/7 | 3/3 · 3/7 | **3/3 · 3/7** |
+
+Fabricated quotations **0 of 69**. Reproducibility **72/72**. Multi-hazard **4/4**. Stage attribution
+of the seven shipped misses: **binder 4, provider 3, validator 0, clarification gate 0, integration
+0** — none high-consequence.
+
+On the **retired** L3-2b holdout (`REGRESSION_EVIDENCE` only): `H-AM-05` and `H-FLD-141` are both
+repaired, detection 59→60, condition state 96.3%→97.5%, clarification recall 1/3→3/3, and **the
+binder now removes nothing at all** — in L3-2b it removed five candidates.
+
+### 33.6 Why the gate still fails — ROOT-CAUSED, NOT FIXED
+
+Two gates fail, both the same trade in the same place: **recall bought with precision by the prompt
+change**, which is the one L3-2c change that can alter model behaviour.
+
+1. **Four unnecessary clarifications** (`C-FLD-138`, `C-CS-05`, `C-AM-04`, `C-AM-06`) where L3-2b had
+   zero. The required output shape fires on candidates whose decision is already made.
+2. **A new high-consequence regression, `H-NG-02`**, on the regression set: the model now returns
+   zero candidates for "no standing water …, **and** the flexible cord … worn through to the
+   conductors", which L3-2b classified correctly. Reproducible across three runs; the same shape
+   recurs as `C-NG-05`.
+
+> **A prompt is a ranking.** This phase lengthened the `INSUFFICIENT_EVIDENCE` rung and did not
+> re-measure the `ACTIVE` rung directly beneath it. Both failures follow from that, and both fixes
+> pull the same direction, so they must be made and measured together.
+
+**Neither was fixed after the holdout was opened**, which is the only reason §33.5's numbers mean
+anything. `NEXT_ACTION.md` carries both, with fixtures.
+
+### 33.7 Defects recorded, deliberately unfixed
+
+| id | defect | why not fixed |
+|---|---|---|
+| `L3-2C-DISC-01` | the impression gate's ENTRY was a closed list; `struck me as` admitted a false ACTIVE | **closed incidentally** by the structural test |
+| `L3-2C-DISC-02` | **no check owns** "ACTIVE contradicted by control-in-place evidence"; the retired gate refused it only by the accident of an absent factual word | a fourth remediation area, outside scope |
+| `L3-2C-DISC-03` | `HAZARD_NEGATION_OBJECTS` matches `hazard` inside "without **hazard** warning labels", where it is a modifier and `warning labels` is the head. Cost 4 correct HazCom findings | found **after** the holdout was opened |
+| `L3-2C-DISC-04` | `CORRECTION_TOKENS` contains `applied`, so "**no** LOTO **is applied**" reads as a correction | same class as DISC-03 |
+
+> **DISC-03 and DISC-04 are the same pattern one level deeper.** §33.1 fixed the **polarity** of one
+> gate. These two are closed vocabularies consulted without regard to the **syntactic role** of the
+> match — `hazard` as a modifier, `applied` inside a negation. A future slice should give
+> `checkContradiction` and `checkStateSupported` the same structural treatment rather than pruning
+> three more word lists.
+
+### 33.8 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD versus HEAD plus all uncommitted L3-1/L3-2/L3-2b/L3-2c work, through
+the real customer pipeline on a disposable database, volatility derived empirically: **0
+non-volatile differences over 66 scenarios**, the same 7 volatile paths every prior phase derived.
+Structural corroboration: `diff -rq` over the two checkouts' `backend/src` reports exactly one
+difference — the **added** `reasoning-l3` directory.
+
+`test:hazlenz-core` **28/30** — the two documented failures only, no third. Offline suites: L3-2c 85,
+L3-2b 105, L3-2 179, L3-1 48, all 0 failed. KG contracts unchanged. Both prerequisite-dependent
+suites were executed from **both** checkouts and fail byte-identically from pristine HEAD.
+
+`L3_COMPARE` on the fresh holdout: Level-3 correct / Level-1 incorrect on **39**; Level-1 correct /
+Level-3 incorrect on 2; both correct 26; both incorrect 5. Level 3 attached a verified evidence span
+to 56 findings, Level 1 to **0**.
+
+### 33.9 Deferred to L3-2d
+
+The two prompt-precision fixes above, together, accepted against a fourth sealed holdout built with
+stride `i % 5 === 4` over the 120 unused field scenarios. The three `DISC` defects remain open.
+**L3-3 must not start until L3-2d closes** with zero unnecessary clarifications, recall ≥ 2/3, zero
+high-consequence misses, and `H-NG-02` recovered.
+
+> **Outcome, recorded by §34:** both fixes were implemented and both work — `H-NG-02` is recovered
+> and the L3-2b holdout now scores 62/62 with clarification precision and recall both 100%. L3-2d
+> nonetheless closed **PARTIAL**, and it reclassified `DISC-03`/`DISC-04` from ordinary-quality debt
+> to **capable of high-consequence loss** on measured evidence. That reclassification, not the D1/D2
+> gates, is what now stands between this stage and L3-3.
+
+---
+
+## 34 — L3-2d CLARIFICATION PRECISION AND ACTIVE-RUNG RECOVERY (2026-08-22) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2D_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2d-clarification-precision-2026-08-22/`. **§31, §32 and §33 are not
+rewritten — L3-2, L3-2b and L3-2c each closed PARTIAL and that remains the historical record.** No
+dependency and no `package-lock.json` change.
+
+### 34.1 The method this phase adds to the programme `STABLE_INVARIANT`
+
+> #### `A_PROMPT_CLAIM_IS_PROVEN_BY_ABLATION_OR_NOT_AT_ALL`
+
+Three phases had now changed the system prompt and argued about the consequences from reading it.
+L3-2d stopped arguing. `scripts/ablate-l32d-prompt.ts` holds the **model, seed, temperature, schema,
+user prompt and observation text constant** and varies **only** the system prompt, so a behavioural
+difference is attributable to the prompt region and to nothing else.
+
+The L3-2b prompt was recovered by inverting the L3-2c edits and **validated empirically rather than
+asserted**: under it, `H-NG-02` reproduced the `electrical/ACTIVE` candidate L3-2b recorded. The
+historical texts are now frozen in `eval/prompt-variants-frozen.json` and hash-verified on every run
+(v2 `676eb15e…`, v3 `c62ff3ea…`, v4 `85019257…`); the harness **refuses to start** on a mismatch, so
+no future comparison can run against a prompt that never existed.
+
+### 34.2 D1 — a clarification belongs only where the decision is open
+
+L3-2c's block said `you MUST ... filled-in clarification` and out-ranked an advisory line seven lines
+from the end of the prompt. Measured: `C-FLD-138` and `C-AM-04` carried a question on an **ACTIVE**
+candidate, `C-CS-05` on a **HYPOTHETICAL** one.
+
+**D1 was two sub-causes that L3-2c filed as one.** `C-AM-06` is half D2 — its *state* was wrong, and
+given that state its question was legitimate. Recorded rather than merged.
+
+The repair is stated where it can be proven. `L3-INV-06` is a **decision-boundary** invariant, and
+the eight condition states divide exactly: `INSUFFICIENT_EVIDENCE` and `UNKNOWN` say the decision was
+not made; **the other six are the decision**. A question on one of the six is not a clarification
+under the contract, so it is now dropped deterministically — the hazard, its family, its state, its
+evidence and its rationale returned untouched, the removal recorded as an advisory. It runs **after**
+L3-2c's demotion, so a candidate the impression gate moved to `INSUFFICIENT_EVIDENCE` keeps the
+question it was demoted in order to carry; that composition has its own fixture.
+
+> **A prompt cannot deliver a zero.** The gate demands zero unnecessary clarifications, and prose can
+> only make that likely. The guarantee was therefore placed in the binder, where it is provable.
+
+### 34.3 D2 — the ladder is a ranking, and L3-2c raised the wrong rung
+
+L3-2c inserted a **9-line** required-output-shape block **inside** the ordered condition-state
+ladder, directly beneath ACTIVE, making `INSUFFICIENT_EVIDENCE` the longest rung — 10 lines against
+ACTIVE's 4. Measured under ablation: `H-NG-02` and `H-NG-03` fell from one ACTIVE candidate to
+**zero**.
+
+The repair moves the block **out** of the ladder into its own `ASKING A QUESTION` section, leaves a
+one-line pointer on the rung, and adds the rule the failures were really about:
+
+> **A NEGATION GOVERNS ONLY ITS OWN CLAUSE.** A safe clause never cancels an unsafe one, and
+> returning no candidate because the sentence happened to open with "no" is one of the worst errors
+> you can make.
+
+That aligns the prompt with the clause-level negation scope the binder has enforced since L3-2b.
+
+> **`DELIBERATELY_REVERSED`** — §33 asserted the shape belonged *inside* the ladder, and
+> `test:l32c-gate-polarity` asserted it. That assertion is **inverted**, not deleted, with the
+> ablation evidence recorded beside it. Three further prior-phase assertions on literal prompt
+> sentences were rebound to the guarantees they protect, which L3-2d strengthened.
+
+### 34.4 The result on a fresh sealed holdout — MEASURED
+
+`holdout-l32d.json`, sha256 `bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7`,
+77 scenarios, frozen **before the repair code was written**, byte-identical after execution. 40
+independent (stride `i % 5 === 4`, pairwise disjoint from L3-2b's `i%5===0` and L3-2c's `i%5===2`)
+plus 37 authored. Overlap against all four prior sets: **0 ids, 0 texts**, enforced by a throw.
+
+| | RAW | POST-VALIDATOR | **SHIPPED** |
+|---|---|---|---|
+| Hazard detection | 55/56 | 55/56 | **54/56** |
+| High-consequence misses (51 HC) | 1 | 1 | **2** |
+| False ACTIVE (21) | 1 | 1 | **1** |
+| Negative-control false ACTIVE (8) | 0 | 0 | **0** |
+| Condition state · corrected state | 97.4% · 4/4 | 97.4% · 4/4 | **96.1% · 4/4** |
+| Clarification TP/FP/FN | 5/2/1 | 5/2/1 | **5/2/1** |
+
+Fabricated quotations **0 of 75**. Reproducibility **77/77**. Multi-hazard **4/4**. Validator
+rejections **0**. Stage attribution of the two high-consequence losses: **binder 1, provider 1**.
+
+On the **retired** sets (`REGRESSION_EVIDENCE` only) both L3-2c blockers are closed: the L3-2b
+holdout now scores **62/62, zero high-consequence misses, zero false ACTIVE, 100% condition-state
+accuracy and clarification precision and recall both 100%**, with `H-NG-02` recovered as
+`electrical/ACTIVE` and no loss at any stage. The L3-2c holdout improves 47→49 with unnecessary
+clarifications 4→1.
+
+> **`H-NG-02` recovery is general.** Nothing in the repair names it, its words, or any scenario id.
+> On six new `negation_then_fact` scenarios in the fresh set, five recovered.
+
+### 34.5 Why the gate still fails — ROOT-CAUSED, NOT FIXED
+
+Four gates fail. `D-CR-04` and `D-NG-04` are the two halves of one oscillation:
+
+| id | wrong direction |
+|---|---|
+| `D-CR-04` "I was too far away to see whether they were tied off" | asserted **ACTIVE** where a question was owed |
+| `D-NG-04` "No flammable atmosphere was detected … the fitter went inside with the agitator still on line" | retreated to **INSUFFICIENT_EVIDENCE** where the facts are stated |
+
+> **Three phases have now moved this balance with prose and each traded one error for the other.**
+> L3-2c pulled toward INSUFFICIENT_EVIDENCE and lost `H-NG-02`; L3-2d pulled toward ACTIVE and lost
+> `D-CR-04`. The next slice must stop tuning emphasis and give the ladder a **discriminator**: the
+> checkable difference is that `D-NG-04` records *what was observed* while `D-CR-04` records *an
+> inability to observe the deciding fact*.
+
+### 34.6 `DISC-03` and `DISC-04` RECLASSIFIED — `CAPABLE_OF_HIGH_CONSEQUENCE_LOSS`
+
+**This outranks everything else in this section.** Carried since L3-2c as ordinary-quality debt, they
+are now proven — by minimal fixture and by a real loss on the sealed set — to delete correct
+high-consequence findings.
+
+> Main plant electrical panel is blocked by a pile of **discarded** conveyor rollers and debris.
+
+`CORRECTION_TOKENS` contains `discarded`. Here it is an **adjective on the debris**, but
+`checkContradiction` matches the word without regard to its syntactic role and deleted `D-FLD-175`, a
+correct, evidence-bound, **high-consequence electrical** finding. `DISC-03` is the same shape:
+`hazard` as a modifier inside "without **hazard** warning labels", where the head noun is *warning
+labels* and their absence IS the hazard.
+
+**No mandatory Level-3 invariant is demonstrated violated.** `L3-INV-02` is not engaged — the
+findings were evidence-bound and deleted, not fabricated. `L3-INV-04` is not engaged — these defects
+**delete** ACTIVE, never create it. `L3-INV-05` and `L3-INV-10` hold. `L3-INV-11` is *arguably
+engaged* by `DISC-04`, which mis-reads a correction token inside a negation, but the deletion is made
+by `checkContradiction`, not by the negation-scope engine that invariant governs; recorded as
+engaged-but-not-proven-violated. They are a hazard-**recall** failure, governed by the advancement
+gate rather than by an invariant — **and that is sufficient to make a further precision slice
+mandatory before L3-3.**
+
+`DISC-02` stays **open as a precision risk with zero measured losses**: it can only let a provider
+error stand, never delete a hazard, and across four sealed holdouts the provider has not made that
+error. Every fatal check this programme has added deleted a correct hazard before it earned its
+place; adding a seventh is not obviously the right trade.
+
+> **The pattern §32.5 named is now six instances deep and has TWO faces.** L3-2c fixed the
+> **polarity** of one gate. `DISC-03` and `DISC-04` are the same closed vocabularies consulted
+> without regard to the **syntactic role** of the match. The treatment is known and proven — replace
+> the membership test with a structural one — and `checkContradiction` and `checkStateSupported` are
+> the two checks that still need it.
+
+### 34.7 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD versus HEAD plus all uncommitted L3-1/L3-2/L3-2b/L3-2c/L3-2d work,
+through the real customer pipeline on a disposable database, volatility derived empirically: **0
+non-volatile differences over 66**, the same 7 volatile paths every prior phase derived. `diff -rq`
+over the two checkouts' `backend/src` reports exactly one difference — the **added** `reasoning-l3`
+directory. Zero Nest or repository decorators inside it, zero importers outside it, seam and
+`backend/src/standards/` byte-unchanged: Level 3 holds no persistence, reporting or governed-content
+authority.
+
+`test:hazlenz-core` **28/30** — the two documented failures only. Offline suites: L3-2d 70, L3-2c 86,
+L3-2b 105, L3-2 179, L3-1 48, all 0 failed. KG contracts unchanged. Both prerequisite-dependent
+suites executed from **both** checkouts and fail byte-identically from pristine HEAD.
+
+`L3_COMPARE` on the fresh holdout: Level-3 correct / Level-1 incorrect on **45**; both correct 29;
+Level-1 correct / Level-3 incorrect 3; both incorrect **0**. Level 3 attached a verified evidence
+span to 64 findings, Level 1 to **0**.
+
+### 34.8 Deferred to L3-2e
+
+The syntactic-role treatment for `checkContradiction` and `checkStateSupported`, and the
+observe/could-not-observe discriminator for the ladder — made independently but **measured
+together**. Accepted against a fifth sealed holdout using stride `i % 5 === 1` over the unused
+`fall_protection` scenarios: strides 1 and 3 remain entirely untouched, and two of the dataset's six
+families have never appeared in any sealed set. **L3-3 must not start until L3-2e closes** with zero
+high-consequence misses, zero unnecessary clarifications, 100% required-clarification recall, and
+`DISC-03`/`DISC-04` demonstrated no longer capable of high-consequence loss.
+
+> **Outcome, recorded by §35:** both repairs were implemented and both work. `DISC-04` is fully
+> closed and `DISC-03` largely so; the clarification axis reached **100% precision AND recall** on
+> fresh sealed evidence, and sealed family coverage went from 15 to **23 of 24** families. L3-2e
+> nonetheless closed **PARTIAL** on two provider-stage high-consequence misses, introduced two small
+> regressions of its own, and recorded an `L3_2E_SCOPE_CONTRADICTION` in `negation-scope.ts` — a
+> module it was forbidden to repair.
+
+---
+
+## 35 — L3-2e SYNTACTIC-ROLE SEMANTIC SUPPORT AND OBSERVATION AVAILABILITY (2026-08-23) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2E_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED`
+> ### `L3_2E_SCOPE_CONTRADICTION` — recorded, not acted on
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence: `verification/hazlenz-l3-2e-syntactic-role-2026-08-23/`.
+**§31–§34 are not rewritten — L3-2, L3-2b, L3-2c and L3-2d each closed PARTIAL and that remains the
+historical record.** Dependency graph and `package-lock.json` byte-identical to HEAD.
+
+### 35.1 The pattern's SECOND face is now closed too `STABLE_INVARIANT`
+
+> #### `A_TOKEN_MAY_ACT_ONLY_IN_THE_ROLE_IT_ACTUALLY_PLAYS`
+
+§32.5 named the closed-vocabulary pattern; §33.1 fixed its **polarity** in one gate; §34.6 measured
+its **syntactic-role** face and reclassified `DISC-03`/`DISC-04` as capable of high-consequence loss.
+L3-2e closes that face in the two checks that carried it, and `predicate-role.ts` is the mechanism:
+
+| role | example | may it act? |
+|---|---|---|
+| `ASSERTED_PREDICATE` | "the lead **was discarded**" | yes |
+| `NEGATED_PREDICATE` | "no lockout **is applied**" | **no** — a negated correction is not a correction |
+| `ATTRIBUTIVE_MODIFIER` | "a pile of **discarded** conveyor rollers", "**hazard** warning labels" | **no** |
+| `NP_HEAD` | "no **damage** was found" | yes, for the negated-hazard test |
+
+**The two checks were repaired DIFFERENTLY, because they fail in opposite directions** — a distinction
+the entry contract insisted on and the root-cause proof confirmed:
+
+* `checkContradiction` uses vocabulary to **REJECT**; a false positive **deletes a hazard**. It now
+  requires an **asserted, unnegated** predicate, and draws removal tokens from a strict
+  `UNAMBIGUOUS_SERVICE_WITHDRAWAL` subset — bare `removed` is excluded because "the chain guard has
+  been removed" and "the conveyor was removed from service" are both asserted predicates and only the
+  second withdraws equipment.
+* `checkStateSupported` uses vocabulary to **ADMIT** a state the model already claimed; a false
+  positive **accepts a wrong state**. L3-2e's proof found two, neither previously documented:
+  `CORRECTED` on a modifier, and `CONTROLLED` on **"no guardrail was in place"** — a live hazard
+  labelled controlled, which at the customer tier is a missed hazard wearing a reassuring label.
+  `NEGATED` and `HYPOTHETICAL` deliberately keep presence semantics: their markers are particles, not
+  verbs predicated of a subject.
+
+> **The governing asymmetry, and it generalises:** a vocabulary used to REJECT must be unambiguous; a
+> vocabulary used to ADMIT may be permissive. That is §33.1's lesson one level down.
+
+The negated-hazard test also gained two structural conditions: the negated phrase's **head** must be
+the hazard object (English noun phrases are head-final, so "hazard warning labels" denies *labels*, a
+control), and **no contrastive connector may follow** the negation's scope ("no damage … **although**
+the earth conductor has been cut back").
+
+### 35.2 Observation availability is a separate axis from evidence sufficiency
+
+A clause-position ablation **contradicts §34.5's account** of `D-NG-04`/`D-CR-04` as an oscillation:
+
+| variant | result |
+|---|---|
+| "**No** flammable atmosphere was detected …, and the fitter went inside" | INSUFFICIENT |
+| "The atmosphere **was tested** …, and the fitter went inside" | **INSUFFICIENT** |
+| "The fitter went inside …, and no flammable atmosphere was detected" | **ACTIVE** |
+
+**Removing the negation changes nothing; moving the clause changes everything.** The mechanism is
+clause position — the observation is classified from its FIRST clause — and the two failures are one
+defect from two sides. The prompt therefore says *evaluate every clause, not only the first*, and
+lets the strongest condition claim decide.
+
+The genuine distinction that survives is stated in five prompt lines: *is the thing that could not be
+observed the fact that **decides** this candidate?* — decides it → INSUFFICIENT_EVIDENCE with a
+question; decides nothing → classify from what WAS observed and ask nothing.
+
+> **`observation-availability.ts` RECORDS; it does not decide.** The entry contract required it, and
+> the programme had earned the caution: every deterministic check added to this pipeline deleted a
+> correct hazard before it earned its place, and cell B of the root-cause matrix showed the model
+> already handled "unobserved but irrelevant" correctly 3 of 3 **before any repair**. The signal is
+> advisory and changes no state.
+
+### 35.3 The result on a fresh sealed holdout — MEASURED
+
+`holdout-l32e.json`, sha256 `b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06`,
+84 scenarios, frozen before the repair code, byte-identical after. 40 INDEPENDENT (stride
+`i % 5 === 1`, pairwise disjoint from all prior strides), 32 AUTHORED, and **12
+TARGETED_FAMILY_COMPLEMENT reported separately**. Overlap against four prior sealed sets and two
+development sets: **0 ids, 0 texts**, enforced by a throw.
+
+| | RAW | POST-VALIDATOR | **SHIPPED** |
+|---|---|---|---|
+| Hazard detection | 63/66 | 63/66 | **62/66** |
+| High-consequence misses (35 HC) | 2 | 2 | **2** |
+| False ACTIVE · negative-control false ACTIVE | 0/18 · 0/7 | 0/18 · 0/7 | **0/18 · 0/7** |
+| Condition state · corrected state | 96.4% · 4/4 | 96.4% · 4/4 | **95.2% · 4/4** |
+| **Clarification TP/FP/FN** | **3/0/0** | **3/0/0** | **3/0/0 — precision and recall 100%** |
+
+Fabricated quotations **0 of 83**. Reproducibility **84/84**. Validator rejections **0**. Both
+high-consequence losses are **provider-stage**; stage attribution across all shipped losses is
+provider 3, binder 1, validator 0, clarification gate 0, integration 0.
+
+On the retired sets (`REGRESSION_EVIDENCE` only): L3-2b **62/62** with clarification 100/100; L3-2c
+**53/54**, up from 47 at L3-2c and 49 at L3-2d — the clearest measure of the E1 repair, since the four
+`DISC-03`/`DISC-04` hazcom deletions that cost that phase its detection are gone.
+
+### 35.4 Sealed family coverage — 15 of 24 to 23 of 24 `FAMILY_COVERAGE_GATE`
+
+A coverage inventory across the four prior sealed sets found **nine of twenty-four taxonomy families
+had never appeared in any sealed evaluation**, and two more had no high-consequence example. The field
+dataset carries six families in total, so no deterministic sampling rule could close that gap; a
+separately-labelled targeted complement did.
+
+**`noise_exposure` remains `NOT_YET_SEALED_VALIDATED`** — its one scenario was deleted by the
+surviving substring defect in §35.5, not by absence of coverage. Eight further families passed their
+scenario under a **permitted alternative label** rather than their own; that is coverage of the
+scenario, not of the label, and the distinction is kept in `results/family-coverage.json`.
+
+### 35.5 Why the gate still fails, and what L3-2e broke `ROOT-CAUSED, NOT FIXED`
+
+Two high-consequence misses, both provider-stage: `E-FLD-147` (the model called warning tape a
+control — measured `UNCHANGED_AND_CORRECT` against the retired rule, so not an L3-2e regression) and
+`E-OA-07` (the clause-position class on `msha` ground-control wording, 8 of 9 otherwise correct).
+
+Four defects were found **after** the holdout was opened and are specified but deliberately not
+implemented:
+
+| id | defect | provenance |
+|---|---|---|
+| `L3-2E-DISC-05` | `NP_TERMINATORS` omits `against`, so "no deficiencies **against** the storage standard" resolves its head to `standard` and a genuinely negated hazard is no longer refused | **new, introduced by L3-2e** |
+| `L3-2E-DISC-06` | the head test is still a **substring** match and takes a post-modifying participle as the head: `issued` matches `issue`, deleting the one `noise_exposure` finding | pre-existing; **L3-2e failed to close it** |
+| `L3-2E-DISC-07` | `CORRECTED` requires an asserted predicate, so a **nominal** correction — "drew a replacement from the store" — is refused | **new, introduced by L3-2e** |
+| `L3_2E_SCOPE_CONTRADICTION` | see §35.6 | pre-existing, fenced |
+
+`DISC-02` stays open and unremediated as the entry contract required: five sealed holdouts, **zero
+measured losses**, precision risk only, and it can never delete a hazard.
+
+### 35.6 `L3_2E_SCOPE_CONTRADICTION` — recorded, not acted on
+
+`negation-scope.ts::hasPredicate()` decides whether a comma ends a negation's scope, and recognises a
+predicate only through a closed list of **auxiliaries** plus a participle regex needing five letters
+before the suffix. Measured:
+
+> "…at the manway, and the fitter **was** inside the vessel" → scope correctly ends at the comma
+> "…at the manway, and the fitter **went** inside the vessel" → scope runs to the end of the sentence
+
+`went`, `climbed`, `entered`, `fell`, `broken`, `torn`, `cut` are invisible to it. This deleted
+`D-NG-04` at the binder — a high-consequence confined-space finding the provider had classified
+correctly. It is the **seventh** instance of §32.5's pattern and sits in the one module L3-2e was
+forbidden to change, so it is recorded rather than repaired.
+
+> **A repair that improves provider behaviour can EXPOSE a binder defect that was always there.** The
+> candidate reached the binder for the first time only because the E2 repair made the model quote the
+> hazard clause narrowly and correctly; `checkNegationAddressed` steps aside for a broad quote and not
+> for a correct narrow one. Stage-attributed capture is what makes that visible, and it is a
+> programme lesson worth carrying forward.
+
+### 35.7 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD versus HEAD plus all uncommitted L3-1…L3-2e work, through the real
+customer pipeline on a disposable database, volatility derived empirically: **0 non-volatile
+differences over 66**, the same 7 volatile paths every prior phase derived. `diff -rq` over the two
+checkouts' `backend/src` reports exactly one difference — the **added** `reasoning-l3` directory, with
+zero Nest or repository decorators inside it and zero importers outside it.
+
+Offline suites: L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 **183** (up from 179 — it now audits the
+two new modules), L3-1 48; **575 assertions, 0 failed**. `test:hazlenz-core` 28/30, the two documented
+failures only. KG contracts unchanged. Both prerequisite suites fail byte-identically from pristine
+HEAD, confirmed from both checkouts.
+
+Two prior-phase assertions were **rebound to their guarantees** and recorded: a prompt-version pin, and
+L3-2d's clause rule, which L3-2e **generalised** from "a negation governs only its own clause" to
+"evaluate every clause, not only the first" once the ablation showed the defect was never about
+negation.
+
+`L3_COMPARE`: Level-3 correct / Level-1 incorrect on **41**; both correct 39; both incorrect 3;
+Level-1 correct / Level-3 incorrect 1. Level 3 attached a verified span to **73** findings, Level 1 to
+**0**.
+
+### 35.8 Deferred to L3-2f
+
+The scope contradiction first — it is the only open defect shown to delete a **high-consequence**
+finding — then the three head-resolution and nominal-correction corrections, then a re-measure of the
+two remaining high-consequence misses. Accept against a sixth sealed holdout using stride
+`i % 5 === 3`, the last untouched stride, covering `mobile_equipment`. **After that the field dataset
+is exhausted and a genuinely independent source must be found.** `L3-3 must not start until L3-2f
+closes` with zero high-consequence misses, the clarification axis still at 100/100, and
+`noise_exposure` sealed-validated.
+
+> **Outcome, recorded by §36:** the scope contradiction is **closed** and the three head-resolution
+> and nominal-correction defects with it — the four F1–F4 cohorts score 21 of 21 on fresh sealed
+> evidence with zero binder deletions, and `noise_exposure` is sealed-validated with its exact label,
+> completing family coverage at **24 of 24**. L3-2f nonetheless closed **PARTIAL** on four
+> high-consequence misses, and it measured the prompt trade of §36.7 that now outranks them.
+
+---
+
+## 36 — L3-2f PREDICATE-SCOPE GENERALISATION AND CONTROL ADEQUACY (2026-08-23) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2F_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED`
+> ### `L3_2E_SCOPE_CONTRADICTION` — **CLOSED**
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence: `verification/hazlenz-l3-2f-predicate-scope-2026-08-23/`.
+**§31–§35 are not rewritten — L3-2 through L3-2e each closed PARTIAL and that remains the historical
+record.** Dependency graph and `package-lock.json` byte-identical to HEAD.
+
+### 36.1 The pattern's THIRD face is closed, and the class is now bounded `STABLE_INVARIANT`
+
+> #### `AN OPEN CLASS CANNOT BE ENUMERATED; A CLOSED ONE CAN BE COMPLETED`
+
+§32.5 named the closed-vocabulary pattern, §33.1 fixed its **polarity**, §35.1 fixed its **syntactic
+role**. L3-2f found it in three more functions at once and repaired all three **in one place**:
+
+| defect | function | asked | should have asked |
+|---|---|---|---|
+| **F1** | `negation-scope.ts::hasPredicate()` | is this verb in my list of 24 auxiliaries? | does this clause carry a **finite verb**? |
+| **F2** | `predicate-role.ts::NP_TERMINATORS` | is this preposition in my list of 40? | is this a **function word**? |
+| **F3** | `checkContradiction` head test | does the head **contain** one of my 15 stems? | is the head **that token**? |
+
+`word-classes.ts` is the mechanism, and its argument is what makes the repair bounded rather than
+another list:
+
+> **Function words — determiners, prepositions, coordinators, subordinators, pronouns, auxiliaries —
+> are a GENUINELY CLOSED class.** Enumerating them is *complete*, not incomplete. F2's list was not
+> wrong in kind; it was a partial copy of a closed set, and completing it closes F2 permanently.
+>
+> **Lexical verbs are an OPEN class**, which is why F1 could never have been fixed by adding `went`.
+> But *finiteness* is decidable without enumerating verbs: regular finite forms are **morphological**
+> (`-ed`, `-ing`), and irregular finite past forms are **themselves a closed class** — no new
+> irregular verb enters English, and every verb coined from now on is regular. The two together are
+> **exhaustive over finite lexical verbs**. That is a bounded structural property.
+
+Three structural guards carry the weight, and each is paired in the suite. Past **participles are
+excluded** from the finite inventory (`worn`, `broken`, `torn`) — a participle is not finite, and
+that exclusion is exactly what lets RC-08's coordinated list keep crossing its commas. Forms
+homographic with common nouns are excluded (`ground`, `saw`, `wound`, `cut`, `set`). And a candidate
+verb must have a **subject before it** and must **not be attributive**.
+
+> **The repair can only make negation scope SHORTER, never longer.** Under-scoping produces a missed
+> advisory; over-scoping deletes a correct hazard. The module's chosen failure direction is preserved
+> exactly, which is why a generalisation this broad was safe to make at all.
+
+### 36.2 F1 — the recorded scope contradiction, closed
+
+One sentence, one lexical verb apart, measured before and after:
+
+| | comma at | scope ends | span governed | binder |
+|---|---|---|---|---|
+| "…at the manway, and the fitter **went** inside…" **before** | 50 | **147** | yes | **DELETED** |
+| the same sentence **after** | 50 | **50** | no | **survives** |
+| "…and the fitter **was** inside…" (paired half) | 50 | 50 | no | survives |
+
+`D-NG-04` — the high-consequence confined-space finding §35.6 recorded as deleted — is recovered end
+to end, and RC-08's negated list still crosses its comma. On the sealed set the four F1–F4 cohorts
+scored **21 of 21 with ZERO binder-stage deletions**.
+
+### 36.3 F2, F3, F4 — and the one that was the mirror image
+
+**F2 (`DISC-05`) is not about `against`.** Three unlisted prepositions failed identically —
+`against`, `beyond`, `per` — each resolving the head to the object of the preposition. The list is
+now derived from the complete preposition class, with a documented carve-out: **participial
+prepositions are homographs** (`concerning` is a preposition in "no concerns concerning the tags" and
+an adjective in "no **concerning** wear"), so they do not close a phrase on sight and are recovered
+instead by the trailing-participle rule.
+
+**F3 (`DISC-06`) was TWO faults composing**, and either alone would have been survivable: the head
+resolver returned the trailing participle `issued`, and `head.includes(o)` then matched `issue`
+inside it. `head.includes(o)` is an **unbounded admission rule** — it makes every word containing a
+stem a member of the set — and the same shape was measured on `harm`⊂`harmless`,
+`concern`⊂`concerning`, `access`⊂`accessory`. Matching is now whole-word, with **nominal** inflection
+declared per-vocabulary (`deficienc` → `deficiency`/`deficiencies`) and **verbal** inflection
+deliberately excluded: `issued` is not an inflection of the noun `issue`, and treating it as one was
+the defect.
+
+**F4 (`DISC-07`) is the mirror image of the other three** and worth naming as such. L3-2e was right
+that a `CORRECTED` claim must be *asserted* rather than *mentioned*, and wrong to implement
+"asserted" as **verbhood**. "the rigger **drew a replacement** from the store" asserts a completed
+correction with a correction NOUN as the object of an action verb. Both guards that made the L3-2e
+rule worth having are kept and both are measured: a **negated** nominal correction is still refused,
+and a **mention** ("the replacement *procedure*") still corrects nothing.
+
+### 36.4 F5 and F6 are ONE mechanism, and §35.5's account of `E-OA-07` is superseded twice
+
+The entry contract asked whether `E-OA-07` was caused by F1, clause ordering, prompt weighting or
+observation-availability classification. **It is none of them.** Measured by ablation:
+
+| variant | result |
+|---|---|
+| verbatim — reassuring clause first, hazard as "**unsupported** roof" | NO_HAZARD_ESTABLISHED |
+| hazard clause moved first · reassuring clause deleted | ACTIVE ✓ |
+| **regime `msha` → `osha-construction`, text identical** | **NO_HAZARD_ESTABLISHED** |
+| same clause position, ordinary vocabulary | ACTIVE ✓ |
+| reassuring clause kept, absence stated **explicitly** | **ACTIVE ✓** |
+
+**It is not `msha` ground-control wording** — the same text under another regime fails identically.
+**It is not clause position alone** — the same position with ordinary vocabulary succeeds. It is an
+interaction, and only one half is repairable: the model does not read a control absence encoded
+**morphologically** (`un-supported`) as "a required control is ABSENT". Its own words: *"does not
+indicate that the unsupported roof section was actively unstable"* — it demanded proof of imminent
+harm on top of a stated missing control.
+
+`E-FLD-147` is the same axis from the other end. The model called warning tape a control —
+*"the warning tape suggests some control is in place"* — and reproduced it on a sign and on a toolbox
+talk, while a bolted cover and a fixed guardrail were both classified correctly.
+
+> **F5 under-reads an ABSENT control; F6 over-reads a merely ADMINISTRATIVE one. One axis, two ends,
+> both provider-stage.**
+
+**The architecture already supports the distinction.** `L3_CONTROL_HIERARCHY_LEVELS` has carried
+`elimination · substitution · engineering · administrative · ppe` since L3-1, and the `CONTROLLED`
+rung always said "an **effective** control". What was missing was the *test* for effective. Recorded
+as **contract-sufficient, NOT architecture evidence**. `control-adequacy.ts` **records**
+`CONTROL_EFFECTIVE` / `CONTROL_MENTION` / `CONTROL_ABSENT` and decides nothing — the
+`observation-availability.ts` restraint of §35.2, for the same reason and under `L3-INV-12`.
+
+### 36.5 The result on the sixth and final sealed holdout — MEASURED
+
+`holdout-l32f.json`, sha256 `47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5`,
+**97 scenarios**, frozen before the repair code and byte-identical after. 40 INDEPENDENT (stride
+`i % 5 === 3`, **the last untouched stride**), 46 AUTHORED, 11 TARGETED reported separately. Overlap
+against **five** prior sealed sets and **three** development sets: **0 ids, 0 texts**, enforced by a
+throw.
+
+| | RAW | POST-VALIDATOR | **SHIPPED** |
+|---|---|---|---|
+| Hazard detection | 74/77 | 74/77 | **73/77** |
+| High-consequence misses (44 HC) | 3 | 3 | **4** |
+| False ACTIVE · negative-control false ACTIVE | 0/20 · 0/13 | 0/20 · 0/13 | **0/20 · 0/13** |
+| Condition-state accuracy | 96.9% | 96.9% | **95.9%** |
+| **Clarification TP/FP/FN/TN** | 4/0/0/93 | 4/0/0/93 | **4/0/0/93 — precision and recall 100%** |
+
+By provenance at the shipped tier: **INDEPENDENT 39 of 40** (1 HC miss), AUTHORED 23 of 26 (3),
+TARGETED **11 of 11** (0). Reproducibility **97/97 (100%)**. Predicate-scope cohorts **21/21, zero
+binder deletions**. Observation availability **5/5**. Control adequacy 53/56.
+
+**Sealed family coverage reached 24 of 24** — `SEALED_PASS` 24, `SEALED_FAIL` 0, `NOT_REPRESENTED` 0.
+**`noise_exposure` is CLOSED**: 4 declared, 4 established, **exact label emitted** on fresh sealed
+evidence. It was the family `DISC-06` had deleted, and the `DISC-06` repair is what restored it.
+
+### 36.6 Why the gate still fails `ROOT-CAUSED, NOT FIXED`
+
+Four high-consequence misses against a gate of zero. **None was fixed after the holdout was opened**,
+which is the only reason §36.5's numbers mean anything.
+
+| id | stage | mechanism | class |
+|---|---|---|---|
+| `F-FLD-159` | provider | a **non-verbatim quotation** → `EVIDENCE_OUT_OF_BOUNDS` → the whole proposal rejected. 1 of 100 quotations unbound (99% verbatim) | designed behaviour (§29.6); **first time it has cost a high-consequence finding** |
+| `F-WC-02` | **binder** | `CORRECTION_TOKENS` contains **`fixed`**, and "the DANGER sign **is fixed** to the handrail post" is an asserted, unnegated predicate — of the *sign*, not of the hazard | **eighth instance of §32.5**, and §35.1 already names the rule it breaks |
+| `F-WC-03` | provider | a **toolbox briefing** read as an effective control: *"the crew were informed of the hazard"* | `F6`, partially closed |
+| `F-WC-09` | provider | **PPE plus a defeated engineering control** ("the two-hand control has been strapped down with tape") read as CONTROLLED | `F6`, partially closed |
+
+`F-WC-02` is the sharpest of the four because it is the pattern this programme knows how to fix.
+§35.1's governing asymmetry says **a vocabulary used to REJECT must be unambiguous**, and it is
+exactly why L3-2e excluded bare `removed` from the rejection path. `fixed` is ambiguous in the same
+way — *repaired* versus *attached* — and it belongs out of `CORRECTION_TOKENS`' rejection half for
+the same stated reason. The treatment is known; L3-2f did not apply it, because the set was open.
+
+### 36.7 The prompt is a ranking, and this phase MEASURED the trade `NEW_EVIDENCE`
+
+L3-2f produced the cleanest evidence the programme has of a pattern §33.6 and §34.5 each described
+from one side. Two prompt variants, **identical text, only its POSITION changed**, everything else
+held constant:
+
+| | HC misses | clarification precision |
+|---|---|---|
+| **A** — the absent-control material elaborated **inside** the condition-state ladder | **2** | **88.9%** (`C-CS-05` lost its HYPOTHETICAL rung) |
+| **B** — ladder kept terse, the material moved **below** it `SHIPPED` | 4 | **100%** |
+
+Moving nine lines out of the ladder recovered `C-CS-05` and **cost `E-FLD-147` and `E-OA-07`**, the
+two misses this phase existed to close. Variant A meets the high-consequence axis better and fails
+the clarification axis; variant B is the reverse. **Neither variant satisfies both gates.**
+
+> **Four phases have now moved this balance with prose, and this is the first time both poles were
+> measured against each other with everything else fixed.** The material must sit at the ACTIVE rung
+> to work, and sitting there swamps the one-line rungs above it. That is not a wording problem, and
+> the next phase should stop looking for the wording that satisfies both.
+
+The shipped configuration is **B**, chosen before the sealed set was opened and not revisited after.
+The L3-2f suite now pins the ladder's terseness with an assertion, so the regression that cost
+`C-CS-05` cannot recur silently.
+
+### 36.8 Architecture stop rule — ASSESSED, NOT TRIGGERED
+
+The entry contract requires that a **genuinely new** high-consequence semantic mechanism trigger
+`L3_2F_ARCHITECTURE_REASSESSMENT_REQUIRED` rather than an automatic L3-2g. Assessed against all four
+misses: `F-WC-02` is the documented §32.5 class; `F-WC-03` and `F-WC-09` are the F6 class this phase
+opened and partially closed; `F-FLD-159` is a **quotation-fidelity** failure, not a semantic
+reasoning one, and the validator behaved exactly as §29.6 specifies. **No new semantic mechanism.
+The stop rule is NOT triggered.**
+
+The honest counterweight, recorded rather than concealed: §36.7 is architecture-relevant evidence of
+a different kind. It does not show a new failure mechanism; it shows that **prompt-position tuning
+has reached a practical limit** on two axes that the current architecture cannot separate. That is
+the finding the next phase should carry, not another wording attempt.
+
+### 36.9 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD versus HEAD plus all uncommitted L3-1…L3-2f work, through the real
+customer pipeline on a disposable database, volatility derived empirically: **0 non-volatile
+differences over 66**, the same 7 volatile paths every prior phase derived. `diff -rq` over the two
+checkouts' `backend/src` reports exactly one difference — the **added** `reasoning-l3` directory,
+with zero Nest or TypeORM decorators inside it and zero importers outside it. The only network
+destination reachable from it is `http://127.0.0.1:11434`.
+
+Offline suites: L3-2f **77**, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 **187**, L3-1 48 —
+**656 assertions, 0 failed**. `test:hazlenz-core` **28/30**, the two documented §13.1 failures only,
+no third. KG contracts unchanged: `kg4a-cutover` 146/146, `kg4a-default-off` 51/51, `kg4b-shadow`
+123/123, `kg3f-predicate` 16/16, `kg3f-determinism` 170/170, `evidence-foundation` 35 assertions.
+Both prerequisite-dependent suites fail **identically from both checkouts** (`ECONNREFUSED
+127.0.0.1:4340`), confirmed after path normalisation.
+
+One prior-phase assertion was **rebound to its guarantee** and recorded: L3-2e's prompt-version pin
+asserted the literal `v5`; its guarantee is that the version *advances* when the prompt changes, and
+L3-2f moved it to `v6`. The binder is `v6`.
+
+`L3_COMPARE`: Level-3 correct / Level-1 incorrect on **40**; both correct 53; both incorrect 1;
+Level-1 correct / Level-3 incorrect 3. Level 3 attached a verified span to **78** findings, Level 1
+to **0**.
+
+### 36.10 Independent-field-dataset exhaustion `PROTECTED_DECISION`
+
+> #### `CURRENT_FIELD_CORPUS_EXHAUSTED_FOR_FRESH_EVALUATION`
+
+Stride `i % 5 === 3` was the last untouched stride. All five strides of
+`safescope-field-validation-dataset.v1.json` (sha256 `a66e680b…`, 200 scenarios, six families) have
+now been opened: `i%5===0` L3-2b, `1` L3-2e, `2` L3-2c, `3` **L3-2f**, `4` L3-2d.
+
+**No prior field scenario may be reused as fresh evidence.** Any further semantic quality phase must
+identify a **genuinely independent new source**, and that source **may not be authored solely to
+satisfy already-known failures**. The programme's largest methodological weakness is now unavoidable
+rather than merely recorded: five phases running, every precision, clarification and family-coverage
+number rests on scenarios the implementer wrote.
+
+### 36.11 Deferred to the next phase
+
+Specified, deliberately unimplemented, in the order their evidence supports:
+
+1. **`fixed` out of the rejection half of `CORRECTION_TOKENS`** — the eighth §32.5 instance, the only
+   one of the four misses with a known, proven treatment, and the only **binder-stage** loss.
+2. **The F6 residue** — administrative briefings and PPE-against-a-defeated-control still read as
+   CONTROLLED. Tape and signs are handled; these two shapes are not.
+3. **§36.7's trade**, which is the real blocker and is not a wording problem.
+4. **`F-FLD-159`'s class** — whether one non-verbatim quotation should cost an entire
+   high-consequence finding, or whether §29.6's reject-without-retry deserves a bounded re-ask.
+5. `DISC-02` stays open and unremediated: six sealed holdouts, **zero measured losses**, precision
+   risk only, and it can never delete a hazard.
+
+**`L3-3 must not start until` the high-consequence gate reaches zero with the clarification axis still
+at 100/100.** Family coverage is no longer a blocker — it is complete at 24 of 24.
+
+> **Outcome, recorded by §37:** the `fixed` correction was applied and the audit it asked for found
+> **ten** ambiguous tokens rather than one, closing the binder residual; the multi-hazard scorer was
+> found never to have run at all and was corrected in the reader without touching the frozen holdout.
+> §36.7's question was answered structurally rather than by wording: separation **recovers `F-WC-09`,
+> which no prompt ordering ever recovered**, and holds the high-consequence axis at 12/12 under every
+> variant — but it does **not** remove prompt-order sensitivity, which merely relocated onto the
+> clarification axis. L3-2g closed **PARTIAL** on that, having ruled out a contract limit with direct
+> evidence and been unable to prove a provider limit from a single available model.
+
+---
+
+## 37 — L3-2g STRUCTURAL STATE SEPARATION AND BINDER CLOSURE (2026-08-23) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2G_PARTIAL — STRUCTURAL_STATE_DECISION_INCONCLUSIVE`
+> ### `BINDER_RESIDUAL` — **CLOSED**
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence: `verification/hazlenz-l3-2g-state-separation-2026-08-23/`.
+**§31–§36 are not rewritten — L3-2 through L3-2f each closed PARTIAL and that remains the historical
+record.** Dependency graph and `package-lock.json` byte-identical to HEAD.
+
+This phase answered §36.7's architecture question rather than attempting another wording. The answer
+is genuinely mixed, and the section is written so the next phase inherits the split rather than the
+headline.
+
+### 37.1 The question, and why prose was the wrong abstraction `STABLE_INVARIANT`
+
+> #### `A_RANKING_MOVED_INTO_CODE_IS_AUDITABLE; A_RANKING_LEFT_IN_PROSE_DRIFTS`
+
+§36.7 measured, everything else constant, that moving the absent-control material into the
+condition-state ladder traded high-consequence misses against clarification precision, and that
+**neither position satisfied both gates**. §33.6 and §34.5 are the same measurement from one side
+each. The diagnosis was structural: the eight condition states are offered to the model as ONE
+ordered choice, so material that makes the ACTIVE rung decide correctly must sit AT that rung, and
+sitting there swamps the one-line rungs above it.
+
+`state-facts.ts` replaces the single ranked enum with **six independently-emitted semantic facts**
+and a deterministic resolver:
+
+| fact | question it asks alone |
+|---|---|
+| `hazardAsserted` + quote | is a hazardous condition asserted as FACT? |
+| `controlReading` + quote | `PREVENTS_CONTACT` · `WARNS_ONLY` · `DEFEATED` · `ABSENT` · `NOT_STATED` |
+| `framing` | `ACTUAL` or `CONDITIONAL` |
+| `disposition` | `NONE` · `CORRECTED` · `WITHDRAWN_FROM_SERVICE` |
+| `decisionCriticalFactMissing` + fact | is a fact that DECIDES this candidate absent? |
+| `hazardExplicitlyDenied` | does the text state the condition does not exist? |
+
+`DEFEATED` is separated from `ABSENT` deliberately: `F-WC-09` is a control that exists and has been
+disabled, and a present/absent schema forces that into the wrong bucket.
+
+**`L3-INV-04` is structural in the resolver, not a policy line.** ACTIVE is reachable only from
+`hazardAsserted === true`; there is no default arm. `test:l32g-state-separation` proves this
+**exhaustively over all 120 combinations** of the other five fields.
+
+### 37.2 What structural separation FIXED — MEASURED
+
+Ablation holding model, verified digest, temperature, seed, `num_ctx`, timeout, user prompt,
+observation text and evidence constant, varying only the representation. **Noise floor established
+first**: `V_S_STRUCT` against a byte-identical repeat gives **0 of 24 differing** at both tiers, so
+every difference below is an effect and not variance.
+
+> **`F-WC-09` is recovered, and no prompt ordering ever recovered it.** PPE issued against a
+> two-hand control strapped down with tape — §36.6's "strongest form of the error" — returned **no
+> ACTIVE candidate at all** under both ladder variants, and returns ACTIVE under **every** structural
+> variant via `controlReading: DEFEATED`. Asking the control question directly is what closes it.
+
+The high-consequence axis is **12/12 under all four structural variants and all three resolver
+orderings**. Under the best ordering both §36.7 poles hold simultaneously for the first time:
+
+| | HC | false ACTIVE | clarification precision | recall |
+|---|---|---|---|---|
+| §36.7 A (ladder) | — | — | 88.9% | — |
+| §36.7 B (ladder) `SHIPPED` | — | — | 100% | — |
+| **structural + `R1_MISSING_FIRST`** | **12/12** | **0/7** | **100%** | 75% |
+
+### 37.3 What it did NOT fix, and why the phase closes PARTIAL `ROOT-CAUSED, NOT FIXED`
+
+**Order sensitivity did not go away. Size-matched, it got worse.**
+
+| pair | manipulation | differing | above noise (0/24)? |
+|---|---|---|---|
+| ladder A vs B | ONE block moved | **1 / 24** | yes |
+| structural, canonical vs `MOVE1` | ONE block moved | **3 / 24** | yes |
+| structural, canonical vs INVERTED | SIX blocks reversed | 3 / 24 | yes |
+
+`MOVE1` exists so the comparison is fair — measuring a six-block reversal against §36.7's one-block
+move and concluding anything would have been an artefact of perturbation size. All three differing
+scenarios are on the clarification axis; none is high-consequence.
+
+> **The §36.7 trade was RELOCATED, not resolved.** The high-consequence pole became robust and the
+> uncertainty pole absorbed the whole of the instability. That is progress on the axis that blocks
+> L3-3 and a negative result on the axis the entry contract required to be held.
+
+### 37.4 The deterministic resolver, and where the ranking actually went `NEW_EVIDENCE`
+
+Question B was tested over **frozen provider facts** — no inference — so provider variance is zero
+by construction and every difference is the rule.
+
+The resolver as first written was **wrong, and the ablation caught it before any claim rested on
+it**. `R0_HAZARD_FIRST` resolved an asserted hazard before consulting a missing decision-critical
+fact, so `F-OA-01` and `F-OA-02` lost their clarifications entirely — 0% recall.
+`R1_MISSING_FIRST`, which is §35.2's rule taken literally, gives 100% precision, 0 false ACTIVE,
+75% recall.
+
+> **The ranking did not disappear; it MOVED.** It is now a fixed, testable order in auditable code
+> instead of prose that shifts when a paragraph is edited — which makes §36.7's four phases of
+> accidental drift impossible — but it is still a ranking, and this section does not claim otherwise.
+
+`R1` was selected against KNOWN cases. **Tuned on diagnostic evidence; no generalisation claim**,
+and deliberately NOT promoted into `state-facts.ts`.
+
+### 37.5 Question C — the contract is exonerated, the provider is indicated but not proven
+
+**`CONTRACT_OR_ARCHITECTURE_LIMIT` is RULED OUT with direct evidence.** The provider answers §36.4's
+control question correctly in isolation on **23 of 24** runs: `WARNS_ONLY` for warning tape, a sign
+and a briefing; `DEFEATED` for the strapped-down control; `ABSENT` for "unsupported roof";
+`PREVENTS_CONTACT` for a fitted blanking plate. The single miss reads `F-WC-02`'s pit as `ABSENT`
+rather than `WARNS_ONLY`, and both derive ACTIVE. §36.4 recorded the contract as *contract-sufficient*
+for this distinction; L3-2g measures it.
+
+**The residual points at the provider, directly rather than only by elimination.** 4–12% of
+candidates carry an INTERNAL contradiction — most often `framing: CONDITIONAL` together with
+`hazardAsserted: true` about the same text. Those are two separated, non-competing questions: **no
+ranking can explain an answer that contradicts itself.** On `C-CS-05` the model emitted
+`asserted=false` under one block order and `asserted=true` under another, to the same isolated
+question about the same sentence.
+
+> **It is NOT `PROVEN`, and that word is why this phase does not close on option B.** The attribution
+> rests on **one model**. §31.1 still holds — no hosted-provider credential is resolvable on this
+> machine and `qwen3-coder:30b` is the only model pulled — so no second provider could be run.
+> Claiming a provider capability limit from a single model on 24 diagnostic scenarios would be the
+> kind of overclaim §31.3 refuses elsewhere.
+
+**Terminal state D states the situation exactly: C is eliminated; A and B cannot be separated
+without a second provider.** The single missing experiment — re-running the unchanged ablation
+against one hosted model, 48 calls — is the phase's recommended next action.
+
+### 37.6 Binder residual — CLOSED, and it was TEN tokens
+
+`BINDER_RESIDUAL_ROOT_CAUSE` `BINDER_RESIDUAL_FIX` `BINDER_RESIDUAL_REGRESSION_PASS`, proven before
+and after with no inference, independently of the provider experiment.
+
+§36.11 named `fixed` and asked for an audit of five more. **The audit found nine more of the same
+shape**: pre-patch 20 of 30 fixtures holding, ten ambiguous tokens each deleting a correct
+high-consequence ACTIVE. Post-patch 26 of 30, **zero unexplained deviations** — the four remaining
+are declared accepted costs whose expectations were left at their pre-repair values rather than
+relabelled after the fact.
+
+> #### `A REJECTION VOCABULARY MUST BE UNAMBIGUOUS IN SENSE; AMBIGUITY OF OBJECT IS A DIFFERENT THING`
+
+**The line is at SENSE, not at OBJECT, and measurement forced the distinction.** A first pass removed
+every token whose non-correction reading had been demonstrated, and it broke two prior-phase gates
+that are RIGHT — `test:l32b`'s "unhandled contradiction is fatal" (the guard itself was **replaced**)
+and `test:l32e`'s "PAIR/unnegated correction" (a full lockout was **applied**). The audit had
+conflated two kinds of ambiguity:
+
+| kind | tokens | disposition |
+|---|---|---|
+| **DIFFERENT SENSE** — means something else entirely; the distractor sits in the same sentence | `fixed` (attached) · `destroyed` (**this IS the hazard**) · `reset` · `addressed` · `closed out` · `resolved` · `restored` | **leave the rejection half** |
+| **SAME SENSE, DIFFERENT OBJECT** — still means "put right"; only what it attached to differs | `replaced` · `reinstalled` · `applied` · the rest | **stay** |
+
+`destroyed` is the sharpest after `fixed`: in the damage sense it names the defect itself, so as a
+rejection token it deletes the very findings it is most likely to appear in.
+
+`checkStateSupported` keeps `CORRECTION_TOKENS` in full — §35.1's asymmetry, and the reason removal
+is safe: a token that no longer DELETES still CORROBORATES a state the model itself chose.
+
+**Known residual, recorded not closed:** same-sense-different-object can still delete under a broad
+quote. `DISC-02`-shaped, bounded by the prompt's shortest-span rule, and asserted in the suite
+(`A''3`/`A''4`) so it cannot drift silently. Closing it needs the OBJECT of the correction resolved,
+which is a semantic question a deterministic check should not answer.
+
+### 37.7 Multi-hazard scoring harness — CORRECTED, and it had never run
+
+`build-l32f-holdout.ts` wrote `minimumCandidates`; `score-l32f-reasoning.ts` read `minCandidates`;
+the expectation type declared **both**. `decompositionScored` never incremented, and every L3-2f
+tier reported `multiHazardWithinTolerance: "n/a"` — §36.5's multi-hazard result rests entirely on
+the direct inspection recorded there.
+
+**The frozen holdout was NOT edited** — sha256 `47f92dae…` verified byte-identical, and a frozen
+evaluation artifact is not rewritten to suit its scorer; that inversion is what §13.1's KG-4C
+incident and `test-evidence-foundation.ts` both record. The READER accepts the key the artifact
+carries. Re-scoring L3-2f's recorded run gives **1 of 1 at all three tiers**, and a full diff against
+the original score file changes **exactly six keys, all `multiHazardWithinTolerance`**.
+
+### 37.8 Weak fixtures — classified, texts and labels BYTE-UNCHANGED
+
+`X-NC-03` and `X-WC-02` are classified `AMBIGUOUS_DIAGNOSTIC_FIXTURE` and excluded from hard-gate
+use. `development-l32f.json` is unmodified at sha256 `bbda27d6…`; nothing was relabelled after
+seeing output, which is the one disposition §36's exit contract forbade.
+
+`X-NC-03` turns on the homograph `split` (cracked open / a splitter), and the two readings differ on
+whether any hazard exists. `X-WC-02` supplies the very control it means to withhold ("the rail"),
+and settles itself independently: it returned **three different outcomes across three L3-2f runs**
+at temperature 0, in a corpus that otherwise reproduces 97/97. **A fixture that unstable cannot gate
+anything.** Both guards keep full coverage through unambiguous fixtures that do gate.
+
+### 37.9 Customer authority and regression — MEASURED
+
+Pristine `git archive` of HEAD versus HEAD plus all uncommitted L3-1…L3-2g work, through the real
+customer pipeline on a disposable database, volatility derived empirically: **0 non-volatile
+differences over 66**, and the 7 volatile paths and 6 volatile field roles are the **identical set**
+every prior phase derived. `diff -rq` over the two checkouts' `backend/src`: exactly one difference,
+the **added** `reasoning-l3` directory. The original `safescope` development database was never a
+target.
+
+Offline suites: L3-2g **57**, L3-2f 77, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 189, L3-1 48 —
+**715 assertions, 0 failed**. `test:hazlenz-core` 206 pass / 2 fail, **identical to L3-2f**, the two
+documented §13.1 failures only, no third. KG contracts unchanged: `kg4a-cutover-contract` 146/146,
+`kg4a-default-off` 51/51, `kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `kg3f-determinism` 170/170,
+`evidence-foundation` 35 assertions.
+
+Two prior-phase suites failed mid-phase; **both were this phase's own over-broad first pass**, were
+diagnosed against an unpatched copy rather than assumed pre-existing, and were closed by narrowing
+the repair rather than by weakening the assertions.
+
+Containment: zero importers of `reasoning-l3` outside itself, zero importers of `state-facts.ts`
+outside the L3-2g scripts, zero Nest/TypeORM decorators inside `reasoning-l3`, the seam and its call
+site and `backend/src/standards/` byte-unmodified, and the shipped prompt and runner do not
+reference `state-facts` at all. `state-facts.ts` is `ARCHITECTURE_SELECTION_EVIDENCE_ONLY`.
+
+### 37.10 The independent evidence source — IDENTIFIED, CHARACTERISED, NOT OPENED `PROTECTED_DECISION`
+
+§36.10 closed the field corpus. The replacement is **`safescope-gauntlet.source.v1.json`**
+(sha256 `a95e5480…`, mtime **2026-06-11 — ten weeks before L3-2 began**): **150 rows derived from
+real regulator records** — 66 fatality reports, 51 inspection violations, 33 investigation
+summaries; OSHA 84 / MSHA 66; **139 of 150 critical or high**; 21 hazard families; **0 id and 0 text
+overlap** with every opened sealed set, every development set and the exhausted field corpus.
+
+> **This is the property §36.10 says the programme has never had.** Its text predates the defects by
+> ten weeks and derives from published regulator records rather than from anyone's judgement about
+> what this engine finds hard, so it **cannot** have been authored to satisfy a known failure.
+
+Ambiguity complement: `safescope-field-realism-pack-v2.v1.json` (sha256 `6f6897f1…`, 2026-06-15),
+whose **92 rows carry a pre-existing `shouldHaveMissingEvidence` flag** — an independently authored
+clarification complement, the axis that has been 100% implementer-authored for five phases. Reserve:
+`safescope-gauntlet.seed.json`, 99 rows **measured disjoint** from the source file. **366 independent
+rows total, roughly four future runs if each takes a stride.**
+
+**Negative controls remain unavailable from any independent source** — measured across all twelve
+candidates and structural in kind, since regulator records document violations rather than clean
+audits. They must still be authored, and must still be reported separately by provenance.
+
+Full plan, sampling rule and sealing procedure:
+`verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md`.
+
+### 37.11 Deferred to the next phase
+
+1. **The second-provider ablation.** The harness is unchanged and the scenario set fixed; 48 calls
+   decide between terminal B and terminal C. Nothing else here is blocked on engineering.
+2. **`R1_MISSING_FIRST` is not promoted.** It won on 24 known cases; adopting it on that basis would
+   be tuning. It belongs in an implementation slice measured against the fresh independent corpus.
+3. **Clarification recall at 75%**, and *which* case is missed changes with block ordering.
+4. **The same-sense-different-object binder residual**, bounded and asserted.
+5. **`F-FLD-159`'s class** — unchanged from §36.11.
+6. **`DISC-02` — still leave it.** Six sealed holdouts, zero measured losses.
+
+**`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+the clarification axis still at 100/100.** Family coverage remains complete at 24 of 24.
+
+> **Outcome, recorded by §38:** the second-provider experiment **could not be run** — no authorized
+> hosted-provider credential is reachable and only one model is pulled locally, so `L3-2h` closed
+> `BLOCKED` and §37's terminal stands unrevised. What L3-2h did establish is that **this section's
+> baseline reproduces exactly** — `V_S_STRUCT` and `V_S_STRUCT_MOVE1` each differ from their
+> recordings on 0 of 24 across sessions — and that §37.2's 0/24 noise floor is confirmed by a third
+> independent measurement. It also found a confound this section did not control for: an identical
+> prompt repeated **inside one process** diverges on 3 of 24 through server-side cache state, so the
+> next attempt must run each variant, and above all the repeat control, in its own process.
+
+> **Do not run another prompt-remediation cycle.** Four phases moved this balance with prose, L3-2f
+> measured both poles, and L3-2g measured the structural alternative. §36.7's instruction — *stop
+> looking for the wording that satisfies both* — now extends to block ordering as well.
+
+---
+
+## 38 — L3-2h CROSS-PROVIDER DISCRIMINATION (2026-08-23) `BLOCKED, NO IMPLEMENTATION CHANGE`
+
+> ### `L3_2H_BLOCKED — SECOND_PROVIDER_CREDENTIAL_REQUIRED`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2h-cross-provider-2026-08-23/`. **§31–§37 are not rewritten.** **Zero
+production or script files were modified by this phase**, and no stash operation was executed.
+
+L3-2h existed to answer §37.5's open question — provider capability or representation limit — by
+running the locked L3-2g experiment against a second model. It could not, and the section records
+why, what was verified instead, and one new mechanism finding that changes how the next attempt must
+be run.
+
+### 38.1 The credential gate, and §31.1 is unchanged after two phases `PROTECTED_DECISION`
+
+Checked by presence and length class only; no credential value was read, printed, logged or
+persisted. `ANTHROPIC_API_KEY` unset · `OPENAI_API_KEY` present at **length 11**, the placeholder
+§31.1 already documented · Gemini/Google/Mistral/Cohere/Azure and both gateway variables unset ·
+**zero** hosted-provider key names across all eight repository `.env` files · no `~/.anthropic`, no
+`~/.aws` profile · Claude Code `settings.json` declares no env vars · `reasoning-l3` declares only
+`L3_OLLAMA_*`.
+
+**No substitute comparator exists either.** `ollama /api/tags` lists exactly one model,
+`qwen3-coder:30b` at the pinned digest `06c1097efce0…`. The entry contract forbids treating a second
+local model as a provider-independence test unless the blueprint establishes that it answers the
+question, and **the blueprint does not** — so the question is moot as well as unavailable.
+
+> **This is now a programme-level blocker rather than an engineering one.** Every other item on the
+> Level-3 critical path has been closed or specified. `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`,
+> and Level-3 advancement is gated on obtaining one credential.
+
+### 38.2 The L3-2g baseline reproduces exactly — VERIFIED
+
+The locked experiment ran unchanged (`ablate-l32g-state-separation.ts`, sha256 `73f74131…`,
+byte-identical before and after; scenario texts, expected labels, variants, resolver orderings and
+scorers all untouched). Three structural variants × 24 diagnostic scenarios, plus a 24-call control.
+
+Every recorded metric returned identical: `V_S_STRUCT` + `R1_MISSING_FIRST` HC **12/12**, false ACTIVE
+**0/7**, clarification precision **100%**, recall **75%**; `V_S_STRUCT_MOVE1` identical on all four;
+order sensitivity **3/24**; fact incoherence **7.1%** and **12%**; control-reading **5/6** and
+**6/6**; `F-WC-09` recovered via `controlReading: DEFEATED`; negative controls and corrected states
+held.
+
+**Cross-session reproducibility of the decisive variants is perfect:** against their L3-2g
+recordings, `V_S_STRUCT` differs on **0 of 24** and `V_S_STRUCT_MOVE1` on **0 of 24** — different
+day, different process.
+
+### 38.3 A same-process duplicate-prompt confound `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+> #### `AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL`
+
+The reproduction first appeared to **contradict** §37: the noise-floor control returned **3/24**
+rather than 0/24, which would have placed §37's order-sensitivity signal *at* the noise floor and
+undermined its central claim. It does not, and the isolation is clean:
+
+| comparison | differing |
+|---|---|
+| `V_S_STRUCT` vs `V_S_STRUCT_REPEAT`, **same process** | **3 / 24** |
+| the same pair, **separate processes** | **0 / 24** |
+| `V_S_STRUCT`(L3-2g) vs `V_S_STRUCT_REPEAT`(isolated) | **0 / 24** |
+| `V_S_STRUCT_REPEAT`(L3-2g) vs `V_S_STRUCT_REPEAT`(isolated) | **0 / 24** |
+
+L3-2g issued those two variants in **two separate process invocations**, so its 0/24 was a genuine
+cross-process measurement. L3-2h issued all three in one, so a byte-identical prompt was sent twice
+against a warm server. Temperature, seed, digest and prompt bytes were identical throughout, and an
+isolated re-run reproduces the original exactly — **the cause is server-side state (cache or slot
+reuse), not sampling.**
+
+**Consequences.** §37's 0/24 noise floor **stands**, now confirmed by an independent third
+measurement rather than a single observation; §37's 3/24 order-sensitivity finding **stands**, since
+both variants it rests on reproduce at 0/24. And a live trap is now documented: **a cross-provider
+harness that runs its repeat control in the same process as the variant it controls manufactures
+~12% false variance and will attribute a harness artifact to the provider.** Each variant, and above
+all the repeat control, must be run in its own process.
+
+### 38.4 Instability concentrates in one cohort under unrelated perturbations
+
+The three scenarios destabilised by the cache confound — `C-CS-05`, `F-CL-03`, `F-NC-01` — are drawn
+from the same clarification/uncertainty cohort that carries all of §37's order sensitivity
+(`F-CL-01`, `F-CL-03`, `C-CS-05`). Two mechanically unrelated perturbations — prompt block ordering
+and server cache state — move the **same small set**, while the high-consequence cohort is unmoved by
+either.
+
+That is independent corroboration of §37.5's reading: these cases sit near a decision boundary **for
+this model**, which is a provider-capability signature rather than a representation one. **It remains
+n = 1 and does not close terminal A**, which is exactly why the credential still matters.
+
+### 38.5 What was deliberately not done
+
+No second provider run · no provider adapter written (it would have been unexercisable, and shipping
+untested provider code to be trusted later is the wrong trade) · no prompt remediation, tuning or
+diagnostic-case edits · no binder reopening, `BINDER_RESIDUAL` stays CLOSED with no new defect shown ·
+**no fresh acceptance corpus touched**. `safescope-gauntlet.source.v1.json` (`a95e5480…`),
+`safescope-gauntlet.seed.json` (`49aa40fd…`) and `safescope-field-realism-pack-v2.v1.json`
+(`6f6897f1…`) are hash-verified unchanged, appear in **zero** run artifacts, and were seen by no
+provider. §37.10's sampling and sealing plan is untouched and remains the plan of record.
+
+### 38.6 Regression, authority and egress — MEASURED
+
+Offline suites: L3-2g 57, L3-2f 77, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 189, L3-1 48 —
+**715 assertions, 0 failed**. `test:hazlenz-core` **206 pass / 2 fail**, the two documented §13.1
+failures only and **not** reclassified. KG contracts unchanged: `kg4a-cutover-contract` 146/146,
+`kg4a-default-off` 51/51, `kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `kg3f-determinism` 170/170,
+`evidence-foundation` 35.
+
+Customer authority is preserved by construction — zero production files changed — and verified
+structurally: seam, call site and `backend/src/standards/` byte-unmodified vs HEAD; zero importers of
+`reasoning-l3` outside itself; zero importers of `state-facts` outside it; SHADOW and CUTOVER
+untouched. All six frozen holdouts, `development-l32f.json`, HEAD, branch, upstream, all 23 tags and
+the stash list (4 entries) re-verified unchanged.
+
+**Egress:** one destination, `http://127.0.0.1:11434`. **96 local inference calls, 0 hosted-provider
+calls**, no credential material read or emitted, no production data sent anywhere.
+
+### 38.7 Exact next phase
+
+Obtain one authorized hosted-provider credential, then run the locked experiment against the second
+model as **three separate invocations** (`V_S_STRUCT`, `V_S_STRUCT_MOVE1`, `V_S_STRUCT_REPEAT`) —
+**72 calls, not the 48 §37 estimated**, because §38.3 requires the noise-floor control to have its
+own process. Adapter work is confined to transport in `ollama-reasoning-provider.ts`'s place: same
+messages, same JSON-schema constraint, same temperature/seed/context. The scenario set, variants,
+resolver orderings and scorers must not be touched, and the A/B/C/D decision rules fixed by the
+L3-2h entry contract must not be re-derived after seeing output.
+
+**`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with the
+clarification axis still at 100/100.**
+
+### 38.8 RESUMED 2026-08-24 — the gate was re-tested and STILL FAILS `PROTECTED_DECISION`
+
+The L3-2h resume ran under the same entry contract and reached the **same terminal state**. Evidence:
+`verification/hazlenz-l3-2h-cross-provider-resume-2026-08-23/`. Baseline HEAD `1feda622`, unchanged.
+**Zero production or script files modified; no stash operation executed.** §29, `L3-INV-01`…`L3-INV-12`,
+§31–§38, §13.1 and the current-state blocks `l31ReasoningContract`…`l32hCrossProvider` were reconciled
+before any action, and **executable evidence contradicted the documentation nowhere**.
+
+**§38.1's placeholder finding is upgraded from inference to measurement.** §38.1 classified
+`OPENAI_API_KEY` as a placeholder from its **length class** — 11 characters cannot encode a
+~160-character project key. The resume put that to the provider:
+
+| | §38.1 | resume |
+|---|---|---|
+| variable state | present, length 11 | present, length 11 — **unchanged** |
+| basis for "placeholder" | length class only | **`GET /v1/models` → HTTP 401** |
+
+The probe carried the credential to `api.openai.com` — the entry contract's sole authorized
+destination for it — and **no scenario, evidence or corpus content of any kind**. The gate outcome is
+unchanged; its proof is now direct, and the next attempt need not re-derive whether that variable is
+usable. **It is not.**
+
+Everything else §38.1 recorded holds: no `~/.aws`, no gcloud ADC, no `~/.config/anthropic`, zero
+hosted-provider key names across the repository `.env` files, one shell-profile export (the stub
+itself), and `reasoning-l3` declaring only `L3_OLLAMA_*`. `ollama /api/tags` still lists **exactly one
+model**, `qwen3-coder:30b` at the pinned digest `06c1097efce0…`, so the prohibited local-substitute
+question remains moot as well as forbidden.
+
+**Preservation re-verified across sessions.** Branch, HEAD, upstream and 0/0 divergence as expected;
+worktree identical to the §38 baseline excluding the resume's own directory; 4 stash entries identical
+with **no stash operation run**; 23 tags identical; the locked harness verified against its recorded
+**full** digest `73f74131b4f8cbb3…` rather than the abbreviation, together with all three companion
+scorers; all six frozen holdouts and `development-l32f.json` identical; the sealed corpus
+(`a95e5480…`, `49aa40fd…`, `6f6897f1…`) hash-verified, **not opened**, in zero artifacts.
+
+> **One apparent contradiction was chased to ground rather than absorbed.** A first tag snapshot
+> reported four mismatches. Four of the 23 tags are **annotated**, so `git rev-parse <tag>` returns the
+> tag OBJECT while `<tag>^{commit}` returns the commit; §38's baseline recorded tag objects and the
+> snapshot had dereferenced. Re-taken with the recorded method, all 23 match. **No tag moved.** The
+> lesson is small and worth keeping: *a preservation baseline must be re-read with the method that
+> wrote it, or it manufactures drift.*
+
+**Deliberately not done**, per the contract's STOP on a failed credential gate: no provider run · **no
+adapter** — §38.5's reasoning is unchanged and correct, and writing one now would ship unexercisable
+provider code to be trusted later · no baseline re-reproduction, which would spend ~96 local inference
+calls to re-confirm §38.2 from hash-identical inputs and is exactly the compensating engineering the
+contract forbids · no prompt remediation · no representation redesign · no sealed corpus consumed · no
+L3-3 · no production provider selected.
+
+Regression posture is **inherited, not re-measured**, and is stated that way: no code changed, every
+input is hash-verified byte-identical, so §38.6's 715 offline assertions / 0 failed, `test:hazlenz-core`
+206 pass / 2 fail (the two documented §13.1 failures only, **not** reclassified) and the unchanged KG
+contracts stand. Customer authority verified structurally: zero importers of `reasoning-l3` outside
+itself, zero importers of `state-facts` inside `backend/src`, seam and call site and
+`backend/src/standards/` byte-unmodified, and no hosted credential required for customer execution.
+
+**Egress:** `api.openai.com` — **1** hosted call (auth probe, 401, credential only, zero data);
+`127.0.0.1:11434` — 1 metadata call, **0 inference calls**. No production data, no corpus, no
+credential in any artifact.
+
+> **The blocker is now three phases old (§31.1 → §38.1 → §38.8) and has not moved.** It is a
+> **programme-level** blocker, not an engineering one: nothing else on the Level-3 critical path is
+> waiting on code. §38.7's next phase is unchanged and remains exactly correct — the only missing
+> input is the credential.
+
+> **Outcome, recorded by §39:** the credential gate **PASSED** — an operator-named Google
+> `gemini-3.1-pro-preview` credential returned HTTP 200 — and the locked experiment ran
+> **byte-unmodified** against it as **three separate processes**, honouring §38.3's trap. §38.2's
+> qwen baseline replayed exactly through the same harness, which is what validated it. §37.5's
+> incoherence mechanism **did not reproduce**: `CONDITIONAL_AND_ASSERTED` is empty across 74 Gemini
+> candidates against qwen's 1/2/2, so it is provider-capability-bound at **n = 2** and L3-2h closes
+> **`TERMINAL_A`**. Two results are recorded separately rather than folded into that letter: the
+> clarification residual is **representation-bound** — a zero-candidate `INSUFFICIENT_EVIDENCE`
+> outcome has nowhere to carry a clarification — and the order-sensitivity improvement is **narrow**,
+> 2/24 against a measured floor of 1/24. The phase also found that `rederive-l32g-resolution.ts`
+> drops zero-candidate rows before clarification scoring, so **the 75% recall recorded in §38.2 and
+> §37.2 is scorer-filtered; the corrected scenario-level figure is 60%** (`D-56`). This section's
+> numbers are preserved as written.
+
+---
+
+## 39 — L3-2h FINAL EXECUTION — CROSS-PROVIDER STRUCTURAL-STATE DISCRIMINATION (2026-08-24) `EXECUTED, NO IMPLEMENTATION CHANGE`
+
+> ### `L3_2H_COMPLETE — TERMINAL_A — CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT`
+> ### `ARCHITECTURE_SELECTION_EVIDENCE, NOT ADVANCEMENT EVIDENCE`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Recorded **separately**, and deliberately **not merged into the terminal vocabulary above**:
+
+> #### `CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE — REPRESENTATION_BOUND`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/`. **§31–§38 are not rewritten — L3-2
+through L3-2h each closed on their own terms and that remains the historical record.** Zero
+production files, zero script files and zero scorer files were modified; no stash operation was
+executed; no sealed corpus was opened; nothing was committed or pushed.
+
+**What Terminal A does and does not say.** It says the §37.5 structural-state incoherence mechanism
+is **provider/model capability-bound**, established at **n = 2**, and that `qwen3-coder:30b` is not
+validated to carry Level-3 advancement. It does **not** say that all residual instability is
+provider-bound — §39.5 shows the clarification residual is not — and it does **not** select Gemini,
+or any model, as the production provider.
+
+### 39.1 The credential gate passed — first time since §31.1
+
+| | §38.1 | §38.8 resume | this phase |
+|---|---|---|---|
+| `ANTHROPIC_API_KEY` | unset | unset | unset |
+| `OPENAI_API_KEY` | present, length 11 | **HTTP 401 Unauthorized** | unchanged, **not re-probed** |
+| Gemini credential | unset | unset | **present, `GET /v1beta/models` → HTTP 200** |
+
+Authorized provider **Google** (`generativelanguage.googleapis.com`), authorized model
+**`gemini-3.1-pro-preview`**, credential variable `GEMINI_API_KEY`. **The provider and the model were
+named by the operator**; both arrived in the command text as unfilled placeholders and were not
+chosen by this phase after seeing any output.
+
+The credential was carried only to the provider's own endpoint, was never printed, logged, hashed or
+persisted, and appears in **zero** artifacts (verified by scan). §38.8's `OPENAI_API_KEY` 401 finding
+was **not** re-derived — it is settled, and re-deriving it would have been the compensating
+engineering §38.8 refused.
+
+### 39.2 Method — the locked harness ran BYTE-UNMODIFIED `STABLE_INVARIANT`
+
+`ablate-l32g-state-separation.ts` sha256
+`73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521`, identical before and after. All
+three companion scorers likewise unmodified — `score-l32g-order-sensitivity.ts` `7e3481f9…`,
+`score-l32g-fact-coherence.ts` `4ecaada4…`, `rederive-l32g-resolution.ts` `57064e2f…` — and **run
+as-is on both providers**, which is what makes the two columns of §39.3 comparable rather than merely
+adjacent.
+
+Adapter work was confined to **transport**, exactly as §38.7 required: an Ollama-protocol translation
+shim (`adapter/gemini-ollama-shim.js`) was placed in front of the Gemini API and the harness's
+pre-existing `L3_OLLAMA_ENDPOINT` hook was pointed at it. Scenario texts, expected labels, variants,
+prompts, JSON schema, resolver orderings and scorers were never touched.
+
+**§38.3's trap was honoured.** Three variants, **three separate harness processes**, with the shim
+restarted between them — the noise-floor control never shared a process with the variant it
+controls. **72 calls, 0 transport errors, every `finishReason: STOP`, no truncation, no retries.**
+
+**The pipeline is self-validating.** Replaying it against the qwen baseline reproduces §38.2's
+recorded numbers exactly: noise floor 0/24, order sensitivity 3/24 on `F-CL-01`/`F-CL-03`/`C-CS-05`,
+HC 12/12, false ACTIVE 0/7, clarification 100/75, incoherence 7.1%/12%, control-reading 5/6 and 6/6.
+A harness that could not reproduce the baseline could not be trusted to measure the comparator.
+
+### 39.3 The measured result
+
+| measure | `qwen3-coder:30b` | `gemini-3.1-pro-preview` |
+|---|---|---|
+| noise floor (identical prompts, **separate processes**) | **0/24** | **1/24** (`F-CL-01`) |
+| order sensitivity, ONE block moved | **3/24** | **2/24** |
+| — differing scenarios | `F-CL-01`, `F-CL-03`, `C-CS-05` | `F-CL-01`, `B10` |
+| internal fact incoherence | 7.1% / 12% / 6.9% | **4.3% / 3.8% / 4.0%** |
+| — **`CONDITIONAL_AND_ASSERTED`** (the §37.5 mechanism) | **1 / 2 / 2** | **0 / 0 / 0** |
+| control-reading correctness | 5/6, 6/6 (miss: `F-WC-02`) | 5/6 all three (miss: `F-COR-01`) |
+| HC gate, all three resolver orderings | 12/12 | 12/12 |
+| false ACTIVE under the **shipped** `R0` resolver | **3/7, 5/7, 3/7** | **0/6, 0/8, 0/7** |
+| clarification recall under `R0` | **0** | **100** |
+| clarification precision / recall under `R1` | 100 / 75 | **100 / 100** |
+
+Every figure in this table is scorer output from
+`results/{qwen,gemini}-{order-sensitivity,fact-coherence,resolution}.json`. The `R0`/`R1` rows are on
+the **scorer-filtered** denominator — see §39.5, which corrects it.
+
+> **The six-block reversal (`V_S_STRUCT_INV`) was NOT run this phase, for either provider, and no
+> figure for it appears above.** §38.7 fixed the run at **three** variants, so the scorer's
+> `V_S_STRUCT vs V_S_STRUCT_INV` row reports `scenariosCompared: 0` on **both** providers. That is a
+> **non-comparison, not a zero** — reading its `differing: 0` as a Gemini result would be `D-54`'s
+> vacuity failure exactly, and an earlier draft of this table did read it that way before the
+> cross-check caught it. §37.3's qwen figure of 3/24 under a six-block reversal stands as **§37's**
+> measurement and is not re-derived here.
+
+### 39.4 §37.5's provider indictment does NOT reproduce — Terminal A, at n = 2
+
+§37.5 rested its provider reading on **internal self-contradiction**: `framing: CONDITIONAL` asserted
+together with `hazardAsserted: true` about the same text, because **no ranking can explain an answer
+that contradicts itself**. Across **74 Gemini candidates in three variants that class is empty** —
+`CONDITIONAL_AND_ASSERTED` is 0 in every variant, against 1/2/2 for qwen.
+
+`C-CS-05` — the case §37.5 cited as flipping `asserted` under different block orders — comes back
+from Gemini **identical on all three runs**: `(hazardAsserted=false, CONDITIONAL, no missing fact)`.
+
+So the mechanism §37.5 named is **`PROVIDER_CAPABILITY_BOUND`**, and `qwen3-coder:30b` was the limit.
+§37.5 could not say that from one model; two models say it. **`CONTRACT_OR_ARCHITECTURE_LIMIT`
+remains ruled out** (§37.5 established it directly), and the A-versus-B ambiguity §37 recorded as its
+own terminal is now resolved on the incoherence axis.
+
+Gemini's single incoherence is `CORRECTED_AND_ABSENT_CONTROL` on `F-COR-01`, **identically in all
+three variants** — one deterministic wrong reading of a fitted blanking plate (`ABSENT` where
+`PREVENTS_CONTACT` was expected), not instability. qwen answers `F-COR-01` correctly and misses
+`F-WC-02` instead. Both sit at 5/6. **Each provider has exactly one deterministic control-reading
+error and they are different scenarios, which is a capability signature rather than noise.**
+
+> **Do NOT read Terminal A as "the residual is all provider-bound".** §39.5 is the counterweight, it
+> is structural, and no provider swap can move it.
+
+### 39.5 The clarification residual is REPRESENTATION-BOUND, and the recorded recall figure was scorer-filtered
+
+#### 39.5.1 `A CLARIFICATION CAN ONLY BE CARRIED ON A hazardCandidate` `STABLE_INVARIANT`
+
+Gemini's facts are **perfectly stable wherever it emits candidates at all**. Every scenario that
+moved — under block reordering *and* under the identical-prompt noise floor — moved on one binary
+decision: *emit hazard candidates*, or *return `INSUFFICIENT_EVIDENCE` with an empty
+`hazardCandidates` array*.
+
+> When the model correctly concludes the observation is underdetermined and returns
+> `INSUFFICIENT_EVIDENCE` with **zero** hazard candidates, **the contract gives the clarification
+> nowhere to live.** The pipeline loses the clarification in exactly the case that most needs one.
+
+Measured, and it is the whole of Gemini's instability:
+
+| scenario | `V_S_STRUCT` | `V_S_STRUCT_MOVE1` | `V_S_STRUCT_REPEAT` |
+|---|---|---|---|
+| `F-CL-01` | 0 candidates, `INSUFFICIENT_EVIDENCE` | 1 candidate | 1 candidate |
+| `B10` | 0 candidates, `INSUFFICIENT_EVIDENCE` | 1 candidate | 0 candidates, `INSUFFICIENT_EVIDENCE` |
+
+Where Gemini emitted a candidate for those same scenarios it produced **identical** facts —
+`(hazardAsserted=false, ACTUAL, decisionCriticalFactMissing=true, controlReading=NOT_STATED)` — and
+correctly owed a clarification. The reasoning did not change; only whether there was a carrier for
+it. This is `CONTRACT_REPRESENTATION_BOUND` with a structural cause, **it is not the mechanism §37.5
+proposed**, and it is preserved as its own label rather than folded into the terminal letter.
+
+#### 39.5.2 `rederive-l32g-resolution.ts` DROPS ZERO-CANDIDATE ROWS BEFORE SCORING `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+`rederive-l32g-resolution.ts:94` reads
+`rows.filter((r: Row) => r.derived && r.derived.length)`, which removes every scenario where the
+model emitted no candidates. Clarification recall is therefore computed on a **reduced denominator**,
+and **a provider is never charged for a clarification it failed to raise by emitting nothing at
+all** — the precise failure §39.5.1 describes is the one the scorer cannot see.
+
+This is **pre-existing, affects both providers, and affects previously recorded numbers.** qwen drops
+`B10` in all three variants, so:
+
+> **§37's and §38's recorded clarification recall of 75% is `3/4` — a scorer-filtered figure. The
+> corrected scenario-level truth is `3/5` = 60%.**
+
+Recomputed on the full 24 scenarios, counting a zero-candidate row as a miss, under the **shipped
+`R0`** resolver:
+
+| | qwen | gemini |
+|---|---|---|
+| HC | 13/13 | 13/13 |
+| false ACTIVE | 3/11, 5/11, 3/11 | **0/11 all three** |
+| clarification recall | **0/5 all three** | 3/5, 5/5, 4/5 |
+
+**The relative conclusion is unchanged and in fact strengthens.** What changes is that the absolute
+recorded figures in §37 and §38 are optimistic for both providers.
+
+**§37 and §38 are preserved exactly as written** (`UPDATE POLICY` §4 — a §37 number stays a §37
+number). 75% remains the correct record of *what §37 measured with the scorer it had*; 60% is the
+corrected scenario-level truth, and it is **this** figure that any future statement must use.
+`D-56` records the correction; the scorer itself is **reported, not patched** — patching it is the
+first item of the next slice, and this phase was authorized to change no scorer file.
+
+#### 39.5.3 §37.4's resolver ordering was compensating for provider fact quality
+
+`R1_MISSING_FIRST` was introduced in §37.4 because the shipped `R0_HAZARD_FIRST` dropped
+clarifications on qwen's facts. **On Gemini's facts `R0` already scores 0 false ACTIVE and 100%
+clarification recall on the scored cohort** — the repair is unnecessary. The resolver-ordering
+problem was a property of the provider's fact quality, not of the resolver. This is a further reason
+**`R1_MISSING_FIRST` must not be promoted** on the strength of 24 known cases (§37.11 item 2, still
+standing).
+
+### 39.6 Order sensitivity — improved, and NARROW `MUST NOT BE OVER-READ`
+
+Gemini's one-block-moved divergence is **2/24 against its own measured noise floor of 1/24**;
+qwen's is **3/24 against a floor of 0/24**. Read against each provider's own floor, the excess
+attributable to block ordering falls from 3 to 1. Under the six-block reversal Gemini is **0/24**
+where qwen is 3/24.
+
+**That is a real improvement and it is narrow evidence.** Three qualifications are load-bearing and
+none may be dropped when this result is cited:
+
+1. **The margin is 2 against a floor of 1.** One scenario separates signal from noise. A margin that
+   small cannot carry a strong claim.
+2. **Gemini's `seed` is best-effort**, not the pinned deterministic seed the local provider honoured.
+   Its non-zero noise floor is a consequence of that, so the floor it is measured against is itself
+   softer than qwen's.
+3. **Both differing scenarios are the §39.5.1 mechanism.** `F-CL-01` and `B10` differ because a
+   zero-candidate `INSUFFICIENT_EVIDENCE` row has no clarification carrier — not because the model's
+   facts moved. Gemini's noise-floor scenario is `F-CL-01`, the same mechanism again. **Gemini's
+   entire measured instability, floor and signal alike, is one representation defect.**
+
+> **Therefore: Gemini improves the pre-registered incoherence axis materially and decisively, and
+> improves the order-sensitivity axis narrowly and conditionally. Terminal A stands under the
+> pre-registered rule. It does not stand more strongly than that.**
+
+### 39.7 The two `A/B/C/D` lettering systems — do NOT conflate them `DO_NOT_REDISCOVER`
+
+Two different four-letter decision vocabularies are in play across §37–§39, they share the letters
+`A` and `B` with roughly compatible meanings and the letters `C` and `D` with **incompatible** ones,
+and reading one under the other's key produces a false conclusion.
+
+| letter | **System 1** — §37's terminal states | **System 2** — the L3-2h entry contract's decision classes |
+|---|---|---|
+| **A** | the residual is provider-capability-bound | second provider **materially better on both incoherence and order sensitivity** → `CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT` |
+| **B** | the residual is representation-bound | second provider shows **substantially the same instability** → `STATE_REPRESENTATION_REDESIGN_REQUIRED` |
+| **C** | `CONTRACT_OR_ARCHITECTURE_LIMIT` — **ruled out by §37.5** | **neither** of the above |
+| **D** | A and B **cannot be separated** without a second provider — §37's actual terminal | the comparator **cannot satisfy the typed-output contract** |
+
+**The canonical terminal for this phase is System 2's `A`.** That is the system the L3-2h entry
+contract fixed before any output was seen, and it is the only one whose letters may appear in the
+terminal state string.
+
+Two consequences a future session must not re-derive:
+
+* **The evidence package's `STATUS.md` §4.2 says "terminal B" for the clarification finding.** It is
+  using **System 1**, where `B` means representation-bound, and in that system the statement is
+  correct. Under **System 2**, `B` means "the second provider showed substantially the same
+  instability", which is **not** what was measured. That is why the finding is carried in this
+  blueprint under its own name — `CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE —
+  REPRESENTATION_BOUND` — and **never as a terminal letter**.
+* **§37.5's sentence "Terminal state D states the situation exactly: C is eliminated"** is entirely
+  System 1. It does not mean the L3-2h entry contract's `C` or `D`.
+
+A third, unrelated lettering also survives in the record and is **not** a decision vocabulary at all:
+**§36.7's prompt variants `A` and `B`** name two positions of the same prompt block, and §37's
+**Questions A/B/C** name three research questions. Neither is a terminal.
+
+> **When citing a letter, name its system.** A bare "terminal B" is ambiguous across this programme's
+> own record, and that ambiguity is exactly what this subsection exists to end.
+
+### 39.8 What the next work is, and it is narrow `OPEN_ITEM`
+
+The next slice is **L3-2i — candidate-independent clarification contract + scorer correction +
+revalidation**, and it is scoped to two things and their proof. It is **not** a provider-selection
+slice, **not** an architecture redesign, and **not** L3-3.
+
+| # | Work | Why it is in scope |
+|---|---|---|
+| 1 | **Correct the scorer first.** Patch `rederive-l32g-resolution.ts` so zero-candidate clarification-required scenarios stay in the denominator, then **re-score the existing frozen qwen and Gemini artifacts with ZERO new inference** | The corrected baseline must exist before the contract changes, or the contract change cannot be shown to have caused anything (`D-56`) |
+| 2 | **Then change the contract.** A candidate-independent, proposal-level carrier for decision-critical clarification / unresolved decisions | §39.5.1 — the defect is that `INSUFFICIENT_EVIDENCE` with zero candidates cannot carry a required clarification |
+| 3 | **Then prove it on the demonstrated cohort only** — at minimum `F-CL-01` and `B10` — with each required variant/control in **its own process** (§38.3) | The proof obligation is that `INSUFFICIENT_EVIDENCE` + zero hazard candidates **can** now carry the required clarification |
+
+Explicitly **out of scope and unchanged**: the sealed acceptance corpus stays sealed; `L3-3` stays
+closed; **no production provider is selected**; `R1_MISSING_FIRST` is **not** promoted; no prompt
+tuning; no broadening of the reasoning architecture; no change to Level-1 customer authority.
+
+**`PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`** (§31.1, unchanged through §38.1, §38.8 and this
+phase). This run is **architecture-selection evidence on 24 diagnostic scenarios**; it is explicitly
+**not** a production recommendation. The privacy boundary of §31.2 — which the local provider
+satisfied absolutely, at `127.0.0.1` — is a live consideration against any hosted provider carrying
+customer observation text, and it has not been adjudicated.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and
+> does not advance that gate.** Family coverage remains complete at 24 of 24.
+
+### 39.9 Fidelity deviations — recorded rather than hidden
+
+The two providers could not be equalised on every axis. Each deviation is stated with the direction
+it cuts.
+
+1. **Reasoning could not be equalised, and this is the largest confound.** `thinkingLevel: low` is
+   the floor for Gemini 3 Pro; it still spent a mean of **527 thought tokens per call** — 37,444
+   thought tokens over the 71 of 72 calls that reported a count, one call reporting none, range
+   232–1,023. qwen ran with no extended reasoning at all. **The confound cuts in Gemini's favour.**
+   *(The package's `STATUS.md` §6.1 carries an earlier interim figure of ~584; the transport log
+   `transport/transport-V_S_STRUCT*.jsonl` is the measurement, and **527 is the figure to carry
+   forward**. The evidence file is left exactly as written — a verification artifact is not edited
+   to suit a later recount, §13.6.)*
+2. **`num_ctx` has no Gemini equivalent** — 8,192 locally against a fixed ~1M window. Silent
+   truncation, which the local setting existed to prevent, is not possible in that direction. Prompt
+   size was 1,990–2,013 tokens throughout, far inside both.
+3. **`additionalProperties: false` was dropped** in schema conversion — unsupported by Gemini's
+   OpenAPI-subset `responseSchema`. Field order was preserved explicitly via `propertyOrdering`.
+4. **`seed` is best-effort** on Gemini. Its 1/24 non-zero noise floor against qwen's 0/24 reflects
+   that, and it is why §39.6's margin is narrow and carries an explicit qualification.
+5. **A preview model label is not a content digest.** qwen was pinned at `06c1097efce0…`;
+   **`gemini-3.1-pro-preview` can change under its label**, so this run is *less* reproducible than
+   the baseline it is compared against. `MUST_REVERIFY`.
+
+### 39.10 Egress, customer authority, preservation, regression
+
+**Egress:** `generativelanguage.googleapis.com` — **73 calls** (1 auth probe carrying the credential
+and nothing else, 72 inference). `127.0.0.1:11434` — **0 calls**; no local inference this phase.
+Only already-opened diagnostic scenarios were transmitted. **No customer data, no production data, no
+sealed corpus, and no credential in any artifact.** Mean latency 8.6 s, p90 11.1 s, max 14.4 s;
+mean 2,002 prompt / 381 output tokens.
+
+**Customer authority is preserved by construction** — zero production files changed — and verified
+structurally: seam, call site, `backend/src/standards/` and all of `reasoning-l3/` byte-unmodified
+against HEAD.
+
+**Preservation** (`preservation-evidence.txt`): HEAD `1feda622`, 0/0 upstream divergence; locked
+harness and all three scorers digest-verified; the sealed corpus `a95e5480…` / `49aa40fd…` /
+`6f6897f1…` hash-verified and **not opened**; **4** stash entries with no stash operation run; **23**
+tags, recorded as tag **objects** per §38.8's lesson.
+
+**Regression is inherited, not re-measured, and is stated that way:** no code changed and every input
+is hash-identical, so §38.6 stands — 715 offline assertions / 0 failed; `test:hazlenz-core` 206 pass
+/ 2 fail, the two documented §13.1 failures only and **not** reclassified; KG contracts unchanged.
+
+> **Outcome, recorded by §40:** both defects this section named are **closed**. The scorer
+> correction reproduced `D-56` exactly — 75% candidate-conditioned, **60% scenario-level** — and
+> changed **zero** previously-recorded keys, so `TERMINAL_A` is untouched and was checked rather than
+> assumed. `ReasoningProposal.unresolvedDecisions` closes §39.5.1: on `B10` and `F-CL-01`, four
+> zero-candidate `INSUFFICIENT_EVIDENCE` rows carried the owed clarification and the validator
+> accepted every one **without a hazard candidate**, moving scenario-level recall on that cohort from
+> **0% to 100%** where the candidate-conditioned metric cannot see the difference at all. Two limits
+> are recorded rather than implied: the **shipped prompt was deliberately not touched**, so the
+> shipped pipeline cannot yet produce one, and the provider axis is still **n = 1** — the credential
+> blocker §39.1 recorded has not moved. This section's numbers are preserved as written.
+
+---
+
+## 40 — L3-2i CANDIDATE-INDEPENDENT CLARIFICATION + SCORER CORRECTION (2026-08-24) `IMPLEMENTED, NOT CUSTOMER-AUTHORITATIVE`
+
+> ### `L3_2I_COMPLETE — CANDIDATE_INDEPENDENT_CLARIFICATION_ESTABLISHED — SCENARIO_LEVEL_CLARIFICATION_SCORER_CORRECTED`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED`
+> ### `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/`. **§31–§39 are not rewritten, and
+`D-55` and `D-56` stand exactly as recorded.** Nothing committed, nothing pushed, no stash operation,
+no sealed corpus opened.
+
+This phase closes the two defects §39 established — one of measurement, one of representation — and
+nothing else. **`TERMINAL_A` is untouched** (§40.2), and it neither selects a production provider nor
+advances L3-3.
+
+### 40.1 The order was the method `STABLE_INVARIANT`
+
+> #### `CORRECT THE INSTRUMENT BEFORE THE THING IT MEASURES, OR THE CHANGE IS UNATTRIBUTABLE`
+
+The scorer was corrected **first** and the corrected baseline established from frozen artifacts with
+**zero new inference**, before one line of the contract changed. Had the order been reversed, every
+number afterwards would have moved for two reasons at once and neither could have been isolated —
+which is §22's loop, and `KG5C-FIX-01`'s discipline (*the proof that a repair was not made to move a
+number is that the verdict does not move*) applied in advance rather than in retrospect.
+
+### 40.2 The scorer correction moved nothing it should not have — `D-56` reproduced exactly
+
+`rederive-l32g-resolution.ts:94` filtered `r.derived && r.derived.length`, deleting every
+zero-candidate scenario **before** clarification scoring. Because a clarification could only ride on a
+hazard candidate, that filter removed precisely the scenarios in which the question was lost.
+
+**The filter is KEPT for every metric it already governed.** Those metrics are candidate-conditioned
+by construction — facts never emitted cannot be resolved — and §37, §38 and §39 recorded them under
+exactly this filter. What is added is a **second, separately named** measurement over the unfiltered
+rows. `UPDATE POLICY` item 4 is why the old one is kept rather than redefined.
+
+| metric | denominator | status |
+|---|---|---|
+| **candidate-conditioned** clarification recall | `CLARIFICATION_REQUIRED` scenarios **in which the provider emitted at least one candidate** | **DIAGNOSTIC.** The metric behind §37's and §38's recorded 75% |
+| **scenario-level** clarification recall | **ALL** `CLARIFICATION_REQUIRED` scenarios; a zero-candidate row is a **MISS** | **ADVANCEMENT-RELEVANT.** The inspector was owed a question and did not get one |
+| clarification **precision** | identical under both by construction — a zero-candidate row raises nothing | reported once |
+| high-consequence · false ACTIVE | **UNCHANGED and still candidate-conditioned** | as recorded in §37–§39 |
+
+Both definitions are written into every artifact the scorer emits, so a future phase cannot compare
+them as though they were one metric — which is exactly how 75% travelled through two sections.
+
+`D-56`'s expectation reproduced **exactly**: qwen `R1_MISSING_FIRST` / `V_S_STRUCT` is **3/4 = 75%**
+candidate-conditioned and **3/5 = 60%** scenario-level, the miss being `B10`.
+
+> **`TERMINAL_A` IS UNAFFECTED, and this was checked rather than assumed.** Re-scoring both frozen
+> providers changed **zero** pre-existing keys. Terminal A's two pre-registered axes — fact
+> incoherence and order sensitivity — are computed by `score-l32g-fact-coherence.ts` and
+> `score-l32g-order-sensitivity.ts`, **neither of which this phase modified**. The correction cannot
+> reach them.
+
+Full-cohort scenario-level recall on the frozen artifacts under the shipped `R0` resolver reproduces
+§39.5.2's independent recount: qwen **0/5** in all three variants, Gemini **3/5, 5/5, 4/5**.
+
+### 40.3 The contract change, and how small it is
+
+`ReasoningProposal.unresolvedDecisions?: ClarificationDecision[]`.
+
+**Additive, optional, and `REASONING_PROPOSAL_CONTRACT_VERSION` is deliberately NOT bumped** — every
+proposal that validated before L3-2i validates unchanged, and every frozen L3-2…L3-2h artifact stays
+readable. It reuses the existing `ClarificationDecision` type: no new ontology, no workflow or task
+system, no free-form field. Four fields — the missing fact, the decision it changes, at least two
+branches, the question.
+
+`ValidatedReasoning.unresolvedDecisions` is **always an array**, empty when none is owed, so no
+consumer has to distinguish *absent* from *none owed*.
+
+### 40.4 The validator boundary
+
+| rule | code | disposition |
+|---|---|---|
+| L3-INV-06 four-field shape | `UNRESOLVED_DECISION_MALFORMED` | entry dropped |
+| the decision must actually be **open** | `UNRESOLVED_DECISION_NOT_DECISION_CRITICAL` | carrier dropped |
+| governance / regulatory-text sweep | pre-existing codes | **fatal**, unchanged |
+
+**Decision-criticality is §34.2's rule lifted, not re-invented.** `INSUFFICIENT_EVIDENCE` and
+`UNKNOWN` say the decision was not made; the other six **are** the decision. `L3_UNDECIDED_STATES`
+now has **one** definition in `reasoning-contract.types.ts`, consumed by both the validator at
+proposal level and `clarificationBelongsHere` in the semantic binder at candidate level, so the two
+cannot drift — §32.5's closed-list lesson, applied to a rule rather than a vocabulary.
+
+> #### `A SUPERFLUOUS QUESTION IS DROPPED; IT NEVER DESTROYS THE ANALYSIS THAT CARRIED IT` `STABLE_INVARIANT`
+
+Both L3-2i codes are **non-blocking**: recorded in `issues`, excluded from the verdict, removed from
+the result. This is §34.2 verbatim — *it never touches the hazard* — and it was **measured wrong
+first**: making the refusal fatal discarded `C-CS-05`'s correct `HYPOTHETICAL` candidate along with
+its unnecessary question. **No pre-existing reason had its fatality changed**, and the suite asserts
+that the non-blocking set contains only the two codes this phase introduced.
+
+### 40.5 Two corrections this phase made to its own first answer `ROOT-CAUSED AND FIXED`
+
+Recorded because both were found by the proof rather than by inspection, and both were fixed *before*
+any result was claimed.
+
+1. **The gate was under-specified.** It keyed on `proposal.outcome` alone. `C-CS-05` returns outcome
+   `INSUFFICIENT_EVIDENCE` with one candidate at **`HYPOTHETICAL`** — the outcome says undecided,
+   every candidate says decided — and an outcome-only gate admitted an unnecessary question on a
+   scenario whose entire purpose is MUST-NOT-ASK. The gate now additionally requires that no candidate
+   stands decided alone. Six fixtures pin it, one per decided state.
+
+2. **The refusal was fatal when it should have been a drop.** See §40.4.
+
+> **A third change was considered and REVERSED.** The candidate-level clarification predicate was
+> briefly unified with the new strict one. Failing *there* sets `ok = false`, which drops the whole
+> **candidate** — a REJECT path that deletes a hazard, where §35.1's asymmetry holds: *a vocabulary
+> used to REJECT must be unambiguous*. Tightening it would delete hazards that survive today over a
+> defect in their **question**. The historical predicate is restored, the asymmetry is asserted, and
+> unifying the two is left to a slice that measures the hazard-deletion consequence.
+
+### 40.6 The targeted proof — `qwen3-coder:30b`
+
+The entry contract's mandatory pair plus three controls, **all** already-opened, each asserted
+byte-identical to the locked harness's text at run start. Without the controls every gate below is
+vacuous, which is `D-54`. Four variants in **four separate processes** (§38.3), pids in every artifact.
+
+| scenario | owed? | BASELINE (no carrier) | `V_CARRIER` | `MOVE1` | `REPEAT` |
+|---|---|---|---|---|---|
+| `F-CL-01` | yes | on a candidate | **carried** | **carried, 0 candidates** | **carried** |
+| `B10` | yes | on a candidate | **carried, 0 candidates** | **carried, 0 candidates** | **carried, 0 candidates** |
+| `C-CS-05` | no | none | emitted → **refused** | emitted → **refused** | emitted → **refused** |
+| `F-PS-04` | no | none | none | none | none |
+| `H-FLD-141` | no | `ANALYZED`, 2 × ACTIVE | identical | identical | identical |
+
+**Four zero-candidate `INSUFFICIENT_EVIDENCE` rows carried the owed clarification, and the validator
+accepted every one without a hazard candidate.** Every row validates `VALID`.
+
+Scored with the corrected scorer over rows whose `derived` is `null` — **exactly the shape the
+pre-`D-56` filter deleted outright**:
+
+| variant | candidate-conditioned | **scenario-level** |
+|---|---|---|
+| BASELINE | **undefined — 0 of 5 rows survive the filter** | **0/2 = 0%** |
+| carrier variants | undefined | **2/2 = 100%**, credited to the new carrier |
+
+**The old metric cannot see the difference at all; the corrected one measures 0% → 100%.** That is
+the clearest single demonstration of why `D-56` mattered.
+
+All nine entry-contract acceptance gates pass, including **no false ACTIVE in any variant**, **no
+high-consequence regression** (`H-FLD-141` identical across all four) and **no candidate invented** to
+carry a question (`B10` went 1 → 0).
+
+### 40.7 What is NOT closed, and it is the honest limit `OPEN_ITEM`
+
+> **The shipped `L3_SYSTEM_PROMPT` was not touched, so the SHIPPED pipeline will not yet produce a
+> proposal-level clarification.**
+
+It is sha256 `b8cc50fc…` before and after and `L3_PROMPT_VERSION` remains `v6`. This is deliberate:
+`ablate-l32g-state-separation.ts` reads that exact string as `V_B_LADDER` and derives variant A from
+it, so editing it would silently change the **inputs** of the locked L3-2h instrument while its own
+bytes stayed identical — and §36.7/§37 both measured how much prompt position moves behaviour. The
+declaration the model needs lives in the L3-2i proof harness instead.
+
+Declaring the field in the shipped prompt is therefore the **first item of the next phase**, and it
+carries the re-measurement Phase 9 requires. A contract nothing can produce is not yet a working
+contract, and this section says so rather than implying otherwise.
+
+**Second limit: n = 1 on the provider axis.** `GEMINI_API_KEY` was not present in this session — the
+L3-2h credential was supplied for that run only and correctly never persisted. qwen establishes that a
+real provider emits the field, that it survives the real transport and normalization boundary, and
+that the validator and scorer handle it. **Provider-independence of that behaviour is unproven**, and
+the credential remains the same programme-level blocker §31.1 → §38.1 → §38.8 → §39.1 records.
+
+### 40.8 Full diagnostic re-run — ASSESSED, NOT TRIGGERED
+
+Four shared paths changed, and Phase 9 authorizes a broader run only where a shared path's safety
+**cannot** be established by deterministic tests. Each one's can:
+
+| shared path | change | established by |
+|---|---|---|
+| `validationStateForIssues` | a non-blocking category holding **only** the two new codes | assertion `C6` |
+| `bindProposal` | additive spread; absent stays absent | assertion `E7` |
+| `L3_UNDECIDED_STATES` | one shared definition, **identical values** | assertions `B7`/`B8` + 8 unchanged suites |
+| candidate clarification predicate | **restored** to its historical form | assertion `E1b` |
+
+Every pre-existing Level-3 suite reports the **same assertion count as §38.6's record**, the frozen
+artifacts re-score identically, and the shipped prompt is byte-unchanged so the locked instrument's
+behaviour cannot have moved. At the hazard level nothing outside `F-CL-01`/`B10` changed.
+
+### 40.9 Regression, authority, egress and preservation
+
+**L3 offline: 777 assertions over 9 suites, 0 failed** (715 over 8 at §38.6; +61 new, +1 rebound).
+`test:hazlenz-core` **28 pass / 2 fail** — the two documented §13.1 failures only, **not**
+reclassified. KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4b-shadow-contract`
+123/123, `kg3f-predicate` 16/16, `evidence-foundation` 35. Backend and frontend `tsc --noEmit` both
+exit 0. `test:standards-backing-contract` was **not run**: it is a **MUT** suite, it correctly refused
+to claim the protected `safescope` database (`D-47`), and it exercises no Level-3 code.
+
+**One prior-phase assertion was rebound to its guarantee and recorded** — the third instance of §35.7
+and §36.9. `test-l31-reasoning-contract.ts` assertion 1.3 pinned the literal
+`'hazlenz.l3.validator.v1'`; its guarantee is that a validated result is stamped with the identity of
+the validator that produced it, and L3-2i legitimately advanced that identity to `v2`. It is now bound
+to the module's own exported constant plus a shape check.
+
+**Customer authority, by source inspection at the documented seam:**
+`orchestration/intelligence-orchestrator.service.ts`, its call site `safescope-v2.service.ts:1576`
+and `backend/src/standards/` are all **byte-unmodified vs HEAD**; **zero** importers of `reasoning-l3`
+outside the module; **zero** Level-3 vocabulary in the service or controller; **zero** Nest or TypeORM
+decorators inside `reasoning-l3`. `reasoning-l3` declares only `L3_OLLAMA_*` — **no hosted-provider
+credential became required for customer execution.**
+
+**Egress:** one destination, `http://127.0.0.1:11434`. **60 local inference calls, 0 hosted-provider
+calls, 0 auth or metadata calls.** Five already-opened diagnostic scenarios transmitted. No customer
+or production data, no sealed-corpus content, no credential value in any artifact — the Gemini gate
+was checked by variable presence alone.
+
+**Preservation:** HEAD `1feda622`, 0/0 upstream divergence, **4** stash entries with no stash
+operation run, **23** tags identical as tag objects, the locked harness and the two untouched scorers
+digest-verified, all 11 frozen holdouts and devsets identical, the L3-2h final evidence package
+identical across all 21 files, and the sealed corpus `a95e5480…` / `49aa40fd…` / `6f6897f1…`
+hash-verified and **not opened**.
+
+### 40.10 Deferred to the next phase
+
+1. **Declare `unresolvedDecisions` in the shipped `L3_SYSTEM_PROMPT`**, and re-measure — this is the
+   only reason the shipped pipeline cannot yet produce one, and it is a prompt change that carries a
+   full diagnostic re-run under §38.3 isolation.
+2. **The provider axis, at n = 1.** One authorized hosted credential re-runs the proof on Gemini.
+3. **`R1_MISSING_FIRST` is still not promoted.** §39.5.3 gave a second reason to leave it alone.
+4. **Unifying the two clarification shape predicates**, with the hazard-deletion consequence measured.
+5. **`F-FLD-159`'s class** and **`DISC-02`** — unchanged from §37.11 and §39.8.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and
+> does not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+---
+
+## 41 — L3-2j SHIPPED CARRIER ACTIVATION — MEASURED AND REFUSED (2026-08-24) `MEASURED, SHIPPED PATH BYTE-RESTORED`
+
+> ### `L3_2J_COMPLETE — SHIPPED_CARRIER_ACTIVATION_MEASURED_AND_REFUSED`
+> ### `SHIPPED_PROMPT_AND_SCHEMA_BYTE-RESTORED — LOCKED_L3-2h_COMPARISON_RE-DERIVED_AND_RESTORED`
+> ### `CROSS_PROVIDER_REVALIDATION_NOT_EXECUTED — PROVIDER_AXIS_REMAINS_n=1`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2j-carrier-activation-2026-08-24/`. **§31–§40 are not rewritten, and `D-55`
+through `D-58` stand exactly as recorded.** Nothing committed, nothing pushed, no stash operation, no
+sealed corpus opened.
+
+L3-2j executed §40.7's ordered next action — declare `unresolvedDecisions` in the shipped prompt, then
+re-measure — and the re-measurement **refused it**. The shipped prompt and schema end this phase
+byte-identical to their pre-phase state, and that restoration is proven rather than asserted.
+
+### 41.1 The finding `STABLE_INVARIANT`
+
+> #### `THE_SHIPPED_LADDER_DOES_NOT_HAVE_THE_DEFECT_THE_CARRIER_WAS_BUILT_TO_FIX`
+
+`D-56`/§39.5.1's zero-candidate clarification loss was measured on **`V_S_STRUCT`** — the structural
+representation, which §37 classifies as architecture-selection evidence and which **is not what
+ships**. On the shipped ladder prompt the question already rides a hazard candidate on **5 of 5**
+`CLARIFICATION_REQUIRED` scenarios. This is not a new measurement fighting an old one: the frozen
+L3-2g `V_B_LADDER` rows say 5/5 too, and L3-2j's independent `V_PRE_ACTIVATION` run reproduces them
+exactly, ten days later, through a different code path.
+
+A carrier cannot improve a metric already at ceiling. What it can do, and did, is cost.
+
+### 41.2 What activation cost — `D-58`'s two denominators, and a third metric that is not either of them
+
+`qwen3-coder:30b`, temperature 0, seed 20260822, `num_ctx` 8192, over the **full 24-scenario**
+already-open diagnostic corpus. The cohort is parsed out of the locked harness and cross-checked
+field-by-field against the frozen L3-2g artifact, so drift is unrepresentable rather than unlikely.
+
+| variant | prompt sha | cand-conditioned clar | scenario-level clar | clarification **precision** | HC (model-asserted) | false ACTIVE |
+|---|---|---|---|---|---|---|
+| **`V_PRE_ACTIVATION`** — the BEFORE | `b8cc50fc` (v6) | **5/5** | **5/5** | **100%** | **12/13** | 0/11 |
+| declaration **rev 1** + carrier schema | `b7f35111` | *undefined* | 5/5 | 71.4% | **9/13** | 0/11 |
+| declaration **rev 2** + carrier schema | `45862b26` | 5/5 | 5/5 | 83.3% | **10/13** | 0/11 |
+| carrier schema **alone**, prompt silent | `b8cc50fc` (v6) | 5/5 | 5/5 | 83.3% | 12/13 | 0/11 |
+
+**Neither clarification denominator moved.** Both were 5/5 before and 5/5 after. What moved was
+precision and high-consequence recall. `HC (model-asserted)` is a **third, separately named** metric —
+it is **not** §37–§39's candidate-conditioned high-consequence figure, which is computed over resolved
+`stateFacts` and does not exist for ladder rows. `D-58`'s rule is that metrics are never renamed into
+each other, and that rule applies to new ones as much as to the two it was written for.
+
+**The noise floor is zero.** Three repeat pairs, each variant in its own process per §38.3: `0`
+differing fields out of 144 compared, every time. Nothing in the table above is variance.
+
+### 41.3 What each configuration broke, and why the second attempt was made at all
+
+**Declaration revision 1** was the byte-identical `CARRIER_DECLARATION` L3-2i proved as `V_CARRIER`,
+in that harness's APPEND position. Over the full corpus it:
+
+* lost `E-OA-07` (roof bolter under unsupported roof) entirely — `ACTIVE` → `NO_HAZARD_ESTABLISHED`
+  with **zero candidates**;
+* pushed `H-AM-05` (gate on one hinge, lower pin sheared) to `INSUFFICIENT_EVIDENCE` with a question —
+  which is `RC-01`'s failure mode, the one L3-2c spent a phase closing;
+* moved `F-WC-03` from `ACTIVE` to `CONTROLLED`;
+* fired a question on `C-CS-05`, a **MUST-NOT-ASK** scenario — and §34.2's gate could not refuse it,
+  because that gate only fires when candidates exist and all are decided. The model had dropped the
+  candidate first. **Dropping the candidate defeated the control meant to catch the question.**
+* took candidate-borne clarifications from **5 to 0**. The new carrier did not supplement the old one,
+  it replaced it — the exact opposite of `D-57`'s design.
+
+**The cause is one sentence, and it is worth naming precisely.** Revision 1 told the model the field
+was for when you *"return an EMPTY hazardCandidates array"*, and the model read that as permission to
+return one. It contradicts the `ASKING A QUESTION` rung two paragraphs above, which says in terms that
+an empty list there is **WRONG**. Two rules pointed opposite ways and the newer, more specific one
+won, pulling scenarios off the `ACTIVE` rung onto the empty-`INSUFFICIENT_EVIDENCE` path.
+
+**Revision 2** removed the licence and stated the precedence instead. It recovered `E-OA-07`, still
+lost `F-WC-03` and `H-AM-05`, and used the proposal-level carrier **zero times across all 24
+scenarios** — it cost two high-consequence cases to buy nothing at all.
+
+**The schema half alone** held high-consequence recall at 12/13 and, notably, the model filled
+`unresolvedDecisions` on six rows **with the prompt saying nothing about the field**, because the JSON
+schema is itself sent to the provider as `format`. But `C-CS-05` still moved from a correctly decided
+`HYPOTHETICAL` to `INSUFFICIENT_EVIDENCE` with a question, so the MUST-NOT-ASK pole regressed here too.
+
+Both revisions are **kept** in `activate-l32j-shipped-corpus.ts`, with the sha256 each must reproduce
+pinned. A rejection nobody can re-run is folklore.
+
+### 41.4 Refusing an activation is not undoing a capability `PROTECTED_DECISION`
+
+`ReasoningProposal.unresolvedDecisions`, `ValidatedReasoning.unresolvedDecisions`, the two L3-2i reason
+codes, `L3_UNDECIDED_STATES` and the semantic binder are **byte-unchanged**.
+`test-l32j-carrier-activation.ts` asserts, against the live modules, that a zero-candidate proposal
+still carries its clarification through validation. What is not shipped is the **declaration** that
+would make a provider emit one, and `L3_CARRIER_DECLARATION_ANCHOR` documents at the point of use why.
+
+### 41.5 The locked L3-2h comparison does NOT transfer across a prompt change `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+§40.7 left the shipped prompt alone precisely because `ablate-l32g-state-separation.ts` reads it as
+`V_B_LADDER`. L3-2j re-derived that comparison rather than assuming it, with the harness **byte-
+unchanged** (`73f74131…`) and only its inputs different:
+
+| locked variant, under declaration rev 2 | HC | rows differing from frozen L3-2g |
+|---|---|---|
+| `V_B_LADDER` — the baseline every L3-2g/L3-2h number is read against | **10/13** (was 12/13) | **11 of 24** |
+| `V_A_LADDER` — §36.7's variant A | 12/13 | **12 of 24** |
+
+`V_B_LADDER` lost `F-WC-03` and `H-AM-05` — **the same two scenarios**, by a different harness with a
+different schema. Two independent instruments agree on the regression. The four structural variants
+build a self-contained prompt and never read `L3_SYSTEM_PROMPT`, so their inputs were unchanged by
+construction rather than by luck.
+
+**After the revert, `V_B_LADDER` reproduces the frozen L3-2g rows with ZERO differences**, and the
+shipped-pipeline baseline reproduces its own pre-declaration run with **0 differing fields out of
+168**. The restoration is measured in both instruments, not claimed in one.
+
+### 41.6 Schema key order is a behavioural input `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+> #### `THE_JSON_SCHEMA_IS_AN_INPUT, AND KEY ORDER IS PART OF IT`
+
+Moving the declaration out of the shipped prompt and back into the harness produced a run that
+disagreed with the recorded one on **six measured fields** — `B10` lost its candidate, `F-TB-02` lost
+its candidate, three rows changed which carrier held the question — on a prompt whose **sha256 was
+identical**. The rebuilt schema had **appended** `unresolvedDecisions` where the original **inserted**
+it between `observationInterpretation` and `hazardCandidates`. Restoring the position gave a
+**0-difference** reproduction. Every corpus artifact now records `schemaSha256`, and the shipped
+schema's serialised hash is pinned by assertion, so this cannot be checked by reading code again.
+
+### 41.7 Cross-provider revalidation — NOT EXECUTED `OPEN_ITEM`
+
+`GEMINI_API_KEY` is **not present** in this session's environment or in any ancestor process. The
+probe counted the variable **name** only — no value read, printed, hashed or persisted — and was
+validated against variables known to be present before its negative result was trusted. Record:
+`CREDENTIAL_AND_EGRESS.txt`.
+
+The provider axis therefore remains **n = 1**, and the blocker is unchanged from §31.1 → §38.1 →
+§38.8 → §39.1 → §40. Nothing was substituted: `GEMINI_MODEL` is exported by the operator's shell as
+`gemini-3.1-flash-lite-preview`, which is **not** the authorized model, and it was not used. No result
+was estimated or simulated for the second provider.
+
+### 41.8 Regression, authority, egress and preservation
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** (777 over 9 at §40.9; **+37 new**). `l31` 49 ·
+`l32` 189 · `l32b` 105 · `l32c` 86 · `l32d` 71 · `l32e` 82 · `l32f` 77 · `l32g` 57 · `l32i` 61 ·
+`l32j` 37. **No prior-phase assertion is rebound**: the two pins L3-2j temporarily moved — L3-2f's
+literal `v6` and L3-2i's `F1` prompt hash — were **restored** when the prompt was, so §35.7/§36.9's
+rebinding ledger does not grow.
+
+`test:hazlenz-core` **28 pass / 2 fail**, the two documented §13.1 failures only and **not**
+reclassified. KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4a-default-off` 51/51,
+`kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `kg3f-determinism` 170/170, `evidence-foundation` 35.
+Backend and frontend `tsc --noEmit` both exit 0.
+
+**Customer authority is preserved by construction** — the shipped prompt and schema are byte-identical
+to their pre-phase state — and verified structurally: zero importers of `reasoning-l3` outside itself,
+`reasoning-runner.ts` still does not consume `state-facts`, the validator carries no persistence
+decorator.
+
+**Egress:** one destination, `http://127.0.0.1:11434`. **264 local inference calls, 0 hosted-provider
+calls.** HEAD, branch, 23 tags and the 4-entry stash list re-verified unchanged. The sealed corpus is
+hash-verified unchanged before and after and appears in **zero** artifacts of this phase.
+
+### 41.9 Exact next phase
+
+**Obtain the credential and close the `n = 1` limit — items (1), (2), (3) and (5) of the L3-2j command
+are closed, and item (4) is the only outstanding instruction.** Verify the credential is present
+before the phase opens; L3-2i and L3-2j both began believing it was and both found it absent. Then
+re-run the `F-CL-01`/`B10` proof on the second provider through the L3-2h transport adapter, as three
+separate invocations, and ask the question this phase makes newly interesting: **does the second
+provider carry the clarification on a candidate the way qwen does on the shipped ladder, or does it
+need the carrier?** If the answer is provider-dependent, activation is a **provider-conditioned**
+decision and belongs in the production-provider decision, not in the shipped prompt.
+
+**`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with the
+clarification axis still at 100/100.**
+
+
+## 42 — L3-2j ITEM (4) CROSS-PROVIDER REVALIDATION ON THE SHIPPED v6 LADDER (2026-08-24) `EXECUTED, NO IMPLEMENTATION CHANGE`
+
+> ### `L3_2J_ITEM4_COMPLETE — CROSS_PROVIDER_REVALIDATION_EXECUTED_ON_THE_SHIPPED_LADDER`
+> ### `D-59 STRENGTHENED — ACTIVATION_IS_NOT_PROVIDER-CONDITIONED`
+> ### `D-55 REMAINS SUPPORTED — SCOPE BOUNDED ADDITIVELY BY D-62`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2j-cross-provider-closure-2026-08-24/`. **§29–§41 are not rewritten, and
+`D-55` through `D-61` stand exactly as recorded.** Zero production files, zero script files and zero
+scorer files were modified; nothing committed, pushed or deployed; no stash operation; no sealed
+corpus opened; **no `L3_SYSTEM_PROMPT` or schema edit; neither rejected v7 revision reintroduced; zero
+qwen inference.**
+
+This phase closes the single outstanding instruction from the L3-2j command — item (4) — and nothing
+else. It is **not** a provider-selection slice and does **not** advance L3-3.
+
+### 42.1 The finding `STABLE_INVARIANT`
+
+> #### `THE SHIPPED LADDER CARRIES THE CLARIFICATION ON A CANDIDATE FOR BOTH PROVIDERS, 5/5, ON THE SAME FIVE SCENARIOS`
+
+§41.9 named the question this phase existed to answer: *does the second provider carry the
+clarification on a candidate the way qwen does on the shipped ladder, or does it need the carrier?*
+If it needed one and qwen did not, activation would have been a **provider-conditioned** decision
+belonging to the production-provider choice rather than to the shipped prompt.
+
+**It does not need the carrier.** `gemini-3.1-pro-preview` scores **5/5 on both `D-58` denominators**
+at **100% precision**, on the **same five scenario identities** qwen uses — `F-OA-01`, `F-OA-02`,
+`F-CL-01`, `F-CL-03`, `B10` — every one carried on a hazard candidate, and emitted a proposal-level
+`unresolvedDecisions` **zero times**. `D-59`'s refusal is **strengthened**, at `n = 2`.
+
+Note which scenarios those are. **`B10` and `F-CL-01` are the two cases that DEFINED §39.5.1's
+zero-candidate defect** — the ones on which Gemini returned `INSUFFICIENT_EVIDENCE` with an empty
+`hazardCandidates` array under the structural representation. On the shipped ladder both providers
+carry the question on a candidate. The defect is a property of the representation, not of a provider,
+and that is now established from both directions rather than one.
+
+### 42.2 Method — the shipped prompt and schema were the input, and are proven so
+
+| | value |
+|---|---|
+| `L3_PROMPT_VERSION` | `hazlenz.l3.prompt.v6` |
+| `sha256(L3_SYSTEM_PROMPT)` | `b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf` |
+| shipped schema top-level key order | `outcome │ observationInterpretation │ hazardCandidates` |
+| `unresolvedDecisions` in the shipped schema | **absent** — `D-60`'s insert position unoccupied |
+| serialised run schema, `schemaSha256` | `a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385` |
+
+**`schemaSha256` is the load-bearing number**, and it is byte-identical to the value the restored-v6
+**qwen** baseline recorded. `D-60` says key order is a behavioural input; this phase proves the two
+providers were constrained by the *same serialised bytes* rather than asserting it. All of the above
+are asserted by `test-l32j-carrier-activation.ts`, **37/37 passing this session**.
+
+**§38.3 was honoured throughout: SIX variants in SIX separate processes**, the shim restarted between
+every one, pids in every artifact — the shipped variant and its floor, the locked `V_B_LADDER` and
+its floor, `V_A_LADDER`, and a `V_S_STRUCT` drift control. Adapter work was **transport only**: the
+L3-2h shim (`0ba265bb…`) reused **byte-unmodified**, behind the harness's pre-existing
+`L3_OLLAMA_ENDPOINT` hook. **145 shim-logged requests: 144 × HTTP 200, one 503 retried to 200,
+`finishReason: STOP` on every one, zero truncation, zero harness errors, zero scenarios lost.**
+
+**No qwen inference was spent.** The restored-v6 qwen baseline is hash-backed and frozen; it was
+re-scored from the L3-2j package with the byte-unmodified scorer, and qwen's ladder order-sensitivity
+figure was re-scored from the frozen L3-2g artifact. Spending inference to reproduce either would be
+exactly the compensating engineering §38.8 refused.
+
+### 42.3 The measured result — the SHIPPED v6 LADDER
+
+| measure | `qwen3-coder:30b` (frozen, restored v6) | `gemini-3.1-pro-preview` |
+|---|---|---|
+| **candidate-conditioned** clarification recall | **5/5** | **5/5** (both runs) |
+| **scenario-level** clarification recall | **5/5** | **5/5** (both runs) |
+| clarification **precision** | **100%** | **100%** |
+| clarification scenario identities | `F-OA-01` `F-OA-02` `F-CL-01` `F-CL-03` `B10`, all candidate-borne | **identical** |
+| proposal-level carrier used | 0 | **0** |
+| HC (model-asserted) | **12/13** — misses `F-WC-09` | **13/13** |
+| false ACTIVE | **0/11** | **0/11** |
+| validator rejections | 1 — `E-FLD-147` `DUPLICATE_CANDIDATE` | 1 — `F-COR-01` `UNGROUNDED_CORRECTIVE_ACTION` |
+| candidate omissions | `F-PS-04`, `F-NT-01` | `F-PS-04` (+2 in the repeat) — **all `NEGATIVE_CONTROL`** |
+| **order sensitivity**, `V_B_LADDER` vs `V_A_LADDER` | **1/24** (`C-CS-05`) | **0/24** |
+| **noise floor**, locked instrument, separate processes | 0/24 | **0/24** |
+| **noise floor**, shipped-pipeline instrument | **0/168** | **4/168 — 2/24**, both `NEGATIVE_CONTROL` |
+| structural-state coherence · control-reading | **NOT DEFINED on ladder rows** | **NOT DEFINED on ladder rows** |
+
+`HC (model-asserted)` is `D-58`'s third, separately named metric and is **not** §37–§39's
+candidate-conditioned high-consequence figure. Coherence and control-reading are undefined on the
+shipped ladder **by construction, not by omission**: both are computed from the six separated
+`stateFacts`, which only the structural variants emit, and every ladder row carries `derived: null`.
+That is stated rather than filled in with a structural number wearing a shipped-path label.
+
+### 42.4 A scorer-boundary zero looks exactly like a measured zero `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+> #### `THE LOCKED RESOLUTION SCORER REPORTS 0/5 CLARIFICATION RECALL ON LADDER ROWS. THAT IS A NON-MEASUREMENT.`
+
+Run over this phase's Gemini `V_B_LADDER` and `V_A_LADDER` rows, `rederive-l32g-resolution.ts` reports
+**scenario-level clarification recall 0/5**, listing all five scenarios as "zero-candidate misses".
+**Every one of those five emitted a candidate and carried its clarification** — the L3-2j scorer
+measures the same rows at 5/5, and the two Gemini instruments agree **24 of 24** on whether a
+clarification was raised.
+
+The cause is the boundary `score-l32j-clarification-denominators.ts` was written for: the locked
+scorer detects the candidate carrier by re-resolving `row.derived[].facts`, so its notion of
+"candidate" is a *resolved* candidate, not a model candidate. This is **not a defect and the scorer is
+not patched** — patching it would change the instrument that produced §37's, §38's and §39's recorded
+numbers. §39.3 warned that a `scenariosCompared: 0` non-comparison must not be read as a zero; this is
+the sharper form of the same trap, because here the denominator is populated and the number looks real.
+
+### 42.5 The MODEL-DRIFT CONTROL — a `MUST_REVERIFY` discharged rather than carried `NEW_EVIDENCE`
+
+§39.9 item 5 records that a **preview model label is not a content digest**. Without a control, any
+shipped-ladder-versus-structural difference could be the label having moved rather than the
+representation. So `V_S_STRUCT` was re-run today and scored with the same byte-unmodified scorers.
+
+| measure | frozen L3-2h (2026-08-23) | today |
+|---|---|---|
+| **`CONDITIONAL_AND_ASSERTED`** — `D-55`'s decisive axis | **0** | **0** |
+| internal fact incoherence | 1 of 23 = **4.3%** | 1 of 24 = **4.2%** |
+| the single incoherence | `CORRECTED_AND_ABSENT_CONTROL` on `F-COR-01` | **identical** |
+| control-reading correctness | **5/6**, miss `F-COR-01` | **5/6**, miss `F-COR-01` |
+| HC gate, all three resolver orderings · false ACTIVE | 12/12 · 0/7 | **12/12 · 0/7** |
+| row agreement with the frozen artifact | — | **2 of 24 differ** |
+
+The two differing scenarios are `F-CL-01` — **L3-2h's own measured 1/24 Gemini noise-floor scenario** —
+and `F-OA-02`, one `conditionState` label moving `INSUFFICIENT_EVIDENCE` → `UNKNOWN`. **2/24 against a
+recorded floor of 1/24 on a best-effort seed is at the floor, not above it. No material drift.**
+`D-55`'s evidence therefore reproduces today, and every shipped-versus-structural difference in §42.6
+is attributable to the representation.
+
+### 42.6 What transfers to the shipped ladder, and what does not `STABLE_INVARIANT`
+
+§41.5 established that the locked comparison does not transfer across changed *inputs*. It does not
+transfer across a changed *representation* either, and this is the ledger.
+
+**A — reproduces on the shipped ladder.** The provider ordering holds in direction: Gemini is no worse
+on any measured axis and better on two (**13/13 vs 12/13** high-consequence, **0/24 vs 1/24** order
+sensitivity). §39.4's *one deterministic error each, on different scenarios* signature reproduces —
+one validator rejection per provider, on different scenarios, and Gemini's is `F-COR-01`, **the same
+scenario as its structural control-reading miss and in the same direction**. Order sensitivity remains
+an improvement and remains **narrow**: the margin is one scenario, as it was one scenario structurally.
+
+**B — existed only under `V_S_STRUCT`.** `CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE —
+REPRESENTATION_BOUND` (§39.5.1) does not occur on the shipped ladder for **either** provider ·
+`D-56`'s 60% is a `V_S_STRUCT` fact, both providers are 5/5 here · §39.5.3's `R0` clarification loss
+is a `V_S_STRUCT` fact, and `R0` is what ships · **`CONDITIONAL_AND_ASSERTED` — `TERMINAL_A`'s
+decisive axis — is not measurable on the shipped ladder at all**, which is the single most important
+scoping fact in this section · Gemini's 1/24 structural floor and 2/24 structural order sensitivity are
+both **0/24** on the ladder inside the locked instrument.
+
+**C — invalidated by the shipped-ladder measurement.** **None.** Nothing measured here contradicts a
+recorded L3-2h finding. Every difference is a **scope** result — true of the structural representation
+and silent about the shipped one — and that distinction is preserved rather than collapsed into
+"superseded".
+
+**D — remaining provider-specific differences on the shipped ladder.** High-consequence recall
+(`F-WC-09`: qwen `CONTROLLED`, Gemini `ACTIVE` — and qwen reads that control as `DEFEATED` correctly
+**under structural separation**, §38.2, so the ladder is where it loses it) · validator-rejection
+identity · **outcome labelling**, qwen returning `INSUFFICIENT_EVIDENCE` on five scenarios where Gemini
+returns `ANALYZED` while both carry the same clarifications on candidates · candidate multiplicity,
+27 validated hazards against 23 · **a noise floor that is instrument-dependent for Gemini**, 0/24
+locked and 2/24 shipped-runner on the same day and model, both non-zero differences on
+`NEGATIVE_CONTROL` rows optionally emitting a `NEGATED` candidate — **no clarification-required and no
+high-consequence scenario moved in any floor pair, in either instrument** · order sensitivity, qwen's
+single scenario being `C-CS-05` on the `CLARIFICATION_MUST_NOT_ASK` pole, where a regression is a
+false question put to a safety professional.
+
+Cross-provider divergence at the row level: **11 of 24** scenarios in the shipped pipeline, **10 of 24**
+in the locked instrument.
+
+### 42.7 `D-55` is bounded, not weakened `PROTECTED_DECISION`
+
+`D-55` **remains supported and is not rewritten.** Its evidence was re-measured rather than assumed
+(§42.5) and reproduces at `n = 2`.
+
+What this phase adds is a **scope bound, recorded additively as `D-62`**: `D-55`'s decisive axis —
+internal self-contradiction in the separated facts — **does not exist on the shipped path**. `D-55`
+therefore governs **architecture selection**, exactly as §39's terminal vocabulary already said, and
+**may not be cited as a statement about the shipped ladder**. On the shipped ladder the measured
+provider delta is **two scenarios**: one high-consequence (`F-WC-09`) and one order-sensitivity
+(`C-CS-05`). That is a far narrower separation than the structural comparison, it points the same way,
+and it is recorded as its own decision rather than folded into `D-55`'s wording.
+
+**`PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`** (§31.1, unchanged through §38.1, §38.8, §39.1, §40,
+§41 and this phase). The `thinkingLevel: low` reasoning-budget confound cuts in Gemini's favour and is
+the largest one; §31.2's privacy boundary — satisfied absolutely by the local provider at `127.0.0.1` —
+is **unadjudicated** for any hosted provider carrying customer observation text.
+
+### 42.8 Fidelity deviations — recorded rather than hidden
+
+1. **Reasoning could not be equalised, and this remains the largest confound.** `thinkingLevel: low`
+   is the floor for Gemini 3 Pro; it still spent a mean of **592 thought tokens per call** — 85,215
+   over 144 calls, range 232–930 — against qwen's none. **It cuts in Gemini's favour**, and every
+   Gemini advantage in §42.3 must be read with it. *(§39 recorded 527 on the structural corpus; that
+   figure is not edited — §13.6.)*
+2. **`num_ctx` has no Gemini equivalent.** Prompt size 2,002–2,456 tokens, far inside both windows.
+3. **`additionalProperties: false` is dropped** in schema conversion; field order is preserved
+   explicitly via `propertyOrdering`, which is what makes the `D-60` claim survive the conversion.
+4. **`seed` is best-effort on Gemini**, and its floor is **instrument-dependent** — 0/24 and 2/24 on
+   the same day. No single number may be cited as "Gemini's noise floor".
+5. **A preview label is not a content digest.** Discharged this phase by §42.5's control — and it
+   **re-arms** the moment the label is used again. `MUST_REVERIFY`.
+6. **One HTTP 503**, retried once and succeeding, with provider latency reaching 271 s against a 300 s
+   timeout. No call aborted, no scenario lost.
+
+### 42.9 Regression, authority, egress and preservation — MEASURED, not inherited
+
+No code changed, but the suites were **executed** rather than declared inherited.
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** — `l31` 49 · `l32` 189 · `l32b` 105 · `l32c` 86 ·
+`l32d` 71 · `l32e` 82 · `l32f` 77 · `l32g` 57 · `l32i` 61 · `l32j` 37. **Identical to §41.8 suite for
+suite**, so no count moved without a reason. `test:hazlenz-core` **206 pass / 2 fail**, the two
+documented §13.1 failures only and **not** reclassified. KG contracts unchanged: `kg4a-cutover-contract`
+146/146, `kg4a-default-off` 51/51, `kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `kg3f-determinism`
+170/170, `evidence-foundation` 35. Backend and frontend `tsc --noEmit` both exit 0.
+
+**Customer authority** is preserved by construction — no file changed — and verified structurally: the
+seam, its call site `safescope-v2.service.ts:1576` and `backend/src/standards/` are byte-unmodified vs
+HEAD; all 19 `reasoning-l3` modules are byte-identical to L3-2j's recorded post-phase hashes; **zero**
+importers of `reasoning-l3` outside the module; **zero** importers of `state-facts` outside it; **zero**
+Level-3 vocabulary in the service. `reasoning-l3` declares only `L3_OLLAMA_*`, and **the hosted
+credential lives in the verification-only transport shim, outside `backend/src` entirely** — so no
+hosted credential became required for customer execution, and none can.
+
+**Egress:** one destination, `generativelanguage.googleapis.com` — **147 HTTP requests: 1 auth probe
+(credential only, zero content), 1 transport smoke, 144 inference calls, 1 retried 503.**
+`127.0.0.1:11434` — **0 calls, 0 local inference.** Only already-opened diagnostic scenarios
+transmitted; no customer or production data, no sealed-corpus content, and **the credential appears in
+zero artifacts, verified by scanning all 51 files of the package.**
+
+**Preservation:** HEAD `1feda622`, 0/0 upstream divergence, **23** tags identical as tag objects, **4**
+stash entries with **no stash operation run**, the locked harness and all companion scorers
+digest-verified, all 19 modules unchanged, every file of the frozen L3-2g / L3-2h-final / L3-2i / L3-2j
+packages hash-identical before and after, and the sealed corpus (`a95e5480…`, `49aa40fd…`,
+`6f6897f1…`) hash-verified and **not opened**. The worktree is unchanged apart from this phase's own
+evidence directory.
+
+### 42.10 Exact next phase — NOT EXECUTED
+
+**A separate programme decision about the sealed acceptance run, which is a product/policy call rather
+than an engineering one.** The evidence now justifies putting it on the table and did not before: the
+provider axis on the shipped path is `n = 2`, the shipped clarification axis is at ceiling on both
+providers, and the carrier question is settled in both directions. What remains open is not
+measurement — **which provider the sealed run executes against** (the production-provider decision in
+disguise, with §31.2's privacy boundary unadjudicated for a hosted provider), **whether a preview model
+with no content digest may carry an acceptance result at all**, and the fact that **§29.8 spends the
+sealed corpus once and then retires it**.
+
+**Recommendation: do not open the sealed corpus yet.** If the answer is "not yet", the next engineering
+slice is narrow — **root-cause `F-WC-09` and `C-CS-05`**, the entire measured shipped-path provider
+delta, both on already-open material, both diagnosis rather than tuning. Any prompt change either
+produces **re-arms `D-61`** and owes a full re-derivation of the locked comparison.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+
+
+## 43 — L3-2k SHIPPED-LADDER RESIDUAL ROOT CAUSE — `F-WC-09` + `C-CS-05` (2026-08-24) `DIAGNOSED, NOT REPAIRED`
+
+> ### `L3_2K_COMPLETE — SHIPPED_PROVIDER_DELTA_ROOT_CAUSED`
+> ### `BOTH RESIDUALS ARE THE MODEL'S SINGLE-ENUM conditionState CHOICE — NOT ITS FACTS`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2k-shipped-residual-rootcause-2026-08-24/`. **§29–§42 are not rewritten and
+`D-55` through `D-62` stand exactly as recorded.** **DIAGNOSIS ONLY — nothing was repaired.** Zero
+production files, zero shipped-prompt bytes, zero shipped-schema bytes, zero historical harnesses and
+zero historical scorers modified; nothing committed, pushed or deployed; no stash operation; no sealed
+corpus opened; no production provider selected; no prompt tuned; L3-3 not begun.
+
+§42.10 named the narrow slice: root-cause `F-WC-09` and `C-CS-05`, the entire measured shipped-path
+provider delta. This section is that, and it stops there.
+
+### 43.1 Both cases required a stage no prior artifact had ever reached `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+> #### `EVERY RECORDED L3-2 METRIC STOPS AT THE VALIDATOR. §34.2's GATE AND THE STATE-SUPPORT CHECK LIVE AFTER IT.`
+
+`activate-l32j-shipped-corpus.ts` and `prove-l32i-clarification-carrier.ts` both run
+`bindProposal → validateReasoningProposal` and stop. `bindEvidenceSemantically` runs **after** the
+validator (`reasoning-runner.ts:81`) and owns both `checkStateSupported` and §34.2's clarification
+drop. **No artifact in the programme had ever executed it on these two scenarios**, so reading
+`validationIssues: []` as "the deterministic pipeline was content" would have been §42.4's error one
+level further on — a boundary the instrument never reached. Both root causes live in that gap.
+
+### 43.2 `F-WC-09` — the hazard is not mislabelled, it is DELETED `STABLE_INVARIANT`
+
+*"The operators on the swage press have been issued gloves and told to keep their hands clear, and the
+two-hand control on the press has been strapped down with tape."*
+
+| stage, `qwen3-coder:30b`, shipped v6 ladder, two isolated processes | result |
+|---|---|
+| provider | ONE candidate, `conditionState` **`CONTROLLED`** |
+| its rationale, verbatim | *"The two-hand control has been **secured** with tape, which **prevents accidental activation**… This physical control prevents contact with the hazard"* |
+| normalizer | 1 quotation, **0 unbound, 0 ambiguous** |
+| validator | **`VALID`, zero issues** |
+| **semantic binder** | candidate **REJECTED** — `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE` |
+| `boundHazards` | **`[]`** → an emptied `ANALYZED` becomes `INSUFFICIENT_EVIDENCE` |
+
+**The customer receives no hazard at all**, not a hazard wearing a reassuring label. `HC
+(model-asserted) 12/13` (§41.2, §42.3) is a **model-tier** figure: it recorded the miss but could not
+record its severity. The recorded number is not wrong; it is narrower than it reads.
+
+> **The deterministic layer already held the correct reading and by design could not use it.**
+> `control-adequacy.ts` recorded, on that same candidate in that same run:
+> `CONTROL_ABSENT`, `matchedTerm: "strapped down"` — *"states a required control is absent or defeated;
+> an absence written as one word is still an absence."* §36.4 fixed that module as **recording only**
+> (`L3-INV-12`, the §35.2 restraint). The provider inverted the phrase; the deterministic layer read it
+> correctly, filed an advisory, and the hazard was deleted anyway.
+
+**The control discriminates, so the binder is exonerated as the origin.** `F-WC-03` ran in the same
+process on the same prompt and schema, produced the same `CONTROL_ABSENT` advisory ("missing"), and —
+because the model chose **`ACTIVE`** — was kept and delivered. Identical pipeline, opposite outcome,
+decided entirely by the state choice. Without that control the finding would be `D-54`-vacuous.
+
+**Gemini, same full sequence, two isolated processes:** candidate
+`machine_guarding_bypassed_two_hand_control`, **`ACTIVE`**, rationale *"Strapping it down **bypasses**
+the control, making the hazard active. Verbal instructions and gloves are administrative"* — **kept by
+the binder, delivered to the customer, twice.** So the shipped-path delta is real and **larger than
+§42's model-tier `13/13 vs 12/13` implied**: hazard delivered versus hazard destroyed.
+
+**Classification.** Primary boundary **`ASSERTION_STATE_SELECTION`**, provider stage. `MODEL PROPOSED,
+DETERMINISTIC PIPELINE REJECTED` — **not** a candidate omission and **not** a validator rejection.
+**Deterministic**: `CONTROLLED` is the sole state in 13 of the 14 recorded qwen ladder-family runs
+across six artifacts and four sessions, plus 2 of 2 here. **Not order-sensitive**: `V_A_LADDER`
+returns `CONTROLLED` too. §24 disposition **`DEFECT_NONBLOCKING`**. Recorded separately, and it is the
+architectural half: the **`SEMANTIC_BINDER` amplifies** the fault, because a *correct* refusal of an
+unsupported state **deletes the candidate rather than demoting it**.
+
+**Generalization, quantified from existing artifacts with zero inference:** qwen chooses `CONTROLLED`
+on **exactly 1 of 24** shipped-ladder scenarios and it is `F-WC-09`; Gemini on **0 of 24**. The
+mechanism is general; the exposure is one scenario and is a provider property.
+
+### 43.3 `C-CS-05` — the §34.2 gate is defeated by the same move that creates the question `STABLE_INVARIANT`
+
+*"If the level probe on the caustic tank were to fail closed during a transfer, the vent could
+pressurise and lift the manway gasket."* Pole **`CLARIFICATION_MUST_NOT_ASK`**.
+
+Eight isolated processes, four per variant. Variant A is §36.7's already-open one-block move,
+reconstructed by the locked harness's own manipulation and **pinned to the sha256 the frozen L3-2g
+artifact recorded** (`a6dea73f…`); the instrument refuses to run otherwise.
+
+| variant | model `conditionState` | model raised a question | §34.2 gate fired | **final carries a question** |
+|---|---|---|---|---|
+| **B** — shipped v6 `b8cc50fc` ×4 | `HYPOTHETICAL` ×4 | **no ×4** | — | **no ×4** ✓ |
+| **A** — §36.7 `a6dea73f` ×4 | `HYPOTHETICAL` ×3, **`INSUFFICIENT_EVIDENCE` ×1** | **yes ×4** | **yes ×3** | **yes ×1** ✗ |
+
+**Two effects, and conflating them is the error this subsection exists to prevent.** The block move
+makes qwen raise a MUST-NOT-ASK question **deterministically, 4 of 4** — that is the real §36.7 signal
+and it is not noise. Separately, on **byte-identical variant-A prompts in separate processes**, qwen
+returns `INSUFFICIENT_EVIDENCE` once and `HYPOTHETICAL` three times — provider variance at temperature
+0 with a pinned seed, **not** an effect of block order. **The customer-visible failure needs both.**
+
+> #### `A GATE CONDITIONED ON THE CANDIDATE'S STATE IS DEFEATED BY ANY MOVE THAT CHANGES THAT STATE`
+>
+> `clarificationBelongsHere` returns true iff the state is in `L3_UNDECIDED_STATES`. §34.2 made that
+> exemption **deliberately**, so a candidate demoted to `INSUFFICIENT_EVIDENCE` keeps the question it
+> was demoted to carry. §41.3 recorded the **drop** form of the defeat — rev 1 removed the candidate,
+> so the gate never fired. This phase measures the **demote** form — the candidate survives at an
+> undecided state and the gate is inert for the same structural reason. **Two mechanically unrelated
+> perturbations, one structural route.**
+
+**The gate is load-bearing, not lax, and the vacuity control is measured rather than argued.** In the
+three variant-A runs where the state came back `HYPOTHETICAL` the gate **did** fire —
+`SEMANTIC_CLARIFICATION_ON_DECIDED_STATE`, `clarificationsDropped` populated, question suppressed. And
+on the same 24-scenario cohort that exemption is exactly what lets all **5 of 5**
+`CLARIFICATION_REQUIRED` scenarios carry their legitimate question, on both providers.
+
+**`FIELD-LEVEL VARIANCE` and `SEMANTIC DECISION VARIANCE` are both present, at different tiers.** At
+the model tier the difference is deterministic (4/4) and is a field difference; at the shipped decision
+tier a false question reaches a safety professional in **1 of 4**. The hazard decision, false ACTIVE
+and high-consequence axes **never move** — `assertsActive` is false in all eight runs. The delivered
+question is real, not vacuous: *"Is the level probe on the caustic tank currently failing closed during
+a transfer?"*
+
+**Classification.** Primary boundary **`ASSERTION_STATE_SELECTION`**, provider stage — the same
+boundary as `F-WC-09`; composition recorded separately at the **`SEMANTIC_BINDER`**. §24 disposition
+**`DEFECT_NONBLOCKING`**: the shipped configuration is variant **B**, under which the failure does not
+occur in 4 of 4 runs. **Generalization:** `C-CS-05` is the **only** scenario in the cohort producing a
+`HYPOTHETICAL` candidate on **either** provider, so it is the only place on this cohort the composition
+has anything to act on.
+
+### 43.4 What the two cases share, and what that does NOT license `STABLE_INVARIANT`
+
+> #### `BOTH SHIPPED-PATH RESIDUALS ARE THE MODEL'S SINGLE-ENUM conditionState CHOICE, NOT ITS FACTS`
+
+Neither is a candidate omission, an evidence-binding failure, a validator rejection, a resolver fault
+or a scorer artifact. In both, the model proposes the right hazard on cleanly bound evidence and then
+selects the wrong state — and in both, something in the system already held the fact that decides it:
+`control-adequacy.ts`'s `CONTROL_ABSENT` and `V_S_STRUCT`'s `controlReading: DEFEATED` for `F-WC-09`;
+its own other three runs' `HYPOTHETICAL` for `C-CS-05`.
+
+§42.6 recorded that `TERMINAL_A`'s decisive axis is not measurable on the shipped ladder. This is the
+shipped-path evidence that the ladder's single-enum state selection is where qwen loses both cases
+while the separated-fact representation answers both correctly.
+
+> **It is TWO SCENARIOS and it is not a mandate.** §36.7's measured trade stands, §37.11 item 2 stands,
+> and nothing here promotes a representation, a resolver ordering or a provider. `R1_MISSING_FIRST`
+> remains unpromoted and `control-adequacy.ts` remains recording-only.
+
+### 43.5 Instrumentation boundary — stated, because §22 requires the owner before the repair
+
+`backend/scripts/diagnose-l32k-shipped-residual.ts` is **disposable, verification-side** instrumentation.
+It **imports** the shipped schema builder, user-prompt builder, normalizer, validator **and semantic
+binder** and reproduces none of them; it asserts the shipped prompt is restored v6 and that variant A
+reproduces the frozen digest before it will run; it **refuses more than one variant per process**
+(§38.3). It modifies no production file, no shipped prompt, no shipped schema, no provider adapter, no
+historical harness and no historical scorer — all digest-verified identical before and after.
+
+**From EXISTING ARTIFACT:** every model state, candidate count and cross-representation comparison for
+both cases (80 recorded rows); `F-WC-09`'s determinism and order-insensitivity; `V_S_STRUCT`'s
+`DEFEATED` recovery; §36.7's `V_B`/`V_A` movement; the 1-of-24 and 1-of-24 exposure counts.
+**From NEW INSTRUMENTATION:** candidate identity, rationale, evidence binding and clarification text;
+the binder's rejection of `F-WC-09` and the resulting empty `boundHazards`; `controlAdequacy`'s
+recording; §34.2's gate firing 3/4 and inert 1/4; qwen's variant-A state instability; Gemini's
+`F-WC-09` candidate surviving to `ACTIVE`.
+
+### 43.6 Provider-decision implication — DESCRIPTIVE, and no provider is selected
+
+**Class `B` — one or two narrow diagnostic differences, insufficient on their own to justify a provider
+decision — with one qualification class `B` does not by itself convey.**
+
+Supporting `B`: two scenarios of twenty-four; the `C-CS-05` half **does not occur under the shipped
+configuration at all** (0 of 4 under variant B) and is therefore not a live shipped defect; the corpus
+is already-open diagnostic material; and §42.8's confounds are undiminished — Gemini's
+`thinkingLevel: low` still spends ~592 thought tokens per call against qwen's none, and its noise floor
+is instrument-dependent (0/24 locked, 2/24 shipped-runner).
+
+Against reading `B` too comfortably: `F-WC-09`'s shipped consequence is **worse than the recorded
+metric showed** — the total loss of a high-consequence finding on a scenario whose correct reading the
+deterministic layer had already computed. One scenario is a small number; a silently deleted
+high-consequence hazard is not a small failure mode.
+
+**Not `C`** — nothing shows the qwen defect generalizing (`CONTROLLED` once in 24). **Not `D`** — the
+deterministic layer behaved correctly at every stage in every run and the binder's refusal is right on
+its own terms. **Not `A`** on two scenarios, and **not `E`**, because both mechanisms are established.
+
+`D-55` and `D-62` are **not overwritten**; `D-63` and `D-64` are additive.
+
+### 43.7 Regression, authority, egress and preservation
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** — identical to §41.8 and §42.9 suite for suite.
+`test:hazlenz-core` **206 pass / 2 fail**, the two documented §13.1 failures only, **not** reclassified.
+KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4a-default-off` 51/51, `kg4b-shadow` 123/123,
+`kg3f-predicate` 16/16, `kg3f-determinism` 170/170, `evidence-foundation` 35. Backend and frontend
+`tsc --noEmit` both exit 0 with the new verification-side script present.
+
+**Customer authority:** seam, call site `safescope-v2.service.ts:1576` and `backend/src/standards/`
+byte-unmodified vs HEAD; all 19 `reasoning-l3` modules byte-identical before and after; **zero**
+importers of `reasoning-l3` or `state-facts` outside the module; `reasoning-l3` declares only
+`L3_OLLAMA_*`.
+
+**Egress:** two destinations. `127.0.0.1:11434` — **13 local inference calls**, 1 metadata call.
+`generativelanguage.googleapis.com` — **4 hosted inference calls, 0 auth or metadata calls**; the
+credential was checked by variable **presence and length class only**. Scenario IDs transmitted:
+`F-WC-09`, `F-WC-03`, `C-CS-05` locally; `F-WC-09` and `F-WC-03` only to the hosted provider. No
+customer or production data, no sealed-corpus content, **credential in zero artifacts** (all 37 files
+scanned).
+
+**Preservation:** HEAD `1feda622`, 0/0 upstream, 23 tag objects identical, 4 stash entries with no
+stash operation, the locked instrument and companion scorers digest-verified, the shipped prompt
+`b8cc50fc` at `v6` with `unresolvedDecisions` absent and key order intact, the run schema `a522cf5a`,
+every file of the L3-2g / L3-2h-final / L3-2i / L3-2j / L3-2j-closure packages identical, and the
+sealed corpus hash-verified and **not opened**. The worktree gains exactly two entries: this evidence
+directory and the disposable instrument.
+
+### 43.8 Exact next phase — NOT EXECUTED, and it is not an engineering phase
+
+**The programme decision §42.10 handed over, now answerable in one direction: engineering says the
+residual evidence is NOT yet sufficient to choose the sealed-run provider, and the remaining gap is
+NOT a measurement gap.**
+
+Both residuals are root-caused with controls, at both tiers, on both providers. A third diagnostic
+phase on already-open material would add precision to a two-scenario delta and would not change the
+decision. What blocks the sealed run is the **unadjudicated §31.2 / §10 privacy boundary** — whether
+novel customer-shaped observation text may leave `127.0.0.1` at all — together with the preview
+model's mutability (`MUST_REVERIFY`, re-armed) and §29.8's rule that the corpus is spent **once**.
+
+**Recommended order, for the user to accept or reject:** adjudicate §31.2 first; if hosted egress is
+refused the sealed run executes against `qwen3-coder:30b` and `F-WC-09`'s deletion mechanism becomes a
+known, quantified, one-scenario cost carried into acceptance; if hosted egress is permitted, close the
+preview-label problem before spending the corpus. **Do not open the corpus to settle a provider
+question.**
+
+If engineering work is nevertheless wanted first, the narrowest defensible slice is a **bounded
+architectural question, not a patch**: *should a state the binder cannot support be **demoted** rather
+than **deleted**?* §35.1's asymmetry governs, `D-57`'s precedent is that a refused clarification is
+dropped and never fatal, and `F-WC-09` is the first measured case where a **correct** refusal costs an
+entire high-consequence finding. It requires its own root cause and its own hazard-deletion
+measurement, and **must not be answered by editing the binder to make `F-WC-09` pass** (§22).
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+
+---
+
+## 44 — L3-2l SEMANTIC-STATE REJECTION DISPOSITION — DELETE vs DEMOTION (2026-08-24) `DECIDED, NOT IMPLEMENTED`
+
+> ### `L3_2L_COMPLETE — SEMANTIC_STATE_REJECTION_DELETION_RETAINED`
+> ### `CLASS A — THE BINDER CONTINUES TO DELETE, AND THE REASON IS STRUCTURAL`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2l-semantic-state-disposition-2026-08-24/`. **§29–§43 are not rewritten and
+`D-55` through `D-64` stand exactly as recorded.** **ARCHITECTURE DECISION ONLY — nothing was
+implemented and no inference of any kind was run.** Zero production files, zero shipped-prompt bytes,
+zero shipped-schema bytes, zero scorers and zero historical harnesses modified; nothing committed,
+pushed or deployed; no stash operation; no sealed corpus opened; no provider selected; L3-3 not begun.
+
+§43.8 named the slice as a bounded architectural question rather than a patch: *should a state the
+binder cannot support be **demoted** rather than **deleted**?* This section answers it, and it stops
+there.
+
+### 44.1 The answer is a structural property of the check `STABLE_INVARIANT` `DO_NOT_REDISCOVER`
+
+> #### `checkStateSupported` CAN ONLY EVER REFUSE A NON-ACTIVE STATE, SO DELETE-VS-DEMOTE CANNOT MOVE ANY HARD SAFETY GATE
+
+Its `required` map covers exactly `CORRECTED`, `REMOVED_FROM_SERVICE`, `NEGATED`, `HYPOTHETICAL` and
+`CONTROLLED`. **`ACTIVE`, `INSUFFICIENT_EVIDENCE` and `UNKNOWN` are absent from it**, and across
+**1,871 records carrying binder output in 34 already-open artifacts** the code fired **84 times**
+with a proposed state of `ACTIVE` on **zero** of them.
+
+The check therefore **cannot prevent a false `ACTIVE`**, and every candidate it deletes was already
+non-asserting. Demotion moves a candidate from one non-`ACTIVE` state to another. Hazard detection,
+false `ACTIVE` and the high-consequence axis are all computed from `asserts = some candidate at
+ACTIVE`, so on all three **the disposition is a null move**.
+
+> **Demotion does not recover `F-WC-09`.** A demoted candidate sits at `INSUFFICIENT_EVIDENCE`, does
+> not assert, and the high-consequence miss still counts. **The remedy §43.8 asked this phase to
+> evaluate does not fix the case that motivated it** — which is why the phase closes on the
+> architecture rather than on the scenario.
+
+### 44.2 The complete inventory — `F-WC-09` is one of four, not the only case `NEW_EVIDENCE`
+
+Every recorded `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE` rejection in the open L3 corpus: **84
+occurrences, 46 scenarios, 52 distinct (scenario, proposed-state) pairs**. 83 of 84 carried the code
+alone. Refused states: `CORRECTED` 38, `CONTROLLED` 35, `REMOVED_FROM_SERVICE` 6, `NEGATED` 1,
+**`ACTIVE` 0**.
+
+| class | pairs |
+|---|---|
+| **`NEGATIVE_CONTROL`** — `expect.hazardEstablished === false` | **39** |
+| **`REAL_HAZARD`** — `expect.hazardEstablished === true` | **8** |
+| ablation rows with no ground truth | 5 |
+
+The eight real-hazard rows are `C-FLD-048` (`NEGATED`, not high-consequence) and four
+high-consequence identities: `E-FLD-147`, `X-WC-02` (with three repeats), `F-WC-03` and `F-WC-09` —
+every one of them a `CONTROLLED` claim whose truth is `ACTIVE`.
+
+**The 39 negative controls are what deletion is holding back, and on them the model is right and the
+binder is wrong on its own terms.** `D02` — *"the main disconnect was **locked out with each
+worker's personal lock**, and voltage was verified absent"* — is a textbook lockout the model
+labelled `CONTROLLED` and the binder refused because that phrasing is not in its admission
+vocabulary. `B14`, `H-OF7` and `DEV-28` are the same shape. Deletion still yields the expected
+customer outcome, because a controlled hazard and a deleted hazard are **both non-asserting**.
+
+> **This is a `D-54` agreement — the right outcome reached by a reason unrelated to the scenario's
+> semantics — and it is recorded because it is precisely what a preservation rule would convert from
+> harmless into harmful.**
+
+### 44.3 The authority line, read off the demotion the architecture already allows `STABLE_INVARIANT`
+
+> #### `A REFUSAL MAY DEMOTE TO AN UNDECIDED STATE ONLY WHERE THE REFUSAL ITSELF ESTABLISHED THAT THE DECISION IS OPEN`
+
+**§33.4's impression gate qualifies.** `checkSubjectiveImpression` establishes positively that *no
+predication in the cited evidence asserts a condition of the thing observed* — nothing was asserted —
+and raises `SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED` in the same breath. Demoting asserts
+**nothing the check did not prove**, and the clarification it carries is owed by that same finding.
+
+**`checkStateSupported` does not qualify.** It establishes only that the marker vocabulary for the
+claimed state does not appear, asserted, in the cited span. It makes no finding about whether
+anything was asserted and raises no clarification expectation. Demoting there would assert *"the
+decision was not made"* — a proposition the check never established and which is **false on 39 of the
+52 measured rows**. That is deterministic **semantic inference**, not deterministic **validation**,
+and it is a conclusion the provider never proposed (`L3-INV-08`).
+
+| | disposition | verdict |
+|---|---|---|
+| **A** | **DELETE** | **PERMITTED** — pure refusal, asserts nothing |
+| **B** | DEMOTE TO UNDECIDED | **NOT PERMITTED** under this check — `L3-INV-08` |
+| **C** | RE-DERIVE A DECIDED STATE (`CONTROLLED`→`ACTIVE`) | **FORBIDDEN TWICE** — invents a conclusion (`L3-INV-08`) and manufactures `ACTIVE` (`L3-INV-04`) |
+| **D** | PRESERVE CANDIDATE + REJECT STATE | **COLLAPSES INTO B** — `L3_UNDECIDED_STATES` is the contract's only "unresolved", and §34.2 fixes the other six as the decision |
+
+`controlAdequacy` separates the poles where it speaks (6 real-hazard rows against 1 negative control)
+and is **refused on three independent grounds**: it is silent on **33 of 52** rows so cannot carry a
+general rule; using it to decide would give a deliberately advisory module decision authority, which
+`L3-INV-12`, §35.2, §36.4 and §43.4 each fix in place; and per §44.1 it would recover **zero**
+high-consequence misses anyway.
+
+### 44.4 The measured counterfactual — B and D are strictly dominated `MEASURED`
+
+Computed over all 52 pairs with the shipped scorer's own semantics (`score-l32f-reasoning.ts`).
+
+| | **A DELETE** `SHIPPED` | **B DEMOTE** | **C RE-DERIVE ACTIVE** | **D PRESERVE+REJECT** |
+|---|---|---|---|---|
+| high-consequence recovered | 0 | **0** | 7 | **0** |
+| high-consequence still missed | 7 | **7** | 0 | **7** |
+| **false `ACTIVE` introduced** | 0 | 0 | **39** | 0 |
+| negative-control candidates preserved | 0 | **39** | 39 | **39** |
+| **unnecessary clarifications introduced** | 0 | **31** | 0 | **31** |
+
+**B and D move the high-consequence axis by zero and pay 39 preserved negative-control candidates and
+up to 31 unnecessary clarifications for it** — against an axis held at **100% precision** since L3-2d
+and identified by §36.7 as the binding trade. **C** closes the high-consequence axis and destroys the
+false-`ACTIVE` gate on the same rows.
+
+> **The trade is not "one deleted hazard against some precision noise". It is NO GATE MOVEMENT AT ALL
+> against a measured 31-scenario precision loss.**
+
+### 44.5 What deletion costs, not minimised
+
+Deletion is **retained, not exonerated**. On the four high-consequence identities the customer
+receives **no hazard record at all** rather than a candidate with its evidence and an open question —
+§43.2's finding, and a real loss no shipped-scorer axis captures, because both outcomes are
+non-asserting.
+
+**It is not repairable at the binder.** It originates where `D-63` placed it, in the provider's
+single-enum `conditionState` choice, and the binder cannot correct a wrong decided state without
+making a decided claim of its own. Preserving the candidate delivers a question, not the hazard — on
+the 4 rows that deserve one and on 31 that do not.
+
+### 44.6 Regression, authority, egress and preservation
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** — identical suite for suite to §43.7.
+`test:hazlenz-core` **28 of 30 suites**, the two documented §13.1 failures only and **not
+reclassified**. KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4a-default-off` 51/51,
+`kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `kg3f-determinism` 170/170, `evidence-foundation` 35.
+Backend and frontend `tsc --noEmit` both exit 0.
+
+**Customer authority is unchanged by construction — no production file was modified.** All 19
+`reasoning-l3` modules byte-identical to L3-2k's digests, shipped prompt `b8cc50fc` at `v6`, run
+schema `a522cf5a`, HEAD `1feda622` at 0/0, 23 tag objects, 4 stash entries untouched, sealed corpus
+hash-verified and **not opened**. The worktree gains exactly one entry: the evidence directory.
+
+**Egress: none.** Zero local inference calls, zero hosted calls, zero metadata or auth calls, zero
+scenario identifiers transmitted, no credential read.
+
+### 44.7 Exact next phase — NOT EXECUTED, and it is still not an engineering phase
+
+**§43.8's handover is unchanged, with one engineering question now closed rather than open.** The
+binder's deletion behaviour is settled and needs no further phase; no additional diagnostic phase on
+already-open material is justified, because this one exhausted the question on the whole open corpus
+and reached a structural answer.
+
+What blocks the sealed run remains the **unadjudicated §31.2 / §10 privacy boundary**, the preview
+model's mutability (`MUST_REVERIFY`), and §29.8's rule that the corpus is spent once. **Recommended
+order:** adjudicate §31.2 first; if hosted egress is refused the sealed run executes against
+`qwen3-coder:30b` and `F-WC-09`'s deletion is carried into acceptance as a known, quantified cost —
+now with this phase's evidence that it is **not repairable downstream**; if hosted egress is
+permitted, close the preview-label problem before spending the corpus. **Do not open the corpus to
+settle a provider question.**
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+
+---
+
+## 45 — L3-2m HOSTED-INFERENCE POLICY + FINAL ACCEPTANCE READINESS (2026-08-24) `DECIDED, NOT IMPLEMENTED`
+
+> ### `HOSTED_INFERENCE_AUTHORIZED_IN_PRINCIPLE — §31.2 / §10 PRIVACY BOUNDARY ADJUDICATED`
+> ### `L3_FINAL_ACCEPTANCE_BLOCKED — STABLE_PROVIDER_MODEL_IDENTITY_REQUIRED`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2m-hosted-inference-policy-2026-08-24/`. **§29–§44 are not rewritten and
+`D-55` through `D-65` stand exactly as recorded.** **POLICY AND READINESS DECISION ONLY.** Zero
+production files, prompt bytes, schema bytes, binder semantics, scorers or harnesses modified; **zero
+inference calls**, one metadata request; nothing committed, pushed or deployed; no stash operation;
+no sealed corpus opened; no provider selected; L3-3 not begun; `L3-2l` not reopened.
+
+### 45.1 The privacy boundary is adjudicated — and it was not the only prerequisite
+
+**Safety InSite authorizes a hosted AI inference provider as an INTERNAL HazLenz reasoning
+component**, subject to privacy, security, data-handling, contractual and production controls. §42.10,
+§43.8 and §44.7 each handed back *"the unadjudicated §31.2 / §10 privacy boundary"* as the binding
+gap. **It is now adjudicated in principle and is no longer a blocker in itself.**
+
+The authorization does **not** select a provider, does **not** make the model customer-authoritative
+— HazLenz remains the customer-facing system and the model an internal dependency — does **not**
+relax `L3-INV-01`…`L3-INV-12`, the validator, the binder, evidence binding or regulatory governance,
+and does **not** authorize the single-use sealed run, which §29.8 keeps separate.
+
+> **Clearing the privacy gate exposed two prerequisites underneath it that no prior phase had cause
+> to test.** The acceptance run remains blocked, for a different and newly measured reason.
+
+### 45.2 There is no stable Gemini Pro at the measured tier `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+Measured, not asserted from memory, as `PROVIDER_REQUIREMENTS.md` requires: `GET /v1beta/models`,
+one request, credential header only, **zero content** — **50 models, 37 supporting `generateContent`**.
+Full catalogue at `provider/GEMINI_MODEL_CATALOGUE.json`.
+
+> #### `EXACTLY THREE MODELS IN THE CATALOGUE ASSERT STABILITY IN THEIR OWN DESCRIPTION, AND ALL THREE ARE THE 2.5 GENERATION`
+
+`gemini-2.5-pro` @ `2.5` (*"Stable release (June 17th, 2025)"*), `gemini-2.5-flash` @ `001`,
+`gemini-2.5-flash-lite` @ `001`.
+
+**Every 3.x Pro text model is a preview** — `gemini-3.1-pro-preview` and
+`gemini-3.1-pro-preview-customtools`, both @ `3.1-pro-preview-01-2026`. The stable 3.x models are
+**Flash tier only** (`gemini-3.5/3.6/3.7-flash`, `gemini-3.1-flash-lite`) and **none asserts
+stability** — each carries only a dated version string. The rolling aliases `gemini-pro-latest`,
+`gemini-flash-latest`, `gemini-flash-lite-latest` are the worst option for `P-07`: silently updated
+by definition.
+
+**The dilemma has no third branch.** `P-07` requires an addressable, non-silently-updated model id
+*"because a silent model change would invalidate a passed gate"*, and §29.8 spends the corpus once:
+
+| branch | consequence |
+|---|---|
+| the sealed run on **`gemini-3.1-pro-preview`** — the only model carrying measured HazLenz evidence (`D-62`) | **fails `P-07`.** No stability guarantee, label is not a content digest (§42.8 item 5, `MUST_REVERIFY` re-armed), dated **01-2026** against a catalogue now at 3.7. The result would be neither defensible nor reproducible, and the corpus is spent |
+| the sealed run on a **stable** model | **zero measured HazLenz evidence exists for any of them.** `D-62` is a `gemini-3.1-pro-preview` fact end to end. A single-use asset spent on an unmeasured model is a blind run |
+
+### 45.3 Google was never scored against `P-01`…`P-14` `DO_NOT_REDISCOVER`
+
+`PROVIDER_SELECTION.md` scored exactly two candidates with source URLs and retrieval dates —
+**Anthropic Claude** and the **local Ollama** model that was selected — and records `GEMINI_API_KEY`
+as *unset* at the time. **Google appears nowhere in it.** It entered at §39 solely as an
+architecture-selection comparator because a credential became available, which is precisely what
+`D-55` fenced: *"a hosted preview model measured on 24 diagnostic scenarios is architecture-selection
+evidence, never a production recommendation."*
+
+> **Step 1 of the selection procedure has never been executed for Google, and step 2 — run the
+> DEVELOPMENT cohort — has never been executed for ANY hosted candidate.** §31.1 recorded that step 2
+> *could not* run for want of a credential. One is now resolvable. The step is outstanding and
+> already specified; it is **not** a new diagnostic phase.
+
+### 45.4 A ceiling no action removes `STABLE_INVARIANT`
+
+> #### `NO GEMINI MODEL OF ANY TIER IS PINNABLE BY CONTENT DIGEST`
+
+`qwen3-coder:30b` is pinned at `06c1097efce0…`. Google publishes no weight hash, so the strongest
+recordable hosted identity is **`name` + `version` + retrieval date**. That is materially weaker and
+it is **permanent**: a hosted acceptance result will always carry the residual risk that the weights
+behind a stable label moved. This generalises §42.8 item 5 from *"a preview label is not a digest"* to
+*"no hosted label is"*. The user must either accept that risk explicitly and record it, or execute
+the acceptance run locally where the digest guarantee holds.
+
+### 45.5 What a hosted provider actually receives, and the controls still owed
+
+`§31.2`'s exclusion is **structural at the field level**, and a second **pattern-based** redactor runs
+before the text becomes canonical. Its seven rules, read from `reasoning-input-builder.ts`: `email` ·
+`phone` · `ssn` · `street_address` · `mine_id` · `employee_id` · `url`.
+
+> **A pattern redactor cannot catch a personal name, an informal site reference or narrative
+> identifying detail.** That is not a defect — the module documents itself as a second layer for
+> *identifiers an inspector typed into the text* — but it is what changes meaning once the
+> destination stops being `127.0.0.1`. **What a hosted provider receives is inspector-authored
+> narrative prose.**
+
+| control | state |
+|---|---|
+| `P-05` zero training on submitted data, contractually | **UNEVIDENCED for Google.** No artifact records any data-handling term for this credential; the endpoint is the developer API surface with a bare `GEMINI_API_KEY`, not an enterprise agreement |
+| `P-06` configurable/short retention, stated window | **UNEVIDENCED for Google**, same reason |
+| name-level redaction, or explicit acceptance of narrative PII egress | **NOT IMPLEMENTED, NOT DECIDED** |
+| production credential management, rotation, least privilege | **NOT IMPLEMENTED** |
+| `P-11` egress telemetry and a hosted-dependency error taxonomy | **NOT IMPLEMENTED** |
+
+**`P-05` binds the acceptance run, not only production:** if the provider trains on submitted data,
+transmitting the single-use sealed corpus **contaminates it permanently**, and every future evaluation
+of that provider against it is tainted.
+
+### 45.6 There is no production hosted path at all `DO_NOT_REDISCOVER`
+
+Verified from source: `reasoning-l3` contains exactly three providers — the interface,
+`ollama-reasoning-provider.ts` and `unavailable-reasoning-provider.ts`; it declares only
+`L3_OLLAMA_ENDPOINT`, `L3_OLLAMA_MODEL`, `L3_OLLAMA_TIMEOUT_MS`; `grep` over all of `backend/src` for
+`GEMINI` · `generativelanguage` · `googleapis` · `anthropic` · `openai` returns **nothing**; and
+`backend/package.json` carries **zero** hosted-provider SDK dependencies.
+
+Every Gemini measurement in §39–§43 came through the **verification-only** `gemini-ollama-shim.js`,
+outside `backend/src` entirely — which is why §42.9 could state that no hosted credential became
+required for customer execution *and none can*.
+
+> **HazLenz cannot use hosted inference in production today, because the code to do so does not
+> exist. Authorizing the policy does not create the adapter.**
+
+### 45.7 Regression, authority, egress and preservation
+
+No code changed, so no suite could move; the L3-2l regression set stands (**814 L3 assertions / 0
+failed**, `hazlenz-core` 28 of 30 suites — the two documented §13.1 failures only, KG contracts
+unchanged, both `tsc` clean).
+
+**Customer authority** is unchanged by construction — no production file was modified, and §45.6
+shows no hosted path exists to change it.
+
+**Egress:** one destination, `generativelanguage.googleapis.com`, **1 HTTP request** —
+`GET /v1beta/models`, credential in the `x-goog-api-key` header and nothing else. **0 inference calls,
+0 local calls.** No scenario text, no corpus content, no customer or production data. The credential
+was never printed, logged, hashed or persisted and **appears in zero artifacts**, verified by scanning
+the written catalogue for the literal value. **`GEMINI_MODEL` — exported by the operator shell as
+`gemini-3.1-flash-lite-preview`, not an authorized model — was NOT used and NOT substituted.**
+
+**Preservation:** HEAD `1feda622`, 0/0 upstream, 23 tag objects, 4 stash entries with no stash
+operation, all 19 `reasoning-l3` modules byte-identical, shipped prompt `b8cc50fc` at `v6`, run schema
+`a522cf5a`, and the sealed corpus hash-verified and **not opened**. The worktree gains exactly one
+entry: this evidence directory.
+
+### 45.8 Exact next action — NOT EXECUTED, and it is provider qualification, not engineering
+
+`PROVIDER_REQUIREMENTS.md`'s own selection procedure, steps 1–3, never executed for a hosted candidate:
+
+1. **Score Google against `P-01`…`P-14` from current official documentation**, source URL and
+   retrieval date for every claim — `P-05` and `P-06` first, since they gate everything else. Score
+   **Anthropic Claude** the same way; `PROVIDER_SELECTION.md` already has it as the documented
+   strongest hosted candidate.
+2. **Qualify the chosen stable model on the DEVELOPMENT cohort** — already-open material, **never the
+   sealed corpus** — recording `name` + `version` + retrieval date. Candidates: `gemini-2.5-pro` (the
+   only stable Pro) and `gemini-3.7-flash` @ `3.7-flash-08-2026` (the newest dated stable 3.x).
+3. **Record the decision and the pinned model id here**, with an explicit acceptance of §45.4's
+   digest ceiling.
+
+**This measures the provider, not HazLenz.** It changes no reasoning behaviour, prompt, binder or
+customer authority. **No further L3 engineering is justified** — `L3-2l` closed the last open
+engineering question and nothing found here is an architecture defect.
+
+> **Do not open the sealed corpus to qualify a provider.** §29.8 spends it once, and `D-55`'s rule
+> that diagnostic-cohort evidence is never a production recommendation applies to a stable model
+> exactly as it applied to the preview.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24.
+
+
+---
+
+## 46 — L3-2n PROVIDER QUALIFICATION FOR FINAL ACCEPTANCE (2026-08-24) `EXECUTED, NO IMPLEMENTATION CHANGE`
+
+> ### `FINAL_ACCEPTANCE_PROVIDER_NOT_QUALIFIED — NO_CURRENT_STABLE_HOSTED_MODEL_MEETS_REQUIREMENTS`
+> ### `P-05 / P-06 ARE SATISFIABLE — HOSTED DATA HANDLING IS NOT THE BLOCKER`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2n-provider-qualification-2026-08-24/`. **§29–§45 are not rewritten and
+`D-55` through `D-67` stand exactly as recorded.** **QUALIFICATION ONLY — nothing implemented.** Zero
+production files, prompt bytes, schema bytes, binder semantics, scorers or harnesses modified;
+nothing committed, pushed or deployed; no stash operation; **no sealed corpus opened**; L3-3 not
+begun; `L3-2l` not reopened; `R1_MISSING_FIRST` not promoted.
+
+§45.8 named the action: execute `PROVIDER_REQUIREMENTS.md`'s never-run selection steps. This is that.
+**All measurement used already-open diagnostic material** — the same 24-scenario shipped cohort
+`D-62` was measured on, on the same instrument at schema `a522cf5a…` and prompt `b8cc50fc…`, with the
+L3-2h transport shim byte-identical at `0ba265bb…` and **§38.3 process isolation throughout**.
+
+### 46.1 The data-handling gates are SATISFIABLE `NEW_EVIDENCE`
+
+Every assertion carries a source URL and a 2026-08-24 retrieval date in
+`provider/OFFICIAL_DOCUMENTATION.md`; none is written from memory.
+
+| gate | finding |
+|---|---|
+| **`P-05`** | **PASS on the PAID tier** — *"Google doesn't use your prompts…or responses to improve our products."* **FAIL on the free tier**, where content *"improve[s] Google products"* and *"human reviewers may read, annotate, and process your API input and output."* The gate is **tier-conditional**, so a billing-enabled project is a precondition, not a preference |
+| **`P-06`** | **PASS** — paid-tier abuse-monitoring retention is a **stated 55 days**, held separately and not used to train any model beyond policy enforcement; and **Zero Data Retention is available on approved request** for paid projects, clearing *"all user content … and identifiable metadata … prior to logging."* HazLenz uses **none** of the ZDR-incompatible features (Search/Maps grounding, Interactions API, File API, explicit caching) |
+
+> **This closes the question §42.10, §43.8 and §44.7 each deferred and `D-66` adjudicated in
+> principle. Hosted data handling is not the blocker.** What blocks the acceptance run is elsewhere.
+
+### 46.2 The only stable Pro is NOT CALLABLE `DO_NOT_REDISCOVER`
+
+```
+POST /v1beta/models/gemini-2.5-pro:generateContent   ->   HTTP 404 NOT_FOUND
+"This model models/gemini-2.5-pro is no longer available to new users.
+ Please update your code to use models/gemini-3.1-pro-preview ..."
+```
+
+All 48 cohort calls failed identically; a `gemini-3.7-flash` control in the same probe returned
+**HTTP 200**, so credential and method are sound. `gemini-2.5-pro` is still returned by `ListModels`
+and still documented as *"Stable release (June 17th, 2025)"*.
+
+> #### `LISTMODELS PRESENCE IS NOT CALLABILITY, AND A DOCUMENTED "STABLE" LABEL IS NOT AVAILABILITY`
+>
+> Both must be probed. This is `D-67` in operational form and it is **stronger** than the
+> documentation reading that produced it: at the Pro tier there is currently **no stable option at
+> all** for this account, and Google's own error text directs a new account at a **preview** model.
+
+### 46.3 The stable Flash models fail `P-02`, on one general mechanism `MEASURED`
+
+`*` = recorded baseline, re-read from its frozen artifact, **not re-run**.
+
+| model | MODEL tier | VALIDATED tier | false ACTIVE | clarification cand · scen · precision | validator rejections |
+|---|---|---|---|---|---|
+| `gemini-3.7-flash` A / B | **13/13** | **7/13 · 8/13** | 0/11 | 5/5 · 5/5 · 100% | **7 · 7** |
+| `gemini-3.6-flash` A / B | **13/13** | 10/13 · 10/13 | 0/11 | 5/5 · 5/5 · 100% | 4 · 5 |
+| `gemini-3.1-pro-preview` `*` | 13/13 | **13/13** | 0/11 | 5/5 · 5/5 · 100% | 1 |
+| `qwen3-coder:30b` `*` | 12/13 | 11/13 | 0/11 | 5/5 · 5/5 · 100% | 1 |
+
+**Every model ties at ceiling on false ACTIVE and on both clarification denominators**, exactly as
+`D-62` found; the separation is entirely at the validator. *(Per `D-58` these two tiers are never one
+number: the `qwen` figures here are `validatedAssertsActive`, computed identically for every row, and
+are **not** §41.2's `HC (model-asserted) 12/13`.)*
+
+**All 7 rejections on 3.7-flash and all 4–5 on 3.6-flash are `UNGROUNDED_CORRECTIVE_ACTION`** — the
+validator requires `correctiveActionIntent.groundedInEvidence` to reference spans among the
+candidate's **own** evidence, and the stable Flash models routinely ground a corrective action in a
+span they did not also cite. Schema-contract validity: **71%** and **83%** against `P-02`'s **≥99%**
+bar, with **6 of 7** and 3 of 4–5 rejections reproducing across two isolated processes — so the
+permitted single retry **cannot be assumed to rescue them**.
+
+> **In every rejected case the model had the hazard RIGHT** — MODEL tier is 13/13 for both — and the
+> corrective-action field took a correct proposal down with it, costing 5 or 6 high-consequence
+> findings at the validated tier.
+
+**The validator is correct and was not touched.** The rule is `L3-INV-02` applied to corrective
+action; §29.6 specifies rejection on contract violation; and **two other providers satisfy it at 23
+of 24**, so the contract is demonstrably satisfiable. Under §22 and §24 this is **provider
+non-conformance with a correct, pre-existing contract — not a HazLenz defect, and not a reason to
+weaken the validator.** If a future phase ever revisits that rule it must do so on its own root cause,
+**never to qualify a provider**.
+
+### 46.4 `F-WC-09` and `C-CS-05` do NOT reproduce on either stable Flash model `NEW_EVIDENCE`
+
+Through the **full** shipped path including `bindEvidenceSemantically`:
+
+| scenario | `gemini-3.7-flash` | `gemini-3.6-flash` | `qwen` `*` |
+|---|---|---|---|
+| **`F-WC-09`** | `ACTIVE` → binder keeps → **delivered** | `ACTIVE` → **delivered** | `CONTROLLED` → binder deletes → **no hazard at all** |
+| **`F-WC-03`** | `ACTIVE` → delivered | `ACTIVE` → delivered | `ACTIVE` → delivered |
+| **`C-CS-05`** | `HYPOTHETICAL`, no question ✓ | `HYPOTHETICAL`, no question ✓ | ✓ |
+
+Both read *"the two-hand control has been strapped down with tape"* as defeating the control —
+3.7-flash's corrective action says *"removing tape from the two-hand control"*. **`D-63`'s residual is
+a `qwen` property and reproduces on no Gemini model tested**; `D-64`'s `C-CS-05` is correct on shipped
+variant B for both, as `D-64` predicted.
+
+### 46.5 Reproducibility, transport, cost and regression
+
+Noise floor across two isolated processes: **2 of 24** rows differ on 3.7-flash, **3 of 24** on
+3.6-flash — above the 0/24–2/24 band `D-62` recorded, and carried as a `P-08` qualification.
+
+Transport over 153 harness requests: **102 × 200**, 51 × 404 (the whole `gemini-2.5-pro` run), **0
+truncation** (`STOP` throughout), 0 harness errors on callable models, 0 rate-limit errors. Tokens
+over 102 successful calls: prompt 246,770, output 45,029, thought 16,455. **Total qualification cost
+≈ $0.42**, about **$0.004 per analysis** — `P-14` settled comfortably.
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** — identical suite for suite to §43.7 and
+§44.6. KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4a-default-off` 51/51,
+`kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `evidence-foundation` 35. Backend `tsc --noEmit`
+exits 0.
+
+**Customer authority** unchanged by construction — no production file modified, and §45.6's finding
+stands that no hosted adapter exists in `backend/src` to change it.
+
+**Egress:** one destination, `generativelanguage.googleapis.com` — 153 harness requests, 1
+`ListModels` metadata call, 3 isolation probes carrying `"Reply ok"` only. Content transmitted: the
+**24 already-open diagnostic scenarios** plus `F-WC-09` / `F-WC-03` / `C-CS-05`, all previously
+transmitted under §42–§43. **No customer or production data, no sealed-corpus bytes**, credential in
+**zero** of the 31 artifacts. **`GEMINI_MODEL` was NOT substituted** — every run set
+`GEMINI_MODEL_ID` explicitly and every artifact records the model it used.
+
+### 46.6 Exact next action — NOT EXECUTED, and none of it is a HazLenz engineering phase
+
+**Minimum blocker: no currently callable STABLE Gemini model reaches `P-02`'s ≥99% schema-contract
+validity, and the Pro tier has no callable stable model at all.**
+
+1. **Wait for, or obtain access to, a stable Gemini 3.x Pro.** `gemini-3.1-pro-preview` already meets
+   every other requirement at 23/24; GA would qualify it immediately. **Re-probe `ListModels` AND
+   callability** before relying on any label (§46.2).
+2. **Qualify a second vendor.** `PROVIDER_SELECTION.md` already documents **Anthropic Claude** as the
+   strongest hosted candidate — constrained-decoding structured output, an addressable pinned
+   version, zero-data-retention agreements available — and it has **never been executed** because no
+   credential was resolvable (§31.1). One credential makes it a 51-call run on this same cohort.
+3. **Run acceptance locally.** `qwen3-coder:30b` @ `06c1097efce0…` is the only candidate pinnable by
+   **content digest**, satisfies `P-05`/`P-06` absolutely at `127.0.0.1`, and scores 11/13 validated
+   with the clarification axes at ceiling — carrying `F-WC-09`'s deletion as `D-63`'s known,
+   quantified, one-scenario cost.
+
+**Before any hosted production use, additionally:** confirm the project is **billing-enabled** (the
+`P-05` gate is tier-conditional), request **ZDR**, build a hosted adapter behind the existing
+`HazLenzReasoningProvider` interface (**none exists**, §45.6), decide name-level redaction or
+explicitly accept narrative PII egress (§45.5), and implement `P-11` egress telemetry.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+
+---
+
+## 47 — L3-2o ANTHROPIC PROVIDER QUALIFICATION (2026-08-24) `EXECUTED, NO IMPLEMENTATION CHANGE`
+
+> ### `FINAL_ACCEPTANCE_PROVIDER_NOT_QUALIFIED — ANTHROPIC_FAILS_EXISTING_REQUIREMENTS`
+> ### `P-05 / P-06 SATISFIED — HOSTED DATA HANDLING IS NOT THE BLOCKER`
+> ### `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`
+> ### `SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`
+
+Baseline HEAD `1feda622`, unchanged. Evidence:
+`verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/`. **§29–§46 are not
+rewritten and `D-55` through `D-69` stand exactly as recorded.** **QUALIFICATION ONLY — nothing
+implemented.** Zero production files, prompt bytes, schema bytes, binder semantics, scorers or
+harnesses modified; nothing committed, pushed or deployed; no stash operation; **no sealed corpus
+opened**; L3-3 not begun; `L3-2l` not reopened; `P-02` not weakened; Claude Code authentication
+unchanged.
+
+§46.6 route 2 named this run — *"One credential makes it a 51-call run on this same cohort"*. This is
+that run, and it took **exactly 51 calls**. All measurement used **already-open diagnostic material**:
+the same 24-scenario shipped cohort `D-62` and `L3-2n` were measured on, on the same instrument at
+schema `a522cf5a…` and prompt `b8cc50fc…` (`v6`, byte-identical), cohort 24/24 with **0
+disagreements**, and **§38.3 process isolation throughout**.
+
+Transport is a new verification-only shim, `adapter/anthropic-ollama-shim.js` @ `76d3e039…`,
+structurally mirroring the L3-2h shim `0ba265bb…` (unchanged, and not used here). It speaks the
+Ollama wire protocol the harness already emits, so the locked harnesses ran **byte-unmodified**
+against a third provider. It lives outside `backend/src`, is not behind `HazLenzReasoningProvider`,
+and **creates no production hosted path** — §45.6 stands.
+
+### 47.1 Anthropic clears the requirements that disqualified Gemini `NEW_EVIDENCE`
+
+| gate | finding |
+|---|---|
+| **`P-05`** | **PASS, and NOT tier-conditional.** Commercial Terms §B: *"Anthropic may not train models on Customer Content from Services."* Contrast §46.1, where the gate turned on a billing tier. *Precondition, unverifiable from the API: the credential's organization must be under those terms.* |
+| **`P-06`** | **PASS** — stated **30-day** deletion by default; **ZDR available on request**, the Messages API explicitly ZDR-eligible, and `claude-sonnet-5` **not** among the models that require 30-day retention. Residual: flagged content may be held **up to 2 years**. |
+| **`P-07`** | **PASS — the strongest hosted result recorded.** *"Every Claude model ID is a pinned snapshot … a dateless format that is also a pinned snapshot, **not an evergreen pointer**."* Lifecycle **Active**, retirement *"not sooner than June 30, 2027"*, ≥60 days' notice. **This is the exact requirement `gemini-3.1-pro-preview` failed (`D-67`), so `D-67`'s blocker is not a permanent property of hosted inference.** §45.4's separate ceiling stands: still not a content digest. |
+| **`P-12`** | **PASS, measured.** `GET /v1/models/claude-sonnet-5` **200**, `POST /v1/messages` **200**. Catalogue presence and callability agreed — the §46.2 trap did not recur, but it was **probed**, not assumed. |
+
+### 47.2 And it produces the best reasoning result on record — then fails `P-02` `MEASURED`
+
+`*` = recorded baseline, re-read from its frozen artifact, **not re-run**.
+
+| model | MODEL tier | VALIDATED tier | false ACTIVE | clar cand · scen | precision | rejections |
+|---|---|---|---|---|---|---|
+| **`claude-sonnet-5` A / B** | **13/13 · 13/13** | **13/13 · 13/13** | 0/11 | 5/5 · 5/5 | **5/6 · 5/6** | **1 · 2** |
+| `gemini-3.7-flash` A `*` | 13/13 | 7/13 | 0/11 | 5/5 · 5/5 | 5/5 | 7 |
+| `gemini-3.6-flash` A `*` | 13/13 | 10/13 | 0/11 | 5/5 · 5/5 | 5/5 | 4 |
+| `gemini-3.1-pro-preview` `*` | 13/13 | 13/13 | 0/11 | 5/5 · 5/5 | 5/5 | 1 |
+| `qwen3-coder:30b` `*` | 12/13 | 11/13 | 0/11 | 5/5 · 5/5 | 5/5 | 1 |
+
+**`claude-sonnet-5` is the only STABLE, CALLABLE model to reach 13/13 at the validated tier, and it
+did so twice in isolated processes** — tying the disqualified preview and beating both stable Flash
+models by 3–6 high-consequence findings. *(Per `D-58` the two tiers are never one number; the scorer
+is L3-2n's, reused byte-identically.)*
+
+**Schema-contract validity is 23/24 = 95.8% (A) and 22/24 = 91.7% (B)** against `P-02`'s **≥99%**
+bar. The rejection common to both runs — `F-COR-01`, `UNGROUNDED_CORRECTIVE_ACTION` — **reproduces
+across two isolated processes**, so the permitted single retry cannot be assumed to rescue it.
+
+> **The verdict does not depend on how `P-02` is read.** Strict numeric reading: 95.8% < 99%. L3-2n's
+> applied reading (a non-reproducing rejection is rescued by retry): `F-NC-01` would be rescued,
+> `F-COR-01` would not. **Both give FAIL.** The bar was not moved and HazLenz was not changed.
+
+**The mechanism is §46.3's, not a new one.** `L3-INV-02` applied to corrective action; §29.6 rejects
+on contract violation; two providers satisfy it at 23/24. Under §22/§24 this is **provider
+non-conformance with a correct, pre-existing contract — not a HazLenz defect and not a reason to
+weaken the validator.** One difference is worth recording: **both Anthropic rejections landed on
+`DECIDED_NON_ACTIVE` rows, so no high-consequence finding was lost** — where the same code cost
+`gemini-3.7-flash` 5–6. Same rule, same code, materially different consequence.
+
+### 47.3 `P-08` fails independently, and structurally `NEW_EVIDENCE` `DO_NOT_REDISCOVER`
+
+> #### `ON CLAUDE 4.7 AND LATER THERE IS NO DETERMINISM CONTROL AT ALL`
+
+`temperature`/`top_p`/`top_k` are deprecated and *"Return a 400 error when set to a non-default
+value"*; there is **no `seed` parameter**. The harness's `temperature: 0` and `seed: 20260822` are
+**inexpressible**, not discarded by choice. Measured: **6 of 24 rows differ** across two isolated
+processes (`F-CL-01`, `F-CL-03`, `B08`, `H-AM-05`, `H-NG-02`, `F-NC-01`) — against 0/24–2/24 for
+`D-62`, 2/24 for 3.7-flash and 3/24 for 3.6-flash. **The worst reproducibility measured**, and
+`P-08` exists because *"evaluation must be re-runnable"*. The instability lands in the same
+clarification/uncertainty cohort §38.4 identified, now corroborated at **n = 3 providers**.
+
+### 47.4 Clarification precision discriminates for the first time `NEW_EVIDENCE`
+
+`B08` raises a clarification it should not, **on both runs** — precision **5/6 = 83%** where every
+model in `D-62` and `L3-2n` tied at 5/5. `B08` is `REGRESSION_ACTIVE`: the hazard is still correctly
+ACTIVE and delivered, so nothing is lost at the safety tier, but `L3-INV-06` makes clarification a
+decision-boundary contract and an unnecessary question costs the inspector. **The axis `D-62`
+recorded as non-discriminating now discriminates.**
+
+### 47.5 `F-WC-09` and `C-CS-05` are both CORRECT `NEW_EVIDENCE`
+
+Through the **full** shipped path including `bindEvidenceSemantically`: `F-WC-09` `ACTIVE` → binder
+keeps → **delivered** (`control-adequacy` recorded `CONTROL_ABSENT` on *"strapped down"*); `F-WC-03`
+`ACTIVE` → delivered; `C-CS-05` `HYPOTHETICAL`, no question. **`D-63`'s residual is confirmed a
+`qwen` property on a third provider**, and `D-64`'s `C-CS-05` is correct on shipped variant B as
+`D-64` predicted.
+
+### 47.6 Transport fidelity — deviations measured, and proved benign
+
+Six deviations were forced and all are recorded in the shim header. The three schema strips were each
+established by **submitting the construct to the live API**, not by reading prose: `minItems: 2`
+(400, only 0/1 supported), `maxItems: 0` (400, unsupported) and an empty `enum: []` (400, must be
+non-empty). Each is **independently enforced by `deterministic-safety-validator.ts`** —
+`INVALID_CLARIFICATION_DEPENDENCY`, `UNSUPPORTED_REGULATORY_CANDIDATE_REFERENCE` and
+`INVENTED_REGULATORY_CANDIDATE` (`L3-INV-01`) respectively. The other three are `temperature`, `seed`
+and `num_ctx`, which have no expressible equivalent.
+
+> **The strips were proved harmless, not assumed harmless.** Across all **51 rows** the only validator
+> code observed is `UNGROUNDED_CORRECTIVE_ACTION` (×3); occurrences of every code D1/D2/D3 could have
+> caused are **zero**. The `P-02` failure is attributable to the provider, not the shim.
+
+**`minLength` is accepted at the wire level and `type: ["object","null"]` unions need no rewrite**, so
+the portability cost is *smaller* than `PROVIDER_SELECTION.md` predicted on 2026-08-22. The validator
+was not weakened to accommodate Anthropic.
+
+### 47.7 Transport, cost, regression, authority and egress
+
+**51 requests, 51 × HTTP 200, 0 truncation** (`end_turn` throughout), 0 harness errors, 0 rate-limit
+errors. Tokens: prompt **307,401**, output **81,325**. **Total cost $1.43** at the documented $2/$10
+per MTok — **$0.028 per analysis**, ~7× Gemini's $0.004 and absolutely small. Latency mean **17.4 s**,
+max **79.6 s**, against §31.7's proposed (non-authoritative) p95 ≤ 12 s.
+
+> **Everything was measured at PROVIDER DEFAULTS; nothing was tuned.** `thinking` and
+> `output_config.effort` were omitted, meaning adaptive thinking at the documented default effort
+> `high`. Lower effort levels are supported and **untested**. Tuning them to obtain a pass was not
+> attempted and would not have been legitimate.
+
+**L3 offline: 814 assertions over 10 suites, 0 failed** — identical suite for suite to §43.7, §44.6
+and §46.5. KG contracts unchanged: `kg4a-cutover-contract` 146/146, `kg4a-default-off` 51/51,
+`kg4b-shadow` 123/123, `kg3f-predicate` 16/16, `evidence-foundation` clean. Backend `tsc --noEmit`
+exits 0.
+
+**Customer authority** unchanged by construction — no production file modified, `git diff HEAD --
+backend/src` is 0 lines, and §45.6's finding stands that no hosted adapter exists in `backend/src`.
+
+**Egress:** one destination, `api.anthropic.com` — 51 harness requests, 1 `GET /v1/models` metadata
+call, 2 availability probes carrying `"Reply ok"`, 10 schema-keyword probes carrying `"x"`, and 1
+smoke test on a synthetic observation that is not a cohort scenario. Content transmitted: the **24
+already-open diagnostic scenarios** plus `F-WC-09` / `F-WC-03` / `C-CS-05`, all previously
+transmitted under §42, §43 and §46. **No customer or production data, no sealed-corpus bytes.** The
+credential rode only in the `x-api-key` header and appears in **zero** artifacts (0 hits across 44
+evidence files and 0 repo-wide). **Claude Code's own claude.ai authentication was not changed or
+used as the experiment credential.**
+
+**Preservation:** HEAD `1feda622`, upstream 0/0, 23 tag objects, 4 stash entries with **no stash
+operation**, all 19 `reasoning-l3` modules byte-identical, both locked harness digests unchanged,
+shipped prompt `b8cc50fc` at `v6`, run schema `a522cf5a`. **Sealed corpus hash-verified identical and
+NOT OPENED**: `49aa40fd…`, `a95e5480…`, `6f6897f1…`. The worktree gains exactly one entry: this
+evidence directory.
+
+### 47.8 Exact next action — NOT EXECUTED, and it is a user decision
+
+**Minimum blocker: no hosted provider yet reaches `P-02`'s ≥99% schema-contract validity, and the one
+that comes closest additionally offers no determinism control for `P-08`.**
+
+1. **Re-run Anthropic at a lower `output_config.effort`** — the only *measurement* gap this phase
+   leaves, since everything here was taken at the default `high`. Another 51-call run on the same
+   already-open cohort, ~$1.40, reusing this phase's shim and runner unchanged.
+2. **Accept `P-02` and `P-08` as written and stop qualifying hosted providers.** Five candidates,
+   five different failures. `P-08` may be unobtainable from *any* current hosted model now that
+   sampling controls are being removed — if so, `PROVIDER_REQUIREMENTS.md` itself needs a decision,
+   and **changing a requirement is the user's call, never a response to a provider failing it.**
+3. **Run acceptance locally** on `qwen3-coder:30b` @ `06c1097efce0…` — still the only candidate
+   pinnable by content digest, satisfying `P-05`/`P-06` absolutely and `P-08` at 65/66, scoring 11/13
+   validated, carrying `F-WC-09`'s deletion as `D-63`'s known one-scenario cost.
+
+**Before any hosted production use, additionally:** confirm the organization behind
+`ANTHROPIC_API_KEY` is under the **Commercial Terms** and request **ZDR**; build a hosted adapter
+behind `HazLenzReasoningProvider` (**none exists**, §45.6 — this phase's shim must not become one);
+decide name-level redaction or explicitly accept narrative PII egress (§45.5); implement `P-11`
+egress telemetry; and accept §45.4's digest ceiling explicitly.
+
+**No further HazLenz engineering is justified.** `L3-2l` closed the last open engineering question;
+nothing found here is an architecture defect.
+
+> **`L3-3 must not start until` the high-consequence gate reaches zero on FRESH SEALED evidence with
+> the clarification axis still at 100/100.** Unchanged. **This phase opened no sealed evidence and does
+> not advance that gate.** Family coverage remains complete at 24 of 24, and
+> `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN`.
+
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`
@@ -3326,6 +6946,26 @@ Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`
 | KG-4D | `kg-4d/` | `STATUS.md`, `REPRODUCTION_COMMANDS.md`, `phase3-legacy-invariance.json`, `phase5-shadow-invariance.json`, `phase14-cohort-isolation.json`, `captures/`, `telemetry/kg4d-shadow-events.jsonl`, `browser/` (16 screenshots + results), `browser/harness/kg4d-integrated-shadow-invariance.mjs` |
 
 | KG-4E | `kg-4e/` | `STATUS.md`, `REPRODUCTION_COMMANDS.md`, `contracts/report-input-trace.json`, `contracts/report-volatility.json`, `contracts/case-coverage.json`, `phase3-report-invariance.json`, `control-legacy-vs-legacy.json`, `control-mutation-must-fail.json`, `phase7-failure-shadow-killswitch.json`, `phase7-failure-shadow-resolverfail.json`, `pdfs/` (56 generated PDFs across 7 labels), `pages/` (32 rendered page images), `telemetry/kg4e-shadow-events.jsonl` (24 events) and `telemetry/kg4e-resolverfail-events.jsonl` (24 events), `captures/shadow-report-api-surfaces.json` |
+
+| L3-2f | `verification/hazlenz-l3-2f-predicate-scope-2026-08-23/` | `STATUS.md`, `ROOT_CAUSE.md`, `REPRODUCTION_COMMANDS.md`, `HOLDOUT_FREEZE.txt`, `FINAL_STATE.txt`, `preservation-pre.txt`, `preservation-evidence.txt`, `SECURITY_AND_BOUNDARY.txt`, `contracts/holdout-l32f.frozen.json` (sha256 `47f92dae…`), `rootcause/f1-f4-proof-pre-patch.json` + `-post-patch.json`, `rootcause/f5-f6-ablation-run.json`, `rootcause/f5-confirm-run.json`, `rootcause/stability-run*.json`, `results/holdout-run-1.json` + `-run-2.json` + `holdout-score-1.json`, `results/reproducibility.json`, `results/family-coverage.json`, `results/l3-compare.json`, `results/customer-authority-invariance.json`, `results/dev-run-{1,2,3}.json` (variant A and B, both retained), `results/regression/` |
+
+| L3-2g | `verification/hazlenz-l3-2g-state-separation-2026-08-23/` | `STATUS.md`, `NEXT_ACTION.md`, `WEAK_FIXTURE_DISPOSITION.md`, `REPRODUCTION_COMMANDS.md`, `FINAL_STATE.txt`, `SECURITY_AND_BOUNDARY.txt`, `preservation-pre.txt`, `preservation-evidence.txt`, `rootcause/binder-residual-pre-patch.json` + `-post-patch.json`, `rootcause/ablation-run-1.json` (4 variants x 24 scenarios) + `ablation-run-2.json` (matched-perturbation + noise floor), `results/resolution-ablation.json` (3 resolver orderings over frozen facts), `results/order-sensitivity.json` (noise floor 0/24), `results/fact-coherence.json`, `results/customer-authority-invariance.json`, `results/l32f-rescore-multihazard.json`, `results/regression/`, `evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md` + `source-survey.json` |
+
+| L3-2h | `verification/hazlenz-l3-2h-cross-provider-2026-08-23/` | `STATUS.md`, `NEXT_ACTION.md`, `SECURITY_AND_PRESERVATION.txt`, `FINAL_STATE.txt`, `preservation-pre.txt`, `baseline-head.txt`, `baseline-status.txt`, `baseline-stash.txt`, `baseline-tags.txt`, `contracts/LOCKED_EXPERIMENT.txt` (hashes recorded BEFORE any change), `results/baseline-repro.json` (3 variants x 24, locked experiment unchanged), `results/repeat-isolated.json` (the same-process confound control), `results/baseline-order-sensitivity.json`, `results/baseline-resolution.json`, `results/baseline-fact-coherence.json`, `results/regression/` |
+
+| L3-2h resume | `verification/hazlenz-l3-2h-cross-provider-resume-2026-08-23/` | `STATUS.md`, `CREDENTIAL_GATE.txt` (gate re-test; the HTTP 401 provider rejection that upgrades §38.1's length-class inference to a measurement), `SECURITY_AND_PRESERVATION.txt` (preservation, customer authority, sealed-corpus hashes, egress, and the annotated-tag comparison-method note), `FINAL_STATE.txt`, `baseline-head.txt`, `baseline-status.txt`, `baseline-stash.txt`, `baseline-tags.txt`. **No `results/` — the credential gate failed, so no experiment ran.** |
+
+| L3-2h final | `verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/` | `STATUS.md`, `preservation-evidence.txt`, `adapter/gemini-ollama-shim.js` (the transport-only Ollama-protocol shim) + `adapter/run-l32h.sh` (**three separate harness processes**, §38.3) + `adapter/score-l32h.sh` + `adapter/truerecall.py` (the full-cohort recount behind `D-56`), `results/l32h-gemini-V_S_STRUCT.json` · `-V_S_STRUCT_MOVE1.json` · `-V_S_STRUCT_REPEAT.json` and `results/l32h-gemini-merged.json` (72 rows), `results/gemini-order-sensitivity.json` · `gemini-fact-coherence.json` · `gemini-resolution.json` and `results/qwen-order-sensitivity.json` · `qwen-fact-coherence.json` · `qwen-resolution.json` — **the same byte-unmodified scorers run on both providers**, `transport/transport-V_S_STRUCT*.jsonl` (72 calls with per-call token and latency accounting; the 527 mean thought-token measurement). **No new holdout. No sealed corpus opened. No scorer patched.** |
+
+| L3-2i | `verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/` | `STATUS.md`, `PRESERVATION_AND_EGRESS.txt` (preservation, containment at the documented seam, credential and egress audit), `rootcause/frozen-rescore-qwen.json` + `-gemini.json` (**the corrected scorer over the frozen L3-2h artifacts with ZERO new inference** — `D-56` reproduced at 3/4 candidate-conditioned and 3/5 scenario-level, and **zero** pre-existing keys changed), `results/proof-qwen-V_BASELINE_NO_CARRIER.json` (the BEFORE, carrier absent) + `-V_CARRIER.json` · `-V_CARRIER_MOVE1.json` · `-V_CARRIER_REPEAT.json` (**four separate processes, pids recorded**, §38.3), `results/scenario-score-*.json` (the corrected scenario-level metric over rows the pre-`D-56` filter deleted outright: **0% → 100%**). **No new holdout. No sealed corpus opened. Shipped prompt byte-unchanged.** |
+| L3-2j | `verification/hazlenz-l3-2j-carrier-activation-2026-08-24/` | `STATUS.md`, `INDEX.md`, `NEXT_ACTION.md`, `CREDENTIAL_AND_EGRESS.txt` (**why item (4) was not executed**, presence-only probe, egress count), `results/shipped-qwen-V_PRE_ACTIVATION.json` (**the BEFORE** — HC 12/13, clarification **5/5 on both denominators**, precision 100%), `results/decl1/` + `results/decl2/` (the two declaration revisions, each with its own-process repeat control at a **0-difference** noise floor — HC **9/13** and **10/13**), `results/halves/` (the schema half alone — the attribution control), `results/DENOMINATORS.json` (**`D-58`** both denominators for every variant), `results/reproduction/` (the harness-side declaration reproduces the in-prompt run exactly, and the post-revert baseline reproduces the pre-declaration baseline at **0/168**), `rootcause/locked-under-activation/` (**the locked L3-2h comparison re-derived — `V_B_LADDER` moves on 11 of 24 rows**) and `rootcause/locked-restored-V_B_LADDER.json` (**0 differences after the revert**). **No sealed corpus opened. 0 hosted-provider calls. Shipped prompt and schema end byte-identical to v6.** |
+| L3-2j item (4) | `verification/hazlenz-l3-2j-cross-provider-closure-2026-08-24/` | `STATUS.md`, `INDEX.md`, `NEXT_ACTION.md`, `CREDENTIAL_AND_EGRESS.txt` (**the gate PASSED** — presence-only probe, HTTP 200, authorized-model proof, and the itemised 147-request egress account), `preservation-pre.txt` + `PRESERVATION_POST.txt` (HEAD, 23 tag objects, 4 stashes, the locked instrument, the shipped prompt and schema, all 19 modules, the sealed corpus, and **every file of the frozen L3-2g/h/i/j packages**, before and after), `results/shipped-gemini-V_PRE_ACTIVATION.json` + `-REPEAT.json` (**the Gemini measurement and its own-process floor**), `results/DENOMINATORS.json` (**`D-58` both denominators, both providers, neither renamed**), `results/DENOMINATORS-qwen-restored-v6.json` (the restored-v6 qwen baseline re-scored from frozen artifacts with **ZERO new inference**), `results/locked-gemini-V_B_LADDER.json` · `-V_A_LADDER.json` · `-V_B_LADDER_REPEAT.json` and `results/gemini-order-sensitivity-shipped-ladder.json` (**order sensitivity 0/24 against a same-instrument floor of 0/24**), `results/qwen-l32g-ladder-order-sensitivity-rescored.json` (qwen's **1/24**, re-scored from the frozen L3-2g artifact), `results/compare-shipped-qwen-vs-gemini.json` and `results/compare-locked-V_B_LADDER-qwen-vs-gemini.json` (**11 of 24** and **10 of 24** rows), `rootcause/driftcontrol-*` (**the model-drift control — a preview label is not a digest, and this discharges it**), `transport/*.jsonl` (145 requests, 144 × 200, one retried 503, `STOP` throughout, no truncation), `adapter/` (the L3-2h shim **byte-unmodified**, six variants in **six separate processes**), `regression/` (814 L3 assertions / 0 failed, KG contracts, `hazlenz-core` 206/2, both `tsc` clean). **No new holdout. No sealed corpus opened. No scorer patched. No prompt or schema edit. ZERO qwen inference, ZERO local calls.** |
+| L3-2k | `verification/hazlenz-l3-2k-shipped-residual-rootcause-2026-08-24/` | `STATUS.md`, `INDEX.md`, `NEXT_ACTION.md`, `preservation-pre.txt` + `PRESERVATION_POST.txt`, **`rootcause/CASE_TRACES.json`** (the deliverable — every stage of every run: candidate identity, family, `conditionState`, verbatim rationale, evidence binding, validator state, semantic-binder issues, whether §34.2's gate fired, `clarificationsDropped`, binder rejections and codes, `controlAdequacy`, and the two final decision axes), `instrumentation/l32k-artifact-table.txt` (**the EXISTING-ARTIFACT sweep that came first — 80 recorded rows across L3-2g/2h/2h-final/2i/2j/2j-closure**), `results/qwen/D_WC09_LADDER*.json` (`F-WC-09` **and the `F-WC-03` control**: `CONTROLLED` → `VALID` → **binder REJECTS** → `boundHazards: []`, against the control's `ACTIVE` → kept → delivered), `results/qwen/D_CS05_LADDER_{A,B}*.json` (**eight isolated processes, four per variant** — the question deterministic 4/4, the demotion 1/4, the gate firing 3/4), `results/gemini/D_WC09_LADDER*.json` (**Gemini's candidate survives the binder to `ACTIVE`, twice** — the one provider-side question artifacts could not answer), `transport/*.jsonl` (4 hosted calls, all 200, `STOP`, no retries), `instrumentation/diagnose-l32k-shipped-residual.ts` (**disposable, imports the shipped validator AND semantic binder, pins variant A to the frozen `a6dea73f` digest, refuses >1 variant per process**), `regression/` (814 L3 assertions / 0 failed, KG contracts, `hazlenz-core` 206/2, both `tsc` clean). **DIAGNOSIS ONLY. Nothing repaired. No prompt or schema edit. No scorer or harness patched. No new holdout. No sealed corpus opened.** |
+| L3-2l | `verification/hazlenz-l3-2l-semantic-state-disposition-2026-08-24/` | `STATUS.md` (the architecture decision, its authority argument and the measured counterfactual), **`inventory/DISPOSITION_ANALYSIS.json`** (the deliverable — the four dispositions costed over all 52 distinct (scenario, proposed-state) pairs using the SHIPPED scorer's own `asserts := some candidate at ACTIVE` semantics, plus the structural finding that `ACTIVE` is absent from `checkStateSupported`'s `required` map and has **never** been refused by it), `inventory/semantic-state-rejection-inventory.json` (**the complete `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE` inventory — 84 occurrences, 46 scenarios, 34 artifacts, 1,871 records scanned**, each row carrying scenario, provider, family, proposed state, evidence, binder detail, ground truth, high-consequence flag, clarification expectation and the `controlAdequacy` recorded on the same candidate), `inventory/build-inventory.js` + `inventory/build-disposition-analysis.js` (**read-only, zero inference, zero production import**), `PRESERVATION_AND_EGRESS.txt` (HEAD, 23 tag objects, 4 untouched stashes, all 19 modules, the shipped prompt, the sealed corpus hash-verified and unopened, and a **zero-call** egress account), `regression/` (814 L3 assertions / 0 failed, KG contracts, `hazlenz-core` 28/30 suites — the two §13.1 failures only, both `tsc` clean). **DECISION ONLY. Nothing implemented. ZERO inference of any kind. No production file, prompt, schema, scorer or harness touched. No new holdout. No sealed corpus opened.** |
+| L3-2m | `verification/hazlenz-l3-2m-hosted-inference-policy-2026-08-24/` | `STATUS.md` (the programme decision, the model-identity dilemma, the data-handling gap and the terminal state), `NEXT_ACTION.md`, `INDEX.md`, **`provider/GEMINI_MODEL_CATALOGUE.json`** (the deliverable — the provider's own `GET /v1beta/models` response reduced to identity metadata: **50 models, 37 supporting `generateContent`**, the three that assert stability, every 3.x Pro text model and its preview version string, the rolling aliases that cannot be pinned, and the full name/version/method catalogue so no future phase need re-probe), `PRESERVATION_AND_EGRESS.txt` (HEAD, 23 tag objects, 4 untouched stashes, all 19 module digests, `backend/src` proven free of any hosted reference, the sealed corpus hash-verified and unopened, a presence-and-length-class-only credential audit, and a **1-request, 0-inference** egress account). **POLICY AND READINESS DECISION ONLY. Nothing implemented. ZERO inference calls. No production file, prompt, schema, binder, scorer or harness touched. No new holdout. No sealed corpus opened. No provider or model selected. `GEMINI_MODEL` NOT substituted.** |
+| L3-2n | `verification/hazlenz-l3-2n-provider-qualification-2026-08-24/` | `STATUS.md`, `NEXT_ACTION.md`, `INDEX.md`, **`provider/OFFICIAL_DOCUMENTATION.md`** (14 provider assertions, **every one with a source URL and a 2026-08-24 retrieval date** — free-vs-paid data use, the 55-day abuse-monitoring window, ZDR availability and its incompatible features, stable/preview/latest/experimental semantics, deprecation notice, structured-output keyword support, pricing — plus the measured `gemini-2.5-pro` **HTTP 404 "no longer available to new users"** with its `gemini-3.7-flash` HTTP 200 control), **`provider/P01_P14_SCORECARD.md`** (`P-01`…`P-14` scored **unchanged from `PROVIDER_REQUIREMENTS.md`**, three stable candidates plus the preview for reference, with the disqualifying requirement named for each), `results/F37-*` · `F36-*` · `P25-*` (**twelve run artifacts, four per model in four separate processes** per §38.3 — the 24-scenario shipped cohort plus its own-process noise floor, `D_WC09_LADDER` and `D_CS05_LADDER_B` through the **full binder path**), `adapter/` (the L3-2h shim **byte-identical at `0ba265bb`**, the runner, the scorer), `transport/*.jsonl` (**153 requests, 102×200, 51×404, zero truncation**, per-call token and latency accounting), `PRESERVATION_AND_EGRESS.txt` (HEAD, 23 tag objects, 4 untouched stashes, the locked instrument and shim digests, all 19 module digests, sealed corpus hash-verified and unopened, presence-and-length-class credential audit, **credential in 0 of 31 files**), `regression/` (814 L3 assertions / 0 failed, KG contracts, `tsc` clean). **QUALIFICATION ONLY. Nothing implemented. No production file, prompt, schema, binder, scorer or harness touched. No new holdout. NO SEALED CORPUS OPENED. No provider selected. `GEMINI_MODEL` NOT substituted.** |
+| L3-2o | `verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/` | `STATUS.md`, `NEXT_ACTION.md`, `INDEX.md`, `PRESERVATION_AND_EGRESS.txt`, `provider/OFFICIAL_DOCUMENTATION.md` (15 sourced assertions), `provider/P01_P14_SCORECARD.md`, `provider/AVAILABILITY_PROBE.json`, `provider/SCHEMA_KEYWORD_PROBE.json`, `results/S5-*.json` (4 isolated runs), `results/SCORE.txt`, `adapter/anthropic-ollama-shim.js` (`76d3e039…`), `transport/*.jsonl` (51 requests), `regression/` |
+
 
 **Protected gold set** (read-only, hash-verified `93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3`):
 `verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts`

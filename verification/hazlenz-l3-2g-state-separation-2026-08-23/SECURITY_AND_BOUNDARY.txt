@@ -1,0 +1,47 @@
+L3-2g CUSTOMER AUTHORITY / BOUNDARY VERIFICATION
+generated 2026-08-23T13:07:55Z
+repo HEAD 1feda622dbb93d7e05d156838ab37db3e21db507
+
+== 1. importers of reasoning-l3 from OUTSIDE reasoning-l3 ==
+  count =        0
+
+== 2. importers of state-facts from OUTSIDE reasoning-l3 ==
+  count =        0
+
+== 2b. all importers of state-facts anywhere ==
+  backend/scripts/test-l32g-state-separation.ts
+  backend/scripts/score-l32g-fact-coherence.ts
+  backend/scripts/rederive-l32g-resolution.ts
+  backend/scripts/ablate-l32g-state-separation.ts
+  backend/scripts/score-l32g-order-sensitivity.ts
+
+== 3. Nest / TypeORM decorators inside reasoning-l3 ==
+  count =        0
+
+== 4. the seam and its call site are byte-unmodified vs HEAD ==
+  UNMODIFIED  backend/src/safescope-v2/intelligence-orchestrator.service.ts
+  UNMODIFIED  backend/src/safescope-v2/safescope-v2.service.ts
+
+== 5. backend/src/standards byte-unmodified vs HEAD ==
+  UNMODIFIED
+
+== 6. network destinations reachable from reasoning-l3 ==
+  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts:46:http://127.0.0.1:11434
+
+== 7. shipped prompt + runner reference state-facts? (0 = no) ==
+  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts:0
+  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts:0
+
+== 8. dependency graph ==
+  package.json dependencies: IDENTICAL to HEAD (verified)
+  package-lock.json: BYTE-IDENTICAL to HEAD
+
+== 9. files this phase modified or added ==
+  ?? backend/scripts/ablate-l32g-state-separation.ts
+  ?? backend/scripts/prove-l32g-binder-residual.ts
+  ?? backend/scripts/rederive-l32g-resolution.ts
+  ?? backend/scripts/score-l32g-fact-coherence.ts
+  ?? backend/scripts/score-l32g-order-sensitivity.ts
+  ?? backend/scripts/survey-l32g-evidence-sources.ts
+  ?? backend/scripts/test-l32g-state-separation.ts
+  M (pre-existing untracked, edited): semantic-evidence-binding.ts, score-l32f-reasoning.ts, package.json

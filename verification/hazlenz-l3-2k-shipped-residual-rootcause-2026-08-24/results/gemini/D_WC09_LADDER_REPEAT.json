@@ -1,0 +1,234 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T13:34:58.085Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_WC09_LADDER_REPEAT",
+    "pid": 75331
+  },
+  "provider": {
+    "model": "gemini-3.1-pro-preview",
+    "endpoint": "http://127.0.0.1:11435",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_WC09_LADDER_REPEAT",
+    "label": "F-WC-09 + F-WC-03 again, OWN PROCESS -- is the binder rejection deterministic?"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 2,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "F-WC-09",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "D_WC09_LADDER_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "observationText": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation indicates that a critical safety device (the two-hand control) on a swage press has been intentionally bypassed using tape. The administrative measures (instructions) and PPE (gloves) provided do not physically prevent hands from entering the point of operation, leaving the hazard active.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "machine_guarding_bypassed_two_hand_control",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "the two-hand control on the press has been strapped down with tape."
+              }
+            ],
+            "conditionRationale": "The two-hand control is a required engineering control designed to keep the operator's hands out of the danger zone. Strapping it down bypasses the control, making the hazard active. Verbal instructions and gloves are administrative/PPE measures that do not physically prevent contact and do not render the hazard controlled.",
+            "independentHazardRationale": "This represents a distinct machine guarding hazard where a point-of-operation safety device has been defeated.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE",
+          "conditionRationale": "The two-hand control is a required engineering control designed to keep the operator's hands out of the danger zone. Strapping it down bypasses the control, making the hazard active. Verbal instructions and gloves are administrative/PPE measures that do not physically prevent contact and do not render the hazard controlled.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "detail": "no vocabulary for family 'machine_guarding' in the cited evidence or its sentence; grounding is weak"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "detail": "CONTROL_ABSENT: 'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [
+        {
+          "candidateKey": "machine_guarding_bypassed_two_hand_control",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "strapped down",
+          "detail": "'strapped down' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "finalAssertsActive": true,
+      "finalCarriesClarification": false,
+      "latencyMs": 13376
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "D_WC09_LADDER_REPEAT",
+      "expectActive": true,
+      "expectClarification": false,
+      "observationText": "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "A floor plate is missing on a mezzanine walkway, creating a hole/fall hazard. The crew was verbally warned, which is an administrative measure, not a physical control, leaving the hazard active.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "missing_floor_plate_walkway",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "The missing floor plate at the end of the mezzanine walkway"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states a floor plate is missing. The verbal instruction to step around it is a warning, not a physical control, so the hazard remains active.",
+            "independentHazardRationale": "This is the sole hazard described in the observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "missing_floor_plate_walkway",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "conditionRationale": "The observation explicitly states a floor plate is missing. The verbal instruction to step around it is a warning, not a physical control, so the hazard remains active.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "missing_floor_plate_walkway",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "missing_floor_plate_walkway",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "candidateKey": "missing_floor_plate_walkway",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "candidateKey": "missing_floor_plate_walkway",
+          "detail": "CONTROL_ABSENT: 'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [
+        {
+          "candidateKey": "missing_floor_plate_walkway",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "missing",
+          "detail": "'missing' states a required control is absent or defeated; an absence written as one word is still an absence"
+        }
+      ],
+      "finalAssertsActive": true,
+      "finalCarriesClarification": false,
+      "latencyMs": 8836
+    }
+  ]
+}

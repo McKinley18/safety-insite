@@ -1,0 +1,26 @@
+=== L3-2b SEALED HOLDOUT FREEZE 2026-08-22T15:46:59Z ===
+Frozen BEFORE its first execution. No scenario in this set has been run against any Level-3 code.
+
+holdout    : backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+generator  : backend/scripts/build-l32b-holdout.ts
+b5a9a5c3ccb6b04f7ce95e15053850ed02438b3e36bd6fe970b86db518ec5052  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/build-l32b-holdout.ts
+
+--- source artifacts (independent) ---
+a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2  /Users/mckinley/Desktop/Safety_InSite/safescope-data/benchmarks/safescope-field-validation-dataset.v1.json
+435310d5f4dcbc7312e3f267dd13242be0cb56714551c18f7417a3e78115fdc9  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-capability-acceptance-2026-08-22/contracts/diag-mine-routing.json
+7bc38331aa2f84b79b40edfe322269068290bc528f5db8181c862c5ca84638a6  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-capability-acceptance-2026-08-22/contracts/diag-overfit.json
+
+--- implementation frozen at freeze time ---
+836ec79aae0fb057212208016fc378edabff855c3ef8e2ebd5e2b196fe1e065e  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/negation-scope.ts
+2f945c9213d33f6c03d27a462fee89ce7c7a7feb6b34ed19b0f01c7e261290b4  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+0e9b07df544c08bd13a0702fba82e7f3e490deaa1596afb9453744e9f60fb0f3  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+1fed1a5a670fd4d1e25e342834673a4c7bd0b9de8056ad4337adf3620b4d158a  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+
+composition: 81 total | 62 positive / 19 non-active | 3 clarification-expected
+  field_positive 40 · diagnostic_positive 10 · diagnostic_safe 2
+  negative_control 5 · condition_state 6 · ambiguity 6 · negation 5 · evidence 7
+
+superseded L3-2 holdout (retired for gate use): 41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d

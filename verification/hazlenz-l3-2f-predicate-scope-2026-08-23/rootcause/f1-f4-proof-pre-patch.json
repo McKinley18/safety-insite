@@ -1,0 +1,380 @@
+{
+  "phase": "L3-2f",
+  "role": "ROOT_CAUSE_PROOF_AGAINST_UNPATCHED_L3_2E",
+  "generatedAt": "2026-08-23T01:39:18.924Z",
+  "findings": {
+    "F1": {
+      "id": "F1",
+      "defect": "L3_2E_SCOPE_CONTRADICTION -- negation-scope.ts::hasPredicate()",
+      "responsibleFunction": "backend/src/safescope-v2/reasoning-l3/negation-scope.ts::hasPredicate()",
+      "consumedBy": "negationScopes() comma-boundary test -> governingNegation() -> checkNegationAddressed()",
+      "mechanism": "predicate recognition is membership in FINITE_VERB_MARKERS (24 auxiliaries) OR a participle regex requiring five letters before -ing/-ed. A finite lexical verb that is neither -- \"went\" -- is invisible, so the comma is not treated as a clause boundary and the negation scope runs to the end of the sentence.",
+      "semanticExpectation": "the comma before \"and the fitter went inside\" ends the negation scope, exactly as it does for \"and the fitter was inside\"",
+      "blueprintInvariant": "L3-INV-11 (negation scope preserved in every evidence span); blueprint 35.6",
+      "defectClass": "ANOTHER_MANIFESTATION -- seventh instance of the 32.5 closed-vocabulary pattern",
+      "rows": [
+        {
+          "id": "F1-DNG04-went",
+          "verb": "went",
+          "text": "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+          "commaOffset": 50,
+          "negationScopeEnd": 147,
+          "scopeEndsAtComma": false,
+          "scopeCrossesTheComma": true,
+          "expectScopeEndsAtComma": true,
+          "hazardSpanGovernedByNegation": true,
+          "binderSurvived": false,
+          "binderFatalCodes": [
+            "SEMANTIC_NEGATION_UNADDRESSED"
+          ],
+          "binderDetail": "'No' governs [0,147) which contains the cited span, and appears neither in the span nor in the rationale",
+          "highConsequence": true
+        },
+        {
+          "id": "F1-DNG04-was",
+          "verb": "was (the PAIRED half -- already correct today)",
+          "text": "No flammable atmosphere was detected at the manway, and the fitter was inside the vessel with the agitator still on line and nobody at the opening.",
+          "commaOffset": 50,
+          "negationScopeEnd": 50,
+          "scopeEndsAtComma": true,
+          "scopeCrossesTheComma": false,
+          "expectScopeEndsAtComma": true,
+          "hazardSpanGovernedByNegation": false,
+          "binderSurvived": true,
+          "binderFatalCodes": [],
+          "binderDetail": "",
+          "highConsequence": true
+        }
+      ],
+      "verbVisibility": [
+        {
+          "verb": "went",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": false
+        },
+        {
+          "verb": "climbed",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": true,
+          "visibleToHasPredicate": true
+        },
+        {
+          "verb": "entered",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": true,
+          "visibleToHasPredicate": true
+        },
+        {
+          "verb": "fell",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": false
+        },
+        {
+          "verb": "broke",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": false
+        },
+        {
+          "verb": "cut",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": false
+        },
+        {
+          "verb": "torn",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": false
+        },
+        {
+          "verb": "was",
+          "inFiniteVerbMarkerList": true,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": true
+        },
+        {
+          "verb": "is",
+          "inFiniteVerbMarkerList": true,
+          "matchesParticipleRegex": false,
+          "visibleToHasPredicate": true
+        },
+        {
+          "verb": "operating",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": true,
+          "visibleToHasPredicate": true
+        },
+        {
+          "verb": "detected",
+          "inFiniteVerbMarkerList": false,
+          "matchesParticipleRegex": true,
+          "visibleToHasPredicate": true
+        }
+      ],
+      "counterFixture": {
+        "id": "F1-RC08-list",
+        "text": "Two men were working at the leading edge of the third lift with no guardrail, safety net or personal fall arrest system in use.",
+        "commaOffset": 76,
+        "scopeEnd": 126,
+        "scopeCrossesComma": true,
+        "requirement": "MUST STAY TRUE after the repair -- a coordinated negated list has no finite verb and must remain in scope"
+      }
+    },
+    "F2": {
+      "id": "F2",
+      "defect": "L3-2E-DISC-05 -- NP_TERMINATORS is an incomplete preposition list",
+      "responsibleFunction": "backend/src/safescope-v2/reasoning-l3/predicate-role.ts::nounPhraseHead() via NP_TERMINATORS",
+      "consumedBy": "checkContradiction path (A) -- the negated-hazard guard",
+      "mechanism": "the NP head is \"the last content word before a LISTED terminator\". `against` is not listed, so head resolution walks through the preposition and returns the object of the PP (\"standard\") instead of the head (\"deficiencies\"). The hazard-object guard then finds nothing and a genuinely negated hazard is no longer refused.",
+      "semanticExpectation": "the head of \"no deficiencies against the storage standard\" is \"deficiencies\"",
+      "blueprintInvariant": "blueprint 35.5 DISC-05; precision guard supporting L3-INV-04 (no default ACTIVE)",
+      "defectClass": "ANOTHER_MANIFESTATION of F1 -- a BOUNDED STRUCTURAL PROPERTY (is this word a function word that closes a noun phrase?) implemented as membership in a hand-maintained list. Same mechanism, different list, different function.",
+      "sharesMechanismWith": "F1",
+      "direction": "PRECISION -- it fails to refuse, it does not delete",
+      "rows": [
+        {
+          "id": "F2-DISC05",
+          "phrase": "no deficiencies against the storage standard",
+          "after": " deficiencies against the storage standard",
+          "expectedHead": "deficiencies",
+          "why": "the head of the negated NP is \"deficiencies\"; \"against the storage standard\" is a prepositional post-modifier",
+          "actualHead": "standard",
+          "headCorrect": false,
+          "hazardObjectMatched": null,
+          "guardWouldFire": false
+        },
+        {
+          "id": "F2-PAIR-of",
+          "phrase": "no hazard of any kind",
+          "after": " hazard of any kind",
+          "expectedHead": "hazard",
+          "why": "THE PAIRED HALF -- `of` IS in NP_TERMINATORS, so this one already resolves correctly today",
+          "actualHead": "hazard",
+          "headCorrect": true,
+          "hazardObjectMatched": "hazard",
+          "guardWouldFire": true
+        },
+        {
+          "id": "F2-PAIR-to",
+          "phrase": "no damage to the enclosure",
+          "after": " damage to the enclosure",
+          "expectedHead": "damage",
+          "why": "THE PAIRED HALF -- `to` IS in NP_TERMINATORS",
+          "actualHead": "damage",
+          "headCorrect": true,
+          "hazardObjectMatched": "damage",
+          "guardWouldFire": true
+        },
+        {
+          "id": "F2-other-preps",
+          "phrase": "no defects beyond the coupling",
+          "after": " defects beyond the coupling",
+          "expectedHead": "defects",
+          "why": "the same gap for a preposition nobody has listed yet -- `beyond`, `regarding`, `concerning`, `per`, `versus`",
+          "actualHead": "coupling",
+          "headCorrect": false,
+          "hazardObjectMatched": null,
+          "guardWouldFire": false
+        },
+        {
+          "id": "F2-other-preps-2",
+          "phrase": "no violations per the inspection checklist",
+          "after": " violations per the inspection checklist",
+          "expectedHead": "violations",
+          "why": "a fifth unlisted preposition; the list is the mechanism, not the word",
+          "actualHead": "checklist",
+          "headCorrect": false,
+          "hazardObjectMatched": null,
+          "guardWouldFire": false
+        }
+      ],
+      "binderConsequence": {
+        "id": "F2-negctrl",
+        "text": "The audit of the thinners store recorded no hazard of any kind and no deficiencies against the storage standard.",
+        "survivedAsActive": true,
+        "fatalCodes": [],
+        "requirement": "a NEGATED-hazard negative control claimed ACTIVE MUST be refused; today it is not"
+      }
+    },
+    "F3": {
+      "id": "F3",
+      "defect": "L3-2E-DISC-06 -- substring containment used as semantic identity",
+      "responsibleFunction": "semantic-evidence-binding.ts::checkContradiction path (A), `HAZARD_NEGATION_OBJECTS.find(o => head.includes(o))`, over a head supplied by predicate-role.ts::nounPhraseHead()",
+      "consumedBy": "checkContradiction path (A)",
+      "mechanism": "TWO independent faults compose. (i) nounPhraseHead() returns the trailing past participle \"issued\" because a participle is a content word and nothing marks it as a post-modifier. (ii) the hazard-object test is `head.includes(o)`, so the stem `issue` matches inside `issued`. Either alone would be survivable; together they delete a correct high-value finding.",
+      "semanticExpectation": "the head of \"no hearing protection issued\" is \"protection\", a control, and the guard must NOT fire",
+      "blueprintInvariant": "blueprint 35.5 DISC-06; hazard-recall, governed by the advancement gate",
+      "defectClass": "ANOTHER_MANIFESTATION -- the same 32.5 pattern expressed as containment rather than membership. `head.includes(o)` is an UNBOUNDED admission rule: it makes every token that merely contains a listed stem a member of the set.",
+      "direction": "RECALL -- it deletes correct findings. This is the high-consequence direction.",
+      "rows": [
+        {
+          "id": "F3-DISC06",
+          "phrase": "no hearing protection issued",
+          "after": " hearing protection issued",
+          "expectedHead": "protection",
+          "mustGuardFire": false,
+          "why": "the head is \"protection\" -- a CONTROL, whose absence IS the hazard. \"issued\" is a post-modifying participle. Deleting this finding is why noise_exposure is NOT_YET_SEALED_VALIDATED.",
+          "actualHead": "issued",
+          "headCorrect": false,
+          "substringMatchedObject": "issue",
+          "guardFires": true,
+          "guardFiresCorrectly": false,
+          "twoIndependentFaults": "head resolution returns the trailing participle AND substring containment then matches `issue` inside `issued`"
+        },
+        {
+          "id": "F3-PAIR-issue",
+          "phrase": "no issue was found",
+          "after": " issue was found",
+          "expectedHead": "issue",
+          "mustGuardFire": true,
+          "why": "THE PAIRED HALF -- here \"issue\" really IS the head and really IS a hazard object. The guard must keep firing.",
+          "actualHead": "issue",
+          "headCorrect": true,
+          "substringMatchedObject": "issue",
+          "guardFires": true,
+          "guardFiresCorrectly": true,
+          "twoIndependentFaults": "substring containment alone"
+        },
+        {
+          "id": "F3-harm-in-harmless",
+          "phrase": "no harmless residue",
+          "after": " harmless residue",
+          "expectedHead": "residue",
+          "mustGuardFire": false,
+          "why": "substring containment also matches `harm` inside `harmless` -- the same defect on a different token",
+          "actualHead": "residue",
+          "headCorrect": true,
+          "substringMatchedObject": null,
+          "guardFires": false,
+          "guardFiresCorrectly": true,
+          "twoIndependentFaults": "substring containment alone"
+        },
+        {
+          "id": "F3-concern-in-concerning",
+          "phrase": "no concerning wear",
+          "after": " concerning wear",
+          "expectedHead": "wear",
+          "mustGuardFire": false,
+          "why": "`concern` inside `concerning`, an attributive participle",
+          "actualHead": "wear",
+          "headCorrect": true,
+          "substringMatchedObject": null,
+          "guardFires": false,
+          "guardFiresCorrectly": true,
+          "twoIndependentFaults": "substring containment alone"
+        },
+        {
+          "id": "F3-access-in-accessory",
+          "phrase": "no accessory guard fitted",
+          "after": " accessory guard fitted",
+          "expectedHead": "guard",
+          "mustGuardFire": false,
+          "why": "`access` inside `accessory` -- an unrelated token entirely",
+          "actualHead": "fitted",
+          "headCorrect": false,
+          "substringMatchedObject": null,
+          "guardFires": false,
+          "guardFiresCorrectly": true,
+          "twoIndependentFaults": "substring containment alone"
+        }
+      ],
+      "binderConsequence": {
+        "id": "F3-noise",
+        "text": "Two operators were running the pedestal grinders in the fettling bay all shift with no hearing protection issued.",
+        "survived": false,
+        "fatalCodes": [
+          "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+        ],
+        "detail": "ACTIVE is grounded in 'no' negating 'issued' -- the head of the negated phrase is the hazard itself ('issue'), not a control, and no contrasting clause follows",
+        "requirement": "MUST survive after the repair -- this single deletion is the whole reason noise_exposure has no sealed validation"
+      }
+    },
+    "F4": {
+      "id": "F4",
+      "defect": "L3-2E-DISC-07 -- nominal corrections refused",
+      "responsibleFunction": "semantic-evidence-binding.ts::checkStateSupported(), CORRECTED rule with requireAssertion:true, consuming predicate-role.ts::asserts()",
+      "consumedBy": "checkStateSupported -> SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+      "mechanism": "L3-2e correctly required that a CORRECTED claim be ASSERTED rather than merely mentioned, and implemented \"asserted\" as role === ASSERTED_PREDICATE. That equates assertion with VERBHOOD. \"drew a replacement\" asserts a completed correction with a correction NOUN as the object of an action verb; tokenRole returns NP_HEAD and the claim is refused.",
+      "semanticExpectation": "a correction noun that is the object of a completed action verb, not under a negation, supports CORRECTED",
+      "blueprintInvariant": "blueprint 35.5 DISC-07; L3-INV-08 (model output is a proposal -- this vocabulary ADMITS, so it may be permissive, per the 35.1 asymmetry)",
+      "defectClass": "DISTINCT MECHANISM, SAME FAMILY. F1/F2/F3 are all \"membership or containment standing in for a structural property\". F4 is the opposite error: a STRUCTURAL test (role) applied too narrowly, refusing a construction it was never meant to exclude. It is a regression introduced by L3-2e, not a surviving lexical gate.",
+      "sharesMechanismWith": null,
+      "direction": "ADMISSION -- refuses a state the model correctly claimed",
+      "governingAsymmetry": "blueprint 35.1 -- a vocabulary used to ADMIT may be permissive. The negation guard and the mention/effective distinction must both survive.",
+      "rows": [
+        {
+          "id": "F4-DISC07",
+          "text": "The frayed sling was taken off the crane and the rigger drew a replacement from the store before the next lift.",
+          "quote": "the rigger drew a replacement from the store before the next lift",
+          "state": "CORRECTED",
+          "token": "replacement",
+          "mustSurvive": true,
+          "why": "the correction is real and asserted -- it is simply expressed as the OBJECT of an action verb rather than as a correction verb",
+          "tokenRoleReturned": "NP_HEAD",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ],
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+          "behavesCorrectlyToday": false
+        },
+        {
+          "id": "F4-PAIR-verb",
+          "text": "The frayed sling was taken off the crane and was replaced from the store before the next lift.",
+          "quote": "The frayed sling was taken off the crane and was replaced from the store",
+          "state": "CORRECTED",
+          "token": "replaced",
+          "mustSurvive": true,
+          "why": "THE PAIRED HALF -- the verb form already passes today",
+          "tokenRoleReturned": "ASSERTED_PREDICATE",
+          "survived": true,
+          "fatalCodes": [],
+          "detail": "",
+          "behavesCorrectlyToday": true
+        },
+        {
+          "id": "F4-NEG-guard",
+          "text": "The frayed sling is still rigged on the crane and no replacement has been drawn from the store.",
+          "quote": "no replacement has been drawn from the store",
+          "state": "CORRECTED",
+          "token": "replacement (NEGATED)",
+          "mustSurvive": false,
+          "why": "THE NEGATION GUARD -- a negated nominal correction is not a correction. It must stay refused.",
+          "tokenRoleReturned": "NP_HEAD",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ],
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+          "behavesCorrectlyToday": true
+        },
+        {
+          "id": "F4-MENTION-only",
+          "text": "The rigger talked through the replacement procedure for frayed slings while the frayed sling stayed rigged on the crane.",
+          "quote": "The rigger talked through the replacement procedure for frayed slings",
+          "state": "CORRECTED",
+          "token": "replacement (ATTRIBUTIVE, naming a procedure)",
+          "mustSurvive": false,
+          "why": "CONTROL_MENTION, not CONTROL_EFFECTIVE -- naming a procedure corrects nothing. Must stay refused.",
+          "tokenRoleReturned": "ATTRIBUTIVE_MODIFIER",
+          "survived": false,
+          "fatalCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ],
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation",
+          "behavesCorrectlyToday": true
+        }
+      ]
+    }
+  },
+  "summary": {
+    "F1_ROOT_CAUSE_PROVEN": true,
+    "F2_ROOT_CAUSE_PROVEN": true,
+    "F3_ROOT_CAUSE_PROVEN": true,
+    "F4_ROOT_CAUSE_PROVEN": true,
+    "sharedMechanism": "F1, F2 and F3 are ONE mechanism in three functions: a bounded structural property of a clause or noun phrase (does this segment carry a predicate? does this word close a noun phrase? is this token that token?) decided by consulting a hand-maintained lexical set or by substring containment. F4 is the mirror image and is a L3-2e regression."
+  }
+}

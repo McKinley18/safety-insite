@@ -1,0 +1,1592 @@
+{
+  "setId": "l3-2d-sealed-holdout-2026-08-22",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "visibleDuringTuning": false,
+  "frozenBeforeFirstExecution": true,
+  "frozenBeforeRepairCodeWritten": true,
+  "supersedes": "l3-2c-sealed-holdout-2026-08-22 (33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2) -- opened, now REGRESSION_EVIDENCE only",
+  "sharesNoScenarioWith": [
+    "holdout-l32.json",
+    "holdout-l32b.json",
+    "holdout-l32c.json",
+    "development-l32.json"
+  ],
+  "overlapCheck": {
+    "textClashes": 0,
+    "idClashes": 0,
+    "internalDuplicates": 0,
+    "method": "exact trimmed text and id comparison against all four prior sets, asserted at build time with a throw"
+  },
+  "provenance": {
+    "A_independent": {
+      "artifact": "safescope-data/benchmarks/safescope-field-validation-dataset.v1.json",
+      "sha256": "a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2",
+      "authoredBy": "an earlier programme phase; never executed against any Level-3 code",
+      "selection": "deterministic -- indices where i % 5 === 4 over the id-sorted dataset",
+      "disjointFromPriorStrides": "L3-2b used i % 5 === 0 and L3-2c used i % 5 === 2; the three strides are pairwise disjoint by construction",
+      "count": 40,
+      "familyMix": {
+        "electrical": 20,
+        "slip_trip_fall": 20
+      },
+      "coverageLimitation": "this dataset is periodic with period 5, so EVERY stride-of-5 selection yields exactly two hazard families. No single-stride rule over this source can do better. Strides 1 and 3 (fall_protection, mobile_equipment) remain entirely unused."
+    },
+    "B_authoredComplement": {
+      "authoredBy": "the L3-2d implementation phase",
+      "count": 37,
+      "why": "source A is entirely positive hazards and contains no negative control, corrected or controlled state, subjective wording, clarification case, or case where a clarification must be WITHHELD -- which is the whole subject of L3-2d",
+      "limitation": "authored by the implementer -- the weakest provenance in this set, and the third phase running to carry it. Mitigated: written and frozen BEFORE the repair code was written, expectations and clarification labels declared here rather than derived from a run, and no text reused from any prior set."
+    }
+  },
+  "clarificationLabelContract": {
+    "declaredBefore": "first candidate execution",
+    "mayNotBeRedefinedAfterExecution": true,
+    "true_means": "a decision-critical fact is missing and the correct semantic conclusion cannot be reached safely without it",
+    "false_means": "the evidence already supports the semantic conclusion; a question would only add optional detail and is noise",
+    "decisionIsMade": "recorded per scenario so D1 can be measured directly: a scenario with decisionIsMade true must carry NO clarification"
+  },
+  "highConsequenceFamilies": [
+    "fall",
+    "trench",
+    "excavation",
+    "cave_in",
+    "loto",
+    "energy",
+    "confined",
+    "electrical",
+    "struck_by",
+    "mobile_equipment",
+    "scaffold",
+    "hole",
+    "opening",
+    "impalement",
+    "rebar",
+    "explosion",
+    "ground_control"
+  ],
+  "composition": {
+    "total": 77,
+    "byProvenance": {
+      "INDEPENDENT": 40,
+      "AUTHORED_COMPLEMENT": 37
+    },
+    "byCohort": {
+      "field_positive": 40,
+      "negation_then_fact": 6,
+      "decided_no_question": 8,
+      "required_clarification": 6,
+      "negative_control": 6,
+      "condition_state": 4,
+      "multi_hazard": 4,
+      "high_consequence": 3
+    },
+    "positives": 56,
+    "negativesOrNonActive": 21,
+    "explicitNegativeControls": 8,
+    "clarificationExpected": 6,
+    "clarificationMustBeWithheld": 71,
+    "highConsequence": 51
+  },
+  "scenarios": [
+    {
+      "id": "D-FLD-005",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The 480V electrical breaker panel door is wide open in the main hallway, exposing energized internal breakers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-010",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "An oil spill on the main walkway near the pump house has created an extremely slippery walking surface.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-015",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Working clearance in front of the main electrical panel is completely blocked by stacked wooden pallets and toolboxes.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-020",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Accumulated mud spillage has piled up on the catwalk travelway, creating a severe slip and trip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-025",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Found stacked steel drums and maintenance equipment stored directly in front of the 240V switchgear panel.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-030",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A pool of hydraulic fluid is leaking onto the concrete floor of the maintenance bay, creating a slip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-035",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The electrical room panel has its door left open, and several circuit breakers have exposed openings with no covers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-040",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Loose gravel and aggregate spillage have accumulated on the screen tower stairs, creating a slip and roll hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-045",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Access to the main electrical disconnect switch is blocked by a stack of stored materials and boxes.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-050",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "The travelway walkway is obstructed by discarded metal parts, hoses, and trash, creating a severe trip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-055",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "An electrical breaker panel is blocked by parked mobile carts and stacked plastic bins in the warehouse.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-060",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A large grease spill is pooling on the catwalk walkway next to the primary screen, creating a slip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-065",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The door to the 480V distribution panel is open and the interior cover plate is missing, exposing hot wires.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-070",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Debris and discarded pipes are scattered across the main walkway near the shop entrance, creating a trip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-075",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Access to the primary electrical control panel is obstructed by stored pipes and tools, blocking working clearance.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-080",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Water and oil are pooling on the travelway walkway, creating an extremely slippery surface near the pump.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-085",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The electrical panel door is unsecured and open in a high-traffic area, exposing the internal breakers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-090",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Accumulated rock and dirt spillage on the walkway beneath the crusher has restricted safe footing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-095",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Working clearance in front of the motor control center panel is blocked by stored equipment and drums.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-100",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A loose, slippery layer of mud and spillage has covered the walk deck near the thickener tank.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-105",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The 120V breaker panel is blocked by a stack of maintenance lockers, preventing emergency access.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-110",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A pool of oil has leaked onto the walkway near the compressor, creating a slip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-115",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Found an electrical disconnect switch blocked by parked hand trucks and stored cardboard boxes.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-120",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Accumulated product spillage has covered the catwalk walkway, creating a severe slip and roll hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-125",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The electrical panel door in the pump room is swinging open, and some panel breaker slots are missing cover plates.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-130",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "The travelway is obstructed by loose hoses and ropes running across the main pedestrian path.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-135",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Access to the main circuit breaker panel is obstructed by stacked tires and maintenance tools.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-140",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A large pool of hydraulic oil has spilled onto the floor of the generator room walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-145",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Electrical switchgear panel door left wide open in the main shop, exposing internal circuit components.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-150",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Debris, old motor components, and scrap metal are piled on the walkway near the crusher stairs, obstructing access.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-155",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Working clearance in front of the high voltage disconnect is blocked by stored metal plates.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-160",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A thick layer of grease has spilled on the screen tower walk deck, creating an extremely slippery walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-165",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The breaker panel door is broken off its hinges, exposing the breaker switches in the main workspace.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-170",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Loose rock spillage has accumulated on the catwalk travelway, creating a slip and roll hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-175",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-180",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "The walkway near the screen is covered with wet clay spillage, creating a slippery walking surface.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-185",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "Electrical room breaker panels are blocked by stacked boxes and maintenance spares, preventing clear access.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-190",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "A hydraulic fluid leak has pooled on the walk deck near the motor drive, creating a slip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-195",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "electrical / electrical_panel_access",
+      "regime": "osha-general-industry",
+      "text": "The electrical disconnect panel door is left open, exposing internal fuses and breaker wiring.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-FLD-200",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "regime": "osha-general-industry",
+      "text": "Debris and old parts are obstructing the walkway near the plant exit, creating a severe trip hazard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "sourceRiskBand": "moderate"
+      }
+    },
+    {
+      "id": "D-NG-01",
+      "cohort": "negation_then_fact",
+      "failureMode": "negated clause then hard electrical fact",
+      "regime": "osha-general-industry",
+      "text": "There was no water on the floor of the wash bay, and the supply cord to the pressure washer has its jacket cut back to bare copper where it leaves the plug.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NG-02",
+      "cohort": "negation_then_fact",
+      "failureMode": "negated clause then hard fall fact",
+      "regime": "osha-construction",
+      "text": "No debris was found on the scaffold platform, and the guardrail along the open side has been taken off and left leaning against the frame.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|scaffolds|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NG-03",
+      "cohort": "negation_then_fact",
+      "failureMode": "contrastive however after a negation",
+      "regime": "osha-general-industry",
+      "text": "The conveyor showed no signs of belt slip, however the nip guard at the drive drum has been unbolted and is sitting on the walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NG-04",
+      "cohort": "negation_then_fact",
+      "failureMode": "negated clause then confined-space fact",
+      "regime": "osha-general-industry",
+      "text": "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "confined_space|machine_guarding|loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NG-05",
+      "cohort": "negation_then_fact",
+      "failureMode": "negated list then a hard fact",
+      "regime": "osha-construction",
+      "text": "The trench had no spoil at the edge and no water in the bottom, and the man inside was working at seven feet in sandy ground with no shoring or shield of any kind.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "trenching_shoring|excavation|ground_control",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NG-06",
+      "cohort": "negation_then_fact",
+      "failureMode": "negated HAZARD only -- must stay non-active",
+      "regime": "osha-general-industry",
+      "text": "The electrical survey of the packing hall found no damaged cords, no open enclosures and no bonding defects on any circuit tested.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-01",
+      "cohort": "decided_no_question",
+      "failureMode": "ACTIVE on a hard fact, detail could be refined",
+      "regime": "osha-general-industry",
+      "text": "An operator was flame cutting inside the bund with no mechanical ventilation running in the space.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "ventilation|confined_space|chemical_storage|hazard_communication",
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the missing control is stated; the gas mix or duration would refine risk, not change the semantic conclusion"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-02",
+      "cohort": "decided_no_question",
+      "failureMode": "ACTIVE, cause of the defect unknown but irrelevant",
+      "regime": "osha-general-industry",
+      "text": "The emergency stop mushroom on the wrapping line stays depressed and no longer latches out; nobody could say when it started.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "when it started changes neither the hazard, the state, the family nor the consequence"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-03",
+      "cohort": "decided_no_question",
+      "failureMode": "HYPOTHETICAL, decided by its own wording",
+      "regime": "osha-general-industry",
+      "text": "Were the interlock on the mixer lid to be defeated during a jam clearance, an operator could reach the ribbon while it is turning.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the sentence is explicitly contingent; asking whether it happened invents a second observation"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-04",
+      "cohort": "decided_no_question",
+      "failureMode": "CONTROLLED, decided",
+      "regime": "osha-general-industry",
+      "text": "The acid transfer line is fitted with a double block and bleed and the bleed was witnessed open and clear before the hose was cracked.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the control is described as in place and verified"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-05",
+      "cohort": "decided_no_question",
+      "failureMode": "CORRECTED, decided",
+      "regime": "osha-general-industry",
+      "text": "The split hydraulic hose on the baler was found leaking and the fitter swapped it for a new assembly and pressure tested it before the line restarted.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the correction is stated and complete"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-06",
+      "cohort": "decided_no_question",
+      "failureMode": "impression beside a hard fact -- ACTIVE, no question",
+      "regime": "osha-construction",
+      "text": "The edge protection on level three did not sit right with me and the mid rail is missing along the whole of the north bay.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|scaffolds",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the fact decides it; the impression adds nothing to resolve"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-07",
+      "cohort": "decided_no_question",
+      "failureMode": "ACTIVE, quantity unstated but immaterial",
+      "regime": "msha",
+      "text": "Float coal dust has accumulated on the beltline structure along the tailpiece and the rock dust survey tag there is six weeks out of date.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "housekeeping|explosion|fire|chemical_storage|ventilation",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the depth of accumulation would refine risk, not change the conclusion"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CQ-08",
+      "cohort": "decided_no_question",
+      "failureMode": "NEGATED, decided",
+      "regime": "osha-general-industry",
+      "text": "The guard survey of the saw bench recorded no exposed blade below the table and no gap at the riving knife.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true,
+        "whyNoQuestion": "the hazard itself is reported absent"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-01",
+      "cohort": "required_clarification",
+      "failureMode": "pure impression, no fact",
+      "regime": "osha-general-industry",
+      "text": "Something about the way the gas bottles were stood in the cage bothered me as I went past.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "no physical condition is stated at all; whether a hazard exists cannot be decided"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-02",
+      "cohort": "required_clarification",
+      "failureMode": "hedge governs the only predication",
+      "regime": "osha-general-industry",
+      "text": "The earth strap on the tank filling point might be broken where it meets the clamp.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "the only fact is hedged; the condition state turns entirely on whether it is broken"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-03",
+      "cohort": "required_clarification",
+      "failureMode": "unidentified substance changes family and consequence",
+      "regime": "unknown",
+      "text": "A dark liquid was running from under the compressor skid and I could not identify it or find where it was coming from.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "the identity of the liquid decides the hazard family and whether it is high-consequence"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-04",
+      "cohort": "required_clarification",
+      "failureMode": "ambiguous whether a control exists at all",
+      "regime": "osha-construction",
+      "text": "Two men were on the roof near the edge; I was too far away to see whether they were tied off to anything.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "whether fall protection was in use decides both the hazard and the condition state"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-05",
+      "cohort": "required_clarification",
+      "failureMode": "reported second hand, unverified",
+      "regime": "osha-general-industry",
+      "text": "The shift supervisor mentioned that one of the racking uprights in the cold store may have been hit by a truck, but we did not get to that aisle.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "nothing was observed; whether damage exists decides whether a hazard exists"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CR-06",
+      "cohort": "required_clarification",
+      "failureMode": "state genuinely undecidable between two branches",
+      "regime": "osha-general-industry",
+      "text": "The lockout box on the press had a lock hanging on it but I could not tell whether the disconnect behind it was actually open.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "decisionIsMade": false,
+        "whyQuestion": "the condition state is CONTROLLED or ACTIVE depending on one unobserved fact"
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-01",
+      "cohort": "negative_control",
+      "failureMode": "fully compliant electrical",
+      "regime": "osha-general-industry",
+      "text": "Every panel in the switch room was closed and latched, the covers were fitted on all the junction boxes and the arc flash labels were current.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-02",
+      "cohort": "negative_control",
+      "failureMode": "clean walking surfaces",
+      "regime": "osha-general-industry",
+      "text": "The despatch aisles were swept, dry and clear to the marked lines, and the floor joint covers were all seated flush.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-03",
+      "cohort": "negative_control",
+      "failureMode": "administrative activity only",
+      "regime": "osha-general-industry",
+      "text": "The lifting equipment register was reconciled against the kit in the store and the next thorough examination dates were entered in the planner.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-04",
+      "cohort": "negative_control",
+      "failureMode": "hazard vocabulary in a safe statement",
+      "regime": "osha-construction",
+      "text": "The fall arrest harnesses were returned from inspection with new tags and were hung back on the rack in the site office.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-05",
+      "cohort": "negative_control",
+      "failureMode": "positive impression beside a control-in-place fact",
+      "regime": "osha-general-industry",
+      "text": "The press shop looked well run to me and the light curtains were function tested at start of shift with the results recorded.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-NC-06",
+      "cohort": "negative_control",
+      "failureMode": "planned future action only",
+      "regime": "osha-general-industry",
+      "text": "We are going to fit a second isolator on the granulator feed during the Christmas shutdown.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CS-01",
+      "cohort": "condition_state",
+      "failureMode": "energy isolation in place",
+      "regime": "osha-general-industry",
+      "text": "The dryer fan was stopped at the local isolator, two personal locks were fitted and the shaft was proved dead before the inspection hatch came off.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CS-02",
+      "cohort": "condition_state",
+      "failureMode": "removed from service",
+      "regime": "osha-general-industry",
+      "text": "The pallet truck with the seized brake was labelled do not use and wheeled into the workshop pending repair.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CS-03",
+      "cohort": "condition_state",
+      "failureMode": "historical, already closed",
+      "regime": "osha-general-industry",
+      "text": "The stair nosing on the plant room steps came loose in the spring and was refitted with new fixings; it was checked again today and is solid.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-CS-04",
+      "cohort": "condition_state",
+      "failureMode": "controlled, hazard genuinely present",
+      "regime": "osha-construction",
+      "text": "The riser opening on level two is closed with a bolted steel plate stencilled HOLE and rated for the load, and all four bolts were in place.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-MH-01",
+      "cohort": "multi_hazard",
+      "failureMode": "two independent hazards, one sentence",
+      "regime": "osha-general-industry",
+      "text": "The bench grinder tool rest is set a half inch off the wheel and the flexible lead feeding it has a taped repair midway along its length.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|electrical",
+        "minCandidates": 2,
+        "maxCandidates": 3,
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-MH-02",
+      "cohort": "multi_hazard",
+      "failureMode": "three cues, field shorthand",
+      "regime": "msha",
+      "text": "crusher deck: handrail off the east stair, spill built up under the screen, light out over the walkway",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls|housekeeping",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-MH-03",
+      "cohort": "multi_hazard",
+      "failureMode": "PPE plus a struck-by hazard",
+      "regime": "osha-construction",
+      "text": "A banksman was standing inside the swing radius of the excavator counterweight with no high visibility vest on.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment|personal_protective_equipment|struck_by",
+        "minCandidates": 1,
+        "maxCandidates": 3,
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-MH-04",
+      "cohort": "multi_hazard",
+      "failureMode": "safe statement adjacent to two real hazards",
+      "regime": "osha-general-industry",
+      "text": "The eyewash was flushed and tagged this week, the caustic drum next to it is open at the bung and the drip tray under it is full to the brim.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical_storage|hazard_communication",
+        "minCandidates": 1,
+        "maxCandidates": 3,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-HC-01",
+      "cohort": "high_consequence",
+      "failureMode": "live electrical work",
+      "regime": "osha-general-industry",
+      "text": "An electrician was landing conductors in an energised four hundred and eighty volt panel wearing ordinary cotton coveralls and no face shield.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical|personal_protective_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-HC-02",
+      "cohort": "high_consequence",
+      "failureMode": "unprotected leading edge",
+      "regime": "osha-construction",
+      "text": "A roofer was carrying sheets along an unprotected leading edge at twenty two feet with his lanyard clipped to his own harness ring.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "D-HC-03",
+      "cohort": "high_consequence",
+      "failureMode": "stored energy",
+      "regime": "osha-general-industry",
+      "text": "A fitter was breaking the flange on the accumulator line with the system still showing two hundred bar on the gauge.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy|machine_guarding",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "decisionIsMade": true
+      },
+      "source": "authored by the L3-2d implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    }
+  ]
+}

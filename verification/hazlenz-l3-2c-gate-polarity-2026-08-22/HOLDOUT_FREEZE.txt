@@ -1,0 +1,13 @@
+L3-2C SEALED HOLDOUT FREEZE RECORD
+frozenAtUTC: 2026-08-22T22:20:20Z
+frozenBefore: any L3-2c repair code was written (no source file under reasoning-l3/ modified at this point)
+path: backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+sha256: 33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2
+builder: backend/scripts/build-l32c-holdout.ts
+builder-sha256: af4a06871fa9641fa149a5f4b2a04c38b4760702ad24a95e28cec0a03d7c7ba1
+scenarios: 72 (40 INDEPENDENT stride i%5==2, 32 AUTHORED_COMPLEMENT)
+overlap vs holdout-l32/holdout-l32b/development-l32: 0 ids, 0 texts (asserted at build time)
+retired-for-gate: holdout-l32b.json e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060 (REGRESSION_EVIDENCE only)
+
+--- git status of reasoning-l3 sources at freeze time ---
+?? backend/src/safescope-v2/reasoning-l3/

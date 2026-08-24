@@ -1,0 +1,51 @@
+=== L3-2d SECURITY / PRODUCTION-BOUNDARY VERIFICATION 2026-08-22T23:59:53Z ===
+
+-- 1. sealed holdout unmodified since freeze --
+post-execution sha256: bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7
+freeze-record sha256:  bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7
+
+-- 2. prior sealed holdouts unmodified --
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+  expected: 41ae3c22... / e3a3c7ee... / 33c69b36...
+
+-- 3. dependency drift --
+package-lock.json: 
+  (empty = unchanged)
+  dependency blocks IDENTICAL to HEAD -- nothing added, removed or upgraded
+package.json non-dependency delta (npm script lines only):
++    "test:l31-reasoning-contract": "ts-node scripts/test-l31-reasoning-contract.ts",
++    "test:l32-semantic-contract": "ts-node scripts/test-l32-semantic-contract.ts",
++    "test:l32b-binder-precision": "ts-node scripts/test-l32b-binder-precision.ts",
++    "test:l32c-gate-polarity": "ts-node scripts/test-l32c-gate-polarity.ts",
++    "test:l32d-clarification-scope": "ts-node scripts/test-l32d-clarification-scope.ts",
++    "score:l32c": "ts-node scripts/score-l32c-reasoning.ts",
++    "score:l32d": "ts-node scripts/score-l32d-reasoning.ts",
+
+-- 4. no credential or secret introduced --
+  (empty above = none)
+
+-- 5. provider egress surface --
+  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts:46:  endpoint: process.env.L3_OLLAMA_ENDPOINT || 'http://127.0.0.1:11434',
+  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts:110:      response = await fetch(`${this.config.endpoint}/api/chat`, {
+  backend/scripts/ablate-l32d-prompt.ts:143:  const res = await fetch(`${L3_2_INFERENCE_CONFIG.endpoint}/api/chat`, {
+
+-- 6. Level-3 remains unreachable from the customer path --
+Nest/repository decorators in reasoning-l3: 0
+importers of reasoning-l3 outside itself: 0
+seam + standards diff vs HEAD: 
+  (0 / 0 / empty = Level-3 has no persistence, no reporting and no customer authority)
+
+-- 7. databases --
+  present: safescope
+  present: sentinel_dev
+  present: sentinel_safety
+  present: test_l32d_invariance_20260822
+  created disposable: test_l32d_invariance_20260822
+  template read-only:  test_hazlenz_capability_prodshape_20260822
+  protected 'safescope' public tables (read-only check): 46
+
+-- 8. release / production mutation --
+  no commit, push, merge, rebase, reset, tag, deploy, migration, SHADOW or CUTOVER
+  HEAD: 1feda622dbb93d7e05d156838ab37db3e21db507

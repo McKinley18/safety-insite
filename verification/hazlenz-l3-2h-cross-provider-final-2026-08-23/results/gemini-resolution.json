@@ -1,0 +1,153 @@
+{
+  "phase": "L3-2g",
+  "role": "DETERMINISTIC_RESOLUTION_ABLATION_OVER_FROZEN_FACTS",
+  "generatedAt": "2026-08-24T01:18:09.476Z",
+  "source": [
+    "/private/tmp/claude-501/-Users-mckinley/ebf95867-ea95-4c5e-a192-d5d46f500721/scratchpad/l32h-gemini-merged.json"
+  ],
+  "providerVariance": "ZERO_BY_CONSTRUCTION -- no inference is performed; facts are read from the source run",
+  "caveat": "orderings selected against KNOWN cases. ARCHITECTURE SELECTION ONLY. NOT generalisation evidence.",
+  "orderings": {
+    "R0_HAZARD_FIRST": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 3,
+        "clarRaised": 3,
+        "clarHit": 3,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 6,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 5,
+        "clarRaised": 5,
+        "clarHit": 5,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 8,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 4,
+        "clarHit": 4,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      }
+    },
+    "R1_MISSING_FIRST": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 3,
+        "clarRaised": 3,
+        "clarHit": 3,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 6,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 5,
+        "clarRaised": 5,
+        "clarHit": 5,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 8,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 4,
+        "clarHit": 4,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      }
+    },
+    "R2_MISSING_UNLESS_CONTROL_STATED": {
+      "V_S_STRUCT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 3,
+        "clarRaised": 3,
+        "clarHit": 3,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 6,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_MOVE1": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 5,
+        "clarRaised": 5,
+        "clarHit": 5,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 8,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      },
+      "V_S_STRUCT_REPEAT": {
+        "hcExpected": 12,
+        "hcRecovered": 12,
+        "hcMissedIds": [],
+        "clarExpected": 4,
+        "clarRaised": 4,
+        "clarHit": 4,
+        "clarMissedIds": [],
+        "clarUnnecessaryIds": [],
+        "falseActive": 0,
+        "falseActiveIds": [],
+        "nonActiveExpected": 7,
+        "clarificationPrecision": 100,
+        "clarificationRecall": 100
+      }
+    }
+  }
+}

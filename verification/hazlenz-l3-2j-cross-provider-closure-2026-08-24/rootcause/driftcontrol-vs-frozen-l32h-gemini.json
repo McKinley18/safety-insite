@@ -1,0 +1,80 @@
+{
+  "left": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/l32h-gemini-V_S_STRUCT.json",
+    "variant": "V_S_STRUCT",
+    "model": "gemini-3.1-pro-preview",
+    "generatedAt": "2026-08-24T01:07:28.896Z"
+  },
+  "right": {
+    "path": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/e5348836-4120-4b2a-9fd5-be2b690b616b/scratchpad/l32j4-gemini-V_S_STRUCT.json",
+    "variant": "V_S_STRUCT",
+    "model": "gemini-3.1-pro-preview",
+    "generatedAt": "2026-08-24T12:58:43.481Z"
+  },
+  "fieldsCompared": [
+    "outcome",
+    "candidateCount",
+    "modelStates",
+    "modelAssertsActive",
+    "raisedClarification",
+    "derivedAssertsActive",
+    "derivedClarification"
+  ],
+  "scenariosCompared": 24,
+  "comparisonsMade": 168,
+  "differingFields": 7,
+  "differingScenarios": [
+    "F-CL-01",
+    "F-OA-02"
+  ],
+  "differences": [
+    {
+      "scenarioId": "F-OA-02",
+      "field": "modelStates",
+      "left": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "right": [
+        "UNKNOWN"
+      ]
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "candidateCount",
+      "left": 0,
+      "right": 1
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "modelStates",
+      "left": [],
+      "right": [
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "raisedClarification",
+      "left": false,
+      "right": true
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "derivedAssertsActive",
+      "left": null,
+      "right": false
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "derivedClarification",
+      "left": null,
+      "right": true
+    }
+  ]
+}

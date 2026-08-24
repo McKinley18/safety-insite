@@ -1,0 +1,59 @@
+L3-2f — FINAL STATE
+
+  TERMINAL STATE      L3_2F_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED
+  ALSO                L3_2E_SCOPE_CONTRADICTION — CLOSED
+  AUTHORITY           CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+  ARCHITECTURE        L3_2F_ARCHITECTURE_REASSESSMENT_REQUIRED — ASSESSED, NOT DECLARED
+  L3-3 ELIGIBLE       NO
+  BASELINE HEAD       1feda622dbb93d7e05d156838ab37db3e21db507 (unchanged)
+
+ADVANCEMENT GATE, ITEM BY ITEM
+  high-consequence misses ............ 4          REQUIRED 0     FAIL
+  negative-control false ACTIVE ...... 0 of 13    REQUIRED 0     PASS
+  false ACTIVE ....................... 0 of 20    REQUIRED 0     PASS
+  fabricated quotations SHIPPED ...... 0          REQUIRED 0     PASS   (1 of 100 unbound, validator-rejected)
+  clarification recall ............... 100%       REQUIRED 100%  PASS
+  clarification precision ............ 100%       REQUIRED 100%  PASS
+  unnecessary clarifications ......... 0          REQUIRED 0     PASS
+  reproducibility .................... 97 of 97   REQUIRED 100%  PASS
+  customer non-volatile differences .. 0 of 66    REQUIRED 0     PASS
+  F1 predicate-scope class ........... repaired generally           PASS
+  DISC-05 ............................ repaired (class, not word)   PASS
+  DISC-06 ............................ repaired (whole-word + head) PASS
+  DISC-07 ............................ repaired (both guards kept)  PASS
+  E-OA-07 class ...................... root-caused; NOT recovered in the shipped variant   FAIL
+  E-FLD-147 weak-control class ....... partially repaired; contract proven SUFFICIENT      PARTIAL
+  DISC-04 ............................ remains closed               PASS
+  D-FLD-175 / D-NG-04 / D-CR-04 ...... PASS / PASS / PASS
+  H-NG-02 / H-AM-05 / H-FLD-141 ...... PASS / PASS / PASS
+  B08 / C11 / B10 / RC-08 ............ PASS / PASS / PASS / PASS
+  new high-consequence regression .... none introduced by F1-F4     PASS
+  Level-3 contract regression ........ none                         PASS
+  sealed family coverage ............. 24 of 24                     PASS
+
+SIXTH AND FINAL SEALED HOLDOUT
+  holdout-l32f.json  sha256 47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5
+  97 scenarios — 40 INDEPENDENT (stride i%5===3, the last), 46 AUTHORED, 11 TARGETED
+  overlap against 5 sealed + 3 development sets: 0 ids, 0 texts
+  frozen before any repair code; byte-identical from freeze through acceptance
+
+  CURRENT_FIELD_CORPUS_EXHAUSTED_FOR_FRESH_EVALUATION — there is no seventh stride.
+
+THE FOUR REMAINING MISSES
+  F-FLD-159  provider  non-verbatim quotation -> EVIDENCE_OUT_OF_BOUNDS (designed behaviour, 29.6)
+  F-WC-02    BINDER    `fixed` in CORRECTION_TOKENS — 8th instance of 32.5; known treatment
+  F-WC-03    provider  a toolbox briefing read as an effective control (F6 residue)
+  F-WC-09    provider  PPE against a defeated engineering control read as CONTROLLED (F6 residue)
+
+WHAT OUTRANKS THEM
+  Two prompt variants, identical text, POSITION only:
+    A  material inside the ladder .... 2 HC misses, clarification precision 88.9%
+    B  material below the ladder ..... 4 HC misses, clarification precision 100%   [SHIPPED]
+  Neither satisfies both gates. Four phases have moved this balance with prose; this is the first
+  time both poles were measured against each other with everything else held constant.
+
+PRESERVATION
+  0 commits, 0 pushes, 0 merges, 0 rebases, 0 resets, 0 deployments, 0 production access
+  4 stashes and 23 tags unchanged; 5 prior sealed holdout hashes unchanged
+  tracked files modified 10 -> 10; L3-2f touched exactly one (backend/package.json)
+  package-lock.json byte-identical to HEAD

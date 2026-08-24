@@ -1,0 +1,2122 @@
+{
+  "mode": "L3_COMPARE",
+  "note": "Comparison evidence only. The Level-1 result was and remains the customer result; nothing in this artifact was consumed by the customer path.",
+  "adjudicationBasis": "frozen holdout expectations, authored before either result existed",
+  "level1ConditionStateAxis": "additionalHazards[].conditionState (per ORACLE_CORRECTION.md)",
+  "classification": {
+    "AGREE_BOTH_CORRECT": 53,
+    "AGREE_BOTH_INCORRECT": 1,
+    "L3_CORRECT_L1_INCORRECT": 40,
+    "L1_CORRECT_L3_INCORRECT": 3,
+    "BOTH_ACCEPTABLE": 0,
+    "GENUINELY_AMBIGUOUS": 0,
+    "COMPARISON_NOT_APPLICABLE": 0
+  },
+  "axes": {
+    "hazardEstablishedAgree": 54,
+    "hazardEstablishedDisagree": 43,
+    "familyOverlap": 8,
+    "familyNoOverlap": 36,
+    "familyNotComparable": 53,
+    "l1TopLevelUnknownOnEstablishedHazard": 52,
+    "l1ClarificationsRaised": 55,
+    "l3ClarificationsRaised": 4,
+    "l1MultiHazardCount": 13,
+    "l3MultiHazardCount": 7,
+    "l3EvidenceGroundedFindings": 78,
+    "l1EvidenceGroundedFindings": 0
+  },
+  "rows": [
+    {
+      "id": "F-FLD-004",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding",
+        "hot_work"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-009",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-014",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-019",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "traffic_control"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-024",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 2,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-029",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 3,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "traffic_control",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "material_handling"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-034",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-039",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-044",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-049",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-054",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-059",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 3,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "suspended_loads",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-064",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-069",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "traffic_control"
+      ],
+      "l3Families": [
+        "material_handling"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-074",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-079",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-084",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-089",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-094",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 2,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-099",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 3,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "traffic_control",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "material_handling"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-104",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "hot_work"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-109",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "traffic_control"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-114",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-119",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 3,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment",
+        "traffic_control",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "material_handling"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-124",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "excavation_trenching"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-129",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-134",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-139",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-144",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-149",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-154",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-159",
+      "cohort": "field_positive",
+      "class": "L1_CORRECT_L3_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 2,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "mobile_equipment",
+        "powered_industrial_trucks"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "REJECTED_OUTPUT",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-164",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-169",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 2,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-174",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-179",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-184",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "machine_guarding"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-189",
+      "cohort": "field_positive",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "mobile_equipment"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-194",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "pressure_systems",
+        "excavation_trenching"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FLD-199",
+      "cohort": "field_positive",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "mobile_equipment"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-01",
+      "cohort": "predicate_scope",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "confined_space"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-02",
+      "cohort": "predicate_scope",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting",
+        "suspended_loads"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-03",
+      "cohort": "predicate_scope",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-04",
+      "cohort": "predicate_scope",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-05",
+      "cohort": "predicate_scope",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 2,
+      "l1Families": [],
+      "l3Families": [
+        "fire_explosion",
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-06",
+      "cohort": "predicate_scope",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-07",
+      "cohort": "predicate_scope",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-PS-08",
+      "cohort": "predicate_scope",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NT-01",
+      "cohort": "np_terminator",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NT-02",
+      "cohort": "np_terminator",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NT-03",
+      "cohort": "np_terminator",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NT-04",
+      "cohort": "np_terminator",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-TB-01",
+      "cohort": "token_boundary",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "noise_exposure"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-TB-02",
+      "cohort": "token_boundary",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-TB-03",
+      "cohort": "token_boundary",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "chemical_storage"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-TB-04",
+      "cohort": "token_boundary",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "hot_work"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-TB-05",
+      "cohort": "token_boundary",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NC-01",
+      "cohort": "nominal_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NC-02",
+      "cohort": "nominal_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NC-03",
+      "cohort": "nominal_control",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NC-04",
+      "cohort": "nominal_control",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-01",
+      "cohort": "control_adequacy",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-02",
+      "cohort": "control_adequacy",
+      "class": "L1_CORRECT_L3_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-03",
+      "cohort": "control_adequacy",
+      "class": "L1_CORRECT_L3_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-04",
+      "cohort": "control_adequacy",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "walking_working_surfaces"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-05",
+      "cohort": "control_adequacy",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-06",
+      "cohort": "control_adequacy",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-07",
+      "cohort": "control_adequacy",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-08",
+      "cohort": "control_adequacy",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 3,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-WC-09",
+      "cohort": "control_adequacy",
+      "class": "AGREE_BOTH_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-OA-01",
+      "cohort": "observation_availability",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_OBSERVATION_GAP_RECORDED",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-OA-02",
+      "cohort": "observation_availability",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "lockout_tagout"
+      ],
+      "l3Families": [
+        "loto_stored_energy"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-OA-03",
+      "cohort": "observation_availability",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "conveyors"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_OBSERVATION_GAP_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-OA-04",
+      "cohort": "observation_availability",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "mobile_equipment"
+      ],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-OA-05",
+      "cohort": "observation_availability",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "atmospheric_hazard"
+      ],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NEG-01",
+      "cohort": "negative_control",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NEG-02",
+      "cohort": "negative_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "excavation_trenching"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-NEG-03",
+      "cohort": "negative_control",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 0,
+      "l1Families": [
+        "mobile_equipment"
+      ],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CIP-01",
+      "cohort": "control_in_place",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CIP-02",
+      "cohort": "control_in_place",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "NO_HAZARD_ESTABLISHED",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-COR-01",
+      "cohort": "corrected_state",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 0,
+      "l1Families": [],
+      "l3Families": [],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CL-01",
+      "cohort": "clarification",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": false,
+      "l3AssertsActive": false,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CL-02",
+      "cohort": "clarification",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CL-03",
+      "cohort": "clarification",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": false,
+      "l1AssertsActive": true,
+      "l3AssertsActive": false,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "material_handling"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "INSUFFICIENT_EVIDENCE",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-CL-04",
+      "cohort": "clarification",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-MH-01",
+      "cohort": "multi_hazard",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "emergency_egress",
+        "hot_work"
+      ],
+      "l3Families": [
+        "machine_guarding",
+        "emergency_egress"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-NOISE-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "fall_protection"
+      ],
+      "l3Families": [
+        "machine_guarding"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-NOISE-02",
+      "cohort": "family_coverage",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "noise_exposure"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-NOISE-03",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "noise"
+      ],
+      "l3Families": [
+        "noise_exposure"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-CS-01",
+      "cohort": "family_coverage",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "falls"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-GC-01",
+      "cohort": "family_coverage",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "ground_control"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-HC-01",
+      "cohort": "family_coverage",
+      "class": "L3_CORRECT_L1_INCORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": false,
+      "l3AssertsActive": true,
+      "l1HazardCount": 0,
+      "l3HazardCount": 1,
+      "l1Families": [],
+      "l3Families": [
+        "chemical_storage"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-LR-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "rigging_lifting"
+      ],
+      "l3Families": [
+        "lifting_rigging"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 1,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-MH-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "material_handling"
+      ],
+      "l3Families": [
+        "scaffolds"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-PPE-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "excavation_trenching"
+      ],
+      "l3Families": [
+        "chemical_storage"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-WCH-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 1,
+      "l3HazardCount": 1,
+      "l1Families": [
+        "first_aid_medical"
+      ],
+      "l3Families": [
+        "fire_explosion"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    },
+    {
+      "id": "F-FAM-ME-01",
+      "cohort": "family_coverage",
+      "class": "AGREE_BOTH_CORRECT",
+      "expectedHazard": true,
+      "l1AssertsActive": true,
+      "l3AssertsActive": true,
+      "l1HazardCount": 2,
+      "l3HazardCount": 2,
+      "l1Families": [
+        "powered_industrial_trucks",
+        "fall_protection"
+      ],
+      "l3Families": [
+        "falls",
+        "walking_working_surfaces"
+      ],
+      "l1TopLevelConditionState": "UNKNOWN",
+      "l3Outcome": "VALIDATED",
+      "l3SemanticIssues": [
+        "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "l1CitationCount": 0,
+      "l3CitationCount": 0
+    }
+  ]
+}

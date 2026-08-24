@@ -1,0 +1,247 @@
+{
+  "stage": "L3-2d PROMPT ABLATION",
+  "generatedAt": "2026-08-22T23:25:56.015Z",
+  "inference": {
+    "model": "qwen3-coder:30b",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "variantHashes": {
+    "v2_l32b": "676eb15ea839d9de0030f948ef8382e2317a25d6df7d9eabf3ad040d1d3f2e69",
+    "v3_l32c": "c62ff3eab5559cca534d0269ffed713072ac30eac1e79927d143a8732fcba852",
+    "v4_l32d_current": "850192574758e32d4edd3020485e60a8577f76043671f0d1de4e07b0757321be"
+  },
+  "variantLineCounts": {
+    "v2_l32b": 72,
+    "v3_l32c": 76,
+    "v4_l32d_current": 83
+  },
+  "records": [
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-NG-02",
+      "blocker": "D2",
+      "why": "negation in clause one, hard electrical fact in clause two; L3-2b returned electrical/ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "electrical/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-NG-03",
+      "blocker": "D2",
+      "why": "contrastive \"however\" after a negation; a hard fact follows",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-NG-05",
+      "blocker": "D2",
+      "why": "same shape on the L3-2c holdout",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "states": [
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-FLD-138",
+      "blocker": "D1",
+      "why": "ACTIVE is established; solvent type/quantity refines risk and changes no semantic decision",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "chemical_storage/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-CS-05",
+      "blocker": "D1",
+      "why": "explicitly hypothetical; the text answers nothing else and the state is decided",
+      "expectActive": false,
+      "expectClarification": false,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "states": [
+        "chemical_storage/HYPOTHETICAL"
+      ],
+      "anyActive": false,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-AM-04",
+      "blocker": "D1",
+      "why": "impression beside a hard fact; ACTIVE established from the fact alone",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-AM-06",
+      "blocker": "D1",
+      "why": "the guard is stated gone; who removed it changes no semantic decision",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "machine_guarding/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-AM-01",
+      "blocker": "CONTROL",
+      "why": "pure impression; no fact at all",
+      "expectActive": false,
+      "expectClarification": true,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "states": [
+        "walking_working_surfaces/INSUFFICIENT_EVIDENCE"
+      ],
+      "anyActive": false,
+      "anyClarification": true,
+      "clarificationOnNonInsufficient": false,
+      "questions": [
+        {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "q": "What specific physical condition or hazard was present with the overhead door track that caused it to be described as 'odd'?"
+        }
+      ]
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-AM-02",
+      "blocker": "CONTROL",
+      "why": "the hedge governs the only predication there is",
+      "expectActive": false,
+      "expectClarification": true,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-AM-03",
+      "blocker": "CONTROL",
+      "why": "the substance is unidentified and that changes hazard family and consequence",
+      "expectActive": false,
+      "expectClarification": true,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "states": [
+        "chemical_storage/INSUFFICIENT_EVIDENCE"
+      ],
+      "anyActive": false,
+      "anyClarification": true,
+      "clarificationOnNonInsufficient": false,
+      "questions": [
+        {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "q": "What type of chemical or liquid was found in the puddle under the parts washer?"
+        }
+      ]
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "C-NC-05",
+      "blocker": "CONTROL",
+      "why": "positive impression beside a control-in-place fact; must not become ACTIVE",
+      "expectActive": false,
+      "expectClarification": false,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "states": [],
+      "anyActive": false,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    },
+    {
+      "variant": "v4_l32d_current",
+      "repeat": 1,
+      "id": "H-EV-02",
+      "blocker": "CONTROL",
+      "why": "plain unambiguous ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "states": [
+        "machine_guarding/ACTIVE"
+      ],
+      "anyActive": true,
+      "anyClarification": false,
+      "clarificationOnNonInsufficient": false,
+      "questions": []
+    }
+  ]
+}

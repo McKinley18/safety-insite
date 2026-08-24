@@ -1,0 +1,160 @@
+{
+  "left": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/reproduction/post-revert-V_PRE_ACTIVATION.json",
+    "pid": 61794,
+    "model": "qwen3-coder:30b",
+    "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385"
+  },
+  "right": {
+    "path": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/e5348836-4120-4b2a-9fd5-be2b690b616b/scratchpad/l32j4-gemini-SHIPPED_A.json",
+    "pid": 64985,
+    "model": "gemini-3.1-pro-preview",
+    "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385"
+  },
+  "fieldsCompared": [
+    "outcome",
+    "candidateCount",
+    "modelStates",
+    "modelAssertsActive",
+    "candidateBorneClarification",
+    "validationState",
+    "validatedAssertsActive"
+  ],
+  "comparisonsMade": 168,
+  "differingFields": 17,
+  "differingScenarios": [
+    "B10",
+    "C-CS-05",
+    "C11",
+    "E-FLD-147",
+    "F-CL-01",
+    "F-CL-03",
+    "F-COR-01",
+    "F-NT-01",
+    "F-OA-01",
+    "F-WC-09",
+    "H-NG-02"
+  ],
+  "differences": [
+    {
+      "scenarioId": "E-FLD-147",
+      "field": "validationState",
+      "left": "REJECTED_MODEL_OUTPUT",
+      "right": "VALID"
+    },
+    {
+      "scenarioId": "E-FLD-147",
+      "field": "validatedAssertsActive",
+      "left": false,
+      "right": true
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "field": "modelStates",
+      "left": [
+        "CONTROLLED"
+      ],
+      "right": [
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "field": "modelAssertsActive",
+      "left": false,
+      "right": true
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "field": "validatedAssertsActive",
+      "left": false,
+      "right": true
+    },
+    {
+      "scenarioId": "F-OA-01",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "C11",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 2
+    },
+    {
+      "scenarioId": "C11",
+      "field": "modelStates",
+      "left": [
+        "ACTIVE"
+      ],
+      "right": [
+        "ACTIVE",
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "field": "candidateCount",
+      "left": 1,
+      "right": 2
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "field": "modelStates",
+      "left": [
+        "ACTIVE"
+      ],
+      "right": [
+        "NEGATED",
+        "ACTIVE"
+      ]
+    },
+    {
+      "scenarioId": "B10",
+      "field": "outcome",
+      "left": "INSUFFICIENT_EVIDENCE",
+      "right": "ANALYZED"
+    },
+    {
+      "scenarioId": "F-NT-01",
+      "field": "candidateCount",
+      "left": 0,
+      "right": 1
+    },
+    {
+      "scenarioId": "F-NT-01",
+      "field": "modelStates",
+      "left": [],
+      "right": [
+        "NEGATED"
+      ]
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "field": "validationState",
+      "left": "VALID",
+      "right": "REJECTED_MODEL_OUTPUT"
+    }
+  ]
+}

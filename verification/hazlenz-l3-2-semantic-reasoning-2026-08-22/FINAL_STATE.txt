@@ -1,0 +1,93 @@
+=== L3-2 FINAL STATE 2026-08-22T15:08:09Z ===
+HEAD:     1feda622dbb93d7e05d156838ab37db3e21db507
+expected: 1feda622dbb93d7e05d156838ab37db3e21db507
+branch:   release/insite-rc-2026-08-18
+remote:   1feda622dbb93d7e05d156838ab37db3e21db507
+divergence(remote...HEAD): 0	0
+stashes=4 tags=23
+
+--- L3-1 PROTECTED MODULE HASHES (must equal the L3-1 baseline) ---
+a16d91a999e9649a315bb538137ec982c862f3d94c7c8aa8cffa3dc74075a866  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+c7feec5ce601b44c6396756c6840c7d4460e12ebecb91de10d99489a1f3388bc  backend/src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider.ts
+5d61d3d8c855a1eefd8d288b9738e2442f86e845ad0267d9774d2edecdef6d2f  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+4339b96a3b1a546c56bce2456ca26034a8860135ff8f498f8c725f48a4d0797b  backend/src/safescope-v2/reasoning-l3/reasoning-outcome.ts
+0cb98e9faca3c18f2d9776f16625a8eb42fb26f709fcab2e423d01b5a64ddc22  backend/src/safescope-v2/reasoning-l3/unavailable-reasoning-provider.ts
+b9181282847ddbfecea55c301695bc92c806866f1c5998aebda2d6e7696985d4  backend/src/safescope-v2/reasoning-l3/validated-reasoning.types.ts
+23906513a750e03bb32123eae6547f83986f6ea4f8914edf1af55e342bf0d4fa  backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+8be11bda2587a1ff33e77b20568cd50c55124878f59bebeb249f17b6ab821839  backend/scripts/test-l31-reasoning-contract.ts
+
+--- L3-2 NEW IMPLEMENTATION HASHES ---
+32c17b929dff2a915ca4355e1b5ee82309b5e846e0914d9730525e0c26114ddb  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+cd3e904b5170d1796f3eef31567acadaf75297d688f15c3747739853620a76a8  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+1fed1a5a670fd4d1e25e342834673a4c7bd0b9de8056ad4337adf3620b4d158a  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+f11fb8fe04679d2ba1c23e882dd18c12e3656ffd512092067b0ab8221e359d8d  backend/src/safescope-v2/reasoning-l3/eval/development-l32.json
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+db9ac82d68ed7d6b001e3df87da5586b6786c5cfcce74c966e225ced405b0bc1  backend/scripts/test-l32-semantic-contract.ts
+e804bc627e2cb18980aa1e1df2a862ec50dc59ac9002062f1570295283fc2cfe  backend/scripts/run-l32-reasoning.ts
+e7e24667e6c0548ebdc16b3aacdb31434a8dcb6a1c296abc8318043385a9a8eb  backend/scripts/score-l32-reasoning.ts
+9df26592b2e9ce5d880ab1dae3a8a0bb621586b53462e619e057dcc6f88fc76a  backend/scripts/build-l32-holdout.ts
+4a7cc9944eacbe2978ec7c1ff18ba3d8280ff61c4097134d73cc04eb1ea30da3  backend/scripts/compare-l32-customer-invariance.ts
+7f558b9862e1da471da9cffa463c56bfda04e90c641b3d26c8ce82621a2fabad  backend/scripts/compare-l32-level1-level3.ts
+
+--- OTHER PROTECTED UNCOMMITTED WORK (must equal the L3-1 baseline) ---
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  backend/scripts/test-private-storage-reports.ts
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  frontend-next/lib/planEntitlements.ts
+
+--- ARCHITECTURE + L3-1 VERIFICATION ARTIFACTS (must be unchanged) ---
+ede070d10a5293874e6db48f821a46f1bebf5bb18184e65c178d2950462e9576  verification/hazlenz-l3-1-reasoning-contract-2026-08-22/customer-authority-invariance.json
+cc36f12d44495062edb543ed748e36adfdca9d8ed1677efac4bdb8f00b9781d9  verification/hazlenz-l3-1-reasoning-contract-2026-08-22/L3_2_ENTRY_CONTRACT.md
+92f37a173faee30526cb3083dbf6bc961d8e240ea40bffb1a979f3e2a8279ae6  verification/hazlenz-l3-1-reasoning-contract-2026-08-22/phase1-baseline.txt
+89c13d877d7d0231e2f30d996e106c871b4e5170f554039c0e9789efbf6c0ade  verification/hazlenz-l3-1-reasoning-contract-2026-08-22/STATUS.md
+99b280184a132cf79b52c351e6e6b83236e64cd26f5113a75b6b82304aba705a  verification/hazlenz-level3-architecture-2026-08-22/CONSISTENCY_REVIEW.md
+b721c22e23470dafcff2c81b7ac49a1622af3d49935abf2a523286b13b6e52d7  verification/hazlenz-level3-architecture-2026-08-22/contracts/authority-map.json
+af391016ded1c4daf5d99559f7cdef51d5164d3ed65755ea9af43de5d1e8e038  verification/hazlenz-level3-architecture-2026-08-22/CURRENT_REASONING_PATH.md
+9dd50432dd97d50a9ea83067e9bbb418ee4068544ec23af0ae5a730325484035  verification/hazlenz-level3-architecture-2026-08-22/DISPOSITIONS.md
+44a59b153d18311d1ed3e5480e005c6e74a69f1ad83215814a4e560ec640b532  verification/hazlenz-level3-architecture-2026-08-22/EVALUATION_AND_GATES.md
+349b3b3071236b92ee60fa2f47cc9205c8c6f5dc34a313a86aba10a2ac24a267  verification/hazlenz-level3-architecture-2026-08-22/IMPLEMENTATION_PLAN.md
+fe4ea15536057f157cc23f870938ecf82740f10108fe44dfcf76e246bf5a2d8b  verification/hazlenz-level3-architecture-2026-08-22/LEVEL3_ARCHITECTURE.md
+7e20713738393474b89c8b465a03be747ce576a2ef624382a52d65bd51f6bc74  verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+f32ab46c93e360c2f9a961a962257ab14c99efb05df937b3b990ddcb3f1654dd  verification/hazlenz-level3-architecture-2026-08-22/ROOT_CAUSE_CONSOLIDATION.md
+
+--- SEAM (must be unmodified vs HEAD) ---
+SEAM_UNCHANGED_VS_HEAD
+6fe4afb910755c5245fc9033cca81e34585ade99f74344ce4e5ac363803fbcd3  backend/src/safescope-v2/orchestration/intelligence-orchestrator.service.ts
+71baba275cfbbc2a40df780f152c8b208276efe3a0479ce343bf8768fb1ed225  backend/src/safescope-v2/safescope-v2.service.ts
+
+--- DOCS UPDATED BY THIS PHASE ---
+e4e7d793fcc575a3237a19244ae00661779a5d908c990a989e661789be93c161  docs/INSITE_ENGINEERING_BLUEPRINT.md
+bb65a513b8bd9f6220253e19fe5608cde28ec0a4cbd952d3bd1d20d484ca2eed  docs/INSITE_CURRENT_STATE.json
+
+--- package.json diff (must be exactly one added script line) ---
+2	0	backend/package.json
+
+--- FULL WORKTREE STATUS ---
+ M backend/package.json
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+?? "Safety InSite Logos/"
+?? backend/scripts/build-l32-holdout.ts
+?? backend/scripts/compare-l32-customer-invariance.ts
+?? backend/scripts/compare-l32-level1-level3.ts
+?? backend/scripts/run-l32-reasoning.ts
+?? backend/scripts/score-l32-reasoning.ts
+?? backend/scripts/test-l31-reasoning-contract.ts
+?? backend/scripts/test-l32-semantic-contract.ts
+?? backend/src/safescope-v2/reasoning-l3/
+?? verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5e/
+?? verification/hazlenz-l3-1-reasoning-contract-2026-08-22/
+?? verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/
+?? verification/hazlenz-level3-architecture-2026-08-22/

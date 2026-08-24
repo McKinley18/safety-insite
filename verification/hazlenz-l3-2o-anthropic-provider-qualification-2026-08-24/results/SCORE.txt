@@ -1,0 +1,14 @@
+* = recorded baseline, not re-run by this phase
+
+model                     MODEL  VALID  falseACT  clar(c/s)  prec  reject  codes
+claude-sonnet-5   A       13/13  13/13  0/11      5/5 5/5    5/6   1       UNGROUNDED_CORRECTIVE_ACTION
+claude-sonnet-5   B       13/13  13/13  0/11      5/5 5/5    5/6   2       UNGROUNDED_CORRECTIVE_ACTION
+gemini-3.7-flash A *      13/13  7/13   0/11      5/5 5/5    5/5   7       UNGROUNDED_CORRECTIVE_ACTION
+gemini-3.6-flash A *      13/13  10/13  0/11      5/5 5/5    5/5   4       UNGROUNDED_CORRECTIVE_ACTION
+gemini-3.1-pro-preview *  13/13  13/13  0/11      5/5 5/5    5/5   1       UNGROUNDED_CORRECTIVE_ACTION
+qwen3-coder:30b *         12/13  11/13  0/11      5/5 5/5    5/5   1       DUPLICATE_CANDIDATE
+
+claude-sonnet-5   A rejections: F-COR-01   errors: 0
+claude-sonnet-5   B rejections: F-NC-01,F-COR-01   errors: 0
+
+NOISE FLOOR (two isolated processes): 6/24 rows differ  F-CL-01,F-CL-03,B08,H-AM-05,H-NG-02,F-NC-01

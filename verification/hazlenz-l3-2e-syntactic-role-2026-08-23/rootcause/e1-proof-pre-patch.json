@@ -1,0 +1,332 @@
+{
+  "stage": "L3-2e E1 ROOT-CAUSE PROOF (unpatched L3-2d code)",
+  "generatedAt": "2026-08-23T00:15:00.001Z",
+  "checksProvenSeparately": {
+    "checkContradiction": "lexical presence used to REJECT -- a false positive DELETES a correct finding (D-FLD-175)",
+    "checkStateSupported": "lexical presence used to ADMIT a claimed state -- a false positive accepts a WRONG state"
+  },
+  "summary": {
+    "total": 12,
+    "defectsReproduced": 7,
+    "highConsequenceDeletions": 3,
+    "pairedHalvesStillCorrect": 4
+  },
+  "rows": [
+    {
+      "group": "E1a_contradiction_correctionToken",
+      "id": "D-FLD-175",
+      "token": "discarded",
+      "role": "ATTRIBUTIVE MODIFIER on \"conveyor rollers\"",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris.",
+      "quote": "Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris",
+      "state": "ACTIVE",
+      "mustSurvive": true,
+      "why": "nothing was corrected -- \"discarded\" describes the rollers. The asserted predicate is \"is blocked\".",
+      "negationScopes": [],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'discarded', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": true,
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE FINDING IS DELETED"
+    },
+    {
+      "group": "E1a_contradiction_correctionToken",
+      "id": "PAIR-175",
+      "token": "discarded",
+      "role": "ASSERTED PREDICATE",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "The damaged extension lead was found at the panel and was discarded before we left the area.",
+      "quote": "The damaged extension lead was found at the panel and was discarded before we left the area",
+      "state": "ACTIVE",
+      "mustSurvive": false,
+      "why": "THE PAIRED HALF. Here the same token IS the predicate and genuinely contradicts ACTIVE.",
+      "negationScopes": [],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'discarded', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": false,
+      "defectReproduced": false,
+      "consequence": "correct today"
+    },
+    {
+      "group": "E1a_contradiction_correctionToken",
+      "id": "NEG-APPLIED",
+      "token": "applied",
+      "role": "ASSERTED PREDICATE UNDER A GOVERNING NEGATION",
+      "family": "loto_stored_energy",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "Crew was changing the knives on the granulator and no lockout is applied at the disconnect.",
+      "quote": "no lockout is applied at the disconnect",
+      "state": "ACTIVE",
+      "mustSurvive": true,
+      "why": "a NEGATED correction is not a correction. \"applied\" is in CORRECTION_TOKENS and the negation is ignored.",
+      "negationScopes": [
+        {
+          "token": "no",
+          "governs": "no lockout is applied at the disconnect"
+        }
+      ],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'applied', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": true,
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE FINDING IS DELETED"
+    },
+    {
+      "group": "E1a_contradiction_correctionToken",
+      "id": "PAIR-APPLIED",
+      "token": "applied",
+      "role": "ASSERTED PREDICATE, unnegated",
+      "family": "loto_stored_energy",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "The crew stopped work and a full lockout was applied at the disconnect before the guard came off.",
+      "quote": "a full lockout was applied at the disconnect before the guard came off",
+      "state": "ACTIVE",
+      "mustSurvive": false,
+      "why": "THE PAIRED HALF. Unnegated, the same token genuinely contradicts ACTIVE.",
+      "negationScopes": [],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'applied', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": false,
+      "defectReproduced": false,
+      "consequence": "correct today"
+    },
+    {
+      "group": "E1a_contradiction_removalToken",
+      "id": "GUARD-REMOVED",
+      "token": "removed",
+      "role": "ASSERTED PREDICATE whose SUBJECT IS THE CONTROL, not the equipment",
+      "family": "machine_guarding",
+      "highConsequenceFamily": false,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "The chain guard has been removed from the drive and was not refitted after the belt change.",
+      "quote": "The chain guard has been removed from the drive and was not refitted after the belt change",
+      "state": "ACTIVE",
+      "mustSurvive": true,
+      "why": "removing a GUARD creates the hazard. Bare \"removed\" is ambiguous between that and removal-from-service.",
+      "negationScopes": [
+        {
+          "token": "not",
+          "governs": "not refitted "
+        }
+      ],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'removed', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": true,
+      "defectReproduced": true,
+      "consequence": "a correct ordinary finding is deleted"
+    },
+    {
+      "group": "E1a_contradiction_removalToken",
+      "id": "PAIR-REMOVED",
+      "token": "removed from service",
+      "role": "ASSERTED PREDICATE, unambiguous multi-word form",
+      "family": "machine_guarding",
+      "highConsequenceFamily": false,
+      "check": "checkContradiction (correction/removal path)",
+      "text": "The grinder with the cracked wheel was removed from service and tagged before the shift ended.",
+      "quote": "The grinder with the cracked wheel was removed from service and tagged before the shift ended",
+      "state": "ACTIVE",
+      "mustSurvive": false,
+      "why": "THE PAIRED HALF. The unambiguous form genuinely contradicts ACTIVE.",
+      "negationScopes": [],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "cited evidence carries 'removed from service', which contradicts ACTIVE, and the rationale does not address it",
+      "survived": false,
+      "expectedSurvival": false,
+      "defectReproduced": false,
+      "consequence": "correct today"
+    },
+    {
+      "group": "E1b_contradiction_hazardNegation",
+      "id": "DISC-03-LABEL",
+      "token": "hazard",
+      "role": "ATTRIBUTIVE MODIFIER; the NP head is \"labels\"",
+      "family": "hazard_communication",
+      "highConsequenceFamily": false,
+      "check": "checkContradiction (hazard-negation path)",
+      "text": "A plastic jug of solvent is stored on the open shelf without hazard warning labels of any kind.",
+      "quote": "A plastic jug of solvent is stored on the open shelf without hazard warning labels of any kind",
+      "state": "ACTIVE",
+      "mustSurvive": true,
+      "why": "the negation denies the LABEL, which is a control. Their absence IS the hazard.",
+      "negationScopes": [
+        {
+          "token": "without",
+          "governs": "without hazard warning labels of any kind"
+        }
+      ],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "ACTIVE is grounded in 'without' negating 'hazard' -- the evidence denies the hazard rather than a control",
+      "survived": false,
+      "expectedSurvival": true,
+      "defectReproduced": true,
+      "consequence": "a correct ordinary finding is deleted"
+    },
+    {
+      "group": "E1b_contradiction_hazardNegation",
+      "id": "DISC-03-DAMAGE",
+      "token": "damage",
+      "role": "ATTRIBUTIVE context; the asserted hazard is in the contrastive clause",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (hazard-negation path)",
+      "text": "The survey found no damage to the enclosure although the earth conductor has been cut back and left unterminated.",
+      "quote": "The survey found no damage to the enclosure although the earth conductor has been cut back and left unterminated",
+      "state": "ACTIVE",
+      "mustSurvive": true,
+      "why": "the negation governs its own clause only; the hazard is asserted in the next one.",
+      "negationScopes": [
+        {
+          "token": "no",
+          "governs": "no damage to the enclosure "
+        }
+      ],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "ACTIVE is grounded in 'no' negating 'damage' -- the evidence denies the hazard rather than a control",
+      "survived": false,
+      "expectedSurvival": true,
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE FINDING IS DELETED"
+    },
+    {
+      "group": "E1b_contradiction_hazardNegation",
+      "id": "PAIR-NEGATED-HAZARD",
+      "token": "damage",
+      "role": "NP HEAD of the negated phrase",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkContradiction (hazard-negation path)",
+      "text": "The inspection of the switch room found no damage and no exposed conductors anywhere on the panels.",
+      "quote": "The inspection of the switch room found no damage and no exposed conductors anywhere on the panels",
+      "state": "ACTIVE",
+      "mustSurvive": false,
+      "why": "THE PAIRED HALF. Here the negation genuinely denies the hazard and ACTIVE must be refused.",
+      "negationScopes": [
+        {
+          "token": "no",
+          "governs": "no damage and no exposed conductors anywhere on the panels"
+        },
+        {
+          "token": "no",
+          "governs": "no exposed conductors anywhere on the panels"
+        }
+      ],
+      "influencedDecision": true,
+      "checkFired": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "detail": "ACTIVE is grounded in 'no' negating 'damage' -- the evidence denies the hazard rather than a control",
+      "survived": false,
+      "expectedSurvival": false,
+      "defectReproduced": false,
+      "consequence": "correct today"
+    },
+    {
+      "group": "E1c_stateSupport",
+      "id": "SS-MODIFIER-ADMITS",
+      "token": "discarded",
+      "role": "ATTRIBUTIVE MODIFIER",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkStateSupported (CORRECTED)",
+      "text": "Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris.",
+      "quote": "Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris",
+      "state": "CORRECTED",
+      "mustSurvive": false,
+      "why": "CORRECTED must NOT be supportable by a modifier. If this survives, lexical presence is admitting a wrong state.",
+      "negationScopes": [],
+      "influencedDecision": false,
+      "checkFired": [],
+      "detail": "",
+      "survived": true,
+      "expectedSurvival": false,
+      "defectReproduced": true,
+      "consequence": "a wrong claim is ADMITTED"
+    },
+    {
+      "group": "E1c_stateSupport",
+      "id": "SS-PREDICATE-ADMITS",
+      "token": "replaced",
+      "role": "ASSERTED PREDICATE",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "check": "checkStateSupported (CORRECTED)",
+      "text": "The cracked socket outlet at the bench was replaced with a new one before the end of the shift.",
+      "quote": "The cracked socket outlet at the bench was replaced with a new one before the end of the shift",
+      "state": "CORRECTED",
+      "mustSurvive": true,
+      "why": "THE PAIRED HALF. A genuine correction predicate must keep supporting CORRECTED.",
+      "negationScopes": [],
+      "influencedDecision": false,
+      "checkFired": [],
+      "detail": "",
+      "survived": true,
+      "expectedSurvival": true,
+      "defectReproduced": false,
+      "consequence": "correct today"
+    },
+    {
+      "group": "E1c_stateSupport",
+      "id": "SS-NEGATED-ADMITS",
+      "token": "in place",
+      "role": "ASSERTED PREDICATE UNDER A GOVERNING NEGATION",
+      "family": "falls",
+      "highConsequenceFamily": true,
+      "check": "checkStateSupported (CONTROLLED)",
+      "text": "The crew reported that no guardrail was in place along the open edge of the deck.",
+      "quote": "no guardrail was in place along the open edge of the deck",
+      "state": "CONTROLLED",
+      "mustSurvive": false,
+      "why": "CONTROLLED must NOT be supportable by a NEGATED control-in-place phrase.",
+      "negationScopes": [
+        {
+          "token": "no",
+          "governs": "no guardrail was in place along the open edge of the deck"
+        }
+      ],
+      "influencedDecision": false,
+      "checkFired": [],
+      "detail": "",
+      "survived": true,
+      "expectedSurvival": false,
+      "defectReproduced": true,
+      "consequence": "a wrong claim is ADMITTED"
+    }
+  ]
+}

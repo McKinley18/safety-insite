@@ -1,0 +1,432 @@
+{
+  "setId": "l3-2d-development-2026-08-22",
+  "role": "DEVELOPMENT",
+  "note": "TUNING ARTIFACT ONLY. Drawn from the OPENED L3-2/L3-2b/L3-2c sets. These results are never advancement evidence.",
+  "composition": {
+    "total": 22,
+    "clarificationExpected": 4,
+    "clarificationMustBeWithheld": 18
+  },
+  "scenarios": [
+    {
+      "id": "H-NG-02",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d2_negation_then_fact",
+      "failureMode": "d2_negation_then_fact",
+      "regime": "osha-general-industry",
+      "text": "There was no standing water anywhere on the shop floor, and the flexible cord feeding the pedestal fan has its outer jacket worn through to the conductors.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-03",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d2_negation_then_fact",
+      "failureMode": "d2_negation_then_fact",
+      "regime": "osha-general-industry",
+      "text": "The rack uprights showed no impact damage, however the top beam clip on bay nine has popped out of its slot and the beam is resting on one connector.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "material_handling|walking_working_surfaces",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C-NG-05",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d2_negation_then_fact",
+      "failureMode": "d2_negation_then_fact",
+      "regime": "osha-general-industry",
+      "text": "The extension ladder showed no split rails, however the shoes are worn smooth and it was set at close to eighty degrees on a painted floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C-FLD-138",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d1_must_not_ask",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "A shop mechanic is performing heavy solvent degreasing in an enclosed room with no local exhaust ventilation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "ventilation|chemical_storage|hazard_communication|respiratory",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C-CS-05",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d1_must_not_ask",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C-AM-04",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d1_must_not_ask",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C-AM-06",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "d1_must_not_ask",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "The tongue guard on the bench grinder is gone; I could not say whether maintenance removed it or it broke off.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-AM-01",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "required_clarification",
+      "failureMode": "required_clarification",
+      "regime": "osha-general-industry",
+      "text": "The overhead door track struck me as odd when I walked underneath it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-02",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "required_clarification",
+      "failureMode": "required_clarification",
+      "regime": "osha-general-industry",
+      "text": "One of the sling legs on the spreader bar may be cut.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-03",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "required_clarification",
+      "failureMode": "required_clarification",
+      "regime": "unknown",
+      "text": "There was a puddle of something under the parts washer and I could not tell what it was or where it came from.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-05",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32c_r1",
+      "failureMode": "l32c_r1",
+      "regime": "osha-general-industry",
+      "text": "The mezzanine gate did not look right to me and the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls|machine_guarding",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-FLD-141",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32c_r2",
+      "failureMode": "l32c_r2",
+      "regime": "osha-general-industry",
+      "text": "Crew was changing the knives on the granulator; no LOTO is applied and the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "B08",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32b_negation_scope",
+      "failureMode": "l32b_negation_scope",
+      "regime": "osha-construction",
+      "text": "An employee on a rolling scaffold at nine feet was using an angle grinder without a face shield while a propane forklift idled directly underneath refueling from a portable cylinder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "personal_protective_equipment|compressed_gas_cylinders|scaffolds|falls",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "C11",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32b_negation_scope",
+      "failureMode": "l32b_negation_scope",
+      "regime": "osha-general-industry",
+      "text": "welding on the mezz rail, no fire watch, cardboard and pallets stacked under where the sparks were landing, extinguisher in the area was last inspected 2 yrs ago per the tag",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire|hot_work|housekeeping|chemical_storage|walking_working_surfaces",
+        "minCandidates": 1,
+        "maxCandidates": 4,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "B10",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32b_subjective",
+      "failureMode": "l32b_subjective",
+      "regime": "osha-general-industry",
+      "text": "The rail on the platform did not look right to me.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "RC-08",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "l32b_negated_list",
+      "failureMode": "l32b_negated_list",
+      "regime": "osha-construction",
+      "text": "Steel erectors were connecting at the second tier with no guardrail, safety net or personal fall arrest system in use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|scaffolds",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEVNC-01",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "negative_control",
+      "failureMode": "negative_control",
+      "regime": "osha-general-industry",
+      "text": "Every point of operation on the punch press line is enclosed by a fixed barrier guard, the interlocks were function tested at the start of shift, and the test log was signed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      }
+    },
+    {
+      "id": "DEVNC-02",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "negative_control",
+      "failureMode": "negative_control",
+      "regime": "osha-general-industry",
+      "text": "The whole grinding bay looked right to me and the wheel guards are all fitted with the tool rests set within an eighth of an inch.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      }
+    },
+    {
+      "id": "DEVNC-03",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "negative_control",
+      "failureMode": "negative_control",
+      "regime": "osha-general-industry",
+      "text": "The guarding survey of the wrapping line found no exposed nip points and no reachable rotating shafts anywhere on the machine.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      }
+    },
+    {
+      "id": "DEVCS-01",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "condition_state",
+      "failureMode": "condition_state",
+      "regime": "osha-general-industry",
+      "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEVCS-02",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "condition_state",
+      "failureMode": "condition_state",
+      "regime": "osha-general-industry",
+      "text": "The scissor lift was red tagged and taken out of service after the pothole protection failed to deploy during the function check.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "DEVCS-03",
+      "source": "L3-2d development (drawn from opened sets)",
+      "provenanceClass": "DEVELOPMENT",
+      "cohort": "condition_state",
+      "failureMode": "condition_state",
+      "regime": "osha-general-industry",
+      "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    }
+  ]
+}

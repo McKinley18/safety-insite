@@ -1,0 +1,121 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T13:33:31.144Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_CS05_LADDER_B_REPEAT3",
+    "pid": 75154
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_CS05_LADDER_B_REPEAT3",
+    "label": "variant B, fourth isolated process"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 1,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "D_CS05_LADDER_B_REPEAT3",
+      "expectActive": false,
+      "expectClarification": false,
+      "observationText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about a level probe failing closed during a transfer, which would cause the vent to pressurize and lift the manway gasket. This is a conditional statement about what could happen if a specific condition occurs.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "hypothetical-pressure-release",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "HYPOTHETICAL",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation states a conditional scenario about what would happen if a level probe fails closed. This describes a potential hazard that exists only under specific hypothetical conditions.",
+            "independentHazardRationale": "This represents a single hypothetical hazard related to chemical storage system pressure release mechanisms, which is distinct from other potential hazards like electrical or mechanical failures.",
+            "uncertainties": [],
+            "clarification": null
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "conditionRationale": "The observation states a conditional scenario about what would happen if a level probe fails closed. This describes a potential hazard that exists only under specific hypothetical conditions.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "hypothetical-pressure-release",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": false,
+      "latencyMs": 4347
+    }
+  ]
+}

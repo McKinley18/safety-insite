@@ -1,0 +1,97 @@
+{
+  "phase": "L3-2g",
+  "role": "ORDER_SENSITIVITY_AGAINST_MEASURED_NOISE_FLOOR",
+  "generatedAt": "2026-08-24T13:08:45.090Z",
+  "noiseFloor": {
+    "modelLabel": 0,
+    "derivedR1": 0,
+    "scenarios": 0,
+    "rows": [],
+    "derivedRows": [],
+    "note": "byte-identical prompts at temperature 0. Differences here are provider variance and are the floor below which no ordering difference may be read as an effect."
+  },
+  "comparisons": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "scenarios": 24,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "LADDER"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_DERIVED"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_DERIVED"
+    }
+  ],
+  "interpretation": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    }
+  ]
+}

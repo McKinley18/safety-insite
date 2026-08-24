@@ -1,0 +1,87 @@
+{
+  "stage": "OLD_VS_NEW_GATE",
+  "generatedAt": "2026-08-22T22:29:45.912Z",
+  "rows": [
+    {
+      "id": "H-AM-05",
+      "kind": "R1 recall pole",
+      "shouldRefuse": false,
+      "oldGateRefuses": true,
+      "newGateRefuses": false,
+      "changedByL32c": true,
+      "verdict": "IMPROVED_BY_L3_2C"
+    },
+    {
+      "id": "H-AM-02",
+      "kind": "R1 precision pole",
+      "shouldRefuse": true,
+      "oldGateRefuses": true,
+      "newGateRefuses": true,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "B10",
+      "kind": "protected",
+      "shouldRefuse": true,
+      "oldGateRefuses": true,
+      "newGateRefuses": true,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "H-AM-01",
+      "kind": "latent false ACTIVE",
+      "shouldRefuse": true,
+      "oldGateRefuses": false,
+      "newGateRefuses": true,
+      "changedByL32c": true,
+      "verdict": "IMPROVED_BY_L3_2C"
+    },
+    {
+      "id": "possibly-leaking",
+      "kind": "protected (L3-2b fixture)",
+      "shouldRefuse": true,
+      "oldGateRefuses": true,
+      "newGateRefuses": true,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "impression-plus-fact",
+      "kind": "protected (L3-2b fixture)",
+      "shouldRefuse": false,
+      "oldGateRefuses": false,
+      "newGateRefuses": false,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_AND_CORRECT"
+    },
+    {
+      "id": "NC-hazard-negated",
+      "kind": "negative control",
+      "shouldRefuse": true,
+      "oldGateRefuses": false,
+      "newGateRefuses": false,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_PRE_EXISTING_GAP"
+    },
+    {
+      "id": "NC-positive-impression-plus-control",
+      "kind": "negative control",
+      "shouldRefuse": true,
+      "oldGateRefuses": true,
+      "newGateRefuses": false,
+      "changedByL32c": true,
+      "verdict": "REGRESSED_BY_L3_2C"
+    },
+    {
+      "id": "NC-negated-across-and",
+      "kind": "negative control",
+      "shouldRefuse": true,
+      "oldGateRefuses": false,
+      "newGateRefuses": false,
+      "changedByL32c": false,
+      "verdict": "UNCHANGED_PRE_EXISTING_GAP"
+    }
+  ]
+}

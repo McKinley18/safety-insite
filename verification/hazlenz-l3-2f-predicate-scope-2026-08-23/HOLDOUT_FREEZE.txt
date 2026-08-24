@@ -1,0 +1,18 @@
+L3-2f SIXTH SEALED HOLDOUT — FREEZE RECORD
+frozen at        2026-08-23T01:51:28Z
+frozen BEFORE    any L3-2f repair code was written (implementation begins after this record)
+file             backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json
+sha256           47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5
+selection rule   i % 5 === 3 over the id-sorted field dataset — THE LAST UNTOUCHED STRIDE
+field corpus     safescope-data/benchmarks/safescope-field-validation-dataset.v1.json
+field sha256     a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2
+repo HEAD        1feda622dbb93d7e05d156838ab37db3e21db507
+
+OVERLAP AGAINST EVERY PRIOR SEALED AND DEVELOPMENT SET: 0 ids, 0 texts (enforced by a throw at build time)
+
+PRIOR SEALED SET HASHES, UNCHANGED BY THIS BUILD:
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json

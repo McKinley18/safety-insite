@@ -1,0 +1,159 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T13:31:11.905Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_CS05_LADDER_A_REPEAT",
+    "pid": 74901
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_CS05_LADDER_A_REPEAT",
+    "label": "D_CS05_LADDER_A again, OWN PROCESS -- noise floor (§38.3)"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 1,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "D_CS05_LADDER_A_REPEAT",
+      "expectActive": false,
+      "expectClarification": false,
+      "observationText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about a level probe failing closed on a caustic tank, which would cause the vent to pressurize and potentially lift the manway gasket. This is a conditional statement about what could happen if a specific component fails.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "hypothetical-pressure-release",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "HYPOTHETICAL",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation presents a conditional scenario about what would happen if a level probe fails closed, describing a potential hazard that exists only under hypothetical circumstances.",
+            "independentHazardRationale": "This represents a single hypothetical hazard condition based on the failure of one component (level probe) in a chemical storage system, which would lead to pressure buildup and potential gasket failure. It is independent from other potential hazards because it specifically addresses the risk associated with the level probe's failure mode.",
+            "uncertainties": [
+              "Whether the level probe is currently functioning properly",
+              "Whether the vent system has adequate pressure relief capacity"
+            ],
+            "clarification": {
+              "unresolvedFact": "The current operational status of the level probe on the caustic tank",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If the level probe is functioning properly, then the hazard is not present (CORRECTED)",
+                "If the level probe is not functioning properly, then the hazard exists under the described conditions (ACTIVE)"
+              ],
+              "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+            }
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "conditionRationale": "The observation presents a conditional scenario about what would happen if a level probe fails closed, describing a potential hazard that exists only under hypothetical circumstances.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": {
+            "unresolvedFact": "The current operational status of the level probe on the caustic tank",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If the level probe is functioning properly, then the hazard is not present (CORRECTED)",
+              "If the level probe is not functioning properly, then the hazard exists under the described conditions (ACTIVE)"
+            ],
+            "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+          }
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": {
+            "unresolvedFact": "The current operational status of the level probe on the caustic tank",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If the level probe is functioning properly, then the hazard is not present (CORRECTED)",
+              "If the level probe is not functioning properly, then the hazard exists under the described conditions (ACTIVE)"
+            ],
+            "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+          }
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "hypothetical-pressure-release",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        },
+        {
+          "code": "SEMANTIC_CLARIFICATION_ON_DECIDED_STATE",
+          "candidateKey": "hypothetical-pressure-release",
+          "detail": "a clarification was attached to a candidate already decided as 'HYPOTHETICAL'; a question there resolves no decision boundary (L3-INV-06) and was dropped without touching the hazard"
+        }
+      ],
+      "clarificationsDropped": [
+        {
+          "candidateKey": "hypothetical-pressure-release",
+          "conditionState": "HYPOTHETICAL",
+          "question": "Is the level probe on the caustic tank currently operating within normal parameters?"
+        }
+      ],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": false,
+      "latencyMs": 6889
+    }
+  ]
+}

@@ -1,0 +1,1950 @@
+{
+  "setId": "l3-2f-sealed-holdout-2026-08-23",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "visibleDuringTuning": false,
+  "frozenBeforeFirstExecution": true,
+  "frozenBeforeRepairCodeWritten": true,
+  "supersedes": "l3-2e-sealed-holdout-2026-08-23 (b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06) -- opened, now REGRESSION_EVIDENCE only",
+  "sharesNoScenarioWith": [
+    "holdout-l32.json",
+    "holdout-l32b.json",
+    "holdout-l32c.json",
+    "holdout-l32d.json",
+    "holdout-l32e.json",
+    "development-l32.json",
+    "development-l32d.json",
+    "development-l32e.json"
+  ],
+  "overlapCheck": {
+    "textClashes": 0,
+    "idClashes": 0,
+    "internalDuplicates": 0,
+    "perPriorSet": {
+      "holdout-l32.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "holdout-l32b.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "holdout-l32c.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "holdout-l32d.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "holdout-l32e.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "development-l32.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "development-l32d.json": {
+        "ids": 0,
+        "texts": 0
+      },
+      "development-l32e.json": {
+        "ids": 0,
+        "texts": 0
+      }
+    },
+    "method": "exact trimmed text and id comparison against ALL FIVE prior sealed sets and ALL THREE development sets, asserted at build time with a throw"
+  },
+  "independentEvidenceExhaustion": {
+    "status": "THIS IS THE LAST FRESH STRIDE",
+    "rule": "i % 5 === 3",
+    "priorStrides": {
+      "l3-2b": "i%5===0",
+      "l3-2c": "i%5===2",
+      "l3-2d": "i%5===4",
+      "l3-2e": "i%5===1"
+    },
+    "consequence": "after this holdout the current field dataset is EXHAUSTED for fresh evaluation. No prior field scenario may be reused as fresh evidence. Any further semantic quality phase must identify a genuinely independent new source, and that source may not be authored solely to satisfy already-known failures."
+  },
+  "provenance": {
+    "A_independent": {
+      "artifact": "safescope-data/benchmarks/safescope-field-validation-dataset.v1.json",
+      "sha256": "a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2",
+      "authoredBy": "an earlier programme phase; never executed against any Level-3 code",
+      "selection": "deterministic -- indices where i % 5 === 3 over the id-sorted dataset, the rule L3-2e named in advance",
+      "disjointFromPriorStrides": "strides 0,1,2,3,4 are pairwise disjoint by construction; 3 is the last unused",
+      "count": 40,
+      "familyMix": {
+        "machine_guarding": 20,
+        "mobile_equipment": 20
+      },
+      "note": "this stride finally brings in mobile_equipment, the last of the field dataset's six families that no sealed set had drawn from."
+    },
+    "B_authoredComplement": {
+      "authoredBy": "the L3-2f implementation phase",
+      "count": 46,
+      "why": "source A is entirely positive hazards with no negative control, corrected state, clarification case, observation-availability case, predicate-scope case, token-boundary case or control-adequacy case",
+      "limitation": "authored by the implementer -- the FIFTH phase running to carry this, and the programme's largest unclosed methodological weakness. Written and frozen BEFORE the repair code, expectations declared here, no text reused from any prior set."
+    },
+    "C_targetedFamilyComplement": {
+      "authoredBy": "the L3-2f implementation phase, FOR FAMILY COVERAGE ONLY",
+      "count": 11,
+      "why": "noise_exposure is the one family still NOT_YET_SEALED_VALIDATED, and eight further families passed L3-2e only under a permitted ALTERNATIVE label rather than their own.",
+      "limitation": "TARGETED, not independent, and reported separately everywhere. Coverage evidence, not generalization evidence.",
+      "familiesTargeted": [
+        "noise_exposure",
+        "confined_space",
+        "ground_control",
+        "hazard_communication",
+        "lifting_rigging",
+        "material_handling",
+        "personal_protective_equipment",
+        "welding_cutting_hot_work",
+        "mobile_equipment"
+      ]
+    }
+  },
+  "clarificationLabelContract": {
+    "declaredBefore": "first candidate execution",
+    "mayNotBeRedefinedAfterExecution": true,
+    "true_means": "a decision-critical fact is missing and the correct semantic conclusion cannot be reached safely without it",
+    "false_means": "the evidence already supports the semantic conclusion; a question would only add optional detail"
+  },
+  "highConsequenceFamilies": [
+    "fall",
+    "trench",
+    "excavation",
+    "cave_in",
+    "loto",
+    "energy",
+    "confined",
+    "electrical",
+    "struck_by",
+    "mobile_equipment",
+    "scaffold",
+    "hole",
+    "opening",
+    "impalement",
+    "rebar",
+    "explosion",
+    "ground_control"
+  ],
+  "composition": {
+    "total": 97,
+    "byProvenance": {
+      "INDEPENDENT": 40,
+      "AUTHORED_COMPLEMENT": 46,
+      "TARGETED_FAMILY_COMPLEMENT": 11
+    },
+    "byCohort": {
+      "field_positive": 40,
+      "predicate_scope": 8,
+      "np_terminator": 4,
+      "token_boundary": 5,
+      "nominal_control": 4,
+      "control_adequacy": 9,
+      "observation_availability": 5,
+      "negative_control": 3,
+      "control_in_place": 2,
+      "corrected_state": 1,
+      "clarification": 4,
+      "multi_hazard": 1,
+      "family_coverage": 11
+    },
+    "positives": 77,
+    "negativesOrNonActive": 20,
+    "explicitNegativeControls": 13,
+    "clarificationExpected": 4,
+    "clarificationMustBeWithheld": 93,
+    "highConsequence": 44,
+    "predicateScopeCases": 8,
+    "npTerminatorCases": 4,
+    "tokenBoundaryCases": 5,
+    "nominalControlCases": 4,
+    "controlAdequacyCases": 10,
+    "observationAvailabilityCases": 5,
+    "correctedOrControlInPlaceCases": 5
+  },
+  "scenarios": [
+    {
+      "id": "F-FLD-004",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The table saw in the maintenance shop is missing its blade guard, exposing the point of operation during wood cutting.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-009",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A diesel forklift is actively transporting a large load that blocks the operator's vision in a shared walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-014",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Observed a worker operating the metal shear without the point of operation guard in place, exposing fingers to the blade.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-019",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Forklifts are operating in the warehouse area near pedestrians with no marked walkways or physical barriers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-024",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The pedestal grinder in the shop is missing its tongue guard and the tool rest clearance exceeds 1/4 inch.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-029",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Observed a forklift operating in a shared pedestrian aisle with no separation barrier or warning signs.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-034",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "A shop mechanic is operating the press brake with the safety light curtains bypassed, leaving the point of operation unguarded.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-039",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Forklift is operating near pedestrians in a shared aisle without any marked walkways or traffic controls.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-044",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The abrasive wheel grinder is being used with the wheel guard removed, exposing the spinning wheel and point of operation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-049",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Mobile equipment is moving through the primary plant area where employees walk, with no marked walkways.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-054",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The band saw in the maintenance shop is running with the blade guard fully raised, exposing the unused portion of the blade.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-059",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A warehouse forklift is driving with an elevated load blocking forward visibility in a pedestrian travel path.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-064",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Operating the mechanical press with the front barrier guard removed, leaving the point of operation unguarded.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-069",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "No marked walkways or physical barriers are present in the warehouse where forklifts and pedestrians interact.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-074",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The drill press in the shop is being operated without a spindle guard, exposing the spinning chuck and bit.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-079",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A forklift is operating in a shared aisle with pedestrians walking beside the moving mobile equipment.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-084",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Found the point of operation guard on the press brake removed while in active use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-089",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Forklifts are moving through a shared pedestrian aisle in the shipping area with no marked walkways.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-094",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Pedestal grinder in the workshop has no safety wheel guard and the tool rest is too far from the wheel.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-099",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A forklift is operating in a tight warehouse corridor where pedestrians are walking, with no separation barrier.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-104",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The table saw blade guard has been removed, exposing the rotating blade during cutting operations.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-109",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Forklifts and pedestrians are sharing the main warehouse aisle with no physical separation or marked walkways.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-114",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Observed the sheet metal shear being operated with the front finger guard removed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-119",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A forklift is operating near employees in a shared walkway with no traffic control signs or barriers.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-124",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The shop grinder is missing its spark shield and the wheel guard is cracked.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-129",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A front-end loader is backing up in a high-traffic stockpile area, and its backup alarm is completely inaudible.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-134",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Press brake in the fabrication area is being operated without hand controls or a point of operation guard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-139",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "The backup alarm on the haul truck is broken or inoperable, and the vehicle lacks a rear-view camera or spotter.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-144",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The radial arm saw is being operated with the lower blade guard wedged open, exposing the point of operation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-149",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A utility truck is reversing in the maintenance yard without a working backup alarm or audible horn.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-154",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Operating the punch press without the protective interlocked guard, exposing the die area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-159",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Found a forklift reversing in the loading bay with a broken backup horn and no working flashing strobe light.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-164",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "A shop hand is using the pedestal grinder; the wheel guard is missing and the tool rest is not adjusted.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-169",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "The skid steer loader is backing up near ground crews with an inoperable reverse travel alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-174",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The circular saw in the shop has its blade guard pinned back, exposing the point of operation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-179",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "A diesel haul truck is reversing near the crusher hopper with no backup alarm and severely dirty mirrors.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-184",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "The shop band saw has an exposed blade because the adjustable guard is raised too high during operation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-189",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "Reversing utility tractor in the warehouse area near pedestrians with the backup alarm removed for maintenance.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-194",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "regime": "osha-general-industry",
+      "text": "Using the pipe cutter without the protective shield, exposing the cutting wheel point of operation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-FLD-199",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "provenanceClass": "INDEPENDENT",
+      "cohort": "field_positive",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "regime": "osha-general-industry",
+      "text": "The front-end loader reverse backup alarm is muted, and the operator is reversing without rear visibility.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "F-PS-01",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular finite verb after the comma ends the scope",
+      "regime": "osha-general-industry",
+      "text": "No purge certificate was raised for the digester, and the boilermaker went down the access ladder with the sludge line still open.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "confined_space",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "went",
+        "scopeMustEndAtComma": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-02",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: coordinated negated list must CROSS its commas",
+      "regime": "osha-construction",
+      "text": "The two slingers were working under the suspended load with no exclusion zone, tag line or banksman in position.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging|struck_by|material_handling",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "none -- bare noun phrase",
+        "scopeMustEndAtComma": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-03",
+      "cohort": "predicate_scope",
+      "failureMode": "second irregular finite verb, different lexical item",
+      "regime": "osha-construction",
+      "text": "No edge protection had been signed off for the sixth lift, and the plasterer fell against the temporary handrail which gave way at the coupler.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|scaffolds|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "fell",
+        "scopeMustEndAtComma": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-04",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: same verb lemma used NON-predicatively inside a noun phrase",
+      "regime": "osha-general-industry",
+      "text": "The audit found no fall from height reported for the quarter and no lost time injury on any shift.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "predicateUnderTest": "fall as NP head, not a predicate",
+        "scopeMustEndAtComma": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-05",
+      "cohort": "predicate_scope",
+      "failureMode": "copular predicate after the comma (already correct today; must stay correct)",
+      "regime": "osha-general-industry",
+      "text": "No hot work permit was displayed at the tank farm, and the welder was standing on the bund wall cutting a redundant branch line.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "welding_cutting_hot_work|fire_explosion",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "was",
+        "scopeMustEndAtComma": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-06",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular finite verb in a SIBLING clause joined by a bare conjunction",
+      "regime": "osha-general-industry",
+      "text": "No isolation certificate was raised for the press and the setter took the interlock key out of the gate switch to keep the ram running.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy|machine_guarding",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "took",
+        "scopeMustEndAtComma": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-07",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: bare conjunction continuing a negated list must NOT end the scope",
+      "regime": "osha-construction",
+      "text": "The roofers were working at the verge with no guardrail and no harness anchor point within reach of the working position.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "predicateUnderTest": "none",
+        "scopeMustEndAtComma": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-PS-08",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular verb used ATTRIBUTIVELY, not as a predicate",
+      "regime": "osha-general-industry",
+      "text": "The drive coupling on the number two extractor is running with no coupling cover and a broken retaining clip left on the base frame.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "predicateUnderTest": "broken as attributive modifier",
+        "scopeMustEndAtComma": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NT-01",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before an UNLISTED preposition (against)",
+      "regime": "osha-general-industry",
+      "text": "The quarterly audit of the solvent store recorded no deficiencies against the flammable liquids standard and no outstanding actions from the previous visit.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "headUnderTest": "deficiencies"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NT-02",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before a second unlisted preposition (beyond)",
+      "regime": "osha-general-industry",
+      "text": "The strip-down of the gearbox showed no defects beyond the input bearing housing and the unit was returned to the line.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "headUnderTest": "defects"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NT-03",
+      "cohort": "np_terminator",
+      "failureMode": "PAIR: a negated CONTROL before the same preposition IS an active hazard",
+      "regime": "osha-construction",
+      "text": "There was no toe board against the open edge of the loading platform where the blocks were being landed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|scaffolds",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "headUnderTest": "toe board -- a CONTROL, not a hazard object"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NT-04",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before a third unlisted preposition (regarding)",
+      "regime": "osha-general-industry",
+      "text": "The contractor review raised no concerns regarding the scaffold handover certificate and the tags were all current.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "headUnderTest": "concerns"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-TB-01",
+      "cohort": "token_boundary",
+      "failureMode": "issue inside issued -- the DISC-06 shape, on a fresh hazard",
+      "regime": "osha-general-industry",
+      "text": "The two chippers worked the whole shift in the fettling bay with no ear defenders issued to either of them.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "noise_exposure|personal_protective_equipment",
+        "clarificationExpected": false,
+        "coversFamily": "noise_exposure",
+        "headUnderTest": "defenders"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-TB-02",
+      "cohort": "token_boundary",
+      "failureMode": "PAIR: the same stem as a genuine negated hazard head",
+      "regime": "osha-general-industry",
+      "text": "The pre-start inspection of the fettling bay recorded no issue with any of the extraction hoods.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "headUnderTest": "issue"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-TB-03",
+      "cohort": "token_boundary",
+      "failureMode": "harm inside harmless",
+      "regime": "osha-general-industry",
+      "text": "The bund contained no harmless residue at all; it was holding about two inches of waste thinners with the drain valve open to the yard.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical_storage|hazard_communication",
+        "clarificationExpected": false,
+        "headUnderTest": "residue"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-TB-04",
+      "cohort": "token_boundary",
+      "failureMode": "access inside accessory",
+      "regime": "osha-general-industry",
+      "text": "The bench grinder has no accessory tool rest fitted and the wheel gap is opened out to about half an inch.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "headUnderTest": "tool rest"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-TB-05",
+      "cohort": "token_boundary",
+      "failureMode": "trailing participle must not be taken as the NP head",
+      "regime": "osha-construction",
+      "text": "The gang were setting formwork over the void with no fall arrest equipment fitted to any of the harnesses.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "headUnderTest": "equipment"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NC-01",
+      "cohort": "nominal_control",
+      "failureMode": "correction expressed as the OBJECT of an action verb",
+      "regime": "osha-general-industry",
+      "text": "The frayed lifting sling was cut from the crane hook at the start of the shift and the rigger drew a replacement from the stores cage before the next lift.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "expectedStateHint": "CORRECTED",
+        "clarificationExpected": false,
+        "correctedStateControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NC-02",
+      "cohort": "nominal_control",
+      "failureMode": "PAIR: correction expressed as a verb (already correct today)",
+      "regime": "osha-general-industry",
+      "text": "The frayed lifting sling was taken off the crane hook at the start of the shift and was replaced from the stores cage before the next lift.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "expectedStateHint": "CORRECTED",
+        "clarificationExpected": false,
+        "correctedStateControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NC-03",
+      "cohort": "nominal_control",
+      "failureMode": "NEGATION GUARD: a negated nominal correction is not a correction",
+      "regime": "osha-general-industry",
+      "text": "The frayed lifting sling is still rigged on the crane hook and no replacement has been drawn from the stores cage.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging|material_handling",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NC-04",
+      "cohort": "nominal_control",
+      "failureMode": "MENTION GUARD: naming a procedure corrects nothing",
+      "regime": "osha-general-industry",
+      "text": "The supervisor talked the crew through the sling replacement procedure while the frayed sling stayed rigged on the crane hook for the rest of the shift.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging|material_handling",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlMentionOnly": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-01",
+      "cohort": "control_adequacy",
+      "failureMode": "warning tape offered against an open physical hazard",
+      "regime": "osha-construction",
+      "text": "A riser opening on the third floor slab has hazard tape strung between two stub columns across it and nothing else over the hole.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlAdequacy": "WARNING_ONLY"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-02",
+      "cohort": "control_adequacy",
+      "failureMode": "signage offered against an open physical hazard",
+      "regime": "osha-general-industry",
+      "text": "A DANGER OPEN PIT sign is fixed to the handrail post beside the inspection pit in the workshop floor and the pit is left open across the walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlAdequacy": "WARNING_ONLY"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-03",
+      "cohort": "control_adequacy",
+      "failureMode": "briefing/administrative notice offered against a physical hazard",
+      "regime": "osha-general-industry",
+      "text": "The missing floor plate at the end of the mezzanine walkway was raised in the morning briefing and the crew were told to step around it.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlAdequacy": "ADMINISTRATIVE_ONLY"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-04",
+      "cohort": "control_adequacy",
+      "failureMode": "COUNTER: a genuinely effective ENGINEERING control",
+      "regime": "osha-construction",
+      "text": "The riser opening on the third floor slab is closed with a load-rated steel plate bolted down at all four corners and painted with the hole reference.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "controlAdequacy": "EFFECTIVE"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-05",
+      "cohort": "control_adequacy",
+      "failureMode": "COUNTER: a second genuinely effective engineering control",
+      "regime": "osha-general-industry",
+      "text": "The inspection pit in the workshop floor is fitted with a fixed double guardrail and toeboard on all open sides and the gate is latched shut.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "controlAdequacy": "EFFECTIVE"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-06",
+      "cohort": "control_adequacy",
+      "failureMode": "warning present AND effective control also present -- must NOT become active",
+      "regime": "osha-construction",
+      "text": "The stair void is boarded over with a secured plywood deck screwed to the joists and warning tape is run around the edge of the deck as well.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "controlAdequacy": "EFFECTIVE_PLUS_WARNING"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-07",
+      "cohort": "control_adequacy",
+      "failureMode": "absent control encoded MORPHOLOGICALLY (un- prefix), reassuring clause first",
+      "regime": "osha-general-industry",
+      "text": "The extraction readings were all within limits at the bench, and the operator was reaching across an unguarded drive belt to clear a jam.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "controlAdequacy": "ABSENT_MORPHOLOGICAL"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-08",
+      "cohort": "control_adequacy",
+      "failureMode": "second morphological absence, reassuring clause first, high consequence",
+      "regime": "osha-construction",
+      "text": "The permit board was fully signed for the lift, and the banksman was standing on an unprotected slab edge to guide the load in.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlAdequacy": "ABSENT_MORPHOLOGICAL"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-WC-09",
+      "cohort": "control_adequacy",
+      "failureMode": "PPE offered where an engineering control is the required one",
+      "regime": "osha-general-industry",
+      "text": "The operators on the swage press have been issued gloves and told to keep their hands clear, and the two-hand control on the press has been strapped down with tape.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "controlAdequacy": "PPE_AGAINST_DEFEATED_ENGINEERING_CONTROL"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-OA-01",
+      "cohort": "observation_availability",
+      "failureMode": "unobserved fact IS the deciding fact",
+      "regime": "osha-construction",
+      "text": "A man was working from the boom platform over the river frontage and I could not tell from the bank whether his lanyard was clipped to the basket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "observationAvailability": "EXPLICITLY_NOT_OBSERVED",
+        "unobservedFactIsDeciding": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-OA-02",
+      "cohort": "observation_availability",
+      "failureMode": "unobserved fact IS the deciding fact, energy isolation",
+      "regime": "osha-general-industry",
+      "text": "A lockout hasp was hanging on the feeder isolator but I had no way of telling whether the breaker behind it had actually been racked out.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true,
+        "observationAvailability": "EXPLICITLY_NOT_OBSERVED",
+        "unobservedFactIsDeciding": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-OA-03",
+      "cohort": "observation_availability",
+      "failureMode": "unobserved fact decides NOTHING; hazard plainly stated",
+      "regime": "osha-general-industry",
+      "text": "The tail drum on the picking belt is turning with the nip completely open to the walkway; I could not make out the machine number on the guard bracket.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false,
+        "observationAvailability": "EXPLICITLY_NOT_OBSERVED",
+        "unobservedFactIsDeciding": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-OA-04",
+      "cohort": "observation_availability",
+      "failureMode": "reassuring clause FIRST, hazard asserted second -- the E-OA-07 shape, fresh wording",
+      "regime": "msha",
+      "text": "The dust suppression sprays were running at the crusher, and the loader operator was tramming along the high wall bench with the bench edge broken away under the outer wheel.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment|ground_control",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "observationAvailability": "OBSERVED",
+        "clausePositionTrap": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-OA-05",
+      "cohort": "observation_availability",
+      "failureMode": "reassuring clause first AND morphological absence second -- the exact E-OA-07 interaction",
+      "regime": "msha",
+      "text": "The gas detector read clear at the ramp bottom, and the bolting crew were working under an unsupported back that had already taken weight at the last cut.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "ground_control",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "observationAvailability": "OBSERVED",
+        "clausePositionTrap": true,
+        "controlAdequacy": "ABSENT_MORPHOLOGICAL"
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NEG-01",
+      "cohort": "negative_control",
+      "failureMode": "clean inspection, nothing to find",
+      "regime": "osha-general-industry",
+      "text": "The weekly check of the compressor house found the belt guards secure, the receiver certificate in date and the relief valve test tag current.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NEG-02",
+      "cohort": "negative_control",
+      "failureMode": "genuinely negated hazard, plainly worded",
+      "regime": "osha-construction",
+      "text": "The excavation was walked at the end of the shift and no cracking, slumping or water ingress was found anywhere along either batter.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-NEG-03",
+      "cohort": "negative_control",
+      "failureMode": "equipment genuinely withdrawn from service",
+      "regime": "osha-general-industry",
+      "text": "The forklift with the cracked mast channel was driven to the yard, tagged out and taken out of service pending the repair.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CIP-01",
+      "cohort": "control_in_place",
+      "failureMode": "energy isolation genuinely in place",
+      "regime": "osha-general-industry",
+      "text": "The mixer was shut down, locked out at the local isolator and the drive proved dead at the terminals before the paddle was drawn.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "correctedStateControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CIP-02",
+      "cohort": "control_in_place",
+      "failureMode": "physical guarding genuinely in place",
+      "regime": "osha-general-industry",
+      "text": "The rotating shaft on the number four agitator is fully enclosed by a bolted sheet steel cover and the interlock was proved on the test run.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false,
+        "negativeControl": true,
+        "correctedStateControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-COR-01",
+      "cohort": "corrected_state",
+      "failureMode": "hazard existed and was fixed during the visit",
+      "regime": "osha-general-industry",
+      "text": "The missing knockout blank on the distribution board was found during the walk and a proper blanking plate was fitted before we left the room.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "expectedStateHint": "CORRECTED",
+        "clarificationExpected": false,
+        "correctedStateControl": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CL-01",
+      "cohort": "clarification",
+      "failureMode": "pure impression, no fact stated -- a question is owed",
+      "regime": "osha-general-industry",
+      "text": "The anchor bracket on the davit arm did not look right to me.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CL-02",
+      "cohort": "clarification",
+      "failureMode": "PAIR: impression BESIDE a hard fact -- no question owed",
+      "regime": "osha-general-industry",
+      "text": "The anchor bracket on the davit arm did not look right to me and two of the four holding-down bolts are missing from the base plate.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging|falls|material_handling",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CL-03",
+      "cohort": "clarification",
+      "failureMode": "hedge governs the only predication there is",
+      "regime": "osha-general-industry",
+      "text": "One of the chain slings on the rack might be stretched.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-CL-04",
+      "cohort": "clarification",
+      "failureMode": "decided ACTIVE -- a question here would be unnecessary",
+      "regime": "osha-general-industry",
+      "text": "The chain sling on the second rack has three stretched links and the safe working load tag has been ground off the master link.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging|material_handling",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-MH-01",
+      "cohort": "multi_hazard",
+      "failureMode": "two genuinely independent hazards in one note",
+      "regime": "osha-general-industry",
+      "text": "The bench grinder wheel gap is opened out to half an inch, and separately the emergency exit at the end of the same bay is blocked by four stillages of finished castings.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding|emergency_egress",
+        "clarificationExpected": false,
+        "minimumCandidates": 2
+      },
+      "source": "authored by the L3-2f implementation phase",
+      "provenanceClass": "AUTHORED_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-NOISE-01",
+      "cohort": "family_coverage",
+      "failureMode": "noise_exposure, engineering control absent",
+      "regime": "osha-general-industry",
+      "text": "The shot blast cabinet has been running all week with the acoustic door seal split right along the bottom edge and the operator stands at the panel beside it.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "noise_exposure",
+        "clarificationExpected": false,
+        "coversFamily": "noise_exposure"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-NOISE-02",
+      "cohort": "family_coverage",
+      "failureMode": "noise_exposure, hearing protection not provided",
+      "regime": "osha-general-industry",
+      "text": "Both pedestal grinders in the fettling bay were being run continuously and neither operator had any hearing protection on.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "noise_exposure|personal_protective_equipment",
+        "clarificationExpected": false,
+        "coversFamily": "noise_exposure"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-NOISE-03",
+      "cohort": "family_coverage",
+      "failureMode": "noise_exposure, measured level stated",
+      "regime": "msha",
+      "text": "The sound level at the primary crusher operator station was logged at ninety eight decibels for the whole shift and no hearing conservation controls are in use there.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "noise_exposure",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "coversFamily": "noise_exposure"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-CS-01",
+      "cohort": "family_coverage",
+      "failureMode": "confined_space, exact label sought",
+      "regime": "osha-general-industry",
+      "text": "A man was working inside the reactor vessel through the side manway with no attendant posted at the opening and no rescue harness rigged.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "confined_space",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "coversFamily": "confined_space"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-GC-01",
+      "cohort": "family_coverage",
+      "failureMode": "ground_control, exact label sought",
+      "regime": "msha",
+      "text": "A slab of the rib has parted from the pillar line along the main haulage road and is standing off about four inches with no strapping or mesh over it.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "ground_control",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "coversFamily": "ground_control"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-HC-01",
+      "cohort": "family_coverage",
+      "failureMode": "hazard_communication, exact label sought",
+      "regime": "osha-general-industry",
+      "text": "Four decanted jerry cans of solvent are standing on the mixing bench with no product identity or hazard pictogram written on any of them.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "hazard_communication",
+        "clarificationExpected": false,
+        "coversFamily": "hazard_communication"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-LR-01",
+      "cohort": "family_coverage",
+      "failureMode": "lifting_rigging, exact label sought",
+      "regime": "osha-construction",
+      "text": "The two-leg chain sling on the tower crane hook has a stretched and gouged link in the upper leg and the load was landed on it twice this morning.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "lifting_rigging",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "coversFamily": "lifting_rigging"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-MH-01",
+      "cohort": "family_coverage",
+      "failureMode": "material_handling, exact label sought",
+      "regime": "osha-general-industry",
+      "text": "The top tier of the pallet racking in the despatch aisle is loaded two pallets deep with no back stop and the beams are visibly bowed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "material_handling",
+        "clarificationExpected": false,
+        "coversFamily": "material_handling"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-PPE-01",
+      "cohort": "family_coverage",
+      "failureMode": "personal_protective_equipment, exact label sought",
+      "regime": "osha-general-industry",
+      "text": "The operator decanting the caustic concentrate at the dosing skid was wearing no face shield and no chemical gauntlets, only ordinary work gloves.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "personal_protective_equipment",
+        "clarificationExpected": false,
+        "coversFamily": "personal_protective_equipment"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-WCH-01",
+      "cohort": "family_coverage",
+      "failureMode": "welding_cutting_hot_work, exact label sought",
+      "regime": "osha-general-industry",
+      "text": "A fitter was burning off a seized bracket beside the paint kitchen door with no fire watch posted and no extinguisher within reach of the work.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "welding_cutting_hot_work|fire_explosion",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "coversFamily": "welding_cutting_hot_work"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    },
+    {
+      "id": "F-FAM-ME-01",
+      "cohort": "family_coverage",
+      "failureMode": "mobile_equipment high-consequence, exact label sought",
+      "regime": "msha",
+      "text": "The haul truck was reversing to the tip head with no spotter and the berm along the edge is down to about half wheel height for twenty metres.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "coversFamily": "mobile_equipment"
+      },
+      "source": "authored by the L3-2f implementation phase for FAMILY COVERAGE ONLY",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT"
+    }
+  ]
+}

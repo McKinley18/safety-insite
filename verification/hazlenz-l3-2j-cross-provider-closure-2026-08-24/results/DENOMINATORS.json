@@ -1,0 +1,186 @@
+{
+  "phase": "L3-2j",
+  "role": "BOTH_CLARIFICATION_DENOMINATORS_OVER_LADDER_RUNS",
+  "generatedAt": "2026-08-24T13:08:57.697Z",
+  "scorerVersion": "hazlenz.l32j.ladder-clarification-scorer.v1",
+  "providerVariance": "ZERO_BY_CONSTRUCTION -- no inference is performed; rows are read from the corpus runs",
+  "lockedScorerNotUsed": "rederive-l32g-resolution.ts detects the candidate carrier through resolved stateFacts, which ladder rows do not have. It is BYTE-UNCHANGED by this phase and its recorded numbers stand.",
+  "metricDefinitions": {
+    "candidateConditionedClarificationRecall": "clarHit / clarExpected over CLARIFICATION_REQUIRED scenarios in which the provider emitted at least one hazard candidate. Zero-candidate scenarios are EXCLUDED from the denominator. DIAGNOSTIC ONLY -- it measures the resolver given facts, not the pipeline given an observation. This is the metric behind the 75% recorded in blueprint 37.2/37.4 and 38.2.",
+    "scenarioLevelClarificationRecall": "clarHit / clarExpected over ALL CLARIFICATION_REQUIRED scenarios, counting a question carried by EITHER carrier -- a hazard candidate, or (L3-2i) the candidate-independent proposal-level `unresolvedDecisions`. A scenario in which the provider emitted zero candidates, and therefore could carry no clarification, counts as a MISS. ADVANCEMENT-RELEVANT -- the inspector was owed a question and did not get one. Corrects the 75% figure to 60% for qwen (blueprint 39.5.2, D-56).",
+    "clarificationPrecision": "clarHit / clarRaised. IDENTICAL under both denominators by construction: a zero-candidate row raises nothing, so it can move neither the numerator nor clarRaised. Reported once.",
+    "highConsequenceAndFalseActive": "UNCHANGED by L3-2i and deliberately still candidate-conditioned. Facts that were never emitted cannot be resolved, and these figures are recorded under this filter in 37, 38 and 39."
+  },
+  "variants": {
+    "V_PRE_ACTIVATION [v6-no-declaration] pid61794": {
+      "source": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/reproduction/post-revert-V_PRE_ACTIVATION.json",
+      "label": "shipped prompt + shipped schema, carrier ABSENT -- the BASELINE",
+      "declarationRevision": "NONE",
+      "carrierPresentInSchema": false,
+      "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+      "pid": 61794,
+      "candidateConditionedClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "excludedZeroCandidateIds": []
+      },
+      "scenarioLevelClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "carriedByCandidate": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "carriedByProposalLevelCarrier": []
+      },
+      "clarificationPrecision": {
+        "hit": 5,
+        "raised": 5,
+        "percent": 100,
+        "unnecessaryIds": []
+      },
+      "modelAssertedHighConsequenceRecall": {
+        "note": "A THIRD, SEPARATELY NAMED metric. NOT the candidate-conditioned high-consequence figure recorded in sections 37-39, which is computed over resolved stateFacts and does not exist for ladder rows. Denominator: every scenario the cohort expects to assert ACTIVE.",
+        "recovered": 12,
+        "expected": 13,
+        "missedIds": [
+          "F-WC-09"
+        ]
+      },
+      "modelAssertedFalseActive": {
+        "count": 0,
+        "of": 11,
+        "ids": []
+      },
+      "validation": {
+        "valid": 23,
+        "of": 24,
+        "nonValid": [
+          {
+            "scenarioId": "E-FLD-147",
+            "state": "REJECTED_MODEL_OUTPUT"
+          }
+        ]
+      }
+    },
+    "V_PRE_ACTIVATION [v6-no-declaration] pid64985": {
+      "source": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2j-cross-provider-closure-2026-08-24/results/shipped-gemini-V_PRE_ACTIVATION.json",
+      "label": "shipped prompt + shipped schema, carrier ABSENT -- the BASELINE",
+      "declarationRevision": "NONE",
+      "carrierPresentInSchema": false,
+      "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+      "pid": 64985,
+      "candidateConditionedClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "excludedZeroCandidateIds": []
+      },
+      "scenarioLevelClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "carriedByCandidate": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "carriedByProposalLevelCarrier": []
+      },
+      "clarificationPrecision": {
+        "hit": 5,
+        "raised": 5,
+        "percent": 100,
+        "unnecessaryIds": []
+      },
+      "modelAssertedHighConsequenceRecall": {
+        "note": "A THIRD, SEPARATELY NAMED metric. NOT the candidate-conditioned high-consequence figure recorded in sections 37-39, which is computed over resolved stateFacts and does not exist for ladder rows. Denominator: every scenario the cohort expects to assert ACTIVE.",
+        "recovered": 13,
+        "expected": 13,
+        "missedIds": []
+      },
+      "modelAssertedFalseActive": {
+        "count": 0,
+        "of": 11,
+        "ids": []
+      },
+      "validation": {
+        "valid": 23,
+        "of": 24,
+        "nonValid": [
+          {
+            "scenarioId": "F-COR-01",
+            "state": "REJECTED_MODEL_OUTPUT"
+          }
+        ]
+      }
+    },
+    "V_PRE_ACTIVATION [v6-no-declaration] pid65449": {
+      "source": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2j-cross-provider-closure-2026-08-24/results/shipped-gemini-V_PRE_ACTIVATION_REPEAT.json",
+      "label": "shipped prompt + shipped schema, carrier ABSENT -- the BASELINE",
+      "declarationRevision": "NONE",
+      "carrierPresentInSchema": false,
+      "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+      "pid": 65449,
+      "candidateConditionedClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "excludedZeroCandidateIds": []
+      },
+      "scenarioLevelClarificationRecall": {
+        "hit": 5,
+        "expected": 5,
+        "percent": 100,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "carriedByCandidate": [
+          "F-OA-01",
+          "F-OA-02",
+          "F-CL-01",
+          "F-CL-03",
+          "B10"
+        ],
+        "carriedByProposalLevelCarrier": []
+      },
+      "clarificationPrecision": {
+        "hit": 5,
+        "raised": 5,
+        "percent": 100,
+        "unnecessaryIds": []
+      },
+      "modelAssertedHighConsequenceRecall": {
+        "note": "A THIRD, SEPARATELY NAMED metric. NOT the candidate-conditioned high-consequence figure recorded in sections 37-39, which is computed over resolved stateFacts and does not exist for ladder rows. Denominator: every scenario the cohort expects to assert ACTIVE.",
+        "recovered": 13,
+        "expected": 13,
+        "missedIds": []
+      },
+      "modelAssertedFalseActive": {
+        "count": 0,
+        "of": 11,
+        "ids": []
+      },
+      "validation": {
+        "valid": 23,
+        "of": 24,
+        "nonValid": [
+          {
+            "scenarioId": "F-COR-01",
+            "state": "REJECTED_MODEL_OUTPUT"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+
+--- 1  valid proposals
+ok    1.1 well-formed proposal validates
+ok    1.2 validated result carries the hazard
+ok    1.3 validator metadata is stamped with the validator's own version
+ok    1.3b ...and that version is a versioned identity, not free text
+ok    1.4 NO_HAZARD_ESTABLISHED with no candidates validates
+ok    1.5 INSUFFICIENT_EVIDENCE may carry no evidence
+
+--- 2  evidence binding (L3-INV-02, L3-INV-11)
+ok    2.1 ACTIVE with no evidence is rejected
+ok    2.2 out-of-range span is rejected
+ok    2.3 invented quotedText is rejected
+ok    2.4 unknown sourceId is rejected
+ok    2.5 RC-08: span excluding the governing "no" is rejected
+
+--- 3  taxonomy and condition state (L3-INV-04)
+ok    3.1 family outside the taxonomy is rejected
+ok    3.2 unknown condition state is rejected
+ok    3.3 UNKNOWN survives validation as UNKNOWN and is never promoted
+ok    3.4 the state set has no default member
+ok    3.5 a missing condition state never becomes ACTIVE
+
+--- 4  regulatory boundary (L3-INV-01, L3-INV-09)
+ok    4.1 a supplied candidate id is accepted
+ok    4.2 unsupplied candidate id is rejected
+ok    4.3 a free-form citation string cannot enter
+ok    4.4 regulatory text cannot enter the proposal
+ok    4.5 with no eligible set, no reference is permitted
+
+--- 5  governance boundary (L3-INV-03)
+ok    5.x 'knowledgeReleaseId' is structurally refused
+ok    5.x 'reviewState' is structurally refused
+ok    5.x 'approvalDigest' is structurally refused
+ok    5.x 'backingStatus' is structurally refused
+ok    5.x 'verifiedText' is structurally refused
+ok    5.6 a proposal cannot claim USER_CONFIRMED jurisdiction
+
+--- 6  clarification and grounding (L3-INV-06)
+ok    6.1 a well-formed clarification validates
+ok    6.2 a vague question with no decision dependency is rejected
+ok    6.3 an ungrounded corrective action is rejected
+ok    6.4 RC-05: an action grounded in evidence outside its own candidate is rejected
+
+--- 7  outcome coherence (L3-INV-05) and duplicates
+ok    7.1 ANALYSIS_UNAVAILABLE cannot carry hazards
+ok    7.2 NO_HAZARD_ESTABLISHED cannot carry an ACTIVE hazard
+ok    7.3 ANALYZED must carry at least one candidate
+ok    7.4 RC-07: identical family+state+evidence is a duplicate
+
+--- 8  schema and versioning (L3-INV-07)
+ok    8.1 a non-object proposal is rejected
+ok    8.2 wrong proposal contract version
+ok    8.3 analysisId must match the input
+
+--- 9  advisory signals cannot ground a finding (L3-INV-12)
+ok    9.1 an advisory lexical hint does not substitute for evidence
+ok    9.2 no validated finding arises from an advisory signal alone
+
+--- 10  provider abstraction and safe failure (L3-INV-05, L3-INV-08, L3-INV-10)
+ok    10.1 the only provider reports UNAVAILABLE
+ok    10.2 the stub provider synthesizes no hazard
+ok    10.3 retryability is a property of the failure kind
+ok    10.4 no infrastructure failure carries a hazard conclusion
+ok    10.5 every failure is reportable as "analysis did not complete"
+ok    10.6 a rejected proposal can never become a validated result
+
+--- 11  property-style boundaries
+ok    11.1 randomized out-of-range offsets always reject
+ok    11.2 near-miss family strings never validate
+ok    11.3 citation-like strings never become a validated candidate reference
+
+49 passed, 0 failed

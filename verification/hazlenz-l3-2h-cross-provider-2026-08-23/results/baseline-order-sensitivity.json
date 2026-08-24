@@ -1,0 +1,161 @@
+{
+  "phase": "L3-2g",
+  "role": "ORDER_SENSITIVITY_AGAINST_MEASURED_NOISE_FLOOR",
+  "generatedAt": "2026-08-24T00:06:08.607Z",
+  "noiseFloor": {
+    "modelLabel": 3,
+    "derivedR1": 1,
+    "scenarios": 24,
+    "rows": [
+      {
+        "scenarioId": "F-CL-03",
+        "pole": "CLARIFICATION_REQUIRED",
+        "V_S_STRUCT": "A?",
+        "V_S_STRUCT_REPEAT": "A-"
+      },
+      {
+        "scenarioId": "C-CS-05",
+        "pole": "CLARIFICATION_MUST_NOT_ASK",
+        "V_S_STRUCT": ".?",
+        "V_S_STRUCT_REPEAT": ".-"
+      },
+      {
+        "scenarioId": "F-NC-01",
+        "pole": "DECIDED_NON_ACTIVE",
+        "V_S_STRUCT": "A-",
+        "V_S_STRUCT_REPEAT": ".-"
+      }
+    ],
+    "derivedRows": [
+      {
+        "scenarioId": "F-CL-03",
+        "pole": "CLARIFICATION_REQUIRED",
+        "V_S_STRUCT": ".?",
+        "V_S_STRUCT_REPEAT": "A-"
+      }
+    ],
+    "note": "byte-identical prompts at temperature 0. Differences here are provider variance and are the floor below which no ordering difference may be read as an effect."
+  },
+  "comparisons": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "LADDER"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "scenarios": 24,
+      "differing": 3,
+      "rows": [
+        {
+          "scenarioId": "F-CL-01",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": ".?",
+          "V_S_STRUCT_MOVE1": "A?"
+        },
+        {
+          "scenarioId": "F-CL-03",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": "A?",
+          "V_S_STRUCT_MOVE1": "A-"
+        },
+        {
+          "scenarioId": "C-CS-05",
+          "pole": "CLARIFICATION_MUST_NOT_ASK",
+          "V_S_STRUCT": ".?",
+          "V_S_STRUCT_MOVE1": ".-"
+        }
+      ],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "scenarios": 24,
+      "differing": 3,
+      "rows": [
+        {
+          "scenarioId": "F-CL-01",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": ".-",
+          "V_S_STRUCT_MOVE1": ".?"
+        },
+        {
+          "scenarioId": "F-CL-03",
+          "pole": "CLARIFICATION_REQUIRED",
+          "V_S_STRUCT": ".?",
+          "V_S_STRUCT_MOVE1": "A-"
+        },
+        {
+          "scenarioId": "C-CS-05",
+          "pole": "CLARIFICATION_MUST_NOT_ASK",
+          "V_S_STRUCT": ".-",
+          "V_S_STRUCT_MOVE1": "A-"
+        }
+      ],
+      "manipulation": "ONE_BLOCK_MOVED",
+      "family": "STRUCTURAL_DERIVED"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_MODEL_LABEL"
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "scenarios": 0,
+      "differing": 0,
+      "rows": [],
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "family": "STRUCTURAL_DERIVED"
+    }
+  ],
+  "interpretation": [
+    {
+      "pair": "V_B_LADDER vs V_A_LADDER",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "MODEL",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 3,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_MOVE1",
+      "tier": "DERIVED_R1",
+      "manipulation": "ONE_BLOCK_MOVED",
+      "differing": 3,
+      "exceedsNoiseFloor": true
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "MODEL",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    },
+    {
+      "pair": "V_S_STRUCT vs V_S_STRUCT_INV",
+      "tier": "DERIVED_R1",
+      "manipulation": "SIX_BLOCKS_REVERSED",
+      "differing": 0,
+      "exceedsNoiseFloor": false
+    }
+  ]
+}

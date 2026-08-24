@@ -1,0 +1,1761 @@
+{
+  "setId": "l32f-stability",
+  "role": "DIAGNOSTIC",
+  "capturedAt": "2026-08-23T02:19:14.245Z",
+  "provider": {
+    "providerId": "ollama:qwen3-coder:30b",
+    "config": {
+      "endpoint": "<local>",
+      "model": "qwen3-coder:30b",
+      "temperature": 0,
+      "seed": 20260822,
+      "numCtx": 8192,
+      "timeoutMs": 60000
+    },
+    "promptVersion": "hazlenz.l3.prompt.v6"
+  },
+  "allowedHazardFamilyCount": 24,
+  "egressSample": {
+    "contractVersion": "hazlenz.l3.input.v1",
+    "analysisIdSent": true,
+    "sourceCount": 1,
+    "sourceIds": [
+      "observation-1"
+    ],
+    "sourceTypes": [
+      "observation"
+    ],
+    "totalSourceChars": 131,
+    "regulatoryContextValue": "osha-general-industry",
+    "regulatoryContextProvenance": "USER_CONFIRMED",
+    "allowedHazardFamilyCount": 24,
+    "regulatoryCandidateIdsSent": [],
+    "regulatoryCitationStringsSent": false,
+    "establishedFindingFamiliesSent": [],
+    "advisorySignalCount": 0,
+    "excludedStructurally": [
+      "personal names",
+      "inspector identity",
+      "company/site name",
+      "site address",
+      "account id",
+      "authentication material",
+      "billing data",
+      "unrelated inspection records",
+      "governed review state",
+      "release lifecycle state",
+      "standards corpus text",
+      "arbitrary database rows",
+      "photos/attachments"
+    ]
+  },
+  "records": [
+    {
+      "id": "C-CS-05#r0",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6734,
+      "telemetry": {
+        "latencyMs": 6729,
+        "promptTokens": 2395,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "0",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+          ],
+          "clarification": {
+            "unresolvedFact": "Is the level probe currently functioning properly?",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+              "If the level probe is not functioning properly, then there is an active hazard"
+            ],
+            "question": "Is the level probe currently operating correctly?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-CS-05#r0",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about a level probe failing closed during a transfer, which would cause the vent to pressurize and lift the manway gasket. This is a conditional statement about what could happen if a specific condition occurs.",
+        "hazards": [
+          {
+            "candidateKey": "0",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 131,
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation describes a hypothetical failure scenario that would create a hazardous condition. The statement uses conditional language ('if...were to...') indicating this is a potential hazard rather than an actual present condition.",
+            "independentHazardRationale": "This represents a potential chemical storage hazard related to process control and pressure relief systems in a caustic tank, which is distinct from other categories like confined space or fire explosion hazards.",
+            "uncertainties": [
+              "Whether the level probe is currently functioning properly",
+              "Whether the vent system has adequate pressure relief capacity",
+              "Whether the manway gasket is properly installed and maintained"
+            ],
+            "clarification": {
+              "unresolvedFact": "Is the level probe currently functioning properly?",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+                "If the level probe is not functioning properly, then there is an active hazard"
+              ],
+              "question": "Is the level probe currently operating correctly?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:05.050Z"
+        }
+      }
+    },
+    {
+      "id": "X-WC-02#r0",
+      "cohort": "f6_control_adequacy",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "signage offered as the control",
+      "regime": "osha-general-industry",
+      "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5081,
+      "telemetry": {
+        "latencyMs": 5079,
+        "promptTokens": 2388,
+        "outputTokens": 316,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "adequacy": "CONTROL_MENTION",
+          "matchedTerm": "notice",
+          "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-WC-02#r0",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a DANGER DEEP PIT notice that is wired to the rail beside an open drainage sump in the packing hall gangway. This indicates that there is an open drainage sump that creates a deep pit hazard, and a warning notice has been placed on the rail to alert workers of this danger.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:10.133Z"
+        }
+      }
+    },
+    {
+      "id": "X-NC-03#r0",
+      "cohort": "f4_nominal_control",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "GUARD: mention of a procedure corrects nothing",
+      "regime": "osha-general-industry",
+      "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1885,
+      "telemetry": {
+        "latencyMs": 1885,
+        "promptTokens": 2387,
+        "outputTokens": 110,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-NC-03#r0",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes that the chargehand went over the lead replacement procedure with the crew, and the split extension lead stayed plugged in at the bench. There is no indication of any unsafe condition or hazard present. The lead remains connected, which suggests it is not disconnected for maintenance or repair purposes. However, since there is no evidence of an actual hazard, no specific hazard family can be identified.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:12.020Z"
+        }
+      }
+    },
+    {
+      "id": "C-AM-04#r0",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4931,
+      "telemetry": {
+        "latencyMs": 4927,
+        "promptTokens": 2394,
+        "outputTokens": 308,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-AM-04#r0",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the ladder cage on the silo did not look right and noted that the third hoop has parted from the stringer with the fixings pulled clean through.",
+        "hazards": [
+          {
+            "candidateKey": "walking_working_surfaces",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 139,
+                "quotedText": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+              }
+            ],
+            "conditionRationale": "The observation describes a structural failure in the ladder cage system (third hoop parted from stringer with fixings pulled clean through), which constitutes an active hazard on a walking/working surface. The fact that it 'did not look right' is an impression but the concrete physical evidence of the parted hoop and pulled fixings establishes an active condition.",
+            "independentHazardRationale": "This represents a structural integrity issue with a ladder cage system, which is a specific type of walking/working surface hazard. It's independent from other potential hazards because it specifically addresses the safety of access to elevated areas through the ladder cage structure itself.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:16.947Z"
+        }
+      }
+    },
+    {
+      "id": "X-CL-01#r0",
+      "cohort": "required_clarification",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "deciding fact could not be observed",
+      "regime": "osha-construction",
+      "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6663,
+      "telemetry": {
+        "latencyMs": 6662,
+        "promptTokens": 2387,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [
+        {
+          "sourceId": "observation-1",
+          "availability": "EXPLICITLY_NOT_OBSERVED",
+          "unobservedFacts": [
+            "see from the ground whether either of them was clipped on"
+          ]
+        }
+      ],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "clipped on",
+          "detail": "'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "hazardFamily": "falls",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "I could not see from the ground whether either of them was clipped on"
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If either worker was clipped on, then the hazard is controlled or corrected",
+              "If neither worker was clipped on, then the hazard is active"
+            ],
+            "question": "Was either worker clipped on to a fall protection system?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-CL-01#r0",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The inspector observed two men on a tower crane gantry and noted they could not be seen from the ground whether either was clipped on. This statement describes the inspector's inability to observe whether fall protection was being used, but does not establish whether fall protection was actually present or absent.",
+        "hazards": [
+          {
+            "candidateKey": "fall_protection_absent",
+            "hazardFamily": "falls",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 43,
+                "endOffset": 112,
+                "quotedText": "I could not see from the ground whether either of them was clipped on"
+              }
+            ],
+            "conditionRationale": "The observation states that the inspector could not determine from their vantage point whether the workers were using fall protection (clipped on). This lack of observable evidence means it cannot be determined if a fall hazard exists or if fall protection is present.",
+            "independentHazardRationale": "This candidate addresses the specific hazard of potential falls from elevation where fall protection may be absent, which is independent from other hazards like electrical or chemical exposure that are not mentioned in the observation.",
+            "uncertainties": [
+              "Whether either worker was actually clipped on to a fall protection system",
+              "Whether the workers were at a height where fall protection was required"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If either worker was clipped on, then the hazard is controlled or corrected",
+                "If neither worker was clipped on, then the hazard is active"
+              ],
+              "question": "Was either worker clipped on to a fall protection system?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:23.613Z"
+        }
+      }
+    },
+    {
+      "id": "C-CS-05#r1",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6682,
+      "telemetry": {
+        "latencyMs": 6680,
+        "promptTokens": 2395,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "0",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+          ],
+          "clarification": {
+            "unresolvedFact": "Is the level probe currently functioning properly?",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+              "If the level probe is not functioning properly, then there is an active hazard"
+            ],
+            "question": "Is the level probe currently operating correctly?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-CS-05#r1",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about a level probe failing closed during a transfer, which would cause the vent to pressurize and lift the manway gasket. This is a conditional statement about what could happen if a specific condition occurs.",
+        "hazards": [
+          {
+            "candidateKey": "0",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 131,
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation describes a hypothetical failure scenario that would create a hazardous condition. The statement uses conditional language ('if...were to...') indicating this is a potential hazard rather than an actual present condition.",
+            "independentHazardRationale": "This represents a potential chemical storage hazard related to process control and pressure relief systems in a caustic tank, which is distinct from other categories like confined space or fire explosion hazards.",
+            "uncertainties": [
+              "Whether the level probe is currently functioning properly",
+              "Whether the vent system has adequate pressure relief capacity",
+              "Whether the manway gasket is properly installed and maintained"
+            ],
+            "clarification": {
+              "unresolvedFact": "Is the level probe currently functioning properly?",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+                "If the level probe is not functioning properly, then there is an active hazard"
+              ],
+              "question": "Is the level probe currently operating correctly?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:30.295Z"
+        }
+      }
+    },
+    {
+      "id": "X-WC-02#r1",
+      "cohort": "f6_control_adequacy",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "signage offered as the control",
+      "regime": "osha-general-industry",
+      "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5083,
+      "telemetry": {
+        "latencyMs": 5082,
+        "promptTokens": 2388,
+        "outputTokens": 316,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "adequacy": "CONTROL_MENTION",
+          "matchedTerm": "notice",
+          "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-WC-02#r1",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a DANGER DEEP PIT notice that is wired to the rail beside an open drainage sump in the packing hall gangway. This indicates that there is an open drainage sump that creates a deep pit hazard, and a warning notice has been placed on the rail to alert workers of this danger.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:35.378Z"
+        }
+      }
+    },
+    {
+      "id": "X-NC-03#r1",
+      "cohort": "f4_nominal_control",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "GUARD: mention of a procedure corrects nothing",
+      "regime": "osha-general-industry",
+      "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1898,
+      "telemetry": {
+        "latencyMs": 1898,
+        "promptTokens": 2387,
+        "outputTokens": 110,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-NC-03#r1",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes that the chargehand went over the lead replacement procedure with the crew, and the split extension lead stayed plugged in at the bench. There is no indication of any unsafe condition or hazard present. The lead remains connected, which suggests it is not disconnected for maintenance or repair purposes. However, since there is no evidence of an actual hazard, no specific hazard family can be identified.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:37.277Z"
+        }
+      }
+    },
+    {
+      "id": "C-AM-04#r1",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4958,
+      "telemetry": {
+        "latencyMs": 4955,
+        "promptTokens": 2394,
+        "outputTokens": 308,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-AM-04#r1",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the ladder cage on the silo did not look right and noted that the third hoop has parted from the stringer with the fixings pulled clean through.",
+        "hazards": [
+          {
+            "candidateKey": "walking_working_surfaces",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 139,
+                "quotedText": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+              }
+            ],
+            "conditionRationale": "The observation describes a structural failure in the ladder cage system (third hoop parted from stringer with fixings pulled clean through), which constitutes an active hazard on a walking/working surface. The fact that it 'did not look right' is an impression but the concrete physical evidence of the parted hoop and pulled fixings establishes an active condition.",
+            "independentHazardRationale": "This represents a structural integrity issue with a ladder cage system, which is a specific type of walking/working surface hazard. It's independent from other potential hazards because it specifically addresses the safety of access to elevated areas through the ladder cage structure itself.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:42.234Z"
+        }
+      }
+    },
+    {
+      "id": "X-CL-01#r1",
+      "cohort": "required_clarification",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "deciding fact could not be observed",
+      "regime": "osha-construction",
+      "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6688,
+      "telemetry": {
+        "latencyMs": 6687,
+        "promptTokens": 2387,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [
+        {
+          "sourceId": "observation-1",
+          "availability": "EXPLICITLY_NOT_OBSERVED",
+          "unobservedFacts": [
+            "see from the ground whether either of them was clipped on"
+          ]
+        }
+      ],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "clipped on",
+          "detail": "'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "hazardFamily": "falls",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "I could not see from the ground whether either of them was clipped on"
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If either worker was clipped on, then the hazard is controlled or corrected",
+              "If neither worker was clipped on, then the hazard is active"
+            ],
+            "question": "Was either worker clipped on to a fall protection system?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-CL-01#r1",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The inspector observed two men on a tower crane gantry and noted they could not be seen from the ground whether either was clipped on. This statement describes the inspector's inability to observe whether fall protection was being used, but does not establish whether fall protection was actually present or absent.",
+        "hazards": [
+          {
+            "candidateKey": "fall_protection_absent",
+            "hazardFamily": "falls",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 43,
+                "endOffset": 112,
+                "quotedText": "I could not see from the ground whether either of them was clipped on"
+              }
+            ],
+            "conditionRationale": "The observation states that the inspector could not determine from their vantage point whether the workers were using fall protection (clipped on). This lack of observable evidence means it cannot be determined if a fall hazard exists or if fall protection is present.",
+            "independentHazardRationale": "This candidate addresses the specific hazard of potential falls from elevation where fall protection may be absent, which is independent from other hazards like electrical or chemical exposure that are not mentioned in the observation.",
+            "uncertainties": [
+              "Whether either worker was actually clipped on to a fall protection system",
+              "Whether the workers were at a height where fall protection was required"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If either worker was clipped on, then the hazard is controlled or corrected",
+                "If neither worker was clipped on, then the hazard is active"
+              ],
+              "question": "Was either worker clipped on to a fall protection system?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:48.922Z"
+        }
+      }
+    },
+    {
+      "id": "C-CS-05#r2",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6683,
+      "telemetry": {
+        "latencyMs": 6682,
+        "promptTokens": 2395,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "0",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "0",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+          ],
+          "clarification": {
+            "unresolvedFact": "Is the level probe currently functioning properly?",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+              "If the level probe is not functioning properly, then there is an active hazard"
+            ],
+            "question": "Is the level probe currently operating correctly?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-CS-05#r2",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about a level probe failing closed during a transfer, which would cause the vent to pressurize and lift the manway gasket. This is a conditional statement about what could happen if a specific condition occurs.",
+        "hazards": [
+          {
+            "candidateKey": "0",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 131,
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The observation describes a hypothetical failure scenario that would create a hazardous condition. The statement uses conditional language ('if...were to...') indicating this is a potential hazard rather than an actual present condition.",
+            "independentHazardRationale": "This represents a potential chemical storage hazard related to process control and pressure relief systems in a caustic tank, which is distinct from other categories like confined space or fire explosion hazards.",
+            "uncertainties": [
+              "Whether the level probe is currently functioning properly",
+              "Whether the vent system has adequate pressure relief capacity",
+              "Whether the manway gasket is properly installed and maintained"
+            ],
+            "clarification": {
+              "unresolvedFact": "Is the level probe currently functioning properly?",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If the level probe is functioning properly, then the hazard is hypothetical but not present",
+                "If the level probe is not functioning properly, then there is an active hazard"
+              ],
+              "question": "Is the level probe currently operating correctly?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:18:55.605Z"
+        }
+      }
+    },
+    {
+      "id": "X-WC-02#r2",
+      "cohort": "f6_control_adequacy",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "signage offered as the control",
+      "regime": "osha-general-industry",
+      "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5094,
+      "telemetry": {
+        "latencyMs": 5094,
+        "promptTokens": 2388,
+        "outputTokens": 316,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'electrical' signal"
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "deep_pit_hazard",
+          "detail": "CONTROL_MENTION: 'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "adequacy": "CONTROL_MENTION",
+          "matchedTerm": "notice",
+          "detail": "'notice' warns about the hazard but does not prevent contact with it; a warning is not a control"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "deep_pit_hazard",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-WC-02#r2",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a DANGER DEEP PIT notice that is wired to the rail beside an open drainage sump in the packing hall gangway. This indicates that there is an open drainage sump that creates a deep pit hazard, and a warning notice has been placed on the rail to alert workers of this danger.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:19:00.700Z"
+        }
+      }
+    },
+    {
+      "id": "X-NC-03#r2",
+      "cohort": "f4_nominal_control",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "GUARD: mention of a procedure corrects nothing",
+      "regime": "osha-general-industry",
+      "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1891,
+      "telemetry": {
+        "latencyMs": 1891,
+        "promptTokens": 2387,
+        "outputTokens": 110,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-NC-03#r2",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes that the chargehand went over the lead replacement procedure with the crew, and the split extension lead stayed plugged in at the bench. There is no indication of any unsafe condition or hazard present. The lead remains connected, which suggests it is not disconnected for maintenance or repair purposes. However, since there is no evidence of an actual hazard, no specific hazard family can be identified.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:19:02.592Z"
+        }
+      }
+    },
+    {
+      "id": "C-AM-04#r2",
+      "cohort": "d1_must_not_ask",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "d1_must_not_ask",
+      "regime": "osha-general-industry",
+      "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|ladders",
+        "highConsequence": true,
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4961,
+      "telemetry": {
+        "latencyMs": 4960,
+        "promptTokens": 2394,
+        "outputTokens": 308,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "semanticControlAdequacy": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-stability:C-AM-04#r2",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the ladder cage on the silo did not look right and noted that the third hoop has parted from the stringer with the fixings pulled clean through.",
+        "hazards": [
+          {
+            "candidateKey": "walking_working_surfaces",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 139,
+                "quotedText": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through."
+              }
+            ],
+            "conditionRationale": "The observation describes a structural failure in the ladder cage system (third hoop parted from stringer with fixings pulled clean through), which constitutes an active hazard on a walking/working surface. The fact that it 'did not look right' is an impression but the concrete physical evidence of the parted hoop and pulled fixings establishes an active condition.",
+            "independentHazardRationale": "This represents a structural integrity issue with a ladder cage system, which is a specific type of walking/working surface hazard. It's independent from other potential hazards because it specifically addresses the safety of access to elevated areas through the ladder cage structure itself.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:19:07.552Z"
+        }
+      }
+    },
+    {
+      "id": "X-CL-01#r2",
+      "cohort": "required_clarification",
+      "provenanceClass": "DEVELOPMENT",
+      "failureMode": "deciding fact could not be observed",
+      "regime": "osha-construction",
+      "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6691,
+      "telemetry": {
+        "latencyMs": 6690,
+        "promptTokens": 2387,
+        "outputTokens": 406,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "cited evidence carries no 'falls' vocabulary but does carry a strong 'lifting_rigging' signal"
+        },
+        {
+          "code": "SEMANTIC_OBSERVATION_GAP_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "the observation records something the inspector could not establish (EXPLICITLY_NOT_OBSERVED): \"see from the ground whether either of them was clipped on\""
+        },
+        {
+          "code": "SEMANTIC_CONTROL_ADEQUACY_RECORDED",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_protection_absent",
+          "detail": "CONTROL_ABSENT: 'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [
+        {
+          "sourceId": "observation-1",
+          "availability": "EXPLICITLY_NOT_OBSERVED",
+          "unobservedFacts": [
+            "see from the ground whether either of them was clipped on"
+          ]
+        }
+      ],
+      "semanticControlAdequacy": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "adequacy": "CONTROL_ABSENT",
+          "matchedTerm": "clipped on",
+          "detail": "'clipped on' names a control that prevents contact, but a negation governs it -- the control is absent, not in place"
+        }
+      ],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_protection_absent",
+          "hazardFamily": "falls",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "I could not see from the ground whether either of them was clipped on"
+          ],
+          "clarification": {
+            "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If either worker was clipped on, then the hazard is controlled or corrected",
+              "If neither worker was clipped on, then the hazard is active"
+            ],
+            "question": "Was either worker clipped on to a fall protection system?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l32f-stability:X-CL-01#r2",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The inspector observed two men on a tower crane gantry and noted they could not be seen from the ground whether either was clipped on. This statement describes the inspector's inability to observe whether fall protection was being used, but does not establish whether fall protection was actually present or absent.",
+        "hazards": [
+          {
+            "candidateKey": "fall_protection_absent",
+            "hazardFamily": "falls",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 43,
+                "endOffset": 112,
+                "quotedText": "I could not see from the ground whether either of them was clipped on"
+              }
+            ],
+            "conditionRationale": "The observation states that the inspector could not determine from their vantage point whether the workers were using fall protection (clipped on). This lack of observable evidence means it cannot be determined if a fall hazard exists or if fall protection is present.",
+            "independentHazardRationale": "This candidate addresses the specific hazard of potential falls from elevation where fall protection may be absent, which is independent from other hazards like electrical or chemical exposure that are not mentioned in the observation.",
+            "uncertainties": [
+              "Whether either worker was actually clipped on to a fall protection system",
+              "Whether the workers were at a height where fall protection was required"
+            ],
+            "clarification": {
+              "unresolvedFact": "Whether either worker was clipped on to a fall protection system",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If either worker was clipped on, then the hazard is controlled or corrected",
+                "If neither worker was clipped on, then the hazard is active"
+              ],
+              "question": "Was either worker clipped on to a fall protection system?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T02:19:14.243Z"
+        }
+      }
+    }
+  ]
+}

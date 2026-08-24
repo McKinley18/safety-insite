@@ -1,0 +1,33 @@
+
+> safety-insite-backend@1.0.0 test:standards-backing-contract
+> ts-node scripts/test-standards-backing-contract.ts
+
+[db-ownership] suite=test:standards-backing-contract database=test_l32b_standards_20260822 claim=NEW
+--- pure contract ---
+ok  HARD GATE: a starter-unverified source key does NOT yield corpusBacked = true.
+ok  A placeholder-source record with content is UNAPPROVED_CONTENT, never approved.
+ok  Its text is disclosed as HazLenz-authored, not as governed regulation.
+ok  A placeholder cannot be laundered into approved backing even by a governed caller claiming approval.
+ok  The placeholder is caught from the source key itself, not only from a caller-supplied flag.
+ok  ROOT CAUSE: the previous rule `corpusBacked = Boolean(sourceKey)` was satisfied by exactly this placeholder — a field literally named "unverified" conferred corpus backing.
+ok  A citation with no corpus record at all is CITATION_ONLY.
+ok  It discloses no content.
+ok  CITATION_ONLY produces a truthful, product-voice customer notice.
+ok  The notice contains no internal governance vocabulary.
+ok  No notice is attached to states that would today warn on every standard in the product.
+ok  A registered-source record with NO governed resolution is UNAPPROVED_CONTENT — this is the truthful live-path answer today, with 0 of 26 real records approved.
+ok  Approved + registered provenance + content is the ONLY route to corpusBacked = true.
+ok  Its content is disclosed as governed-approved.
+ok  An approved record carrying no regulatory text resolves to CITATION_ONLY, not to backed.
+ok  sourceStatus approved branch is now REACHABLE (it was dead: it read a field hydration never selects).
+ok  Unapproved content with a regulation-authority decision maps to provisional-versioned-regulation.
+ok  Everything else maps to source-review-required.
+ok  The three wire values are unchanged, so no client contract breaks.
+
+Resolved database target: host=127.0.0.1 database=test_l32b_standards_20260822
+
+--- PHASE 16: approval / revocation transition ---
+Error: FAILED: BEFORE approval the exact record is UNAPPROVED_CONTENT.
+    at assert (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-standards-backing-contract.ts:35:25)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-standards-backing-contract.ts:218:3)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)

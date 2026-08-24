@@ -1,0 +1,36 @@
+{
+  "comparisonContract": {
+    "compared": [
+      "outcomeKind",
+      "validationState",
+      "families",
+      "familyStatePairs",
+      "quotations",
+      "clarificationFamilies"
+    ],
+    "excluded": [
+      "conditionRationale",
+      "independentHazardRationale",
+      "observationInterpretation",
+      "uncertainties",
+      "clarification wording",
+      "latency",
+      "token counts"
+    ],
+    "note": "contract fixed in this file before any result was read; prose is excluded so the measure reflects the structured semantic result rather than decoder sampling"
+  },
+  "scenarios": 84,
+  "identical": 84,
+  "differing": 0,
+  "reproducibilityPct": 100,
+  "perAxisDifferingScenarios": {
+    "outcomeKind": 0,
+    "validationState": 0,
+    "families": 0,
+    "familyStatePairs": 0,
+    "quotations": 0,
+    "clarificationFamilies": 0
+  },
+  "differences": [],
+  "priorPhase": "L3-2 measured 65 of 66 (98.5%) on a comparable structured comparison"
+}

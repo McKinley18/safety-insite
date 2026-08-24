@@ -1,0 +1,190 @@
+L3-2j ITEM (4) CROSS-PROVIDER CLOSURE -- PRESERVATION, BEFORE
+recorded 2026-08-24T12:21:22Z
+
+== git ==
+HEAD   : 1feda622dbb93d7e05d156838ab37db3e21db507
+branch : release/insite-rc-2026-08-18
+upstream: origin/release/insite-rc-2026-08-18  divergence(behind/ahead): 0/0
+worktree porcelain entries: 76
+tags: 23   (recorded as TAG OBJECTS per section 38.8)
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  checkpoint-pre-ui-consolidation-20260528-172809
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  checkpoint-pre-ui-consolidation-f699d98
+  176d1ec93702517a4c9e31dc7d95a6c67888efc9  checkpoint/pre-modularization-theme-consolidation-20260528-195809
+  e9f248b722c5b63cbaee0c1cfff493e50fc7b1ab  checkpoint/shared-ui-primitives-auth-settings-complete-20260528
+  3c9bae76217ccad8f71d375c70678f8f9862251e  checkpoint/shared-ui-primitives-low-risk-pages-20260528
+  02fb824815e8149d500de68b206f6ac19e0735f3  insite-hazlenz-verified-baseline-2026-08-19
+  b25103b0534098cbdde967dc77c85b56a2bcf050  insite-inspection-ui-verified-2026-08-19
+  7bf58ec6a152061631017262b9aba2497ece035c  insite-visual-acceptance-verified-2026-08-19
+  73aadbc49e49cedf037d877417199b94cb34ebac  local-expanded-scoped-knowledge-regressions-20260527
+  3b67a52482522877e6b5ae30e2425207a2493224  local-msha-scoped-knowledge-retrieval-20260527
+  06d2048b1a20efe00f66959e9f4f7fe645fc681c  local-safescope-knowledge-scoring-checkpoint-20260527
+  66a47e0e42f8e37babbbe495e449d160c29392c7  production-standards-engine-live
+  f984922db3e50347f28f720fa730ac74e18abfc7  release-critical-standards-coverage-local
+  f699d9859bb9e24919ed6cecabbb7027bf517d62  safescope-ai-upgrade-prework-20260528-173000
+  6d8a796242159e583b654d2bbc36aa0a334883c8  safescope-brain-green-2026-06-01
+  29efa94247abdbe756e9ceb5f248712e59ef96d0  safescope-production-classify-working-20260524
+  9da6c5214f0fef7939a83d1abff3eed7e3ae3a37  safescope-report-workflow-live
+  05aafadc042eb3ba4b89ae040fd49b0e9ff74e04  safescope-understanding-precision-green-001
+  2c997e30cb3f2fe2b58e562d40938cc62ae719b4  safescope-v2-standards-ui-live
+  8a9e6439f0434b559d7658f9750577c750e1a51f  safety-insite-cleanup-2026-06-17
+  6b2cd84d977633d6ea5112c0aa536077c2b72c2c  theme-overhaul-before-reset-verified
+  41b1078ec7875b92e9768a42c2db6bd950740b93  v1-backend-stable
+  eb8c664352dd036255ae41c2d43feaae18790403  v1.0-condition-engine-verified
+stash entries: 4
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== LOCKED L3-2h INSTRUMENT + COMPANION SCORERS ==
+73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+e1008cc464b7588c1a51300976d81732cf66e080316efb8f6d73b6ef209c437f  backend/scripts/rederive-l32g-resolution.ts
+38002d8be6cee8ed83388ac469dec20f0be39ddb2eb24d370f5a3f37a19af141  backend/scripts/score-l32j-clarification-denominators.ts
+0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  backend/scripts/activate-l32j-shipped-corpus.ts
+3b372c3e522e11b2ad676c22d8f59377638ea85090c32836a7f9d02f5a1b5b45  backend/scripts/test-l32j-carrier-activation.ts
+
+== SEALED ACCEPTANCE CORPUS -- must be untouched ==
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== reasoning-l3 modules ==
+b3a1160357f89cb9a71c2968b0a42e9b57af5dd97a045a1b9f1031561210b12d  backend/src/safescope-v2/reasoning-l3/control-adequacy.ts
+942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+c7feec5ce601b44c6396756c6840c7d4460e12ebecb91de10d99489a1f3388bc  backend/src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider.ts
+7a5b6270dc5c6728d5b003bfb472bf175798e6ea6c671e6b80b7e2d6e0e4bc6c  backend/src/safescope-v2/reasoning-l3/impression-scope.ts
+72f47bb4267e83a0cd8434025c89c23b0e4f191375e91b3af2709aeee0784956  backend/src/safescope-v2/reasoning-l3/negation-scope.ts
+ec69582ee6a2bcf4d52c8d78e63ab8ad37dff9bc7fce12d408e45a8c0e051af1  backend/src/safescope-v2/reasoning-l3/observation-availability.ts
+cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+2c6ab7a434b6772c0014093142728b62b622bde6d7379706ee7b8eaa1902b8d5  backend/src/safescope-v2/reasoning-l3/predicate-role.ts
+5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+4339b96a3b1a546c56bce2456ca26034a8860135ff8f498f8c725f48a4d0797b  backend/src/safescope-v2/reasoning-l3/reasoning-outcome.ts
+426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+63c32d64de66239c8d29e4ef08748500e658310434634222338cccd750405a8e  backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+2098ac936267c2a0badd8ab26017f03c2204bd77e0d249f60fae0d53c159cbc7  backend/src/safescope-v2/reasoning-l3/state-facts.ts
+0cb98e9faca3c18f2d9776f16625a8eb42fb26f709fcab2e423d01b5a64ddc22  backend/src/safescope-v2/reasoning-l3/unavailable-reasoning-provider.ts
+aaf3a1777b15db58da41275363e9e737ae0bf283cf38135172d818fe99969fd4  backend/src/safescope-v2/reasoning-l3/validated-reasoning.types.ts
+2f3ded72ef8630122facf98452d94ff5df2308219d204059090dbd8d51bf11fb  backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+0bf96758887aa2db24841b71f12863e6ff5749305b382c27961bffa35e305ed2  backend/src/safescope-v2/reasoning-l3/word-classes.ts
+
+== HISTORICAL INSTRUMENT: frozen evidence packages ==
+de39372db67c172b79c59765eb042c020863707dd0d5e6448096482d14b04174  verification/hazlenz-l3-2g-state-separation-2026-08-23/baseline-docs.txt
+a559716446441b17ac973d4041f921f19fc53c9d18da721c7cdaa5e2fd3eb445  verification/hazlenz-l3-2g-state-separation-2026-08-23/baseline-head.txt
+c804d4d418b09af4ba99518bf5f3100e39c4aa19f563153e5a52a7aabaf3af00  verification/hazlenz-l3-2g-state-separation-2026-08-23/baseline-stash.txt
+c25e944bd5956879d7fffaa684e1ef1edd4dd7d423fcfac8a2f1857fd279ff49  verification/hazlenz-l3-2g-state-separation-2026-08-23/baseline-status.txt
+36a5b7ef4ff99ca30f8d3976006d0186e26e5e8acf7ef6c29e1a47cfecedf5ec  verification/hazlenz-l3-2g-state-separation-2026-08-23/baseline-tags.txt
+fea95721639f86c9dda063bf41b2aa33d1e0fae68ec8c898785f73eac94a253b  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+d910b05e2d7b6a8ff2c0065f2adeca8627bb8cab4379ab846bf862f51dd681f1  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/source-survey.json
+310c830aab8b5678d8611b5f2d39676478c07dc2d01e3b038e929c10f2edb6c4  verification/hazlenz-l3-2g-state-separation-2026-08-23/FINAL_STATE.txt
+ade1761ccb4de8660a176256863023315314eb159f6606c87d389d6d9b7f52a5  verification/hazlenz-l3-2g-state-separation-2026-08-23/INDEX.md
+7216cab617212319d012eb5190f7882f96a219fa9053f1772634efc3d0526ea0  verification/hazlenz-l3-2g-state-separation-2026-08-23/NEXT_ACTION.md
+f738c60a88583176d717d5758c9bdd923dc6d7d49ecfd8e5695f8db94af6c67a  verification/hazlenz-l3-2g-state-separation-2026-08-23/preservation-evidence.txt
+6e941fc5f10fe6dee63c2cf7394692c86407baec1d278bf3bcef8f5fb7690e93  verification/hazlenz-l3-2g-state-separation-2026-08-23/preservation-pre.txt
+898caeb0eef55ab4b306f756a7919402c3cff8666af485ee1529a7545926b18f  verification/hazlenz-l3-2g-state-separation-2026-08-23/REPRODUCTION_COMMANDS.md
+10f80ab7f52016a0381f4b38d99cf8ba376e392cae2f20335fa3138c3f17ef06  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/customer-authority-invariance.json
+c3351508c54671fb88ff170cd42130860f97e7e2b50d2b2f0850a9a9c2263365  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/fact-coherence.json
+1e796cf1a6007bb59d99efcb3f50f498a64db2cb7e328247cd6c95a8e8941d6b  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/l32f-rescore-multihazard.json
+437d95756b011f297555604925a03145a21ea788968d2b739c19595a513168eb  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/order-sensitivity.json
+4b7007d71f1c9d1cb01f9b9eda5247d68deaa1bb65931e26e5862756643ec23b  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/evidence-foundation.txt
+3064f38d78dfdc8da59c6f4da9d4d73618f2fac565565f20f20e89403c0babcd  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/hazlenz-core.txt
+beadf4c8868efb54aa30f30a1e63c2a7a8b7beafe1866ed5371246ef8259105c  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg3f-56-14132-predicate.txt
+91f751be5ee5629cdacb801287b02d86b2ec2e6bc033792d0a20840bb626c482  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg3f-retrieval-determinism.txt
+7d8c0d099df2e7a44f56e8401b99d2ab21aac5610b19d9aad341603258af5cfd  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg4a-cutover-contract.txt
+a31c3f19d736ad9e4a7f9d9e2a230bf26714dd1bd5e2258945955b15dd740d39  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg4a-cutover.txt
+1e27ec3667ea8e7c12b24dc36bb8798c6c82fa4e8fb79d0367ea7e7cf2961212  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg4a-default-off.txt
+df883aa8eebe5ed4392cfcba2e24a50adbfed407488e0136b50d7ef0cd769822  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/kg4b-shadow-contract.txt
+353e52740f7309e01202cd943c4e3bca474b9f09a86c0927e82f0fbe2e13a8d1  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l31-reasoning-contract.txt
+d1793f56e8e67217636bae3be85aa517ff7d63607255aba58acf1121826d0934  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32-semantic-contract.txt
+8be01a9f4a275049f7b846607b0505e02b464949907504f01a0aea8ab8f05ff0  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32b-binder-precision.txt
+108af08f1062b95693f058bbd059166e8ef65ac2302d0dfcd9874d4e5052fe25  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32c-gate-polarity.txt
+2b0f165f0fd5a4bca976d4bba76b111b77882405eb2651f36dc6c4d3c627f440  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32d-clarification-scope.txt
+7990d92e9a311ef9b1e16452a84949c8e5778ff45cd9aebc1eb3a36d3b368567  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32e-syntactic-role.txt
+5bade19dd610e7fcca14afbb30984adb317ffe7a0726a2aa34774c0bedc5591d  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32f-predicate-scope.txt
+c2e7e3f5711a33d86feb2292bb89afc8941873132ecfa912a930a7a215ca2120  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/regression/l32g-state-separation.txt
+36bd4914ff8c88988862a0dbfc96db75874458ff33bf9a89160bf5edb5c226bf  verification/hazlenz-l3-2g-state-separation-2026-08-23/results/resolution-ablation.json
+8b2e852c87232ab565db082d7d0570204379eb64a7be2cc515678afa78f3bd2f  verification/hazlenz-l3-2g-state-separation-2026-08-23/ROOT_CAUSE.md
+bc5f1cd8c6339adb7c845aefbd377fe4291ac9a4bcc61597b7b7a20598adb548  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/ablation-run-1.json
+f09551c74fa299ce99034c72231a5146868ea69c1848995ae08e2a619d78d02e  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/ablation-run-2.json
+bfb091c3ad1baa9966bfb3d80ecb99858a9b191a551529d888d03392a7f2276b  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/binder-residual-post-patch.json
+a26b0d11b610fbe3575b5b5c7d36e78101add26c1c532208a65b14edabe7b9ac  verification/hazlenz-l3-2g-state-separation-2026-08-23/rootcause/binder-residual-pre-patch.json
+9d6d5e3a3cac9b303ac3514f42691e342160bbd1ff0f8d7d46aeba5f4e340cde  verification/hazlenz-l3-2g-state-separation-2026-08-23/SECURITY_AND_BOUNDARY.txt
+01d5889f9ebde336dcfb67c7ecac820671ce8769a20908cde4c609ce22b5cdf3  verification/hazlenz-l3-2g-state-separation-2026-08-23/STATUS.md
+c354eacc25c3ba859fd10ba4d0b6e07aaf898ccb3f4285322eb41313103213b3  verification/hazlenz-l3-2g-state-separation-2026-08-23/WEAK_FIXTURE_DISPOSITION.md
+0ba265bbd0a3f3c637c40cf08bf9b82ea6c153120fa47af3d245756986edb131  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/adapter/gemini-ollama-shim.js
+e0be5099591afe1d992a2aa3376debc90f019f06bf45f4b0f9a00739c8668cf4  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/adapter/run-l32h.sh
+c1399408a2c6b4cc526299801030bf9170b22a0f129433d31fd9dd13d6b44dae  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/adapter/score-l32h.sh
+54e9b4fc0a1be5a20a62dbf62dc3b4c8dcbf76fb517757b36591a6bab3d92639  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/adapter/truerecall.py
+3b767039cd160c44bf584b5f88d29dc8c626767bccd09f4dd7a8112f1f0c46ad  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/INDEX.md
+d568c12e4b811d21f35f995e5e8ac77f90eb2e5e201b51ad01fd47811e5feac6  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/NEXT_ACTION.md
+f14d1bc272e999fffcc627562414f665dffec4c76dd4b0aec0e8d8bf9af076fd  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/preservation-evidence.txt
+66936044e80a843817f9002a1272a957a191e233c68b76bde3d0eb5c0caa5c2f  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/gemini-fact-coherence.json
+92cba298986c0efb622fc7e4b8f0ba30e6e4f0ce8aa5f246355083d97ca838a2  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/gemini-order-sensitivity.json
+2e9c94cad2a93231cd3162c54e4196c92b149843acf737bbe845cc9f03b92b84  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/gemini-resolution.json
+c94ecb8f5e523286f99f6b75b5a3f329adeacddce21cb2b2900c37e1118e05f0  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/l32h-gemini-merged.json
+f4a7d9eafa6bcd65dcc2dcfd70dc5df61a9a0ee31dccf9e37e64c3d63fecf1cf  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/l32h-gemini-V_S_STRUCT_MOVE1.json
+f400da02f010e77034111e59614d3b6dcc468ca3ab8ac002504ce899a7caecf8  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/l32h-gemini-V_S_STRUCT_REPEAT.json
+e0943c3d6cd1b289dec79aa96366f1349cea6a55a6d44a1162989fc8c9021802  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/l32h-gemini-V_S_STRUCT.json
+95359eae4543115552fc51aacd7eb12ec2f4464ec5aa867c0b2e828da0129501  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/qwen-fact-coherence.json
+34c254f4d086a930bcddbe6a6347c9435d23cb2bf2ffe0c4861768ec9f61be2c  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/qwen-order-sensitivity.json
+04eadf9aa9fd1b9f95b7112c8a3de0c7fd023f148eee51df8d409544ef9edf5a  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/results/qwen-resolution.json
+e997b4c166aaae6544fb53d034a248bb23fdd03903f3fa2342648fa8555b842b  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/STATUS.md
+2c181a3a549779ca5083781b972ebf6bc3eb104af83bdfa76609b2da830b6d9b  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/transport/transport-V_S_STRUCT_MOVE1.jsonl
+24bd37d98964692f792a8e23a9e60e2b707fa5fc3ffa7ffcee248e8447e7c5e1  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/transport/transport-V_S_STRUCT_REPEAT.jsonl
+fdcc5d99315626ef8cd93b21c75d82e93eb62c32d05afdac91f3e7e85b0d34c9  verification/hazlenz-l3-2h-cross-provider-final-2026-08-23/transport/transport-V_S_STRUCT.jsonl
+eae8ba75adf64f6e5abb59cf959f871e2247fce2059b8df11426b044caf0393b  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/INDEX.md
+04091e938a9a9cd74b9293851168eaf5d1280f2c8b0fe6628f82aa28b96c2f4b  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/NEXT_ACTION.md
+86d428104dd54df4cd6184e862a08aaa6693544713894bfe716deed5ba437c35  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/PRESERVATION_AND_EGRESS.txt
+99188acd1bde122a7136ce4771f6ecc2fd2372e6cd525f9c8e3b2e7a1f223e04  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/proof-qwen-V_BASELINE_NO_CARRIER.json
+9d7a349756b99af965a76b52c3e6d527a24b999be97eb0ad9356d58bf2943ab5  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/proof-qwen-V_CARRIER_MOVE1.json
+41b9063064c78d14f5b0433720e568b3ca8ef702496c8c8f6372539ff432b355  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/proof-qwen-V_CARRIER_REPEAT.json
+242464addf453db6206ba78dcc982c150c6bda620da71e59c18fc3be62c4a335  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/proof-qwen-V_CARRIER.json
+eb91b8012dfb26017e4ef5f5d6a3c80f2adc2bb225f8c0de656a54569f965b30  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/scenario-score-V_BASELINE_NO_CARRIER.json
+77d7ac64ca42e7ada7a6b49b4aae805e4aee3ad38b80ffc511addf1d7543b33c  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/scenario-score-V_CARRIER_MOVE1.json
+38d50685e73b8bc73984cb6fb45df4dbc8cbe17ef03055f8c1706f7516e053bc  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/scenario-score-V_CARRIER_REPEAT.json
+d8c1c78034770e9b64aea09da40a1c8f73bda4f660c97b93bce12b1ff902dc85  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/results/scenario-score-V_CARRIER.json
+0035f75f348d5658b24e81d8033d5ce223957baac279079909177d5ed4cd02cb  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/rootcause/frozen-rescore-gemini.json
+9dab42f249844d60ea3a7e2e26f597f1cbdcc071b1e181f087ed487b09a65e54  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/rootcause/frozen-rescore-qwen.json
+4719f0939fce7b88f92ab48448399f6a918d5fb78a7e6fb85fc96bc4d914b135  verification/hazlenz-l3-2i-clarification-carrier-2026-08-24/STATUS.md
+8b082d781a224e26f1802004839dcf09d20891dd2157cbe061a74ff03e8cdd79  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/contracts/PRE_CHANGE_HASHES.txt
+8ec9f19a86d4a7a3fee12d5108a17fa14104c43f29088f0a75d0055b098b6e65  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/CREDENTIAL_AND_EGRESS.txt
+021df2d507cf592c13a4777862d1265fd76c298a703a2a8187e80bb2caab31c6  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/INDEX.md
+b1c388c3fa593c20e65374072a728186b57b8cf5e890f2707f1d73bff8a55f9e  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/NEXT_ACTION.md
+8aa09228d5792cfb6de2af62ef9bb94954e99a59580c088d0ac0e5d35d1ba847  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/PRESERVATION_POST.txt
+66ca7afbd1d16e5a54219990234f703a0d262213de76edba7f6d6f3fb0ce9caa  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/preservation-pre.txt
+24cc08e57fee91735c09cf138bf30fee53d7a38e65e9447371415cfd822ec5fb  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/evidence-foundation.txt
+4f508a32344e2e39cbd8261e43dac285337d6d5296ec59532307a2bc89e89e8c  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/hazlenz-core.txt
+4949597e3d20bddd7535776c1765dde505d2a83059054ac8bf862eb55b086f8f  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/kg3f-56-14132-predicate.txt
+9830817a074dcd4b463cb43f6cb2c08f96562f277b29ac14e5f6e394c441c803  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/kg3f-retrieval-determinism.txt
+8177c79fa2216227d4677f2a0b74f5d5735e899f7a8ab6e463d58ad2ad4d1b89  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/kg4a-cutover-contract.txt
+c7cb9e523984e133527574c37d45d883f42d2df15d30cc6b18900e8663ef1073  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/kg4a-default-off.txt
+a159813bf3bd3e777f2ea7b71c6770c3edaf264fd2282b97d0be7fb0068befa5  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/kg4b-shadow-contract.txt
+ae03b3ac1222c1b7711c62c5026e641faaab858579a7e923509f0a0401b7842a  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l31-reasoning-contract.txt
+d1793f56e8e67217636bae3be85aa517ff7d63607255aba58acf1121826d0934  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32-semantic-contract.txt
+8be01a9f4a275049f7b846607b0505e02b464949907504f01a0aea8ab8f05ff0  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32b-binder-precision.txt
+108af08f1062b95693f058bbd059166e8ef65ac2302d0dfcd9874d4e5052fe25  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32c-gate-polarity.txt
+2b0f165f0fd5a4bca976d4bba76b111b77882405eb2651f36dc6c4d3c627f440  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32d-clarification-scope.txt
+7990d92e9a311ef9b1e16452a84949c8e5778ff45cd9aebc1eb3a36d3b368567  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32e-syntactic-role.txt
+5bade19dd610e7fcca14afbb30984adb317ffe7a0726a2aa34774c0bedc5591d  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32f-predicate-scope.txt
+c2e7e3f5711a33d86feb2292bb89afc8941873132ecfa912a930a7a215ca2120  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32g-state-separation.txt
+7b5a0cdd5b1d77a65221c6eadadbc1f82e601d4156be291a5af9a34c355e256a  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32i-clarification-carrier.txt
+6326d7f2a764eb87d477cc55a97e3382b24d1d68494cd18456521ca876cad9af  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/l32j-carrier-activation.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/tsc-backend.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/regression/tsc-frontend.txt
+5b4d874fe2246f7fb162628c9d39f22d5f549cd774b5f00e2d04c877e26f3019  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/decl1/shipped-qwen-V_ACTIVATED_REPEAT.json
+d1a687d4028ac4ad8d0d75835b15c49972230e69e0cf68d4735a00ad3658e010  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/decl1/shipped-qwen-V_ACTIVATED.json
+4b1cdd6f6e6763acb8fe52677471f917289dbcfd12b0deaf7fed85e24c7bf5f6  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/decl2/shipped-qwen-V_ACTIVATED_REPEAT.json
+e51c32c6bdffd950df908c68d1aa72e156a10bf06b3c04d699fb866a3fac87cb  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/decl2/shipped-qwen-V_ACTIVATED.json
+0bf4066a66c048640b1d6a46de171ae645180e0e1d2585c01ce3c738478247b9  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/DENOMINATORS.json
+9aa7bc3cc2fb85d64f67a3a5580996fc60b40a18666c172e510abcb1a7fa1bc2  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/halves/shipped-qwen-V_SCHEMA_ONLY_REPEAT.json
+30d32f0a1cedb16b836e19830a73e75bf1da2c444313f49628bd0d4e8aadbf12  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/halves/shipped-qwen-V_SCHEMA_ONLY.json
+96fc31debc158a472a5698b63da9a0943db3b31f64973e43c65c0bedd922b2c8  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/reproduction/harness-side-V_ACTIVATED_REV2.json
+d91ece2d7ec97b5dc3ce8acd7c43ef9e0e56b8c612e2a12ba7a11227a8819c42  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/reproduction/post-revert-V_PRE_ACTIVATION.json
+817869f8531a3f58c328d7cb8dbe045c3db861cf1fd8278e1a37c72863d169b3  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/results/shipped-qwen-V_PRE_ACTIVATION.json
+00184697294dd4226f3a8a9f0b698be3f50b29a14ac26892bb49b1b149e9cc98  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/rootcause/locked-restored-V_B_LADDER.json
+0f521c1a60c1f71d792146ac16e0fd3ef9ec89f532094600c2672479bbd80622  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/rootcause/locked-under-activation/ablate-V_A_LADDER.json
+884902fe74ad1575ddb15cf10f692ceb42f2b428a4f9ce4f67f36bb03b5d33c1  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/rootcause/locked-under-activation/ablate-V_B_LADDER.json
+5897be887220ae887051298d0067a03dcb8629e22ea47fa8b42eaf34cb1d03f9  verification/hazlenz-l3-2j-carrier-activation-2026-08-24/STATUS.md

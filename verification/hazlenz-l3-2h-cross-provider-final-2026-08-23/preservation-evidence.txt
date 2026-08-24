@@ -1,0 +1,29 @@
+L3-2h FINAL EXECUTION — PRESERVATION EVIDENCE
+generated: 2026-08-24T01:20:48Z
+
+== HEAD / branch / upstream ==
+HEAD:     1feda622dbb93d7e05d156838ab37db3e21db507
+branch:   release/insite-rc-2026-08-18
+divergence vs upstream: 0	0
+
+== LOCKED HARNESS (must equal 73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521) ==
+73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+
+== COMPANION SCORERS — byte-unmodified, run as-is on both providers ==
+7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+57064e2ff9b734885ebec8f19448519cc2b95508b15739ed404d91e219acba2f  backend/scripts/rederive-l32g-resolution.ts
+
+== SEALED ACCEPTANCE CORPUS — hash-verified, NOT OPENED, in zero artifacts ==
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  ./safescope-data/gauntlets/safescope-gauntlet.seed.json
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  ./safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  ./safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== PRODUCTION SEAM / PROVIDER FILES — byte-unmodified vs HEAD ==
+(empty above == unmodified)
+
+== STASH (must be 4 entries, no stash operation run) ==
+       4
+
+== TAGS (recorded as tag OBJECTS, per §38.8's lesson) ==
+      23

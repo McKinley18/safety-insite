@@ -1,0 +1,28 @@
+{
+  "left": {
+    "path": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/e5348836-4120-4b2a-9fd5-be2b690b616b/scratchpad/l32j4-gemini-V_B_LADDER.json",
+    "variant": "V_B_LADDER",
+    "model": "gemini-3.1-pro-preview",
+    "generatedAt": "2026-08-24T12:33:10.217Z"
+  },
+  "right": {
+    "path": "/private/tmp/claude-501/-Users-mckinley-Desktop-Safety-InSite/e5348836-4120-4b2a-9fd5-be2b690b616b/scratchpad/l32j4-gemini-V_B_LADDER_REPEAT.json",
+    "variant": "V_B_LADDER",
+    "model": "gemini-3.1-pro-preview",
+    "generatedAt": "2026-08-24T13:04:00.318Z"
+  },
+  "fieldsCompared": [
+    "outcome",
+    "candidateCount",
+    "modelStates",
+    "modelAssertsActive",
+    "raisedClarification",
+    "derivedAssertsActive",
+    "derivedClarification"
+  ],
+  "scenariosCompared": 24,
+  "comparisonsMade": 168,
+  "differingFields": 0,
+  "differingScenarios": [],
+  "differences": []
+}

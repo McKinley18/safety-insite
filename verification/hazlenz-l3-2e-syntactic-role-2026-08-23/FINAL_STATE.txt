@@ -1,0 +1,60 @@
+=== L3-2e FINAL STATE — REPOSITORY PRESERVATION 2026-08-23T01:26:38Z ===
+
+TERMINAL STATE: L3_2E_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED
+                L3_2E_SCOPE_CONTRADICTION — recorded, not acted on
+AUTHORITY:      CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+
+-- HEAD / branch / upstream --
+HEAD:      1feda622dbb93d7e05d156838ab37db3e21db507   (expected 1feda622dbb93d7e05d156838ab37db3e21db507)
+BRANCH:    release/insite-rc-2026-08-18
+UPSTREAM:  1feda622dbb93d7e05d156838ab37db3e21db507
+DIVERGENCE (behind ahead): 0	0
+
+-- PROTECTED UNCOMMITTED WORK: hashes now vs the snapshot taken before any mutation --
+FILE                                                     STATUS    NOTE
+backend/scripts/test-canonical-workflow.ts               IDENTICAL byte-for-byte preserved
+backend/scripts/test-private-storage-reports.ts          IDENTICAL byte-for-byte preserved
+frontend-next/app/inspection-workspace/page.tsx          IDENTICAL byte-for-byte preserved
+frontend-next/app/inspections/page.tsx                   IDENTICAL byte-for-byte preserved
+frontend-next/lib/auth.ts                                IDENTICAL byte-for-byte preserved
+frontend-next/lib/canonicalWorkflowApi.ts                IDENTICAL byte-for-byte preserved
+frontend-next/lib/planEntitlements.ts                    IDENTICAL byte-for-byte preserved
+backend/package.json                                     CHANGED   intended by this phase
+docs/INSITE_CURRENT_STATE.json                           CHANGED   intended by this phase
+docs/INSITE_ENGINEERING_BLUEPRINT.md                     CHANGED   intended by this phase
+
+-- SEALED HOLDOUTS: four prior intact, one added --
+  l32        41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  UNCHANGED
+  l32b       e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  UNCHANGED
+  l32c       33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  UNCHANGED
+  l32d       bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  UNCHANGED
+  l32e       b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  ADDED BY L3-2e
+
+-- STASHES: identities unchanged --
+stash@{0} b7ee2d048e63689c18f6ca39d4fcf2d76190391a On main: hold corrective action routing patch
+stash@{1} df9bc6e00fa0db87ac9d36d023737c195ff3f731 On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2} 9141dc76fd09901de889c7a8944ae2b411913d5a On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3} b128c1975d630d8f2aa2f80da321ec592c5ac2b9 On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+-- TAGS: targets unchanged --
+  all 23 tags point at the same commits as before this phase
+
+-- PRIOR-PHASE EVIDENCE (L3-1 / L3-2 / L3-2b / L3-2c / L3-2d / architecture) --
+  ALL 169 prior-phase evidence files IDENTICAL — no prior verdict rewritten, no evidence package overwritten
+
+-- FILES ADDED / MODIFIED BY L3-2e --
+  production source ADDED (2):    predicate-role.ts, observation-availability.ts
+  production source MODIFIED (2): semantic-evidence-binding.ts (binder v4 -> v5), reasoning-prompt.ts (prompt v4 -> v5)
+  eval sets ADDED (2):           holdout-l32e.json, development-l32e.json
+  harness ADDED (6):             prove-l32e-e1-rootcause, prove-l32e-e2-rootcause, build-l32e-holdout,
+                                 score-l32e-reasoning, test-l32e-syntactic-role, diff-l32e-check-behaviour, classify-l32d-disc-severity(prior)
+  harness MODIFIED (3):          run-l32-reasoning.ts (captures observationAvailability);
+                                 test-l32d-clarification-scope.ts (two assertions rebound to their guarantees, recorded)
+  docs:                          BLUEPRINT section 35 + a forward note in 34.8; CURRENT_STATE l32eSyntacticRole
+
+-- OPERATIONS NOT PERFORMED --
+  no commit, push, merge, rebase, reset, stash, checkout --, restore, clean, tag
+  no deploy, production access, production env var change, governed-release mutation
+  no migration, no seed, no write to the safescope development database
+  no SHADOW, no CUTOVER, no dependency or package-lock change
+  negation-scope.ts, impression-scope.ts and the family-relevance check were NOT modified (fenced by the entry contract)

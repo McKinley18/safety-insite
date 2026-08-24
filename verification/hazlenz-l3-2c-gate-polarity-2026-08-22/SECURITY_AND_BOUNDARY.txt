@@ -1,0 +1,51 @@
+=== L3-2c SECURITY / PRODUCTION-BOUNDARY VERIFICATION 2026-08-22T22:57:48Z ===
+
+-- 1. sealed holdout unmodified since freeze --
+post-execution sha256: 33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2
+freeze-record sha256:  33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2
+
+-- 2. dependency drift --
+package.json dependency blocks vs HEAD:
+  IDENTICAL -- no dependency added, removed or changed
+package.json non-dependency delta:
++    "test:l31-reasoning-contract": "ts-node scripts/test-l31-reasoning-contract.ts",
++    "test:l32-semantic-contract": "ts-node scripts/test-l32-semantic-contract.ts",
++    "test:l32b-binder-precision": "ts-node scripts/test-l32b-binder-precision.ts",
++    "test:l32c-gate-polarity": "ts-node scripts/test-l32c-gate-polarity.ts",
++    "score:l32c": "ts-node scripts/score-l32c-reasoning.ts",
+
+-- 3. no credential or secret introduced by L3-2c files --
+  (empty above = none)
+
+-- 4. network egress surface of the L3 provider --
+backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts:46:  endpoint: process.env.L3_OLLAMA_ENDPOINT || 'http://127.0.0.1:11434',
+backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts:110:      response = await fetch(`${this.config.endpoint}/api/chat`, {
+
+-- 5. no Nest wiring / repository import in reasoning-l3 (unreachable from the customer path) --
+  none
+importers of reasoning-l3 outside itself and its own scripts:
+  none
+
+-- 6. the L3 seam is byte-unchanged --
+  (empty above = unchanged)
+
+-- 7. databases touched --
+  created (disposable): test_l32c_invariance_20260822
+  template read-only:   test_hazlenz_capability_prodshape_20260822
+  protected, never targeted: safescope, sentinel_dev, sentinel_safety
+
+-- 8. release / production mutation --
+  no commit, push, merge, rebase, reset, tag, deploy or migration was executed by this phase
+1feda622 docs(hazlenz): record capability-acceptance evidence, Level-3 engine decision, and KG5C-DISC-01 reclassification
+  worktree entries now:       36
+
+-- 7b. database presence re-check (corrected connection) --
+  present: safescope
+  present: sentinel_dev
+  present: sentinel_safety
+  present: test_hazlenz_capability_prodshape_20260822
+  present: test_l32c_invariance_20260822
+  protected 'safescope' table count (unchanged, read-only check): 46
+
+-- 5b. importers of reasoning-l3 outside itself (corrected glob) --
+  none

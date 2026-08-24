@@ -1,0 +1,186 @@
+{
+  "phase": "L3-2i",
+  "role": "TARGETED_ZERO_CANDIDATE_CLARIFICATION_PROOF",
+  "generatedAt": "2026-08-24T02:27:09.333Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "V_CARRIER_REPEAT",
+    "pid": 47059
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "containment": {
+    "shippedSystemPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedSystemPromptUnchanged": true,
+    "lockedAblationHarnessSha256": "73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521",
+    "lockedAblationHarnessUnchanged": true,
+    "declarationIsAdditive": true,
+    "shippedPromptIsAVerbatimPrefix": true,
+    "note": "The declaration is a CONTRACT DECLARATION, not prompt tuning: no rung is reworded, nothing shipped is moved, no emphasis is changed. A model cannot emit a field it has not been told exists, so this is a precondition of exercising the contract at all."
+  },
+  "variant": {
+    "id": "V_CARRIER_REPEAT",
+    "label": "V_CARRIER byte-identical -- NOISE FLOOR",
+    "carrierDeclared": true,
+    "promptSha256": "b7f351115d71c6e51992c4430e4f88c46c5560bbe7f691e0bd52afacd52ea9b2"
+  },
+  "cohortMatchesLockedHarness": {
+    "F-CL-01": true,
+    "B10": true,
+    "C-CS-05": true,
+    "F-PS-04": true,
+    "H-FLD-141": true
+  },
+  "rows": [
+    {
+      "scenarioId": "F-CL-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "variant": "V_CARRIER_REPEAT",
+      "carrierDeclared": true,
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "zeroCandidate": false,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "assertsActive": false,
+      "candidateBorneClarification": true,
+      "proposalLevelClarification": true,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": true,
+      "validatedProposalLevelCount": 1,
+      "clarificationCarriedAnywhere": true,
+      "unresolvedDecisions": [
+        {
+          "unresolvedFact": "The specific condition or defect of the anchor bracket on the davit arm",
+          "affectedDecision": "risk",
+          "branches": [
+            "The anchor bracket has a visible defect that could cause equipment failure",
+            "The anchor bracket is properly installed and functioning correctly"
+          ],
+          "question": "What specific defect or condition was observed on the anchor bracket that caused it to 'not look right'?"
+        }
+      ],
+      "latencyMs": 8842
+    },
+    {
+      "scenarioId": "B10",
+      "pole": "CLARIFICATION_REQUIRED",
+      "variant": "V_CARRIER_REPEAT",
+      "carrierDeclared": true,
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 0,
+      "zeroCandidate": true,
+      "modelStates": [],
+      "assertsActive": false,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": true,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": true,
+      "validatedProposalLevelCount": 1,
+      "clarificationCarriedAnywhere": true,
+      "unresolvedDecisions": [
+        {
+          "unresolvedFact": "The specific nature of the defect or hazard with the rail on the platform",
+          "affectedDecision": "condition_state",
+          "branches": [
+            "The rail is defective and poses an active hazard (e.g., loose, damaged, missing)",
+            "The rail is in proper working condition despite appearing 'not right' to the inspector"
+          ],
+          "question": "What specific defect or hazardous condition was observed with the rail on the platform?"
+        }
+      ],
+      "latencyMs": 3173
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "variant": "V_CARRIER_REPEAT",
+      "carrierDeclared": true,
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "zeroCandidate": false,
+      "modelStates": [
+        "HYPOTHETICAL"
+      ],
+      "assertsActive": false,
+      "candidateBorneClarification": true,
+      "proposalLevelClarification": true,
+      "validationState": "VALID",
+      "validationIssues": [
+        "UNRESOLVED_DECISION_NOT_DECISION_CRITICAL"
+      ],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": true,
+      "unresolvedDecisions": [],
+      "latencyMs": 7653
+    },
+    {
+      "scenarioId": "F-PS-04",
+      "pole": "NEGATIVE_CONTROL",
+      "variant": "V_CARRIER_REPEAT",
+      "carrierDeclared": true,
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "zeroCandidate": true,
+      "modelStates": [],
+      "assertsActive": false,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": false,
+      "unresolvedDecisions": [],
+      "latencyMs": 1459
+    },
+    {
+      "scenarioId": "H-FLD-141",
+      "pole": "HIGH_CONSEQUENCE",
+      "variant": "V_CARRIER_REPEAT",
+      "carrierDeclared": true,
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "zeroCandidate": false,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "assertsActive": true,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": false,
+      "unresolvedDecisions": [],
+      "latencyMs": 6637
+    }
+  ]
+}

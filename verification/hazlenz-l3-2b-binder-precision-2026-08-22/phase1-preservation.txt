@@ -1,0 +1,143 @@
+=== L3-2b PRESERVATION SNAPSHOT 2026-08-22T15:20:07Z ===
+pwd(recorded): /Users/mckinley/Desktop/Safety_InSite
+HEAD:     1feda622dbb93d7e05d156838ab37db3e21db507
+expected: 1feda622dbb93d7e05d156838ab37db3e21db507
+upstream: 1feda622dbb93d7e05d156838ab37db3e21db507
+branch:   release/insite-rc-2026-08-18
+divergence(upstream...HEAD): 0	0
+stashes=4 tags=23
+
+--- stash identities ---
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+--- L3-1 MODULE HASHES (must be unchanged at exit) ---
+a16d91a999e9649a315bb538137ec982c862f3d94c7c8aa8cffa3dc74075a866  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+c7feec5ce601b44c6396756c6840c7d4460e12ebecb91de10d99489a1f3388bc  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/hazlenz-reasoning-provider.ts
+5d61d3d8c855a1eefd8d288b9738e2442f86e845ad0267d9774d2edecdef6d2f  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+4339b96a3b1a546c56bce2456ca26034a8860135ff8f498f8c725f48a4d0797b  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-outcome.ts
+0cb98e9faca3c18f2d9776f16625a8eb42fb26f709fcab2e423d01b5a64ddc22  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/unavailable-reasoning-provider.ts
+b9181282847ddbfecea55c301695bc92c806866f1c5998aebda2d6e7696985d4  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/validated-reasoning.types.ts
+23906513a750e03bb32123eae6547f83986f6ea4f8914edf1af55e342bf0d4fa  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+8be11bda2587a1ff33e77b20568cd50c55124878f59bebeb249f17b6ab821839  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-l31-reasoning-contract.ts
+
+--- L3-2 MODULE HASHES (entry) ---
+32c17b929dff2a915ca4355e1b5ee82309b5e846e0914d9730525e0c26114ddb  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+cd3ce4be6c96e6598c010ed91562fbb3c8d9e3e4d67c095f346a1f0d2dd04e4a  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/ollama-reasoning-provider.ts
+cd3e904b5170d1796f3eef31567acadaf75297d688f15c3747739853620a76a8  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+1fed1a5a670fd4d1e25e342834673a4c7bd0b9de8056ad4337adf3620b4d158a  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts
+db9ac82d68ed7d6b001e3df87da5586b6786c5cfcce74c966e225ced405b0bc1  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-l32-semantic-contract.ts
+e804bc627e2cb18980aa1e1df2a862ec50dc59ac9002062f1570295283fc2cfe  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/run-l32-reasoning.ts
+e7e24667e6c0548ebdc16b3aacdb31434a8dcb6a1c296abc8318043385a9a8eb  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/score-l32-reasoning.ts
+9df26592b2e9ce5d880ab1dae3a8a0bb621586b53462e619e057dcc6f88fc76a  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/build-l32-holdout.ts
+4a7cc9944eacbe2978ec7c1ff18ba3d8280ff61c4097134d73cc04eb1ea30da3  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/compare-l32-customer-invariance.ts
+7f558b9862e1da471da9cffa463c56bfda04e90c641b3d26c8ce82621a2fabad  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/compare-l32-level1-level3.ts
+
+--- L3-2 EVAL SETS (entry) ---
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+f11fb8fe04679d2ba1c23e882dd18c12e3656ffd512092067b0ab8221e359d8d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/development-l32.json
+
+--- OTHER PROTECTED UNCOMMITTED WORK ---
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-private-storage-reports.ts
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  /Users/mckinley/Desktop/Safety_InSite/frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  /Users/mckinley/Desktop/Safety_InSite/frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  /Users/mckinley/Desktop/Safety_InSite/frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  /Users/mckinley/Desktop/Safety_InSite/frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  /Users/mckinley/Desktop/Safety_InSite/frontend-next/lib/planEntitlements.ts
+
+--- ARCHITECTURE + L3-1 + L3-2 VERIFICATION ARTIFACTS ---
+ede070d10a5293874e6db48f821a46f1bebf5bb18184e65c178d2950462e9576  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-1-reasoning-contract-2026-08-22/customer-authority-invariance.json
+cc36f12d44495062edb543ed748e36adfdca9d8ed1677efac4bdb8f00b9781d9  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-1-reasoning-contract-2026-08-22/L3_2_ENTRY_CONTRACT.md
+92f37a173faee30526cb3083dbf6bc961d8e240ea40bffb1a979f3e2a8279ae6  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-1-reasoning-contract-2026-08-22/phase1-baseline.txt
+89c13d877d7d0231e2f30d996e106c871b4e5170f554039c0e9789efbf6c0ade  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-1-reasoning-contract-2026-08-22/STATUS.md
+99b280184a132cf79b52c351e6e6b83236e64cd26f5113a75b6b82304aba705a  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/CONSISTENCY_REVIEW.md
+b721c22e23470dafcff2c81b7ac49a1622af3d49935abf2a523286b13b6e52d7  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/contracts/authority-map.json
+af391016ded1c4daf5d99559f7cdef51d5164d3ed65755ea9af43de5d1e8e038  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/CURRENT_REASONING_PATH.md
+9dd50432dd97d50a9ea83067e9bbb418ee4068544ec23af0ae5a730325484035  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/DISPOSITIONS.md
+44a59b153d18311d1ed3e5480e005c6e74a69f1ad83215814a4e560ec640b532  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/EVALUATION_AND_GATES.md
+349b3b3071236b92ee60fa2f47cc9205c8c6f5dc34a313a86aba10a2ac24a267  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/IMPLEMENTATION_PLAN.md
+fe4ea15536057f157cc23f870938ecf82740f10108fe44dfcf76e246bf5a2d8b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/LEVEL3_ARCHITECTURE.md
+7e20713738393474b89c8b465a03be747ce576a2ef624382a52d65bd51f6bc74  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+f32ab46c93e360c2f9a961a962257ab14c99efb05df937b3b990ddcb3f1654dd  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-level3-architecture-2026-08-22/ROOT_CAUSE_CONSOLIDATION.md
+a5e0647c46d1f96ed31c5b77a06fcbb5ac13c66d4ad30ab393c10d1478bcd989  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/ARCHITECTURE_DECISIONS.md
+f11fb8fe04679d2ba1c23e882dd18c12e3656ffd512092067b0ab8221e359d8d  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/development-l32.json
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/holdout-l32.json
+19038963e1ff4184b9280331e2e5421fde6d617df55d6f5afbeccec74e049b7d  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/DATA_BOUNDARY.md
+1480571afbfe4d08c26995bfbe930113f923c693b8a370ed2f1675433164b92b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/FINAL_STATE.txt
+9ec541d1dacc01acf5b4d623cfd44f6942354f682199c85238ae091ab590275b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/HOLDOUT_FREEZE.txt
+a34c5c5ba2e448b2622e3f5080085d9c5b5f743fd6218f493fe75cbd57b95032  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/INDEX.md
+e4e2c052bcf0b1965f0b93841504881d8a29b2f9d5f9d978b8bb20bfe339ab3a  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/NEXT_ACTION.md
+94a3fe3f09a070c861bef2aa935271f45dc9cf2d688b3186731605bc873f59ae  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/phase1-baseline.txt
+bc0808971d27903889e30688de4786dc6763e32dcfa6337937b63c13db821e3b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/PROVIDER_SELECTION.md
+93a42a07cab56a1a027dc2582cb6338256ce347ff2e1c49ccd55eb842c07efb9  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/REPRODUCTION_COMMANDS.md
+dd5dda4ea4280c47421519c4f592301df8c8bceead961aa4f89e0b16a77ad876  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/customer-authority-invariance.json
+5f5898c1f4ff2c94b50f456b44512a6a1b361ebb661be6c90d557f93ae1b8bcb  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-run-1.json
+f6703881212229877a4bae4402e9f23063df9b6493975e798bc437bc0de1eeee  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-run-2.json
+4391e7142846e461655bc1d8edb5084bc2f351addd12c3f4da1152b12511d056  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-score-1.json
+e04e9420d04db3342633d4795c3558de90dc3cbc7c3eb0f1b75d214ffe4366f6  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/dev-score-2.json
+c5784720f458296f8f4715dc339ff9fb29b3e7b7679984a5a652e49201d39acb  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/egress-inventory.json
+646f808c4f3fdd0970cf8ea61a47403a2e9d04bdf914b3d7019f8c96b9713d21  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json
+60bb09d5ddc28a88a66a3db59ad3089fd7dba990bf7b85028cb195ceb2aa0a4a  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json
+b05f4ea925cd5a71f21a91a83ab97686e0dfa57cf9238fb25a40340e943a6be9  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-score-1.json
+4295871fecd80cc8c2cb2c88f3aa733630cad77bc94d49bf8ec7761114f3cfaa  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/l3-compare.json
+6558c21147b480af5af6e8d242f7376229efb30132c2c08b2c0ef5d141c188d3  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/operational-measurements.json
+93e5dc4abca3c205d5ab88f3cc9641dd50bee9817119aac8b158a76dea5424f1  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/build.txt
+4b7007d71f1c9d1cb01f9b9eda5247d68deaa1bb65931e26e5862756643ec23b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/evidence-foundation.txt
+ec7099b17f58b88229ce63b2d82f54ae2ad7c5f88ea27e3aff5225ca8b98a83d  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/hazlenz-core.txt
+beadf4c8868efb54aa30f30a1e63c2a7a8b7beafe1866ed5371246ef8259105c  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg3f-56-14132-predicate.txt
+91f751be5ee5629cdacb801287b02d86b2ec2e6bc033792d0a20840bb626c482  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg3f-retrieval-determinism.txt
+7d8c0d099df2e7a44f56e8401b99d2ab21aac5610b19d9aad341603258af5cfd  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg4a-cutover-contract.txt
+1240032c59057a8f08d40cb856a02953a84d9175dbac5718ec008066fba0bbe2  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg4a-default-off.txt
+bb4e4017d2691450b643e126a3a1e24ecf7b92108abca97bc17409280f4ed67b  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg4b-default-off-BEFORE.txt
+15fa44b462046ad0af9e202ff0b9410a0e1dcc93d9f4823af18c85a2dfb5208f  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg4b-default-off.txt
+df883aa8eebe5ed4392cfcba2e24a50adbfed407488e0136b50d7ef0cd769822  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/kg4b-shadow-contract.txt
+6539253df8d1fcdfbc7cb8612cb7f8e842dc1e4fe77788bda0e9ea0d9cb5e04d  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/l31-reasoning-contract.txt
+a5733311e0c5b1bcf691c3b519392d7348241f1660bda9e7c615e275d75e5f5c  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/l32-semantic-contract.txt
+11fe3a527058983aa49195e78ef71e26df615ff9b7777c5ba32cc5227a0d9ed7  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/standards-backing-contract-BEFORE.txt
+e76d399424736a1663d63137aa20a007853df1c6d906c660e3ebdcaff4d811a8  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/standards-backing-contract.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/regression/typecheck.txt
+658714e1f61af8a742313007dbb924508348a89245c7886e204d24cd7dc57f4a  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/STATUS.md
+
+--- DOCS ---
+e4e7d793fcc575a3237a19244ae00661779a5d908c990a989e661789be93c161  /Users/mckinley/Desktop/Safety_InSite/docs/INSITE_ENGINEERING_BLUEPRINT.md
+bf266cb21ba2e0ebed85ae527a24a052699442ef11c4e0d05815ba5a4e9d6648  /Users/mckinley/Desktop/Safety_InSite/docs/INSITE_CURRENT_STATE.json
+
+--- SEAM ---
+SEAM_UNCHANGED_VS_HEAD
+
+--- DEPENDENCY FOOTPRINT ---
+2	0	backend/package.json
+PACKAGE_LOCK_UNCHANGED
+
+--- CAPABILITY DATABASES ---
+2390 rows in prodshape template
+
+--- FULL STATUS ---
+ M backend/package.json
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+?? "Safety InSite Logos/"
+?? backend/scripts/build-l32-holdout.ts
+?? backend/scripts/compare-l32-customer-invariance.ts
+?? backend/scripts/compare-l32-level1-level3.ts
+?? backend/scripts/run-l32-reasoning.ts
+?? backend/scripts/score-l32-reasoning.ts
+?? backend/scripts/test-l31-reasoning-contract.ts
+?? backend/scripts/test-l32-semantic-contract.ts
+?? backend/src/safescope-v2/reasoning-l3/
+?? verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5e/
+?? verification/hazlenz-l3-1-reasoning-contract-2026-08-22/
+?? verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/
+?? verification/hazlenz-l3-2b-binder-precision-2026-08-22/
+?? verification/hazlenz-level3-architecture-2026-08-22/

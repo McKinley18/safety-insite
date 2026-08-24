@@ -1,0 +1,91 @@
+{
+  "stage": "L3-2d DISC SEVERITY CLASSIFICATION",
+  "generatedAt": "2026-08-23T00:00:59.692Z",
+  "note": "Classification only. No behaviour was changed by this program or by L3-2d.",
+  "measuredHighConsequenceLossOnSealedSet": "D-FLD-175 -- \"Main plant electrical panel is blocked by a pile of discarded conveyor rollers and debris\" -- an ELECTRICAL (high-consequence) hazard the provider classified correctly, deleted by SEMANTIC_EVIDENCE_CONTRADICTS_STATE. This is no longer a hypothetical severity: it is a measured high-consequence loss on the L3-2d sealed holdout.",
+  "invariantAnalysis": {
+    "L3-INV-02_evidence_bound_findings": "not violated -- the deleted findings were evidence-bound; they were deleted, not fabricated",
+    "L3-INV-04_no_default_ACTIVE": "not violated -- these defects DELETE ACTIVE, they never create it",
+    "L3-INV-05_safe_failure": "not violated -- the pipeline fails closed",
+    "L3-INV-10_no_silent_L1_fallback": "not violated",
+    "L3-INV-11_negation_scope_preserved": "ARGUABLY ENGAGED -- DISC-04 mis-reads a correction token INSIDE a negation (\"no LOTO is applied\"), which is a scope question, but the deletion is made by checkContradiction rather than by the negation-scope engine L3-INV-11 governs. Recorded as engaged-but-not-proven-violated.",
+    "conclusion": "No mandatory Level-3 invariant is DEMONSTRATED violated. The defects are a hazard-RECALL failure, and recall is governed by the advancement gate rather than by an invariant."
+  },
+  "verdict": {
+    "DISC-02": "OPEN -- no deterministic check owns ACTIVE vs control-in-place. It cannot delete a hazard, so it is a PRECISION risk: it can only let a provider error stand. On four sealed holdouts the provider has never made that error, so it remains UNPROVEN as a measured loss.",
+    "DISC-03": "CAPABLE OF HIGH-CONSEQUENCE LOSS",
+    "DISC-04": "CAPABLE OF HIGH-CONSEQUENCE LOSS"
+  },
+  "rows": [
+    {
+      "disc": "DISC-03",
+      "label": "hazard as a modifier: \"without hazard warning labels\"",
+      "family": "hazard_communication",
+      "highConsequenceFamily": false,
+      "activeSurvived": false,
+      "fatalCodes": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "defectReproduced": true,
+      "consequence": "a correct ordinary hazard is deleted"
+    },
+    {
+      "disc": "DISC-03",
+      "label": "no damage negating the HAZARD in a clause that also states one",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "activeSurvived": false,
+      "fatalCodes": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE HAZARD IS DELETED"
+    },
+    {
+      "disc": "DISC-04",
+      "label": "correction token inside a negation: \"no LOTO is applied\"",
+      "family": "loto_stored_energy",
+      "highConsequenceFamily": true,
+      "activeSurvived": false,
+      "fatalCodes": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE HAZARD IS DELETED"
+    },
+    {
+      "disc": "DISC-04",
+      "label": "correction token as an adjective on debris: \"discarded rollers\"",
+      "family": "electrical",
+      "highConsequenceFamily": true,
+      "activeSurvived": false,
+      "fatalCodes": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "defectReproduced": true,
+      "consequence": "A CORRECT HIGH-CONSEQUENCE HAZARD IS DELETED"
+    },
+    {
+      "disc": "DISC-04",
+      "label": "removal token describing the HAZARD, not a control",
+      "family": "machine_guarding",
+      "highConsequenceFamily": false,
+      "activeSurvived": false,
+      "fatalCodes": [
+        "SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "defectReproduced": true,
+      "consequence": "a correct ordinary hazard is deleted"
+    },
+    {
+      "disc": "DISC-02",
+      "label": "ACTIVE asserted on control-in-place evidence -- no check owns this",
+      "family": "machine_guarding",
+      "highConsequenceFamily": false,
+      "activeSurvived": true,
+      "fatalCodes": [],
+      "defectReproduced": true,
+      "consequence": "a false ACTIVE would stand if the provider proposed one"
+    }
+  ]
+}

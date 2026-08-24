@@ -1,0 +1,1440 @@
+{
+  "setId": "l3-2b-sealed-holdout-2026-08-22",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "visibleDuringTuning": false,
+  "frozenBeforeFirstExecution": true,
+  "supersedes": "l3-2-holdout-2026-08-22 (sha256 41ae3c22…) — opened during L3-2, retired for gate use",
+  "sharesNoScenarioWith": "hazlenz-acceptance-matrix.json (the L3-2 holdout source)",
+  "provenance": {
+    "A_fieldDataset": {
+      "artifact": "safescope-data/benchmarks/safescope-field-validation-dataset.v1.json",
+      "sha256": "a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2",
+      "authoredBy": "an earlier programme phase; never executed against any Level-3 code",
+      "selection": "deterministic — every 5th scenario by sorted id",
+      "count": 40
+    },
+    "B_diagnostics": {
+      "artifacts": [
+        "diag-mine-routing.json",
+        "diag-overfit.json"
+      ],
+      "sha256": {
+        "diag-mine-routing.json": "435310d5f4dcbc7312e3f267dd13242be0cb56714551c18f7417a3e78115fdc9",
+        "diag-overfit.json": "7bc38331aa2f84b79b40edfe322269068290bc528f5db8181c862c5ca84638a6"
+      },
+      "authoredBy": "the capability-acceptance phase; frozen before that phase executed; never run against Level-3",
+      "count": 12
+    },
+    "C_complement": {
+      "authoredBy": "the L3-2b implementation phase",
+      "count": 29,
+      "why": "sources A and B contain no negative control, no corrected or controlled state, no subjective wording and no clarification case; without C the holdout could not test the very defects this phase repaired",
+      "limitation": "authored by the implementer. Mitigations: written and frozen BEFORE the first execution, no model output on these scenarios was inspected while writing them, and every expected outcome is declared in this generator rather than derived from a run."
+    }
+  },
+  "highConsequenceFamilies": [
+    "fall",
+    "trench",
+    "excavation",
+    "cave_in",
+    "loto",
+    "energy",
+    "confined",
+    "electrical",
+    "struck_by",
+    "mobile_equipment",
+    "scaffold",
+    "hole",
+    "opening",
+    "impalement",
+    "rebar",
+    "explosion",
+    "ground_control"
+  ],
+  "composition": {
+    "total": 81,
+    "byCohort": {
+      "field_positive": 40,
+      "diagnostic_positive": 10,
+      "diagnostic_safe": 2,
+      "negative_control": 5,
+      "condition_state": 6,
+      "ambiguity": 6,
+      "negation": 5,
+      "evidence": 7
+    },
+    "positives": 62,
+    "negativesOrNonActive": 19,
+    "clarificationExpected": 3
+  },
+  "scenarios": [
+    {
+      "id": "H-FLD-001",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Shoveling loose coal spillage around the tail pulley of conveyor 3 while the belt was running; the tail pulley guard is completely missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-006",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "A frayed extension cord with exposed copper wire is lying across a wet walkway in the wash plant area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-011",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "An operator is clearing built-up material from a running head pulley on the main feed conveyor with a hand shovel; the guard was unbolted and removed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-016",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Found a 110V power tool cord with damaged outer insulation plugged in and sitting in a puddle of water.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-021",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Routine cleanup of aggregate fines under the conveyor tail section while the belt is active; the protective guard was unbolted and set aside.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-026",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "A damaged electrical cord with exposed conductors is lying on a damp concrete floor in the processing room.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-031",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Shoveling wet sand spillage near the in-running nip point of the tail pulley on conveyor #1 during operation; the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-036",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "The power cord on the sump pump has damaged insulation and is completely submerged in water.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-041",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Using a hand scraper to remove sticky clay build-up from the return roller of conveyor 4 during runtime; the safety guard was removed for access.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-046",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "An extension cord with frayed insulation and exposed wires is lying across a wet floor near the wash bays.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-051",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Shoveling fines and rocks under a running stacker conveyor belt near the tail pulley; the side guard was taken off and not replaced.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-056",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Observed a damaged electrical extension cord with exposed conductors sitting in a wet area of the plant floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-061",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "A laborer is clearing spilled ore from the travelway directly beneath the running tail pulley of conveyor belt B; the pulley guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-066",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "The outer jacket of the 220V power cord is split, exposing inner conductors in a damp cellar walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-071",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Spillage cleanup being performed on running conveyor C-2 tail section without LOTO; the safety guard was set aside during maintenance.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-076",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Frayed power cord with exposed copper wires is plugged in and lying across a wet concrete floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-081",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Worker is shoveling spilled material away from the active tail pulley on the secondary screen conveyor; no guard is installed over the rotating part.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-086",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "An extension cord with taped, damaged insulation is lying in a wet processing area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-091",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Clearing accumulated rock spillage beneath conveyor 5 tail pulley while the system is running; the tail guard is removed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-096",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Found a power tool cord with split insulation and exposed conductors sitting near water pooling on the floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-101",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "An employee is shoveling gravel fines under the tail pulley of the main wash plant conveyor during runtime; the guard is missing from the nip point.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-106",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "The 110V extension cord has damaged outer jacketing and is lying in a wet walkway near the washer.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-111",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Worker shoveling loose muck under the conveyor tail pulley while it's in operation; the pulley guard was removed and left on the walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-116",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Damaged electrical cord with exposed wires is plugged in and lying in a wet, muddy outdoor area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-121",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Laborer clearing clay spillage near the in-running tail pulley of the active conveyor; the protective metal mesh guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-126",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "The power supply cord for the water heater has frayed insulation and is sitting in a wet gutter.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-131",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Shoveling accumulated sand from the walkway right next to the running tail pulley on conveyor #3; the guard plate is unbolted.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-136",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Observed a frayed power cord with exposed conductors lying on a wet concrete floor near the pump.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-141",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Operator using a hand tool to scrape build-up from a running conveyor belt tail pulley; no LOTO is applied and the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-146",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "An extension cord with deep cuts exposing internal copper conductors is lying in a wet walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-151",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Shoveling ore fines around the tail pulley of the running crusher conveyor; the guard is missing, exposing the nip point.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-156",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Frayed electrical cord with exposed copper wires is sitting in pooling water near the wash plant.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-161",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Routine cleanup of product spillage beneath the active conveyor tail pulley; the safety guard is missing and LOTO was not performed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-166",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "The outer insulation of the power cord is split and exposing wires in a wet wash bay.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-171",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Clearing wet tailings under the tail section of conveyor B while it's running; the tail pulley guard was taken off.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-176",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Found a damaged electrical extension cord with exposed copper lying on a wet concrete pad near the well.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-181",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Worker shoveling aggregate spillage around the running tail pulley of the screen feed conveyor; the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-186",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "An active power cord with frayed insulation is running through a puddle of water on the shop floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-191",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "regime": "msha",
+      "text": "Using a shovel to clean out material build-up beneath the active tail pulley of conveyor 8; the side guard is missing, exposing the roller.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-FLD-196",
+      "source": "safescope-field-validation-dataset.v1.json (independent, never run against Level-3)",
+      "cohort": "field_positive",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "regime": "osha-general-industry",
+      "text": "Splices on a 110V extension cord are wrapped in black tape and lying in a wet outdoor area.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false,
+        "sourceRiskBand": "high"
+      }
+    },
+    {
+      "id": "H-DX1",
+      "source": "diag-mine-routing.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "back-up alarm (hyphen)",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was observed operating with an inoperative back-up alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-DX2",
+      "source": "diag-mine-routing.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "backup alarm (one word)",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was observed operating with an inoperative backup alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-DX3",
+      "source": "diag-mine-routing.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "reverse alarm (no 'back')",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was observed operating with an inoperative reverse signal alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-DX4",
+      "source": "diag-mine-routing.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "back-up alarm + explicit surface mine words",
+      "regime": "msha",
+      "text": "A haul truck at the surface metal and nonmetal mine haul road was observed operating with an inoperative back-up alarm.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-DX5",
+      "source": "diag-mine-routing.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "underground coal conveyor guard",
+      "regime": "msha",
+      "text": "In the underground coal mine, the conveyor belt drive was operating with the guard removed near the tailpiece where miners travel.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF1",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "VERBATIM in-repo smoke fixture",
+      "regime": "msha",
+      "text": "Surface metal nonmetal mine conveyor tail pulley has exposed moving machine parts and the guard is missing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF2",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "same hazard, natural rewording",
+      "regime": "msha",
+      "text": "At the surface pit, the tail pulley on the conveyor is not guarded and the moving parts can be reached from the walkway.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF3",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "same hazard, inspector shorthand",
+      "regime": "msha",
+      "text": "conveyor tail pulley unguarded, surface mine, miners walk right by it",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": false,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF4",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "VERBATIM-style LOTO fixture",
+      "regime": "osha-general-industry",
+      "text": "A technician is servicing the press and hazardous energy has not been isolated or locked out.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF5",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_positive",
+      "failureMode": "same LOTO hazard, reworded",
+      "regime": "osha-general-industry",
+      "text": "The maintenance guy had the press apart with the power still on and nothing locked.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF6",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_safe",
+      "failureMode": "VERBATIM-style safe-state fixture",
+      "regime": "osha-general-industry",
+      "text": "The equipment was locked out and zero energy was verified before servicing began.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-OF7",
+      "source": "diag-overfit.json (independent, never run against Level-3)",
+      "cohort": "diagnostic_safe",
+      "failureMode": "same safe state, reworded",
+      "regime": "osha-general-industry",
+      "text": "Before they opened it up, the crew put their locks on and checked it was dead.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NC-01",
+      "source": "authored",
+      "cohort": "negative_control",
+      "failureMode": "fully compliant guarding",
+      "regime": "osha-general-industry",
+      "text": "Every point of operation on the punch press line is enclosed by a fixed barrier guard, the interlocks were function tested at the start of shift, and the test log was signed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NC-02",
+      "source": "authored",
+      "cohort": "negative_control",
+      "failureMode": "clean housekeeping",
+      "regime": "osha-general-industry",
+      "text": "All travel aisles on the mezzanine were clear, striped and free of stored stock, and the floor was dry throughout.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NC-03",
+      "source": "authored",
+      "cohort": "negative_control",
+      "failureMode": "administrative activity only",
+      "regime": "osha-general-industry",
+      "text": "The contractor orientation records for the shutdown crew were filed and the emergency contact board was updated with the new numbers.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NC-04",
+      "source": "authored",
+      "cohort": "negative_control",
+      "failureMode": "hazard explicitly absent",
+      "regime": "osha-construction",
+      "text": "The excavation was inspected before entry and the competent person recorded no spoil within two feet of the edge and no water accumulation in the bottom.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NC-05",
+      "source": "authored",
+      "cohort": "negative_control",
+      "failureMode": "unrelated nearby hazard language",
+      "regime": "osha-general-industry",
+      "text": "The fall protection rescue plan and the confined space permit templates were both reprinted and placed in the supervisor binder.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-01",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "energy isolation in place",
+      "regime": "osha-general-industry",
+      "text": "The chipper infeed was de-energized at the disconnect, both millwrights hung personal locks, and the stored spring tension was released and verified before the housing came off.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-02",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "corrected during the walk",
+      "regime": "osha-general-industry",
+      "text": "A shop-made extension lead with a taped joint was found at the weld bay and the electrician cut it out of service and issued a factory assembled lead before we left the area.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-03",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "removed from service",
+      "regime": "osha-general-industry",
+      "text": "The scissor lift was red tagged and taken out of service after the pothole protection failed to deploy during the function check.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-04",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "historical, already closed",
+      "regime": "osha-general-industry",
+      "text": "Two winters ago the dust collector ducting cracked and was rebuilt; the current inspection found the ducting sound and the joints tight.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-05",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "hypothetical",
+      "regime": "osha-general-industry",
+      "text": "If the interlock on the mixer lid were bypassed during a jam clearance, an operator could reach the ribbon while it is turning.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-CS-06",
+      "source": "authored",
+      "cohort": "condition_state",
+      "failureMode": "controlled with a residual",
+      "regime": "osha-construction",
+      "text": "The leading edge is protected by a cabled guardrail on all four sides and the crew is tied off to an engineered anchor while they work inside it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-AM-01",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "subjective impression only",
+      "regime": "osha-general-industry",
+      "text": "The overhead door track struck me as odd when I walked underneath it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-02",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "hedged fact",
+      "regime": "osha-general-industry",
+      "text": "One of the sling legs on the spreader bar may be cut.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-03",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "unidentified substance",
+      "regime": "unknown",
+      "text": "There was a puddle of something under the parts washer and I could not tell what it was or where it came from.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      }
+    },
+    {
+      "id": "H-AM-04",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "too little said",
+      "regime": "unknown",
+      "text": "Walked the yard.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-AM-05",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "impression plus a hard fact",
+      "regime": "osha-general-industry",
+      "text": "The mezzanine gate did not look right to me and the lower hinge pin is sheared off with the gate hanging on the top hinge alone.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls|machine_guarding",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-AM-06",
+      "source": "authored",
+      "cohort": "ambiguity",
+      "failureMode": "uncertainty that changes no decision",
+      "regime": "osha-general-industry",
+      "text": "The guard on the drill press is missing; I am not certain whether it was taken off this morning or last week.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-01",
+      "source": "authored",
+      "cohort": "negation",
+      "failureMode": "negated list across commas",
+      "regime": "osha-construction",
+      "text": "Two carpenters were framing the parapet at twenty six feet with no guardrail, no personal fall arrest and no safety monitor assigned.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces|scaffolds",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-02",
+      "source": "authored",
+      "cohort": "negation",
+      "failureMode": "negation in one clause, hazard in another",
+      "regime": "osha-general-industry",
+      "text": "There was no standing water anywhere on the shop floor, and the flexible cord feeding the pedestal fan has its outer jacket worn through to the conductors.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "electrical",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-03",
+      "source": "authored",
+      "cohort": "negation",
+      "failureMode": "contrastive clause",
+      "regime": "osha-general-industry",
+      "text": "The rack uprights showed no impact damage, however the top beam clip on bay nine has popped out of its slot and the beam is resting on one connector.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "material_handling|walking_working_surfaces",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-04",
+      "source": "authored",
+      "cohort": "negation",
+      "failureMode": "negated hazard, not negated control",
+      "regime": "osha-general-industry",
+      "text": "The guarding survey of the wrapping line found no exposed nip points and no reachable rotating shafts anywhere on the machine.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-NG-05",
+      "source": "authored",
+      "cohort": "negation",
+      "failureMode": "subordinate clause after negation",
+      "regime": "osha-general-industry",
+      "text": "The mixer was running without its lid clamp engaged while a second operator leaned across the opening to scrape the wall of the bowl.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-01",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "action language only",
+      "regime": "osha-general-industry",
+      "text": "We are going to add a second eyewash station near the plating line during the next shutdown.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-02",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "whole sentence is the only evidence",
+      "regime": "osha-general-industry",
+      "text": "The bottom guard on the compound mitre saw does not return over the blade when the arm is raised.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-03",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "contamination by an adjacent safe statement",
+      "regime": "osha-general-industry",
+      "text": "The eyewash station was flushed and tagged this week, and the sulphuric acid carboy beside it is stored uncapped on an open shelf above head height.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "chemical_storage|hazard_communication",
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-04",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "multi hazard, one sentence",
+      "regime": "osha-construction",
+      "text": "A labourer was cutting rebar at the slab edge with no eye protection, the uncapped rebar behind him was at waist height, and the edge itself had no guardrail at a twelve foot drop.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "personal_protective_equipment|falls|walking_working_surfaces",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-05",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "field shorthand, multi hazard",
+      "regime": "msha",
+      "text": "plant 2 walkway, handrail off on the north run, cable tray sagging into head height, housekeeping bad around the crusher deck",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-06",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "high consequence, plain wording",
+      "regime": "osha-construction",
+      "text": "An employee was working at the bottom of a nine foot vertical trench in run of bank sand with no shoring, no shield and no sloping cut back.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "trenching_shoring|ground_control",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    },
+    {
+      "id": "H-EV-07",
+      "source": "authored",
+      "cohort": "evidence",
+      "failureMode": "high consequence, confined space",
+      "regime": "osha-general-industry",
+      "text": "A worker entered the digester through the side manway to hose it out with no atmospheric test taken and no attendant posted at the opening.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "confined_space",
+        "highConsequence": true,
+        "clarificationExpected": false
+      }
+    }
+  ]
+}

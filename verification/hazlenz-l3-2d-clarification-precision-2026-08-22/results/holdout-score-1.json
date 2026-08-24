@@ -1,0 +1,2914 @@
+{
+  "setId": "l3-2d-sealed-holdout-2026-08-22",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "scoredAt": "2026-08-22T23:38:30.871Z",
+  "scenarios": 77,
+  "tiers": [
+    {
+      "tier": "RAW_PROVIDER",
+      "hazardDetection": "55 of 56",
+      "highConsequenceMisses": 1,
+      "highConsequenceMissIds": [
+        "D-NG-04"
+      ],
+      "falseActive": "1 of 21",
+      "falseActiveIds": [
+        "D-CR-04"
+      ],
+      "negativeControlFalseActive": "0 of 8",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "4 of 4",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 97.4,
+      "familyAccuracy": "55 of 56",
+      "multiHazardWithinTolerance": "4 of 4",
+      "clarificationRecall": "5 of 6",
+      "clarificationRecallPct": 83.3,
+      "clarificationPrecision": "5 of 7",
+      "clarificationPrecisionPct": 71.4,
+      "clarificationsRaised": 7,
+      "clarificationUnnecessary": 2,
+      "clarificationUnnecessaryIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "POST_VALIDATOR",
+      "hazardDetection": "55 of 56",
+      "highConsequenceMisses": 1,
+      "highConsequenceMissIds": [
+        "D-NG-04"
+      ],
+      "falseActive": "1 of 21",
+      "falseActiveIds": [
+        "D-CR-04"
+      ],
+      "negativeControlFalseActive": "0 of 8",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "4 of 4",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 97.4,
+      "familyAccuracy": "55 of 56",
+      "multiHazardWithinTolerance": "4 of 4",
+      "clarificationRecall": "5 of 6",
+      "clarificationRecallPct": 83.3,
+      "clarificationPrecision": "5 of 7",
+      "clarificationPrecisionPct": 71.4,
+      "clarificationsRaised": 7,
+      "clarificationUnnecessary": 2,
+      "clarificationUnnecessaryIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "SHIPPED_PIPELINE",
+      "hazardDetection": "54 of 56",
+      "highConsequenceMisses": 2,
+      "highConsequenceMissIds": [
+        "D-FLD-175",
+        "D-NG-04"
+      ],
+      "falseActive": "1 of 21",
+      "falseActiveIds": [
+        "D-CR-04"
+      ],
+      "negativeControlFalseActive": "0 of 8",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "4 of 4",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 96.1,
+      "familyAccuracy": "54 of 56",
+      "multiHazardWithinTolerance": "4 of 4",
+      "clarificationRecall": "5 of 6",
+      "clarificationRecallPct": 83.3,
+      "clarificationPrecision": "5 of 7",
+      "clarificationPrecisionPct": 71.4,
+      "clarificationsRaised": 7,
+      "clarificationUnnecessary": 2,
+      "clarificationUnnecessaryIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "ambiguousNotScored": 0
+    }
+  ],
+  "byProvenance": [
+    {
+      "provenanceClass": "INDEPENDENT",
+      "scenarios": 40,
+      "tiers": [
+        {
+          "tier": "RAW_PROVIDER",
+          "hazardDetection": "40 of 40",
+          "highConsequenceMisses": 0,
+          "highConsequenceMissIds": [],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 100,
+          "familyAccuracy": "39 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "POST_VALIDATOR",
+          "hazardDetection": "40 of 40",
+          "highConsequenceMisses": 0,
+          "highConsequenceMissIds": [],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 100,
+          "familyAccuracy": "39 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "SHIPPED_PIPELINE",
+          "hazardDetection": "39 of 40",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "D-FLD-175"
+          ],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 97.5,
+          "familyAccuracy": "38 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        }
+      ]
+    },
+    {
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "scenarios": 37,
+      "tiers": [
+        {
+          "tier": "RAW_PROVIDER",
+          "hazardDetection": "15 of 16",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "D-NG-04"
+          ],
+          "falseActive": "1 of 21",
+          "falseActiveIds": [
+            "D-CR-04"
+          ],
+          "negativeControlFalseActive": "0 of 8",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "4 of 4",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 94.6,
+          "familyAccuracy": "16 of 16",
+          "multiHazardWithinTolerance": "4 of 4",
+          "clarificationRecall": "5 of 6",
+          "clarificationRecallPct": 83.3,
+          "clarificationPrecision": "5 of 7",
+          "clarificationPrecisionPct": 71.4,
+          "clarificationsRaised": 7,
+          "clarificationUnnecessary": 2,
+          "clarificationUnnecessaryIds": [
+            "D-NG-04",
+            "D-NC-06"
+          ],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "POST_VALIDATOR",
+          "hazardDetection": "15 of 16",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "D-NG-04"
+          ],
+          "falseActive": "1 of 21",
+          "falseActiveIds": [
+            "D-CR-04"
+          ],
+          "negativeControlFalseActive": "0 of 8",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "4 of 4",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 94.6,
+          "familyAccuracy": "16 of 16",
+          "multiHazardWithinTolerance": "4 of 4",
+          "clarificationRecall": "5 of 6",
+          "clarificationRecallPct": 83.3,
+          "clarificationPrecision": "5 of 7",
+          "clarificationPrecisionPct": 71.4,
+          "clarificationsRaised": 7,
+          "clarificationUnnecessary": 2,
+          "clarificationUnnecessaryIds": [
+            "D-NG-04",
+            "D-NC-06"
+          ],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "SHIPPED_PIPELINE",
+          "hazardDetection": "15 of 16",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "D-NG-04"
+          ],
+          "falseActive": "1 of 21",
+          "falseActiveIds": [
+            "D-CR-04"
+          ],
+          "negativeControlFalseActive": "0 of 8",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "4 of 4",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 94.6,
+          "familyAccuracy": "16 of 16",
+          "multiHazardWithinTolerance": "4 of 4",
+          "clarificationRecall": "5 of 6",
+          "clarificationRecallPct": 83.3,
+          "clarificationPrecision": "5 of 7",
+          "clarificationPrecisionPct": 71.4,
+          "clarificationsRaised": 7,
+          "clarificationUnnecessary": 2,
+          "clarificationUnnecessaryIds": [
+            "D-NG-04",
+            "D-NC-06"
+          ],
+          "ambiguousNotScored": 0
+        }
+      ]
+    }
+  ],
+  "clarificationMatrix": [
+    {
+      "tier": "RAW_PROVIDER",
+      "TP": 5,
+      "FP": 2,
+      "FN": 1,
+      "TN": 69,
+      "precision": 71.4,
+      "recall": 83.3,
+      "unnecessaryClarifications": 2,
+      "falsePositiveIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "falseNegativeIds": [
+        "D-CR-04"
+      ],
+      "rows": [
+        {
+          "id": "D-NG-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negation_then_fact",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "no physical condition is stated at all; whether a hazard exists cannot be decided",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the only fact is hedged; the condition state turns entirely on whether it is broken",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the identity of the liquid decides the hazard family and whether it is high-consequence",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": false,
+          "verdict": "FN",
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "whether fall protection was in use decides both the hazard and the condition state",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-05",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "nothing was observed; whether damage exists decides whether a hazard exists",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the condition state is CONTROLLED or ACTIVE depending on one unobserved fact",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-NC-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negative_control",
+          "droppedByBinder": []
+        }
+      ]
+    },
+    {
+      "tier": "POST_VALIDATOR",
+      "TP": 5,
+      "FP": 2,
+      "FN": 1,
+      "TN": 69,
+      "precision": 71.4,
+      "recall": 83.3,
+      "unnecessaryClarifications": 2,
+      "falsePositiveIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "falseNegativeIds": [
+        "D-CR-04"
+      ],
+      "rows": [
+        {
+          "id": "D-NG-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negation_then_fact",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "no physical condition is stated at all; whether a hazard exists cannot be decided",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the only fact is hedged; the condition state turns entirely on whether it is broken",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the identity of the liquid decides the hazard family and whether it is high-consequence",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": false,
+          "verdict": "FN",
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "whether fall protection was in use decides both the hazard and the condition state",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-05",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "nothing was observed; whether damage exists decides whether a hazard exists",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the condition state is CONTROLLED or ACTIVE depending on one unobserved fact",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-NC-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negative_control",
+          "droppedByBinder": []
+        }
+      ]
+    },
+    {
+      "tier": "SHIPPED_PIPELINE",
+      "TP": 5,
+      "FP": 2,
+      "FN": 1,
+      "TN": 69,
+      "precision": 71.4,
+      "recall": 83.3,
+      "unnecessaryClarifications": 2,
+      "falsePositiveIds": [
+        "D-NG-04",
+        "D-NC-06"
+      ],
+      "falseNegativeIds": [
+        "D-CR-04"
+      ],
+      "rows": [
+        {
+          "id": "D-NG-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negation_then_fact",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "no physical condition is stated at all; whether a hazard exists cannot be decided",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the only fact is hedged; the condition state turns entirely on whether it is broken",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the identity of the liquid decides the hazard family and whether it is high-consequence",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-04",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": false,
+          "verdict": "FN",
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "whether fall protection was in use decides both the hazard and the condition state",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-05",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "nothing was observed; whether damage exists decides whether a hazard exists",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-CR-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": false,
+          "reason": "the condition state is CONTROLLED or ACTIVE depending on one unobserved fact",
+          "triggerClass": "required_clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "D-NC-06",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": false,
+          "actualClarification": true,
+          "verdict": "FP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": true,
+          "reason": null,
+          "triggerClass": "negative_control",
+          "droppedByBinder": []
+        }
+      ]
+    }
+  ],
+  "highConsequenceReport": [
+    {
+      "id": "D-FLD-005",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-010",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-015",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-020",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-025",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-030",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-035",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-040",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-045",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-050",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-055",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-060",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-065",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-070",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-075",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-080",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-085",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-090",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-095",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-100",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-105",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-110",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-115",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-120",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-125",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-130",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-135",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-140",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-145",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-150",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-155",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-160",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-165",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-170",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-175",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 0,
+      "shippedActive": false,
+      "conditionStates": [],
+      "evidenceBound": 0,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": "binder"
+    },
+    {
+      "id": "D-FLD-180",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-185",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-190",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-195",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-FLD-200",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-NG-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-NG-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-NG-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": false,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": false,
+      "shippedCandidates": 1,
+      "shippedActive": false,
+      "conditionStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": "provider"
+    },
+    {
+      "id": "D-NG-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-CQ-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-CQ-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-MH-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-MH-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-HC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-HC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "D-HC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    }
+  ],
+  "clarificationsDroppedByBinder": {
+    "total": 0,
+    "ids": []
+  },
+  "demotions": {
+    "total": 0,
+    "synthesizedClarifications": 0,
+    "ids": []
+  },
+  "pipeline": {
+    "providerFailures": 0,
+    "malformedOutput": 0,
+    "validatorRejections": 0,
+    "retries": 0,
+    "quotationsEmitted": 75,
+    "quotationsNotVerbatim": 0,
+    "verbatimQuoteRatePct": 100,
+    "semanticFatalRejections": 5,
+    "semanticAdvisories": 15,
+    "semanticCodeTally": {
+      "SEMANTIC_EVIDENCE_CONTRADICTS_STATE": 1,
+      "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY": 3,
+      "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT": 12,
+      "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE": 4
+    }
+  },
+  "operational": {
+    "medianLatencyMs": 4092,
+    "p90LatencyMs": 6062,
+    "p95LatencyMs": 6708,
+    "maxLatencyMs": 8310,
+    "meanInputTokens": 1598,
+    "meanOutputTokens": 273
+  },
+  "rows": [
+    {
+      "id": "D-FLD-005",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-010",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-015",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-020",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-025",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-030",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-035",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-040",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-045",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-050",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-055",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-060",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-065",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-070",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-075",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-080",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-085",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-090",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-095",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-100",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-105",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-110",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-115",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-120",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-125",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-130",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-135",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-140",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-145",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-150",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-155",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-160",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-165",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-170",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-175",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_EVIDENCE_CONTRADICTS_STATE"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-180",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-185",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-190",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-195",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "electrical / electrical_panel_access",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-FLD-200",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "slip_trip_fall / housekeeping_slip_trip",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated clause then hard electrical fact",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated clause then hard fall fact",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "scaffolds/ACTIVE"
+      ],
+      "shippedStates": [
+        "scaffolds/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "contrastive however after a negation",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated clause then confined-space fact",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "confined_space/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "confined_space/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated list then a hard fact",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "trenching_shoring/ACTIVE"
+      ],
+      "shippedStates": [
+        "trenching_shoring/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NG-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated HAZARD only -- must stay non-active",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "ACTIVE on a hard fact, detail could be refined",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "ACTIVE, cause of the defect unknown but irrelevant",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "HYPOTHETICAL, decided by its own wording",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/HYPOTHETICAL"
+      ],
+      "shippedStates": [
+        "machine_guarding/HYPOTHETICAL"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "CONTROLLED, decided",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "CORRECTED, decided",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "compressed_air_hose_safety/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "impression beside a hard fact -- ACTIVE, no question",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "ACTIVE, quantity unstated but immaterial",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "fire_explosion/ACTIVE"
+      ],
+      "shippedStates": [
+        "fire_explosion/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CQ-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "NEGATED, decided",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "machine_guarding/NEGATED"
+      ],
+      "shippedStates": [
+        "machine_guarding/NEGATED"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "pure impression, no fact",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "compressed_gas_cylinders/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "compressed_gas_cylinders/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "hedge governs the only predication",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "electrical/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "electrical/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "unidentified substance changes family and consequence",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "chemical_storage/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "chemical_storage/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "ambiguous whether a control exists at all",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "reported second hand, unverified",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "material_handling/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "material_handling/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CR-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "state genuinely undecidable between two branches",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "fully compliant electrical",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "clean walking surfaces",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "administrative activity only",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "hazard vocabulary in a safe statement",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "positive impression beside a control-in-place fact",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-NC-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "planned future action only",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CS-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "energy isolation in place",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "loto_stored_energy/CONTROLLED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CS-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "removed from service",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "mobile_equipment/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CS-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "historical, already closed",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "walking_working_surfaces/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-CS-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "controlled, hazard genuinely present",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-MH-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "two independent hazards, one sentence",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE",
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-MH-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "three cues, field shorthand",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-MH-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PPE plus a struck-by hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE",
+        "personal_protective_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE",
+        "personal_protective_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-MH-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "safe statement adjacent to two real hazards",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-HC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "live electrical work",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-HC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "unprotected leading edge",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "D-HC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "stored energy",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "contractVersion": "hazlenz.l3.input.v1",
+  "analysisIdSent": true,
+  "sourceCount": 1,
+  "sourceIds": [
+    "observation-1"
+  ],
+  "sourceTypes": [
+    "observation"
+  ],
+  "totalSourceChars": 121,
+  "regulatoryContextValue": "osha-general-industry",
+  "regulatoryContextProvenance": "USER_CONFIRMED",
+  "allowedHazardFamilyCount": 24,
+  "regulatoryCandidateIdsSent": [],
+  "regulatoryCitationStringsSent": false,
+  "establishedFindingFamiliesSent": [],
+  "advisorySignalCount": 0,
+  "excludedStructurally": [
+    "personal names",
+    "inspector identity",
+    "company/site name",
+    "site address",
+    "account id",
+    "authentication material",
+    "billing data",
+    "unrelated inspection records",
+    "governed review state",
+    "release lifecycle state",
+    "standards corpus text",
+    "arbitrary database rows",
+    "photos/attachments"
+  ]
+}

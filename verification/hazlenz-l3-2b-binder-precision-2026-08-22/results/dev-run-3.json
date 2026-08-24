@@ -1,0 +1,2651 @@
+{
+  "setId": "l3-2b-development-2026-08-22",
+  "role": "DEVELOPMENT",
+  "capturedAt": "2026-08-22T15:43:51.557Z",
+  "provider": {
+    "providerId": "ollama:qwen3-coder:30b",
+    "config": {
+      "endpoint": "<local>",
+      "model": "qwen3-coder:30b",
+      "temperature": 0,
+      "seed": 20260822,
+      "numCtx": 8192,
+      "timeoutMs": 60000
+    },
+    "promptVersion": "hazlenz.l3.prompt.v2"
+  },
+  "allowedHazardFamilyCount": 24,
+  "egressSample": {
+    "contractVersion": "hazlenz.l3.input.v1",
+    "analysisIdSent": true,
+    "sourceCount": 1,
+    "sourceIds": [
+      "observation-1"
+    ],
+    "sourceTypes": [
+      "observation"
+    ],
+    "totalSourceChars": 112,
+    "regulatoryContextValue": "osha-construction",
+    "regulatoryContextProvenance": "USER_CONFIRMED",
+    "allowedHazardFamilyCount": 24,
+    "regulatoryCandidateIdsSent": [],
+    "regulatoryCitationStringsSent": false,
+    "establishedFindingFamiliesSent": [],
+    "advisorySignalCount": 0,
+    "excludedStructurally": [
+      "personal names",
+      "inspector identity",
+      "company/site name",
+      "site address",
+      "account id",
+      "authentication material",
+      "billing data",
+      "unrelated inspection records",
+      "governed review state",
+      "release lifecycle state",
+      "standards corpus text",
+      "arbitrary database rows",
+      "photos/attachments"
+    ]
+  },
+  "records": [
+    {
+      "id": "DEV-01",
+      "cohort": null,
+      "failureMode": "negation_blindness",
+      "regime": "osha-construction",
+      "text": "A worker was on the leading edge at 18 feet with no guardrail, safety net or personal fall arrest system in use.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|scaffolds|walking_working_surfaces",
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4592,
+      "telemetry": {
+        "latencyMs": 4587,
+        "promptTokens": 1383,
+        "outputTokens": 273,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_protection_missing",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "A worker was on the leading edge at 18 feet with no guardrail, safety net or personal fall arrest system in use."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-01",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed a worker positioned at the leading edge at a height of 18 feet without any fall protection measures in place.",
+        "hazards": [
+          {
+            "candidateKey": "fall_protection_missing",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 112,
+                "quotedText": "A worker was on the leading edge at 18 feet with no guardrail, safety net or personal fall arrest system in use."
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that no fall protection measures (guardrail, safety net, or personal fall arrest system) were in use while a worker was positioned at 18 feet above ground level. This constitutes an active hazard as the required fall protection is completely absent.",
+            "independentHazardRationale": "This represents a distinct hazard from any other potential fall-related issues because it specifically addresses the absence of fall protection equipment at a height where falls would be fatal or seriously injurious, directly violating fall protection requirements for working at heights.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:41:55.940Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-02",
+      "cohort": null,
+      "failureMode": "multi_hazard",
+      "regime": "osha-general-industry",
+      "text": "The unguarded pulley sits beside an open floor hole, and the nearby drum of solvent is unlabeled.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "machine_guarding",
+        "minCandidates": 2,
+        "maxCandidates": 4
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 8124,
+      "telemetry": {
+        "latencyMs": 8120,
+        "promptTokens": 1379,
+        "outputTokens": 550,
+        "binding": {
+          "total": 3,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "hazard-2",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'machine_guarding' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "hazard-2",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'machine_guarding' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "hazard-1",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The unguarded pulley"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "hazard-2",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "sits beside an open floor hole"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "hazard-3",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the nearby drum of solvent is unlabeled"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-02",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a pulley is unguarded, sits beside an open floor hole, and there is an unlabeled drum of solvent nearby.",
+        "hazards": [
+          {
+            "candidateKey": "hazard-1",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 20,
+                "quotedText": "The unguarded pulley"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the pulley is unguarded, which constitutes an active hazard under machine guarding standards. A missing guard represents a present danger to workers.",
+            "independentHazardRationale": "This hazard concerns the lack of machine guarding on a pulley, which is a distinct safety concern from the other conditions described in the observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "hazard-2",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 21,
+                "endOffset": 51,
+                "quotedText": "sits beside an open floor hole"
+              }
+            ],
+            "conditionRationale": "The observation describes an open floor hole, which is a recognized hazard under walking/working surface standards. An open floor hole presents a fall risk to workers.",
+            "independentHazardRationale": "This hazard relates to the presence of an open floor hole, which is independent from the machine guarding issue and represents a separate physical danger.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "hazard-3",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 57,
+                "endOffset": 96,
+                "quotedText": "the nearby drum of solvent is unlabeled"
+              }
+            ],
+            "conditionRationale": "The observation states that the drum of solvent is unlabeled, which constitutes an active hazard under chemical storage standards. An unlabeled chemical container poses a risk to workers who may not know its contents or hazards.",
+            "independentHazardRationale": "This hazard concerns the labeling of a chemical container, which is independent from both the machine guarding and walking/working surface hazards described in the observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:04.066Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-03",
+      "cohort": null,
+      "failureMode": "removed_from_service",
+      "regime": "osha-general-industry",
+      "text": "The forklift was tagged out of service and removed from the floor after the mast hydraulic line failed.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "REMOVED_FROM_SERVICE",
+          "CORRECTED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4383,
+      "telemetry": {
+        "latencyMs": 4383,
+        "promptTokens": 1378,
+        "outputTokens": 293,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "forklift_mast_hydraulic_line_failure",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "REMOVED_FROM_SERVICE",
+          "evidence": [
+            "The forklift was tagged out of service and removed from the floor after the mast hydraulic line failed."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-03",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation states that the forklift was tagged out of service and removed from the floor due to a hydraulic line failure. This indicates the equipment was taken out of service for safety reasons, not that it was operating unsafely.",
+        "hazards": [
+          {
+            "candidateKey": "forklift_mast_hydraulic_line_failure",
+            "hazardFamily": "mobile_equipment",
+            "conditionState": "REMOVED_FROM_SERVICE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 103,
+                "quotedText": "The forklift was tagged out of service and removed from the floor after the mast hydraulic line failed."
+              }
+            ],
+            "conditionRationale": "The forklift was tagged out of service and removed from the floor, indicating it was taken out of use due to the hydraulic line failure. This represents a control measure being implemented rather than an active hazard.",
+            "independentHazardRationale": "This candidate focuses on the specific mechanical failure that led to removal from service, which is distinct from other potential hazards related to forklift operation or maintenance that might be present in the same environment but are not described in this observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:08.452Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-04",
+      "cohort": null,
+      "failureMode": "hypothetical",
+      "regime": "osha-general-industry",
+      "text": "If the guard were removed during cleaning, the operator could reach the point of operation.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "HYPOTHETICAL",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 4034,
+      "telemetry": {
+        "latencyMs": 4034,
+        "promptTokens": 1374,
+        "outputTokens": 271,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "machine_guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "HYPOTHETICAL",
+          "evidence": [
+            "If the guard were removed during cleaning, the operator could reach the point of operation."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-04",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation describes a hypothetical scenario about what could happen if a guard were removed during cleaning. This is a conditional statement about a potential future action and its consequences, not a description of the current physical state of equipment or controls.",
+        "hazards": [
+          {
+            "candidateKey": "machine_guarding",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "HYPOTHETICAL",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 91,
+                "quotedText": "If the guard were removed during cleaning, the operator could reach the point of operation."
+              }
+            ],
+            "conditionRationale": "The observation presents a conditional scenario where removal of a guard would create a hazardous condition. However, it does not establish whether the guard is currently in place or removed, making this a hypothetical situation rather than an active hazard.",
+            "independentHazardRationale": "This candidate represents a potential machine guarding hazard that could exist if conditions change, but since no current physical state of the guard is described, it cannot be classified as present or absent.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:12.487Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-05",
+      "cohort": null,
+      "failureMode": "action_not_evidence",
+      "regime": "osha-general-industry",
+      "text": "We will schedule a lockout/tagout refresher for the maintenance crew next quarter.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "HYPOTHETICAL"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1547,
+      "telemetry": {
+        "latencyMs": 1547,
+        "promptTokens": 1374,
+        "outputTokens": 97,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-05",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a planned future action (scheduling a refresher training) rather than a present condition. There is no evidence of any active hazard, missing control, or current unsafe situation. The statement indicates a future intent to provide training but does not describe any present lack of lockout/tagout procedures or equipment in use.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:14.034Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-06",
+      "cohort": null,
+      "failureMode": "corrected_condition",
+      "regime": "osha-general-industry",
+      "text": "The bench grinder tongue guard was replaced yesterday and the work rest was reset to one eighth of an inch.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CORRECTED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4182,
+      "telemetry": {
+        "latencyMs": 4182,
+        "promptTokens": 1378,
+        "outputTokens": 277,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "machine_guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CORRECTED",
+          "evidence": [
+            "The bench grinder tongue guard was replaced yesterday"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-06",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation states that the bench grinder tongue guard was replaced yesterday and the work rest was reset to one eighth of an inch. This indicates that corrective action was taken to address previous issues with the grinder. The tongue guard being replaced means any previous absence or malfunction has been corrected, and the work rest being reset suggests proper adjustment for safe operation.",
+        "hazards": [
+          {
+            "candidateKey": "machine_guarding",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "CORRECTED",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 53,
+                "quotedText": "The bench grinder tongue guard was replaced yesterday"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the tongue guard was replaced, indicating that a previous condition (likely missing or defective) has been corrected.",
+            "independentHazardRationale": "This represents a single hazard related to machine guarding that has been addressed through replacement of the tongue guard. The work rest adjustment is part of the same corrective action for the grinder's safety features and does not constitute a separate hazard family.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:18.216Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-07",
+      "cohort": null,
+      "failureMode": "missing_control_is_active",
+      "regime": "osha-general-industry",
+      "text": "The maintenance technician was servicing the conveyor drive while it remained energized, and no lock was applied to the disconnect.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "loto_stored_energy",
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4349,
+      "telemetry": {
+        "latencyMs": 4348,
+        "promptTokens": 1380,
+        "outputTokens": 291,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "loto_stored_energy-1",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The maintenance technician was servicing the conveyor drive while it remained energized, and no lock was applied to the disconnect."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-07",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The maintenance technician was servicing the conveyor drive while it remained energized, and no lock was applied to the disconnect.",
+        "hazards": [
+          {
+            "candidateKey": "loto_stored_energy-1",
+            "hazardFamily": "loto_stored_energy",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 131,
+                "quotedText": "The maintenance technician was servicing the conveyor drive while it remained energized, and no lock was applied to the disconnect."
+              }
+            ],
+            "conditionRationale": "The observation states that the maintenance technician was servicing the conveyor drive while it remained energized. This indicates that the equipment was not de-energized or locked out during maintenance. The absence of a lock applied to the disconnect confirms that the required lockout/tagout procedures were not followed, creating an active hazard.",
+            "independentHazardRationale": "This hazard is independent from any other potential hazards because it specifically addresses the failure to follow lockout/tagout procedures for electrical energy isolation during maintenance work. It does not overlap with other safety concerns like machine guarding or electrical hazards that would be addressed separately in different contexts.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:22.564Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-08",
+      "cohort": null,
+      "failureMode": "negative_control_safe",
+      "regime": "osha-general-industry",
+      "text": "The fixed machine guard is interlocked, was function tested this morning, and prevents access to the point of operation.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "NEGATED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4230,
+      "telemetry": {
+        "latencyMs": 4230,
+        "promptTokens": 1380,
+        "outputTokens": 279,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "machine_guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "The fixed machine guard is interlocked, was function tested this morning, and prevents access to the point of operation."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-08",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a machine guard that is interlocked, function tested, and prevents access to the point of operation. This indicates the guard is present, functional, and serving its intended protective purpose.",
+        "hazards": [
+          {
+            "candidateKey": "machine_guarding",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "CONTROLLED",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 120,
+                "quotedText": "The fixed machine guard is interlocked, was function tested this morning, and prevents access to the point of operation."
+              }
+            ],
+            "conditionRationale": "The machine guard is described as interlocked and function tested, indicating it is properly installed and operational. The guard prevents access to the point of operation, which is the primary protective function of a machine guard.",
+            "independentHazardRationale": "This candidate addresses the specific safety condition related to machine guarding, which is the only hazard family relevant to the described situation of a functioning interlocked machine guard preventing access to a point of operation. There are no other independent hazards present in this observation.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:26.795Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-09",
+      "cohort": null,
+      "failureMode": "irrelevant_nearby_text",
+      "regime": "osha-general-industry",
+      "text": "The safety committee reviewed the fall protection policy binder in the conference room and updated the training roster.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "NEGATED"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1275,
+      "telemetry": {
+        "latencyMs": 1275,
+        "promptTokens": 1376,
+        "outputTokens": 77,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-09",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a safety committee reviewing a fall protection policy binder and updating a training roster. This represents administrative/organizational activities related to fall protection policy and training, not a physical condition or hazard present at a work site.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:28.070Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-10",
+      "cohort": null,
+      "failureMode": "mixed_positive_and_negative",
+      "regime": "osha-construction",
+      "text": "The east scaffold platform was fully planked with guardrails installed, but the west scaffold had no midrail and the plank ends were not cleated.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "scaffolds|falls"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 6417,
+      "telemetry": {
+        "latencyMs": 6416,
+        "promptTokens": 1386,
+        "outputTokens": 428,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "scaffolds-1",
+          "hazardFamily": "scaffolds",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the west scaffold had no midrail"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "scaffolds-2",
+          "hazardFamily": "scaffolds",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the plank ends were not cleated"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-10",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the east scaffold platform was fully planked with guardrails installed, but the west scaffold had no midrail and the plank ends were not cleated.",
+        "hazards": [
+          {
+            "candidateKey": "scaffolds-1",
+            "hazardFamily": "scaffolds",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 76,
+                "endOffset": 108,
+                "quotedText": "the west scaffold had no midrail"
+              }
+            ],
+            "conditionRationale": "The observation states that the west scaffold had no midrail, which is a required component of guardrails for fall protection. This absence creates an active hazard.",
+            "independentHazardRationale": "This hazard relates to the specific safety requirements for scaffold guardrails, particularly the requirement for midrails as part of fall protection systems. It is independent from other potential scaffold hazards like plank end cleating because it addresses a different safety component (guardrail midrail) rather than the securing of planks.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "scaffolds-2",
+            "hazardFamily": "scaffolds",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 113,
+                "endOffset": 144,
+                "quotedText": "the plank ends were not cleated"
+              }
+            ],
+            "conditionRationale": "The observation states that the plank ends were not cleated, which is a safety requirement to prevent planks from shifting or moving. This creates an active hazard.",
+            "independentHazardRationale": "This hazard relates to the specific safety requirements for securing scaffold planks. It is independent from the midrail hazard because it addresses plank stability and movement prevention rather than guardrail components.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:34.487Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-11",
+      "cohort": null,
+      "failureMode": "insufficient_evidence",
+      "regime": "unknown",
+      "text": "Checked the north bay.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 1346,
+      "telemetry": {
+        "latencyMs": 1346,
+        "promptTokens": 1356,
+        "outputTokens": 73,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-11",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation 'Checked the north bay.' does not provide sufficient information to determine any specific safety hazard or condition. It is a general statement about inspection activity without describing any particular equipment, condition, or safety issue.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:35.834Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-12",
+      "cohort": null,
+      "failureMode": "high_consequence_recall",
+      "regime": "osha-construction",
+      "text": "An employee was working in a seven foot deep trench in sandy soil with no shoring, shielding or sloping.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "trenching_shoring|ground_control",
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4127,
+      "telemetry": {
+        "latencyMs": 4126,
+        "promptTokens": 1379,
+        "outputTokens": 266,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "trenching_shoring",
+          "hazardFamily": "trenching_shoring",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "An employee was working in a seven foot deep trench in sandy soil with no shoring, shielding or sloping."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-12",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that an employee was working in a trench without any protective measures.",
+        "hazards": [
+          {
+            "candidateKey": "trenching_shoring",
+            "hazardFamily": "trenching_shoring",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 104,
+                "quotedText": "An employee was working in a seven foot deep trench in sandy soil with no shoring, shielding or sloping."
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the employee was working in a trench with no shoring, shielding or sloping. This directly indicates the absence of required protective measures for trench work, which is an active hazard.",
+            "independentHazardRationale": "This represents a specific trenching hazard where the required protective systems (shoring, shielding, or sloping) are completely absent from a 7-foot deep trench in sandy soil. This is distinct from other hazards like falls or walking surfaces because it specifically addresses the structural protection requirements for excavations.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:39.960Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-13",
+      "cohort": null,
+      "failureMode": "distant_governing_negation",
+      "regime": "osha-general-industry",
+      "text": "At no point during the shift was the respirator program followed, and cartridges were reused across the silica cutting task.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "respirable_dust_silica|personal_protective_equipment"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4531,
+      "telemetry": {
+        "latencyMs": 4530,
+        "promptTokens": 1380,
+        "outputTokens": 292,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "respirable_dust_silica",
+          "hazardFamily": "respirable_dust_silica",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "At no point during the shift was the respirator program followed, and cartridges were reused across the silica cutting task."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-13",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the respirator program was not followed at any point during the shift, and that cartridges were reused across the silica cutting task.",
+        "hazards": [
+          {
+            "candidateKey": "respirable_dust_silica",
+            "hazardFamily": "respirable_dust_silica",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 124,
+                "quotedText": "At no point during the shift was the respirator program followed, and cartridges were reused across the silica cutting task."
+              }
+            ],
+            "conditionRationale": "The observation states that the respirator program was not followed at any point during the shift, indicating a lack of proper respiratory protection. Additionally, the reuse of cartridges across the silica cutting task suggests inadequate protection against silica dust exposure.",
+            "independentHazardRationale": "This hazard is independent from other potential hazards because it specifically addresses the failure to follow respirator program requirements and the improper reuse of cartridges during silica cutting operations, which directly impacts respiratory health and exposure to harmful silica dust particles. This represents a distinct safety concern separate from other occupational hazards like machine guarding or electrical safety.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:44.491Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-14",
+      "cohort": null,
+      "failureMode": "domain_collision",
+      "regime": "msha",
+      "text": "A haul truck at the surface pit was backing toward the dump point without a functioning backup alarm and no spotter was posted.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "mobile_equipment"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 6022,
+      "telemetry": {
+        "latencyMs": 6021,
+        "promptTokens": 1379,
+        "outputTokens": 400,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "backup_alarm_absent",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "without a functioning backup alarm"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "spotter_absent",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "no spotter was posted"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-14",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a haul truck was backing toward a dump point without a functioning backup alarm and with no spotter posted.",
+        "hazards": [
+          {
+            "candidateKey": "backup_alarm_absent",
+            "hazardFamily": "mobile_equipment",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 66,
+                "endOffset": 100,
+                "quotedText": "without a functioning backup alarm"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the haul truck was operating without a functioning backup alarm, which is a required safety control for mobile equipment when backing up.",
+            "independentHazardRationale": "This hazard relates to the absence of a backup alarm system, which is distinct from the lack of a spotter. The backup alarm and spotter are separate safety controls that both address the risk of accidents during vehicle backing operations.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "spotter_absent",
+            "hazardFamily": "mobile_equipment",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 105,
+                "endOffset": 126,
+                "quotedText": "no spotter was posted"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that no spotter was posted while the haul truck was backing toward the dump point, which is a required safety control for mobile equipment operations.",
+            "independentHazardRationale": "This hazard relates to the absence of a spotter, which is distinct from the backup alarm issue. The spotter provides visual monitoring and communication assistance during backing operations, making this a separate safety concern.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:50.513Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-15",
+      "cohort": null,
+      "failureMode": "advisory_hint_wrong",
+      "regime": "osha-general-industry",
+      "text": "Housekeeping in the parts washer area was excellent and all containers were closed and labeled.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1267,
+      "telemetry": {
+        "latencyMs": 1267,
+        "promptTokens": 1422,
+        "outputTokens": 64,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-15",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes the parts washer area as having excellent housekeeping with all containers closed and labeled. This indicates that the condition is compliant and no hazardous situation exists.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:51.781Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-16",
+      "cohort": null,
+      "failureMode": "whole_sentence_evidence_multi_hazard",
+      "regime": "osha-construction",
+      "text": "A pipefitter was standing on the second rung from the top of a stepladder cutting threaded rod with an abrasive wheel and wearing no eye protection while an unattended oxygen cylinder lay on its side beside the ladder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|personal_protective_equipment|compressed_gas_cylinders",
+        "minCandidates": 2,
+        "maxCandidates": 4,
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 6703,
+      "telemetry": {
+        "latencyMs": 6702,
+        "promptTokens": 1401,
+        "outputTokens": 446,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "eye_protection_missing",
+          "hazardFamily": "personal_protective_equipment",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "wearing no eye protection"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "oxygen_cylinder_unattended",
+          "hazardFamily": "compressed_gas_cylinders",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "an unattended oxygen cylinder lay on its side beside the ladder"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-16",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed a pipefitter cutting threaded rod with an abrasive wheel while standing on the second rung from the top of a stepladder, wearing no eye protection, and with an unattended oxygen cylinder lying on its side beside the ladder.",
+        "hazards": [
+          {
+            "candidateKey": "eye_protection_missing",
+            "hazardFamily": "personal_protective_equipment",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 122,
+                "endOffset": 147,
+                "quotedText": "wearing no eye protection"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the pipefitter was wearing no eye protection while operating an abrasive wheel, which is a required safety measure to protect against flying debris and sparks.",
+            "independentHazardRationale": "This hazard is separate from the oxygen cylinder hazard because it addresses the specific absence of personal protective equipment for eye safety, which is a distinct safety requirement from the handling of pressurized gas cylinders.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "oxygen_cylinder_unattended",
+            "hazardFamily": "compressed_gas_cylinders",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 154,
+                "endOffset": 217,
+                "quotedText": "an unattended oxygen cylinder lay on its side beside the ladder"
+              }
+            ],
+            "conditionRationale": "The observation states that an oxygen cylinder was left unattended and positioned on its side beside the ladder, which creates a hazard due to potential instability and the risk of gas release if the cylinder were to fall or be damaged.",
+            "independentHazardRationale": "This hazard is separate from the eye protection hazard because it addresses the improper handling and positioning of a pressurized gas cylinder, which involves different safety requirements and risks than personal protective equipment.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:42:58.483Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-17",
+      "cohort": null,
+      "failureMode": "single_sentence_two_clauses_one_negation",
+      "regime": "osha-general-industry",
+      "text": "The dust collector had no spark arrestor fitted while the adjacent belt sander discharged directly into the same duct run.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire_explosion|respirable_dust_silica|machine_guarding"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4847,
+      "telemetry": {
+        "latencyMs": 4845,
+        "promptTokens": 1380,
+        "outputTokens": 318,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fire_explosion",
+          "detail": "no vocabulary for family 'fire_explosion' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fire_explosion",
+          "detail": "no vocabulary for family 'fire_explosion' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fire_explosion",
+          "hazardFamily": "fire_explosion",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The dust collector had no spark arrestor fitted while the adjacent belt sander discharged directly into the same duct run."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-17",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a dust collector was operating without a required spark arrestor, while an adjacent belt sander was discharging directly into the same duct system. This creates a fire hazard from potential ignition of combustible dust.",
+        "hazards": [
+          {
+            "candidateKey": "fire_explosion",
+            "hazardFamily": "fire_explosion",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 122,
+                "quotedText": "The dust collector had no spark arrestor fitted while the adjacent belt sander discharged directly into the same duct run."
+              }
+            ],
+            "conditionRationale": "The observation states that the dust collector had no spark arrestor fitted, which is a required safety device to prevent ignition of combustible dust. The adjacent belt sander discharging directly into the same duct run creates a direct pathway for sparks or hot particles to reach the dust collection system, creating a fire hazard.",
+            "independentHazardRationale": "This represents a distinct fire explosion hazard because it specifically describes the absence of a spark arrestor in a dust collection system that is connected to equipment (belt sander) that could generate sparks. This is separate from other potential hazards like machine guarding or electrical issues, as it focuses on the specific fire prevention device that is missing.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:03.330Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-18",
+      "cohort": null,
+      "failureMode": "comma_field_note_negation_scope",
+      "regime": "osha-general-industry",
+      "text": "grinding in bay 4, no screen up, sparks reaching the paint locker door, extinguisher tag blank since march",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "fire_explosion|welding_cutting_hot_work"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 6264,
+      "telemetry": {
+        "latencyMs": 6263,
+        "promptTokens": 1382,
+        "outputTokens": 424,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "hazard-1",
+          "hazardFamily": "fire_explosion",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "grinding in bay 4, no screen up, sparks reaching the paint locker door"
+          ],
+          "clarification": null
+        },
+        {
+          "candidateKey": "hazard-2",
+          "hazardFamily": "fire_explosion",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "extinguisher tag blank since march"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-18",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed grinding operations in bay 4 with no screen up, allowing sparks to reach the paint locker door. There was also a blank extinguisher tag since March.",
+        "hazards": [
+          {
+            "candidateKey": "hazard-1",
+            "hazardFamily": "fire_explosion",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 70,
+                "quotedText": "grinding in bay 4, no screen up, sparks reaching the paint locker door"
+              }
+            ],
+            "conditionRationale": "The observation states that sparks from grinding operations were reaching the paint locker door. This constitutes an active fire hazard because sparks can ignite flammable materials in the paint locker area.",
+            "independentHazardRationale": "This represents a distinct fire hazard from the extinguisher issue, as it concerns the direct ignition source (sparks) reaching combustible materials rather than the adequacy of fire suppression equipment.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          },
+          {
+            "candidateKey": "hazard-2",
+            "hazardFamily": "fire_explosion",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 72,
+                "endOffset": 106,
+                "quotedText": "extinguisher tag blank since march"
+              }
+            ],
+            "conditionRationale": "The observation states that the extinguisher tag has been blank since March, indicating that the fire suppression equipment is not properly maintained or functional. This creates an active hazard because firefighters may not be able to locate or use the extinguisher when needed.",
+            "independentHazardRationale": "This represents a separate fire hazard from the spark issue, as it concerns the adequacy and functionality of fire suppression equipment rather than ignition sources.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:09.594Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-19",
+      "cohort": null,
+      "failureMode": "negated_list_must_stay_negated",
+      "regime": "osha-construction",
+      "text": "Crew on the roof edge at twenty two feet with no warning line, no monitor and no anchor points set.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "falls|walking_working_surfaces",
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4045,
+      "telemetry": {
+        "latencyMs": 4044,
+        "promptTokens": 1379,
+        "outputTokens": 259,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "falls-1",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "Crew on the roof edge at twenty two feet with no warning line, no monitor and no anchor points set."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-19",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed a crew on a roof edge at twenty-two feet with no warning line, no monitor, and no anchor points set.",
+        "hazards": [
+          {
+            "candidateKey": "falls-1",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 99,
+                "quotedText": "Crew on the roof edge at twenty two feet with no warning line, no monitor and no anchor points set."
+              }
+            ],
+            "conditionRationale": "The observation describes a crew working at height (twenty-two feet) on a roof edge without any fall protection controls. The absence of a warning line, monitor, and anchor points indicates that the required fall protection measures are missing, creating an active hazard.",
+            "independentHazardRationale": "This represents a distinct fall hazard because it specifically describes the lack of fall protection equipment at a height where falls would be fatal or serious, separate from other potential hazards like electrical or chemical exposures.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:13.640Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-20",
+      "cohort": null,
+      "failureMode": "negation_then_affirmative_clause",
+      "regime": "osha-general-industry",
+      "text": "There was no oil on the walkway, but the mezzanine handrail was missing across the full span of the landing.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "walking_working_surfaces|falls",
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 3801,
+      "telemetry": {
+        "latencyMs": 3801,
+        "promptTokens": 1383,
+        "outputTokens": 243,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "handrail_missing",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "handrail_missing",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "handrail_missing",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the mezzanine handrail was missing across the full span of the landing"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-20",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the mezzanine handrail was missing across the full span of the landing, while noting there was no oil on the walkway.",
+        "hazards": [
+          {
+            "candidateKey": "handrail_missing",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 37,
+                "endOffset": 107,
+                "quotedText": "the mezzanine handrail was missing across the full span of the landing"
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that the mezzanine handrail was missing across the full span of the landing, which constitutes an active hazard as a required safety control is absent.",
+            "independentHazardRationale": "This hazard is independent from any chemical or environmental hazards mentioned in the observation. The missing handrail represents a structural safety issue related to walking/working surfaces that requires immediate attention to prevent falls.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:17.441Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-21",
+      "cohort": null,
+      "failureMode": "subjective_impression_only",
+      "regime": "osha-general-industry",
+      "text": "The hoist chain seemed off to me when I walked past it.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 6878,
+      "telemetry": {
+        "latencyMs": 6878,
+        "promptTokens": 1371,
+        "outputTokens": 462,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "hoist_chain_condition",
+          "detail": "cited evidence carries no 'material_handling' vocabulary but does carry a strong 'machine_guarding' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "hoist_chain_condition",
+          "detail": "cited evidence carries no 'material_handling' vocabulary but does carry a strong 'machine_guarding' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "hoist_chain_condition",
+          "hazardFamily": "material_handling",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "The hoist chain seemed off to me when I walked past it."
+          ],
+          "clarification": {
+            "unresolvedFact": "The specific physical condition or malfunction of the hoist chain",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "ACTIVE - if the hoist chain was damaged or malfunctioning",
+              "CORRECTED - if the hoist chain was repaired or replaced",
+              "INSUFFICIENT_EVIDENCE - if no concrete evidence of hazardous condition exists"
+            ],
+            "question": "What specific physical defect or operational issue was observed with the hoist chain?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-21",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observer states that the hoist chain 'seemed off' but does not provide concrete evidence of a specific hazardous condition. The phrase 'seemed off' is an impression rather than a factual observation of a present condition.",
+        "hazards": [
+          {
+            "candidateKey": "hoist_chain_condition",
+            "hazardFamily": "material_handling",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 55,
+                "quotedText": "The hoist chain seemed off to me when I walked past it."
+              }
+            ],
+            "conditionRationale": "The observation only reports the inspector's impression that the hoist chain 'seemed off.' There is no concrete evidence provided about the actual physical state of the hoist chain, such as whether it was damaged, improperly secured, or malfunctioning. The use of 'seemed' indicates subjective perception rather than a verified hazardous condition.",
+            "independentHazardRationale": "This candidate focuses specifically on the hoist chain's condition, which is distinct from other potential hazards in material handling that might involve different equipment or processes. The hoist chain represents a specific piece of equipment whose operational status is in question based solely on an impression.",
+            "uncertainties": [
+              "What specific aspect of the hoist chain was 'off'?",
+              "Was the hoist chain damaged, improperly positioned, or malfunctioning?",
+              "Is there evidence of actual operational failure or potential for failure?"
+            ],
+            "clarification": {
+              "unresolvedFact": "The specific physical condition or malfunction of the hoist chain",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "ACTIVE - if the hoist chain was damaged or malfunctioning",
+                "CORRECTED - if the hoist chain was repaired or replaced",
+                "INSUFFICIENT_EVIDENCE - if no concrete evidence of hazardous condition exists"
+              ],
+              "question": "What specific physical defect or operational issue was observed with the hoist chain?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:24.320Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-22",
+      "cohort": null,
+      "failureMode": "hedged_fact_only",
+      "regime": "osha-general-industry",
+      "text": "The flexible conduit into the pump might be damaged.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5464,
+      "telemetry": {
+        "latencyMs": 5464,
+        "promptTokens": 1367,
+        "outputTokens": 367,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "flexible_conduit_damage",
+          "detail": "no vocabulary for family 'compressed_air_hose_safety' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "flexible_conduit_damage",
+          "detail": "no vocabulary for family 'compressed_air_hose_safety' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "flexible_conduit_damage",
+          "hazardFamily": "compressed_air_hose_safety",
+          "conditionState": "INSUFFICIENT_EVIDENCE",
+          "evidence": [
+            "The flexible conduit into the pump might be damaged."
+          ],
+          "clarification": {
+            "unresolvedFact": "Is the flexible conduit into the pump actually damaged?",
+            "affectedDecision": "condition_state",
+            "branches": [
+              "If damaged, condition_state would be ACTIVE",
+              "If not damaged, condition_state would be NEGATED"
+            ],
+            "question": "Is the flexible conduit into the pump actually damaged?"
+          }
+        }
+      ],
+      "clarificationsPreSemantic": 1,
+      "clarificationsShipped": 1,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-22",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation states 'The flexible conduit into the pump might be damaged.' This expresses uncertainty about the condition of the conduit. The use of 'might be' indicates a possibility rather than a confirmed fact, and there is no explicit statement about the current state or presence of damage.",
+        "hazards": [
+          {
+            "candidateKey": "flexible_conduit_damage",
+            "hazardFamily": "compressed_air_hose_safety",
+            "conditionState": "INSUFFICIENT_EVIDENCE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 52,
+                "quotedText": "The flexible conduit into the pump might be damaged."
+              }
+            ],
+            "conditionRationale": "The observation uses 'might be' which indicates uncertainty about whether the conduit is actually damaged. There is no concrete evidence of damage present.",
+            "independentHazardRationale": "This hazard relates to the condition of a flexible conduit, which falls under compressed air hose safety regulations. It is independent from other potential hazards because it specifically addresses the integrity of a particular component (the conduit) rather than general workplace conditions or other equipment types.",
+            "uncertainties": [
+              "Whether the conduit is actually damaged or not"
+            ],
+            "clarification": {
+              "unresolvedFact": "Is the flexible conduit into the pump actually damaged?",
+              "affectedDecision": "condition_state",
+              "branches": [
+                "If damaged, condition_state would be ACTIVE",
+                "If not damaged, condition_state would be NEGATED"
+              ],
+              "question": "Is the flexible conduit into the pump actually damaged?"
+            },
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:29.784Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-23",
+      "cohort": null,
+      "failureMode": "impression_plus_hard_fact",
+      "regime": "osha-general-industry",
+      "text": "The pallet racking looked wrong to me and the second upright is bowed with the base plate lifted clear of the floor.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "material_handling|walking_working_surfaces"
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4545,
+      "telemetry": {
+        "latencyMs": 4544,
+        "promptTokens": 1381,
+        "outputTokens": 302,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the second upright is bowed with the base plate lifted clear of the floor"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-23",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the pallet racking looked wrong to them, but also described a factual condition: 'the second upright is bowed with the base plate lifted clear of the floor.' This describes a physical defect in the racking structure that constitutes an active hazard.",
+        "hazards": [
+          {
+            "candidateKey": "walking_working_surfaces",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 42,
+                "endOffset": 115,
+                "quotedText": "the second upright is bowed with the base plate lifted clear of the floor"
+              }
+            ],
+            "conditionRationale": "The observation describes a physical defect in the pallet racking structure where the upright is bowed and the base plate is lifted clear of the floor. This represents an active hazard because it indicates structural instability that could lead to collapse or failure of the racking system, creating a dangerous working environment.",
+            "independentHazardRationale": "This hazard relates to the structural integrity of walking/working surfaces (pallet racking) and is independent from other potential hazards like machine guarding or lifting rigging because it specifically addresses the condition of the racking structure itself rather than equipment operation or related safety systems.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:34.328Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-24",
+      "cohort": null,
+      "failureMode": "clarification_decision_critical",
+      "regime": "unknown",
+      "text": "Something was leaking under the compressor and I could not tell what it was.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": true
+      },
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 1381,
+      "telemetry": {
+        "latencyMs": 1381,
+        "promptTokens": 1366,
+        "outputTokens": 75,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-24",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The observation states that something was leaking under the compressor, but the inspector could not identify what was leaking. This does not provide sufficient information to determine if there is a present hazard or if any regulatory requirements are being violated.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:35.710Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-25",
+      "cohort": null,
+      "failureMode": "clarification_not_needed",
+      "regime": "osha-general-industry",
+      "text": "The exit door at the south wall is chained shut with a padlock during the production shift.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "familyPattern": "emergency_egress",
+        "clarificationExpected": false,
+        "highConsequence": true
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 3886,
+      "telemetry": {
+        "latencyMs": 3886,
+        "promptTokens": 1376,
+        "outputTokens": 248,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "emergency_egress",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The exit door at the south wall is chained shut with a padlock during the production shift."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-25",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the exit door at the south wall was chained shut with a padlock during the production shift.",
+        "hazards": [
+          {
+            "candidateKey": "emergency_egress",
+            "hazardFamily": "emergency_egress",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 91,
+                "quotedText": "The exit door at the south wall is chained shut with a padlock during the production shift."
+              }
+            ],
+            "conditionRationale": "The observation describes an exit door that is physically secured with a chain and padlock during production shifts, which prevents normal egress from the workplace. This constitutes an active hazard because the required emergency egress pathway is blocked or restricted.",
+            "independentHazardRationale": "This represents a distinct hazard from other potential safety issues because it specifically concerns the accessibility of emergency exits, which is a separate regulatory requirement from other safety categories like machine guarding or electrical hazards.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:39.596Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-26",
+      "cohort": null,
+      "failureMode": "clarification_not_needed_negative",
+      "regime": "osha-general-industry",
+      "text": "All four aisles were clear, marked and free of stored material at the time of the walk.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1175,
+      "telemetry": {
+        "latencyMs": 1175,
+        "promptTokens": 1377,
+        "outputTokens": 69,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-26",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation states that all four aisles were clear, marked and free of stored material. This describes a safe condition where the aisles meet the requirements for clear access and storage management.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:40.772Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-27",
+      "cohort": null,
+      "failureMode": "energy_isolation_is_control",
+      "regime": "osha-general-industry",
+      "text": "The press was de-energized at the disconnect, each fitter applied a personal lock, and stored hydraulic pressure was bled down and verified at zero before entry.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CONTROLLED",
+          "REMOVED_FROM_SERVICE",
+          "NEGATED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1394,
+      "telemetry": {
+        "latencyMs": 1394,
+        "promptTokens": 1392,
+        "outputTokens": 86,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-27",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a safe procedure where the press was de-energized, personal locks were applied by each fitter, and hydraulic pressure was bled down and verified at zero before entry. This indicates that all required controls for lockout/tagout were properly implemented.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:42.166Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-28",
+      "cohort": null,
+      "failureMode": "contradiction_in_broad_evidence",
+      "regime": "osha-general-industry",
+      "text": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4013,
+      "telemetry": {
+        "latencyMs": 4013,
+        "promptTokens": 1380,
+        "outputTokens": 266,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "machine_guarding",
+          "detail": "cited evidence carries no 'machine_guarding' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "machine_guarding",
+          "detail": "cited evidence carries no 'machine_guarding' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "machine_guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "CORRECTED",
+          "evidence": [
+            "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-28",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a ladder side rail was cracked at the start of the shift, which indicates a damaged condition. However, maintenance personnel destroyed the damaged ladder and provided a replacement before the second break, meaning the hazard was corrected.",
+        "hazards": [
+          {
+            "candidateKey": "machine_guarding",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "CORRECTED",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 135,
+                "quotedText": "The ladder side rail was cracked when the shift started. Maintenance destroyed the ladder and issued a replacement before second break."
+              }
+            ],
+            "conditionRationale": "The observation describes a damaged ladder side rail, which is a machine guarding issue. However, since maintenance destroyed the damaged ladder and issued a replacement before the second break, the condition was corrected.",
+            "independentHazardRationale": "This represents a single hazard - the cracked ladder side rail that was corrected by replacement. It does not involve multiple independent hazards such as separate missing guards or unrelated safety issues.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:46.179Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-29",
+      "cohort": null,
+      "failureMode": "unrelated_nearby_hazard_language",
+      "regime": "osha-general-industry",
+      "text": "The safety data sheet binder for the solvent store was reindexed and the fall protection training matrix was posted on the notice board.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN",
+          "NEGATED"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 1299,
+      "telemetry": {
+        "latencyMs": 1299,
+        "promptTokens": 1382,
+        "outputTokens": 76,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-29",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes corrective actions that have been taken: the safety data sheet binder was reindexed and the fall protection training matrix was posted. These actions indicate that previously identified issues have been addressed, resulting in a safe condition.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:47.478Z"
+        }
+      }
+    },
+    {
+      "id": "DEV-30",
+      "cohort": null,
+      "failureMode": "hazard_negation_not_control_negation",
+      "regime": "osha-general-industry",
+      "text": "The guarding survey of the packaging line found no exposed nip points and no access to any rotating shaft.",
+      "expect": {
+        "hazardEstablished": false,
+        "acceptableStates": [
+          "NEGATED",
+          "CONTROLLED",
+          "INSUFFICIENT_EVIDENCE",
+          "UNKNOWN"
+        ],
+        "clarificationExpected": false
+      },
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4079,
+      "telemetry": {
+        "latencyMs": 4079,
+        "promptTokens": 1377,
+        "outputTokens": 271,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "machine_guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "NEGATED",
+          "evidence": [
+            "The guarding survey of the packaging line found no exposed nip points and no access to any rotating shaft."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l3-2b-development-2026-08-22:DEV-30",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation states that the guarding survey found no exposed nip points and no access to any rotating shaft. These are positive findings indicating that the conditions were safe and compliant with guarding requirements.",
+        "hazards": [
+          {
+            "candidateKey": "machine_guarding",
+            "hazardFamily": "machine_guarding",
+            "conditionState": "NEGATED",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 106,
+                "quotedText": "The guarding survey of the packaging line found no exposed nip points and no access to any rotating shaft."
+              }
+            ],
+            "conditionRationale": "The observation explicitly states that no exposed nip points were found, which directly indicates that the condition of having exposed nip points does not exist. This is a clear negation of a potential hazard.",
+            "independentHazardRationale": "This represents a single, unified hazard family (machine_guarding) with a clear positive finding that negates the presence of machine guarding hazards. There are no separate hazards to consider as the observation covers the complete scope of machine guarding requirements for this area.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-22T15:43:51.557Z"
+        }
+      }
+    }
+  ]
+}

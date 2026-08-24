@@ -1,0 +1,166 @@
+{
+  "phase": "L3-2i",
+  "role": "TARGETED_ZERO_CANDIDATE_CLARIFICATION_PROOF",
+  "generatedAt": "2026-08-24T02:25:47.878Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "V_BASELINE_NO_CARRIER",
+    "pid": 46908
+  },
+  "provider": {
+    "model": "qwen3-coder:30b",
+    "endpoint": "http://127.0.0.1:11434",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "containment": {
+    "shippedSystemPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedSystemPromptUnchanged": true,
+    "lockedAblationHarnessSha256": "73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521",
+    "lockedAblationHarnessUnchanged": true,
+    "declarationIsAdditive": true,
+    "shippedPromptIsAVerbatimPrefix": true,
+    "note": "The declaration is a CONTRACT DECLARATION, not prompt tuning: no rung is reworded, nothing shipped is moved, no emphasis is changed. A model cannot emit a field it has not been told exists, so this is a precondition of exercising the contract at all."
+  },
+  "variant": {
+    "id": "V_BASELINE_NO_CARRIER",
+    "label": "shipped prompt + shipped schema, carrier ABSENT -- the BEFORE",
+    "carrierDeclared": false,
+    "promptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf"
+  },
+  "cohortMatchesLockedHarness": {
+    "F-CL-01": true,
+    "B10": true,
+    "C-CS-05": true,
+    "F-PS-04": true,
+    "H-FLD-141": true
+  },
+  "rows": [
+    {
+      "scenarioId": "F-CL-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "variant": "V_BASELINE_NO_CARRIER",
+      "carrierDeclared": false,
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "zeroCandidate": false,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "assertsActive": false,
+      "candidateBorneClarification": true,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": true,
+      "unresolvedDecisions": [],
+      "latencyMs": 9628
+    },
+    {
+      "scenarioId": "B10",
+      "pole": "CLARIFICATION_REQUIRED",
+      "variant": "V_BASELINE_NO_CARRIER",
+      "carrierDeclared": false,
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "zeroCandidate": false,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "assertsActive": false,
+      "candidateBorneClarification": true,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": true,
+      "unresolvedDecisions": [],
+      "latencyMs": 6682
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "variant": "V_BASELINE_NO_CARRIER",
+      "carrierDeclared": false,
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "INSUFFICIENT_EVIDENCE",
+      "candidateCount": 1,
+      "zeroCandidate": false,
+      "modelStates": [
+        "HYPOTHETICAL"
+      ],
+      "assertsActive": false,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": false,
+      "unresolvedDecisions": [],
+      "latencyMs": 4421
+    },
+    {
+      "scenarioId": "F-PS-04",
+      "pole": "NEGATIVE_CONTROL",
+      "variant": "V_BASELINE_NO_CARRIER",
+      "carrierDeclared": false,
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "zeroCandidate": true,
+      "modelStates": [],
+      "assertsActive": false,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": false,
+      "unresolvedDecisions": [],
+      "latencyMs": 1504
+    },
+    {
+      "scenarioId": "H-FLD-141",
+      "pole": "HIGH_CONSEQUENCE",
+      "variant": "V_BASELINE_NO_CARRIER",
+      "carrierDeclared": false,
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "zeroCandidate": false,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "assertsActive": true,
+      "candidateBorneClarification": false,
+      "proposalLevelClarification": false,
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedProposalLevelClarification": false,
+      "validatedProposalLevelCount": 0,
+      "clarificationCarriedAnywhere": false,
+      "unresolvedDecisions": [],
+      "latencyMs": 6882
+    }
+  ]
+}

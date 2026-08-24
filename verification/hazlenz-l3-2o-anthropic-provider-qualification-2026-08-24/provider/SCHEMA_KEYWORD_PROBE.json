@@ -1,0 +1,12 @@
+{
+  "baseline object+enum+required+additionalProperties:false": "ACCEPTED",
+  "minLength:1": "ACCEPTED",
+  "minItems:2": "REJECTED 400: output_config.format.schema: For 'array' type, 'minItems' values other than 0 or 1 are not supported (got: [2, 5])",
+  "minItems:1": "ACCEPTED",
+  "maxItems:0": "REJECTED 400: output_config.format.schema: For 'array' type, property 'maxItems' is not supported",
+  "empty enum": "REJECTED 400: output_config.format.schema: Invalid schema: Enum must be a non-empty array",
+  "type union [\"object\",\"null\"]": "ACCEPTED",
+  "anyOf [object,null]": "ACCEPTED",
+  "type:\"null\" alone": "ACCEPTED",
+  "nested array of objects": "ACCEPTED"
+}

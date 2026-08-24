@@ -1,0 +1,97 @@
+{
+  "phase": "L3-2g",
+  "role": "DETERMINISTIC_RESOLUTION_ABLATION_OVER_FROZEN_FACTS",
+  "generatedAt": "2026-08-24T02:29:15.682Z",
+  "source": [
+    "/private/tmp/claude-501/-Users-mckinley/435a2f3b-6217-49ed-aaf0-954d99ce9b7c/scratchpad/l32i/final/scorable-V_CARRIER_REPEAT.json"
+  ],
+  "providerVariance": "ZERO_BY_CONSTRUCTION -- no inference is performed; facts are read from the source run",
+  "caveat": "orderings selected against KNOWN cases. ARCHITECTURE SELECTION ONLY. NOT generalisation evidence.",
+  "scorerVersion": "hazlenz.l32g.resolution-scorer.v2",
+  "rowsScored": {
+    "candidateConditioned": 0,
+    "allScenarios": 5
+  },
+  "metricDefinitions": {
+    "candidateConditionedClarificationRecall": "clarHit / clarExpected over CLARIFICATION_REQUIRED scenarios in which the provider emitted at least one hazard candidate. Zero-candidate scenarios are EXCLUDED from the denominator. DIAGNOSTIC ONLY -- it measures the resolver given facts, not the pipeline given an observation. This is the metric behind the 75% recorded in blueprint 37.2/37.4 and 38.2.",
+    "scenarioLevelClarificationRecall": "clarHit / clarExpected over ALL CLARIFICATION_REQUIRED scenarios, counting a question carried by EITHER carrier -- a hazard candidate, or (L3-2i) the candidate-independent proposal-level `unresolvedDecisions`. A scenario in which the provider emitted zero candidates, and therefore could carry no clarification, counts as a MISS. ADVANCEMENT-RELEVANT -- the inspector was owed a question and did not get one. Corrects the 75% figure to 60% for qwen (blueprint 39.5.2, D-56).",
+    "clarificationPrecision": "clarHit / clarRaised. IDENTICAL under both denominators by construction: a zero-candidate row raises nothing, so it can move neither the numerator nor clarRaised. Reported once.",
+    "highConsequenceAndFalseActive": "UNCHANGED by L3-2i and deliberately still candidate-conditioned. Facts that were never emitted cannot be resolved, and these figures are recorded under this filter in 37, 38 and 39."
+  },
+  "orderings": {
+    "R0_HAZARD_FIRST": {},
+    "R1_MISSING_FIRST": {},
+    "R2_MISSING_UNLESS_CONTROL_STATED": {}
+  },
+  "scenarioLevelClarification": {
+    "R0_HAZARD_FIRST": {
+      "V_CARRIER_REPEAT": {
+        "clarExpected": 2,
+        "clarHit": 2,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "candidateBearingMissIds": [],
+        "zeroCandidateScenarioIds": [
+          "F-CL-01",
+          "B10",
+          "C-CS-05",
+          "F-PS-04",
+          "H-FLD-141"
+        ],
+        "carriedByProposalLevelCarrier": [
+          "F-CL-01",
+          "B10"
+        ],
+        "clarificationRecall": 100,
+        "zeroCandidateClarificationMisses": 0,
+        "carriedByProposalLevelCarrierCount": 2
+      }
+    },
+    "R1_MISSING_FIRST": {
+      "V_CARRIER_REPEAT": {
+        "clarExpected": 2,
+        "clarHit": 2,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "candidateBearingMissIds": [],
+        "zeroCandidateScenarioIds": [
+          "F-CL-01",
+          "B10",
+          "C-CS-05",
+          "F-PS-04",
+          "H-FLD-141"
+        ],
+        "carriedByProposalLevelCarrier": [
+          "F-CL-01",
+          "B10"
+        ],
+        "clarificationRecall": 100,
+        "zeroCandidateClarificationMisses": 0,
+        "carriedByProposalLevelCarrierCount": 2
+      }
+    },
+    "R2_MISSING_UNLESS_CONTROL_STATED": {
+      "V_CARRIER_REPEAT": {
+        "clarExpected": 2,
+        "clarHit": 2,
+        "missedIds": [],
+        "zeroCandidateMissIds": [],
+        "candidateBearingMissIds": [],
+        "zeroCandidateScenarioIds": [
+          "F-CL-01",
+          "B10",
+          "C-CS-05",
+          "F-PS-04",
+          "H-FLD-141"
+        ],
+        "carriedByProposalLevelCarrier": [
+          "F-CL-01",
+          "B10"
+        ],
+        "clarificationRecall": 100,
+        "zeroCandidateClarificationMisses": 0,
+        "carriedByProposalLevelCarrierCount": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,516 @@
+{
+  "phase": "L3-2g",
+  "role": "ARCHITECTURE_SELECTION_ABLATION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T12:37:06.821Z",
+  "heldConstant": {
+    "model": "gemini-3.1-pro-preview",
+    "endpoint": "http://127.0.0.1:11435",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192,
+    "timeoutMs": 300000,
+    "userPromptBuilder": "buildUserPrompt (shipped, unmodified)",
+    "observationText": "identical per scenario across all variants",
+    "allowedHazardFamilies": 24
+  },
+  "variedVariable": "CONDITION_STATE_REPRESENTATION_ONLY",
+  "variantAConstruction": {
+    "method": "the ABSENT CONTROLS + CONTROL ADEQUACY block MOVED, verbatim, into the ACTIVE rung",
+    "movedLineCount": 31,
+    "sameCharacterMultiset": true,
+    "byteReproductionOfL32fVariantA": false,
+    "reconstructionBasis": "blueprint §36.7 -- \"the absent-control material elaborated INSIDE the condition-state ladder\"",
+    "validationRule": "A must diverge from B in §36.7's direction, or the ablation is measuring noise"
+  },
+  "variants": [
+    {
+      "id": "V_A_LADDER",
+      "label": "§36.7 variant A reconstructed -- same text, moved INTO the ladder",
+      "structural": false,
+      "promptSha256": "a6dea73fcbc52140c091275d3bca327b61cacec5f8775d43fb977faa08724988",
+      "promptLines": 126
+    }
+  ],
+  "scenarios": 24,
+  "rows": [
+    {
+      "scenarioId": "E-FLD-147",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32e",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 14953
+    },
+    {
+      "scenarioId": "E-OA-07",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32e",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 7730
+    },
+    {
+      "scenarioId": "F-WC-02",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 10591
+    },
+    {
+      "scenarioId": "F-WC-03",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 9506
+    },
+    {
+      "scenarioId": "F-WC-09",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 8907
+    },
+    {
+      "scenarioId": "F-FLD-159",
+      "pole": "HIGH_CONSEQUENCE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 9392
+    },
+    {
+      "scenarioId": "F-OA-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 10363
+    },
+    {
+      "scenarioId": "F-OA-02",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 11567
+    },
+    {
+      "scenarioId": "F-CL-01",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 12079
+    },
+    {
+      "scenarioId": "F-CL-03",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 10613
+    },
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "HYPOTHETICAL"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 245490
+    },
+    {
+      "scenarioId": "F-CL-04",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 154925
+    },
+    {
+      "scenarioId": "B08",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "retired holdout-l32",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 72857
+    },
+    {
+      "scenarioId": "C11",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "retired holdout-l32",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 38452
+    },
+    {
+      "scenarioId": "RC-08",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 29025
+    },
+    {
+      "scenarioId": "H-AM-05",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 28119
+    },
+    {
+      "scenarioId": "H-FLD-141",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 23657
+    },
+    {
+      "scenarioId": "H-NG-02",
+      "pole": "REGRESSION_ACTIVE",
+      "provenance": "development-l32d",
+      "variant": "V_A_LADDER",
+      "expectActive": true,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "NEGATED"
+      ],
+      "modelAssertsActive": true,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 27675
+    },
+    {
+      "scenarioId": "B10",
+      "pole": "CLARIFICATION_REQUIRED",
+      "provenance": "retired holdout-l32",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": true,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": true,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 98447
+    },
+    {
+      "scenarioId": "F-PS-04",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 45598
+    },
+    {
+      "scenarioId": "F-NT-01",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 17631
+    },
+    {
+      "scenarioId": "F-TB-02",
+      "pole": "NEGATIVE_CONTROL",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "NO_HAZARD_ESTABLISHED",
+      "candidateCount": 0,
+      "modelStates": [],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 10716
+    },
+    {
+      "scenarioId": "F-NC-01",
+      "pole": "DECIDED_NON_ACTIVE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "CORRECTED"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 124128
+    },
+    {
+      "scenarioId": "F-COR-01",
+      "pole": "DECIDED_NON_ACTIVE",
+      "provenance": "retired holdout-l32f",
+      "variant": "V_A_LADDER",
+      "expectActive": false,
+      "expectClarification": false,
+      "error": null,
+      "outcome": "ANALYZED",
+      "candidateCount": 1,
+      "modelStates": [
+        "CORRECTED"
+      ],
+      "modelAssertsActive": false,
+      "raisedClarification": false,
+      "derivedAssertsActive": null,
+      "derivedClarification": null,
+      "derived": null,
+      "latencyMs": 271013
+    }
+  ]
+}

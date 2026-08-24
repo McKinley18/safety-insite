@@ -1,0 +1,128 @@
+{
+  "phase": "L3-2k",
+  "role": "DIAGNOSIS_ONLY_MINIMUM_REPRODUCTION_NOT_ADVANCEMENT_EVIDENCE",
+  "generatedAt": "2026-08-24T17:02:01.894Z",
+  "processIsolation": {
+    "rule": "AN IDENTICAL PROMPT REPEATED INSIDE ONE PROCESS IS NOT A NOISE-FLOOR CONTROL (§38.3)",
+    "variantsInThisProcess": 1,
+    "variant": "D_CS05_LADDER_B",
+    "pid": 4974
+  },
+  "provider": {
+    "model": "claude-sonnet-5",
+    "endpoint": "http://127.0.0.1:11438",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192
+  },
+  "shippedPath": {
+    "note": "schema, user prompt, normalizer, validator AND semantic binder are the SHIPPED functions, imported not reproduced",
+    "sequence": "buildProposalSchema -> infer -> bindProposal -> validateReasoningProposal -> bindEvidenceSemantically (reasoning-runner.ts:81 order)",
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "shippedPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "shippedPromptIsRestoredV6": true,
+    "promptUsedSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "promptUsedMatchesRecordedDigest": true
+  },
+  "variant": {
+    "id": "D_CS05_LADDER_B",
+    "label": "C-CS-05, SHIPPED v6 ladder (§36.7 variant B) -- the BEFORE"
+  },
+  "schemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "cohort": {
+    "scenariosSelected": 1,
+    "disagreementsWithFrozenArtifact": 0
+  },
+  "rows": [
+    {
+      "scenarioId": "C-CS-05",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "provenance": "development-l32d",
+      "variant": "D_CS05_LADDER_B",
+      "expectActive": false,
+      "expectClarification": false,
+      "observationText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+      "error": null,
+      "rawProposal": {
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector describes a conditional, potential failure scenario involving the caustic tank's level probe, not a presently existing hazardous condition. The language 'If...were to fail...the vent could pressurise' is explicitly hypothetical/contingent, indicating a foreseeable but not currently occurring event.",
+        "hazardCandidates": [
+          {
+            "candidateKey": "caustic-tank-level-probe-failure",
+            "hazardFamily": "chemical_storage",
+            "conditionState": "HYPOTHETICAL",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "quotedText": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket."
+              }
+            ],
+            "conditionRationale": "The statement is framed entirely as a conditional ('If...were to fail...could pressurise'), describing a possible future failure mode rather than an observed present condition. This matches the HYPOTHETICAL rung, which applies to conditional or contingent statements.",
+            "independentHazardRationale": "This candidate addresses a distinct potential loss-of-containment hazard for the caustic (corrosive chemical) storage tank arising from an instrumentation failure mode; no other hazard or condition is described in the observation.",
+            "uncertainties": [
+              "It is not stated whether the level probe currently has redundant safeguards or alarms.",
+              "No information is given about the likelihood or history of this failure mode occurring.",
+              "The observation does not indicate whether this scenario has ever actually occurred or is purely a theoretical concern raised by the inspector."
+            ],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ]
+      },
+      "binding": {
+        "total": 1,
+        "unbound": 0,
+        "ambiguous": 0
+      },
+      "normalizedCandidates": [
+        {
+          "candidateKey": "caustic-tank-level-probe-failure",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "conditionRationale": "The statement is framed entirely as a conditional ('If...were to fail...could pressurise'), describing a possible future failure mode rather than an observed present condition. This matches the HYPOTHETICAL rung, which applies to conditional or contingent statements.",
+          "evidence": [
+            {
+              "sourceId": "observation-1"
+            }
+          ],
+          "clarification": null
+        }
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedHazards": [
+        {
+          "candidateKey": "caustic-tank-level-probe-failure",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticRan": true,
+      "boundHazards": [
+        {
+          "candidateKey": "caustic-tank-level-probe-failure",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "HYPOTHETICAL",
+          "clarification": null
+        }
+      ],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "candidateKey": "caustic-tank-level-probe-failure",
+          "detail": "no vocabulary for family 'chemical_storage' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationsDropped": [],
+      "demoted": [],
+      "semanticRejected": [],
+      "controlAdequacy": [],
+      "finalAssertsActive": false,
+      "finalCarriesClarification": false,
+      "latencyMs": 17598
+    }
+  ]
+}

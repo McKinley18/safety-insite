@@ -1,0 +1,1372 @@
+{
+  "setId": "l3-2b-sealed-holdout-2026-08-22",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "scoredAt": "2026-08-22T15:52:42.537Z",
+  "scenarios": 81,
+  "tiers": [
+    {
+      "tier": "RAW_PROVIDER",
+      "hazardDetection": "60 of 62",
+      "highConsequenceMisses": 0,
+      "highConsequenceMissIds": [],
+      "falseActive": "1 of 19",
+      "falseActiveIds": [
+        "H-AM-02"
+      ],
+      "conditionStateAccuracyPct": 96.3,
+      "familyAccuracy": "61 of 62",
+      "multiHazardWithinTolerance": "2 of 2",
+      "clarificationRecall": "1 of 3",
+      "clarificationRecallPct": 33.3,
+      "clarificationPrecision": "1 of 1",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 1,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "POST_VALIDATOR",
+      "hazardDetection": "60 of 62",
+      "highConsequenceMisses": 0,
+      "highConsequenceMissIds": [],
+      "falseActive": "1 of 19",
+      "falseActiveIds": [
+        "H-AM-02"
+      ],
+      "conditionStateAccuracyPct": 96.3,
+      "familyAccuracy": "61 of 62",
+      "multiHazardWithinTolerance": "2 of 2",
+      "clarificationRecall": "1 of 3",
+      "clarificationRecallPct": 33.3,
+      "clarificationPrecision": "1 of 1",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 1,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "SHIPPED_PIPELINE",
+      "hazardDetection": "59 of 62",
+      "highConsequenceMisses": 1,
+      "highConsequenceMissIds": [
+        "H-AM-05"
+      ],
+      "falseActive": "0 of 19",
+      "falseActiveIds": [],
+      "conditionStateAccuracyPct": 96.3,
+      "familyAccuracy": "59 of 62",
+      "multiHazardWithinTolerance": "2 of 2",
+      "clarificationRecall": "1 of 3",
+      "clarificationRecallPct": 33.3,
+      "clarificationPrecision": "1 of 1",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 1,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    }
+  ],
+  "pipeline": {
+    "providerFailures": 0,
+    "malformedOutput": 0,
+    "validatorRejections": 1,
+    "retries": 0,
+    "quotationsEmitted": 75,
+    "quotationsNotVerbatim": 0,
+    "verbatimQuoteRatePct": 100,
+    "semanticFatalRejections": 5,
+    "semanticAdvisories": 10,
+    "semanticCodeTally": {
+      "SEMANTIC_NEGATION_UNADDRESSED": 1,
+      "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE": 2,
+      "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT": 5,
+      "SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE": 2,
+      "SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED": 2,
+      "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY": 3
+    }
+  },
+  "operational": {
+    "medianLatencyMs": 3956,
+    "p90LatencyMs": 4506,
+    "p95LatencyMs": 5980,
+    "maxLatencyMs": 8792,
+    "meanInputTokens": 1380,
+    "meanOutputTokens": 246
+  },
+  "rows": [
+    {
+      "id": "H-FLD-001",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-006",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-011",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-016",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-021",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-026",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-031",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-036",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-041",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/REMOVED_FROM_SERVICE"
+      ],
+      "shippedStates": [
+        "machine_guarding/REMOVED_FROM_SERVICE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-046",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-051",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-056",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-061",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-066",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-071",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-076",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-081",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-086",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-091",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-096",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-101",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-106",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-111",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-116",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-121",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-126",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-131",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-136",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-141",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-146",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-151",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-156",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-161",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE",
+        "loto_stored_energy/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE",
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-166",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-171",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-176",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-181",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-186",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-191",
+      "failureMode": "machine_guarding / conveyor_cleanup",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-FLD-196",
+      "failureMode": "electrical / damaged_cord_wet_location",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-DX1",
+      "failureMode": "back-up alarm (hyphen)",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-DX2",
+      "failureMode": "backup alarm (one word)",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-DX3",
+      "failureMode": "reverse alarm (no 'back')",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-DX4",
+      "failureMode": "back-up alarm + explicit surface mine words",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-DX5",
+      "failureMode": "underground coal conveyor guard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF1",
+      "failureMode": "VERBATIM in-repo smoke fixture",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF2",
+      "failureMode": "same hazard, natural rewording",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF3",
+      "failureMode": "same hazard, inspector shorthand",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF4",
+      "failureMode": "VERBATIM-style LOTO fixture",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF5",
+      "failureMode": "same LOTO hazard, reworded",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF6",
+      "failureMode": "VERBATIM-style safe-state fixture",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-OF7",
+      "failureMode": "same safe state, reworded",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NC-01",
+      "failureMode": "fully compliant guarding",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NC-02",
+      "failureMode": "clean housekeeping",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NC-03",
+      "failureMode": "administrative activity only",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NC-04",
+      "failureMode": "hazard explicitly absent",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NC-05",
+      "failureMode": "unrelated nearby hazard language",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-01",
+      "failureMode": "energy isolation in place",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-02",
+      "failureMode": "corrected during the walk",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "electrical/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-03",
+      "failureMode": "removed from service",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/REMOVED_FROM_SERVICE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/REMOVED_FROM_SERVICE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-04",
+      "failureMode": "historical, already closed",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "chemical_storage/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-05",
+      "failureMode": "hypothetical",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "machine_guarding/HYPOTHETICAL"
+      ],
+      "shippedStates": [
+        "machine_guarding/HYPOTHETICAL"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-CS-06",
+      "failureMode": "controlled with a residual",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-01",
+      "failureMode": "subjective impression only",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-02",
+      "failureMode": "hedged fact",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+        "ADVISORY:SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-03",
+      "failureMode": "unidentified substance",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "chemical_storage/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "chemical_storage/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-04",
+      "failureMode": "too little said",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-05",
+      "failureMode": "impression plus a hard fact",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "FATAL:SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE",
+        "ADVISORY:SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-AM-06",
+      "failureMode": "uncertainty that changes no decision",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NG-01",
+      "failureMode": "negated list across commas",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NG-02",
+      "failureMode": "negation in one clause, hazard in another",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NG-03",
+      "failureMode": "contrastive clause",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "REJECTED_OUTPUT",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NG-04",
+      "failureMode": "negated hazard, not negated control",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "machine_guarding/NEGATED"
+      ],
+      "shippedStates": [
+        "machine_guarding/NEGATED"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-NG-05",
+      "failureMode": "subordinate clause after negation",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-01",
+      "failureMode": "action language only",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-02",
+      "failureMode": "whole sentence is the only evidence",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-03",
+      "failureMode": "contamination by an adjacent safe statement",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-04",
+      "failureMode": "multi hazard, one sentence",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "personal_protective_equipment/ACTIVE",
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "personal_protective_equipment/ACTIVE",
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-05",
+      "failureMode": "field shorthand, multi hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE",
+        "electrical/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE",
+        "electrical/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-06",
+      "failureMode": "high consequence, plain wording",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "trenching_shoring/ACTIVE"
+      ],
+      "shippedStates": [
+        "trenching_shoring/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    },
+    {
+      "id": "H-EV-07",
+      "failureMode": "high consequence, confined space",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "confined_space/ACTIVE"
+      ],
+      "shippedStates": [
+        "confined_space/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0
+    }
+  ]
+}

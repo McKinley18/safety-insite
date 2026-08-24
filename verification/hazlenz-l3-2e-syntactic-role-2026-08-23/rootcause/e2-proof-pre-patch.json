@@ -1,0 +1,280 @@
+{
+  "stage": "L3-2e E2 ROOT-CAUSE PROOF (unpatched L3-2d code)",
+  "generatedAt": "2026-08-23T00:16:48.275Z",
+  "discriminatorMatrix": "cell A = unobserved AND deciding; B = unobserved but NOT deciding; C = nothing unobserved; D = silent and insufficient",
+  "byCell": {
+    "A": {
+      "n": 3,
+      "correct": 2
+    },
+    "C": {
+      "n": 2,
+      "correct": 1
+    },
+    "B": {
+      "n": 3,
+      "correct": 3
+    },
+    "D": {
+      "n": 1,
+      "correct": 0
+    },
+    "BASELINE": {
+      "n": 2,
+      "correct": 2
+    }
+  },
+  "records": [
+    {
+      "id": "D-CR-04",
+      "cell": "A",
+      "text": "Two men were on the roof near the edge; I was too far away to see whether they were tied off to anything.",
+      "why": "whether they were tied off IS the deciding fact for a fall hazard",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": true,
+      "expectActive": false,
+      "expectClarification": true,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": false,
+      "clarificationCorrect": false,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "D-NG-04",
+      "cell": "C",
+      "text": "No flammable atmosphere was detected at the manway, and the fitter went inside the vessel with the agitator still on line and nobody at the opening.",
+      "why": "no observation-availability statement at all; every deciding fact is stated",
+      "unobservedFactPresent": false,
+      "unobservedFactIsDeciding": null,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "confined_space/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "confined_space/INSUFFICIENT_EVIDENCE"
+      ],
+      "actualActive": false,
+      "actualClarification": true,
+      "stateCorrect": false,
+      "clarificationCorrect": false,
+      "semanticCodes": [],
+      "questions": [
+        "Was lockout/tagout procedure properly implemented for the agitator before the fitter entered the vessel?"
+      ]
+    },
+    {
+      "id": "E2-B-01",
+      "cell": "B",
+      "text": "The tongue guard on the bench grinder is missing entirely; I could not read the machine serial number from where I stood.",
+      "why": "the guard is stated missing; the serial number decides nothing",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": false,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-B-02",
+      "cell": "B",
+      "text": "The leading edge on level four has no guardrail and no covers over the two floor openings; I could not tell which sub-contractor the crew belonged to.",
+      "why": "the open edge and absent guardrail are both stated; the sub-contractor name decides nothing",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": false,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-B-03",
+      "cell": "B",
+      "text": "The flexible cord to the pedestal fan has its jacket worn through to bare conductor; I could not establish how long it had been in that condition.",
+      "why": "the conductor is stated exposed; how long it has been that way decides nothing",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": false,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "electrical/ACTIVE"
+      ],
+      "shippedStates": [
+        "electrical/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-A-01",
+      "cell": "A",
+      "text": "A lock was hanging on the lockout box at the press but I could not see whether the disconnect behind it was open.",
+      "why": "whether the disconnect was open is the whole question",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": true,
+      "expectActive": false,
+      "expectClarification": true,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "actualActive": false,
+      "actualClarification": true,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": [
+        "Is the disconnect switch behind the lock properly open to ensure energy isolation?"
+      ]
+    },
+    {
+      "id": "E2-A-02",
+      "cell": "A",
+      "text": "A man was down in the excavation on the far side of the site and I could not get close enough to see whether it was shored.",
+      "why": "whether the trench was shored is the deciding fact",
+      "unobservedFactPresent": true,
+      "unobservedFactIsDeciding": true,
+      "expectActive": false,
+      "expectClarification": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "trenching_shoring/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "trenching_shoring/INSUFFICIENT_EVIDENCE"
+      ],
+      "actualActive": false,
+      "actualClarification": true,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": [
+        "Was the excavation properly shored?"
+      ]
+    },
+    {
+      "id": "E2-C-01",
+      "cell": "C",
+      "text": "No spillage was present around the pump skid, and the coupling guard on the drive end has been taken off and left on the floor.",
+      "why": "plainly stated missing control after a negated clause",
+      "unobservedFactPresent": false,
+      "unobservedFactIsDeciding": null,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-D-01",
+      "cell": "D",
+      "text": "Looked at the chemical store on the way past.",
+      "why": "genuinely insufficient: nothing is said about the condition at all",
+      "unobservedFactPresent": false,
+      "unobservedFactIsDeciding": null,
+      "expectActive": false,
+      "expectClarification": true,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "actualActive": false,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": false,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-BASE-ACTIVE",
+      "cell": "BASELINE",
+      "text": "The bottom guard on the compound mitre saw does not return over the blade when the arm is raised.",
+      "why": "plain unambiguous ACTIVE",
+      "unobservedFactPresent": false,
+      "unobservedFactIsDeciding": null,
+      "expectActive": true,
+      "expectClarification": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "actualActive": true,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    },
+    {
+      "id": "E2-BASE-NC",
+      "cell": "BASELINE",
+      "text": "Every panel in the switch room was closed and latched and the covers were fitted on all the junction boxes.",
+      "why": "negative control",
+      "unobservedFactPresent": false,
+      "unobservedFactIsDeciding": null,
+      "expectActive": false,
+      "expectClarification": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "actualActive": false,
+      "actualClarification": false,
+      "stateCorrect": true,
+      "clarificationCorrect": true,
+      "semanticCodes": [],
+      "questions": []
+    }
+  ]
+}

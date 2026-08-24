@@ -1,0 +1,98 @@
+L3-2e ROOT-CAUSE PROOF MARKERS — recorded BEFORE any implementation change.
+No source file under reasoning-l3/ had been modified at this point.
+
+=========================================================================
+E1_ROOT_CAUSE_PROVEN
+=========================================================================
+Artifact: rootcause/e1-proof-pre-patch.json  (12 fixtures, 7 defects, 4 paired halves still correct)
+
+THE TWO CHECKS ARE NOT THE SAME DEFECT, and the entry contract was right to warn against assuming so.
+
+  checkContradiction   lexical presence used to REJECT.  A false positive DELETES a correct finding.
+  checkStateSupported  lexical presence used to ADMIT a state the model already claimed. A false
+                       positive ACCEPTS A WRONG STATE.
+
+--- checkContradiction, correction/removal path (5 reproduced) ---
+  D-FLD-175       'discarded' as an ATTRIBUTIVE MODIFIER on "conveyor rollers".
+                  Asserted predicate is "is blocked". HIGH-CONSEQUENCE electrical finding DELETED.
+  NEG-APPLIED     'applied' as an asserted predicate UNDER A GOVERNING NEGATION ("no lockout is
+                  applied"). A negated correction is not a correction. HIGH-CONSEQUENCE LOTO DELETED.
+  GUARD-REMOVED   bare 'removed' whose SUBJECT IS THE CONTROL ("the chain guard has been removed").
+                  Removing a guard CREATES the hazard. Bare 'removed' is ambiguous between that and
+                  removal-from-service; the multi-word forms are not.
+  DISC-03-LABEL   'hazard' as an ATTRIBUTIVE MODIFIER inside "hazard warning labels". The NP head is
+                  'labels'. The negation denies a CONTROL, and its absence IS the hazard.
+                  NOTE the match is `governed.includes(o)` -- a SUBSTRING test, not word-boundary.
+  DISC-03-DAMAGE  the negation governs its own clause only; the hazard is asserted in the next one.
+                  HIGH-CONSEQUENCE electrical finding DELETED.
+
+  PAIRED HALVES ALL STILL CORRECT: 'discarded' as a real predicate, 'applied' unnegated,
+  'removed from service' in full, and a genuinely negated hazard ("found no damage and no exposed
+  conductors") all still refuse ACTIVE. A repair that closes the five and breaks these four is not
+  a repair.
+
+--- checkStateSupported, admission path (2 reproduced) — NEW, NOT PREVIOUSLY DOCUMENTED ---
+  SS-MODIFIER-ADMITS  CORRECTED admitted on 'discarded' appearing as a MODIFIER. A wrong state is
+                      accepted, which at the customer tier is a live hazard labelled as corrected.
+  SS-NEGATED-ADMITS   CONTROLLED admitted on a NEGATED control-in-place phrase
+                      ("no guardrail was in place"). The negation is ignored entirely.
+  PAIRED HALF CORRECT: a genuine 'replaced' predicate still supports CORRECTED.
+
+  >> NEW EVIDENCE. Section 34.6 documented the syntactic-role defect only as a DELETION mechanism.
+     It runs in the ADMISSION direction too, in a different check, and nobody had measured it.
+
+=========================================================================
+E2_ROOT_CAUSE_PROVEN
+=========================================================================
+Artifacts: rootcause/e2-proof-pre-patch.json, rootcause/e2-clause-position-ablation.json
+
+A 4-cell discriminator matrix varying the two properties INDEPENDENTLY:
+
+  cell   unobserved fact?   is it the DECIDING fact?   expected              measured
+   A          yes                  yes                 INSUFF + question     2 of 3 correct
+   B          yes                  NO                  ACTIVE, no question   3 of 3 CORRECT
+   C          no                   n/a                 ACTIVE, no question   1 of 2 correct
+   D          silent               n/a                 INSUFF + question     fixture mislabelled
+
+  >> CELL B IS ALREADY CORRECT, 3 of 3. The model does NOT over-generalise could-not-observe wording.
+     The defect is therefore NARROW and TARGETED, which is direct evidence AGAINST any global change
+     in clarification pressure.
+
+--- THE ACTUAL MECHANISM, and it contradicts the documented account ---
+
+Section 34.5 and the L3-2d NEXT_ACTION.md described D-NG-04 / D-CR-04 as an OSCILLATION between the
+ACTIVE and INSUFFICIENT_EVIDENCE rungs. A clause-position ablation says otherwise:
+
+  NG04-orig                "No flammable atmosphere was detected ..., and the fitter went inside"  -> INSUFFICIENT
+  NG04-noNegation          "The atmosphere WAS TESTED ..., and the fitter went inside"             -> INSUFFICIENT
+  NG04-secondClauseAlone   "The fitter went inside ..."                                            -> ACTIVE
+  NG04-negationLast        "The fitter went inside ..., and no flammable atmosphere was detected"  -> ACTIVE
+
+  CR04-orig                "Two men were on the roof near the edge; I was too far away to see ..."  -> ACTIVE
+  CR04-observeFirst        "I was too far away to see whether the two men on the roof were tied off" -> INSUFFICIENT + question
+
+REMOVING THE NEGATION CHANGES NOTHING. MOVING THE CLAUSE CHANGES EVERYTHING.
+
+The mechanism is CLAUSE POSITION: the model classifies the whole observation from its FIRST clause
+and under-weights every later one. D-NG-04 and D-CR-04 are therefore not two competing pressures --
+they are ONE defect seen from two sides:
+
+  * a reassuring clause first  -> the hazard in clause two is lost      (D-NG-04)
+  * a situation clause first   -> the unobserved deciding fact in clause two is lost (D-CR-04)
+
+This is recorded rather than worked around, and it redirects the E2 repair away from clarification
+pressure entirely and onto per-clause evaluation.
+
+--- FIXTURE LABELLING CORRECTION, made in DEVELOPMENT and before sealing ---
+E2-D-01 was authored as "Looked at the chemical store on the way past" with clarificationExpected
+true. That is inconsistent with the established precedent H-AM-04 ("Walked the yard.", labelled
+FALSE): with nothing to suspect there is nothing to ask about. The label was wrong, not the engine.
+Corrected in the development set before the sealed holdout was built. Recorded here so the change is
+visible rather than silent.
+
+=========================================================================
+INDEPENDENCE
+=========================================================================
+E1 is proven entirely offline through the binder, on fixtures containing no observation-availability
+wording at all. E2 is proven entirely at the provider stage, on fixtures whose candidates the binder
+never rejects. Neither proof can be credited to the other's repair.

@@ -1,0 +1,30 @@
+=== L3-1 PRESERVATION BASELINE 2026-08-22T01:55:48Z ===
+HEAD:     1feda622dbb93d7e05d156838ab37db3e21db507
+expected: 1feda622dbb93d7e05d156838ab37db3e21db507
+branch:   release/insite-rc-2026-08-18
+remote:   1feda622dbb93d7e05d156838ab37db3e21db507
+divergence: 0	0
+--- protected uncommitted hashes ---
+6907ea8cc6bf8fbf9b699239ad2ad04286388c9a38c8b2c42cdb025acc6ffc7c  backend/scripts/test-canonical-workflow.ts
+d18037fbeffd3d2cad40710b50f9c83595e067156c653e2aadab1037d77759cd  backend/scripts/test-private-storage-reports.ts
+086e0d50c751160da696805923e6ba333edfee53a93efba196f79b6de1ad822f  frontend-next/app/inspection-workspace/page.tsx
+da4dcb1b882eb3d794e97ba9dc3acba78ced0ee63114f84650db83c490706ec6  frontend-next/app/inspections/page.tsx
+15c4e443fc67f9cf6616d384a9767822ad85246e2eae063eccd2ea5754a38519  frontend-next/lib/auth.ts
+25c0c8b6679d7ad1eba41819765c9e925cff0d882e7b87e8d0de7e31f9eae913  frontend-next/lib/canonicalWorkflowApi.ts
+f41b0775a4abc42df0990d3050e140c7bf336b3baff54918e40d679c91efffd8  frontend-next/lib/planEntitlements.ts
+--- stashes/tags ---
+stashes=4 tags=23
+--- docs + gold set ---
+fa75fd61b93d5022a503d1d75648e952f44f1feb0e6e519f5c2f5309df4dc823  docs/INSITE_ENGINEERING_BLUEPRINT.md
+4347ffe9f9272d58218a4f6d37ccc0a9eadc9f94166d5962319dcaa96db82e90  docs/INSITE_CURRENT_STATE.json
+93184abc677cf7a50d5f9ac11c4317148618acd74a26fe20fb37e690df647cd3  verification/insite-core-closure-standards-validation-2026-08-18/standards-gold-set/gold-set-script-v3.ts
+--- architecture artifacts ---
+99b280184a132cf79b52c351e6e6b83236e64cd26f5113a75b6b82304aba705a  verification/hazlenz-level3-architecture-2026-08-22/CONSISTENCY_REVIEW.md
+b721c22e23470dafcff2c81b7ac49a1622af3d49935abf2a523286b13b6e52d7  verification/hazlenz-level3-architecture-2026-08-22/contracts/authority-map.json
+af391016ded1c4daf5d99559f7cdef51d5164d3ed65755ea9af43de5d1e8e038  verification/hazlenz-level3-architecture-2026-08-22/CURRENT_REASONING_PATH.md
+9dd50432dd97d50a9ea83067e9bbb418ee4068544ec23af0ae5a730325484035  verification/hazlenz-level3-architecture-2026-08-22/DISPOSITIONS.md
+44a59b153d18311d1ed3e5480e005c6e74a69f1ad83215814a4e560ec640b532  verification/hazlenz-level3-architecture-2026-08-22/EVALUATION_AND_GATES.md
+349b3b3071236b92ee60fa2f47cc9205c8c6f5dc34a313a86aba10a2ac24a267  verification/hazlenz-level3-architecture-2026-08-22/IMPLEMENTATION_PLAN.md
+fe4ea15536057f157cc23f870938ecf82740f10108fe44dfcf76e246bf5a2d8b  verification/hazlenz-level3-architecture-2026-08-22/LEVEL3_ARCHITECTURE.md
+7e20713738393474b89c8b465a03be747ce576a2ef624382a52d65bd51f6bc74  verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+f32ab46c93e360c2f9a961a962257ab14c99efb05df937b3b990ddcb3f1654dd  verification/hazlenz-level3-architecture-2026-08-22/ROOT_CAUSE_CONSOLIDATION.md

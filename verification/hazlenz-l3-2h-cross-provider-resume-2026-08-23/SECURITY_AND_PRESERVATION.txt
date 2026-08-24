@@ -1,0 +1,83 @@
+L3-2h RESUME — PRESERVATION, CUSTOMER AUTHORITY, SEALED CORPUS, EGRESS
+generated 2026-08-24T00:41:33Z
+
+== 1. repository identity ==
+  branch:   release/insite-rc-2026-08-18   (expected release/insite-rc-2026-08-18)
+  HEAD:     1feda622dbb93d7e05d156838ab37db3e21db507
+  upstream: origin/release/insite-rc-2026-08-18 = 1feda622dbb93d7e05d156838ab37db3e21db507
+  divergence ahead/behind: 0/0
+  MATCHES the expected HEAD 1feda622 and the L3-2h recorded baseline.
+
+== 2. stash audit ==
+  entries: 4  (L3-2h recorded 4)
+  IDENTICAL to L3-2h recording.
+  stash operations executed by this resume: NONE.
+  No stash, reset, restore, clean, checkout, commit, push, merge or rebase was run.
+
+== 3. tags ==
+  count: 23  (L3-2h recorded 23)
+  All 23 tag targets IDENTICAL to the L3-2h recording.
+
+  METHODOLOGY NOTE, recorded because the first comparison looked like drift.
+  Four tags -- insite-hazlenz-verified-baseline-2026-08-19,
+  insite-inspection-ui-verified-2026-08-19, insite-visual-acceptance-verified-2026-08-19
+  and v1-backend-stable -- are ANNOTATED tags. `git rev-parse <tag>` yields the tag
+  OBJECT sha; `git rev-parse <tag>^{commit}` dereferences to the COMMIT. The L3-2h
+  baseline recorded tag-object shas. A first snapshot here dereferenced to commits
+  and so reported four mismatches. Re-taken with the recorded method, all 23 match
+  byte-for-byte. NO TAG MOVED. The apparent divergence was the comparison method,
+  and it was chased to ground rather than absorbed.
+
+== 4. worktree ==
+  vs L3-2h baseline, excluding this resume's own directory: IDENTICAL.
+  Production and script files changed by this resume: ZERO.
+  Files created by this resume: only under verification/hazlenz-l3-2h-cross-provider-resume-2026-08-23/ and the two documentation files.
+
+== 5. locked experiment harness — FULL digests verified, not the abbreviation ==
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  7e3481f9360095d694b4a15b0c351e1d7677e9ac6a95fc267af7c4cb67608da1  backend/scripts/score-l32g-order-sensitivity.ts
+  57064e2ff9b734885ebec8f19448519cc2b95508b15739ed404d91e219acba2f  backend/scripts/rederive-l32g-resolution.ts
+  4ecaada4730821590f0f675701c341179662ef6daf96443d0a79d15f69dfd1fe  backend/scripts/score-l32g-fact-coherence.ts
+  ablate-l32g-state-separation.ts matches the L3-2h recorded full digest
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521,
+  of which the command's '73f74131...' is the prefix. Verified against the
+  recorded digest, not against the abbreviation.
+
+== 6. frozen holdouts and development set ==
+  41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+  e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+  33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+  bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+  b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json
+  47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json
+  bbda27d6dbad4752b48c987c8e85929c0d3d891d7f69b4d6d8842f9750c0af51  backend/src/safescope-v2/reasoning-l3/eval/development-l32f.json
+  All six frozen holdouts and development-l32f.json match L3-2h exactly.
+
+== 7. sealed acceptance corpus — HASH VERIFIED ONLY, NOT OPENED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  Matches a95e5480 / 49aa40fd / 6f6897f1 as recorded.
+  Not opened, not read, not sampled, not transmitted.
+  references in any artifact of this resume: 0
+
+== 8. customer authority ==
+  importers of reasoning-l3 outside itself:          0
+  importers of state-facts inside backend/src:       0
+  (state-facts is referenced only by the L3-2g experiment scripts, as recorded)
+  seam, call site and backend/src/standards/ vs HEAD: byte-unmodified
+  provider env vars declared by reasoning-l3: L3_OLLAMA_ENDPOINT, L3_OLLAMA_MODEL, L3_OLLAMA_TIMEOUT_MS
+  NO hosted-provider credential is required for normal customer execution.
+  No provider adapter was written, so none could become customer-authoritative.
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+
+== 9. egress and data audit ==
+  hosted-provider calls:   1   (GET https://api.openai.com/v1/models, auth probe, HTTP 401)
+  local Ollama INFERENCE calls: 0
+  local Ollama metadata calls:  1   (GET http://127.0.0.1:11434/api/tags)
+  destinations contacted: api.openai.com (authorized provider endpoint) and 127.0.0.1:11434
+  scenario classes transmitted: NONE. The probe carried the credential only.
+  production or customer data transmitted: NONE
+  sealed acceptance corpus transmitted: NONE
+  credential value in logs or artifacts: NONE
+  unexpected destinations: NONE

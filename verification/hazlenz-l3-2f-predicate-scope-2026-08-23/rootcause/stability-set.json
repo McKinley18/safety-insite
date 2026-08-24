@@ -1,0 +1,282 @@
+{
+ "setId": "l32f-stability",
+ "role": "DIAGNOSTIC",
+ "scenarios": [
+  {
+   "id": "C-CS-05#r0",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-WC-02#r0",
+   "cohort": "f6_control_adequacy",
+   "failureMode": "signage offered as the control",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "walking_working_surfaces|falls",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "X-NC-03#r0",
+   "cohort": "f4_nominal_control",
+   "failureMode": "GUARD: mention of a procedure corrects nothing",
+   "regime": "osha-general-industry",
+   "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "electrical",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "C-AM-04#r0",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "falls|walking_working_surfaces|ladders",
+    "highConsequence": true,
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-CL-01#r0",
+   "cohort": "required_clarification",
+   "failureMode": "deciding fact could not be observed",
+   "regime": "osha-construction",
+   "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": true
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "C-CS-05#r1",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-WC-02#r1",
+   "cohort": "f6_control_adequacy",
+   "failureMode": "signage offered as the control",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "walking_working_surfaces|falls",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "X-NC-03#r1",
+   "cohort": "f4_nominal_control",
+   "failureMode": "GUARD: mention of a procedure corrects nothing",
+   "regime": "osha-general-industry",
+   "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "electrical",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "C-AM-04#r1",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "falls|walking_working_surfaces|ladders",
+    "highConsequence": true,
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-CL-01#r1",
+   "cohort": "required_clarification",
+   "failureMode": "deciding fact could not be observed",
+   "regime": "osha-construction",
+   "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": true
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "C-CS-05#r2",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "If the level probe on the caustic tank were to fail closed during a transfer, the vent could pressurise and lift the manway gasket.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-WC-02#r2",
+   "cohort": "f6_control_adequacy",
+   "failureMode": "signage offered as the control",
+   "regime": "osha-general-industry",
+   "text": "A DANGER DEEP PIT notice is wired to the rail beside the open drainage sump in the packing hall gangway.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "walking_working_surfaces|falls",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "X-NC-03#r2",
+   "cohort": "f4_nominal_control",
+   "failureMode": "GUARD: mention of a procedure corrects nothing",
+   "regime": "osha-general-industry",
+   "text": "The chargehand went over the lead replacement procedure with the crew and the split extension lead stayed plugged in at the bench.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "electrical",
+    "highConsequence": true,
+    "clarificationExpected": false
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  },
+  {
+   "id": "C-AM-04#r2",
+   "source": "L3-2d development (drawn from opened sets)",
+   "provenanceClass": "DEVELOPMENT",
+   "cohort": "d1_must_not_ask",
+   "failureMode": "d1_must_not_ask",
+   "regime": "osha-general-industry",
+   "text": "The ladder cage on the silo did not look right to me and the third hoop has parted from the stringer with the fixings pulled clean through.",
+   "expect": {
+    "hazardEstablished": true,
+    "conditionState": "ACTIVE",
+    "familyPattern": "falls|walking_working_surfaces|ladders",
+    "highConsequence": true,
+    "clarificationExpected": false
+   }
+  },
+  {
+   "id": "X-CL-01#r2",
+   "cohort": "required_clarification",
+   "failureMode": "deciding fact could not be observed",
+   "regime": "osha-construction",
+   "text": "Two men were on the tower crane gantry and I could not see from the ground whether either of them was clipped on.",
+   "expect": {
+    "hazardEstablished": false,
+    "acceptableStates": [
+     "CONTROLLED",
+     "CORRECTED",
+     "REMOVED_FROM_SERVICE",
+     "NEGATED",
+     "HYPOTHETICAL",
+     "INSUFFICIENT_EVIDENCE",
+     "UNKNOWN"
+    ],
+    "clarificationExpected": true
+   },
+   "source": "authored by the L3-2f implementation phase",
+   "provenanceClass": "DEVELOPMENT"
+  }
+ ]
+}

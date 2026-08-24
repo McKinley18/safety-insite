@@ -1,0 +1,41 @@
+L3-2g FINAL STATE
+generated 2026-08-23T13:17:36Z
+
+HEAD                 1feda622dbb93d7e05d156838ab37db3e21db507
+branch               release/insite-rc-2026-08-18
+upstream             1feda622dbb93d7e05d156838ab37db3e21db507
+committed/pushed     NO / NO
+
+TERMINAL             L3_2G_PARTIAL — STRUCTURAL_STATE_DECISION_INCONCLUSIVE
+BINDER_RESIDUAL      CLOSED
+AUTHORITY            CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+SEALED SETS OPENED   NONE
+
+== stash list (must equal baseline) ==
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== frozen artifacts, re-verified ==
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json
+47f92dae5f9fcbcb87c5c6f08fb4cbee3deb9dfba6a18a545d6ea844446bb2c5  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json
+bbda27d6dbad4752b48c987c8e85929c0d3d891d7f69b4d6d8842f9750c0af51  backend/src/safescope-v2/reasoning-l3/eval/development-l32f.json
+
+== independent-source hashes (NOT opened) ==
+a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== docs updated ==
+b6d1a744d22bd08c49961337218030fbb5a93a0859d5a94f1c6150426be81e66  docs/INSITE_ENGINEERING_BLUEPRINT.md
+4758fb1f07db5dc5ec56ad5038e56662693fb2efacfa6a37b20e0476e10aae33  docs/INSITE_CURRENT_STATE.json
+
+== disposable DB removed ==
+0
+== safescope dev DB present and untouched ==
+1

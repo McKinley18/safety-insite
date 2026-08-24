@@ -1,0 +1,103 @@
+
+== 1. word classes are CLOSED and COMPLETE, which is the whole argument ==
+
+ok    1. 1.1 prepositions the old NP_TERMINATORS list omitted are present
+ok    2. 1.2 determiners include the negative determiner `no`
+ok    3. 1.3 a lexical noun is not a function word
+ok    4. 1.4 an irregular finite PAST form is recognised
+ok    5. 1.5 a past PARTICIPLE is NOT treated as finite -- this is what keeps RC-08 lists intact
+ok    6. 1.6 noun-identical past forms are excluded on purpose
+ok    7. 1.7 regular verb morphology is recognised without a list
+ok    8. 1.8 short -ed words stay excluded so they do not create phantom boundaries
+ok    9. 1.9 participial prepositions do NOT close a noun phrase on sight (they are homographs)
+
+== 2. F1 -- PREDICATE SCOPE. The recorded L3_2E_SCOPE_CONTRADICTION ==
+
+ok    10. 2.1 THE CONTRADICTION IS CLOSED: `went` now ends the scope at the comma
+ok    11. 2.2 PAIR: `was` still ends the scope at the comma, exactly as before
+ok    12. 2.3 the two now agree -- one sentence, one verb apart, one scope
+ok    13. 2.4 the hazard clause is no longer governed by the negation
+ok    14. 2.5 and the high-consequence finding survives the binder
+ok    15. 2.6 COUNTER-FIXTURE RC-08: a coordinated negated list still crosses its commas
+ok    16. 2.7 COUNTER-FIXTURE: a past participle in a list does NOT end the scope
+ok    17. 2.8 a second irregular verb behaves the same way
+ok    18. 2.9 an irregular/participial form used ATTRIBUTIVELY does not end the scope
+ok    19. 2.10 a bare conjunction followed by a lexical finite verb DOES end the scope
+ok    20. 2.11 PAIR: a bare conjunction continuing a negated LIST does not
+
+== 3. F2 -- NOUN-PHRASE TERMINATORS derived from a complete class ==
+
+ok    21. 3.x head of "deficiencies against the storage standard" resolves to `deficiencies`
+ok    22. 3.x head of "defects beyond the coupling" resolves to `defects`
+ok    23. 3.x head of "violations per the inspection checklist" resolves to `violations`
+ok    24. 3.x head of "concerns regarding the handover certificate" resolves to `concerns`
+ok    25. 3.x head of "hazard of any kind" resolves to `hazard`
+ok    26. 3.x head of "damage to the enclosure" resolves to `damage`
+ok    27. 3.7 the DISC-05 negative control is refused again
+ok    28. 3.8 PAIR: a negated CONTROL before the same preposition is still an ACTIVE hazard
+
+== 4. F3 -- TOKEN BOUNDARY. Containment is not identity ==
+
+ok    29. 4.1 a trailing participle is not taken as the head
+ok    30. 4.2 the same on a different participle
+ok    31. 4.3 a phrase that is ONLY a participle keeps it
+ok    32. 4.4 `issue` no longer matches inside `issued`
+ok    33. 4.5 PAIR: `issue` still matches `issue`
+ok    34. 4.6 declared NOMINAL inflection still works -- `deficienc` covers both forms
+ok    35. 4.7 VERBAL inflection is NOT admitted as nominal inflection
+ok    36. 4.8 no accidental match inside a longer unrelated word
+ok    37. 4.9 THE NOISE_EXPOSURE FINDING SURVIVES -- the single deletion that cost the family its coverage
+ok    38. 4.10 PAIR: a genuinely negated hazard is still refused
+
+== 5. F4 -- NOMINAL CORRECTIONS, with both guards intact ==
+
+ok    39. 5.1 a correction NOUN as the object of an action verb now supports CORRECTED
+ok    40. 5.2 PAIR: the verb form still works
+ok    41. 5.3 GUARD: a NEGATED nominal correction is still refused
+ok    42. 5.4 GUARD: naming a PROCEDURE still corrects nothing
+ok    43. 5.5 GUARD: a PLANNED replacement is not a correction
+
+== 6. F5/F6 -- CONTROL ADEQUACY. It RECORDS; it does not decide ==
+
+ok    44. 6.1 warning tape is recorded as a MENTION, not a control
+ok    45. 6.2 a sign is the same
+ok    46. 6.3 a briefing is the same
+ok    47. 6.4 a bolted cover is recorded as EFFECTIVE
+ok    48. 6.5 a fixed guardrail is EFFECTIVE
+ok    49. 6.6 effective PLUS a warning is not downgraded to a warning
+ok    50. 6.7 a morphological absence is recorded as ABSENT, and outranks the word `fitted`
+ok    51. 6.8 the un- test is WHOLE-WORD, so it does not repeat the DISC-06 mistake
+ok    52. 6.9a LIMITATION, RECORDED: adequacy is judged from control LANGUAGE, not against this hazard.
+ok    53. 6.9b which is exactly why it is ADVISORY and decides nothing -- the prompt makes the judgement
+ok    54. 6.9 no control language reads as UNSPECIFIED
+ok    55. 6.10 IT DECIDES NOTHING: the code is ADVISORY and can never be fatal
+ok    56. 6.11 and an ACTIVE candidate over warning-tape evidence is NOT removed by it
+ok    57. 6.12 while the adequacy is still recorded on it
+
+== 7. the reasoning contract carries the control-adequacy test ==
+
+ok    58. 7.1 prompt version advanced to v6
+ok    59. 7.2 binder version advanced to v6
+ok    60. 7.3 the prompt states that a warning is not a control
+ok    61. 7.4 it names the administrative measures explicitly
+ok    62. 7.5 it names what a real control does -- prevent contact
+ok    63. 7.6 it says a one-word absence is still an absence
+ok    64. 7.6b the CONDITION-STATE LADDER itself stays terse -- elaboration lives below it.
+ok    65. 7.7 it forbids demanding proof of imminent harm on top of a STATED missing control
+ok    66. 7.7b AND it protects the could-not-observe rung: unconfirmed is not absent
+ok    67. 7.7c talking about a fix is not a fix
+ok    68. 7.8 it does NOT make all administrative controls invalid
+ok    69. 7.9 effective-plus-warning still resolves to the effective control
+ok    70. 7.10 L3-2e's clause rule is still present and unweakened
+ok    71. 7.11 the could-not-observe discriminator is still present
+ok    72. 7.12 the DO NOT ASK rung is unweakened -- the clarification axis must not regress
+
+== 8. no prior guarantee was weakened ==
+
+ok    73. 8.1 L3-2e: a modifier still cannot assert a correction
+ok    74. 8.2 L3-2e: an asserted predicate still asserts
+ok    75. 8.3 L3-2d: D-FLD-175 still survives -- a modifier does not delete a high-consequence hazard
+ok    76. 8.4 L3-2c: a negated correction is still not a correction
+ok    77. 8.5 an unambiguous service withdrawal still contradicts ACTIVE
+
+L3-2f predicate scope suite: 77 passed, 0 failed

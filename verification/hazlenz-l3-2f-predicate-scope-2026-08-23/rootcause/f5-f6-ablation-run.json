@@ -1,0 +1,1093 @@
+{
+  "setId": "l32f-f5-f6-ablation",
+  "role": "DIAGNOSTIC",
+  "capturedAt": "2026-08-23T01:41:30.777Z",
+  "provider": {
+    "providerId": "ollama:qwen3-coder:30b",
+    "config": {
+      "endpoint": "<local>",
+      "model": "qwen3-coder:30b",
+      "temperature": 0,
+      "seed": 20260822,
+      "numCtx": 8192,
+      "timeoutMs": 60000
+    },
+    "promptVersion": "hazlenz.l3.prompt.v5"
+  },
+  "allowedHazardFamilyCount": 24,
+  "egressSample": {
+    "contractVersion": "hazlenz.l3.input.v1",
+    "analysisIdSent": true,
+    "sourceCount": 1,
+    "sourceIds": [
+      "observation-1"
+    ],
+    "sourceTypes": [
+      "observation"
+    ],
+    "totalSourceChars": 143,
+    "regulatoryContextValue": "msha",
+    "regulatoryContextProvenance": "USER_CONFIRMED",
+    "allowedHazardFamilyCount": 24,
+    "regulatoryCandidateIdsSent": [],
+    "regulatoryCitationStringsSent": false,
+    "establishedFindingFamiliesSent": [],
+    "advisorySignalCount": 0,
+    "excludedStructurally": [
+      "personal names",
+      "inspector identity",
+      "company/site name",
+      "site address",
+      "account id",
+      "authentication material",
+      "billing data",
+      "unrelated inspection records",
+      "governed review state",
+      "release lifecycle state",
+      "standards corpus text",
+      "arbitrary database rows",
+      "photos/attachments"
+    ]
+  },
+  "records": [
+    {
+      "id": "OA07-orig",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "E-OA-07 verbatim: reassuring clause first, hazard second",
+      "regime": "msha",
+      "text": "The methane monitor read zero at the face, and the roof bolter was operating under a section of unsupported roof that had already taken weight.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4330,
+      "telemetry": {
+        "latencyMs": 4328,
+        "promptTokens": 1776,
+        "outputTokens": 136,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:OA07-orig",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a situation where a methane monitor read zero at the face, indicating no methane gas was detected at that location. The roof bolter was operating under a section of unsupported roof that had already taken weight. This indicates that while there was no methane gas present, the roof bolter was operating in an unsafe condition due to unsupported roof that had already taken weight. However, the observation does not indicate any immediate hazard or unsafe condition related to the methane monitor or the roof bolter operation beyond the unsupported roof condition.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:40:39.946Z"
+        }
+      }
+    },
+    {
+      "id": "OA07-swapped",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: hazard clause moved FIRST",
+      "regime": "msha",
+      "text": "The roof bolter was operating under a section of unsupported roof that had already taken weight, and the methane monitor read zero at the face.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4771,
+      "telemetry": {
+        "latencyMs": 4768,
+        "promptTokens": 1776,
+        "outputTokens": 313,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "roof_support_inadequate",
+          "hazardFamily": "ground_control",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The roof bolter was operating under a section of unsupported roof that had already taken weight"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:OA07-swapped",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that a roof bolter was operating under a section of unsupported roof that had already taken weight. This indicates that the roof bolter was being used in a hazardous condition where the roof support was inadequate and potentially unstable. The methane monitor reading zero at the face does not negate the hazard of operating equipment under unsupported roof conditions.",
+        "hazards": [
+          {
+            "candidateKey": "roof_support_inadequate",
+            "hazardFamily": "ground_control",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 95,
+                "quotedText": "The roof bolter was operating under a section of unsupported roof that had already taken weight"
+              }
+            ],
+            "conditionRationale": "The observation describes the roof bolter operating under unsupported roof conditions where the roof had already taken weight. This represents an active hazard because the roof support is inadequate and potentially unstable, creating a risk of roof fall or collapse during operation.",
+            "independentHazardRationale": "This hazard is separate from other potential hazards because it specifically addresses the structural integrity of the roof support system in relation to the roof bolter operation. It focuses on the ground control aspect of mining operations where inadequate roof support creates a direct physical hazard to workers operating equipment under unstable conditions.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:40:44.717Z"
+        }
+      }
+    },
+    {
+      "id": "OA07-hazardonly",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: reassuring clause deleted entirely",
+      "regime": "msha",
+      "text": "The roof bolter was operating under a section of unsupported roof that had already taken weight.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4940,
+      "telemetry": {
+        "latencyMs": 4937,
+        "promptTokens": 1766,
+        "outputTokens": 323,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "The roof bolter was operating under a section of unsupported roof that had already taken weight."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:OA07-hazardonly",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the roof bolter was operating under a section of unsupported roof that had already taken weight. This indicates that the roof bolter was being used in a hazardous condition where the roof support was inadequate and had already begun to bear weight, creating an unstable environment.",
+        "hazards": [
+          {
+            "candidateKey": "walking_working_surfaces",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 96,
+                "quotedText": "The roof bolter was operating under a section of unsupported roof that had already taken weight."
+              }
+            ],
+            "conditionRationale": "The observation describes a situation where the roof bolter was operating under unsupported roof that had already taken weight. This represents an active hazard because the unsupported roof section is unstable and could collapse, creating a dangerous working environment for personnel. The fact that the roof had already taken weight indicates it was no longer providing adequate support.",
+            "independentHazardRationale": "This represents a walking/working surface hazard because the unsupported roof section creates an unstable working environment where personnel could be at risk of falling or being injured by a roof collapse. This is distinct from other hazards like machine guarding or lifting rigging because it specifically addresses the structural stability of the work area.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:40:49.657Z"
+        }
+      }
+    },
+    {
+      "id": "OA07-osha",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: identical text, regime changed msha -> osha-construction",
+      "regime": "osha-construction",
+      "text": "The methane monitor read zero at the face, and the roof bolter was operating under a section of unsupported roof that had already taken weight.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 2036,
+      "telemetry": {
+        "latencyMs": 2036,
+        "promptTokens": 1778,
+        "outputTokens": 117,
+        "binding": {
+          "total": 0,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:OA07-osha",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes a situation where a methane monitor read zero and a roof bolter was operating under unsupported roof that had already taken weight. The first part about the methane monitor reading zero does not establish any hazard since it indicates no methane was detected. The second part describes an operational condition but does not indicate that the unsupported roof section was actively unstable or posed an immediate risk to workers. There is no evidence of a present hazard.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:40:51.696Z"
+        }
+      }
+    },
+    {
+      "id": "OA07-negated",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: reassuring clause carries an explicit NEGATION (tests F1 interaction)",
+      "regime": "msha",
+      "text": "No methane was detected at the face, and the roof bolter was operating under a section of unsupported roof that had already taken weight.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "REJECTED_OUTPUT",
+      "attempts": 1,
+      "totalMs": 4951,
+      "telemetry": {
+        "latencyMs": 4951,
+        "promptTokens": 1775,
+        "outputTokens": 314,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "REJECTED_MODEL_OUTPUT",
+      "validationIssues": [
+        {
+          "code": "OUTCOME_CANDIDATE_MISMATCH",
+          "detail": "NO_HAZARD_ESTABLISHED carried an ACTIVE candidate"
+        }
+      ],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": null
+    },
+    {
+      "id": "OA07-nonMshaVocab",
+      "cohort": "f5",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: same clause position, ordinary vocabulary instead of ground-control wording",
+      "regime": "msha",
+      "text": "The gas monitor read zero at the face, and the operator was standing under a section of roof that had already dropped and was not propped.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4284,
+      "telemetry": {
+        "latencyMs": 4280,
+        "promptTokens": 1777,
+        "outputTokens": 278,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [],
+      "semanticRejected": [],
+      "semanticAdvisories": [],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "roof_support_condition",
+          "hazardFamily": "ground_control",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "the operator was standing under a section of roof that had already dropped and was not propped"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:OA07-nonMshaVocab",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed that the gas monitor read zero at the face and that the operator was standing under a section of roof that had already dropped and was not propped. The first part describes the gas monitoring condition, while the second part describes the roof support condition.",
+        "hazards": [
+          {
+            "candidateKey": "roof_support_condition",
+            "hazardFamily": "ground_control",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 43,
+                "endOffset": 137,
+                "quotedText": "the operator was standing under a section of roof that had already dropped and was not propped"
+              }
+            ],
+            "conditionRationale": "The observation describes a section of roof that had already dropped and was not propped, indicating an active hazard with inadequate roof support. The fact that the roof had already dropped means it is in an unstable condition that could lead to further collapse or injury.",
+            "independentHazardRationale": "This represents a distinct hazard from the gas monitoring condition described in the same observation. Roof support issues are separate from atmospheric monitoring concerns and constitute an independent ground control hazard.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:00.929Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-orig",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "E-FLD-147 verbatim: warning tape treated as a control",
+      "regime": "osha-construction",
+      "text": "An active floor opening is marked with standard warning tape next to an unprotected edge.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 5028,
+      "telemetry": {
+        "latencyMs": 5027,
+        "promptTokens": 1766,
+        "outputTokens": 318,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "An active floor opening is marked with standard warning tape next to an unprotected edge."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-orig",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The inspector observed an active floor opening that is marked with standard warning tape next to an unprotected edge. The presence of the floor opening indicates a hazard, and the warning tape suggests some control is in place. However, the floor opening is described as being next to an unprotected edge, which implies that the edge itself is not protected.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:05.959Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-notape",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: the warning marker deleted entirely",
+      "regime": "osha-construction",
+      "text": "An active floor opening is next to an unprotected edge.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 3513,
+      "telemetry": {
+        "latencyMs": 3513,
+        "promptTokens": 1761,
+        "outputTokens": 227,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_hazard_from_unprotected_edge",
+          "detail": "no vocabulary for family 'falls' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_hazard_from_unprotected_edge",
+          "detail": "no vocabulary for family 'falls' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_hazard_from_unprotected_edge",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "An active floor opening is next to an unprotected edge."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-notape",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The observation describes an active floor opening adjacent to an unprotected edge, which constitutes a fall hazard.",
+        "hazards": [
+          {
+            "candidateKey": "fall_hazard_from_unprotected_edge",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 55,
+                "quotedText": "An active floor opening is next to an unprotected edge."
+              }
+            ],
+            "conditionRationale": "The observation states that there is an active floor opening adjacent to an unprotected edge. This creates a fall hazard because the unprotected edge presents a risk of falling through the opening.",
+            "independentHazardRationale": "This represents a distinct fall hazard created by the combination of an active floor opening and an unprotected edge, which together create a potential fall zone that could result in injury to workers.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:09.473Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-sign",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: a different ADMINISTRATIVE marker (sign)",
+      "regime": "osha-construction",
+      "text": "An active floor opening is marked with a warning sign next to an unprotected edge.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "attempts": 1,
+      "totalMs": 4440,
+      "telemetry": {
+        "latencyMs": 4440,
+        "promptTokens": 1766,
+        "outputTokens": 290,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "An active floor opening is marked with a warning sign next to an unprotected edge."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-sign",
+        "outcome": "INSUFFICIENT_EVIDENCE",
+        "observationInterpretation": "The inspector observed an active floor opening that is marked with a warning sign next to an unprotected edge. The presence of the warning sign indicates that the hazard exists but is being controlled by the sign, which serves as a visual control to warn personnel of the danger.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:13.914Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-cone",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: a third ADMINISTRATIVE marker (cones)",
+      "regime": "osha-construction",
+      "text": "An active floor opening has traffic cones set around it next to an unprotected edge.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4330,
+      "telemetry": {
+        "latencyMs": 4329,
+        "promptTokens": 1766,
+        "outputTokens": 282,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_hazard_from_unprotected_floor_opening",
+          "detail": "no vocabulary for family 'falls' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "fall_hazard_from_unprotected_floor_opening",
+          "detail": "no vocabulary for family 'falls' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "fall_hazard_from_unprotected_floor_opening",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "An active floor opening has traffic cones set around it next to an unprotected edge"
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-cone",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed an active floor opening with traffic cones placed around it next to an unprotected edge. This indicates the floor opening is present and unguarded, creating a fall hazard.",
+        "hazards": [
+          {
+            "candidateKey": "fall_hazard_from_unprotected_floor_opening",
+            "hazardFamily": "falls",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 83,
+                "quotedText": "An active floor opening has traffic cones set around it next to an unprotected edge"
+              }
+            ],
+            "conditionRationale": "The observation describes an 'active floor opening' which is present and unguarded. The presence of traffic cones around the opening indicates it is being marked but not properly guarded, and the description specifically mentions it is 'next to an unprotected edge', creating a fall hazard.",
+            "independentHazardRationale": "This represents a distinct fall hazard from an unprotected floor opening, separate from other potential hazards like general walking/working surfaces or edge protection. The specific condition of an active floor opening with inadequate edge protection creates a unique risk that requires specific control measures.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:18.243Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-cover",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "COUNTER-ABLATION: a genuinely EFFECTIVE physical control",
+      "regime": "osha-construction",
+      "text": "The floor opening is closed off with a secured steel cover rated for the load and fixed down at every corner.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 4519,
+      "telemetry": {
+        "latencyMs": 4518,
+        "promptTokens": 1772,
+        "outputTokens": 291,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "conditionState 'CORRECTED' requires correction language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "no vocabulary for family 'walking_working_surfaces' in the cited evidence or its sentence; grounding is weak"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CORRECTED",
+          "evidence": [
+            "The floor opening is closed off with a secured steel cover rated for the load and fixed down at every corner."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-cover",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation describes the floor opening as being closed off with a secured steel cover that is rated for the load and fixed down at every corner. This indicates that the condition exists as described, and there is no indication of any hazard present.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:22.762Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-guardrail",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "COUNTER-ABLATION: a second genuinely EFFECTIVE physical control",
+      "regime": "osha-construction",
+      "text": "The floor opening is protected by a fixed standard guardrail with toeboard on all four sides.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "attempts": 1,
+      "totalMs": 3944,
+      "telemetry": {
+        "latencyMs": 3944,
+        "promptTokens": 1769,
+        "outputTokens": 255,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+          "severity": "FATAL",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "conditionState 'CONTROLLED' requires control-in-place language ASSERTED of a subject, and every occurrence in the cited span and its coordinated clause is a modifier, a name, or governed by a negation"
+        },
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "codes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        }
+      ],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "walking_working_surfaces",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "walking_working_surfaces",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "CONTROLLED",
+          "evidence": [
+            "The floor opening is protected by a fixed standard guardrail with toeboard on all four sides."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-guardrail",
+        "outcome": "NO_HAZARD_ESTABLISHED",
+        "observationInterpretation": "The observation states that the floor opening is protected by a fixed standard guardrail with toeboard on all four sides. This describes a present, active control that is in place and provides protection against falls.",
+        "hazards": [],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:26.707Z"
+        }
+      }
+    },
+    {
+      "id": "FLD147-tapeExplicit",
+      "cohort": "f6",
+      "provenanceClass": "DIAGNOSTIC",
+      "failureMode": "ABLATION: tape present AND the absence of a physical control stated outright",
+      "regime": "osha-construction",
+      "text": "An active floor opening has warning tape strung around it and no cover or guardrail is fitted next to an unprotected edge.",
+      "expect": {},
+      "redactions": [],
+      "outcomeKind": "VALIDATED",
+      "attempts": 1,
+      "totalMs": 4069,
+      "telemetry": {
+        "latencyMs": 4067,
+        "promptTokens": 1775,
+        "outputTokens": 262,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "attempt": 1,
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssues": [],
+      "semanticIssues": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "floor_opening_no_cover_or_guardrail",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "semanticRejected": [],
+      "semanticAdvisories": [
+        {
+          "code": "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "severity": "ADVISORY",
+          "candidateKey": "floor_opening_no_cover_or_guardrail",
+          "detail": "cited evidence carries no 'walking_working_surfaces' vocabulary but does carry a strong 'falls' signal"
+        }
+      ],
+      "clarificationExpectedByBinder": [],
+      "semanticDemoted": [],
+      "semanticClarificationsDropped": [],
+      "semanticObservationAvailability": [],
+      "preSemanticHazards": [
+        {
+          "candidateKey": "floor_opening_no_cover_or_guardrail",
+          "hazardFamily": "walking_working_surfaces",
+          "conditionState": "ACTIVE",
+          "evidence": [
+            "An active floor opening has warning tape strung around it and no cover or guardrail is fitted next to an unprotected edge."
+          ],
+          "clarification": null
+        }
+      ],
+      "clarificationsPreSemantic": 0,
+      "clarificationsShipped": 0,
+      "reasoning": {
+        "analysisId": "l32f-f5-f6-ablation:FLD147-tapeExplicit",
+        "outcome": "ANALYZED",
+        "observationInterpretation": "The inspector observed an active floor opening with warning tape around it, but noted that no cover or guardrail is fitted next to an unprotected edge.",
+        "hazards": [
+          {
+            "candidateKey": "floor_opening_no_cover_or_guardrail",
+            "hazardFamily": "walking_working_surfaces",
+            "conditionState": "ACTIVE",
+            "evidence": [
+              {
+                "sourceId": "observation-1",
+                "sourceType": "observation",
+                "startOffset": 0,
+                "endOffset": 122,
+                "quotedText": "An active floor opening has warning tape strung around it and no cover or guardrail is fitted next to an unprotected edge."
+              }
+            ],
+            "conditionRationale": "The observation describes an active floor opening with no cover or guardrail fitted next to an unprotected edge, which constitutes a present hazard. The presence of warning tape does not eliminate the hazard of the exposed opening.",
+            "independentHazardRationale": "This represents a distinct hazard from the unprotected edge mentioned in the same sentence because it specifically addresses the lack of protection over the floor opening itself, which is a separate physical condition requiring specific controls.",
+            "uncertainties": [],
+            "clarification": null,
+            "correctiveActionIntent": null,
+            "riskFactors": null,
+            "regulatoryCandidateRefs": []
+          }
+        ],
+        "jurisdictionProposal": null,
+        "validator": {
+          "inputContractVersion": "hazlenz.l3.input.v1",
+          "proposalContractVersion": "hazlenz.l3.proposal.v1",
+          "validatorVersion": "hazlenz.l3.validator.v1",
+          "validatedAt": "2026-08-23T01:41:30.776Z"
+        }
+      }
+    }
+  ]
+}

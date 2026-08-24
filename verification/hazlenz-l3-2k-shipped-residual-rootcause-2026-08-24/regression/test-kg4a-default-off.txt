@@ -1,0 +1,69 @@
+
+--- Part 1 — the customer path reaches governed data through exactly one named seam
+ok    enumerated 593 customer-path source files
+ok    HARD: NO customer module imports a governed data module directly (none)
+      customer-path importers of standards/cutover/:
+        safescope-v2/safescope-v2.controller.ts -> standards/cutover/governed-cutover-context, standards/cutover/shadow-request-orchestration
+        safescope-v2/safescope-v2.service.ts -> standards/cutover/governed-cutover-context
+        applicable-standards/applicable-standards.service.ts -> standards/cutover/governed-cutover-context
+        inspection/inspection.service.ts -> standards/cutover/cutover-mode, standards/cutover/shadow-provenance-invariant, standards/cutover/shadow-operational-metrics
+ok    HARD: customer paths import ONLY the seam, the pure config contract and the KG-4D integration boundary (nothing else)
+ok    HARD: the pure config contract imports NOTHING — it cannot become a second route to governed data
+ok    the seam has a small, enumerable set of customer importers (3: safescope-v2/safescope-v2.controller.ts, safescope-v2/safescope-v2.service.ts, applicable-standards/applicable-standards.service.ts)
+ok    HARD: the cutover configuration is read ONLY inside standards/cutover/ (standards/cutover/cutover-mode.ts)
+ok    HARD: no request body, query, param or header can select a cutover mode (none)
+
+--- Part 2 — under ordinary configuration the seam is inert
+ok    HARD: completely empty environment -> effective mode is LEGACY
+ok    HARD: completely empty environment -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: a typical dev environment -> effective mode is LEGACY
+ok    HARD: a typical dev environment -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: a typical test environment -> effective mode is LEGACY
+ok    HARD: a typical test environment -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: a typical production environment -> effective mode is LEGACY
+ok    HARD: a typical production environment -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: mode set but no allowlist -> effective mode is LEGACY
+ok    HARD: mode set but no allowlist -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: allowlist set but no mode -> effective mode is LEGACY
+ok    HARD: allowlist set but no mode -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: a misspelled mode with a full allowlist -> effective mode is LEGACY
+ok    HARD: a misspelled mode with a full allowlist -> GovernedCutoverContext.create() returns null (the seam does not exist)
+ok    HARD: production governed mode without acknowledgement -> effective mode is LEGACY
+ok    HARD: production governed mode without acknowledgement -> GovernedCutoverContext.create() returns null (the seam does not exist)
+
+--- Part 2b — the repository ships no configuration that enables cutover
+ok    HARD: no shipped config file sets a governed cutover variable (checked 6 files)
+ok    HARD: the AMBIENT environment this suite runs in has no governed cutover mode set
+ok    HARD: the ambient environment resolves to LEGACY
+
+--- Part 3 — with the seam inert, suggest() is byte-identical to pre-KG-4A
+NOTICE:  database "test_kg4a_defaultoff_run" does not exist, skipping
+ok    the owned clone HAS an active release — so an enabled seam would have had governed data available
+ok    HARD: [electrical] suggest() with no cutover argument === suggest() with an explicit null context
+ok    HARD: [electrical] the default payload carries NO governed keys at all
+ok    HARD: [electrical] the default payload carries no knowledgeReleaseId
+ok    HARD: [electrical] NOTHING is reported as APPROVED_GOVERNED_CONTENT by default, despite an active release with 41 approvals
+ok    HARD: [electrical] corpusBacked is false for every default result
+ok    HARD: [guarding] suggest() with no cutover argument === suggest() with an explicit null context
+ok    HARD: [guarding] the default payload carries NO governed keys at all
+ok    HARD: [guarding] the default payload carries no knowledgeReleaseId
+ok    HARD: [guarding] NOTHING is reported as APPROVED_GOVERNED_CONTENT by default, despite an active release with 41 approvals
+ok    HARD: [guarding] corpusBacked is false for every default result
+ok    HARD: [fall] suggest() with no cutover argument === suggest() with an explicit null context
+ok    HARD: [fall] the default payload carries NO governed keys at all
+ok    HARD: [fall] the default payload carries no knowledgeReleaseId
+ok    HARD: [fall] NOTHING is reported as APPROVED_GOVERNED_CONTENT by default, despite an active release with 41 approvals
+ok    HARD: [fall] corpusBacked is false for every default result
+ok    HARD: [msha-traffic] suggest() with no cutover argument === suggest() with an explicit null context
+ok    HARD: [msha-traffic] the default payload carries NO governed keys at all
+ok    HARD: [msha-traffic] the default payload carries no knowledgeReleaseId
+ok    HARD: [msha-traffic] NOTHING is reported as APPROVED_GOVERNED_CONTENT by default, despite an active release with 41 approvals
+ok    HARD: [msha-traffic] corpusBacked is false for every default result
+
+--- Part 4 — the proof is not vacuous: the seam DOES activate when explicitly configured
+ok    with an explicit mode AND allowlist the context IS created
+ok    the enabled context pins the active release — governed data was genuinely reachable all along
+ok    HARD: the enabled seam DOES return verified governed content for 1910.212(a)(1) — so Part 3's silence is a real default-off, not an empty corpus
+ok    HARD: the SAME user, the SAME database, the SAME approved citation — with default config there is no context at all
+
+51 passed, 0 failed

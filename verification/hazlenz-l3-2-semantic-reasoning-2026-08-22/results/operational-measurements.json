@@ -1,0 +1,44 @@
+{
+  "requests": 162,
+  "outcomes": {
+    "VALIDATED": 97,
+    "NO_HAZARD_ESTABLISHED": 52,
+    "INSUFFICIENT_EVIDENCE": 13
+  },
+  "successRateProviderCall": 100,
+  "validatorAcceptanceRate": 100,
+  "malformedOutputRate": 0,
+  "refusalRate": 0,
+  "timeoutRate": 0,
+  "retryRate": 0,
+  "validatorRejections": 0,
+  "semanticCandidateRejections": 21,
+  "latencyMs": {
+    "median": 4328,
+    "p90": 5692,
+    "p95": 9046,
+    "max": 13567,
+    "min": 1149
+  },
+  "inputTokens": {
+    "min": 908,
+    "median": 935,
+    "p95": 951,
+    "max": 974,
+    "mean": 936
+  },
+  "outputTokens": {
+    "min": 58,
+    "median": 285,
+    "p95": 624,
+    "max": 942,
+    "mean": 257
+  },
+  "totalInputTokens": 151638,
+  "totalOutputTokens": 41712,
+  "quotations": {
+    "total": 153,
+    "unbound": 0,
+    "ambiguous": 0
+  }
+}

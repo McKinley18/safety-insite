@@ -1,0 +1,53 @@
+
+> safety-insite-backend@1.0.0 test:kg3f-56-14132-predicate
+> ts-node scripts/test-kg3f-56-14132-predicate.ts
+
+
+=== KG-3F 30 CFR 56.14132 predicate contract
+
+
+A — backing, obstructed rear view, no compliant method
+   candidates: 30 CFR 56.14132(b)(1)
+   decisions : 30 CFR 56.14132(b)(1)=SUPPORTED
+ok    A: obstructed view + no method emits the EXACT paragraph (b)(1)
+ok    A: does NOT emit (a) — the horn rule is not the backing rule
+ok    A: the obstructed-view trigger is recorded as ESTABLISHED, not assumed
+
+B — backing, rear view explicitly CLEAR
+   candidates: (none)
+   decisions : 30 CFR 56.14132=NOT_APPLICABLE
+ok    B: a CLEAR rear view surfaces NO 56.14132 violation to the customer
+ok    B: the rule was evaluated and adjudicated NOT_APPLICABLE — (b)(1) needs an obstructed view
+
+C — backup alarm absent but OBSERVER present
+   candidates: (none)
+   decisions : 30 CFR 56.14132(b)(1)=NOT_APPLICABLE
+ok    C: the backing rule is evaluated
+ok    C: an observer SATISFIES (b)(1)(iv) — "no backup alarm" alone is not a violation
+ok    C: no violation is surfaced to the customer
+
+D — a compliant alarm is present and functional
+   candidates: (none)
+   decisions : 30 CFR 56.14132(b)(1)=NOT_APPLICABLE
+ok    D: a functional alarm satisfies the rule
+
+E — manually-operated HORN inoperative
+   candidates: 30 CFR 56.14132(a)
+   decisions : 30 CFR 56.14132(a)=SUPPORTED
+ok    E: horn evidence emits (a) — the horn-maintenance rule
+ok    E: horn evidence does NOT emit the backing rule (b)(1)
+
+F — vague "no alarm", visibility unstated (the gold-set case)
+   candidates: 30 CFR 56.14132
+   decisions : 30 CFR 56.14132=UNKNOWN
+ok    F: unstated visibility emits the truthful SECTION, matching the tracked gold set
+ok    F: does NOT promote to (b)(1) on an unestablished obstructed-view trigger
+ok    F: does NOT emit (a) — the KG-3E defect is repaired
+ok    F: obstructed view is recorded as an OPEN QUESTION, not asserted true and not false
+
+G — generic mobile equipment, no visibility or warning evidence
+   candidates: (none)
+   decisions : (none)
+ok    G: generic mobile-equipment activity emits no 56.14132 citation at all
+
+16 passed, 0 failed

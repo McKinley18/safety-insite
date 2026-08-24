@@ -1,0 +1,52 @@
+L3-2f PRESERVATION — PRE-MUTATION SNAPSHOT
+captured 2026-08-23T01:36:24Z
+
+HEAD              1feda622dbb93d7e05d156838ab37db3e21db507
+branch            release/insite-rc-2026-08-18
+upstream          origin/release/insite-rc-2026-08-18 1feda622dbb93d7e05d156838ab37db3e21db507
+divergence        0	0
+stashes           4
+tags              23
+tracked modified  10
+
+--- protected doc hashes ---
+ae72394b8fdf919a80b2d83da302bb8b6005588f30ec1cc734d4fc2d809c0123  /Users/mckinley/Desktop/Safety_InSite/docs/INSITE_ENGINEERING_BLUEPRINT.md
+2e3739e3851541fbbaf8e0ac740cc2d6257bfc0f88a39bbbc810b28b2aa305f5  /Users/mckinley/Desktop/Safety_InSite/docs/INSITE_CURRENT_STATE.json
+
+--- prior sealed holdout hashes ---
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+e3a3c7eee64703a27a8ac9c5da732f6919d8a35fb76859bfb30729c44f7f5060  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json
+33c69b36a7efd9ed4e2e79d2f1b1b29472e7bc6a85dd4feefc5bcef5608f56e2  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json
+bd5f0c2d514784af0662e01f546aa9d7cd4986cd5c8dcea59980724181935af7  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json
+b9da20bacb9548167b80f0da6a55e5f3059a5318e809ba23a204706702818e06  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json
+
+--- stash identities ---
+b7ee2d048e63689c18f6ca39d4fcf2d76190391a stash@{0} On main: hold corrective action routing patch
+df9bc6e00fa0db87ac9d36d023737c195ff3f731 stash@{1} On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+9141dc76fd09901de889c7a8944ae2b411913d5a stash@{2} On antigravity/render-memory-standards-compression: scratch files before memory merge
+b128c1975d630d8f2aa2f80da321ec592c5ac2b9 stash@{3} On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+--- tag targets ---
+checkpoint-pre-ui-consolidation-20260528-172809 f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint-pre-ui-consolidation-f699d98 f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint/pre-modularization-theme-consolidation-20260528-195809 176d1ec93702517a4c9e31dc7d95a6c67888efc9
+checkpoint/shared-ui-primitives-auth-settings-complete-20260528 e9f248b722c5b63cbaee0c1cfff493e50fc7b1ab
+checkpoint/shared-ui-primitives-low-risk-pages-20260528 3c9bae76217ccad8f71d375c70678f8f9862251e
+insite-hazlenz-verified-baseline-2026-08-19 02fb824815e8149d500de68b206f6ac19e0735f3
+insite-inspection-ui-verified-2026-08-19 b25103b0534098cbdde967dc77c85b56a2bcf050
+insite-visual-acceptance-verified-2026-08-19 7bf58ec6a152061631017262b9aba2497ece035c
+local-expanded-scoped-knowledge-regressions-20260527 73aadbc49e49cedf037d877417199b94cb34ebac
+local-msha-scoped-knowledge-retrieval-20260527 3b67a52482522877e6b5ae30e2425207a2493224
+local-safescope-knowledge-scoring-checkpoint-20260527 06d2048b1a20efe00f66959e9f4f7fe645fc681c
+production-standards-engine-live 66a47e0e42f8e37babbbe495e449d160c29392c7
+release-critical-standards-coverage-local f984922db3e50347f28f720fa730ac74e18abfc7
+safescope-ai-upgrade-prework-20260528-173000 f699d9859bb9e24919ed6cecabbb7027bf517d62
+safescope-brain-green-2026-06-01 6d8a796242159e583b654d2bbc36aa0a334883c8
+safescope-production-classify-working-20260524 29efa94247abdbe756e9ceb5f248712e59ef96d0
+safescope-report-workflow-live 9da6c5214f0fef7939a83d1abff3eed7e3ae3a37
+safescope-understanding-precision-green-001 05aafadc042eb3ba4b89ae040fd49b0e9ff74e04
+safescope-v2-standards-ui-live 2c997e30cb3f2fe2b58e562d40938cc62ae719b4
+safety-insite-cleanup-2026-06-17 8a9e6439f0434b559d7658f9750577c750e1a51f
+theme-overhaul-before-reset-verified 6b2cd84d977633d6ea5112c0aa536077c2b72c2c
+v1-backend-stable 41b1078ec7875b92e9768a42c2db6bd950740b93
+v1.0-condition-engine-verified eb8c664352dd036255ae41c2d43feaae18790403

@@ -1,0 +1,13 @@
+=== L3-2 HOLDOUT FREEZE 2026-08-22T14:35:36Z ===
+Frozen BEFORE the first holdout inference run and before any prompt tuning against it.
+
+holdout artifact : backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+41ae3c229a4e81adeffe827e42e587c107df870d75acbe208fe3914479523e2d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json
+derived from     : verification/hazlenz-capability-acceptance-2026-08-22/contracts/hazlenz-acceptance-matrix.json
+c298f14865fe823d0b8250aff759f9b7cdaf7875a573c3a69fc96ab704149040  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-capability-acceptance-2026-08-22/contracts/hazlenz-acceptance-matrix.json
+generator        : backend/scripts/build-l32-holdout.ts
+9df26592b2e9ce5d880ab1dae3a8a0bb621586b53462e619e057dcc6f88fc76a  /Users/mckinley/Desktop/Safety_InSite/backend/scripts/build-l32-holdout.ts
+development set  : backend/src/safescope-v2/reasoning-l3/eval/development-l32.json
+f11fb8fe04679d2ba1c23e882dd18c12e3656ffd512092067b0ab8221e359d8d  /Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/reasoning-l3/eval/development-l32.json
+
+composition: 32 hazard_expected / 31 no_active_expected / 3 ambiguous (66 total)

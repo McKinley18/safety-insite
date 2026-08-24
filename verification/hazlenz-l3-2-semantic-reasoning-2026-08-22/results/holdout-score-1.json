@@ -1,0 +1,1347 @@
+{
+  "setId": "l3-2-holdout-2026-08-22",
+  "role": "FINAL_HOLDOUT",
+  "scoredAt": "2026-08-22T14:47:19.771Z",
+  "gates": {
+    "fabricatedEvidenceQuotes": 0,
+    "falseActiveOnNoActiveExpected": "1 of 31",
+    "highConsequenceMisses": 1,
+    "highConsequenceMissIds": [
+      "B08"
+    ],
+    "falseActiveIds": [
+      "B10"
+    ]
+  },
+  "quality": {
+    "hazardDetection": "30 of 32",
+    "conditionStateAccuracy": 95.2,
+    "familyAccuracy": "27 of 32",
+    "decompositionWithinTolerance": "n/a",
+    "clarificationsRaised": "0 of 66",
+    "ambiguousNotScored": 3
+  },
+  "pipeline": {
+    "providerFailures": 0,
+    "malformedOutput": 0,
+    "validatorRejections": 0,
+    "retries": 0,
+    "semanticCandidateRejections": 11,
+    "quotesEmitted": 65,
+    "quotesNotVerbatim": 0,
+    "verbatimQuoteRate": 100
+  },
+  "operational": {
+    "requests": 66,
+    "medianLatencyMs": 4327,
+    "p90LatencyMs": 5692,
+    "p95LatencyMs": 9259,
+    "maxLatencyMs": 13536,
+    "meanInputTokens": 937,
+    "meanOutputTokens": 263,
+    "totalInputTokens": 61835,
+    "totalOutputTokens": 17355
+  },
+  "rows": [
+    {
+      "id": "A01",
+      "cohort": "historical",
+      "failureMode": "negation: no spotter present",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "material_handling"
+      ],
+      "familyExpected": "mobile_equipment|powered_industrial_truck|struck_by|forklift",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4187
+    },
+    {
+      "id": "A02",
+      "cohort": "historical",
+      "failureMode": "safe-state: locked out, zero energy verified",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1442
+    },
+    {
+      "id": "A03",
+      "cohort": "historical",
+      "failureMode": "multi-hazard decomposition, three independent hazards",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 3,
+      "states": [
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding",
+        "fire_explosion",
+        "first_aid_eyewash_safety_shower_access"
+      ],
+      "familyExpected": "machine_guarding|guarding|fire|emergency|egress|fire_protection|emergency|eyewash|medical|chemical",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 9259
+    },
+    {
+      "id": "A04",
+      "cohort": "historical",
+      "failureMode": "first-match domain-slot error control",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "walking_working_surfaces|slip_trip_fall|electrical|housekeeping",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4431
+    },
+    {
+      "id": "A05",
+      "cohort": "historical",
+      "failureMode": "confined-space 'tank' false positive control",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1478
+    },
+    {
+      "id": "A06",
+      "cohort": "historical",
+      "failureMode": "hypothetical/reference language must not become ACTIVE",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "HYPOTHETICAL"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5217
+    },
+    {
+      "id": "A07",
+      "cohort": "historical",
+      "failureMode": "equipment removed from service",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "REMOVED_FROM_SERVICE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4627
+    },
+    {
+      "id": "A08",
+      "cohort": "historical",
+      "failureMode": "damaged cord clarification duplication control",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "electrical"
+      ],
+      "familyExpected": "electrical",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4443
+    },
+    {
+      "id": "A09",
+      "cohort": "historical",
+      "failureMode": "standards must not be empty under unknown jurisdiction",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "fall|walking_working_surfaces|hole|opening",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4488
+    },
+    {
+      "id": "A10",
+      "cohort": "historical",
+      "failureMode": "finding-scoped rather than observation-wide standards",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "welding_cutting_hot_work"
+      ],
+      "familyExpected": "respiratory|ventilation|air_contaminant|chemical|welding|egress|exit|fire|emergency",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 6757
+    },
+    {
+      "id": "A11",
+      "cohort": "historical",
+      "failureMode": "duplicate/phantom fragment control",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "machine_guarding|guarding",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4429
+    },
+    {
+      "id": "A12",
+      "cohort": "historical",
+      "failureMode": "citation granularity",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "fall|fall_protection",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4236
+    },
+    {
+      "id": "A13",
+      "cohort": "historical",
+      "failureMode": "MSHA-TRAFFIC-01 protected adjudication",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "mobile_equipment"
+      ],
+      "familyExpected": "mobile_equipment|traffic|struck_by",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4748
+    },
+    {
+      "id": "A14",
+      "cohort": "historical",
+      "failureMode": "documented baseline failure: tagged but not locked",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "loto|energy|machine_guarding|electrical",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4275
+    },
+    {
+      "id": "B01",
+      "cohort": "novel_adversarial",
+      "failureMode": "misleading keyword: 'confined to'",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1304
+    },
+    {
+      "id": "B02",
+      "cohort": "novel_adversarial",
+      "failureMode": "contradictory evidence in one observation",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "loto|energy|machine_guarding",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4968
+    },
+    {
+      "id": "B03",
+      "cohort": "novel_adversarial",
+      "failureMode": "incomplete observation, insufficient evidence",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1875
+    },
+    {
+      "id": "B04",
+      "cohort": "novel_adversarial",
+      "failureMode": "safe state stated with dense hazard vocabulary",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1486
+    },
+    {
+      "id": "B05",
+      "cohort": "novel_adversarial",
+      "failureMode": "hypothetical future condition",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1846
+    },
+    {
+      "id": "B06",
+      "cohort": "novel_adversarial",
+      "failureMode": "hazard corrected during the inspection",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 3870
+    },
+    {
+      "id": "B07",
+      "cohort": "novel_adversarial",
+      "failureMode": "guarded and interlocked condition",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "CONTROLLED"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4510
+    },
+    {
+      "id": "B08",
+      "cohort": "novel_adversarial",
+      "failureMode": "unusual simultaneous hazard combination",
+      "verdict": "HAZARD_MISSED",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "fall|scaffold|ppe|personal_protective|eye|face|struck_by|fire|explosion|flammable|chemical|hot_work",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_EVIDENCE_NOT_SELECTIVE"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 10705
+    },
+    {
+      "id": "B09",
+      "cohort": "novel_adversarial",
+      "failureMode": "irrelevant context padding around one real hazard",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "chemical_storage"
+      ],
+      "familyExpected": "chemical|respiratory|ventilation|air_contaminant",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5118
+    },
+    {
+      "id": "B10",
+      "cohort": "novel_adversarial",
+      "failureMode": "genuinely ambiguous wording",
+      "verdict": "FALSE_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4330
+    },
+    {
+      "id": "B11",
+      "cohort": "novel_adversarial",
+      "failureMode": "negation placed late in a long sentence",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "chemical_storage"
+      ],
+      "familyExpected": "chemical|spill|containment|hazmat|environmental",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 3932
+    },
+    {
+      "id": "B12",
+      "cohort": "novel_adversarial",
+      "failureMode": "double negative",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "CORRECTED"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4224
+    },
+    {
+      "id": "B13",
+      "cohort": "novel_adversarial",
+      "failureMode": "guard removed then reinstalled",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "CORRECTED"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4326
+    },
+    {
+      "id": "B14",
+      "cohort": "novel_adversarial",
+      "failureMode": "lockout by contractor verified by host",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 4519
+    },
+    {
+      "id": "B15",
+      "cohort": "novel_adversarial",
+      "failureMode": "misleading use of the word 'fall'",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1417
+    },
+    {
+      "id": "B16",
+      "cohort": "novel_adversarial",
+      "failureMode": "below the regulatory trigger height",
+      "verdict": "AMBIGUOUS_NOT_SCORED",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4312
+    },
+    {
+      "id": "B17",
+      "cohort": "novel_adversarial",
+      "failureMode": "reference to a past incident",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 4491
+    },
+    {
+      "id": "B18",
+      "cohort": "novel_adversarial",
+      "failureMode": "planned future work",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1685
+    },
+    {
+      "id": "B19",
+      "cohort": "novel_adversarial",
+      "failureMode": "MSHA berm present and adequate",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1604
+    },
+    {
+      "id": "B20",
+      "cohort": "novel_adversarial",
+      "failureMode": "conflicting jurisdiction cues",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1618
+    },
+    {
+      "id": "C01",
+      "cohort": "realistic_field",
+      "failureMode": "abbreviations and fragments",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "loto|energy|machine_guarding|pneumatic",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5369
+    },
+    {
+      "id": "C02",
+      "cohort": "realistic_field",
+      "failureMode": "run-on with location and equipment context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 3,
+      "states": [
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "families": [
+        "falls",
+        "falls",
+        "machine_guarding"
+      ],
+      "familyExpected": "fall|fall_protection|machine_guarding|guarding|tool",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 9787
+    },
+    {
+      "id": "C03",
+      "cohort": "realistic_field",
+      "failureMode": "mixed safe and unsafe in one paragraph",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "storage|racking|struck_by|walking_working_surfaces|material_handling|structural",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4642
+    },
+    {
+      "id": "C04",
+      "cohort": "realistic_field",
+      "failureMode": "colloquial terminology",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "fall|walking_working_surfaces|hole|opening",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4308
+    },
+    {
+      "id": "C05",
+      "cohort": "realistic_field",
+      "failureMode": "MSHA field shorthand",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "machine_guarding|guarding|conveyor",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4037
+    },
+    {
+      "id": "C06",
+      "cohort": "realistic_field",
+      "failureMode": "worker report, second hand",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "chemical_storage"
+      ],
+      "familyExpected": "chemical|ventilation|respiratory|battery|air_contaminant|fire",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4933
+    },
+    {
+      "id": "C07",
+      "cohort": "realistic_field",
+      "failureMode": "trenching field note",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "trenching_shoring"
+      ],
+      "familyExpected": "excavation|trench|cave_in|struck_by",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5119
+    },
+    {
+      "id": "C08",
+      "cohort": "realistic_field",
+      "failureMode": "electrical panel field note",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "electrical"
+      ],
+      "familyExpected": "electrical",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4732
+    },
+    {
+      "id": "C09",
+      "cohort": "realistic_field",
+      "failureMode": "ambiguous PPE note",
+      "verdict": "AMBIGUOUS_NOT_SCORED",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1259
+    },
+    {
+      "id": "C10",
+      "cohort": "realistic_field",
+      "failureMode": "forklift field note with several conditions",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 2,
+      "states": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding",
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "mobile_equipment|powered_industrial_truck|forklift|struck_by",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 13536
+    },
+    {
+      "id": "C11",
+      "cohort": "realistic_field",
+      "failureMode": "hot work field note",
+      "verdict": "HAZARD_MISSED",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "fire|hot_work|welding",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 9046
+    },
+    {
+      "id": "C12",
+      "cohort": "realistic_field",
+      "failureMode": "noise exposure field note",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "noise_exposure"
+      ],
+      "familyExpected": "noise|hearing|ppe|occupational_health",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5692
+    },
+    {
+      "id": "D01",
+      "cohort": "negative_control",
+      "failureMode": "properly guarded equipment",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1476
+    },
+    {
+      "id": "D02",
+      "cohort": "negative_control",
+      "failureMode": "de-energized and locked",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [
+        "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+      ],
+      "validationIssueCodes": [],
+      "latencyMs": 4995
+    },
+    {
+      "id": "D03",
+      "cohort": "negative_control",
+      "failureMode": "compliant chemical storage",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1429
+    },
+    {
+      "id": "D04",
+      "cohort": "negative_control",
+      "failureMode": "previously corrected condition",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "CORRECTED"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4557
+    },
+    {
+      "id": "D05",
+      "cohort": "negative_control",
+      "failureMode": "irrelevant hazard terminology",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1611
+    },
+    {
+      "id": "D06",
+      "cohort": "negative_control",
+      "failureMode": "good housekeeping",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1149
+    },
+    {
+      "id": "D07",
+      "cohort": "negative_control",
+      "failureMode": "PPE worn correctly",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1543
+    },
+    {
+      "id": "D08",
+      "cohort": "negative_control",
+      "failureMode": "complete guardrail system",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1258
+    },
+    {
+      "id": "D09",
+      "cohort": "negative_control",
+      "failureMode": "nothing found",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1190
+    },
+    {
+      "id": "D10",
+      "cohort": "negative_control",
+      "failureMode": "MSHA compliant condition",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1166
+    },
+    {
+      "id": "D11",
+      "cohort": "negative_control",
+      "failureMode": "fire equipment current",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1520
+    },
+    {
+      "id": "D12",
+      "cohort": "negative_control",
+      "failureMode": "compliant confined space program in practice",
+      "verdict": "CORRECTLY_NOT_ACTIVE",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1599
+    },
+    {
+      "id": "E01",
+      "cohort": "regulatory",
+      "failureMode": "obvious OSHA General Industry under unknown context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "machine_guarding|guarding|conveyor",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4674
+    },
+    {
+      "id": "E02",
+      "cohort": "regulatory",
+      "failureMode": "obvious OSHA Construction under unknown context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "fall|scaffold|fall_protection",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 5121
+    },
+    {
+      "id": "E03",
+      "cohort": "regulatory",
+      "failureMode": "obvious MSHA surface under unknown context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "fall|walking_working_surfaces|handrail",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4451
+    },
+    {
+      "id": "E04",
+      "cohort": "regulatory",
+      "failureMode": "obvious MSHA underground coal under unknown context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "machine_guarding"
+      ],
+      "familyExpected": "machine_guarding|guarding|conveyor",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4320
+    },
+    {
+      "id": "E05",
+      "cohort": "regulatory",
+      "failureMode": "genuinely ambiguous regime",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "falls"
+      ],
+      "familyExpected": "fall|ladder",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4327
+    },
+    {
+      "id": "E06",
+      "cohort": "regulatory",
+      "failureMode": "ambiguous GI vs Construction — maintenance vs construction",
+      "verdict": "AMBIGUOUS_NOT_SCORED",
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "validationState": "VALID",
+      "hazardCount": 0,
+      "states": [],
+      "families": [],
+      "familyExpected": "",
+      "familyHit": null,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 1348
+    },
+    {
+      "id": "E07",
+      "cohort": "regulatory",
+      "failureMode": "MSHA explicit context, electrical",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "loto_stored_energy"
+      ],
+      "familyExpected": "electrical|loto|energy",
+      "familyHit": true,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4383
+    },
+    {
+      "id": "E08",
+      "cohort": "regulatory",
+      "failureMode": "strong construction cue, unknown context",
+      "verdict": "HAZARD_FOUND",
+      "outcomeKind": "VALIDATED",
+      "validationState": "VALID",
+      "hazardCount": 1,
+      "states": [
+        "ACTIVE"
+      ],
+      "families": [
+        "walking_working_surfaces"
+      ],
+      "familyExpected": "impalement|struck_by|construction|rebar|fall",
+      "familyHit": false,
+      "fabricatedQuotes": 0,
+      "semanticIssueCodes": [],
+      "validationIssueCodes": [],
+      "latencyMs": 4432
+    }
+  ]
+}

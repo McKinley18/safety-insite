@@ -1,0 +1,4833 @@
+{
+  "setId": "l3-2f-sealed-holdout-2026-08-23",
+  "role": "FINAL_SEALED_HOLDOUT",
+  "scoredAt": "2026-08-23T12:57:40.537Z",
+  "scenarios": 97,
+  "tiers": [
+    {
+      "tier": "RAW_PROVIDER",
+      "hazardDetection": "74 of 77",
+      "highConsequenceMisses": 3,
+      "highConsequenceMissIds": [
+        "F-FLD-159",
+        "F-WC-03",
+        "F-WC-09"
+      ],
+      "falseActive": "0 of 20",
+      "falseActiveIds": [],
+      "negativeControlFalseActive": "0 of 13",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "n/a",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 96.9,
+      "familyAccuracy": "55 of 77",
+      "multiHazardWithinTolerance": "1 of 1",
+      "clarificationRecall": "4 of 4",
+      "clarificationRecallPct": 100,
+      "clarificationPrecision": "4 of 4",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 4,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "POST_VALIDATOR",
+      "hazardDetection": "74 of 77",
+      "highConsequenceMisses": 3,
+      "highConsequenceMissIds": [
+        "F-FLD-159",
+        "F-WC-03",
+        "F-WC-09"
+      ],
+      "falseActive": "0 of 20",
+      "falseActiveIds": [],
+      "negativeControlFalseActive": "0 of 13",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "n/a",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 96.9,
+      "familyAccuracy": "55 of 77",
+      "multiHazardWithinTolerance": "1 of 1",
+      "clarificationRecall": "4 of 4",
+      "clarificationRecallPct": 100,
+      "clarificationPrecision": "4 of 4",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 4,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    },
+    {
+      "tier": "SHIPPED_PIPELINE",
+      "hazardDetection": "73 of 77",
+      "highConsequenceMisses": 4,
+      "highConsequenceMissIds": [
+        "F-FLD-159",
+        "F-WC-02",
+        "F-WC-03",
+        "F-WC-09"
+      ],
+      "falseActive": "0 of 20",
+      "falseActiveIds": [],
+      "negativeControlFalseActive": "0 of 13",
+      "negativeControlFalseActiveIds": [],
+      "correctedStateAccuracy": "n/a",
+      "correctedStateWrongIds": [],
+      "conditionStateAccuracyPct": 95.9,
+      "familyAccuracy": "52 of 77",
+      "multiHazardWithinTolerance": "1 of 1",
+      "clarificationRecall": "4 of 4",
+      "clarificationRecallPct": 100,
+      "clarificationPrecision": "4 of 4",
+      "clarificationPrecisionPct": 100,
+      "clarificationsRaised": 4,
+      "clarificationUnnecessary": 0,
+      "clarificationUnnecessaryIds": [],
+      "ambiguousNotScored": 0
+    }
+  ],
+  "byProvenance": [
+    {
+      "provenanceClass": "INDEPENDENT",
+      "scenarios": 40,
+      "tiers": [
+        {
+          "tier": "RAW_PROVIDER",
+          "hazardDetection": "39 of 40",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "F-FLD-159"
+          ],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 97.5,
+          "familyAccuracy": "27 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "POST_VALIDATOR",
+          "hazardDetection": "39 of 40",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "F-FLD-159"
+          ],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 97.5,
+          "familyAccuracy": "27 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "SHIPPED_PIPELINE",
+          "hazardDetection": "39 of 40",
+          "highConsequenceMisses": 1,
+          "highConsequenceMissIds": [
+            "F-FLD-159"
+          ],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 97.5,
+          "familyAccuracy": "27 of 40",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        }
+      ]
+    },
+    {
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "scenarios": 46,
+      "tiers": [
+        {
+          "tier": "RAW_PROVIDER",
+          "hazardDetection": "24 of 26",
+          "highConsequenceMisses": 2,
+          "highConsequenceMissIds": [
+            "F-WC-03",
+            "F-WC-09"
+          ],
+          "falseActive": "0 of 20",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 13",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 95.7,
+          "familyAccuracy": "23 of 26",
+          "multiHazardWithinTolerance": "1 of 1",
+          "clarificationRecall": "4 of 4",
+          "clarificationRecallPct": 100,
+          "clarificationPrecision": "4 of 4",
+          "clarificationPrecisionPct": 100,
+          "clarificationsRaised": 4,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "POST_VALIDATOR",
+          "hazardDetection": "24 of 26",
+          "highConsequenceMisses": 2,
+          "highConsequenceMissIds": [
+            "F-WC-03",
+            "F-WC-09"
+          ],
+          "falseActive": "0 of 20",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 13",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 95.7,
+          "familyAccuracy": "23 of 26",
+          "multiHazardWithinTolerance": "1 of 1",
+          "clarificationRecall": "4 of 4",
+          "clarificationRecallPct": 100,
+          "clarificationPrecision": "4 of 4",
+          "clarificationPrecisionPct": 100,
+          "clarificationsRaised": 4,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "SHIPPED_PIPELINE",
+          "hazardDetection": "23 of 26",
+          "highConsequenceMisses": 3,
+          "highConsequenceMissIds": [
+            "F-WC-02",
+            "F-WC-03",
+            "F-WC-09"
+          ],
+          "falseActive": "0 of 20",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 13",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 93.5,
+          "familyAccuracy": "20 of 26",
+          "multiHazardWithinTolerance": "1 of 1",
+          "clarificationRecall": "4 of 4",
+          "clarificationRecallPct": 100,
+          "clarificationPrecision": "4 of 4",
+          "clarificationPrecisionPct": 100,
+          "clarificationsRaised": 4,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        }
+      ]
+    },
+    {
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "scenarios": 11,
+      "tiers": [
+        {
+          "tier": "RAW_PROVIDER",
+          "hazardDetection": "11 of 11",
+          "highConsequenceMisses": 0,
+          "highConsequenceMissIds": [],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 100,
+          "familyAccuracy": "5 of 11",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "POST_VALIDATOR",
+          "hazardDetection": "11 of 11",
+          "highConsequenceMisses": 0,
+          "highConsequenceMissIds": [],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 100,
+          "familyAccuracy": "5 of 11",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        },
+        {
+          "tier": "SHIPPED_PIPELINE",
+          "hazardDetection": "11 of 11",
+          "highConsequenceMisses": 0,
+          "highConsequenceMissIds": [],
+          "falseActive": "0 of 0",
+          "falseActiveIds": [],
+          "negativeControlFalseActive": "0 of 0",
+          "negativeControlFalseActiveIds": [],
+          "correctedStateAccuracy": "n/a",
+          "correctedStateWrongIds": [],
+          "conditionStateAccuracyPct": 100,
+          "familyAccuracy": "5 of 11",
+          "multiHazardWithinTolerance": "n/a",
+          "clarificationRecall": "n/a",
+          "clarificationRecallPct": null,
+          "clarificationPrecision": "n/a",
+          "clarificationPrecisionPct": null,
+          "clarificationsRaised": 0,
+          "clarificationUnnecessary": 0,
+          "clarificationUnnecessaryIds": [],
+          "ambiguousNotScored": 0
+        }
+      ]
+    }
+  ],
+  "clarificationMatrix": [
+    {
+      "tier": "RAW_PROVIDER",
+      "TP": 4,
+      "FP": 0,
+      "FN": 0,
+      "TN": 93,
+      "precision": 100,
+      "recall": 100,
+      "unnecessaryClarifications": 0,
+      "falsePositiveIds": [],
+      "falseNegativeIds": [],
+      "rows": [
+        {
+          "id": "F-OA-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-OA-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        }
+      ]
+    },
+    {
+      "tier": "POST_VALIDATOR",
+      "TP": 4,
+      "FP": 0,
+      "FN": 0,
+      "TN": 93,
+      "precision": 100,
+      "recall": 100,
+      "unnecessaryClarifications": 0,
+      "falsePositiveIds": [],
+      "falseNegativeIds": [],
+      "rows": [
+        {
+          "id": "F-OA-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-OA-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        }
+      ]
+    },
+    {
+      "tier": "SHIPPED_PIPELINE",
+      "TP": 4,
+      "FP": 0,
+      "FN": 0,
+      "TN": 93,
+      "precision": 100,
+      "recall": 100,
+      "unnecessaryClarifications": 0,
+      "falsePositiveIds": [],
+      "falseNegativeIds": [],
+      "rows": [
+        {
+          "id": "F-OA-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-OA-02",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "observation_availability",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-01",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        },
+        {
+          "id": "F-CL-03",
+          "provenanceClass": "AUTHORED_COMPLEMENT",
+          "expectedClarification": true,
+          "actualClarification": true,
+          "verdict": "TP",
+          "conditionStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "evidenceSufficient": null,
+          "reason": null,
+          "triggerClass": "clarification",
+          "droppedByBinder": []
+        }
+      ]
+    }
+  ],
+  "highConsequenceReport": [
+    {
+      "id": "F-FLD-009",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-019",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-029",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-039",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-049",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-059",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-069",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-079",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-089",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-099",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-109",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-119",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-129",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-139",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-149",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-159",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 0,
+      "providerActive": false,
+      "postValidatorCandidates": 0,
+      "postValidatorActive": false,
+      "shippedCandidates": 0,
+      "shippedActive": false,
+      "conditionStates": [],
+      "evidenceBound": 0,
+      "fabricatedQuotes": 1,
+      "stageAttributionOfLoss": "provider"
+    },
+    {
+      "id": "F-FLD-169",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-179",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-189",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FLD-199",
+      "provenanceClass": "INDEPENDENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-PS-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-NT-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-TB-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-NC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-NC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-WC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-WC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 0,
+      "shippedActive": false,
+      "conditionStates": [],
+      "evidenceBound": 0,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": "binder"
+    },
+    {
+      "id": "F-WC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": false,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": false,
+      "shippedCandidates": 0,
+      "shippedActive": false,
+      "conditionStates": [],
+      "evidenceBound": 0,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": "provider"
+    },
+    {
+      "id": "F-WC-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-WC-09",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": false,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": false,
+      "shippedCandidates": 0,
+      "shippedActive": false,
+      "conditionStates": [],
+      "evidenceBound": 0,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": "provider"
+    },
+    {
+      "id": "F-OA-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-OA-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-CL-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-CL-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FAM-CS-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FAM-GC-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FAM-LR-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FAM-WCH-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "providerCandidates": 1,
+      "providerActive": true,
+      "postValidatorCandidates": 1,
+      "postValidatorActive": true,
+      "shippedCandidates": 1,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE"
+      ],
+      "evidenceBound": 1,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    },
+    {
+      "id": "F-FAM-ME-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "providerCandidates": 2,
+      "providerActive": true,
+      "postValidatorCandidates": 2,
+      "postValidatorActive": true,
+      "shippedCandidates": 2,
+      "shippedActive": true,
+      "conditionStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "evidenceBound": 2,
+      "fabricatedQuotes": 0,
+      "stageAttributionOfLoss": null
+    }
+  ],
+  "perFamilyRecall": {
+    "machine_guarding": {
+      "expected": 27,
+      "found": 26,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 1,
+      "ids": [
+        "F-WC-09"
+      ]
+    },
+    "mobile_equipment": {
+      "expected": 22,
+      "found": 21,
+      "highConsequenceExpected": 22,
+      "highConsequenceFound": 21,
+      "ids": [
+        "F-FLD-159"
+      ]
+    },
+    "confined_space": {
+      "expected": 2,
+      "found": 2,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 2,
+      "ids": []
+    },
+    "lifting_rigging": {
+      "expected": 6,
+      "found": 6,
+      "highConsequenceExpected": 6,
+      "highConsequenceFound": 6,
+      "ids": []
+    },
+    "struck_by": {
+      "expected": 1,
+      "found": 1,
+      "highConsequenceExpected": 1,
+      "highConsequenceFound": 1,
+      "ids": []
+    },
+    "material_handling": {
+      "expected": 6,
+      "found": 6,
+      "highConsequenceExpected": 5,
+      "highConsequenceFound": 5,
+      "ids": []
+    },
+    "falls": {
+      "expected": 9,
+      "found": 7,
+      "highConsequenceExpected": 9,
+      "highConsequenceFound": 7,
+      "ids": [
+        "F-WC-02",
+        "F-WC-03"
+      ]
+    },
+    "scaffolds": {
+      "expected": 2,
+      "found": 2,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 2,
+      "ids": []
+    },
+    "walking_working_surfaces": {
+      "expected": 8,
+      "found": 6,
+      "highConsequenceExpected": 8,
+      "highConsequenceFound": 6,
+      "ids": [
+        "F-WC-02",
+        "F-WC-03"
+      ]
+    },
+    "welding_cutting_hot_work": {
+      "expected": 2,
+      "found": 2,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 2,
+      "ids": []
+    },
+    "fire_explosion": {
+      "expected": 2,
+      "found": 2,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 2,
+      "ids": []
+    },
+    "loto_stored_energy": {
+      "expected": 2,
+      "found": 1,
+      "highConsequenceExpected": 2,
+      "highConsequenceFound": 1,
+      "ids": [
+        "F-WC-09"
+      ]
+    },
+    "noise_exposure": {
+      "expected": 4,
+      "found": 4,
+      "highConsequenceExpected": 0,
+      "highConsequenceFound": 0,
+      "ids": []
+    },
+    "personal_protective_equipment": {
+      "expected": 3,
+      "found": 3,
+      "highConsequenceExpected": 0,
+      "highConsequenceFound": 0,
+      "ids": []
+    },
+    "chemical_storage": {
+      "expected": 1,
+      "found": 1,
+      "highConsequenceExpected": 0,
+      "highConsequenceFound": 0,
+      "ids": []
+    },
+    "hazard_communication": {
+      "expected": 2,
+      "found": 2,
+      "highConsequenceExpected": 0,
+      "highConsequenceFound": 0,
+      "ids": []
+    },
+    "ground_control": {
+      "expected": 3,
+      "found": 3,
+      "highConsequenceExpected": 3,
+      "highConsequenceFound": 3,
+      "ids": []
+    },
+    "emergency_egress": {
+      "expected": 1,
+      "found": 1,
+      "highConsequenceExpected": 0,
+      "highConsequenceFound": 0,
+      "ids": []
+    }
+  },
+  "syntacticRoleReport": [],
+  "observationAvailabilityReport": [
+    {
+      "id": "F-OA-01",
+      "declaredAvailability": "EXPLICITLY_NOT_OBSERVED",
+      "detectedAvailability": "EXPLICITLY_NOT_OBSERVED",
+      "unobservedFacts": [
+        "tell from the bank whether his lanyard was clipped to the basket"
+      ],
+      "unobservedFactIsDeciding": true,
+      "otherFactualPredicateEstablishesHazard": false,
+      "expectedState": "CONTROLLED|CORRECTED|REMOVED_FROM_SERVICE|NEGATED|HYPOTHETICAL|INSUFFICIENT_EVIDENCE|UNKNOWN",
+      "actualStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "expectedClarification": true,
+      "actualClarification": true,
+      "triggerClass": "observation_availability",
+      "correct": true
+    },
+    {
+      "id": "F-OA-02",
+      "declaredAvailability": "EXPLICITLY_NOT_OBSERVED",
+      "detectedAvailability": "UNSPECIFIED",
+      "unobservedFacts": [],
+      "unobservedFactIsDeciding": true,
+      "otherFactualPredicateEstablishesHazard": false,
+      "expectedState": "CONTROLLED|CORRECTED|REMOVED_FROM_SERVICE|NEGATED|HYPOTHETICAL|INSUFFICIENT_EVIDENCE|UNKNOWN",
+      "actualStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "expectedClarification": true,
+      "actualClarification": true,
+      "triggerClass": "observation_availability",
+      "correct": true
+    },
+    {
+      "id": "F-OA-03",
+      "declaredAvailability": "EXPLICITLY_NOT_OBSERVED",
+      "detectedAvailability": "EXPLICITLY_NOT_OBSERVED",
+      "unobservedFacts": [
+        "make out the machine number on the guard bracket"
+      ],
+      "unobservedFactIsDeciding": false,
+      "otherFactualPredicateEstablishesHazard": true,
+      "expectedState": "ACTIVE",
+      "actualStates": [
+        "ACTIVE"
+      ],
+      "expectedClarification": false,
+      "actualClarification": false,
+      "triggerClass": "observation_availability",
+      "correct": true
+    },
+    {
+      "id": "F-OA-04",
+      "declaredAvailability": "OBSERVED",
+      "detectedAvailability": "UNSPECIFIED",
+      "unobservedFacts": [],
+      "unobservedFactIsDeciding": null,
+      "otherFactualPredicateEstablishesHazard": true,
+      "expectedState": "ACTIVE",
+      "actualStates": [
+        "ACTIVE"
+      ],
+      "expectedClarification": false,
+      "actualClarification": false,
+      "triggerClass": "observation_availability",
+      "correct": true
+    },
+    {
+      "id": "F-OA-05",
+      "declaredAvailability": "OBSERVED",
+      "detectedAvailability": "UNSPECIFIED",
+      "unobservedFacts": [],
+      "unobservedFactIsDeciding": null,
+      "otherFactualPredicateEstablishesHazard": true,
+      "expectedState": "ACTIVE",
+      "actualStates": [
+        "ACTIVE"
+      ],
+      "expectedClarification": false,
+      "actualClarification": false,
+      "triggerClass": "observation_availability",
+      "correct": true
+    }
+  ],
+  "controlAdequacyReport": [
+    {
+      "id": "F-FLD-004",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-014",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-019",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-024",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-034",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "unguarded",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-039",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-044",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "removed",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-049",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-054",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-064",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "unguarded",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-069",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-074",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-084",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "removed",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-089",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-094",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-104",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "removed",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-109",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "marked",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-114",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "removed",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-124",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-134",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-144",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "wedged open",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-154",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-164",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-174",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-184",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "guard",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FLD-189",
+      "provenanceClass": "INDEPENDENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "removed",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "interlock",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "guardrail",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "cover",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NT-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "toe board",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "fitted",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "fall arrest",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [
+        "CORRECTED"
+      ],
+      "shippedStates": [
+        "CORRECTED"
+      ],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "WARNING_ONLY",
+      "recordedAdequacy": "CONTROL_MENTION",
+      "recordedTerm": "hazard tape",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "WARNING_ONLY",
+      "recordedAdequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+      "recordedTerm": "handrail",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [],
+      "expectedActive": true,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": false
+    },
+    {
+      "id": "F-WC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "ADMINISTRATIVE_ONLY",
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "CONTROLLED"
+      ],
+      "shippedStates": [],
+      "expectedActive": true,
+      "actualActive": false,
+      "warningMistakenForControl": true,
+      "correct": false
+    },
+    {
+      "id": "F-WC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "EFFECTIVE",
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "EFFECTIVE",
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "EFFECTIVE_PLUS_WARNING",
+      "recordedAdequacy": "CONTROL_EFFECTIVE_WITH_WARNING",
+      "recordedTerm": "boarded",
+      "providerStates": [
+        "CONTROLLED"
+      ],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "ABSENT_MORPHOLOGICAL",
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "unguarded",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "ABSENT_MORPHOLOGICAL",
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "unprotected",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-WC-09",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "PPE_AGAINST_DEFEATED_ENGINEERING_CONTROL",
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "strapped down",
+      "providerStates": [
+        "CONTROLLED"
+      ],
+      "shippedStates": [],
+      "expectedActive": true,
+      "actualActive": false,
+      "warningMistakenForControl": true,
+      "correct": false
+    },
+    {
+      "id": "F-OA-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "lanyard",
+      "providerStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-OA-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "lockout",
+      "providerStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-OA-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": "ABSENT_MORPHOLOGICAL",
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "unsupported",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NEG-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NEG-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "UNSPECIFIED",
+      "recordedTerm": null,
+      "providerStates": [],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-NEG-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "tagged out",
+      "providerStates": [
+        "REMOVED_FROM_SERVICE"
+      ],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-CIP-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "locked out",
+      "providerStates": [
+        "CORRECTED"
+      ],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-CIP-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_EFFECTIVE",
+      "recordedTerm": "cover",
+      "providerStates": [
+        "CONTROLLED"
+      ],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-COR-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "CORRECTED"
+      ],
+      "shippedStates": [],
+      "expectedActive": false,
+      "actualActive": false,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-CL-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "missing",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    },
+    {
+      "id": "F-FAM-CS-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "declaredAdequacy": null,
+      "recordedAdequacy": "CONTROL_ABSENT",
+      "recordedTerm": "harness",
+      "providerStates": [
+        "ACTIVE"
+      ],
+      "shippedStates": [
+        "ACTIVE"
+      ],
+      "expectedActive": true,
+      "actualActive": true,
+      "warningMistakenForControl": false,
+      "correct": true
+    }
+  ],
+  "predicateScopeReport": [
+    {
+      "id": "F-PS-01",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular finite verb after the comma ends the scope",
+      "predicateUnderTest": "went",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": true,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-02",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: coordinated negated list must CROSS its commas",
+      "predicateUnderTest": "none -- bare noun phrase",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": false,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-03",
+      "cohort": "predicate_scope",
+      "failureMode": "second irregular finite verb, different lexical item",
+      "predicateUnderTest": "fell",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": true,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-04",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: same verb lemma used NON-predicatively inside a noun phrase",
+      "predicateUnderTest": "fall as NP head, not a predicate",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": false,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-05",
+      "cohort": "predicate_scope",
+      "failureMode": "copular predicate after the comma (already correct today; must stay correct)",
+      "predicateUnderTest": "was",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": true,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-06",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular finite verb in a SIBLING clause joined by a bare conjunction",
+      "predicateUnderTest": "took",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": false,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-07",
+      "cohort": "predicate_scope",
+      "failureMode": "PAIR: bare conjunction continuing a negated list must NOT end the scope",
+      "predicateUnderTest": "none",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": false,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-PS-08",
+      "cohort": "predicate_scope",
+      "failureMode": "irregular verb used ATTRIBUTIVELY, not as a predicate",
+      "predicateUnderTest": "broken as attributive modifier",
+      "headUnderTest": null,
+      "scopeMustEndAtComma": false,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NT-01",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before an UNLISTED preposition (against)",
+      "predicateUnderTest": null,
+      "headUnderTest": "deficiencies",
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NT-02",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before a second unlisted preposition (beyond)",
+      "predicateUnderTest": null,
+      "headUnderTest": "defects",
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NT-03",
+      "cohort": "np_terminator",
+      "failureMode": "PAIR: a negated CONTROL before the same preposition IS an active hazard",
+      "predicateUnderTest": null,
+      "headUnderTest": "toe board -- a CONTROL, not a hazard object",
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NT-04",
+      "cohort": "np_terminator",
+      "failureMode": "negated hazard head before a third unlisted preposition (regarding)",
+      "predicateUnderTest": null,
+      "headUnderTest": "concerns",
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-01",
+      "cohort": "token_boundary",
+      "failureMode": "issue inside issued -- the DISC-06 shape, on a fresh hazard",
+      "predicateUnderTest": null,
+      "headUnderTest": "defenders",
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-02",
+      "cohort": "token_boundary",
+      "failureMode": "PAIR: the same stem as a genuine negated hazard head",
+      "predicateUnderTest": null,
+      "headUnderTest": "issue",
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-03",
+      "cohort": "token_boundary",
+      "failureMode": "harm inside harmless",
+      "predicateUnderTest": null,
+      "headUnderTest": "residue",
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-04",
+      "cohort": "token_boundary",
+      "failureMode": "access inside accessory",
+      "predicateUnderTest": null,
+      "headUnderTest": "tool rest",
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-TB-05",
+      "cohort": "token_boundary",
+      "failureMode": "trailing participle must not be taken as the NP head",
+      "predicateUnderTest": null,
+      "headUnderTest": "equipment",
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-01",
+      "cohort": "nominal_control",
+      "failureMode": "correction expressed as the OBJECT of an action verb",
+      "predicateUnderTest": null,
+      "headUnderTest": null,
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-02",
+      "cohort": "nominal_control",
+      "failureMode": "PAIR: correction expressed as a verb (already correct today)",
+      "predicateUnderTest": null,
+      "headUnderTest": null,
+      "scopeMustEndAtComma": null,
+      "expectedActive": false,
+      "providerActive": false,
+      "shippedActive": false,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-03",
+      "cohort": "nominal_control",
+      "failureMode": "NEGATION GUARD: a negated nominal correction is not a correction",
+      "predicateUnderTest": null,
+      "headUnderTest": null,
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    },
+    {
+      "id": "F-NC-04",
+      "cohort": "nominal_control",
+      "failureMode": "MENTION GUARD: naming a procedure corrects nothing",
+      "predicateUnderTest": null,
+      "headUnderTest": null,
+      "scopeMustEndAtComma": null,
+      "expectedActive": true,
+      "providerActive": true,
+      "shippedActive": true,
+      "binderFatalCodes": [],
+      "deletedByBinder": false,
+      "correct": true
+    }
+  ],
+  "familySealedCoverage": {
+    "method": "a family is SEALED_PASS when at least one scenario declaring it had its hazard established at the SHIPPED tier. exactLabelEmitted is reported separately because familyPattern permits alternatives, and passing under an alternative label is coverage of the scenario, not of the label.",
+    "totals": {
+      "SEALED_PASS": 17,
+      "SEALED_FAIL": 0,
+      "NOT_REPRESENTED": 7
+    },
+    "rows": [
+      {
+        "family": "chemical_storage",
+        "declaredInThisSet": 1,
+        "established": 1,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": false,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "compressed_air_hose_safety",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "compressed_gas_cylinders",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "confined_space",
+        "declaredInThisSet": 2,
+        "established": 2,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "drowning_hazards",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "electrical",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "emergency_egress",
+        "declaredInThisSet": 1,
+        "established": 1,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": false,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "falls",
+        "declaredInThisSet": 9,
+        "established": 7,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": [
+          "F-WC-02",
+          "F-WC-03"
+        ]
+      },
+      {
+        "family": "fire_explosion",
+        "declaredInThisSet": 2,
+        "established": 2,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "first_aid_eyewash_safety_shower_access",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "ground_control",
+        "declaredInThisSet": 3,
+        "established": 3,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "hazard_communication",
+        "declaredInThisSet": 2,
+        "established": 2,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "lifting_rigging",
+        "declaredInThisSet": 6,
+        "established": 6,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "loto_stored_energy",
+        "declaredInThisSet": 2,
+        "established": 1,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": [
+          "F-WC-09"
+        ]
+      },
+      {
+        "family": "machine_guarding",
+        "declaredInThisSet": 27,
+        "established": 26,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": [
+          "F-WC-09"
+        ]
+      },
+      {
+        "family": "material_handling",
+        "declaredInThisSet": 6,
+        "established": 6,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "mobile_equipment",
+        "declaredInThisSet": 22,
+        "established": 21,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": [
+          "F-FLD-159"
+        ]
+      },
+      {
+        "family": "noise_exposure",
+        "declaredInThisSet": 4,
+        "established": 4,
+        "exactLabelEmitted": true,
+        "highConsequenceExample": false,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "personal_protective_equipment",
+        "declaredInThisSet": 3,
+        "established": 3,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "respirable_dust_silica",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "scaffolds",
+        "declaredInThisSet": 2,
+        "established": 2,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      },
+      {
+        "family": "trenching_shoring",
+        "declaredInThisSet": 0,
+        "established": 0,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": false,
+        "status": "NOT_REPRESENTED",
+        "failedIds": []
+      },
+      {
+        "family": "walking_working_surfaces",
+        "declaredInThisSet": 8,
+        "established": 6,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": [
+          "F-WC-02",
+          "F-WC-03"
+        ]
+      },
+      {
+        "family": "welding_cutting_hot_work",
+        "declaredInThisSet": 2,
+        "established": 2,
+        "exactLabelEmitted": false,
+        "highConsequenceExample": true,
+        "status": "SEALED_PASS",
+        "failedIds": []
+      }
+    ]
+  },
+  "clarificationsDroppedByBinder": {
+    "total": 0,
+    "ids": []
+  },
+  "demotions": {
+    "total": 0,
+    "synthesizedClarifications": 0,
+    "ids": []
+  },
+  "pipeline": {
+    "providerFailures": 0,
+    "malformedOutput": 0,
+    "validatorRejections": 1,
+    "retries": 0,
+    "quotationsEmitted": 100,
+    "quotationsNotVerbatim": 1,
+    "verbatimQuoteRatePct": 99,
+    "semanticFatalRejections": 9,
+    "semanticAdvisories": 86,
+    "contradictionCheckRejections": 1,
+    "stateSupportCheckRejections": 7,
+    "semanticCodeTally": {
+      "SEMANTIC_CONTROL_ADEQUACY_RECORDED": 48,
+      "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY": 22,
+      "SEMANTIC_NEGATION_UNADDRESSED": 1,
+      "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT": 14,
+      "SEMANTIC_EVIDENCE_CONTRADICTS_STATE": 1,
+      "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE": 7,
+      "SEMANTIC_OBSERVATION_GAP_RECORDED": 2
+    }
+  },
+  "operational": {
+    "medianLatencyMs": 4649,
+    "p90LatencyMs": 6829,
+    "p95LatencyMs": 7037,
+    "maxLatencyMs": 7672,
+    "meanInputTokens": 2413,
+    "meanOutputTokens": 282
+  },
+  "rows": [
+    {
+      "id": "F-FLD-004",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-009",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-014",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-019",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-024",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-029",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "material_handling/ACTIVE"
+      ],
+      "shippedStates": [
+        "material_handling/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-034",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-039",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-044",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-049",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-054",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-059",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-064",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-069",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "material_handling/ACTIVE"
+      ],
+      "shippedStates": [
+        "material_handling/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-074",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-079",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-084",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-089",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-094",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE",
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-099",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "material_handling/ACTIVE"
+      ],
+      "shippedStates": [
+        "material_handling/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-104",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-109",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-114",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-119",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "material_handling/ACTIVE"
+      ],
+      "shippedStates": [
+        "material_handling/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-124",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-129",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-134",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-139",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-144",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-149",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-154",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-159",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "REJECTED_OUTPUT",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 1,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-164",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-169",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-174",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-179",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE",
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_NEGATION_UNADDRESSED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-184",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-189",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "shippedStates": [
+        "mobile_equipment/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-194",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "machine_guarding / point_of_operation_guarding",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FLD-199",
+      "provenanceClass": "INDEPENDENT",
+      "failureMode": "mobile_equipment / mobile_equipment_pedestrian_interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "irregular finite verb after the comma ends the scope",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "confined_space/ACTIVE"
+      ],
+      "shippedStates": [
+        "confined_space/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: coordinated negated list must CROSS its commas",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "second irregular finite verb, different lexical item",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: same verb lemma used NON-predicatively inside a noun phrase",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "copular predicate after the comma (already correct today; must stay correct)",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "fire_explosion/ACTIVE",
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "fire_explosion/ACTIVE",
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "irregular finite verb in a SIBLING clause joined by a bare conjunction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: bare conjunction continuing a negated list must NOT end the scope",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-PS-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "irregular verb used ATTRIBUTIVELY, not as a predicate",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NT-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated hazard head before an UNLISTED preposition (against)",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NT-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated hazard head before a second unlisted preposition (beyond)",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NT-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: a negated CONTROL before the same preposition IS an active hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NT-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "negated hazard head before a third unlisted preposition (regarding)",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-TB-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "issue inside issued -- the DISC-06 shape, on a fresh hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "shippedStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-TB-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: the same stem as a genuine negated hazard head",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-TB-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "harm inside harmless",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-TB-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "access inside accessory",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-TB-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "trailing participle must not be taken as the NP head",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "correction expressed as the OBJECT of an action verb",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/CORRECTED"
+      ],
+      "shippedStates": [
+        "lifting_rigging/CORRECTED"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: correction expressed as a verb (already correct today)",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "NEGATION GUARD: a negated nominal correction is not a correction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "MENTION GUARD: naming a procedure corrects nothing",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "warning tape offered against an open physical hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "signage offered against an open physical hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "FATAL:SEMANTIC_EVIDENCE_CONTRADICTS_STATE",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "briefing/administrative notice offered against a physical hazard",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "walking_working_surfaces/CONTROLLED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "COUNTER: a genuinely effective ENGINEERING control",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "COUNTER: a second genuinely effective engineering control",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-06",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "warning present AND effective control also present -- must NOT become active",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "walking_working_surfaces/CONTROLLED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-07",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "absent control encoded MORPHOLOGICALLY (un- prefix), reassuring clause first",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-08",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "second morphological absence, reassuring clause first, high consequence",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-WC-09",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PPE offered where an engineering control is the required one",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "machine_guarding/CONTROLLED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-OA-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "unobserved fact IS the deciding fact",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "falls/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "falls/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_OBSERVATION_GAP_RECORDED",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-OA-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "unobserved fact IS the deciding fact, energy isolation",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "loto_stored_energy/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-OA-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "unobserved fact decides NOTHING; hazard plainly stated",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_OBSERVATION_GAP_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-OA-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "reassuring clause FIRST, hazard asserted second -- the E-OA-07 shape, fresh wording",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-OA-05",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "reassuring clause first AND morphological absence second -- the exact E-OA-07 interaction",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NEG-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "clean inspection, nothing to find",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NEG-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "genuinely negated hazard, plainly worded",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-NEG-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "equipment genuinely withdrawn from service",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "lifting_rigging/REMOVED_FROM_SERVICE"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CIP-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "energy isolation genuinely in place",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "loto_stored_energy/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CIP-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "physical guarding genuinely in place",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "NO_HAZARD_ESTABLISHED",
+      "rawStates": [
+        "machine_guarding/CONTROLLED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-COR-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "hazard existed and was fixed during the visit",
+      "expected": false,
+      "clarificationExpected": false,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "loto_stored_energy/CORRECTED"
+      ],
+      "shippedStates": [],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "FATAL:SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CL-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "pure impression, no fact stated -- a question is owed",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "walking_working_surfaces/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CL-02",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "PAIR: impression BESIDE a hard fact -- no question owed",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CL-03",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "hedge governs the only predication there is",
+      "expected": false,
+      "clarificationExpected": true,
+      "outcomeKind": "INSUFFICIENT_EVIDENCE",
+      "rawStates": [
+        "material_handling/INSUFFICIENT_EVIDENCE"
+      ],
+      "shippedStates": [
+        "material_handling/INSUFFICIENT_EVIDENCE"
+      ],
+      "clarificationRaised": true,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-CL-04",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "decided ACTIVE -- a question here would be unnecessary",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-MH-01",
+      "provenanceClass": "AUTHORED_COMPLEMENT",
+      "failureMode": "two genuinely independent hazards in one note",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE",
+        "emergency_egress/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE",
+        "emergency_egress/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-NOISE-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "noise_exposure, engineering control absent",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "shippedStates": [
+        "machine_guarding/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-NOISE-02",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "noise_exposure, hearing protection not provided",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "shippedStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-NOISE-03",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "noise_exposure, measured level stated",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "shippedStates": [
+        "noise_exposure/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-CS-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "confined_space, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+        "ADVISORY:SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-GC-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "ground_control, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "ground_control/ACTIVE"
+      ],
+      "shippedStates": [
+        "ground_control/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-HC-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "hazard_communication, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-LR-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "lifting_rigging, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "shippedStates": [
+        "lifting_rigging/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-MH-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "material_handling, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "scaffolds/ACTIVE",
+        "scaffolds/ACTIVE"
+      ],
+      "shippedStates": [
+        "scaffolds/ACTIVE",
+        "scaffolds/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-PPE-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "personal_protective_equipment, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "shippedStates": [
+        "chemical_storage/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-WCH-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "welding_cutting_hot_work, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "fire_explosion/ACTIVE"
+      ],
+      "shippedStates": [
+        "fire_explosion/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    },
+    {
+      "id": "F-FAM-ME-01",
+      "provenanceClass": "TARGETED_FAMILY_COMPLEMENT",
+      "failureMode": "mobile_equipment high-consequence, exact label sought",
+      "expected": true,
+      "clarificationExpected": false,
+      "outcomeKind": "VALIDATED",
+      "rawStates": [
+        "falls/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "shippedStates": [
+        "falls/ACTIVE",
+        "walking_working_surfaces/ACTIVE"
+      ],
+      "clarificationRaised": false,
+      "semanticCodes": [
+        "ADVISORY:SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+      ],
+      "fabricatedQuotes": 0,
+      "demoted": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+L3-2d ROOT-CAUSE PROOF MARKERS — recorded BEFORE any implementation change
+Recorded at: see file mtime; no source file under reasoning-l3/ had been modified at this point.
+
+METHOD. A controlled ablation (backend/scripts/ablate-l32d-prompt.ts) holding the model, seed,
+temperature, schema, user prompt and observation text CONSTANT and varying ONLY the system prompt.
+Any behavioural difference is therefore attributable to the prompt region and to nothing else.
+
+The L3-2b prompt was recovered by inverting the three L3-2c edits programmatically and was then
+VALIDATED EMPIRICALLY: under it, H-NG-02 reproduces the electrical/ACTIVE candidate L3-2b recorded.
+  v2_l32b_reconstructed sha256 676eb15ea839d9de0030f948ef8382e2317a25d6df7d9eabf3ad040d1d3f2e69  (72 lines)
+  v3_l32c_current       sha256 c62ff3eab5559cca534d0269ffed713072ac30eac1e79927d143a8732fcba852  (76 lines)
+
+=========================================================================
+D1_ROOT_CAUSE_PROVEN
+=========================================================================
+Artifact: rootcause/ablation-pre-patch.json, rootcause/ablation-determinism.json
+
+  fixture      v2 (L3-2b)                      v3 (L3-2c)                        clarification sits on
+  C-FLD-138    ACTIVE,        no clarification  ACTIVE,        CLARIFICATION      a DECIDED state (ACTIVE)
+  C-CS-05      HYPOTHETICAL,  no clarification  HYPOTHETICAL,  CLARIFICATION      a DECIDED state (HYPOTHETICAL)
+  C-AM-04      ACTIVE,        no clarification  ACTIVE,        CLARIFICATION      a DECIDED state (ACTIVE)
+  C-AM-06      ACTIVE,        no clarification  ACTIVE or INSUFFICIENT_EVIDENCE, CLARIFICATION in both
+
+D1 is TWO distinct sub-causes, not one:
+  D1a (C-FLD-138, C-CS-05, C-AM-04, and C-AM-06 in its ACTIVE form) -- the clarification is attached
+      to a candidate whose condition state is ALREADY DECIDED. `clarificationOnNonInsufficient` is
+      true. Nothing in the prompt forbids this, and the L3-2c block's "you MUST ... filled-in
+      clarification" out-ranks the advisory "a question attached to a hazard you can already
+      classify is noise too" seven lines from the end.
+  D1b (C-AM-06 in its INSUFFICIENT_EVIDENCE form) -- the STATE is wrong, and given that state the
+      clarification is legitimate. This is the D2 defect, NOT a clarification defect.
+
+  >> NEW EVIDENCE, contradicting L3-2c's NEXT_ACTION.md: C-AM-06 was filed there as one of the four
+     clarification-precision failures. Half of its behaviour is D2. Recorded, not silently merged.
+
+=========================================================================
+D2_ROOT_CAUSE_PROVEN
+=========================================================================
+Artifact: rootcause/ablation-pre-patch.json, rootcause/ablation-determinism.json
+
+  fixture      v2 (L3-2b)                    v3 (L3-2c)              contains no subjective or hedged
+                                                                     language, so the clarification
+                                                                     instruction has no business here
+  H-NG-02      1 candidate, electrical/ACTIVE  0 candidates          <- the regression, exactly
+  H-NG-03      1 candidate, ACTIVE             0 candidates          <- also regressed
+  C-AM-06      ACTIVE                          INSUFFICIENT_EVIDENCE (sometimes)
+
+The 9-line "THIS BRANCH HAS A REQUIRED OUTPUT SHAPE" block was inserted INSIDE the ordered
+condition-state ladder, directly beneath the ACTIVE rung. It makes INSUFFICIENT_EVIDENCE the longest
+rung in the ladder (10 lines against ACTIVE's 4). The ladder is read as a ranking; raising one rung
+lowered the one above it.
+
+  >> NEW EVIDENCE, contradicting L3-2c's NEXT_ACTION.md: C-NG-05 returns ZERO candidates under BOTH
+     prompts. It is a PRE-EXISTING provider limitation, not an L3-2c regression, and L3-2c's
+     NEXT_ACTION.md was wrong to list it as "the same shape". Recorded.
+
+=========================================================================
+INDEPENDENCE
+=========================================================================
+The two proofs do not rest on each other:
+  * every D2 fixture (H-NG-02, H-NG-03) contains NO subjective, hedged or impression language, so no
+    clarification rule can reach it; the defect is candidate SUPPRESSION, measured as n=0.
+  * every D1a fixture keeps its correct condition state under BOTH prompts (ACTIVE stays ACTIVE,
+    HYPOTHETICAL stays HYPOTHETICAL); only the presence of a clarification changes. The defect is
+    clarification ATTACHMENT, not state.
+
+=========================================================================
+DETERMINISM
+=========================================================================
+Three repeats per variant per fixture, 24 groups. 22 of 24 identical on
+(outcome, candidateCount, anyActive, anyClarification). Two borderline groups flip:
+  v2/H-AM-01  0 candidates  <-> 1 candidate with a clarification
+  v3/C-AM-06  ACTIVE+clar   <-> INSUFFICIENT_EVIDENCE+clar   (a clarification in BOTH forms)
+Neither flip weakens either proof: every D1 and D2 conclusion above holds in every repeat.
+Recorded as a reproducibility caveat -- borderline scenarios can flip at temperature 0 with a fixed
+seed on this server, which the fresh-holdout reproducibility measurement must re-establish.

@@ -1,0 +1,321 @@
+{
+  "method": "A family is SEALED_PASS when at least one sealed scenario declaring it had its hazard established at the SHIPPED tier, in the L3-2f sealed set or in any prior sealed set. `l32fExactLabel` is reported separately because familyPattern permits alternatives, and passing under an alternative label is coverage of the scenario, not of the label.",
+  "totals": {
+    "SEALED_PASS": 24
+  },
+  "l32fSetOnly": {
+    "SEALED_PASS": 17,
+    "SEALED_FAIL": 0,
+    "NOT_REPRESENTED": 7
+  },
+  "rows": [
+    {
+      "family": "chemical_storage",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 1,
+      "l32fEstablished": 1,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "compressed_air_hose_safety",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "compressed_gas_cylinders",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "confined_space",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 2,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "drowning_hazards",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "electrical",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "emergency_egress",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 1,
+      "l32fEstablished": 1,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "falls",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 9,
+      "l32fEstablished": 7,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": [
+        "F-WC-02",
+        "F-WC-03"
+      ]
+    },
+    {
+      "family": "fire_explosion",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 2,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "first_aid_eyewash_safety_shower_access",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "ground_control",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 3,
+      "l32fEstablished": 3,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "hazard_communication",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 2,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "lifting_rigging",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 6,
+      "l32fEstablished": 6,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "loto_stored_energy",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 1,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": [
+        "F-WC-09"
+      ]
+    },
+    {
+      "family": "machine_guarding",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 27,
+      "l32fEstablished": 26,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": [
+        "F-WC-09"
+      ]
+    },
+    {
+      "family": "material_handling",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 6,
+      "l32fEstablished": 6,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "mobile_equipment",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 22,
+      "l32fEstablished": 21,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": [
+        "F-FLD-159"
+      ]
+    },
+    {
+      "family": "noise_exposure",
+      "priorSealedStatus": "NOT_YET_SEALED_VALIDATED",
+      "l32fDeclared": 4,
+      "l32fEstablished": 4,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": true,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "personal_protective_equipment",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 3,
+      "l32fEstablished": 3,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "respirable_dust_silica",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "scaffolds",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 2,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    },
+    {
+      "family": "trenching_shoring",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 0,
+      "l32fEstablished": 0,
+      "l32fStatus": "NOT_REPRESENTED",
+      "l32fExactLabel": false,
+      "highConsequenceExample": false,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "prior sealed set only",
+      "failedIds": []
+    },
+    {
+      "family": "walking_working_surfaces",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 8,
+      "l32fEstablished": 6,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": [
+        "F-WC-02",
+        "F-WC-03"
+      ]
+    },
+    {
+      "family": "welding_cutting_hot_work",
+      "priorSealedStatus": "SEALED_VALIDATED",
+      "l32fDeclared": 2,
+      "l32fEstablished": 2,
+      "l32fStatus": "SEALED_PASS",
+      "l32fExactLabel": false,
+      "highConsequenceExample": true,
+      "cumulativeStatus": "SEALED_PASS",
+      "evidenceSource": "L3-2f sealed set",
+      "failedIds": []
+    }
+  ],
+  "noiseExposure": {
+    "priorStatus": "NOT_YET_SEALED_VALIDATED (its one scenario was deleted by L3-2E-DISC-06)",
+    "l32fStatus": "SEALED_PASS",
+    "declared": 4,
+    "established": 4,
+    "exactLabelEmitted": true,
+    "resolution": "CLOSED \u2014 the DISC-06 repair restored the finding and the exact label was emitted on fresh sealed evidence"
+  }
+}

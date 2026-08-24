@@ -1,0 +1,5 @@
+
+> safety-insite-backend@1.0.0 test:evidence-foundation
+> ts-node scripts/test-evidence-foundation.ts
+
+{"passed":true,"assertions":35}
