@@ -11825,6 +11825,518 @@ unperformed and is gated behind it.
 
 ---
 
+## 76 — INSITE v1.0 PRODUCTION RELEASE EXECUTION (2026-08-26) `DEPLOYED, NO PAYMENT, $0.00 PROVIDER SPEND`
+
+Production moved from commit `97941ca2` (2026-08-18, pre-v1.0) to
+`1da529a0e9f78abd5cbbbc156a99016207695ef0`. Six migrations applied, backend and frontend deployed,
+zero-cost smoke green. **No live payment was performed.** §75's
+`PRODUCTION_RELEASE_EXECUTION_REQUIRED` is closed; §75 itself is not rewritten.
+
+### 76.1 The release, reconciled rather than assumed `NEW_EVIDENCE`
+
+`97941ca2..1da529a0` is **15 commits, 3,420 files, 1,356,252 insertions** — the bulk of it
+verification evidence, not runtime code. `main` was an exact ancestor of the release branch, so the
+promotion was a **fast-forward**: no squash, no rebase, no rewritten history, and every one of the
+15 commits preserved.
+
+The migration inventory was derived from `git diff --name-status` over that range rather than from
+the previously-recorded "six KG migrations". The diff returns **exactly six** new migration files
+and no others, so the prior count is confirmed by measurement instead of inherited.
+
+### 76.2 Migration classification — every one additive `PROTECTED_DECISION`
+
+| # | Migration | Operations | Old-code safe? |
+|---|---|---|---|
+| 1 | `InspectionRegulatoryContext1800000009000` | 1 col, `NOT NULL DEFAULT 'unknown'` | yes — default fills |
+| 2 | `KnowledgeReleaseProvenance1800000010000` | 2 cols, both `NULL` | yes |
+| 3 | `RegulatoryReleaseLifecycle1800000011000` | 3 `NULL` cols, 1 table, CHECK, partial unique idx | yes |
+| 4 | `RegulatoryReleaseRecords1800000012000` | 1 table, 2 idx, CHECK | yes |
+| 5 | `RegulatoryReleaseRecordReviews1800000013000` | 1 table, 2 idx, CHECK | yes |
+| 6 | `ApprovalProvenanceContract1800000014000` | 10 cols, all `NULL`, 2 idx | yes |
+
+**Zero `DROP TABLE`, `DROP COLUMN`, `TRUNCATE` or `DELETE` in any `up()`.** The three `DROP
+CONSTRAINT` hits are each `DROP CONSTRAINT IF EXISTS` immediately followed by re-adding the same
+CHECK — an idempotency guard, and two of the three target a table the same migration just created.
+
+Every migration is therefore **both** `REQUIRED_BEFORE_NEW_CODE` (the v1 entities reference these
+columns) **and** `SAFE_BEFORE_NEW_CODE` (the running pre-v1 process tolerates them). Nothing was
+`REQUIRES_NEW_CODE_FIRST` and nothing was `UNCERTAIN`, which is what made migrate-then-deploy the
+correct order rather than the merely conventional one.
+
+`chk_regulatory_release_status` was the only constraint that could have rejected existing data.
+`regulatory_releases` held **0 rows** with **0 distinct statuses**, measured before applying, so the
+migration's own comment ("no pre-existing row can violate it") was confirmed rather than trusted.
+
+### 76.3 The mis-targeting hazard, and the proof that closed it `STABLE_INVARIANT`
+
+`backend/src/database/data-source.ts` opens with `import 'dotenv/config'`, and `backend/.env` sets
+`DATABASE_URL` to **`postgres://…@127.0.0.1/safescope`** — the protected development database. A
+bare `npm run migration:run` from `backend/` migrates the protected database. This is the exact
+accident the data-protection policy exists to prevent.
+
+It is closed by a property, not by care: **`dotenv` does not override an already-populated
+`process.env`.** That was proven empirically before use — with `DATABASE_URL` exported, a
+`require('dotenv/config')` process resolved `host=localhost db=test_v1_release_gate_20260826`, not
+`safescope`. The same proof was then re-run against the production URL **immediately before the
+production migration**, printing `host=ep-weathered-moon-a4egk93d-pooler…neon.tech db=neondb` and
+failing closed on any protected or local name.
+
+Note the repo's own `scripts/lib/test-database-ownership.ts` guard would refuse `neondb` outright
+(`NAME_NOT_DISPOSABLE`), so **no mutating test suite can ever reach production** — the guard and the
+migration path are deliberately different mechanisms.
+
+### 76.4 Migration rehearsal on a disposable database `VERIFICATION`
+
+Before production, all **46** migrations were applied **from scratch** to a fresh local
+`test_v1_release_gate_20260826`, exiting `0` with a clean `COMMIT`, yielding 46 rows in `migrations`,
+all three new tables, all sampled new columns, all three CHECK constraints and
+`uq_regulatory_release_active`. Production is PostgreSQL **17.11**; the rehearsal ran on **16.13**,
+which is a stated difference, not a matched control.
+
+### 76.5 Production preflight — no drift `NEW_EVIDENCE`
+
+`neondb`, PostgreSQL 17.11, `uuid-ossp` present (required by migration 3's `uuid_generate_v4()`).
+**40 applied migrations, and the applied history is an exact ordered prefix of the repo's 46** —
+position-by-position comparison found zero order drift and zero applied-but-not-in-repo entries.
+Pending was therefore exactly the six above.
+
+### 76.6 Migrations applied, data preserved
+
+`40 → 46`. All six executed successfully. Row counts **identical before and after**:
+
+| table | before | after | | table | before | after |
+|---|---|---|---|---|---|---|
+| `user` | 26 | 26 | | `inspection` | 1 | 1 |
+| `user` (live) | 15 | 15 | | `observations` | 1 | 1 |
+| `organization` | 8 | 8 | | `hazlenz_analyses` | 1 | 1 |
+| `user_subscription` | 9 | 9 | | `inspection_findings` | 1 | 1 |
+| `entitlement_grants` | 1 | 1 | | `regulatory_releases` | 0 | 0 |
+| `standards` | 31 | 31 | | | | |
+
+### 76.7 Governed release activation — NOT REQUIRED, and deliberately not performed `PROTECTED_DECISION`
+
+Phase 9 of the release contract is conditional, and its condition is **false**. All four cutover
+variables — `GOVERNED_CUTOVER_MODE`, `GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST`,
+`GOVERNED_CUTOVER_ORG_ALLOWLIST`, `GOVERNED_CUTOVER_PRODUCTION_ACK` — are **absent** from the
+production environment, so `cutover-mode.ts` resolves `LEGACY` / `DEFAULT_NO_CONFIGURATION`.
+
+This is not an inference from the absence of configuration; it is the measured contract:
+`kg4a-default-off` **51/0**, `kg4d-default-off` **121/0**, `kg4c-disabled-deployment` **80/0**, and
+30 of 31 `kg4b-default-off` assertions, together proving that no mode, an empty mode, a malformed
+mode, a truthy mode, an allowlist without a mode, or SHADOW without a production acknowledgement all
+resolve `LEGACY` **and create no cutover context at all**.
+
+The six migrations therefore install the governed **substrate** and activate **nothing**. No release
+record was invented, no activation pointer was set, `regulatory_releases` remains at 0 rows.
+**Level-1 HazLenz remains `CUSTOMER_AUTHORITATIVE`; Level-3 remains `NON_CUSTOMER_AUTHORITATIVE` /
+`DEFERRED`.** No provider call was made and no Level-3 material was promoted.
+
+### 76.8 Pre-mutation gates
+
+| Gate | Result |
+|---|---|
+| backend `tsc --noEmit` | **clean** |
+| frontend `tsc --noEmit` | **clean** |
+| frontend `next build` (production) | **succeeded**, all routes prerendered |
+| `billing:regression` | **27 / 0** |
+| `billing:migration-validation` | **6 / 0** |
+| `check:launch-pricing` | **36 / 1** — `V1-PRICE-01` only (§75.9) |
+| `check:hydration` | **3 / 0**, 0 mismatches across 20 routes × 2 themes |
+| `test:auth-flow` | **PASS** |
+| `test:entitlement-boundary` | **PASS**, 4 assertions |
+| `test:authenticated-entitlement-path` | **PASS** (`402` negative, bypass false) |
+| `test:entitlement-grant-helper` | **5 / 5** |
+| `test:approval-contract` | **57 / 0** |
+| `test:kg4a-default-off` | **51 / 0** |
+| `test:kg4c-disabled-deployment` | **80 / 0** |
+| `test:kg4d-default-off` | **121 / 0** |
+| `test:hazlenz-core` (Level-1) | **28 / 30** |
+
+`test:hazlenz-core`'s two failures are **exactly** the §13.1 pair — `Golden Hardening Scenarios Test`
+and `HazLenz Production Path Regression`. **No third failure.** The release gate's condition was met
+as written.
+
+`test:authenticated-entitlement-path` first returned `login failed: 429`. That is the 60-second
+`RATE_LIMIT_WINDOW_MS` consumed by `test:auth-flow` immediately before it; after the window it passed
+clean. Recorded because a bare `429` in a release log reads like an auth defect and is not one.
+
+### 76.9 Three suites NOT RUN, and why `STATED_UNCERTAINTY`
+
+Not failures — unmet harness prerequisites on a fresh disposable database. Recorded as gaps rather
+than counted as passes:
+
+* `test:kg4b-default-off` — 30/31. Its Phase 19 assertion needs a server **running in SHADOW mode**
+  plus two pre-provisioned accounts (`SHADOW_EMAIL` / `LEGACY_EMAIL` / `PASSWORD`). The 30 passing
+  assertions are the config-drift contract; only the live two-account leg is unproven here.
+* `test:knowledge-release-provenance` — needs its own API instance.
+* `test:regulatory-release-lifecycle` — needs a seeded standards corpus (`enough standards to slice
+  (0)`), which a fresh database does not have.
+
+### 76.10 Cutover order, and the fact that merge IS deploy `OPERATIONAL_FINDING`
+
+The service is `autoDeploy: yes`, `autoDeployTrigger: commit`, tracking `main`. **Pushing `main` is
+the backend deploy trigger** — the release contract's steps 4 and 5 are one irreversible action, not
+two. Recorded because treating them as separable is how a deploy happens before its migrations.
+
+Executed order: migrate → verify schema → (governed activation skipped, proven unnecessary) →
+fast-forward `main` → push (deploy fires) → verify backend → verify frontend → smoke.
+
+### 76.11 What was deployed
+
+| | |
+|---|---|
+| `V1_RELEASE_CANDIDATE_SHA` | `1da529a0e9f78abd5cbbbc156a99016207695ef0` |
+| documentation checkpoint commit | the same commit — it *is* the §75 doc commit |
+| `main` after fast-forward | `1da529a0e9f78abd5cbbbc156a99016207695ef0` |
+| backend deploy | `dep-da7kme142hec73ck9oig`, `live`, commit `1da529a0e9f7`, finished `2026-08-26T20:24:55Z` |
+| frontend deploy | `dpl_Bxau7Uj5xTSHWo2j2VtVQxxTYLtz`, `READY`, `githubCommitSha 1da529a0…`, ref `main`, `2026-08-26T20:23:22Z` |
+
+Backend `/health` reports `gitCommit 1da529a0e9f78abd5cbbbc156a99016207695ef0` with
+`versionSourceStatus: RENDER_GIT_COMMIT`, `nodeEnv: production`, `database: up`. **Backend and
+frontend are on the same SHA.** 100 lines of deploy log contain **zero** error, missing-column or
+`QueryFailed` matches.
+
+### 76.12 Stripe runtime state `STATED_UNCERTAINTY`
+
+`STRIPE_PRO_PRICE_ID` reads back `price_1U8mok1UCjdSbesgHqdXFFPN`; the Price re-resolves LIVE, active,
+`usd 2499`, recurring monthly on active product `prod_V5lrzAsNRjVjUJ`. The deploy was **created
+`20:23:20Z`, after the env write**, and Render injects environment at process start, so the running
+process holds the new value.
+
+**That last link is inference, not measurement.** No endpoint exposes the configured price ID, and
+the only direct proof — opening a Checkout Session — is deferred to the live-payment phase by
+contract. `§75.4`'s consequence is now closed either way: the window in which the runtime held the
+**archived** `$9.99` Price ended when this deploy replaced the process.
+
+### 76.13 Production smoke — zero cost
+
+15 of 15 routes returned `200`: `/`, `/pricing`, `/login`, `/register`, `/upgrade`, `/legal`,
+`/reset-password`, `/command-center`, `/inspections`, `/inspection-workspace`, `/reports`,
+`/safety-calendar`, `/settings`, `/profile`, `/unlock`. Backend `/health` `200`; `/billing/me` and
+`/billing/status` `401`, i.e. the auth guard is active.
+
+Live customer-facing contract, read off production HTML:
+
+| Surface | `$24.99` | `$0` | `Expert` | retired `6.99`/`11.99`/`9.99` |
+|---|---|---|---|---|
+| `/pricing` | 3 | 2 | **0** | **0** |
+| `/register` | 1 | 1 | **0** | **0** |
+| `/` | 1 | — | **0** | **0** |
+
+`/pricing` renders exactly `>Free<` and `>Pro<` and no `Expert`/`Plus`/`Company`/`Enterprise`.
+`/upgrade` returns `200` but no price unauthenticated — it is the auth-gated conversion surface and
+serves a `Checking…`/login shell until authenticated. Expected, not a defect.
+
+**No Checkout Session was created. No card was charged. No production account was created.**
+Authenticated smoke (HazLenz Level-1 classify, report generation) was therefore **not** exercised
+against production; only its gating was.
+
+### 76.14 Two observations recorded, neither acted on `OPEN_ITEM`
+
+* **`BILLING_SUCCESS_URL` / `BILLING_CANCEL_URL` are dead variables.** Neither is referenced anywhere
+  in application source; `createCheckoutSession()` builds its URLs from `frontendUrl()`
+  (`FRONTEND_APP_URL` → `APP_URL` → `FRONTEND_URL` → localhost). `BILLING_CANCEL_URL` contains a
+  literal space — `https://sentinel safety.vercel.app/…` — and is a malformed URL. **Harmless
+  because it is unread**, and left untouched as unrelated remediation.
+* **Production's `STRIPE_SECRET_KEY` lacks Prices Read** (§75.2), so production still cannot
+  independently verify what it bills. Unchanged, still open.
+
+`V1-PRICE-01` (§75.9) remains open and was deliberately not repaired here.
+
+### 76.15 Preservation and terminal
+
+`main` and `release/insite-rc-2026-08-18` both at `1da529a0`, both 0/0 with their upstreams. **4
+stashes and 23 tags untouched.** No `reset`, `restore`, `clean`, `stash`, force push, rebase or
+branch deletion. The 21 pre-existing untracked paths are preserved. One local disposable database,
+`test_v1_release_gate_20260826`, was created for verification and left in place as evidence.
+
+```
+PRODUCTION_MIGRATIONS_COMPLETE          = TRUE
+PRODUCTION_GOVERNED_RELEASE_READY       = TRUE   (substrate installed; LEGACY, nothing activated)
+PRODUCTION_DEPLOYED_AT_V1               = TRUE
+PRODUCTION_STRIPE_RUNTIME_PRICE_ACTIVE  = TRUE   (see §76.12 for the inference boundary)
+LIVE_PAYMENT_PROOF                      = FALSE
+```
+
+**Terminal:** `INSITE_V1_PRODUCTION_RELEASE_DEPLOYED —
+LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED`
+
+**Next prerequisite:** the live customer journey and payment proof — separately authorized. Register
+a real account against production, exercise the authenticated Level-1 HazLenz path end to end, open a
+Checkout Session against `price_1U8mok1UCjdSbesgHqdXFFPN`, complete one live `$24.99` payment, and
+confirm the webhook grants Pro. **This is the first step that creates billable state, and it is the
+only remaining launch gate.**
+
+---
+
+## 77 — INSITE v1.0 LIVE CUSTOMER JOURNEY, PAYMENT WITHHELD BY OWNER (2026-08-26) `EXECUTED THROUGH CHECKOUT, NO PAYMENT, $0.00`
+
+A real production account was created, driven through the Free customer journey, and used to
+generate a genuine live `$24.99` Stripe Checkout Session. **The owner then declined to authorize the
+purchase.** No card was charged, no subscription exists, no Pro entitlement was granted. §76's
+`LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED` is therefore **partially** discharged: the
+customer-facing path up to and including Checkout is proven; everything downstream of payment is not.
+
+### 77.1 The distinction this section exists to preserve `PROTECTED_DECISION`
+
+Generating a correct Checkout Session is **not** evidence that billing works. The unproven chain is:
+
+```
+Stripe payment succeeds
+  -> webhook reaches InSite
+    -> user_subscription persisted
+      -> Pro entitlement activates
+        -> entitlement survives logout/login
+```
+
+Not one link of that chain has been exercised in production. It is recorded as
+`DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION` — **not** as passed, and **not** as failed.
+`LIVE_PAYMENT_PROOF` stays `FALSE`. The owner explicitly prohibited manufacturing this evidence by
+self-purchase, manual subscription creation, manual Pro grant, charge, or refund. A manual
+entitlement grant is not a substitute for this proof and must never be used as one.
+
+### 77.2 Acceptance account `NEW_EVIDENCE`
+
+| | |
+|---|---|
+| email | `mckinley.christopherd+insitev1@gmail.com` (owner-controlled plus-alias) |
+| userId | `d07f56aa-8145-414c-b63d-1c17e0296831` |
+| role / org | `individual` / none |
+| initial tier | `planCode free`, `subscriptionStatus none` |
+
+Proven clean **before** registration by read-only production inspection: 0 user rows (live *and*
+soft-deleted), 0 Stripe customers, **0 subscriptions account-wide**, 0 entitlement grants, 0
+inspections. The one pre-existing `entitlement_grants` row belongs to a different `userId` (the
+founder grant of §-prior) and was not touched.
+
+Registration was performed through the production UI on the Free plan. `planCode` is hard-coded
+`'free'` in `AuthService.register()` unless a valid employer promo code is supplied; `selectedPlan`
+cannot grant Pro. No email-verification gate exists.
+
+### 77.3 A production outage caused by verification tooling, not by the product `OPERATIONAL_FINDING`
+
+The first two registration attempts returned **HTTP 500**. Root cause was **the verification helper,
+not InSite**:
+
+A read-only SQL helper issued `SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY` against the
+**Neon pooled** endpoint (`ep-weathered-moon-a4egk93d-pooler…`). PgBouncer-style pooling reuses
+*server* connections across clients, so the setting persisted onto a pooled server connection and was
+then handed to the production backend, which inherited `default_transaction_read_only = on`. Every
+`INSERT` it attempted failed:
+
+```
+QueryFailedError: cannot execute INSERT in a read-only transaction
+  at async AuthService.register (dist/auth/auth.service.js:110:9)
+```
+
+Two occurrences, `20:53:33Z` and `20:54:51Z`. **Neither created a row** — the failure was clean, with
+no partial state. Remediated by restoring `READ WRITE` across the pool; 20/20 probes returned to
+`off`. `pg_db_role_setting` was confirmed **empty**, proving no persistent role- or database-level
+setting was ever created. The helper was rewritten to use transaction-scoped
+`BEGIN TRANSACTION READ ONLY`, which the pooler resets at transaction end. Registration then
+returned `201`.
+
+**Never issue a session-scoped `SET` against the pooled endpoint.** This is the mechanism by which a
+read-only inspection can take down production writes.
+
+### 77.4 Free entitlement boundary — proven at BOTH layers `VERIFICATION`
+
+UI hiding was not relied upon. Every probe below used the acceptance account's real JWT.
+
+| Result | Routes |
+|---|---|
+| `200` allowed | `/auth/me`, `/billing/me`, `/billing/status`, `/inspections`, `/sites`, `/tasks` |
+| `402 PAID_SUBSCRIPTION_REQUIRED` | `POST /safescope-v2/classify`, `GET /dashboard/executive-summary`, `GET /analytics/safety-trends`, `GET /audit`, `POST /standards/match`, `GET /notifications` |
+| `403` | `POST /legacy/reports` — `RolesGuard` precedes `EntitlementGuard`; handler is retired and throws `Gone` regardless |
+| `404` | `POST /risk/calculate` — `RiskModule` is **imported nowhere**, so `/risk/*` is not mounted; no frontend caller exists |
+
+Both non-402 results are still **denials**, so there is no Free→Pro leakage. The `404` is a dead
+module, not a boundary failure.
+
+`GET /billing/me` on Free returns `tier free`, `hasProAccess false`, `hasPaidAccess false`,
+`stripeCustomerId null`, and a `planCatalog` of exactly two entries — Free `$0` and Pro `$24.99`.
+No Expert.
+
+### 77.5 Level-1 HazLenz customer path under the Free contract `NEW_EVIDENCE`
+
+Free is `quickCapture` only: `fullSafeScope` and `hazlenzFullReview` are **false**, so HazLenz
+analysis is Pro-gated **by design**. The Free path exercised end to end:
+
+| Artifact | Id |
+|---|---|
+| site | `1cad8421-b34b-460a-9fdc-dfb6fb55ddb8` "North Pit — Acceptance Site" |
+| inspection | `55db26cc-8d98-4ccc-be0e-773c256ade31`, `draft`, `regulatoryContext msha` |
+| observation | `b5fb6a92-fd9c-4254-9f94-6ffb01bba23f`, version 1, `direct_observation`, 538 chars |
+
+Governing jurisdiction was selected once and inherited by the inspection. Photo evidence is optional,
+so no imagery was required. On save the UI returned *"Observation saved. HazLenz AI analysis is a Pro
+feature."* with an upgrade panel that states the observation is retained exactly as entered.
+
+Critically, the gate is **real, not cosmetic**: `hazlenz_analyses`, `inspection_findings` and
+`inspection_reports` each remained at **1** — their pre-existing lifetime values. Free created no
+analysis, no finding, no report, and **made no Level-3 provider call**. Level-1 remains
+`CUSTOMER_AUTHORITATIVE`; Level-3 remains `DEFERRED` / `NON_CUSTOMER_AUTHORITATIVE`.
+
+### 77.6 The Free "saved history" defect — root cause established `DIAGNOSED, NOT REPAIRED`
+
+`/register` advertises Free as *"Inspections, sites, observations with photo evidence, **saved
+history**, and calendar tasks"*. A Free customer cannot read that history back.
+
+The data is **not** lost and the backend is **not** at fault. Measured against production:
+`GET /inspections` returns the inspection and `GET /inspections/:id` returns `200` with the complete
+538-character observation. The failure is entirely presentational, in two places:
+
+1. `app/inspections/page.tsx` calls `listPersistedInspections()` and stores the result, but the only
+   thing it renders from that array is `.length` (lines 340-341, *"· 1 persisted inspection"*). The
+   array is never mapped into a list, and no route reopens a saved inspection.
+2. `app/inspection-workspace/page.tsx:526` gates observation restore on a **conjunction**:
+
+```js
+if (persistedObservation && currentAnalysis) {
+  setObservation(persistedObservation.rawText);
+```
+
+`currentAnalysis` is the newest non-superseded HazLenz analysis. On Free, `classify` returns `402`,
+so an analysis can **never** exist, so this branch is **unreachable on Free by construction** — even
+though `persistedObservation` was fetched successfully and its `rawText` is in hand. Confirmed
+against the live account: `observationFound true`, `rawTextLen 538`, `analyses 0`,
+`restoreBlockWouldRun false`.
+
+The smallest generalized correction is to decouple the two restores — restore `rawText` whenever
+`persistedObservation` exists, and restore analysis-derived state only when `currentAnalysis` exists.
+**Not implemented**: product code must not change during acceptance. Tracked as `V1-FREEHIST-01`.
+
+### 77.7 Production customer sweep — 18 routes, two viewports `VERIFICATION`
+
+Routes: `/`, `/pricing`, `/about`, `/hazlenz`, `/legal`, `/login`, `/register`, `/forgot-password`,
+`/reset-password`, `/unlock`, `/command-center`, `/inspections`, `/inspection-workspace`, `/reports`,
+`/safety-calendar`, `/settings`, `/profile`, `/upgrade`.
+
+| Check | Result |
+|---|---|
+| HTTP status | **18/18 `200`** |
+| Horizontal overflow @ 390px | **0** (`scrollWidth == clientWidth` on all 18) |
+| Horizontal overflow @ 1280px | **0** |
+| Retired prices `9.99` / `6.99` / `11.99` | **0 occurrences** |
+| `Expert` as a customer plan | **0** |
+| Stale branding (`Sentinel Safety`, `AuditAlly`) | **0** |
+| Placeholders (`TODO`, `Lorem`, `undefined`, `NaN`, `[object Object]`) | **0** |
+| Console errors / hydration warnings | **0** across 12 instrumented loads |
+| Broken internal links | **0 of 13** distinct hrefs discovered across 14 routes |
+| Text contrast (measurable subset) | **0 failures**, 196 elements across 12 routes |
+
+**Theme assignment is correct, not a defect.** `/upgrade` and `/unlock` render light while the app
+renders dark; this is `FIXED_LIGHT_THEME_ROUTES` working as designed. `AppShell.tsx` documents why:
+`/upgrade` renders the same fixed-light `PricingContent` as `/pricing`, whose hard-coded light
+surfaces measured **1.1:1 and 1.2:1** under the dark theme — pinning them light *prevents* a
+contrast defect.
+
+**Contrast methodology caveat `STATED_UNCERTAINTY`.** A first style-based pass reported ~28
+failures. Every one was a false positive from ancestor-walking onto gradient backgrounds — the exact
+blind spot `scripts/measure-contrast.mjs` documents ("gradients and background images, lab()/oklch()
+colour spaces, alpha compositing, and ancestor-walking guesswork"). After excluding gradient-backed
+elements the count is **0**, but only **196** elements were measurable; the gradient-backed majority
+was confirmed **visually**, not pixel-measured. Pixel-accurate confirmation needs
+`measure-contrast.mjs`, which requires a disposable database and a local stack and was not run
+against production.
+
+### 77.8 One real visual defect found `OPEN_ITEM`
+
+The account dropdown (avatar → User Profile / Settings / About / Legal / HazLenz AI / Sign Out) is
+painted `rgba(15, 23, 42, 0.9)` with `backdrop-filter: none`. At 90% opacity the page behind bleeds
+through; over large light headline text it is plainly visible ghosting behind the menu labels. It is
+present on **every authenticated page**, because it is the primary account menu.
+
+Menu text stays legible — the composited background is approximately `rgb(36, 44, 62)` against white
+text, still well above AA — so this is **cosmetic, not an accessibility failure**. One-line fix
+(opaque background or `backdrop-filter: blur`). Tracked as `V1-MENU-01`. **Not repaired**: product
+code must not change during acceptance.
+
+### 77.9 Checkout Session — created by the customer path, verified, then abandoned `NEW_EVIDENCE`
+
+Created by clicking the normal `/upgrade` → *"Upgrade to Pro — $24.99/month"* control, which calls
+the production `createCheckoutSession()`.
+
+| Field | Value |
+|---|---|
+| id | `cs_live_a1Q9G3uTPoRkAiF1lQwsZpExKRkX9g4mwnTPD9qKixfBiEM52CP0hCJEcS` |
+| `livemode` / `mode` | `true` / `subscription` |
+| `metadata` | `userId d07f56aa-…`, `targetTier pro` |
+| line items | **exactly one** — "Safety InSite Pro", quantity `1` |
+| price | `price_1U8mok1UCjdSbesgHqdXFFPN`, `unit_amount 2499`, `month/1`, `prod_V5lrzAsNRjVjUJ` |
+| `amount_total` | `2499 usd` |
+| `automatic_tax` | disabled → no tax line |
+| customer | `cus_V96Iofv1c8qnts` (email and `metadata.userId` both match) |
+| displayed | "Safety InSite Pro $24.99 / Billed monthly", "Total due today $24.99", "Next bill September 26, 2026" |
+
+No `$9.99`, no `$6.99`, no Expert, no additional subscription item. This **closes §76.12's inference
+boundary**: the running process demonstrably bills the `$24.99` Price, now measured rather than
+inferred.
+
+The owner opened Apple Pay and exited without authorizing. Independently re-verified afterwards:
+session `status open` / `payment_status unpaid`, `subscription null`, `payment_intent null`,
+`invoice null`; and for `cus_V96Iofv1c8qnts` — **0** subscriptions, payment_intents, charges,
+invoices, setup_intents and saved payment methods, with exactly **1** checkout session. The only
+Stripe event since creation is `customer.created` (`evt_1U8o5v1UCjdSbesgz75wOg69`); there is no
+`checkout.session.completed`, no `payment_intent.*`, no `charge.*`, no `customer.subscription.*`, no
+`invoice.*`. Render logs since `21:05Z` contain **0** webhook, billing or error lines.
+
+`createCheckoutSession()` writes a placeholder `user_subscription` row (`tier free`, `status none`,
+`stripeSubscriptionId null`). Two derived fields shift as a side effect — `accessSource`
+`free`→`subscription` and `lifecycleState` `null`→`canceled`. **Neither reaches the customer**:
+`getBillingLifecycleCopy()` has no `canceled` branch and falls through to
+`status.status || "none"`, so Settings correctly shows "none" / "Not available". Recorded because
+`lifecycleState: "canceled"` on an account that never subscribed reads as a defect and is not one.
+
+### 77.10 Subscription lifecycle `PARTIAL`
+
+Configuration **verified read-only**; behaviour **deferred** — there is no subscription to exercise and
+no portal session was created.
+
+The customer-facing cancellation mechanism is the Stripe Billing Portal, reached from Settings →
+"Manage Subscription" (`POST /billing/portal` → `createPortalSession()`). Live default configuration
+`bpc_1U5aKg1UCjdSbesgbbjE5ZW7` is `active`, with `subscription_cancel` **enabled**, mode
+`at_period_end`, `proration_behavior none`, and a cancellation-reason prompt. `subscription_update`
+is **disabled** (there is only one paid plan, so there is nothing to switch to); payment-method
+update, invoice history and customer update are enabled.
+
+On cancellation, `resolveEffectiveTier()` derives entitlement from Stripe `status` alone — only
+`active` and `trialing` grant the tier. There is deliberately **no** `periodEnd` grace window; it was
+removed after a Stripe Test Clock proved it kept Pro alive after Stripe had ended the subscription.
+Unverified in production for the same reason as the rest of the paid path.
+
+### 77.11 Flags
+
+```
+LIVE_ACCOUNT_CREATION_PROOF   = TRUE
+FREE_ENTITLEMENT_PROOF        = TRUE
+FREE_PRO_BOUNDARY_PROOF       = TRUE
+LEVEL1_CUSTOMER_PATH_PROOF    = TRUE   (Free scope; Pro scope deferred)
+LIVE_CHECKOUT_PRICE_PROOF     = TRUE   (measured, closes 76.12)
+LIVE_PAYMENT_PROOF            = FALSE  (owner withheld authorization)
+STRIPE_WEBHOOK_PROOF          = DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION
+PRO_ENTITLEMENT_PROOF         = DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION
+ENTITLEMENT_PERSISTENCE_PROOF = DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION
+FINAL_CUSTOMER_UX_SWEEP       = PASS   (2 open cosmetic items, 0 launch blockers)
+PRODUCTION_DEPLOYED_AT_V1     = TRUE
+LEVEL1_CUSTOMER_AUTHORITATIVE = TRUE
+LEVEL3_CUSTOMER_AUTHORITATIVE = FALSE
+```
+
+Open, non-blocking: `V1-PRICE-01` (36/37, verification-infrastructure false positive, deliberately
+not remediated), `V1-FREEHIST-01` (77.6), `V1-MENU-01` (77.8), the three unrun KG harness suites of
+§76.9, dead `BILLING_SUCCESS_URL`/`BILLING_CANCEL_URL`, and production's `STRIPE_SECRET_KEY` still
+lacking Prices Read.
+
+**Terminal:** `INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE — PAID_PATH_UNPROVEN`
+
+**InSite is NOT certified launch-ready by this section.** Everything reachable without spending money
+passes. The single most important billing integration — payment → webhook → persisted subscription →
+automatic Pro entitlement — remains genuinely unproven, and that is a real engineering risk, not
+paperwork.
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`

@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
+  "checkpoint": "INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE — PAID_PATH_UNPROVEN",
   "readiness": "NO LOCAL FUNCTIONAL OR RESPONSIVE BLOCKERS. The three gaps blueprint 73.11 recorded are closed: the hydration mismatch is NOT_REPRODUCIBLE and now has a permanent check; the phone inspection workflow was driven end to end at 390px (20/20); and the three routes previously measured empty were re-measured populated, which surfaced and fixed four real mobile defects. Everything remaining is a production commerce or release action.",
-  "nextSlice": "PRODUCTION RELEASE EXECUTION, separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes the newly configured STRIPE_PRO_PRICE_ID effective — the running service still holds the archived $9.99 price id. Live-payment proof is gated behind that deploy. Human visual acceptance of the 22-screenshot shortlist remains the only non-production item.",
+  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: V1-FREEHIST-01 and V1-MENU-01 remediation.",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -9542,5 +9542,290 @@
     "worktree": "Documentation changes left UNCOMMITTED. Only docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json modified. 21 pre-existing untracked paths preserved.",
     "supersededCheckpoint": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE — PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
     "nextPrerequisite": "PRODUCTION_RELEASE_EXECUTION_REQUIRED — separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes STRIPE_PRO_PRICE_ID effective. Live-payment proof is gated behind it."
+  },
+  "v1ProductionReleaseExecution": {
+    "terminal": "INSITE_V1_PRODUCTION_RELEASE_DEPLOYED — LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 76",
+    "closes": "PRODUCTION_RELEASE_EXECUTION_REQUIRED from section 75. Section 75 was not rewritten.",
+    "release": {
+      "previousProductionCommit": "97941ca23c0be880395fe0d51ceb72ca22d8bfaa",
+      "originalReleaseHead": "6d27ecc6f85e8c8df36ff55d8692ec056e32c154",
+      "documentationCheckpointCommit": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "documentationCheckpointNote": "The doc commit IS the release candidate: it was committed on top of 6d27ecc6 and nothing followed it.",
+      "V1_RELEASE_CANDIDATE_SHA": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "productionBranchSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "mergeStrategy": "FAST-FORWARD. main was an exact ancestor of the release branch, so no squash, no rebase, no rewritten history; all 15 commits preserved.",
+      "diffMagnitude": "15 commits, 3420 files, 1356252 insertions, 1552 deletions — predominantly verification evidence, not runtime code.",
+      "forcePushUsed": false
+    },
+    "migrations": {
+      "inventorySource": "Derived from git diff --name-status 97941ca2..1da529a0, NOT inherited from the previously-recorded count. The diff returns exactly six new migration files and no others.",
+      "appliedCountBefore": 40,
+      "appliedCountAfter": 46,
+      "applied": [
+        "InspectionRegulatoryContext1800000009000",
+        "KnowledgeReleaseProvenance1800000010000",
+        "RegulatoryReleaseLifecycle1800000011000",
+        "RegulatoryReleaseRecords1800000012000",
+        "RegulatoryReleaseRecordReviews1800000013000",
+        "ApprovalProvenanceContract1800000014000"
+      ],
+      "classification": "Every one is BOTH REQUIRED_BEFORE_NEW_CODE (v1 entities reference the columns) AND SAFE_BEFORE_NEW_CODE (the running pre-v1 process tolerates them). None REQUIRES_NEW_CODE_FIRST. None UNCERTAIN.",
+      "destructiveOperations": "NONE. Zero DROP TABLE / DROP COLUMN / TRUNCATE / DELETE in any up(). The three DROP CONSTRAINT hits are each DROP CONSTRAINT IF EXISTS immediately followed by re-adding the same CHECK; two target a table the same migration just created.",
+      "onlyConstraintThatCouldRejectData": "chk_regulatory_release_status. regulatory_releases held 0 rows and 0 distinct statuses, measured before applying, so the migration's own comment was confirmed rather than trusted.",
+      "rehearsal": "All 46 migrations applied from scratch to a fresh local disposable database test_v1_release_gate_20260826, exit 0, clean COMMIT, 46 rows, all three new tables, all sampled columns, all three CHECK constraints and uq_regulatory_release_active. Production is PostgreSQL 17.11; the rehearsal ran on 16.13 — a stated difference, not a matched control.",
+      "preflightDrift": "NONE. Applied history is an exact ordered prefix of the repo's 46: zero order drift, zero applied-but-not-in-repo entries.",
+      "rowCountsPreserved": "IDENTICAL before and after: user 26, user_live 15, organization 8, user_subscription 9, entitlement_grants 1, standards 31, inspection 1, observations 1, hazlenz_analyses 1, inspection_findings 1, regulatory_releases 0."
+    },
+    "databaseMisTargetingHazard": {
+      "hazard": "data-source.ts opens with import 'dotenv/config', and backend/.env sets DATABASE_URL to postgres://...@127.0.0.1/safescope — the PROTECTED development database. A bare `npm run migration:run` from backend/ migrates the protected database.",
+      "closedBy": "dotenv does not override an already-populated process.env. Proven empirically before use, then re-proven against the production URL immediately before the production migration, printing host=ep-weathered-moon-a4egk93d-pooler...neon.tech db=neondb and failing closed on any protected or local name.",
+      "secondaryGuard": "scripts/lib/test-database-ownership.ts refuses neondb outright (NAME_NOT_DISPOSABLE), so no mutating test suite can ever reach production. Deliberately a different mechanism from the migration path."
+    },
+    "governedReleaseActivation": {
+      "performed": false,
+      "required": false,
+      "reason": "Phase 9 is conditional and its condition is FALSE. All four cutover variables (GOVERNED_CUTOVER_MODE, GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST, GOVERNED_CUTOVER_ORG_ALLOWLIST, GOVERNED_CUTOVER_PRODUCTION_ACK) are ABSENT in production, so cutover-mode.ts resolves LEGACY / DEFAULT_NO_CONFIGURATION.",
+      "provenByContract": "kg4a-default-off 51/0, kg4d-default-off 121/0, kg4c-disabled-deployment 80/0, and 30 of 31 kg4b-default-off assertions: no mode, empty mode, malformed mode, truthy mode, allowlist without mode, and SHADOW without production acknowledgement ALL resolve LEGACY and create no cutover context at all.",
+      "effect": "The six migrations install the governed SUBSTRATE and activate NOTHING. No release record invented, no activation pointer set, regulatory_releases remains 0 rows.",
+      "level1": "CUSTOMER_AUTHORITATIVE — unchanged",
+      "level3": "NON_CUSTOMER_AUTHORITATIVE / DEFERRED — unchanged. No provider call, no authority promotion."
+    },
+    "preMutationGates": {
+      "backendTsc": "clean",
+      "frontendTsc": "clean",
+      "frontendProductionBuild": "succeeded, all routes prerendered",
+      "billingRegression": "27 / 0",
+      "billingMigrationValidation": "6 / 0",
+      "checkLaunchPricing": "36 / 1 — V1-PRICE-01 only",
+      "checkHydration": "3 / 0, 0 mismatches across 20 routes x 2 themes",
+      "authFlow": "PASS",
+      "entitlementBoundary": "PASS, 4 assertions",
+      "authenticatedEntitlementPath": "PASS (402 negative, bypass false)",
+      "entitlementGrantHelper": "5 / 5",
+      "approvalContract": "57 / 0",
+      "kg4aDefaultOff": "51 / 0",
+      "kg4cDisabledDeployment": "80 / 0",
+      "kg4dDefaultOff": "121 / 0",
+      "hazlenzCoreLevel1": "28 / 30 — the two failures are EXACTLY the section 13.1 pair: Golden Hardening Scenarios Test and HazLenz Production Path Regression. NO THIRD FAILURE.",
+      "rateLimitArtifact": "test:authenticated-entitlement-path first returned 'login failed: 429' — the 60s RATE_LIMIT_WINDOW_MS consumed by test:auth-flow immediately before it. Passed clean after the window. Recorded because a bare 429 in a release log reads like an auth defect and is not one."
+    },
+    "suitesNotRun": {
+      "classification": "Unmet harness prerequisites on a fresh disposable database. NOT failures, and NOT counted as passes.",
+      "kg4bDefaultOff": "30/31. Phase 19 needs a server RUNNING in SHADOW mode plus pre-provisioned SHADOW_EMAIL/LEGACY_EMAIL/PASSWORD accounts. The 30 passing assertions are the config-drift contract; only the live two-account leg is unproven.",
+      "knowledgeReleaseProvenance": "Needs its own API instance.",
+      "regulatoryReleaseLifecycle": "Needs a seeded standards corpus ('enough standards to slice (0)')."
+    },
+    "cutoverOrder": {
+      "mergeIsDeploy": "Service is autoDeploy: yes / autoDeployTrigger: commit tracking main. PUSHING MAIN IS THE BACKEND DEPLOY TRIGGER — the contract's steps 4 and 5 are ONE irreversible action, not two. Recorded because treating them as separable is how a deploy happens before its migrations.",
+      "executed": "migrate -> verify schema -> (governed activation skipped, proven unnecessary) -> fast-forward main -> push (deploy fires) -> verify backend -> verify frontend -> smoke"
+    },
+    "backendDeployment": {
+      "service": "safety-insite-backend",
+      "serviceId": "srv-d7kl74jeo5us73deaor0",
+      "deployId": "dep-da7kme142hec73ck9oig",
+      "status": "live",
+      "trigger": "new_commit",
+      "commit": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "createdAt": "2026-08-26T20:23:20Z",
+      "finishedAt": "2026-08-26T20:24:55Z",
+      "healthStatus": "ok",
+      "database": "up",
+      "nodeEnv": "production",
+      "versionSourceStatus": "RENDER_GIT_COMMIT",
+      "startupErrors": "NONE — 100 log lines contain zero error, missing-column or QueryFailed matches."
+    },
+    "frontendDeployment": {
+      "platform": "Vercel",
+      "project": "safety-insite",
+      "deploymentId": "dpl_Bxau7Uj5xTSHWo2j2VtVQxxTYLtz",
+      "readyState": "READY",
+      "target": "production",
+      "githubCommitSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "githubCommitRef": "main",
+      "deployedAt": "2026-08-26T20:23:22Z",
+      "primaryAlias": "https://safety-insite.vercel.app",
+      "sameShaAsBackend": true
+    },
+    "stripeRuntime": {
+      "configuredPriceId": "price_1U8mok1UCjdSbesgHqdXFFPN",
+      "reResolved": "LIVE, active, usd 2499, recurring monthly, product prod_V5lrzAsNRjVjUJ (active)",
+      "deployCreatedAfterEnvWrite": true,
+      "inferenceBoundary": "Render injects environment at process start and the deploy was created after the env write, so the running process holds the new value. THAT LAST LINK IS INFERENCE, NOT MEASUREMENT: no endpoint exposes the configured price id, and the only direct proof — opening a Checkout Session — is deferred to the live-payment phase by contract.",
+      "archivedPriceWindowClosed": "The window in which the runtime held the ARCHIVED $9.99 price (section 75.4) ended when this deploy replaced the process."
+    },
+    "productionSmoke": {
+      "routes200": "15 of 15: /, /pricing, /login, /register, /upgrade, /legal, /reset-password, /command-center, /inspections, /inspection-workspace, /reports, /safety-calendar, /settings, /profile, /unlock",
+      "backendHealth": "200",
+      "billingEndpointsUnauthenticated": "401 — auth guard active",
+      "pricingSurface": "/pricing: $24.99 x3, $0 x2, Expert 0, retired prices 0. /register: $24.99 x1, $0 x1, Expert 0. / (landing): $24.99 x1, Expert 0.",
+      "planNames": "/pricing renders exactly >Free< and >Pro<; no Expert/Plus/Company/Enterprise.",
+      "upgradeRoute": "200 but no price unauthenticated — it is the auth-gated conversion surface serving a Checking.../login shell until authenticated. Expected, not a defect.",
+      "notExercised": "No Checkout Session, no card charged, no production account created. Authenticated smoke (Level-1 classify, report generation) was therefore NOT exercised against production; only its gating was."
+    },
+    "openItems": {
+      "V1-PRICE-01": "check:launch-pricing stale allowlist. Still open; deliberately not repaired in this phase.",
+      "productionKeyLacksPricesRead": "Production STRIPE_SECRET_KEY still cannot read Prices, so production cannot independently verify what it bills. Unchanged.",
+      "deadBillingUrlVars": "BILLING_SUCCESS_URL and BILLING_CANCEL_URL are referenced NOWHERE in application source; createCheckoutSession() builds URLs from frontendUrl() (FRONTEND_APP_URL -> APP_URL -> FRONTEND_URL). BILLING_CANCEL_URL contains a literal space ('https://sentinel safety.vercel.app/...') and is a malformed URL. HARMLESS BECAUSE UNREAD. Left untouched as unrelated remediation."
+    },
+    "actionsExplicitlyNotPerformed": [
+      "no live payment, no Checkout Session, no card charged, no refund",
+      "no Stripe object mutation, no Stripe API-key permission change",
+      "no destructive production data deletion, no manual ad-hoc SQL outside the migration mechanism",
+      "no Level-3 provider call, no Level-3 authority promotion",
+      "no force push, no rebase, no squash, no reset, restore, clean, stash or branch deletion",
+      "no production account created"
+    ],
+    "preservation": "main and release/insite-rc-2026-08-18 both at 1da529a0, both 0/0 with upstreams. 4 stashes and 23 tags untouched. 21 pre-existing untracked paths preserved. One local disposable database test_v1_release_gate_20260826 created for verification and left in place as evidence.",
+    "stateFlags": {
+      "PRODUCTION_MIGRATIONS_COMPLETE": true,
+      "PRODUCTION_GOVERNED_RELEASE_READY": true,
+      "PRODUCTION_DEPLOYED_AT_V1": true,
+      "PRODUCTION_STRIPE_RUNTIME_PRICE_ACTIVE": true,
+      "LIVE_PAYMENT_PROOF": false
+    },
+    "supersededCheckpoint": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
+    "nextPrerequisite": "LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED — separately authorized. Register a real account against production, exercise the authenticated Level-1 HazLenz path end to end, open a Checkout Session against price_1U8mok1UCjdSbesgHqdXFFPN, complete one live $24.99 payment, and confirm the webhook grants Pro. This is the first step that creates billable state and is the only remaining launch gate."
+  },
+  "v1LiveCustomerAcceptance": {
+    "terminal": "INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE — PAID_PATH_UNPROVEN",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 77",
+    "launchReady": false,
+    "launchReadyRationale": "Every gate reachable without spending money passes. The payment -> webhook -> persisted subscription -> automatic Pro entitlement chain has never been exercised in production. That is a real remaining engineering uncertainty and must not be reported as passed.",
+    "productionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "productionUnchanged": true,
+    "acceptanceAccount": {
+      "emailForm": "owner-controlled gmail plus-alias (+insitev1)",
+      "userId": "d07f56aa-8145-414c-b63d-1c17e0296831",
+      "initialPlanCode": "free",
+      "initialSubscriptionStatus": "none",
+      "provenCleanBeforeRegistration": "0 user rows live and soft-deleted, 0 Stripe customers, 0 subscriptions account-wide, 0 entitlement grants, 0 inspections"
+    },
+    "freeBoundaryProof": {
+      "method": "authenticated JWT against production; UI hiding explicitly not relied upon",
+      "allowed200": [
+        "/auth/me",
+        "/billing/me",
+        "/billing/status",
+        "/inspections",
+        "/sites",
+        "/tasks"
+      ],
+      "denied402PaidSubscriptionRequired": [
+        "POST /safescope-v2/classify",
+        "GET /dashboard/executive-summary",
+        "GET /analytics/safety-trends",
+        "GET /audit",
+        "POST /standards/match",
+        "GET /notifications"
+      ],
+      "denied403": "POST /legacy/reports - RolesGuard precedes EntitlementGuard; handler retired (Gone)",
+      "denied404": "POST /risk/calculate - RiskModule imported nowhere so /risk/* is unmounted; no frontend caller. Unreachable on Free AND Pro; not a boundary failure.",
+      "leakage": "none"
+    },
+    "level1CustomerPath": {
+      "siteId": "1cad8421-b34b-460a-9fdc-dfb6fb55ddb8",
+      "inspectionId": "55db26cc-8d98-4ccc-be0e-773c256ade31",
+      "observationId": "b5fb6a92-fd9c-4254-9f94-6ffb01bba23f",
+      "observationChars": 538,
+      "regulatoryContext": "msha",
+      "gateIsReal": "hazlenz_analyses, inspection_findings and inspection_reports each remained at 1 (pre-existing lifetime values). Free created no analysis, no finding, no report.",
+      "level3ProviderCalls": 0
+    },
+    "checkoutSession": {
+      "id": "cs_live_a1Q9G3uTPoRkAiF1lQwsZpExKRkX9g4mwnTPD9qKixfBiEM52CP0hCJEcS",
+      "createdBy": "normal customer UI path /upgrade -> Upgrade to Pro",
+      "livemode": true,
+      "mode": "subscription",
+      "priceId": "price_1U8mok1UCjdSbesgHqdXFFPN",
+      "unitAmount": 2499,
+      "quantity": 1,
+      "currency": "usd",
+      "product": "prod_V5lrzAsNRjVjUJ",
+      "stripeCustomerId": "cus_V96Iofv1c8qnts",
+      "metadata": {
+        "userId": "d07f56aa-8145-414c-b63d-1c17e0296831",
+        "targetTier": "pro"
+      },
+      "automaticTax": "disabled; no tax line",
+      "displayed": "Safety InSite Pro $24.99 billed monthly; Total due today $24.99; no 9.99/6.99/Expert/extra item",
+      "finalState": "status open, payment_status unpaid, subscription null, payment_intent null, invoice null",
+      "closes76_12": "YES - the running process is now MEASURED to bill the $24.99 Price, not inferred"
+    },
+    "paymentWithheld": {
+      "authorizedByOwner": false,
+      "whatHappened": "Owner opened Apple Pay from the existing session and exited without authorizing.",
+      "independentVerification": "0 subscriptions, payment_intents, charges, invoices, setup_intents and saved payment methods for cus_V96Iofv1c8qnts; exactly 1 checkout session. Only Stripe event since creation is customer.created evt_1U8o5v1UCjdSbesgz75wOg69. Render logs since 21:05Z contain 0 webhook/billing/error lines.",
+      "prohibitedRemedies": "self-purchase, manual subscription creation, manual Pro grant, charge, refund, reopening or creating another Checkout Session"
+    },
+    "deferredChain": {
+      "state": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION",
+      "notPassedNotFailed": true,
+      "links": [
+        "Stripe payment succeeds",
+        "webhook reaches InSite",
+        "user_subscription persisted",
+        "Pro entitlement activates",
+        "entitlement survives logout/login"
+      ]
+    },
+    "uxSweep": {
+      "routes": 18,
+      "viewports": [
+        "390x844",
+        "1280x900"
+      ],
+      "httpStatus": "18/18 200",
+      "horizontalOverflow": 0,
+      "retiredPrices": 0,
+      "expertPlanReferences": 0,
+      "staleBranding": 0,
+      "placeholders": 0,
+      "consoleErrors": 0,
+      "brokenInternalLinks": 0,
+      "contrastFailures": 0,
+      "contrastCaveat": "196 elements measurable; a first style-based pass reported ~28 failures, all false positives from ancestor-walking onto gradient backgrounds - the blind spot scripts/measure-contrast.mjs documents. Gradient-backed majority confirmed visually, NOT pixel-measured.",
+      "themeNote": "/upgrade and /unlock render light by design via FIXED_LIGHT_THEME_ROUTES; AppShell documents that dark on those fixed-light surfaces measured 1.1:1 and 1.2:1. Pinning prevents a contrast defect.",
+      "launchBlockers": 0
+    },
+    "openItems": {
+      "V1-FREEHIST-01": "Free 'saved history' is advertised on /register but unreadable in the UI. Backend is fine: GET /inspections/:id returns 200 with the full 538-char observation. Two presentational causes: app/inspections/page.tsx renders only persistedInspections.length (lines 340-341) and never lists them; and app/inspection-workspace/page.tsx:526 gates observation restore on (persistedObservation && currentAnalysis), and Free can never have an analysis because classify returns 402 - so the restore branch is unreachable on Free by construction. Smallest fix: decouple the two restores. NOT IMPLEMENTED (no product code changes during acceptance). Classified POST_LAUNCH_POLISH.",
+      "V1-MENU-01": "Account dropdown painted rgba(15,23,42,0.9) with backdrop-filter none; page bleeds through on every authenticated page. Composited background ~rgb(36,44,62) vs white text stays above AA, so cosmetic, not an accessibility failure. One-line fix. NOT IMPLEMENTED. Classified POST_LAUNCH_POLISH.",
+      "V1-PRICE-01": "check:launch-pricing 36/37; known verification-infrastructure false positive; deliberately not remediated.",
+      "unrunKgSuites": "test:kg4b-default-off (30/31), test:knowledge-release-provenance, test:regulatory-release-lifecycle - unmet harness prerequisites, see blueprint 76.9",
+      "deadBillingUrls": "BILLING_SUCCESS_URL / BILLING_CANCEL_URL unread by source; BILLING_CANCEL_URL malformed. Harmless; checkout builds URLs from frontendUrl().",
+      "stripeKeyPricesRead": "production STRIPE_SECRET_KEY still lacks Prices Read"
+    },
+    "toolingIncident": {
+      "summary": "A verification helper, not the product, briefly broke production registration.",
+      "cause": "SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY issued against the Neon POOLED endpoint persisted onto a pooled server connection and was inherited by the production backend.",
+      "symptom": "HTTP 500 on /auth/register: 'cannot execute INSERT in a read-only transaction' at AuthService.register, at 20:53:33Z and 20:54:51Z",
+      "rowsCreatedByFailures": 0,
+      "remediation": "Restored READ WRITE across the pool (20/20 probes returned to off); pg_db_role_setting confirmed empty so no persistent role/database setting was ever created; helper rewritten to use transaction-scoped BEGIN TRANSACTION READ ONLY. Registration then returned 201.",
+      "standingRule": "Never issue a session-scoped SET against the pooled endpoint."
+    },
+    "worktree": "Documentation updated uncommitted per instruction. No product code modified. No deploy. No commit, push, branch or tag operation performed.",
+    "subscriptionLifecycle": {
+      "result": "PARTIAL — configuration VERIFIED read-only; behaviour DEFERRED (no subscription exists to exercise)",
+      "customerCancellationMechanism": "Stripe Billing Portal, reached from Settings -> 'Manage Subscription' (POST /billing/portal -> createPortalSession)",
+      "portalConfiguration": {
+        "id": "bpc_1U5aKg1UCjdSbesgbbjE5ZW7",
+        "active": true,
+        "isDefault": true,
+        "livemode": true,
+        "subscriptionCancelEnabled": true,
+        "cancelMode": "at_period_end",
+        "prorationBehavior": "none",
+        "cancellationReasonPrompt": true,
+        "subscriptionUpdateEnabled": false,
+        "paymentMethodUpdateEnabled": true,
+        "invoiceHistoryEnabled": true,
+        "customerUpdateEnabled": true
+      },
+      "notTested": "Cancellation, renewal and period-end transition were not exercised: no subscription exists, and the owner withheld payment authorization. No portal session was created.",
+      "entitlementOnCancelContract": "resolveEffectiveTier() derives entitlement from Stripe status alone - 'active' or 'trialing' grant the tier, everything else resolves to free. There is deliberately NO periodEnd grace window (removed after a Stripe Test Clock proved it kept Pro alive past cancellation). Unverified in production."
+    }
   }
 }
