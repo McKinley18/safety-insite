@@ -11609,6 +11609,222 @@ and `app/settings/page.tsx`, plus the new `scripts/check-hydration.mjs` and its 
 
 ---
 
+## 75 — INSITE v1.0 PRODUCTION STRIPE COMMERCE CONFIGURATION (2026-08-26) `PRODUCTION CONFIGURATION, NO DEPLOY, NO PAYMENT, $0.00`
+
+Closes `PRODUCTION_STRIPE_PRICE_UPDATE_REQUIRED`, open since §71.12 and restated in §72.3. Those two
+sections record what was true when they were written and are **not rewritten**; this section
+supersedes their open action.
+
+### 75.1 What was actually wrong — measured, not assumed `NEW_EVIDENCE`
+
+§71.12 and §72.3 both state that a `$24.99`/month price object "does not exist" and that **no** Stripe
+price ID was configured. The first claim was correct. The second was **incomplete for production**:
+it was measured against `backend/.env`, which carries no Stripe keys, not against the Render
+environment. Read directly from the Render API, production was configured and was configured
+**wrongly**:
+
+| | Value |
+|---|---|
+| Stripe account | `acct_1TYFU41UCjdSbesg` ("Monolith Studios") |
+| production `STRIPE_PRO_PRICE_ID` (pre-v1) | `price_1U5aOf1UCjdSbesgQi0tjY2q` |
+| that Price | LIVE, USD **999**, recurring monthly, on `prod_V5lrzAsNRjVjUJ` |
+| every customer-facing surface | **$24.99**/month |
+
+Production was therefore configured to charge **$9.99/month against an advertised $24.99/month**.
+This is the concrete form the §72.3 warning took — "the displayed price and the charged price can
+disagree" was not hypothetical, it was the live state. The exposure was bounded: the live account
+held **0 subscriptions**, so no customer was ever billed at the wrong price.
+
+### 75.2 The credential boundary, and why the Price was created by hand `STATED_UNCERTAINTY`
+
+Two live restricted keys are available — the Stripe CLI's (`~/.config/stripe/config.toml`) and
+production's own `STRIPE_SECRET_KEY`. They are different keys (SHA-256 prefixes `671ef8b250ff` and
+`b39d7a219bf5`). **Neither carries `plan_write`**; both refused `POST /v1/prices` with
+`more_permissions_required`. Key-permission expansion was not authorized, so the Price could not be
+created programmatically and was **created manually in the Stripe Dashboard by the operator**.
+
+Production's key additionally lacks **Prices Read** — `GET /v1/prices` returns
+`more_permissions_required`. This does **not** break checkout, because
+`stripe.checkout.sessions.create` passes the price ID through without reading the Price object. It
+does mean **production cannot independently verify what it is billing**. Every Price fact in this
+section was read with the CLI key, which does hold Prices Read. `OPEN_ITEM`.
+
+### 75.3 The verified v1.0 Price `STABLE_INVARIANT`
+
+Read back from Stripe live, not taken from the operator's report:
+
+| Property | Value |
+|---|---|
+| Price | `price_1U8mok1UCjdSbesgHqdXFFPN` |
+| nickname | `Monthly Pro subscription` |
+| `livemode` / `active` | `true` / `true` |
+| `currency` / `unit_amount` | `usd` / **`2499`** |
+| `type` / `recurring.interval` / `interval_count` | `recurring` / `month` / `1` |
+| `tax_behavior` | `exclusive` (matches the pre-v1 Price; no tax configuration was changed) |
+| Product | `prod_V5lrzAsNRjVjUJ` — "Safety InSite Pro", `active: true`, `livemode: true` |
+| Product `default_price` | `price_1U8mok1UCjdSbesgHqdXFFPN` |
+
+`default_price` was set by the operator in the Dashboard. It is **recorded, not relied upon**: the
+application never reads it. `createCheckoutSession()` sends `line_items: [{ price: priceId }]` where
+`priceId` comes from `getConfiguredStripePriceIdForTier()`, i.e. from `STRIPE_PRO_PRICE_ID`. Product
+identity is not semantically significant to this codebase; only the Price ID is.
+
+### 75.4 The old Price was archived by the Dashboard `NEW_EVIDENCE`
+
+`price_1U5aOf1UCjdSbesgQi0tjY2q` is preserved — not deleted, and **not modified by this phase** — but
+it is no longer `active`:
+
+| Property | At §72.3 measurement | Now |
+|---|---|---|
+| `active` | `true` | **`false`** |
+| `livemode` / `currency` / `unit_amount` | `true` / `usd` / `999` | unchanged |
+| `type` / `recurring.interval` | `recurring` / `month` | unchanged |
+| `product` | `prod_V5lrzAsNRjVjUJ` | unchanged |
+
+Stripe archived it as a side effect of the operator's Dashboard price change. Two consequences, both
+benign **here** and both recorded so they are not rediscovered:
+
+1. An archived Price cannot back a **new** Checkout Session. Between the archive and the deploy that
+   picks up the new variable, the running service still holds the old ID, so checkout would fail.
+   With 0 subscriptions and effectively nil traffic (§ production environment: one lifetime
+   analysis) the practical exposure is nil. This consequence is **inferred from Stripe's documented
+   behaviour, not measured** — creating a Checkout Session was not authorized.
+2. `resolveTierForPriceId()` compares a subscription's price ID against `STRIPE_PRO_PRICE_ID` and the
+   legacy envs. A subscriber still on the old `$9.99` Price would no longer match. The code already
+   defends this: `upsertSubscriptionFromStripeSubscription()` falls back to
+   `normalizeBillingTier(subscription.metadata.targetTier)`, and checkout stamps
+   `subscription_data.metadata.targetTier`. With 0 live subscriptions this is theoretical today, but
+   it is the reason the metadata fallback must not be removed. `STABLE_INVARIANT`.
+
+### 75.5 Render environment semantics — determined from the vendor contract, then confirmed `PROTECTED_DECISION`
+
+The governing question was whether writing the variable is inseparable from a production deploy. It
+is not. Render's REST API reference states, for the env-var endpoints:
+
+> "Changes will not be deployed automatically. Instead you must call the deploy API to have changes
+> pushed out to your service, irrespective of the `autoDeploy` option set on the service."
+
+This is **semantics D**: the write stores configuration and does **not** apply it. It overrides the
+service's `autoDeploy: yes` / `autoDeployTrigger: commit`, which govern *commit*-triggered deploys
+only. The Dashboard is different — it offers "Save, rebuild, and deploy" / "Save and deploy" /
+"Save only" — which is why the API path was chosen.
+
+Confirmed empirically after the write: the newest deploy is still
+`dep-da1rvprncjis73f3q390`, `status: live`, `trigger: new_commit`, commit `97941ca2`, created
+`2026-08-18T02:13:59Z`. **No deploy and no restart was created by this phase.**
+
+A second guard was checked before writing: `origin/main` is **exactly** `97941ca2`, the live commit —
+`release/insite-rc-2026-08-18` is unmerged and 0/0 with its own upstream. So even a deploy triggered
+by accident could only have rebuilt the identical pre-v1.0 commit. No v1.0 code could have shipped.
+
+### 75.6 The single-variable write `IMPLEMENTED`
+
+`PUT /v1/services/srv-d7kl74jeo5us73deaor0/env-vars/STRIPE_PRO_PRICE_ID` → `HTTP 200`. The
+single-variable endpoint was used deliberately in preference to the whole-list `PUT`, which replaces
+the collection and would risk the other 33 variables.
+
+| | Value |
+|---|---|
+| `STRIPE_PRO_PRICE_ID` before | `price_1U5aOf1UCjdSbesgQi0tjY2q` |
+| `STRIPE_PRO_PRICE_ID` after | `price_1U8mok1UCjdSbesgHqdXFFPN` |
+
+Proof of blast radius: all 34 variables were SHA-256 digested before and after. Count 34 → 34, and
+the diff is **exactly one line**, `STRIPE_PRO_PRICE_ID` (`63f97cd99cb6` → `26c51b372844`). The other
+**33 are byte-identical**, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `DATABASE_URL` and the JWT
+and storage credentials among them. No secret value was printed at any point.
+
+`STRIPE_PLUS_PRICE_ID`, `STRIPE_EXPERT_PRICE_ID` and `STRIPE_COMPANY_PRICE_ID` are **absent** from the
+production environment. The legacy fallback in `getConfiguredStripePriceIdForTier()` therefore has
+nothing to resolve, and **no legacy Price can override `STRIPE_PRO_PRICE_ID`**.
+
+### 75.7 The configuration chain, proven end to end
+
+```
+production backend config (Render, read back)
+  STRIPE_PRO_PRICE_ID = price_1U8mok1UCjdSbesgHqdXFFPN
+    → Stripe LIVE Price price_1U8mok1UCjdSbesgHqdXFFPN   (re-resolved from the configured value)
+      → active, livemode, USD 2499, recurring, interval=month
+        → Product prod_V5lrzAsNRjVjUJ "Safety InSite Pro", active
+          = USD $24.99 / month
+```
+
+The second Stripe read was performed on the value read back **out of Render**, not on the candidate
+ID from the task, so the chain is proven rather than assumed at both joints.
+
+### 75.8 Verification actually executed
+
+| Check | Result |
+|---|---|
+| `backend: npm run billing:regression` | **27 passed, 0 failed** |
+| `frontend-next: npm run check:launch-pricing` | **36 passed, 1 FAILED** (see §75.9) |
+| `PRO_PRICE_DISPLAY` / `PRO_PRICE_CADENCE` / `FREE_PRICE_DISPLAY` | `$24.99` / `/month` / `$0` |
+| `LAUNCH_PLANS` tiers | `['free', 'pro']` — exactly two |
+| `CreateCheckoutSessionDto` | `@IsIn(["pro"])` |
+| backend `priceMonthly` | `24.99` (pro) / `0` (free) |
+| production legacy price envs | all three absent |
+| live Stripe subscriptions | **0** |
+
+### 75.9 `V1-PRICE-01` — a stale allowlist, not a contract defect `VERIFICATION_INFRASTRUCTURE`
+
+`check:launch-pricing` reports **36 pass / 1 fail**. The failure is
+`'Expert' appears only in allowlisted internal-legacy files` →
+`frontend-next/components/pricing/planData.ts`.
+
+The only match in that file is **line 3**, the canonical contract comment:
+
+```
+// LAUNCH CONTRACT: FREE = $0, PRO = $24.99/month, EXPERT = NOT_A_V1_PLAN.
+```
+
+`LEGACY_EXPERT_ALLOWLIST` in the checker has three entries and predates the creation of
+`planData.ts`; the shared plan-data module was extracted afterwards and carries the contract
+statement in its header. The checker's `/expert/i` test cannot distinguish a comment asserting that
+Expert is retired from a customer-facing Expert plan.
+
+**Classification: verification-infrastructure defect (stale allowlist). Not a production defect, and
+not a pricing-contract defect.** Every `$24.99` assertion passes and `LAUNCH_PLANS` holds exactly two
+tiers. It is pre-existing at `6d27ecc6` in committed code — both files are clean in `git status` —
+and it was **not** "fixed" here: altering a scorer to green a commerce phase is precisely what the
+verification-integrity policy forbids. Remains `OPEN_ITEM`; the correct repair is a fourth allowlist
+entry with its reason, in a phase authorized to touch the checker.
+
+### 75.10 What this phase did not do
+
+No Stripe object was created, modified, archived, deactivated or deleted by this phase — the Price
+and the `default_price` change were the operator's Dashboard actions, and the old Price's archival
+was Stripe's side effect of them. No Checkout Session, no payment, no refund, no coupon, discount or
+tax change. No API-key permission was expanded. No production database access or migration. No
+deploy, no restart. No commit, push, merge, tag, reset, restore, clean or stash. Stripe spend for
+this phase: **$0.00** — read-only calls only.
+
+### 75.11 Preservation and terminal
+
+`HEAD` unchanged at `6d27ecc6`, branch `release/insite-rc-2026-08-18`, upstream
+`origin/release/insite-rc-2026-08-18`, 0 ahead / 0 behind. No tracked file was modified by this phase
+other than this blueprint and `INSITE_CURRENT_STATE.json`, both left **uncommitted**. The 21
+pre-existing untracked paths are preserved.
+
+```
+PRODUCTION_STRIPE_PRICE_CONFIGURED        = TRUE
+PRODUCTION_STRIPE_PRICE_VERIFIED          = TRUE
+PRODUCTION_APP_PRICE_REFERENCE_CONFIGURED = TRUE
+LIVE_PAYMENT_PROOF                        = FALSE
+PRODUCTION_DEPLOYED_AT_V1                 = FALSE
+```
+
+`PRODUCTION_DEPLOYED_AT_V1 = FALSE` is literal: production still runs commit `97941ca2`, which
+predates v1.0. **The new variable is stored but not in effect.** The running process still holds
+`price_1U5aOf1UCjdSbesgQi0tjY2q` — now an archived Price — until a deploy occurs.
+
+**Terminal:** `INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED`
+
+**Next prerequisite:** production release execution — separately authorized — which must push and
+merge the release branch, apply the six governed-release migrations (§ production migration plan),
+and deploy. Only that deploy makes `STRIPE_PRO_PRICE_ID` effective. Live-payment proof remains
+unperformed and is gated behind it.
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`

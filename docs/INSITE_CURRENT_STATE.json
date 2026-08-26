@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE — PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
+  "checkpoint": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
   "readiness": "NO LOCAL FUNCTIONAL OR RESPONSIVE BLOCKERS. The three gaps blueprint 73.11 recorded are closed: the hydration mismatch is NOT_REPRODUCIBLE and now has a permanent check; the phone inspection workflow was driven end to end at 390px (20/20); and the three routes previously measured empty were re-measured populated, which surfaced and fixed four real mobile defects. Everything remaining is a production commerce or release action.",
-  "nextSlice": "PRODUCTION ACTIONS ONLY, each separately authorized: (1) create the $24.99/month Stripe Price object and point STRIPE_PRO_PRICE_ID at it -- priceMonthly is a display value and the Stripe Price is what charges; (2) push, merge, apply the six governed-release migrations, deploy; (3) live-payment proof, since checkout-session and customer-portal creation call Stripe's API and remain unexercised. Human visual acceptance of the 22-screenshot shortlist is the only non-production item, and it is a review, not engineering.",
+  "nextSlice": "PRODUCTION RELEASE EXECUTION, separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes the newly configured STRIPE_PRO_PRICE_ID effective — the running service still holds the archived $9.99 price id. Live-payment proof is gated behind that deploy. Human visual acceptance of the 22-screenshot shortlist remains the only non-production item.",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -9406,5 +9406,141 @@
       "disclosure": "During the section 73.9 diagnosis, `git checkout --` was used on components/inspection/CurrentHazardCard.tsx to A/B a speculative edit against pristine source. That command is forbidden by the repository's worktree-protection rules. No user work was lost -- the file carried no uncommitted modifications, so the restore was a no-op against HEAD -- and the file is untouched in the final state, but the rule should have been honoured with a file copy instead."
     },
     "nextPrerequisite": "HUMAN_VISUAL_ACCEPTANCE_REQUIRED on the captured phone screenshots, plus the still-open PRODUCTION_STRIPE_PRICE_UPDATE_REQUIRED from v1LaunchPricingContract (create the recurring monthly $24.99 USD price in Stripe and set STRIPE_PRO_PRICE_ID in the production environment)."
+  },
+  "v1ProductionCommerceConfiguration": {
+    "terminal": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 75",
+    "supersedes": "PRODUCTION_STRIPE_PRICE_UPDATE_REQUIRED, open since blueprint 71.12 and restated in 72.3. Those sections record what was true when written and were NOT rewritten.",
+    "baseline": {
+      "head": "6d27ecc6f85e8c8df36ff55d8692ec056e32c154",
+      "branch": "release/insite-rc-2026-08-18",
+      "upstream": "origin/release/insite-rc-2026-08-18",
+      "aheadBehind": "0 / 0"
+    },
+    "stripeAccount": "acct_1TYFU41UCjdSbesg",
+    "product": {
+      "id": "prod_V5lrzAsNRjVjUJ",
+      "name": "Safety InSite Pro",
+      "active": true,
+      "livemode": true,
+      "defaultPrice": "price_1U8mok1UCjdSbesgHqdXFFPN",
+      "defaultPriceNote": "Set by the operator in the Stripe Dashboard. RECORDED, NOT RELIED UPON: the application never reads default_price. createCheckoutSession() sends line_items[{price}] resolved from STRIPE_PRO_PRICE_ID. Product identity is not semantically significant to this codebase; only the Price ID is.",
+      "mutatedByThisPhase": false
+    },
+    "newV1Price": {
+      "id": "price_1U8mok1UCjdSbesgHqdXFFPN",
+      "nickname": "Monthly Pro subscription",
+      "livemode": true,
+      "active": true,
+      "currency": "usd",
+      "unitAmount": 2499,
+      "type": "recurring",
+      "recurringInterval": "month",
+      "recurringIntervalCount": 1,
+      "taxBehavior": "exclusive",
+      "product": "prod_V5lrzAsNRjVjUJ",
+      "createdBy": "MANUALLY CREATED IN THE STRIPE DASHBOARD BY THE OPERATOR, because both available live restricted API keys lack plan_write.",
+      "verification": "Read back from Stripe live with the CLI key. Every required property measured, not taken from the operator's report."
+    },
+    "preV1Price": {
+      "id": "price_1U5aOf1UCjdSbesgQi0tjY2q",
+      "livemode": true,
+      "currency": "usd",
+      "unitAmount": 999,
+      "type": "recurring",
+      "recurringInterval": "month",
+      "product": "prod_V5lrzAsNRjVjUJ",
+      "activeNow": false,
+      "activeAtPriorMeasurement": true,
+      "archivedBy": "Stripe, as a side effect of the operator's Dashboard price change. NOT archived, modified or deleted by this phase.",
+      "preserved": true,
+      "theDefectThisPhaseClosed": "Production STRIPE_PRO_PRICE_ID pointed at this USD 999/month price while every customer-facing surface advertised $24.99/month. Production was configured to charge $9.99 against an advertised $24.99. Exposure was bounded: the live Stripe account held 0 subscriptions, so no customer was ever billed at the wrong price.",
+      "consequencesOfArchival": [
+        "An archived Price cannot back a NEW Checkout Session. The running service still holds this id until a deploy occurs, so checkout would fail in the interim. INFERRED from Stripe's documented behaviour, NOT MEASURED — creating a Checkout Session was not authorized. Practical exposure nil: 0 subscriptions, one lifetime production analysis.",
+        "resolveTierForPriceId() would no longer match a subscriber still on this price. upsertSubscriptionFromStripeSubscription() already falls back to normalizeBillingTier(subscription.metadata.targetTier), which checkout stamps via subscription_data.metadata. Theoretical at 0 subscriptions, but it is why that metadata fallback must not be removed."
+      ]
+    },
+    "credentialBoundary": {
+      "liveKeysAvailable": 2,
+      "keys": "Stripe CLI key (sha256 prefix 671ef8b250ff) and production STRIPE_SECRET_KEY (sha256 prefix b39d7a219bf5). Different keys. Both rk_live restricted.",
+      "neitherHasPlanWrite": true,
+      "consequence": "POST /v1/prices refused with more_permissions_required on both. Key-permission expansion was not authorized, so the Price was created manually in the Dashboard.",
+      "productionKeyLacksPricesRead": true,
+      "productionKeyReadNote": "Production's STRIPE_SECRET_KEY also lacks Prices Read; GET /v1/prices returns more_permissions_required. This does NOT break checkout, because checkout.sessions.create passes the price id through without reading the Price. It does mean production cannot independently verify what it is billing. OPEN_ITEM. All Price facts here were read with the CLI key, which holds Prices Read."
+    },
+    "renderEnvironmentUpdateSemantics": {
+      "service": "safety-insite-backend",
+      "serviceId": "srv-d7kl74jeo5us73deaor0",
+      "classification": "D — REQUIRES A SEPARATE EXPLICIT DEPLOY TO TAKE EFFECT. The write stores configuration and does not apply it.",
+      "vendorContract": "Render REST API reference, env-var endpoints: \"Changes will not be deployed automatically. Instead you must call the deploy API to have changes pushed out to your service, irrespective of the autoDeploy option set on the service.\"",
+      "overridesAutoDeploy": "Service is autoDeploy: yes / autoDeployTrigger: commit. Those govern COMMIT-triggered deploys only and are explicitly overridden for env-var writes.",
+      "dashboardDiffers": "The Dashboard offers Save-rebuild-and-deploy / Save-and-deploy / Save-only. The API path was chosen deliberately for this reason.",
+      "endpointUsed": "PUT /v1/services/{id}/env-vars/STRIPE_PRO_PRICE_ID — the SINGLE-variable endpoint, chosen over the whole-list PUT which replaces the collection and would risk the other 33 variables.",
+      "confirmedEmpirically": "After the write the newest deploy is still dep-da1rvprncjis73f3q390, status live, trigger new_commit, commit 97941ca2, created 2026-08-18T02:13:59Z. No deploy and no restart was created by this phase.",
+      "secondGuard": "origin/main is EXACTLY 97941ca2, the live commit; release/insite-rc-2026-08-18 is unmerged. Even an accidental deploy could only have rebuilt the identical pre-v1.0 commit. No v1.0 code could have shipped."
+    },
+    "productionEnvVarWrite": {
+      "variable": "STRIPE_PRO_PRICE_ID",
+      "before": "price_1U5aOf1UCjdSbesgQi0tjY2q",
+      "after": "price_1U8mok1UCjdSbesgHqdXFFPN",
+      "httpStatus": 200,
+      "blastRadiusProof": "All 34 variables SHA-256 digested before and after. Count 34 -> 34. Diff is EXACTLY ONE LINE: STRIPE_PRO_PRICE_ID (63f97cd99cb6 -> 26c51b372844). The other 33 are byte-identical, including STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, DATABASE_URL, JWT and storage credentials.",
+      "noSecretPrinted": true,
+      "legacyPriceEnvsAbsentInProduction": [
+        "STRIPE_PLUS_PRICE_ID",
+        "STRIPE_EXPERT_PRICE_ID",
+        "STRIPE_COMPANY_PRICE_ID"
+      ],
+      "legacyFallbackNote": "The legacy fallback in getConfiguredStripePriceIdForTier() has nothing to resolve, so no legacy Price can override STRIPE_PRO_PRICE_ID."
+    },
+    "configurationChainProven": "production Render config (read back) -> price_1U8mok1UCjdSbesgHqdXFFPN -> Stripe LIVE Price -> active/livemode/USD 2499/recurring/month -> Product prod_V5lrzAsNRjVjUJ 'Safety InSite Pro' active -> USD $24.99/month. The second Stripe read was performed on the value read back OUT OF RENDER, not on the candidate id supplied in the task, so the chain is proven rather than assumed at both joints.",
+    "zeroCostVerification": {
+      "billingRegression": "27 passed, 0 failed",
+      "checkLaunchPricing": "36 passed, 1 FAILED",
+      "proPriceDisplay": "$24.99",
+      "proPriceCadence": "/month",
+      "freePriceDisplay": "$0",
+      "launchPlansTiers": [
+        "free",
+        "pro"
+      ],
+      "checkoutDto": "@IsIn([\"pro\"])",
+      "backendPriceMonthly": "24.99 pro / 0 free",
+      "liveStripeSubscriptions": 0
+    },
+    "knownCheckerFalsePositive": {
+      "id": "V1-PRICE-01",
+      "classification": "VERIFICATION_INFRASTRUCTURE — stale allowlist. NOT a production defect and NOT a pricing-contract defect.",
+      "assertion": "'Expert' appears only in allowlisted internal-legacy files",
+      "file": "frontend-next/components/pricing/planData.ts",
+      "onlyMatch": "Line 3, the canonical contract comment: // LAUNCH CONTRACT: FREE = $0, PRO = $24.99/month, EXPERT = NOT_A_V1_PLAN.",
+      "cause": "LEGACY_EXPERT_ALLOWLIST has three entries and predates the extraction of planData.ts. The checker's /expert/i test cannot distinguish a comment asserting Expert is retired from a customer-facing Expert plan.",
+      "preExistingAtHead": true,
+      "deliberatelyNotFixedHere": "Altering a scorer to green a commerce phase is what the verification-integrity policy forbids. The correct repair is a fourth allowlist entry with its reason, in a phase authorized to touch the checker.",
+      "status": "OPEN_ITEM"
+    },
+    "actionsExplicitlyNotPerformed": [
+      "no Stripe object created, modified, archived, deactivated or deleted by this phase",
+      "no Stripe API-key permission expanded",
+      "no Checkout Session, no live payment, no refund, no coupon, no discount, no tax change",
+      "no production database access or mutation",
+      "no production migration",
+      "no deploy, no restart",
+      "no commit, push, merge, tag, reset, restore, clean or stash"
+    ],
+    "livePaymentProof": false,
+    "productionDeployedAtV1": false,
+    "productionDeployedAtV1Note": "Literal. Production still runs commit 97941ca2, which predates v1.0. The new variable is STORED BUT NOT IN EFFECT: the running process still holds price_1U5aOf1UCjdSbesgQi0tjY2q, now an archived Price, until a deploy occurs.",
+    "stateFlags": {
+      "PRODUCTION_STRIPE_PRICE_CONFIGURED": true,
+      "PRODUCTION_STRIPE_PRICE_VERIFIED": true,
+      "PRODUCTION_APP_PRICE_REFERENCE_CONFIGURED": true,
+      "LIVE_PAYMENT_PROOF": false,
+      "PRODUCTION_DEPLOYED_AT_V1": false
+    },
+    "worktree": "Documentation changes left UNCOMMITTED. Only docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json modified. 21 pre-existing untracked paths preserved.",
+    "supersededCheckpoint": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE — PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
+    "nextPrerequisite": "PRODUCTION_RELEASE_EXECUTION_REQUIRED — separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes STRIPE_PRO_PRICE_ID effective. Live-payment proof is gated behind it."
   }
 }
