@@ -1,0 +1,69 @@
+L3 RUN-2 GOVERNANCE AMENDMENT -- PHASE 6 / PHASE 9
+DECLARED vs DERIVED. Sort keys and counts only. NO observation read. NO row selected.
+
+================ gauntlet ================
+  MATCH     gauntlet sha256 (S-5 drift guard)                derived a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4 declared a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH     gauntlet physical rows (S-5)                     derived 150        declared 150
+  MATCH     gauntlet sort key 'scenarioId' present on every row derived true       declared true
+  MATCH     gauntlet sort keys pairwise distinct (S-2)       derived 150        declared 150
+  DERIVED   partition sizes by i % 4                    [38,38,37,37]  (sum 150)
+  DERIVED   S-3 offset from digest tail 22f0adb4          0
+================ realism ================
+  MATCH     realism sha256 (S-5 drift guard)                 derived 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb declared 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+  MATCH     realism physical rows (S-5)                      derived 117        declared 117
+  MATCH     realism sort key 'id' present on every row       derived true       declared true
+  MATCH     realism sort keys pairwise distinct (S-2)        derived 117        declared 117
+  DERIVED   partition sizes by i % 4                    [30,29,29,29]  (sum 117)
+  DERIVED   S-3 offset from digest tail 5231a9cb          3
+
+================ RESERVATION SCHEDULE (D-A.11 / D-B.11), CYCLIC FROM THE DERIVED OFFSET ================
+  Rule as frozen: "run n uses offset (k0 + n - 1) mod m", cyclic from the derived k0.
+
+  MATCH     gauntlet run-1 offset (spent, retired)           derived 0          declared 0
+  MATCH     realism  run-1 offset (spent, retired)           derived 3          declared 3
+
+  MATCH     gauntlet RUN-2 offset                            derived 1          declared 1
+  MATCH     gauntlet RUN-2 selected rows                     derived 38         declared 38
+  MATCH     realism  RUN-2 offset                            derived 0          declared 0
+  MATCH     realism  RUN-2 selected rows                     derived 30         declared 30
+
+  DERIVED   gauntlet cyclic order   0 -> 1 -> 2 -> 3
+  DERIVED   realism  cyclic order   3 -> 0 -> 1 -> 2
+  DERIVED   gauntlet offsets still reserved after run 2:  2, 3
+  DERIVED   realism  offsets still reserved after run 2:  1, 2
+
+================ AUTHORED CONTROLS -- CARDINALITY, RE-DERIVED FROM THE FROZEN FAMILY TABLE ================
+  MATCH     authored-controls.js digest (frozen)             derived 56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05 declared 56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05
+  DERIVED   frozen allocation        {"F1":4,"F2":4,"F3":3,"F4":3,"F5":3,"F6":3,"F7":3,"F8":2}
+  MATCH     allocation sum                                   derived 25         declared 25
+  MATCH     allocation F1                                    derived 4          declared 4
+  MATCH     allocation F2                                    derived 4          declared 4
+  MATCH     allocation F3                                    derived 3          declared 3
+  MATCH     allocation F4                                    derived 3          declared 3
+  MATCH     allocation F5                                    derived 3          declared 3
+  MATCH     allocation F6                                    derived 3          declared 3
+  MATCH     allocation F7                                    derived 3          declared 3
+  MATCH     allocation F8                                    derived 2          declared 2
+
+  DERIVED   variants parsed          F1, F2, F3, F4, F5, F6, F7, F8a, F8b
+  MATCH     G3 authored members (inG3)                       derived 6          declared 6
+  MATCH     G4 denominator (inG4)                            derived 21         declared 21
+  MATCH     G7 pole (inG7)                                   derived 11         declared 11
+  MATCH     G4 closure: inG4 + ACTIVE-truth complement       derived 25         declared 25
+  MATCH     G4 enumerated membership F1,F2,F3,F4,F5,F6,F8b   derived F1,F2,F3,F4,F5,F6,F8b declared F1,F2,F3,F4,F5,F6,F8b
+  MATCH     G7 enumerated membership F1,F2,F7                derived F1,F2,F7   declared F1,F2,F7
+  MATCH     G3 enumerated membership F3,F6                   derived F3,F6      declared F3,F6
+
+================ RUN-2 EXPECTED COMPOSITION ================
+  MATCH     RUN-2 total rows                                 derived 93         declared 93
+  DERIVED   composition             INDEPENDENT_GAUNTLET 38 + INDEPENDENT_REALISM 30 + AUTHORED_CONTROL 25 = 93
+  DERIVED   independent share       68/93 = 73.1%
+  MATCH     RUN-2 total inside the plan band ~90-100         derived true       declared true
+
+  |DEN_A| FOR RUN 2: NOT COMPUTED, AND DELIBERATELY SO.
+  D-B.3 requires the ambiguity population be discovered from frozen metadata AFTER selection.
+  Computing it now would let the amendment see its own G3 denominator before selection, which
+  is precisely defect E-3. This script did not read shouldHaveMissingEvidence on any row.
+  RUN2_DEN_A = UNKNOWN_UNTIL_AFTER_AUTHORIZED_SELECTION
+
+OK = 33   MISMATCH = 0

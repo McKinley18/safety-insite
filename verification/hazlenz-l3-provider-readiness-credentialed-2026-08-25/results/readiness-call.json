@@ -1,0 +1,78 @@
+{
+  "phase": "L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)",
+  "role": "PROVIDER_READINESS_ONLY -- NOT ACCEPTANCE EVIDENCE, NOT A QUALITY MEASUREMENT",
+  "generatedAt": "2026-08-25T20:27:24.618Z",
+  "pid": 59177,
+  "probe": {
+    "probeId": "l3-provider-readiness-probe-v1",
+    "classification": "NON_HOLDOUT_PROVIDER_READINESS_PROBE",
+    "observationTextSha256": "52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be",
+    "observationTextSha256Verdict": "MATCH",
+    "altered": false,
+    "acceptanceSemantics": "NONE",
+    "scored": false
+  },
+  "frozenExecutionPath": {
+    "promptVersion": "hazlenz.l3.prompt.v6",
+    "systemPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+    "runSchemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+    "runSchemaVerdict": "MATCH",
+    "inputBuilder": "buildReasoningInput (shipped, unmodified)",
+    "userPromptBuilder": "buildUserPrompt (shipped, unmodified)",
+    "endpoint": "http://127.0.0.1:11439",
+    "temperature": 0,
+    "seed": 20260822,
+    "numCtx": 8192,
+    "timeoutMs": 300000
+  },
+  "providerCall": {
+    "providerCallCount": 1,
+    "requestedModel": "claude-sonnet-5",
+    "httpStatus": 200,
+    "transportError": null,
+    "latencyMs": 9938,
+    "envelopeModelField": "claude-sonnet-5",
+    "envelopeDone": true,
+    "envelopeDoneReason": null,
+    "promptTokens": 6052,
+    "outputTokens": 246,
+    "contentChars": 380
+  },
+  "executionPathCompatibility": {
+    "responseParsedAsJson": true,
+    "parseError": null,
+    "topLevelKeys": [
+      "outcome",
+      "observationInterpretation",
+      "hazardCandidates"
+    ],
+    "candidateCount": 0,
+    "candidateKeySets": [],
+    "conditionStates": [],
+    "outcomePresent": true,
+    "binderReached": true,
+    "binderError": null,
+    "binderQuoteBinding": {
+      "total": 0,
+      "unbound": 0,
+      "ambiguous": 0
+    },
+    "validatorReached": true,
+    "validatorError": null,
+    "validationState": "VALID",
+    "validationIssueCodes": [],
+    "validatedHazardCount": 0
+  },
+  "NOT_PERFORMED": {
+    "acceptanceScorerExecutions": 0,
+    "g1ToG10Evaluations": 0,
+    "hazardAccuracyJudgement": "NOT PERFORMED",
+    "semanticQualityJudgement": "NOT PERFORMED",
+    "tuning": "NO",
+    "remediation": "NO",
+    "holdoutRowsRead": 0,
+    "holdoutRowsTransmitted": 0,
+    "reservedRowsTransmitted": 0,
+    "modelProseRecorded": "NO -- no rationale, question or narrative text is stored in this artifact"
+  }
+}

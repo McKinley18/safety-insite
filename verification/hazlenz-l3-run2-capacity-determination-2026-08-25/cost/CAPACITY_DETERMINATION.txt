@@ -1,0 +1,73 @@
+L3 RUN-2 CAPACITY DETERMINATION — DERIVED FROM EXISTING RUN-1 EVIDENCE, ZERO NEW SPEND
+========================================================================================
+
+PROVIDER CALLS MADE BY THIS SCRIPT: 0    API COST OF THIS SCRIPT: $0.00
+
+--- 1. RUN-1 PROVIDER-CALL ACCOUNTING (already paid for, not re-measured) ---
+  process A records ............ 92   HTTP 200 40   HTTP 400 52
+  process B records ............ 92   HTTP 200 0   HTTP 400 92
+  total provider calls ......... 184
+  attempts, every call ......... 1 (no retry was issued)
+  returned model, every 200 .... claude-sonnet-5
+  stop reason, every 200 ....... end_turn (0 truncations)
+
+--- 2. TOKEN EVIDENCE FROM THE 40 SUCCESSFUL HTTP-200 claude-sonnet-5 CALLS ---
+  INPUT  total 240438  mean 6010.95  median 6009.5  min 5998  max 6053
+  OUTPUT total 74318   mean 1857.95  median 1598  min 551  max 6548
+
+  CACHE-TOKEN ACCOUNTING: NONE EXISTS, AND NONE IS FABRICATED.
+    The frozen shim sets no `cache_control` anywhere, so no prompt caching was requested and
+    `cache_creation_input_tokens` / `cache_read_input_tokens` were never recorded. Uncached
+    input pricing therefore applies in full — which is also the conservative direction.
+  `outputTokens` is usage.output_tokens and ALREADY INCLUDES adaptive thinking tokens.
+
+  RUN-1 ACTUAL SPEND ON THESE 40 CALLS = $1.224056   (the 144 rejected 400s billed $0)
+
+--- 3. COSTING THE FROZEN 186-EVALUATION WORKLOAD (93 rows x 2 processes) ---
+  pricing used: $2/MTok input, $10/MTok output (governed evidence, L3-2o assertion 13)
+
+  A  OBSERVED-MEAN PROJECTION
+       mean cost/call = $0.030601
+       A = $0.030601 x 186 = $5.691860
+
+  B  OBSERVED-MAX-ENVELOPE PROJECTION
+       max observed input 6053 tok, max observed output 6548 tok
+       max-derived cost/call = $0.077586
+       B = $0.077586 x 186 = $14.430996
+
+  C  RECOMMENDED FUNDING REQUIREMENT
+       more conservative of A and B = $14.430996  (B)
+       x 1.25 headroom = $18.038745  -> $18.04
+
+  DETERMINISTIC CEILING (separate calculation, not the recommendation)
+       The frozen shim sets max_tokens = 16384, so output CANNOT exceed that per call.
+       This is a genuine hard bound, but it is LOOSER than B, not tighter, and no deterministic
+       bound on Run-2 INPUT tokens exists without opening Run-2 rows. It is reported, not used.
+       per call <= $0.175946   x 186 = $32.725956   (x1.25 = $40.907445)
+
+  SEMANTIC-RETRY EXPOSURE (frozen ceiling of one, NOT added to the requirement above)
+       Worst case every row retries once -> 372 billable calls.
+       A-basis $11.383721 | B-basis $28.861992
+       Observed Run-1 semantic-retry rate: 0 of 40 (all VALIDATED at attempt 1).
+
+--- 4. COMPARISON WITH AVAILABLE CREDIT ---
+  user-attested available credit .... $16.97
+  recommended requirement .......... $18.038745
+  HEADROOM_DOLLARS ................. $-1.068745
+  HEADROOM_PERCENT ................. -5.925%
+
+  credit / A (mean projection) ..... 2.981x
+  credit / B (max envelope) ........ 1.176x
+
+  CLASSIFICATION: INSUFFICIENT
+  TERMINAL: L3_RUN2_CAPACITY_BLOCKED — ADDITIONAL_CREDIT_REQUIRED
+  MINIMUM ADDITIONAL CREDIT TO CLEAR THE GATE: $1.068745
+
+--- 5. RUN-2 UNSPENT PROOF ---
+  provider calls this phase ........ 0
+  new API cost this phase .......... $0.00
+  Run-2 rows transmitted ........... 0
+  reserved rows transmitted ........ 0
+  RUN2_HOLDOUT_SPENT ............... FALSE
+
+  THIS DETERMINATION DOES NOT AUTHORIZE THE RUN-2 ACCEPTANCE RUN IN EITHER DIRECTION.

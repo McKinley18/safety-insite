@@ -18,7 +18,6 @@ export type EntitlementKey =
   | "workspaceFiltering"
   | "companyAnalytics"
   | "sharedReports"
-  | "hazlenzPreview"
   | "hazlenzFullReview"
   | "standardsReasoning"
   | "professionalReports"
@@ -32,6 +31,9 @@ export type EntitlementKey =
 
 export type PlanEntitlements = Record<EntitlementKey, boolean | string>;
 
+// Mirrors backend/src/billing/plan-entitlements.ts, which is the enforcement source of
+// truth; this copy exists only for UI visibility. See that file for why `hazlenzPreview`
+// was removed and why Free's `evidenceGapPrompts` is false.
 const freeEntitlements: PlanEntitlements = {
   fullSafeScope: false,
   cloudReports: false,
@@ -47,12 +49,11 @@ const freeEntitlements: PlanEntitlements = {
   workspaceFiltering: false,
   companyAnalytics: false,
   sharedReports: false,
-  hazlenzPreview: true,
   hazlenzFullReview: false,
   standardsReasoning: false,
   professionalReports: false,
   correctiveActionRecommendations: false,
-  evidenceGapPrompts: true,
+  evidenceGapPrompts: false,
   deeperExplainability: false,
   advancedReportReview: false,
   advancedStandardsSupport: false,
@@ -122,7 +123,7 @@ export function getPlanDisplayName(plan?: string | null) {
 
 export function getPlanPricing(plan?: string | null) {
   const normalized = normalizePlanCode(plan);
-  if (normalized === "pro") return 9.99;
+  if (normalized === "pro") return 24.99;
   return 0;
 }
 
@@ -139,6 +140,16 @@ export function getLocalDevPlanCode(): BillingTier {
 export function getStoredPlanCode(): PlanCode {
   const localDevDefault =
     process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" ? getLocalDevPlanCode() : "free";
+
+  // An explicit local Pro override is used for beta workflow testing. It must
+  // take precedence over stale cached user data from an earlier Free session.
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" &&
+    process.env.NEXT_PUBLIC_DEV_FORCE_PRO === "true"
+  ) {
+    return "pro";
+  }
 
   if (typeof window === "undefined") return normalizePlanCode(localDevDefault);
 
@@ -227,6 +238,16 @@ export function requiredPlanForArea(area: ProtectedArea) {
  */
 export async function getVerifiedPlanCode(): Promise<BillingTier> {
   if (typeof window === "undefined") return "free";
+
+  // Local beta access deliberately bypasses live billing. Do not let the
+  // development backend's Free billing response undo the configured override.
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" &&
+    process.env.NEXT_PUBLIC_DEV_FORCE_PRO === "true"
+  ) {
+    return "pro";
+  }
 
   try {
     const { getBillingMe } = await import("./billing");

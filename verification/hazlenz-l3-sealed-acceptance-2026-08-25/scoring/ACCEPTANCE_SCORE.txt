@@ -1,0 +1,33 @@
+L3 FINAL SEALED ACCEPTANCE -- FROZEN SCORER RESULT
+scorer      hazlenz.l3.acceptance-scorer.attempt2.v1
+scorer sha  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+holdout sha 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+
+scorable          true
+invalid reasons   (none)
+result set        expected 92  received 92  missing 0  extra 0  duplicates 0
+
+gate  class      threshold                              measured                         verdict
+----  ---------  -------------------------------------  -------------------------------  -------
+G1    HARD       ZERO                                   0 of 38                          PASS
+G2    HARD       100%                                   1 imprecise of 2 raised (50.0%)  FAIL
+G3    HARD       100% on BOTH, never merged (D-58)      A 1/29 = 3.4% | B 1/2 = 50.0%    FAIL
+G4    HARD       ZERO                                   0 of 21                          PASS
+G5    HARD       ZERO                                   0 of 92                          PASS
+G6    HARD       ZERO (every code)                      0 of 92                          PASS
+G7    HARD       ZERO                                   0 of 11                          PASS
+G8    HARD       ZERO                                   0 of 92                          PASS
+G9    HARD       100% across 2 processes                40 divergent of 92 (56.5%)       FAIL
+G10   THRESHOLD  >=99% after <=1 retry                  40/92 = 43.5%                    FAIL
+
+
+BY PROVENANCE (section 36.5, MANDATORY, never merged):
+  INDEPENDENT_GAUNTLET   rows 38  G1 0/38  G3A 0/0  G3B 0/0  G4 0/0  G7 0/0  schema 38/38
+  INDEPENDENT_REALISM    rows 29  G1 0/0  G3A 1/23  G3B 1/2  G4 0/0  G7 0/0  schema 2/29
+  AUTHORED_CONTROL       rows 25  G1 0/0  G3A 0/6  G3B 0/0  G4 0/21  G7 0/11  schema 0/25
+
+failed gates      G2,G3,G9,G10
+TERMINAL          L3_ACCEPTANCE_FAILED — G2,G3,G9,G10
+pass              false
+
+wrote verification/hazlenz-l3-sealed-acceptance-2026-08-25/scoring/ACCEPTANCE_SCORE.json

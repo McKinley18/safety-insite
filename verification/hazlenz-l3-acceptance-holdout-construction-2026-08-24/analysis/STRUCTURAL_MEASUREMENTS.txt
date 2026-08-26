@@ -1,0 +1,54 @@
+== 1. SOURCE IDENTITY AND INTEGRITY ==
+  gauntlet.source.v1
+    path   : safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+    sha256 : a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+    bytes  : 184988
+    rows   : 150
+    fields : agency,equipmentContext,expectedCitationHints,expectedCorrectiveActionTheme,expectedPrimaryFamily,expectedStandardFamily,industryContext,observation,primaryHazardFamily,prohibitedOverreach,reasoningExpectation,scenarioId,secondaryHazardFamilies,severityExpectation,sourceAgency,sourceDate,sourceExcerptShort,sourceGroundingNotes,sourceId,sourceReliability,sourceTitle,sourceType,sourceUrl,unacceptableStandardFamilies
+  gauntlet.seed
+    path   : safescope-data/gauntlets/safescope-gauntlet.seed.json
+    sha256 : 49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+    bytes  : 77638
+    rows   : 100
+    fields : agency,equipmentContext,expectedCorrectiveActionTheme,expectedStandardFamily,industryContext,observation,primaryHazardFamily,reasoningExpectation,scenarioId,secondaryHazardFamilies,severityExpectation,sourceType,unacceptableStandardFamilies
+  field-realism-pack-v2
+    path   : safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+    sha256 : 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+    bytes  : 87460
+    rows   : 117
+    fields : employeeExposureKnown,equipmentInvolved,expectedTerms,hazardObservation,id,industryContext,photosAvailable,shouldHaveMissingEvidence,siteType,taskContext,title
+
+== 2. SELECTION-KEY AVAILABILITY (the plan sorts by `scenarioId`) ==
+  gauntlet.source.v1: scenarioId present on 150/150 (distinct 150)
+  gauntlet.seed: scenarioId present on 100/100 (distinct 100)
+  field-realism-pack-v2: scenarioId present on 0/117 (distinct 0)
+
+== 3. OBSERVATION-CARRIER AVAILABILITY (the plan carries `observation` verbatim) ==
+  gauntlet.source.v1: observation on 150/150 | hazardObservation on 0/150
+  gauntlet.seed: observation on 100/100 | hazardObservation on 0/100
+  field-realism-pack-v2: observation on 0/117 | hazardObservation on 117/117
+
+== 4. STRATUM CHARACTERISATION ==
+  gauntlet.source.v1
+    severityExpectation: {"critical":103,"high":36,"medium":11}
+    sourceType         : {"fatality_report":66,"investigation_summary":33,"inspection_violation":51}
+    agency             : {"MSHA":66,"OSHA":84}
+    distinct primaryHazardFamily: 21
+    sourceId present   : 150
+  gauntlet.seed
+    severityExpectation: {"high":47,"critical":21,"medium":32}
+  field-realism-pack-v2 -- the ambiguity/clarification denominator
+    shouldHaveMissingEvidence === true : 87
+    shouldHaveMissingEvidence === false: 2
+    field ABSENT on                    : 28
+    photosAvailable present            : 117
+    employeeExposureKnown present      : 117
+
+== 5. CROSS-SOURCE DISJOINTNESS (normalised text, COUNTS ONLY) ==
+  source.v1 x seed    : 0
+  source.v1 x realism : 0
+  seed x realism      : 0
+  distinct texts      : source.v1=150 seed=99 realism=117 TOTAL=366
+  raw rows            : source.v1=150 seed=100 realism=117 TOTAL=367
+
+NO ROW WAS SELECTED. NO OBSERVATION TEXT WAS PRINTED. NO INFERENCE WAS RUN.

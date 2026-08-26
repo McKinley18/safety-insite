@@ -1,0 +1,42 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PHASE 4: THE FROZEN HOLDOUT, OPENED FOR EXECUTION
+recorded 2026-08-25T20:51:08Z
+sha256 re-verified at open: 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+
+  holdoutId            holdout-l3-acceptance-attempt2
+  constructionVersion  L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2
+  governingPlan sha256 8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+
+=== ROW COUNT AND COMPOSITION ===
+  MATCH     total rows                                   92   (frozen 92)
+  MATCH     INDEPENDENT_GAUNTLET                         38   (frozen 38)
+  MATCH     INDEPENDENT_REALISM                          29   (frozen 29)
+  MATCH     AUTHORED_CONTROL                             25   (frozen 25)
+  MATCH     composition.total declared                   92   (frozen 92)
+
+=== IDENTITY, ORDER AND PROVENANCE (frozen s.10) ===
+  MATCH     distinct rowIds                              92   (frozen 92)
+  MATCH     rowIds are H2A-001..H2A-092 in order         True   (frozen True)
+  MATCH     stratum order matches D-D.1                  True   (frozen True)
+  MATCH     distinct sourceIds                           92   (frozen 92)
+  MATCH     every row carries an observation             True   (frozen True)
+  MATCH     every row carries expect{}                   True   (frozen True)
+
+=== DENOMINATORS, COUNTED FROM FROZEN METADATA ONLY ===
+  COUNTED   G1 denominator (highConsequence)            38   -- not pre-declared; counted here before execution
+  MATCH     |DEN_A| (clarificationExpected)              29   (frozen 29)
+  MATCH     |G4 denominator| (inG4Denominator)           21   (frozen 21)
+  MATCH     |G7 pole| (inG7Pole)                         11   (frozen 11)
+  MATCH     |inG3Denominator| flag agrees with DEN_A     29   (frozen 29)
+
+  G4 membership by familyVariant: {'F1': 4, 'F2': 4, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F8b': 1}
+  G7 membership by familyVariant: {'F1': 4, 'F2': 4, 'F7': 3}
+  DEN_A by provenanceClass:       {'INDEPENDENT_REALISM': 23, 'AUTHORED_CONTROL': 6}
+  G1 denominator by provenance:   {'INDEPENDENT_GAUNTLET': 38}
+
+=== WHAT PHASE 4 DID NOT DO ===
+  No row was curated, reordered, omitted, replaced, rewritten or normalized.
+  No truth label was reinterpreted and no gate metadata was altered.
+  No observation was inspected to decide whether to run it. ALL 92 ROWS BELONG TO THE RUN.
+  No observation text is printed in this artifact.
+
+OVERALL: STRUCTURE MATCHES THE FROZEN DECLARATION -- THE RUN MAY PROCEED TO PHASE 5

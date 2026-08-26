@@ -1,0 +1,28 @@
+L3 FINAL ACCEPTANCE ARTIFACT -- MANIFEST AND IDENTITY  (construction Attempt 2)
+recorded 2026-08-24
+
+Each line is 'sha256  path', paths relative to
+  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+sorted ascending. The ACCEPTANCE ARTIFACT IDENTITY below is the SHA-256 of exactly these lines.
+
+2dd16886f24eadfb9f78f364bd16e9a2a5fc6390e0018edb13ace0dc7e727e2c  ACCEPTANCE_ARTIFACT_FREEZE.txt
+41a42aeb7df8d018c4871850f90eb5cf9d558d419ecc3a51df22f5b696821cf6  scorer/synthetic-scorer-tests.js
+548d70fb93276f1563318751313f7a22c1bb9224a57d300b3992b0efa5eb2996  analysis/PHASE4_DF_PRESELECTION_GATE.txt
+56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05  builder/authored-controls.js
+69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  holdout/holdout-l3-acceptance-attempt2.json
+69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  rebuild/holdout-l3-acceptance-attempt2.json
+8650f243b47e86ce7b77fa5e5c8778f94762b0a02fc2e18cfc3943556ce4c4d2  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+9410de1a0efb4eef9a3af024c00f2ec88968ddbb0deba130c8e0b6a44e1a70c4  builder/build-holdout.js
+95e3cb8b122dcdfa80f1b8c1377b0473c9aaafec85a0a0f0cb538428e7be7717  validation/validate-holdout.js
+a05f3782173be7b03db2ffa0d2f2bd6624801a0581386f3afc81374cee3337f5  validation/REBUILD_PROOF.txt
+a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62  HOLDOUT_FREEZE.txt
+c5e94e5cdda654acf22f5d2b74d06e33fbf72e9b2836b9691e74acb862a70733  validation/STRUCTURAL_VALIDATION.txt
+cd958e30b6ab9048394c65fb4f35a75f3c477bb0c299e24495ec21b79d92bd8a  validation/OVERLAP_SURFACES.txt
+e2d4380c996ce6ed9a91645601d5df4a86db348e30cc4905725c2e4c51a918de  analysis/PHASE7_AUTHORED_CONTROLS.txt
+ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  scorer/acceptance-scorer.js
+f8390d54938a67267d9490ad345749fd127f989a2821162bce19e7c4e98abeb4  analysis/phase7-authored-controls.js
+
+ACCEPTANCE ARTIFACT IDENTITY (sha256 of the manifest above):
+  189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+
+HOLDOUT_SPENT = FALSE. No provider activity is authorized by this identity.

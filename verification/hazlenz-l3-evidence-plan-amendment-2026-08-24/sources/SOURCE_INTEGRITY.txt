@@ -1,0 +1,51 @@
+L3 INDEPENDENT EVIDENCE PLAN AMENDMENT -- PHASE 1 SOURCE-INTEGRITY RECONFIRMATION
+recorded 2026-08-24
+
+== PROTECTED SOURCES -- RE-DERIVED WITHOUT SEMANTIC INSPECTION ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-gauntlet.source.v1.json
+    expected a95e5480...  MATCH: YES   physical rows 150   bytes 184988
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-gauntlet.seed.json
+    expected 49aa40fd...  MATCH: YES   physical rows 100   bytes  77638
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-field-realism-pack-v2.v1.json
+    expected 6f6897f1...  MATCH: YES   physical rows 117   bytes  87460
+
+  SOURCE INTEGRITY: PASS -- 3 of 3 byte-identical. No source artifact modified or written to.
+
+== EVIDENCE INVENTORY -- THE TWO NUMBERS ARE DIFFERENT AND ARE RECORDED SEPARATELY ==
+
+  PHYSICAL SOURCE ROWS
+    gauntlet.source.v1        150
+    gauntlet.seed             100
+    field-realism-pack-v2     117
+    ------------------------------
+    TOTAL PHYSICAL ROWS       367
+
+  DISTINCT NORMALIZED OBSERVATION TEXTS  (NORM = NFC -> lowercase -> collapse whitespace -> trim)
+    gauntlet.source.v1        150
+    gauntlet.seed              99   <-- ONE INTERNAL DUPLICATE TEXT PAIR
+    field-realism-pack-v2     117
+    ------------------------------
+    TOTAL DISTINCT TEXTS      366
+
+  THE 366 OF RECORD IS THE DISTINCT-TEXT COUNT, NOT THE PHYSICAL ROW COUNT.
+  It must never be restated as a physical row count. Reservation arithmetic uses PHYSICAL rows
+  (150 and 117); evidence-budget statements name which number they use.
+
+  Mutual disjointness under NORM: source.v1 x seed = 0 | source.v1 x realism = 0 | seed x realism = 0
+
+== AMBIGUITY TRUTH METADATA -- THE D-C CORRECTION, RE-MEASURED ==
+  field-realism-pack-v2 shouldHaveMissingEvidence
+    === true    87
+    === false    2
+    absent      28
+    present     89 / 117
+  The previously recorded "92" is NOT this field. It is source-survey.json's complementSignals
+  .ambiguityish -- a heuristic TEXT SIGNAL. Preserved as historical provenance, marked superseded,
+  and prohibited as truth metadata for any builder, scorer or gate.
+
+== WHAT WAS NOT DONE ==
+  rows opened for evaluation             : NO
+  observation text printed or persisted  : NO
+  selected source identities materialized: NO
+  any source artifact modified           : NO
+  inference of any kind                  : NO

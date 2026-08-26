@@ -1,0 +1,32 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (2026-08-25)
+FROZEN SYNTHETIC PROBE: RE-VERIFIED, NOT REGENERATED, AND THIS TIME SENT
+
+  The probe was frozen by D-91 (s.58.3) and re-verified unchanged by D-92 (s.59.6). This phase
+  RE-VERIFIED it from disk again and DID NOT replace, edit or regenerate it. It is the ONLY
+  observation this phase transmitted.
+
+  canonical location        verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+                              probe/probe-observation.json
+  classification            NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  artifact sha256           a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c   MATCH
+  observationText sha256    52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be   MATCH
+  observationText bytes     185                                                                MATCH
+
+  TRANSMITTED               YES -- once, in the single authorized Anthropic request.
+
+  THE HASH WAS ASSERTED IN CODE BEFORE THE REQUEST COULD BE BUILT. runner/readiness-probe-call.ts
+  throws if the classification is not NON_HOLDOUT_PROVIDER_READINESS_PROBE or if the
+  observationText digest is anything other than 52520318..., so an altered probe could not have
+  reached the provider. D-91 froze it precisely so that a change would be mechanically visible;
+  it is unchanged.
+
+  SCORED                    NO. Its own frozen record prohibits scoring it, and no scorer was run.
+  ACCEPTANCE SEMANTICS      NONE. It carries no truth metadata, no gate membership and no pole.
+
+  Its NON_HOLDOUT status rests on CONSTRUCTION, not on search. Testing membership by searching
+  the protected sources for the string would require opening rows this phase is forbidden to
+  open, and no such search was performed.
+
+  holdout rows consulted     0
+  reserved rows consulted    0
+  protected source rows read 0

@@ -1,0 +1,64 @@
+L3 PROVIDER READINESS -- PRESERVATION AND EGRESS
+recorded 2026-08-25T01:34:20Z
+
+== 1. REPOSITORY, BEFORE AND AFTER ==
+
+  HEAD        a7b21a2636b4a80ecaf823aef4558d9ea8915230   UNCHANGED
+  branch      release/insite-rc-2026-08-18
+  upstream    origin/release/insite-rc-2026-08-18 @ a7b21a26   divergence 0 / 0
+  staged      0 entries
+  tags        23 tag objects, NONE created, moved or deleted
+  stashes     4 entries, NO STASH OPERATION OF ANY KIND
+
+  nothing committed, pushed, merged, rebased, reset, restored, cleaned, stashed or deployed.
+  no remote branch created or modified. no pull request opened. no infrastructure touched.
+  no database command of any kind was run.
+
+== 2. WHAT THIS PHASE ADDED TO THE WORKTREE ==
+
+  verification/hazlenz-l3-provider-readiness-2026-08-24/   (new, untracked)
+  docs/INSITE_ENGINEERING_BLUEPRINT.md                     (modified -- s.57 and D-90 appended)
+  docs/INSITE_CURRENT_STATE.json                           (modified -- readiness result recorded)
+
+  git diff HEAD -- backend/src   =  0 lines.  NO PRODUCTION CODE WAS MODIFIED.
+
+== 3. UNRELATED EXISTING WORK -- PRESERVED, NOT TOUCHED ==
+
+  The worktree carried substantial legitimate uncommitted work before this phase and carries it
+  unchanged after. None of it was staged, reverted, discarded or rewritten:
+
+    backend/scripts/test-canonical-workflow.ts          M   untouched
+    backend/scripts/test-private-storage-reports.ts     M   untouched
+    frontend-next/app/inspection-workspace/page.tsx     M   untouched
+    frontend-next/app/inspections/page.tsx              M   untouched
+    frontend-next/lib/auth.ts                           M   untouched
+    frontend-next/lib/canonicalWorkflowApi.ts           M   untouched
+    frontend-next/lib/planEntitlements.ts               M   untouched
+    verification/.../INDEPENDENT_EVIDENCE_PLAN.md       M   untouched (the governing plan --
+                                                            READ ONLY, sha 8d8f6e8d before and after)
+    verification/.../PROVIDER_REQUIREMENTS.md           M   untouched
+    "Safety InSite Logos/"                              ??  untouched
+    nine prior hazlenz verification packages            ??  untouched
+
+  Attempt 1 (hazlenz-l3-acceptance-holdout-frozen-2026-08-24/) READ ONLY, byte-identical, and
+  still INVALIDATED historical evidence. It was NOT rewritten as a success.
+
+== 4. EGRESS ==
+
+  inference calls, hosted or local        0
+  API requests of any kind                0
+  network destinations contacted          0
+  bytes transmitted to any provider       0
+  holdout rows transmitted                0
+  reserved source rows transmitted        0
+  cost                                    $0.00
+
+  CREDENTIAL: none was obtained, so the credential appears in ZERO artifacts. It was not printed,
+  logged, hashed, persisted, counted, or shown by prefix or suffix. Claude Code's own claude.ai
+  authentication was neither inspected nor used, per s.47.7.
+
+== 5. CUSTOMER AUTHORITY ==
+
+  Unchanged by construction: no production file was modified, and s.45.6 stands that no hosted
+  adapter exists in backend/src to change it. CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN -- this phase selected no production provider.

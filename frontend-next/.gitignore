@@ -15,6 +15,9 @@
 
 # next.js
 /.next/
+# Isolated build/audit output (NEXT_DIST_DIR), so verification never
+# writes into the .next/ a running dev server is using.
+/.next-*/
 /out/
 
 # production

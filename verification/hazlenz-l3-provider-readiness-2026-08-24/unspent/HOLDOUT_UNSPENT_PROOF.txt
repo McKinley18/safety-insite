@@ -1,0 +1,72 @@
+L3 PROVIDER READINESS -- PHASE 8, HOLDOUT UNSPENT RE-PROOF
+recorded 2026-08-25T01:33:35Z
+
+  >> HOLDOUT_SPENT = FALSE <<
+
+== 1. FROZEN HOLDOUT, BYTE-IDENTICAL BEFORE AND AFTER ==
+
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   holdout/...attempt2.json
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   rebuild/...attempt2.json
+  bytes 105561   -- unchanged
+  rows  92       -- counted STRUCTURALLY: 38 INDEPENDENT_GAUNTLET + 29 INDEPENDENT_REALISM
+                    + 25 AUTHORED_CONTROL, read from the row-class field and the composition
+                    block. NO 'observation' field value was read, printed or serialised.
+
+  Full 16-artifact acceptance identity, RECOMPUTED AFTER the phase:
+  189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  -- identical to the pre-phase recomputation, 16/16 component lines identical.
+
+== 2. PROTECTED SOURCES, BYTE-IDENTICAL BEFORE AND AFTER ==
+
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  gauntlet.source.v1     150
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  gauntlet.seed          100  UNOPENED
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  field-realism-pack-v2  117
+
+== 3. THE UNSPENT CHECKLIST ==
+
+  holdout row READ for provider input                      : 0
+  holdout row TRANSMITTED                                  : 0
+  reserved source row READ for provider input              : 0
+  reserved source row TRANSMITTED                          : 0
+  gauntlet offset 0 opened / spent                         : NO / NO   RESERVED, UNSPENT
+  realism  offset 3 opened / spent                         : NO / NO   RESERVED, UNSPENT
+  gauntlet offsets 1, 2, 3                                 : RESERVED, untouched
+  realism  offsets 0, 1, 2                                 : RESERVED, untouched
+  gauntlet.seed tranche (100 physical / 99 distinct)       : UNOPENED
+  acceptance scorer executed on provider output            : 0 -- no provider output exists
+  acceptance scorer executed at all this phase             : 0
+  acceptance result artifact created anywhere              : 0 -- none exists
+  G1..G10 evaluated                                        : NO
+  tuning of prompt / schema / model / parameters           : NO
+  semantic remediation                                     : NO
+  production code modified                                 : NO -- git diff HEAD -- backend/src = 0 lines
+  frozen acceptance artifact rewritten                     : NO -- all 16 read-only
+
+== 4. THE ONE SYNTHETIC PROBE THAT WAS NOT NEEDED ==
+
+  Phase 2 authorized exactly one synthetic disposable non-holdout probe observation. The Phase 3
+  credential gate stopped the phase BEFORE Phase 5, so no probe observation was ever authored,
+  serialised or transmitted, and no probe identity exists to record.
+
+  provider calls issued this phase   : 0
+  destinations contacted             : 0
+  bytes egressed                     : 0
+  cost                               : $0.00
+
+  Note for the record: even had the probe run, the contract states plainly that ONE SYNTHETIC
+  DISPOSABLE PROVIDER CALL DOES NOT CONSTITUTE HOLDOUT SPEND. It did not run, so the point is 0 lines
+  moot here and HOLDOUT_SPENT = FALSE rests on the stronger fact that nothing was called at all.
+
+== 5. NETWORK-PRIMITIVE AUDIT OF THIS PHASE'S OWN SCRIPTS ==
+
+  scripts authored by this phase: 1
+    identities/derive-frozen-identities.ts
+  occurrences of fetch / http / https / axios / net / dns / child_process / XMLHttpRequest /
+  WebSocket / curl / wget across all of them:  ZERO
+
+  The frozen Anthropic shim (76d3e039...) contains network primitives by design and is the
+  intended sealed-run transport. IT WAS NOT STARTED, NOT INVOKED AND NOT MODIFIED by this phase.
+
+== 6. VERDICT ==
+
+  HOLDOUT_SPENT = FALSE. NOTHING IS RETIRED. The exam still exists and has still not been sat.

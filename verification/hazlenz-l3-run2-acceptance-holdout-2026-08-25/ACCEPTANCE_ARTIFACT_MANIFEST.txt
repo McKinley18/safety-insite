@@ -1,0 +1,31 @@
+L3 RUN-2 FINAL ACCEPTANCE ARTIFACT -- MANIFEST AND IDENTITY
+recorded 2026-08-25
+
+Each line is 'sha256  path', paths relative to
+  verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/
+sorted ascending. The RUN-2 ACCEPTANCE ARTIFACT IDENTITY below is the SHA-256 of exactly
+these lines.
+
+112a3c7c3be84e1ca93b587c282134aec44b833a2d53aff8e00f1066aabbafd3  validation/STRUCTURAL_VALIDATION.txt
+2c8582267c02b583910b949825290aed7f8337f432ba2f35535c875b56572859  builder/build-holdout-run2.js
+599c34a1703533da8e542890295e054996262e4d4a7b8df6178b594681ba0c58  validation/REBUILD_PROOF.txt
+5cce87e8e7da8e326a0c4ff77f2c59e4f6855c3da62bb4de4c172aeff4527245  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+5d0b7b231940c3cca9ba1dca735fb663d23c8b3e81af92b13563c1a22b852cb1  builder/authored-controls-run2.js
+645f7ddff53d4d32ab1eebb14411519f61c6862aceb17e3026c3320c52910adb  ACCEPTANCE_ARTIFACT_FREEZE.txt
+67e6b47c7c13b217236220284894d8b44aac1d4769c8e4fa37323d993b8937bb  HOLDOUT_FREEZE.txt
+72fd9eb711d635ad4e506d732f4b9f0a40066a06d30c5f571545067436d2a137  analysis/PHASE3_PRESELECTION_GATE.txt
+7e8173a074ed5529eb9388a1a3454089a4e32cdc69b7e7664dca8028dd07042c  analysis/preselection-gate.js
+a906e0d38d0e3f6498426d1e525b2b5c211640d2f7eea0b01b29dde6e3578268  validation/OVERLAP_SURFACES.txt
+b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100  scorer/acceptance-scorer-v2.frozen-copy.js
+d0cc830465c62410c5dc92fa91564f0edb432fb44a1aaaef33d41f0c6f6f6290  scorer/synthetic-run2-tests.js
+d1b2d7125668a4d91956561f0990f48e9cee168e154ef2be4b4bf4a8cb1cb35b  validation/validate-holdout-run2.js
+f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  holdout/holdout-l3-acceptance-run2.json
+f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  rebuild/holdout-l3-acceptance-run2.json
+
+RUN-2 ACCEPTANCE ARTIFACT IDENTITY (sha256 of the manifest above):
+  9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+
+THIS IS A NEW IDENTITY. 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+belongs to the SPENT RUN-1 ARTIFACT and is NOT reused.
+
+RUN2_HOLDOUT_SPENT = FALSE. No provider activity is authorized by this identity.

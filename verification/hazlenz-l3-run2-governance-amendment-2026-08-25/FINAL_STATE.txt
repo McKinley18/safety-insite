@@ -1,0 +1,46 @@
+L3 RUN-2 GOVERNANCE AMENDMENT (2026-08-25) -- FINAL STATE
+
+  TERMINAL
+    L3_INDEPENDENT_EVIDENCE_PLAN_AMENDED_V3 -- RUN2_HOLDOUT_CONSTRUCTION_REAUTHORIZATION_REQUIRED
+
+  STATE BITS
+    RUN1_HOLDOUT_SPENT                    TRUE
+    RUN1_GAUNTLET_OFFSET_0                RETIRED
+    RUN1_REALISM_OFFSET_3                 RETIRED
+    RUN1_MODEL_ACCEPTANCE_RESULT          NOT_ESTABLISHED
+    RUN2_HOLDOUT_CONSTRUCTED_AND_FROZEN   FALSE
+    RUN2_HOLDOUT_SPENT                    FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+    L3-3                                  UNAUTHORIZED
+
+  IDENTITIES
+    governing plan before                 8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4  (754 lines)
+    governing plan after                  a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a  (1006 lines)
+    append-only proof (first 754 lines)   8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+    frozen scorer (UNMODIFIED)            ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+    acceptance-scorer-v2.js               b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100
+    Run-1 acceptance-artifact identity    189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f  UNCHANGED
+    frozen holdout (Run 1, spent)         69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  UNCHANGED
+
+  NEW VALIDITY PREDICATE
+    EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS
+    AND PROVIDER_EVALUATED_ROW_IDS = EXPECTED_ROW_IDS     (set equality, every required process)
+
+  RESULTS
+    synthetic v2 validation               70 assertions, 70 PASS, 0 FAIL
+    declared-vs-derived                   33 quantities, 33 MATCH, 0 MISMATCH
+    independent executability review      43 checks, OK 43, DEFECT 0
+    v2 == frozen on complete runs         92 perturbed cases, identical gates/terminal/pass
+    incomplete can never pass             184 cases, none yields pass = true
+
+  DERIVED RUN-2 CORPUS (NOT CONSTRUCTED)
+    gauntlet offset 1 -> 38 | realism offset 0 -> 30 | fresh authored 25 | TOTAL 93 (73.1% independent)
+    RUN2_DEN_A                            UNKNOWN_UNTIL_AFTER_AUTHORIZED_SELECTION
+
+  EXECUTION
+    credential accessed NO | provider calls 0 | probes 0 | inference 0 | destinations 0 | $0.00
+    rows selected 0 | observations opened 0 | additional corpus spent 0
+
+  EXACT NEXT PREREQUISITE
+    A SEPARATELY AUTHORIZED RUN-2 HOLDOUT-CONSTRUCTION PHASE. Run-2 construction remains UNAUTHORIZED.

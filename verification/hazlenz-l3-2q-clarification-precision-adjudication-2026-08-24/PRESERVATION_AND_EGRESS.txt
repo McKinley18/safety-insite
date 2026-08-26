@@ -1,0 +1,95 @@
+L3-2q -- PRESERVATION, EGRESS AND CREDENTIAL AUDIT
+recorded 2026-08-24T20:18:42Z
+
+== git ==
+HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+upstream: refs/remotes/origin/release/insite-rc-2026-08-18  divergence: 0/0
+live remote ref: a7b21a2636b4a80ecaf823aef4558d9ea8915230
+worktree porcelain entries: 13  (8 at the a7b21a26 checkpoint)
+tags: 23   staged index entries: 0
+
+== PROTECTED EXCLUDED PRODUCT WORK -- UNTOUCHED ==
+  backend/scripts/test-canonical-workflow.ts           unstaged=27 staged=0
+  backend/scripts/test-private-storage-reports.ts      unstaged=44 staged=0
+  frontend-next/app/inspection-workspace/page.tsx      unstaged=12 staged=0
+  frontend-next/app/inspections/page.tsx               unstaged=15 staged=0
+  frontend-next/lib/auth.ts                            unstaged=19 staged=0
+  frontend-next/lib/canonicalWorkflowApi.ts            unstaged=30 staged=0
+  frontend-next/lib/planEntitlements.ts                unstaged=38 staged=0
+  Safety InSite Logos/ : 11 files untracked, not staged
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== PRODUCTION SOURCE, INSTRUMENTS AND B08 -- BYTE-UNCHANGED ==
+  git diff HEAD -- backend/src : 0 lines
+  git diff HEAD -- backend/scripts : 71 lines -- ENTIRELY the two
+     PROTECTED EXCLUDED integration-test repairs (27 + 44). No L3 instrument modified.
+  B08 ALTERED : NO -- the cohort lives in backend/scripts/ablate-l32g-state-separation.ts, whose
+     digest is unchanged, and this phase only READ it.
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  backend/scripts/activate-l32j-shipped-corpus.ts
+  d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db  backend/scripts/diagnose-l32k-shipped-residual.ts
+
+== THE SURFACES THIS PHASE ADJUDICATED BUT DID NOT MODIFY ==
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  2f3ded72ef8630122facf98452d94ff5df2308219d204059090dbd8d51bf11fb  backend/src/safescope-v2/reasoning-l3/validation-result.types.ts
+
+== FROZEN SCORERS READ, NEVER WRITTEN ==
+  c0e11d2bdbc4d6015ad41cb79bd765b1223f13a9a924a83f51fa7d08cd0435d9  verification/hazlenz-l3-2n-provider-qualification-2026-08-24/adapter/score.js
+  7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/score.js
+
+== SEALED ACCEPTANCE CORPUS -- HASH-VERIFIED, NOT OPENED ==
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  matches L3-2k / L3-2l / L3-2m / L3-2n / L3-2o / L3-2p records: YES
+
+== DOCUMENTATION CHANGES -- ADDITIVE VS THE a7b21a26 CHECKPOINT ==
+  484	22	docs/INSITE_CURRENT_STATE.json
+  424	0	docs/INSITE_ENGINEERING_BLUEPRINT.md
+  103	0	verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+  blueprint deleted lines vs HEAD          : 0
+  PROVIDER_REQUIREMENTS deleted lines vs HEAD: 0
+  + blueprint section 49, decisions D-76/D-77/D-78, one EVIDENCE INDEX row
+  + PROVIDER_REQUIREMENTS P-09R appended; P-01..P-14, P-02R and P-08R VERBATIM
+  + current state: one new top-level key, l32qClarificationPrecisionAdjudication (73 -> 74)
+  D-78 CORRECTION MARKERS added, never silent edits, in: blueprint 48.6 and 48.9, the L3-2p
+     STATUS.md and NEXT_ACTION.md, and the current-state nextSlice / openItems / l32p block.
+  HISTORICAL PRECISION MEASUREMENTS PRESERVED EXACTLY: claude-sonnet-5 5/6 and the four 5/5
+     results stand as recorded; D-72's precision finding is confirmed, not withdrawn.
+
+== REGRESSION ==
+  15 suites, 1085 assertions, 0 failed; backend tsc --noEmit exit 0.
+  No code changed, so no suite could move, and none did.
+
+== EGRESS, MEASURED ==
+  hosted-provider inference calls : 0      local (ollama) inference calls : 0
+  metadata / availability probes  : 0      network destinations contacted : NONE
+  content transmitted             : NONE   total API cost                 : $0.00
+
+== CREDENTIAL AUDIT ==
+  ANTHROPIC_API_KEY present : 0   <-- ABSENT; re-probe before any sealed run
+  value read, printed, echoed, logged, hashed or persisted : NO -- no credential was read at all
+  Claude Code authentication : UNCHANGED (claude.ai OAuth)
+
+== NOT DONE, BY CONSTRUCTION ==
+  committed / pushed / merged / rebased / reset / restored / cleaned : NO
+  stash operation of any kind                                       : NO
+  sealed acceptance corpus opened                                   : NO
+  provider inference of any kind (Anthropic / Gemini / qwen)        : NO
+  Sonnet effort, prompt, schema changed                             : NO
+  validator / binder modified                                       : NO
+  B08 altered                                                       : NO
+  clarification behaviour tuned                                     : NO
+  L3-3 begun                                                        : NO
+  production provider selected                                      : NO
+  sealed acceptance run executed                                    : NO
+  P-02R / P-08R re-derived or modified                              : NO
+  historical precision measurement rewritten                        : NO
+  protected excluded product work staged or modified                : NO

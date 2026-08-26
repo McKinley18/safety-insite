@@ -1,0 +1,52 @@
+L3 RUN-2 FAILURE DIAGNOSIS -- PRESERVATION AND ZERO-SPEND PROOF
+HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230
+
+1. THE FROZEN RUN-2 EVIDENCE IS UNCHANGED BY DIAGNOSIS
+  PASS  raw process A unchanged
+  PASS  raw process B unchanged
+  PASS  transport A unchanged
+  PASS  transport B unchanged
+  PASS  spend transition unchanged
+  PASS  gate declaration unchanged
+  PASS  acceptance contract unchanged
+  PASS  sealed execution record unchanged
+  PASS  the Run-2 acceptance package verifies byte-identical to its own manifest -- 29/29
+
+2. THE FROZEN VERDICT IS UNCHANGED AND UNCONTRADICTED
+  PASS  SCORE_BODY_DIGEST unchanged -- 435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+  PASS  terminal unchanged
+  PASS  scorable still TRUE
+  PASS  pass still FALSE
+  PASS  MODEL_ACCEPTANCE_RESULT still ESTABLISHED_FAIL
+  PASS  RUN2_HOLDOUT_SPENT still TRUE
+  PASS  offsets still RETIRED
+  PASS  the diagnosis ledger reproduces the frozen scorer on EVERY gate -- G1 1/1 | G2 4/4 | G3 misses (DEN_A - NUM_A) 13/13 | G4 4/4 | G5 1/1 | G6 rows 1/1 | G7 0/0 | G8 0/0 | G9 14/14 | G10 non-conforming 0/0
+
+3. NOTHING WAS CHANGED, REPAIRED OR TUNED BY THIS PHASE
+  PASS  git diff HEAD over backend/src and safescope-data is EMPTY
+  PASS  prompt byte-unchanged 426302a4...
+  PASS  validator byte-unchanged 942ac7cc...
+  PASS  binder byte-unchanged c1f9d29d...
+  PASS  input builder byte-unchanged 2865ae91...
+  PASS  shim byte-unchanged 76d3e039...
+  PASS  original scorer byte-unchanged ea5e50ae...
+  PASS  v2 wrapper byte-unchanged b9a0a6bc...
+  PASS  run-2 holdout byte-unchanged f887cfd1...
+
+4. ZERO PROVIDER CONTACT
+  PASS  no diagnosis file contains ANY url literal
+  PASS  no diagnosis file reads a credential env var
+  PASS  no diagnosis file contains a network call primitive
+  provider calls 0 | inference 0 | credential reads 0 | API cost $0.00
+  Run-2 corpus re-executed: NO | new holdout opened: NO | reserved tranche spent: NO
+  Gauntlet offsets 2,3 and realism offsets 1,2 remain RESERVED; gauntlet.seed remains UNOPENED.
+
+5. WORKTREE
+  PASS  4 stashes untouched -- 4
+  PASS  23 tags unchanged -- 23
+  PASS  nothing staged
+  PASS  no divergence from upstream
+  PASS  HEAD unchanged
+  Nothing committed, pushed, deployed or stashed. No database touched.
+
+TOTAL 34 checks -- PASS 34 -- FAIL 0

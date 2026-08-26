@@ -1,0 +1,93 @@
+L3 ACCEPTANCE SCORER v2 -- SYNTHETIC VALIDATION
+holdout 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+
+1. COMPLETE VALID ALL-PASS RESULT IS IDENTICAL TO PRIOR SCORER BEHAVIOUR
+  PASS   frozen all-pass baseline is a PASS   terminal L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS   v2 pass === frozen pass
+  PASS   v2 terminal === frozen terminal   L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS   v2 gates identical to frozen gates
+  PASS   v2 byProvenance identical
+  PASS   v2 failedGates identical
+  PASS   v2 scorable === frozen scorable
+  PASS   gate arithmetic marked AUTHORITATIVE
+  PASS   modelAcceptanceResult ESTABLISHED_PASS
+
+2-4. EVERY SUBSTANTIVE G1..G10 FAILURE REMAINS A FAILURE UNDER v2 (complete runs)
+  PASS   G1 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G1,G9
+  PASS   G1 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G2 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G2,G9
+  PASS   G2 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G3 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G3,G9
+  PASS   G3 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G4 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G4,G9
+  PASS   G4 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G5 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G5
+  PASS   G5 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G6 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G6
+  PASS   G6 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G7 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G2,G7,G9
+  PASS   G7 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G8 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G8
+  PASS   G8 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G9 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G9
+  PASS   G9 modelAcceptanceResult is ESTABLISHED_FAIL
+  PASS   G10 failure preserved and v2 identical to frozen   terminal L3_ACCEPTANCE_FAILED — G1,G10
+  PASS   G10 modelAcceptanceResult is ESTABLISHED_FAIL
+
+5. ONE MISSING PROVIDER EVALUATION MAKES SCORABLE = FALSE
+  PASS   frozen scorer still reported scorable = true (the defect)
+  PASS   v2 scorable === false
+  PASS   v2 raises INCOMPLETE_PROVIDER_EVALUATION
+  PASS   v2 terminal is NOT_SCORABLE   L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+  PASS   v2 pass === false
+  PASS   EXPECTED_ROWS 92, PROVIDER_EVALUATED_ROWS 91
+  PASS   modelAcceptanceResult NOT_ESTABLISHED
+
+6. MANY MISSING PROVIDER EVALUATIONS MAKE SCORABLE = FALSE
+  PASS   v2 scorable === false
+  PASS   PROVIDER_EVALUATED_ROWS === 40
+  PASS   notEvaluatedRowIds length === 52
+  PASS   v2 pass === false
+
+7-8. PROVIDER ERROR PLACEHOLDERS CANNOT CREATE A SUBSTANTIVE PASS OR A SUBSTANTIVE FAILURE
+  PASS   frozen scorer awards vacuous hard-zero PASSES on pure placeholders   vacuous: G4,G5,G6,G7,G8
+  PASS   frozen G9 vacuously "reproducible" (both processes empty)
+  PASS   v2 refuses: scorable === false
+  PASS   v2 pass === false -- no substantive PASS is reachable
+  PASS   v2 marks the arithmetic NON-AUTHORITATIVE
+  PASS   v2 modelAcceptanceResult NOT_ESTABLISHED -- no substantive FAILURE either
+  PASS   v2 terminal is NOT_SCORABLE, not FAILED and not PASSED   L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+
+9. HOLDOUT_SPENT = TRUE COEXISTS WITH SCORABLE = FALSE
+  PASS   scorer has no field that can revert spend
+  PASS   SCORABLE=false and HOLDOUT_SPENT=true are simultaneously representable
+  PASS   INVALID does not imply UNSPENT
+
+10. INCOMPLETE PROVIDER EVALUATION CAN NEVER PRODUCE ACCEPTANCE PASS -- EXHAUSTIVE OVER k
+  PASS   no single withheld evaluation can yield pass = true (92 cases)   92 cases
+  PASS   no single withheld process-B evaluation can yield pass = true (92 cases)
+  PASS   an UNDECLARED providerEvaluated fails closed
+
+11. COMPLETE VALID RESULTS PRESERVE THE FROZEN DENOMINATORS AND THRESHOLDS
+  PASS   G1 denominator 38
+  PASS   G3 DEN_A 29
+  PASS   G4 denominator 21 (Amendment 2 / D-E)
+  PASS   G7 pole 11
+  PASS   G5/G6/G8/G9/G10 denominator 92
+  PASS   G10 threshold still >=99% after <=1 retry
+  PASS   G2 threshold still 100%
+  PASS   G3 threshold still 100% on BOTH
+  PASS   hard-zero gates still hard
+  PASS   G10 is still the only non-hard gate
+
+12. THE RUN-1 40/92 CONDITION IS CLASSIFIED NOT_SCORABLE / INVALID WHEN REPLAYED STRUCTURALLY
+  PASS   frozen scorer would again report scorable = true
+  PASS   v2 scorable === false
+  PASS   v2 PROVIDER_EVALUATED_ROWS === 40 of 92
+  PASS   v2 flags process B incomplete
+  PASS   v2 terminal NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION   L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+  PASS   v2 modelAcceptanceResult NOT_ESTABLISHED
+  PASS   v2 pass === false
+
+TOTAL: 70 assertions, 70 PASS, 0 FAIL
+NO PROVIDER RUN. NO INFERENCE. NO HOLDOUT SEMANTICS CONSUMED. NO TUNING AGAINST RUN-1 OUTPUT.

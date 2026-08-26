@@ -1,0 +1,23 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT -- PHASE 13/14: FIRST MATERIALIZATION AND DETERMINISTIC REBUILD
+recorded 2026-08-25T21:58:06Z
+
+FIRST MATERIALIZATION
+  file        holdout/holdout-l3-acceptance-run2.json
+  sha256      f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+  bytes       107018
+  rows        93
+  provenance  {'INDEPENDENT_GAUNTLET': 38, 'INDEPENDENT_REALISM': 30, 'AUTHORED_CONTROL': 25}
+  |DEN_A|     30 (authored 6 independent 24 )
+  G3/G4/G7    30 / 21 / 11
+  NOT MODIFIED AFTER HASHING.
+
+DETERMINISTIC REBUILD, independent second location
+  file        rebuild/holdout-l3-acceptance-run2.json
+  sha256      f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+  bytes       107018
+
+  cmp         0 differing bytes
+  VERDICT     FIRST_MATERIALIZATION == REBUILD, BYTE-FOR-BYTE
+
+  Row ordering, rowIds, sourceIds, provenance, poles, selection rules, truth/gate metadata
+  and carrier bytes are all identical. NEITHER OUTPUT WAS CHOSEN FOR LOOKING PREFERABLE.

@@ -1,0 +1,20 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY
+FROZEN SYNTHETIC PROBE: RE-VERIFIED, NOT REGENERATED
+
+  The probe was frozen by D-91 (blueprint section 58.3). This phase RE-VERIFIED it from disk and
+  DID NOT replace, edit or regenerate it.
+
+  canonical location        verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+                              probe/probe-observation.json
+  classification            NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  artifact sha256           a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c   MATCH
+  observationText sha256    52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be   MATCH
+  observationText bytes     185                                                                MATCH
+
+  TRANSMITTED               NO -- Phase 3 stopped the gate before Phase 5.
+
+  probe-observation.frozen-copy.json in this directory is a byte-identical copy retained so this
+  package is self-contained; the canonical artifact remains the retry package's, unmodified.
+
+  Its NON_HOLDOUT status rests on CONSTRUCTION, not on search. Testing membership by searching the
+  protected sources for the string would require opening rows this phase is forbidden to open.

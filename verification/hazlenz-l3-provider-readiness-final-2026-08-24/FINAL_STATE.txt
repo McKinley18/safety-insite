@@ -1,0 +1,78 @@
+L3 PROVIDER READINESS GATE, CREDENTIAL-PROVISIONED FINAL RETRY -- FINAL STATE
+recorded 2026-08-25T02:41:45Z
+
+================================================================================
+  TERMINAL
+    L3_PROVIDER_READINESS_BLOCKED -- CREDENTIAL_OR_CALLABILITY_FAILURE
+
+  STATE BITS
+    PLAN_EXECUTABLE                                 = TRUE
+    HOLDOUT_CONSTRUCTED_AND_FROZEN                  = TRUE
+    HOLDOUT_SPENT                                   = FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+
+  THE SUCCESS TERMINAL WAS NOT WRITTEN.
+    READY_TO_AUTHORIZE_L3_SEALED_ACCEPTANCE requires PASS/PASS/PASS. None was measured.
+================================================================================
+
+== REQUIRED FINAL REPORT ==
+
+ 1. exact terminal                                 L3_PROVIDER_READINESS_BLOCKED -- CREDENTIAL_OR_CALLABILITY_FAILURE
+ 2. state bits                                     PLAN_EXECUTABLE=TRUE | FROZEN=TRUE | SPENT=FALSE | L1 AUTHORITATIVE | PROVIDER SELECTION OPEN
+ 3. HEAD                                           a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  . branch                                         release/insite-rc-2026-08-18
+  . upstream                                       origin/release/insite-rc-2026-08-18 @ same SHA
+  . divergence                                     0 / 0
+  . preservation                                   all 9 unrelated modified tracked files IDENTICAL; 4 stashes untouched; 23 tags untouched; 0 staged
+ 4. acceptance-artifact identity                   189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f  MATCH (16/16, pre and post)
+ 5. frozen readiness-probe identity                artifact a818b09f... MATCH | observationText 52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be MATCH | 185 bytes
+ 6. ANTHROPIC_API_KEY_PRESENT                      FALSE
+ 7. provider call count                            0
+ 8. requested model                                claude-sonnet-5 -- AUTHORIZED, NOT SENT
+ 9. returned model identity                        NONE -- no provider response exists
+10. provider callability                           UNKNOWN -- not PASS, not FAIL
+11. model-identity gate                            UNKNOWN -- NOT EVALUATED
+12. execution-path compatibility                   UNKNOWN -- NOT EVALUATED
+13. frozen execution identities                    15 checks, OK = 15, MISMATCH = 0; NONE MODIFIED
+14. holdout rows read for provider input           0
+15. holdout rows transmitted                       0
+16. reserved rows transmitted                      0
+17. acceptance scorer executions on output         0  (and 0 executions at all)
+18. G1-G10 evaluations                             0
+19. HOLDOUT_SPENT                                  FALSE
+20. blueprint sha256                               c1e0e9fb1b4e250c0465c6240a466bd0ea6013ded444674b567dd21f2a2a922c
+  . current-state sha256                           f804be50fecfbfaca85df36eda2e528209147053cf1ccf4ef0b50802cae40317
+21. exact next prerequisite                        A CREDENTIAL THIS PROCESS CAN SEE -- see NEXT_ACTION.md
+
+== THE NEW EVIDENCE THIS ATTEMPT CONTRIBUTES ==
+  The presence instrument was SELF-TESTED WITH A POSITIVE CONTROL. A disposable control
+  variable was DETECTED by every probe path Phase 3 uses, and the presence check was
+  additionally repeated with the command sandbox EXPLICITLY DISABLED with an identical
+  result. ANTHROPIC_API_KEY_PRESENT = FALSE IS THEREFORE A MEASUREMENT, NOT AN INSTRUMENT
+  FAILURE AND NOT A SANDBOXING ARTIFACT. D-90 and D-91 asserted absence; this attempt proves
+  the probe would have seen a present credential.
+
+== BOUNDARIES HELD ==
+  frozen holdout opened or semantically inspected            NO
+  holdout observation used as provider input                 NO
+  any of the 92 holdout rows transmitted                     NO
+  any reserved gauntlet or realism row transmitted           NO
+  gauntlet.seed opened or transmitted                        NO
+  acceptance scorer run on provider output                   NO
+  G1-G10 evaluated                                           NO
+  sealed acceptance executed                                 NO
+  another Claude model substituted                           NO
+  another provider substituted                               NO
+  Claude Code authentication used instead of the API key     NO
+  prompt / schema / validator / binder changed               NO
+  input builder / Anthropic shim / acceptance scorer changed NO
+  tuning / remediation                                       NO
+  production-provider selection                              NO
+  L3-3 begun                                                 NO
+  customer-authority changed                                 NO
+  deployment / commit / push / stash operation               NO
+
+  STOPPED AT THE REPORTED TERMINAL. Passing provider readiness would still not authorize
+  acceptance expenditure; a separate explicit user authorization is required before the
+  first single-use acceptance call.

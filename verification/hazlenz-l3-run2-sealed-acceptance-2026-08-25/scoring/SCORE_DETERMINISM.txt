@@ -1,0 +1,40 @@
+L3 RUN-2 ACCEPTANCE SCORE -- DETERMINISM PROOF AND TIMESTAMP DISCLOSURE
+
+DISCLOSURE. The package was manifested and the scorer was then re-run as a final
+re-verification, rewriting ACCEPTANCE_SCORE.json with a new `scoredAt` and breaking the
+manifest. THE VERDICT DID NOT CHANGE -- only the clock did. Recorded, not patched over.
+
+scoredAt observed across three independent scoring runs:
+  2026-08-26T00:31:06.569Z
+  2026-08-26T00:31:37.576Z
+  2026-08-26T00:31:37.600Z
+
+paths recorded across the three runs (environment-dependent, no verdict information):
+  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json
+  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json
+  /Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json
+
+CONTENT digests of the raw evidence, which is what actually matters:
+  A b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3   B 514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f
+  A b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3   B 514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f
+  A b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3   B 514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f
+
+SCORE BODY DIGEST (whole envelope; `scoredAt` and the two path strings removed):
+  435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+  435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+  435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+
+  all three identical: true
+
+  terminal stable                true   L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  scorable stable                true   true
+  pass stable                    true   false
+  modelAcceptanceResult stable   true   ESTABLISHED_FAIL
+  all ten gate objects stable    true
+  raw-result hashes stable       true
+
+SCORE_BODY_DIGEST = 435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+This, not the file hash, is the durable identity of the Run-2 acceptance result.
+The file hash varies only by the `scoredAt` clock and carries no verdict information.
+
+DETERMINISM PROVEN. THE VERDICT IS INVARIANT ACROSS RE-SCORING.

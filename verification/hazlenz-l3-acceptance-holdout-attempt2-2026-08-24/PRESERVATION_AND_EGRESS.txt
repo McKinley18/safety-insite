@@ -1,0 +1,155 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION, ATTEMPT 2 -- PRESERVATION, EGRESS AND POST-PHASE VERIFICATION
+recorded 2026-08-24
+
+== TERMINAL ==
+  L3_ACCEPTANCE_HOLDOUT_FROZEN -- PROVIDER_GATE_REQUIRED_BEFORE_ACCEPTANCE_AUTHORIZATION
+  PLAN_EXECUTABLE = TRUE | HOLDOUT_CONSTRUCTED_AND_FROZEN = TRUE | HOLDOUT_SPENT = FALSE
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+  This is NOT a model result. No inference occurred and there is no acceptance measurement.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: origin/release/insite-rc-2026-08-18   divergence: 0/0
+  staged index entries: 0   tags: 23   stash entries: 4 (inspected, NEVER operated on)
+  git diff HEAD -- backend/src    : 0 lines
+  git diff HEAD -- safescope-data : 0 lines
+  git diff HEAD -- backend/scripts: 71 lines, PRE-EXISTING protected product work, untouched here
+  git diff HEAD -- frontend-next  : 114 lines, PRE-EXISTING protected product work, untouched here
+  A clean worktree was NOT required. Unrelated work is preserved byte-for-byte.
+  Nothing committed, pushed, merged, rebased, reset, restored, cleaned, stashed or deployed.
+
+== PROTECTED SOURCES -- BEFORE AND AFTER, IDENTICAL ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  gauntlet.source.v1      150 rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  gauntlet.seed           100 rows
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  field-realism-pack-v2   117 rows
+  MATCH: 3 of 3, byte-identical before and after. No source file was written to.
+  Physical rows 367 | distinct NORM texts 366 | seed duplicate: 1 group of size 2, proved
+  structurally with no text printed.
+
+== GOVERNING PLAN -- ONE NON-NORMATIVE ANNOTATION ==
+  BEFORE : 9e161cab9f2c409e0f51887f6a2f62491b237e8e29bee0a154b18d8621db4a18   747 lines
+  AFTER  : 8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4   754 lines
+  CHANGE : one NON_NORMATIVE_SUPERSESSION_ANNOTATION beside Amendment 1's G4 line.
+           7 lines inserted, 0 deleted, 0 modified. SEMANTIC_DELTA = 0.
+           Amendment 1's original statement and its original value 18 survive VERBATIM; the
+           annotation records only that Amendment 2 / D-E governs at 21 with membership UNCHANGED.
+           D-F mechanical checker re-run afterwards: 39 / 39 MATCH, 0 MISMATCH.
+           No rule introduced, no frozen membership changed, no truth state changed, no scorer
+           gate changed, no allocation changed, no selection rule changed.
+
+== FROZEN CONFIGURATION -- RE-DERIVED: OK=10  MISMATCH=0 ==
+  426302a4 reasoning-prompt.ts            5f70281c reasoning-contract.types.ts
+  942ac7cc deterministic-safety-validator c1f9d29d semantic-evidence-binding.ts
+  2865ae91 reasoning-input-builder.ts     73f74131 ablate-l32g-state-separation.ts
+  0b3b8d86 activate-l32j-shipped-corpus   d90cb89c diagnose-l32k-shipped-residual.ts
+  76d3e039 anthropic-ollama-shim.js       7d748111 score.js
+  Governed inner identities:
+    prompt hazlenz.l3.prompt.v6 / L3_SYSTEM_PROMPT b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+      RE-DERIVED FROM THE SHIPPED SOURCE BY THIS PHASE -- MATCH.
+    run schema a522cf5a... of record at D-84 / s.51.3, carried by reasoning-contract.types.ts.
+  G1..G10 UNCHANGED. Both G3 denominators UNCHANGED. G7 membership rule UNCHANGED.
+  G4 FROZEN MEMBERSHIP UNCHANGED; its governing declared cardinality is Amendment 2's 21.
+  Prompt, schema, validator, binder and sanctioned input builder UNCHANGED.
+  Acceptance provider/model decision UNCHANGED -- Anthropic / claude-sonnet-5, NOT probed.
+
+== ATTEMPT 1 -- INVALIDATED, PRESERVED, UNCHANGED BY THIS PHASE ==
+  f0e33f140c10102654b25d47f5e7027a9b19865126d8c226655b0ac99e3585cc  HOLDOUT_FREEZE.txt
+  c4b80a2bba8b52b4a784ef99a7a35ddebd212024c3eb340da728cb2c259215ce  ATTEMPT_INVALIDATED.txt
+  4237fc3bf035286eb7b2f79d209ab6ebb4c8323169765803c4ee605056ef70d2  builder/authored-controls.js
+  8f5f6e113bd89511ab912cf8be976c22de59bb51b3067d03aa24e2029aa68194  STATUS.md
+  c89e40b53bdffc565a4be91e1dc4929add72076d9d82a393a3a7709cccb43345  NEXT_ACTION.md
+  3906c758c8c221479adefbef2c70808559218dd4706b064abb3b9fb711bfedef  INDEX.md
+  ALL SIX MATCH their recorded values. Attempt 1 is NOT rewritten and NOT rewritten as a success.
+  Its freeze remains INVALIDATED as a construction identity and was NEVER reused: Attempt 2's
+  freeze is a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62, a distinct identity.
+  Attempt 1's authored controls remain a STRUCTURAL ARTIFACT ONLY and were admitted to no holdout,
+  including this one -- Attempt 2 authored its own 25 controls from the frozen family table alone.
+
+  Freeze records in repository: 8 = 6 pre-existing (L3-2, 2b, 2c, 2d, 2e, 2f) + Attempt 1
+  (invalidated) + Attempt 2 (this one, valid).
+
+== ARTIFACTS CREATED BY THIS PHASE ==
+  a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62  HOLDOUT_FREEZE.txt
+  2dd16886f24eadfb9f78f364bd16e9a2a5fc6390e0018edb13ace0dc7e727e2c  ACCEPTANCE_ARTIFACT_FREEZE.txt
+  56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05  builder/authored-controls.js
+  9410de1a0efb4eef9a3af024c00f2ec88968ddbb0deba130c8e0b6a44e1a70c4  builder/build-holdout.js
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  holdout/holdout-l3-acceptance-attempt2.json
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  rebuild/holdout-l3-acceptance-attempt2.json
+  95e3cb8b122dcdfa80f1b8c1377b0473c9aaafec85a0a0f0cb538428e7be7717  validation/validate-holdout.js
+  c5e94e5cdda654acf22f5d2b74d06e33fbf72e9b2836b9691e74acb862a70733  validation/STRUCTURAL_VALIDATION.txt
+  a05f3782173be7b03db2ffa0d2f2bd6624801a0581386f3afc81374cee3337f5  validation/REBUILD_PROOF.txt
+  cd958e30b6ab9048394c65fb4f35a75f3c477bb0c299e24495ec21b79d92bd8a  validation/OVERLAP_SURFACES.txt
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  scorer/acceptance-scorer.js
+  41a42aeb7df8d018c4871850f90eb5cf9d558d419ecc3a51df22f5b696821cf6  scorer/synthetic-scorer-tests.js
+  8650f243b47e86ce7b77fa5e5c8778f94762b0a02fc2e18cfc3943556ce4c4d2  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+  548d70fb93276f1563318751313f7a22c1bb9224a57d300b3992b0efa5eb2996  analysis/PHASE4_DF_PRESELECTION_GATE.txt
+  f8390d54938a67267d9490ad345749fd127f989a2821162bce19e7c4e98abeb4  analysis/phase7-authored-controls.js
+  e2d4380c996ce6ed9a91645601d5df4a86db348e30cc4905725c2e4c51a918de  analysis/PHASE7_AUTHORED_CONTROLS.txt
+
+  ACCEPTANCE ARTIFACT IDENTITY (sha256 of the sorted manifest of the artifacts above):
+  189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+
+== HOLDOUT UNSPENT -- RE-PROVED BEFORE CLOSURE ==
+  Anthropic credential accessed / read / printed        : NO
+  ANTHROPIC_API_KEY read                                : NO
+      The string appears in this package only inside the freeze records' PROHIBITION text, which
+      names the thing that is forbidden. No script reads it and no environment lookup occurred.
+  Claude Code authentication inspected                  : NO
+  any credential path probed                            : NO
+  provider probed / metadata or availability queried    : NO
+  model called (hosted or local)                        : NO
+  API requests to api.anthropic.com                     : 0
+  inference calls                                       : 0
+  holdout rows transmitted anywhere                     : 0
+  source observations transmitted externally            : 0
+  bytes transmitted externally                          : NONE
+  acceptance result artifacts anywhere                  : 0 -- none exists
+  tuning performed                                      : NO
+  semantic remediation performed                        : NO
+  prompt / output / thought tokens                      : 0 / 0 / 0    measured cost: $0.00
+
+  NETWORK-PRIMITIVE AUDIT: every script in this package was scanned for fetch, http/https URLs,
+  the node http/https modules, axios, net, dns and child_process. RESULT: ZERO occurrences.
+  The builder, validator, scorer and synthetic tests are pure local file-and-arithmetic programs.
+
+  HOLDOUT_SPENT = FALSE.
+  Gauntlet offset 0 and realism offset 3 are RESERVED AND UNSPENT. Offsets gauntlet 1,2,3 and
+  realism 0,1,2 remain reserved; the entire gauntlet.seed tranche remains unopened. NOTHING RETIRED.
+
+== SEMANTIC-CONTAMINATION DISCIPLINE ==
+  No selected observation was read for meaning, previewed for suitability, judged representative,
+  judged difficult, or compared for quality. No row was dropped, swapped, substituted or skipped.
+  Validation was STRUCTURAL ONLY: counts, ids, ordering, types, hashes, byte comparisons and
+  frozen-metadata table lookups. Verbatim correspondence was proved by Buffer.compare and by an
+  aggregate SHA-256 witness, never by reading text and never by semantic similarity.
+  No observation text was printed to any terminal or into any evidence file. The holdout file
+  itself necessarily carries the verbatim carriers -- that is the artifact, not a disclosure.
+  The 25 authored controls were written from the frozen F1-F8 family specification ALONE, with the
+  positive stride UNOPENED, before any source row was selected.
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  No production file modified; git diff HEAD -- backend/src is 0 lines; section 45.6 stands.
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN.  L3-3 REMAINS UNAUTHORIZED.
+
+== NOT DONE, BY CONSTRUCTION ==
+  holdout spent                                          : NO
+  provider or credential activity of any kind            : NO
+  acceptance executed                                    : NO
+  G1..G10 changed                                        : NO
+  either G3 denominator changed                          : NO
+  G4 frozen membership changed                           : NO
+  G7 membership changed                                  : NO
+  Amendment 1 or Amendment 2 changed substantively       : NO
+  source-selection rules changed                         : NO
+  authored-control truth changed after authoring         : NO
+  holdout membership changed after materialization       : NO
+  freeze record rewritten                                : NO
+  Attempt 1 overwritten or rewritten as a success        : NO
+  production provider selected                           : NO
+  L3-3 begun                                             : NO
+  customer authority changed                             : NO
+  D-79 .. D-88 rewritten                                 : NO -- D-89 ADDED
+  committed / pushed / deployed / stashed                : NO

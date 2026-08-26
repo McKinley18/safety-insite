@@ -1,6 +1,6 @@
 {
   "name": "frontend-next",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,9 +11,13 @@
     "check:action-workflow": "node scripts/check-action-workflow-visibility.mjs",
     "check:authenticated-release": "node scripts/check-authenticated-release.mjs",
     "check:canonical-persistence": "node scripts/check-canonical-persistence-release.mjs",
-    "check:phase5-report-release": "node scripts/check-phase5-inspection-report-release.mjs"
-    ,"check:phase6-adopted-release": "node scripts/check-phase5-inspection-report-release.mjs",
-    "check:closure-workflow": "node scripts/check-closure-inspection-workspace.mjs"
+    "check:phase5-report-release": "node scripts/check-phase5-inspection-report-release.mjs",
+    "check:phase6-adopted-release": "node scripts/check-phase5-inspection-report-release.mjs",
+    "check:closure-workflow": "node scripts/check-closure-inspection-workspace.mjs",
+    "check:launch-pricing": "node scripts/check-launch-pricing.mjs",
+    "audit:mobile-responsive": "node scripts/audit-mobile-responsive.mjs",
+    "audit:text-contrast": "node scripts/audit-text-contrast.mjs",
+    "check:hydration": "node scripts/check-hydration.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

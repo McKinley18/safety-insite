@@ -10,6 +10,20 @@ import { AppTextLink } from "@/components/ui/AppTextLink";
 import { isLocalDevAuthBypassEnabled, LOCAL_DEV_AUTH_TOKEN, setAuthSession } from "@/lib/auth";
 import { AI_ENGINE_NAME, APP_DESCRIPTION, APP_NAME } from "@/lib/brand";
 
+// /register?plan=pro forwards here as /login?plan=pro after creating the account.
+// Public self-registration always creates a Free account (the Stripe webhook is what
+// promotes it), so the Pro intent has to survive sign-in or the visitor lands on
+// Free with no prompt to pay. Read from window.location inside the handler rather
+// than with useSearchParams(): this is a "use client" page, and a statically
+// rendered client page calling useSearchParams() without a <Suspense> boundary
+// fails a production build.
+function postLoginDestination() {
+  if (typeof window === "undefined") return "/command-center";
+  return new URLSearchParams(window.location.search).get("plan") === "pro"
+    ? "/upgrade"
+    : "/command-center";
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -61,7 +75,7 @@ export default function LoginPage() {
 
           setStatusType("success");
           setStatus("Signed in locally.");
-          router.replace("/command-center");
+          router.replace(postLoginDestination());
           return;
         }
 
@@ -85,7 +99,7 @@ export default function LoginPage() {
 
       setStatusType("success");
       setStatus("Signed in successfully.");
-      router.replace("/command-center");
+      router.replace(postLoginDestination());
     } catch {
       setStatusType("error");
       setStatus("Server is waking up. Please try again in a moment.");
@@ -170,7 +184,8 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    className="absolute right-1 top-1/2 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-xl text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -188,12 +203,15 @@ export default function LoginPage() {
                 </AppButton>
               </div>
 
-              <div className="mt-2 border-t border-slate-200 pt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-                <AppTextLink href="/register">
+              {/* Standalone action links, not inline prose: they need a real tap target.
+                  These measured 20px tall on a phone, well under the 44px both mobile
+                  platforms publish. */}
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t border-slate-200 pt-3">
+                <AppTextLink href="/register" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3">
                   Create an account
                 </AppTextLink>
 
-                <AppTextLink href="/forgot-password" tone="slate">
+                <AppTextLink href="/forgot-password" tone="slate" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3">
                   Forgot password?
                 </AppTextLink>
               </div>

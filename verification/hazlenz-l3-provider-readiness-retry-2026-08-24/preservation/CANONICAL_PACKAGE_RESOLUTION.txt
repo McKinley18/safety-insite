@@ -1,0 +1,30 @@
+L3 PROVIDER READINESS RETRY -- CANONICAL ATTEMPT-2 PACKAGE, RESOLVED BY EVIDENCE
+
+The task statement leaves the Attempt-2 package directory as a placeholder and requires it to be
+resolved explicitly, so that the HISTORICAL ATTEMPT-1 directory can never be mistaken for the
+frozen acceptance artifact. Resolved mechanically, by asking which directory actually CONTAINS a
+holdout file, rather than by reading a name:
+
+  verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+      holdout/ files = 0     scorer/ files = 0
+      >> ATTEMPT 1. D-87, blueprint s.54. INVALIDATED -- AMENDMENT_IMPLEMENTATION_CONTRADICTION.
+         Its holdout/ and scorer/ are EMPTY BY DESIGN: Phase 5 was never reached there, because
+         the G4 denominator was stated two incompatible ways (18 vs 21) and the contract forbade
+         choosing. Its freeze f0e33f14... is historical evidence only and was never reused.
+         >> THIS DIRECTORY IS NOT THE ACCEPTANCE ARTIFACT. <<
+
+  verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+      holdout/ files = 0     scorer/ files = 0
+      >> the earlier construction-authorization record. Not an artifact package.
+
+  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+      holdout/ files = 1     scorer/ files = 3
+      holdout/holdout-l3-acceptance-attempt2.json
+        sha256 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   REQUIRED VALUE
+      >> ATTEMPT 2. D-89, blueprint s.56. THIS IS THE CANONICAL FROZEN ACCEPTANCE PACKAGE.
+
+CANONICAL ATTEMPT-2 PACKAGE DIRECTORY:
+  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+
+The resolution is not a naming judgement: exactly ONE of the three candidate directories contains
+a holdout file at all, and its sha256 is the required one. The other two are empty by design.

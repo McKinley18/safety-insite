@@ -1,0 +1,61 @@
+L3 PROVIDER READINESS -- ZERO-HOLDOUT-EXPOSURE BOUNDARY
+established BEFORE any credential access and BEFORE any provider call
+
+== 1. THE PROHIBITED INPUT SET ==
+
+The provider-readiness probe MUST NOT read, parse, print, serialize, transmit, or derive any
+request content from ANY of the following:
+
+  P1  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/
+        holdout-l3-acceptance-attempt2.json                            sha256 69665e41...
+  P2  its rebuild twin, rebuild/holdout-l3-acceptance-attempt2.json    sha256 69665e41...
+  P3  ANY of the 92 rows of either file -- whole, truncated, paraphrased, summarised, or
+      sampled as "representative"
+  P4  gauntlet.source.v1 offset 0        (the 38 INDEPENDENT_GAUNTLET rows)  RESERVED, SPENDABLE
+  P5  field-realism-pack-v2 offset 3     (the 29 INDEPENDENT_REALISM rows)   RESERVED, SPENDABLE
+  P6  gauntlet.source.v1 offsets 1, 2, 3                                     RESERVED
+  P7  field-realism-pack-v2 offsets 0, 1, 2                                  RESERVED
+  P8  the ENTIRE gauntlet.seed tranche (100 physical / 99 distinct)          RESERVED, UNOPENED
+  P9  the 25 AUTHORED_CONTROL rows and builder/authored-controls.js content
+  P10 any other reserved acceptance tranche
+
+Because P4-P8 together cover EVERY row of all three protected sources, the operative rule this
+phase enforces is the strictest available and requires no offset arithmetic:
+
+  >> NO ROW OF ANY OF THE THREE PROTECTED SOURCES IS OPENED, READ FOR CONTENT, OR TRANSMITTED. <<
+  >> NO ROW OF THE FROZEN HOLDOUT IS OPENED, READ FOR CONTENT, OR TRANSMITTED.                 <<
+
+The three protected sources and the two holdout files are touched ONLY by sha256, byte length and
+row-count operations that do not materialise observation text.
+
+== 2. WHAT THE PROBE MAY USE ==
+
+Exactly one SYNTHETIC DISPOSABLE PROBE OBSERVATION, authored for this readiness phase alone,
+carrying NO acceptance semantics:
+
+  - it is not drawn from, derived from, or paraphrased from any protected source or holdout row;
+  - it carries no expected label, no truth state, no gate membership, no family assignment,
+    no clarificationExpected value and no shouldHaveMissingEvidence value;
+  - it is never scored by scorer/acceptance-scorer.js (ea5e50ae...) or by any other scorer;
+  - it produces no acceptance result artifact of any kind;
+  - its identity (sha256 of the exact observation string, and of the exact request body sent)
+    is recorded BEFORE the call in probe/PROBE_IDENTITY.txt.
+
+== 3. SCORER PROHIBITION ==
+
+  acceptance-scorer.js executions on provider output in this phase          MUST BE 0
+  any G1..G10 evaluation of the probe response                             FORBIDDEN
+  any judgement of whether the probe's hazard reasoning is CORRECT          FORBIDDEN
+  any tuning of prompt, schema, model, parameters or retry policy           FORBIDDEN
+  any retry with an ALTERNATE prompt after a provider error                 FORBIDDEN
+  any substitute model, model family, or provider                           FORBIDDEN
+
+The probe establishes CALLABILITY and STRUCTURAL COMPATIBILITY only. It is not a quality
+measurement and may never be reported as one.
+
+== 4. WHY A SYNTHETIC PROBE AND NOT A "SPARE" ROW ==
+
+Every row of every protected source is inside a reserved offset (P4-P8). There is no
+non-reserved row available anywhere in the three sources -- so there is no "harmless spare"
+to borrow, and borrowing one would retire a reservation for a readiness check. Authoring a
+disposable observation is therefore the only construction that spends nothing.

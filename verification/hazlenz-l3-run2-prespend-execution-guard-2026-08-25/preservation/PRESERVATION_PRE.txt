@@ -1,0 +1,75 @@
+L3 RUN-2 FINAL PRE-SPEND EXECUTION GUARD -- PRESERVATION PRE
+recorded 2026-08-25
+
+HEAD                 a7b21a2636b4a80ecaf823aef4558d9ea8915230
+BRANCH               release/insite-rc-2026-08-18
+UPSTREAM             origin/release/insite-rc-2026-08-18
+UPSTREAM SHA         a7b21a2636b4a80ecaf823aef4558d9ea8915230
+DIVERGENCE behind/ahead  0	0
+
+STASHES (4) -- MUST BE UNTOUCHED
+stash@{0}: On main: hold corrective action routing patch
+stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+TAGS (23)
+checkpoint-pre-ui-consolidation-20260528-172809
+checkpoint-pre-ui-consolidation-f699d98
+checkpoint/pre-modularization-theme-consolidation-20260528-195809
+checkpoint/shared-ui-primitives-auth-settings-complete-20260528
+checkpoint/shared-ui-primitives-low-risk-pages-20260528
+insite-hazlenz-verified-baseline-2026-08-19
+insite-inspection-ui-verified-2026-08-19
+insite-visual-acceptance-verified-2026-08-19
+local-expanded-scoped-knowledge-regressions-20260527
+local-msha-scoped-knowledge-retrieval-20260527
+local-safescope-knowledge-scoring-checkpoint-20260527
+production-standards-engine-live
+release-critical-standards-coverage-local
+safescope-ai-upgrade-prework-20260528-173000
+safescope-brain-green-2026-06-01
+safescope-production-classify-working-20260524
+safescope-report-workflow-live
+safescope-understanding-precision-green-001
+safescope-v2-standards-ui-live
+safety-insite-cleanup-2026-06-17
+theme-overhaul-before-reset-verified
+v1-backend-stable
+v1.0-condition-engine-verified
+
+STAGED INDEX (must stay empty)
+(none above == empty)
+
+WORKTREE STATUS -- PRE
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+ M verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+ M verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+?? "Safety InSite Logos/"
+?? verification/hazlenz-l3-2p-provider-requirements-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2q-clarification-precision-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2r-acceptance-pre-authorization-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2026-08-24/
+?? verification/hazlenz-l3-final-acceptance-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-credentialed-2026-08-25/
+?? verification/hazlenz-l3-provider-readiness-final-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+?? verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/
+?? verification/hazlenz-l3-run2-capacity-determination-2026-08-25/
+?? verification/hazlenz-l3-run2-capacity-reclassification-2026-08-25/
+?? verification/hazlenz-l3-run2-governance-amendment-2026-08-25/
+?? verification/hazlenz-l3-run2-prespend-execution-guard-2026-08-25/
+?? verification/hazlenz-l3-sealed-acceptance-2026-08-25/

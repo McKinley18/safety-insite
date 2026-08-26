@@ -62,8 +62,13 @@ export function CalendarViewRenderer({
   deleteCalendarEvent,
 }: CalendarViewRendererProps) {
   if (view === "month") {
+    // The month grid is a full-bleed data surface, so the panel contributes no padding
+    // of its own. `px-0 py-0` alone did not achieve that -- an app-wide card rule in
+    // globals.css still applied 14px a side, and at 320px that padding plus the grid's
+    // own gutter squeezed each day cell to 33px, under the 36px this audit treats as a
+    // usable tap target. The `!` is scoped to this one panel.
     return (
-      <AppPanel padding="sm" className="px-0 py-0 overflow-hidden">
+      <AppPanel padding="sm" className="!p-0 overflow-hidden">
         <div className="bg-[#102A43] p-3 text-white">
           <SafetyCalendarControls
             anchorDate={anchorDate}
@@ -74,7 +79,10 @@ export function CalendarViewRenderer({
             {WEEKDAY_LABELS.map((day) => <div key={day}>{day}</div>)}
           </div>
         </div>
-        <div className="mt-1 grid grid-cols-7 gap-0.5 sm:gap-1 p-1">
+        {/* At 320px a seven-column month grid has roughly 45px per column to work with,
+            so the gutter and the container inset are given back to the cells: every pixel
+            of horizontal padding here costs each day cell about 0.6px of tap width. */}
+        <div className="mt-1 grid grid-cols-7 gap-px p-0 sm:gap-1 sm:p-1">
           {monthDays.days.map((day) => {
             const dateKey = toDateKey(day);
             const dayEvents = eventsByDate[dateKey] || [];
@@ -86,12 +94,16 @@ export function CalendarViewRenderer({
               <div key={dateKey} className={expanded ? "col-span-7 sm:col-span-2 lg:col-span-3" : ""}>
                 <div
                   style={{ borderRadius: 0 }}
-                  className={`sentinel-calendar-day relative flex w-full flex-col overflow-hidden rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square min-h-0 p-1.5 sm:p-2"}`}
+                  className={`sentinel-calendar-day relative flex w-full flex-col overflow-hidden rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square min-h-0 p-0 sm:p-2"}`}
                 >
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
-                    className={`relative flex h-full w-full items-start justify-between gap-3 text-left ${expanded ? "" : "overflow-hidden"}`}
+                    // The inset lives on the BUTTON, not on the cell around it, so the
+                    // tap target is the whole day square. With the padding on the cell,
+                    // the button measured 23px across at 320px while the cell itself was
+                    // 37px -- the target looked bigger than it was.
+                    className={`relative flex h-full w-full items-start justify-between text-left ${expanded ? "gap-3" : "gap-1 overflow-hidden p-1.5 sm:p-0"}`}
                   >
                     <span className="block text-xs font-black leading-none text-app-text sm:text-[13px]">
                       {day.getDate()}

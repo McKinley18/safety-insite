@@ -1,0 +1,30 @@
+[swept] w320 (320px) — 4 routes
+[swept] w360 (360px) — 4 routes
+[swept] w375 (375px) — 4 routes
+[swept] w390 (390px) — 4 routes
+[swept] w430 (430px) — 4 routes
+
+=== MOBILE RESPONSIVE AUDIT ===
+{
+  "appUrl": "http://localhost:3020",
+  "viewports": [
+    "320px (PHONE_REQUIRED)",
+    "360px (PHONE_REQUIRED)",
+    "375px (PHONE_REQUIRED)",
+    "390px (PHONE_REQUIRED)",
+    "430px (PHONE_REQUIRED)"
+  ],
+  "routesAudited": 4,
+  "combinations": 20,
+  "HORIZONTAL_PAGE_OVERFLOW": 0,
+  "horizontalOverflowAllWidths": 0,
+  "nonHttp200": 0,
+  "routeThemeConsoleErrorRows": 0,
+  "phoneClippedControlRows": 0,
+  "phoneSmallTouchTargetRows": 0,
+  "phoneUnmaskedOverflowRows": 0
+}
+
+Artifacts: /Users/mckinley/Desktop/Safety_InSite/verification/insite-v1-mobile-ux-2026-08-26/final-targeted/mobile-audit.json + /Users/mckinley/Desktop/Safety_InSite/verification/insite-v1-mobile-ux-2026-08-26/final-targeted/screenshots
+
+HORIZONTAL_PAGE_OVERFLOW = 0 across all required phone widths.

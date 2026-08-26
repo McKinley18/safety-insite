@@ -1,0 +1,4 @@
+{"ts":"2026-08-25T23:21:08.457Z","processLabel":"A","pid":80057,"event":"HOLDOUT_SPEND_INITIATED","HOLDOUT_SPEND_INITIATED":true,"aboutToTransmit":"H2B-001","holdoutSha256":"f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f"}
+{"ts":"2026-08-25T23:21:08.457Z","processLabel":"A","pid":80057,"event":"HOLDOUT_SPENT","HOLDOUT_SPENT":true,"GAUNTLET_OFFSET_1":"RETIRED","REALISM_OFFSET_0":"RETIRED","transmitted":"H2B-001","irreversible":true}
+{"ts":"2026-08-25T23:50:55.717Z","processLabel":"B","pid":83682,"event":"HOLDOUT_SPEND_INITIATED","HOLDOUT_SPEND_INITIATED":true,"aboutToTransmit":"H2B-001","holdoutSha256":"f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f"}
+{"ts":"2026-08-25T23:50:55.717Z","processLabel":"B","pid":83682,"event":"HOLDOUT_SPENT","HOLDOUT_SPENT":true,"GAUNTLET_OFFSET_1":"RETIRED","REALISM_OFFSET_0":"RETIRED","transmitted":"H2B-001","irreversible":true}

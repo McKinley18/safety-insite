@@ -1,0 +1,84 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PHASE 8: THE COMPLETE RAW RESULT, FROZEN BEFORE SCORING
+recorded 2026-08-25T21:11:58Z
+
+  HOLDOUT_SPENT = TRUE. It became true at the first transmission and is never reverted.
+
+================ PROCESS A =================================================
+  file                       results/raw-process-A.json
+  sha256                     32adb9faaa5b84735c1fc98cc57e605b3d25a0c9f472b2db5b7795af0aea0594
+  pid                        62358   (isolated OS process, section 38.3)
+  started / finished         2026-08-25T20:53:23.891Z  /  2026-08-25T21:08:05.136Z
+  expected rows              92
+  attempted rows             92
+  completed provider responses 40
+  provider calls (incl. retries) 92
+  requested model            claude-sonnet-5
+  prompt / schema            hazlenz.l3.prompt.v6  /  a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  temperature / seed / num_ctx  0 / 20260822 / 8192
+
+  --- transport ---
+  transport records          92
+  HTTP status distribution   {200: 40, 400: 52}
+  retried at transport level 0
+  stop reasons               {'end_turn': 40, None: 52}
+  RETURNED MODEL IDENTITIES  ['claude-sonnet-5']
+
+  --- pipeline outcomes ---
+  outcome kinds              {'VALIDATED': 40, 'PROVIDER_UNAVAILABLE': 52}
+  malformed outputs          0
+  provider timeouts          0
+  provider unavailable       52
+  rows with retries          0   (retry ceiling 1, frozen)
+  attempts distribution      {1: 92}
+  validator states           {'VALID': 40, None: 52}
+  validator issue codes      (none)
+  schemaValid true           40/92
+  SEMANTIC-BINDER TIER       rejected 0  demoted 0  issue codes {'SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT': 11, 'SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY': 5, 'SEMANTIC_EVIDENCE_NOT_SELECTIVE': 2, 'SEMANTIC_CONTROL_ADEQUACY_RECORDED': 6}
+                             (D-58: recorded separately, NEVER merged with the VALIDATED tier)
+  redaction                  hazlenz.l3.redaction.v1; rows with any redaction 0; total redactions 0
+  redactions per rule        (none)
+  execution ordering         executionIndex 1..92, holdout order preserved: True
+  request/result linkage     every row carries rowId + sourceId + provenanceClass + executionIndex
+
+================ PROCESS B =================================================
+  file                       results/raw-process-B.json
+  sha256                     06c0111fbdf81081bf3eb68a12922dd4c0f3a5b7befc68a7aba6070b25791860
+  pid                        64136   (isolated OS process, section 38.3)
+  started / finished         2026-08-25T21:08:08.421Z  /  2026-08-25T21:08:23.253Z
+  expected rows              92
+  attempted rows             92
+  completed provider responses 0
+  provider calls (incl. retries) 92
+  requested model            claude-sonnet-5
+  prompt / schema            hazlenz.l3.prompt.v6  /  a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  temperature / seed / num_ctx  0 / 20260822 / 8192
+
+  --- transport ---
+  transport records          92
+  HTTP status distribution   {400: 92}
+  retried at transport level 0
+  stop reasons               {None: 92}
+  RETURNED MODEL IDENTITIES  []
+
+  --- pipeline outcomes ---
+  outcome kinds              {'PROVIDER_UNAVAILABLE': 92}
+  malformed outputs          0
+  provider timeouts          0
+  provider unavailable       92
+  rows with retries          0   (retry ceiling 1, frozen)
+  attempts distribution      {1: 92}
+  validator states           {None: 92}
+  validator issue codes      (none)
+  schemaValid true           0/92
+  SEMANTIC-BINDER TIER       rejected 0  demoted 0  issue codes (none)
+                             (D-58: recorded separately, NEVER merged with the VALIDATED tier)
+  redaction                  hazlenz.l3.redaction.v1; rows with any redaction 0; total redactions 0
+  redactions per rule        (none)
+  execution ordering         executionIndex 1..92, holdout order preserved: True
+  request/result linkage     every row carries rowId + sourceId + provenanceClass + executionIndex
+
+================ COMBINED =====================================================
+  TOTAL PROVIDER CALLS ACROSS BOTH ISOLATED PROCESSES   184
+  destinations contacted                                1  (api.anthropic.com)
+
+  THIS RAW RESULT IS FROZEN. It is NOT edited after the score is seen.

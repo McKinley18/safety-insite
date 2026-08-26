@@ -1,0 +1,316 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT -- CONSTRUCTION FREEZE
+frozen 2026-08-25
+repo HEAD  a7b21a2636b4a80ecaf823aef4558d9ea8915230  (release/insite-rc-2026-08-18, upstream 0/0)
+
+  WRITTEN BEFORE THE BUILDER EXISTS, BEFORE ANY FRESH CONTROL IS AUTHORED, AND BEFORE ANY
+  RUN-2 SOURCE ROW IS SELECTED. IMMUTABLE THEREAFTER FOR THIS CONSTRUCTION.
+
+  If a downstream contradiction requires a changed construction identity, RUN 2 IS INVALIDATED
+  and construction STOPS. THIS FREEZE IS NOT MODIFIED TO FIT THE MATERIALIZATION.
+
+  NO PROVIDER ACTIVITY IS AUTHORIZED BY THIS FREEZE. Building a holdout is not spending it.
+  Anthropic credential access, provider probing, provider calls and inference are ALL PROHIBITED
+  in the construction phase this record governs.
+
+================================================================================
+1. GOVERNING PLAN AND AMENDMENT IDENTITY
+================================================================================
+  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+  sha256  a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a    1006 lines
+  binding through: base plan + AMENDMENT 1 (D-A..D-D) + AMENDMENT 2 (D-E, D-F)
+                   + AMENDMENT 3 (D-G..D-K)
+  decisions of record: D-86 (s.53), D-87 (s.54), D-88 (s.55), D-89 (s.56), D-94 (s.61),
+                       D-95 (s.62), and THIS construction.
+
+  AMENDMENT 3 IDENTITY: the plan's first 754 lines still hash to
+  8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4, proving Amendment 3 was a
+  pure append and that Amendments 1 and 2 are preserved byte-for-byte.
+
+================================================================================
+2. RUN-1 IS SPENT AND PROTECTED -- NOT REUSED, NOT REWRITTEN
+================================================================================
+  RUN1_HOLDOUT_SPENT              TRUE
+  RUN1_GAUNTLET_OFFSET_0          RETIRED, permanently
+  RUN1_REALISM_OFFSET_3           RETIRED, permanently
+  RUN1_MODEL_ACCEPTANCE_RESULT    NOT_ESTABLISHED
+  Run-1 holdout sha256            69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  Run-1 authored controls         56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05
+
+  THE SPENT RUN-1 HOLDOUT IS A PROTECTED PRIOR SEALED SURFACE FOR D-D.6 (section 9 below).
+  Its 92 rows and its 25 authored controls MAY NOT be reused, in whole or in part.
+
+================================================================================
+3. PROTECTED SOURCES -- FROZEN BEFORE ANY SELECTION (S-5)
+================================================================================
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  gauntlet.source.v1   150 rows
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  field-realism-pack-v2 117 rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  gauntlet.seed        100 rows
+                                                                    RESERVE -- NOT DRAWN FROM,
+                                                                    NOT OPENED BY RUN 2
+  Any difference in sha256 or physical row count -> S-5 THROW. No rescaling, no re-derivation,
+  no partition resize, no adaptation of any kind.
+
+================================================================================
+4. SHARED PRIMITIVES (Amendment 1: S-1, S-2, S-3, S-4, S-5) -- UNCHANGED
+================================================================================
+  NORM(s) = String(s).normalize('NFC').toLowerCase().replace(/\s+/g,' ').trim()   [comparison only]
+  CMP(a,b) = Buffer.compare(Buffer.from(String(a),'utf8'), Buffer.from(String(b),'utf8'))
+  OFFSET(digest,m) = parseInt(digest.slice(-8),16) % m
+  S-4 verbatim carriage: exactly ONE carrier field per source reaches the model, byte-for-byte,
+      with NO normalization, trimming, case change or re-encoding. Every other source field is
+      WITHHELD from the model and retained only as truth metadata.
+  S-2 totality: sort keys pairwise distinct or THROW.
+
+================================================================================
+5. RUN-2 RESERVATION -- DERIVED, NEVER CHOSEN (D-A.11 / D-B.11, cyclic from the S-3 offset)
+================================================================================
+  Rule: run n uses offset (k0 + n - 1) mod m.  Run 2 is n = 2.
+
+  GAUNTLET  source gauntlet.source.v1
+            k0 = OFFSET(a95e...adb4, 4) = parseInt("22f0adb4",16) % 4 = 0
+            RUN-2 offset k = (0 + 1) mod 4 = 1
+            sort key scenarioId, ascending CMP, 0-based i, predicate i % 4 === 1
+            partition sizes 38 / 38 / 37 / 37 -> RUN-2 SELECTS 38
+            carrier field: observation
+
+  REALISM   source field-realism-pack-v2
+            k0 = OFFSET(6f68...a9cb, 4) = parseInt("5231a9cb",16) % 4 = 3
+            RUN-2 offset k = (3 + 1) mod 4 = 0
+            sort key id, ascending CMP, 0-based i, predicate i % 4 === 0
+            partition sizes 30 / 29 / 29 / 29 -> RUN-2 SELECTS 30
+            carrier field: hazardObservation
+
+  RETIRED AND UNAVAILABLE: gauntlet offset 0, realism offset 3.
+  RESERVED FOR RUNS 3 AND 4: gauntlet offsets 2, 3 (74 rows); realism offsets 1, 2 (58 rows).
+  gauntlet.seed: 100 rows, ENTIRELY UNOPENED.
+
+  Reservation is IMMUTABLE and may NEVER be reassigned on semantic composition, family balance,
+  difficulty, or any observed model performance.
+
+================================================================================
+6. FRESH AUTHORED CONTROLS -- EXACTLY 25, ALL NEW (D-I)
+================================================================================
+  RUN 2 MUST NOT REUSE ANY RUN-1 AUTHORED CONTROL, in whole or in part, and must not derive one
+  by mechanical paraphrase or cloning of a Run-1 observation merely to evade overlap detection.
+  They are authored from the FROZEN F1-F8 FAMILY SPECIFICATION ALONE, with the selected positive
+  stride UNOPENED at authoring time.
+
+  FROZEN ALLOCATION   F1 4 | F2 4 | F3 3 | F4 3 | F5 3 | F6 3 | F7 3 | F8 2  =  25
+
+  FROZEN FAMILY TRUTH TEMPLATES (D-D.3, unchanged; assigned by table lookup, never inferred):
+    F1  explicit safe / negated       NEGATED        hazardEstablished false  ACTIVE prohibited
+        clarification PROHIBITED      pole CLARIFICATION_MUST_NOT_ASK   G3 no  G4 YES  G7 YES
+    F2  corrected / remediated        CORRECTED      {CORRECTED, REMOVED_FROM_SERVICE}
+        hazardEstablished false  ACTIVE prohibited  clarification PROHIBITED
+        pole CLARIFICATION_MUST_NOT_ASK                                 G3 no  G4 YES  G7 YES
+    F3  insufficient evidence         INSUFFICIENT_EVIDENCE   hazardEstablished TRUE
+        ACTIVE prohibited  clarification REQUIRED  pole CLARIFICATION_REQUIRED
+                                                                        G3 YES G4 YES  G7 no
+    F4  subjective / non-factual      UNKNOWN        {UNKNOWN, INSUFFICIENT_EVIDENCE}
+        hazardEstablished false  ACTIVE prohibited  clarification neither required nor gated
+        pole DECIDED_NON_ACTIVE                                         G3 no  G4 YES  G7 no
+    F5  conditional / hypothetical    HYPOTHETICAL   hazardEstablished false  ACTIVE prohibited
+        clarification neither required nor gated  pole DECIDED_NON_ACTIVE
+                                                                        G3 no  G4 YES  G7 no
+    F6  absent decision-critical fact INSUFFICIENT_EVIDENCE   hazardEstablished TRUE
+        ACTIVE prohibited  clarification REQUIRED  pole CLARIFICATION_REQUIRED
+                                                                        G3 YES G4 YES  G7 no
+    F7  sufficient evidence           ACTIVE         hazardEstablished TRUE  ACTIVE CORRECT
+        clarification PROHIBITED  pole CLARIFICATION_MUST_NOT_ASK        G3 no  G4 no   G7 YES
+    F8a paired positive               ACTIVE         hazardEstablished TRUE  ACTIVE CORRECT
+        clarification PROHIBITED  pole REGRESSION_ACTIVE                 G3 no  G4 no   G7 no
+    F8b paired negative               NEGATED        hazardEstablished false ACTIVE prohibited
+        clarification PROHIBITED  pole NEGATIVE_CONTROL                  G3 no  G4 YES  G7 no
+    F8 is ONE MATCHED PAIR, minimally different, sharing the same lexical head.
+
+  DERIVED GATE MEMBERSHIPS, FIXED HERE AND NOT RECOMPUTABLE LATER:
+    G3 authored      6   = F3 3 + F6 3
+    G7 pole         11   = F1 4 + F2 4 + F7 3
+    G4 denominator  21   = F1 4 + F2 4 + F3 3 + F4 3 + F5 3 + F6 3 + F8b 1   (Amendment 2 / D-E)
+    closure         G4 21 + ACTIVE-truth complement (F7 3 + F8a 1) = 25, disjoint and exhaustive
+
+  NO CONTROL MAY BE ADDED, REMOVED, RETITLED, RE-ALLOCATED OR RE-POLED to make a count fit, and
+  no truth label may be revised after authoring.
+
+================================================================================
+7. TRUTH METADATA FOR INDEPENDENT ROWS -- TABLE LOOKUP ONLY (D-C, freeze s.7 of Run 1)
+================================================================================
+  INDEPENDENT_GAUNTLET
+    pole INDEPENDENT_POSITIVE | family null | familyVariant null | regime null
+    hazardEstablished null | conditionState null | acceptableStates null | activeProhibited false
+    clarificationExpected FALSE   -- G3-DEN.0: this source declares no ambiguity field and none
+                                     may be inferred
+    highConsequence = (severityExpectation === 'critical' || severityExpectation === 'high')
+    inG3Denominator false | inG4Denominator false | inG7Pole false
+    sourceMeta: severityExpectation ONLY
+
+  INDEPENDENT_REALISM
+    pole INDEPENDENT_REALISM_ROW | family null | familyVariant null | regime null
+    hazardEstablished null | conditionState null | acceptableStates null | activeProhibited false
+    clarificationExpected = (shouldHaveMissingEvidence === true)   -- STRICT IDENTITY:
+                            false -> false; ABSENT -> false
+    highConsequence FALSE  -- the source carries NO severity field; heuristics are PROHIBITED
+    inG3Denominator = (shouldHaveMissingEvidence === true) | inG4Denominator false | inG7Pole false
+    sourceMeta: shouldHaveMissingEvidence presence and value ONLY
+
+  |DEN_A| IS NOT DECLARED HERE. It is DISCOVERED from frozen metadata AFTER selection (D-B.3),
+  and it may NEVER be used to revisit the offset, the modulus, the population or the selection.
+
+================================================================================
+8. EXPECTED COMPOSITION
+================================================================================
+  INDEPENDENT_GAUNTLET  38   (gauntlet offset 1)
+  INDEPENDENT_REALISM   30   (realism offset 0)
+  AUTHORED_CONTROL      25   (fresh)
+  TOTAL                 93
+  INDEPENDENT           68   = 73.1%
+  A materialization that is not exactly 93 rows in exactly this composition -> THROW.
+
+================================================================================
+9. OVERLAP AND DUPLICATE REJECTION -- THROW ON VIOLATION (D-D.6, STRENGTHENED SURFACE SET)
+================================================================================
+  Comparison key: NORM(carrier). NO silent de-duplication, NO skipping, NO replacement.
+  SURFACES, checked against every FRESH AUTHORED control:
+    1. every observation in gauntlet.source.v1        (all 150 rows, not merely the selected 38)
+    2. every observation in field-realism-pack-v2     (all 117 rows)
+    3. every observation in gauntlet.seed             (all 100 rows -- reserve, hash-verified,
+                                                       read for OVERLAP COMPARISON ONLY)
+    4. every other fresh authored control in this holdout
+    5. every row of all prior sealed holdouts         holdout-l32{,b,c,d,e,f}.json
+    6. every row of every development set             including the l32d / l32e / l32f devsets
+    7. every row of the exhausted field corpus        safescope-field-validation-dataset.v1.json
+    8. EVERY ROW OF THE SPENT RUN-1 HOLDOUT           holdout-l3-acceptance-attempt2.json
+       -- ALL 92 rows, INCLUDING ITS 25 AUTHORED CONTROLS. This surface is NEW for Run 2 and is
+       the one D-I exists to enforce. It is NOT weakened because Run-1's controls went unanswered:
+       membership in a spent sealed corpus is by itself sufficient to prohibit reuse.
+  ADDITIONALLY THROW if any two rows within the assembled 93-row holdout share NORM(carrier),
+  or share a sourceId.
+
+  A COLLISION IS A THROW, NOT A PROMPT TO EDIT THE ROW. There is no deterministic regeneration
+  rule for authored controls in the governing plan, so a collision INVALIDATES the construction
+  and it is reported -- it is never resolved by judgment after the fact.
+
+================================================================================
+10. ORDERING, IDENTIFIERS AND SERIALIZATION -- FIXED BEFORE ANY ROW EXISTS
+================================================================================
+  STRATUM ORDER: 1. INDEPENDENT_GAUNTLET  2. INDEPENDENT_REALISM  3. AUTHORED_CONTROL
+  WITHIN GAUNTLET : ascending CMP over scenarioId -- the order whose index i % 4 === 1 selects
+  WITHIN REALISM  : ascending CMP over id         -- the order whose index i % 4 === 0 selects
+  WITHIN AUTHORED : frozen family order F1..F8, and within a family the frozen ordinal ascending;
+                    equivalently ascending CMP over the frozen sourceId AC2-<family>-<nn>
+  ROW IDENTIFIER  : rowId = "H2B-" + 1-based position, zero-padded to three digits
+                    (H2B-001 .. H2B-093)
+  SOURCE ID       : frozen scenarioId / id for independent rows; AC2-<family>-<nn> for authored
+  SERIALIZATION   : UTF-8, JSON.stringify(document, null, 2), LF, exactly one trailing newline.
+                    Object key order is the literal construction order in the builder.
+  CARRIER FIELD   : every row carries its verbatim observation text in "observation".
+
+  NO GATE DEPENDS ON THE ORDERING. It exists so the materialization is byte-reproducible.
+
+================================================================================
+11. PROVENANCE FIELDS -- REQUIRED ON EVERY ROW (D-D.5)
+================================================================================
+  rowId | provenanceClass | source | sourceId | selectionRule | pole | family | familyVariant
+  expect{ hazardEstablished, conditionState, acceptableStates, activeProhibited,
+          clarificationExpected, highConsequence, inG3Denominator, inG4Denominator, inG7Pole }
+  sourceMeta{} | constructionVersion = "L3-ACCEPTANCE-HOLDOUT-RUN-2"
+  reservationIdentity{ gauntletOffset 1, realismOffset 0, run 2 }
+
+  The by-provenance table (section 36.5) is MANDATORY. Every gated metric is reported BOTH overall
+  AND split by provenanceClass. Authored rows supplement and NEVER constitute the independent
+  evidence.
+
+================================================================================
+12. FROZEN ACCEPTANCE EXECUTION CONFIGURATION -- D-84, UNCHANGED BY RUN 2
+================================================================================
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  reasoning-prompt.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  reasoning-contract.types.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  semantic-evidence-binding.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  reasoning-input-builder.ts
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  ablate-l32g-state-separation.ts
+  76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  anthropic-ollama-shim.js
+
+  GOVERNED INNER IDENTITIES:
+    prompt identity          L3_PROMPT_VERSION = hazlenz.l3.prompt.v6
+    sha256(L3_SYSTEM_PROMPT) = b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+    run schema sha256        = a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+                               (re-serialised through buildProposalSchema())
+    validator                = deterministic-safety-validator.ts @ 942ac7cc
+    binder                   = semantic-evidence-binding.ts @ c1f9d29d
+    sanctioned input builder = reasoning-input-builder.ts @ 2865ae91  (MANDATORY, D-81)
+    provider                 = Anthropic, claude-sonnet-5
+    thinking and output_config.effort OMITTED; sampling parameters inexpressible (D-72).
+
+================================================================================
+13. SCORING CONFIGURATION -- ORIGINAL SCORER UNCHANGED, v2 VALIDITY LAYER BOUND
+================================================================================
+  ORIGINAL FROZEN SCORER, BYTE-FOR-BYTE UNCHANGED AND NOT MODIFIED BY RUN 2:
+    ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  acceptance-scorer.js
+    It implements exactly D-84's G1..G10 and the s.53.4 / G3-DEN predicates with the Amendment 2
+    G4 denominator of 21. RUN 2 CHANGES NO GATE, NO THRESHOLD AND NO DENOMINATOR.
+
+  v2 VALIDITY / SCORING WRAPPER:
+    b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100  acceptance-scorer-v2.js
+    It MUST: verify the original scorer's digest BEFORE invoking it and THROW on drift; require
+    complete provider evaluation before substantive interpretation; preserve ALL original G1..G10
+    mathematics for complete valid runs; prevent an incomplete run from becoming a substantive
+    PASS or FAIL; and preserve its diagnostic output as explicitly NON-AUTHORITATIVE when
+    NOT_SCORABLE.
+    MONOTONICITY: pass_v2 = pass_frozen AND completeProviderEvaluation.
+
+  COMPLETE-PROVIDER-EVALUATION PREDICATE (D-G):
+    EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS
+    AND PROVIDER_EVALUATED_ROW_IDS = EXPECTED_ROW_IDS      (SET EQUALITY)
+    for EVERY required process, including G9's second isolated process.
+    PROVIDER_EVALUATED = HTTP 200 through the frozen shim AND the response reaching the frozen
+    response/schema boundary: {ok:true}, or {ok:false} with MALFORMED_STRUCTURED_OUTPUT or
+    PROVIDER_REFUSAL. TIMEOUT / UNAVAILABLE / TRANSIENT_ERROR / PERMANENT_CONFIGURATION_ERROR are
+    NOT evaluated. NEVER inferred from transmission, attempt, error placeholder or record
+    existence. FAIL-CLOSED on an undeclared field.
+
+  PERMANENT-PROVIDER-FAILURE ABORT PREDICATE (D-K):
+    After spend, the run ABORTS at the first required row that ends PROVIDER_EVALUATED = FALSE
+    once the frozen retry policy for that row is exhausted. No threshold, streak length or tuning
+    constant: by D-G one unevaluated required row already forces SCORABLE = FALSE, so every
+    further request is provably incapable of changing the terminal. On fire: stop requesting,
+    preserve all raw evidence, HOLDOUT_SPENT stays TRUE, offsets stay RETIRED, SCORABLE = FALSE,
+    no automatic rerun. It reduces waste and does NOT restore the corpus.
+
+================================================================================
+14. BUILDER SPECIFICATION -- THE BUILDER DOES NOT EXIST AT FREEZE TIME
+================================================================================
+  builder/authored-controls-run2.js and builder/build-holdout-run2.js are bound here by
+  SPECIFICATION and MUST implement, mechanically and with NO semantic judgment whatsoever:
+    S-5 drift guard on all sources and the governing plan   -> THROW on any difference
+    S-2 pairwise-distinct sort-key assertion                -> THROW on any collision
+    RUN-2 selection: CMP(scenarioId) asc, i % 4 === 1  and  CMP(id) asc, i % 4 === 0
+    S-4 verbatim carriage of exactly one carrier field per source
+    section 6 fresh authored-control family templates and allocation
+    section 7 truth-metadata table lookups
+    section 9 overlap and duplicate rejection by THROW, INCLUDING the spent Run-1 surface
+    section 10 ordering, identifiers and serialization
+  IT MUST NOT: rank, score, prefer, skip, replace, substitute, re-order on semantics, normalize a
+  carrier, inspect composition before or during selection, or adapt any rule to what it observes.
+
+================================================================================
+15. SINGLE-USE RULE
+================================================================================
+  RUN2_HOLDOUT_SPENT = FALSE at this freeze and THIS CONSTRUCTION PHASE DOES NOT CHANGE IT.
+
+  THE FIRST INFERENCE CALL CONTAINING ANY ROW OF THE RUN-2 HOLDOUT sets
+      RUN2_HOLDOUT_SPENT  false -> true
+  and RETIRES gauntlet offset 1 and realism offset 0 PERMANENTLY, whatever the result (s.29.8).
+  Per D-H that transition is caused by TRANSMISSION alone and is INDEPENDENT of scorability:
+  INVALID MUST NEVER IMPLY UNSPENT.
+
+  CONSTRUCTION IS AUTHORIZED. ACCEPTANCE IS NOT. Spending additionally requires: demonstrated
+  provider/billing capacity established WITHOUT transmitting any Run-2 row; a valid
+  ANTHROPIC_API_KEY under the Commercial Terms (D-79); the execution-time provider/model identity
+  gate passing for exactly claude-sonnet-5; and EXPLICIT USER AUTHORIZATION.
+
+================================================================================
+16. THIS FILE
+================================================================================
+  Written BEFORE the builder existed, BEFORE any fresh control was authored, and BEFORE any
+  Run-2 row was selected. Hashed immediately after writing. IMMUTABLE thereafter.

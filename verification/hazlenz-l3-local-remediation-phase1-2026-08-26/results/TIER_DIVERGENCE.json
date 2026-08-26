@@ -1,0 +1,335 @@
+{
+  "processes": {
+    "A": {
+      "rows": 93,
+      "scoredMatchesValidatedTier": 93,
+      "scoredMatchesBoundTier": 86,
+      "rowsWithBinderTier": 90,
+      "binderActedRows": 4
+    },
+    "B": {
+      "rows": 93,
+      "scoredMatchesValidatedTier": 93,
+      "scoredMatchesBoundTier": 85,
+      "rowsWithBinderTier": 91,
+      "binderActedRows": 7
+    }
+  },
+  "divergentRows": {
+    "A": [
+      {
+        "rowId": "H2B-060",
+        "scoredAssertedState": "CONTROLLED",
+        "validatedStates": [
+          "CONTROLLED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "hot-work-maintenance-shop",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": null,
+          "conditionState": null,
+          "acceptableStates": null,
+          "activeProhibited": false,
+          "clarificationExpected": true,
+          "highConsequence": false,
+          "inG3Denominator": true,
+          "inG4Denominator": false,
+          "inG7Pole": false
+        }
+      },
+      {
+        "rowId": "H2B-071",
+        "scoredAssertedState": "NEGATED",
+        "validatedStates": [
+          "NEGATED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "conveyor-tail-pulley-guard",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "NEGATED",
+          "acceptableStates": [
+            "NEGATED"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-073",
+        "scoredAssertedState": "CORRECTED",
+        "validatedStates": [
+          "CORRECTED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "picking-belt-estop-slack",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "CORRECTED",
+          "acceptableStates": [
+            "CORRECTED",
+            "REMOVED_FROM_SERVICE"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-076",
+        "scoredAssertedState": "CORRECTED",
+        "validatedStates": [
+          "CORRECTED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "unlabeled-decanted-degreaser-container",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "CORRECTED",
+          "acceptableStates": [
+            "CORRECTED",
+            "REMOVED_FROM_SERVICE"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      }
+    ],
+    "B": [
+      {
+        "rowId": "H2B-060",
+        "scoredAssertedState": "CONTROLLED",
+        "validatedStates": [
+          "CONTROLLED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "hot-work-controlled",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": null,
+          "conditionState": null,
+          "acceptableStates": null,
+          "activeProhibited": false,
+          "clarificationExpected": true,
+          "highConsequence": false,
+          "inG3Denominator": true,
+          "inG4Denominator": false,
+          "inG7Pole": false
+        }
+      },
+      {
+        "rowId": "H2B-071",
+        "scoredAssertedState": "NEGATED",
+        "validatedStates": [
+          "NEGATED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "tail-pulley-nip-guard",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "NEGATED",
+          "acceptableStates": [
+            "NEGATED"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-072",
+        "scoredAssertedState": "NEGATED",
+        "validatedStates": [
+          "NEGATED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "ladderway-handrail-landing",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "NEGATED",
+          "acceptableStates": [
+            "NEGATED"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-074",
+        "scoredAssertedState": "CORRECTED",
+        "validatedStates": [
+          "CORRECTED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "fire-door-held-open",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "CORRECTED",
+          "acceptableStates": [
+            "CORRECTED",
+            "REMOVED_FROM_SERVICE"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-075",
+        "scoredAssertedState": "CORRECTED",
+        "validatedStates": [
+          "CORRECTED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "electrical-extension-lead-split-sheath",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "CORRECTED",
+          "acceptableStates": [
+            "CORRECTED",
+            "REMOVED_FROM_SERVICE"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      },
+      {
+        "rowId": "H2B-076",
+        "scoredAssertedState": "CORRECTED",
+        "validatedStates": [
+          "CORRECTED"
+        ],
+        "boundStates": [],
+        "boundAssertedState": null,
+        "rejected": [
+          {
+            "candidateKey": "unlabeled-decanted-degreaser-container",
+            "codes": [
+              "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+            ]
+          }
+        ],
+        "demoted": [],
+        "truthForReportingOnly": {
+          "hazardEstablished": false,
+          "conditionState": "CORRECTED",
+          "acceptableStates": [
+            "CORRECTED",
+            "REMOVED_FROM_SERVICE"
+          ],
+          "activeProhibited": true,
+          "clarificationExpected": false,
+          "highConsequence": false,
+          "inG3Denominator": false,
+          "inG4Denominator": true,
+          "inG7Pole": true
+        }
+      }
+    ]
+  }
+}

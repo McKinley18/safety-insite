@@ -1,0 +1,141 @@
+
+--- Part 1 — the taxonomy is total and every category is reachable
+ok    15 mismatch categories declared (got 15)
+ok    no duplicate category names
+ok    3 severities and 11 root-cause buckets declared
+ok    EXACT_MATCH is reachable (got EXACT_MATCH)
+ok    CONTENT_EQUIVALENT is reachable (got CONTENT_EQUIVALENT)
+ok    CONTENT_DIFFERENCE is reachable (got CONTENT_DIFFERENCE)
+ok    CITATION_DIFFERENCE is reachable (got CITATION_DIFFERENCE)
+ok    GRANULARITY_DIFFERENCE is reachable (got GRANULARITY_DIFFERENCE)
+ok    GOVERNED_APPROVED_EXACT is reachable (got GOVERNED_APPROVED_EXACT)
+ok    GOVERNED_UNAPPROVED is reachable (got GOVERNED_UNAPPROVED)
+ok    GOVERNED_CITATION_ONLY is reachable (got GOVERNED_CITATION_ONLY)
+ok    GOVERNED_MISSING is reachable (got GOVERNED_MISSING)
+ok    APPLICABILITY_DIFFERENCE is reachable (got APPLICABILITY_DIFFERENCE)
+ok    JURISDICTION_DIFFERENCE is reachable (got JURISDICTION_DIFFERENCE)
+ok    ORDERING_DIFFERENCE is reachable (got ORDERING_DIFFERENCE)
+ok    RESOLVER_FAILURE is reachable (got RESOLVER_FAILURE)
+ok    INTEGRITY_FAILURE is reachable (got INTEGRITY_FAILURE)
+ok    PROVENANCE_DIFFERENCE is reachable (got PROVENANCE_DIFFERENCE)
+ok    HARD: every declared category is produced by at least one input (15/15)
+
+--- Part 2 — classification is deterministic and precedence is stable
+ok    [EXACT_MATCH] identical classification across 5 repeated calls
+ok    [CONTENT_EQUIVALENT] identical classification across 5 repeated calls
+ok    [CONTENT_DIFFERENCE] identical classification across 5 repeated calls
+ok    [CITATION_DIFFERENCE] identical classification across 5 repeated calls
+ok    [GRANULARITY_DIFFERENCE] identical classification across 5 repeated calls
+ok    [GOVERNED_APPROVED_EXACT] identical classification across 5 repeated calls
+ok    [GOVERNED_UNAPPROVED] identical classification across 5 repeated calls
+ok    [GOVERNED_CITATION_ONLY] identical classification across 5 repeated calls
+ok    [GOVERNED_MISSING] identical classification across 5 repeated calls
+ok    [APPLICABILITY_DIFFERENCE] identical classification across 5 repeated calls
+ok    [JURISDICTION_DIFFERENCE] identical classification across 5 repeated calls
+ok    [ORDERING_DIFFERENCE] identical classification across 5 repeated calls
+ok    [RESOLVER_FAILURE] identical classification across 5 repeated calls
+ok    [INTEGRITY_FAILURE] identical classification across 5 repeated calls
+ok    [PROVENANCE_DIFFERENCE] identical classification across 5 repeated calls
+ok    HARD: integrity failure outranks every other simultaneous condition
+ok    HARD: the secondary dimensions still record every condition — the primary label loses nothing
+ok    "we do not know" outranks a citation difference — a failed resolution says nothing about content
+ok    a jurisdiction disagreement outranks a granularity difference
+ok    HARD: applicabilityUncertain tracks the applicability axis alone, over all 21 combinations (got 21)
+
+--- Part 3 — severity identifies blocking cases and nothing else
+ok    JURISDICTION_DIFFERENCE is BLOCKING
+ok    CITATION_DIFFERENCE is BLOCKING
+ok    INTEGRITY_FAILURE is BLOCKING
+ok    CONTENT_DIFFERENCE is BLOCKING
+ok    GRANULARITY_DIFFERENCE is REVIEW
+ok    GOVERNED_UNAPPROVED is REVIEW
+ok    GOVERNED_CITATION_ONLY is REVIEW
+ok    APPLICABILITY_DIFFERENCE is REVIEW
+ok    RESOLVER_FAILURE is REVIEW
+ok    EXACT_MATCH is INFORMATIONAL
+ok    CONTENT_EQUIVALENT is INFORMATIONAL
+ok    GOVERNED_APPROVED_EXACT is INFORMATIONAL
+ok    GOVERNED_MISSING is INFORMATIONAL
+ok    ORDERING_DIFFERENCE is INFORMATIONAL
+ok    PROVENANCE_DIFFERENCE is INFORMATIONAL
+ok    every category has exactly one declared severity
+ok    HARD: a MISSING governed record is NOT blocking — under fallback the customer gets today's behaviour
+ok    a section-only match is REVIEW, not blocking — no promotion occurs and fallback is legacy
+ok    HARD: two different texts for one citation IS blocking — one of them would be shown as verified
+ok    an ordering difference escalates to REVIEW when content also differs
+
+--- Part 4 — root cause is assigned and EXPECTED_FALLBACK is first-class
+ok    a missing governed record is EXPECTED_FALLBACK, not a defect
+ok    an unreviewed record is GOVERNANCE_APPROVAL — the remedy is review
+ok    an unreviewed record with a PLACEHOLDER source is SOURCE_PROVENANCE — the remedy is sourcing
+ok    section-only is CITATION_GRANULARITY
+ok    HARD: an unestablished trigger is APPLICABILITY_EVIDENCE, never a governance bucket
+ok    differing text is CORPUS_CONTENT
+ok    a difference of internal whitespace and terminal punctuation only is PRESENTATION_ONLY
+ok    an exact match has no root cause
+ok    a jurisdiction difference maps into the declared bucket set
+
+--- Part 5 — the event carries no customer content
+ok    the event is schema-versioned
+ok    HARD: every field on a real event is on the allowlist
+ok    the allowlist has no dead entries — every allowed field is actually emitted
+ok    a real event passes the privacy guard
+ok    HARD: the legacy text does NOT appear in the serialized event
+ok    HARD: the governed text does NOT appear in the serialized event
+ok    text is represented by digests instead
+ok    identical text produces identical digests (so equivalence is checkable without the text)
+ok    HARD: the privacy guard rejects an unexpected field
+ok    HARD: the privacy guard rejects an email address
+ok    HARD: the privacy guard rejects an over-long value
+ok    HARD: the privacy guard rejects a non-boolean dimension
+
+--- Part 6 — event keys are deterministic and idempotent
+ok    the same inputs produce the same key
+ok    a different citation produces a different key
+ok    a different finding produces a different key
+ok    a different release produces a different key
+ok    a different analysis produces a different key
+ok    a null finding key is stable
+ok    HARD: a retried analysis reproduces the SAME event key — retries deduplicate, they do not double-count
+
+--- Part 7 — the KG-4A vocabulary is a projection, not a second engine
+ok    EXACT_MATCH projects onto a KG-4A name (EXACT_MATCH)
+ok    CONTENT_EQUIVALENT projects onto a KG-4A name (GOVERNED_APPROVED_EQUIVALENT)
+ok    CONTENT_DIFFERENCE projects onto a KG-4A name (CONTENT_DIFFERENCE)
+ok    CITATION_DIFFERENCE projects onto a KG-4A name (CITATION_DIFFERENCE)
+ok    GRANULARITY_DIFFERENCE projects onto a KG-4A name (GRANULARITY_DIFFERENCE)
+ok    GOVERNED_APPROVED_EXACT projects onto a KG-4A name (GOVERNED_APPROVED_EQUIVALENT)
+ok    GOVERNED_UNAPPROVED projects onto a KG-4A name (UNAPPROVED_GOVERNED_RECORD)
+ok    GOVERNED_CITATION_ONLY projects onto a KG-4A name (MISSING_GOVERNED_RECORD)
+ok    GOVERNED_MISSING projects onto a KG-4A name (MISSING_GOVERNED_RECORD)
+ok    APPLICABILITY_DIFFERENCE projects onto a KG-4A name (APPLICABILITY_DISAGREEMENT)
+ok    JURISDICTION_DIFFERENCE projects onto a KG-4A name (CONTENT_DIFFERENCE)
+ok    ORDERING_DIFFERENCE projects onto a KG-4A name (CONTENT_DIFFERENCE)
+ok    RESOLVER_FAILURE projects onto a KG-4A name (RESOLVER_FAILURE)
+ok    INTEGRITY_FAILURE projects onto a KG-4A name (RESOLVER_FAILURE)
+ok    PROVENANCE_DIFFERENCE projects onto a KG-4A name (CONTENT_DIFFERENCE)
+ok    HARD: the projection covers all nine KG-4A names — no KG-4A category became unreachable
+
+--- Part 8 — jurisdiction comparison uses ONE canonical vocabulary
+ok    canonicalizeRegime("general_industry") = osha_general_industry (got osha_general_industry)
+ok    canonicalizeRegime("osha-general-industry") = osha_general_industry (got osha_general_industry)
+ok    canonicalizeRegime("OSHA/general_industry") = osha_general_industry (got osha_general_industry)
+ok    canonicalizeRegime("construction") = osha_construction (got osha_construction)
+ok    canonicalizeRegime("osha-construction") = osha_construction (got osha_construction)
+ok    canonicalizeRegime("OSHA/construction") = osha_construction (got osha_construction)
+ok    canonicalizeRegime("msha") = msha (got msha)
+ok    canonicalizeRegime("MSHA/mining") = msha (got msha)
+ok    canonicalizeRegime("mining") = msha (got msha)
+ok    canonicalizeRegime("unknown") = null (got null)
+ok    canonicalizeRegime("") = null (got null)
+ok    canonicalizeRegime(null) = null (got null)
+ok    canonicalizeRegime(undefined) = null (got null)
+ok    canonicalizeRegime("something-else") = null (got null)
+ok    HARD: the SAME regime in two different vocabularies is NOT a disagreement
+ok    HARD: hyphenated and slashed construction agree
+ok    HARD: msha and MSHA/mining agree
+ok    a genuine regime disagreement IS still detected
+ok    HARD: an unestablished regime on either side is NOT a disagreement
+ok    two unknowns are not a disagreement
+
+123 passed, 0 failed

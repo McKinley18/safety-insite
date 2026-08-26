@@ -1,0 +1,26 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY
+PHASE 3 INSTRUMENT SELF-TEST: THE PRESENCE PROBE IS SOUND
+recorded 2026-08-25T02:35:07Z
+
+PURPOSE. A negative presence result is only evidence if the instrument could have returned a
+positive one. This self-test uses a DISPOSABLE CONTROL VARIABLE with a known value and NO
+relation to any credential. It proves each probe path detects a variable that IS present.
+
+== CONTROL VARIABLE: L3_READINESS_CONTROL (disposable, value 'present') ==
+  [ -n ] in current shell                              DETECTED
+  env(1) name-anchored match count                     1
+  inherited through zsh -l -c (login shell)            DETECTED
+  inherited through zsh -i -c (interactive)            DETECTED
+  ${VAR+set} distinguishes set-but-empty               DETECTED-AS-SET
+
+== RESULT ==
+  Every probe path used in Phase 3 DETECTED the control variable.
+  A subprocess DOES inherit its parent's environment through this tool, including through
+  both zsh -l and zsh -i, and env(1) name-anchored matching DOES work.
+
+  Therefore ANTHROPIC_API_KEY_PRESENT = FALSE is a MEASUREMENT, not an instrument failure.
+  Had the credential been present in this process's environment, Phase 3 would have
+  reported PRESENT. It is genuinely absent.
+
+  The control variable exists only for the duration of each command above. It is not
+  exported into any profile, not written to any file, and carries no secret.

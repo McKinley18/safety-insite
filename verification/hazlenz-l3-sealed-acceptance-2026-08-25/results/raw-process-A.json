@@ -1,0 +1,5919 @@
+{
+  "phase": "L3 FINAL SINGLE-USE SEALED ACCEPTANCE",
+  "processLabel": "A",
+  "pid": 62358,
+  "startedAt": "2026-08-25T20:53:23.891Z",
+  "gateDeclarationSha256": "f54e649aa9c65fe3dcd62dc27cb8d65e72050d529910cf2ca3303a0d71031b97",
+  "holdoutId": "holdout-l3-acceptance-attempt2",
+  "holdoutSha256": "69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c",
+  "expectedRows": 92,
+  "provider": "Anthropic",
+  "requestedModel": "claude-sonnet-5",
+  "promptVersion": "hazlenz.l3.prompt.v6",
+  "systemPromptSha256": "b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf",
+  "runSchemaSha256": "a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385",
+  "endpoint": "http://127.0.0.1:11441",
+  "temperature": 0,
+  "seed": 20260822,
+  "numCtx": 8192,
+  "timeoutMs": 300000,
+  "allowedHazardFamilies": 24,
+  "spendInitiatedAt": "2026-08-25T20:53:23.892Z",
+  "firstObservationTransmittedAt": "2026-08-25T20:53:23.892Z",
+  "providerCalls": 92,
+  "rows": [
+    {
+      "rowId": "H2A-001",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "haul-road-edge-protection",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 1,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 41281,
+      "latencyMs": 41281,
+      "telemetry": {
+        "promptTokens": 6021,
+        "outputTokens": 3539,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-002",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "vehicle-roadway-departure",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "INSUFFICIENT_EVIDENCE"
+        }
+      ],
+      "raisedClarification": true,
+      "assertedState": "INSUFFICIENT_EVIDENCE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 2,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-005",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 21809,
+      "latencyMs": 21809,
+      "telemetry": {
+        "promptTokens": 6018,
+        "outputTokens": 2138,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": false,
+      "validatedStates": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "candidateBorneClarification": true,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "boundAssertsActive": false,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-003",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "mobile-equipment-blind-intersection-collision",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 3,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-009",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 15256,
+      "latencyMs": 15256,
+      "telemetry": {
+        "promptTokens": 6009,
+        "outputTokens": 1337,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-004",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "tail-pulley-entanglement",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "belt-not-stopped-during-cleaning",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 4,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-013",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 25710,
+      "latencyMs": 25710,
+      "telemetry": {
+        "promptTokens": 6017,
+        "outputTokens": 2386,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-005",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "struck-by-shifting-stockpile",
+          "hazardFamily": "struck_by",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 5,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-017",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 19139,
+      "latencyMs": 19139,
+      "telemetry": {
+        "promptTokens": 6017,
+        "outputTokens": 1595,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-006",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "conveyor-nip-point-guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "conveyor-energy-not-isolated-during-adjustment",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 6,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-021",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 34408,
+      "latencyMs": 34408,
+      "telemetry": {
+        "promptTokens": 6010,
+        "outputTokens": 3174,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_EVIDENCE_NOT_SELECTIVE",
+          "SEMANTIC_EVIDENCE_NOT_SELECTIVE"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-007",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "tail-pulley-guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "active-conveyor-energy-control",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 7,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-030",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 15562,
+      "latencyMs": 15562,
+      "telemetry": {
+        "promptTokens": 6013,
+        "outputTokens": 1600,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-008",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "mobile-equipment-runaway",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 8,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-034",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 36864,
+      "latencyMs": 36864,
+      "telemetry": {
+        "promptTokens": 6001,
+        "outputTokens": 3281,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-009",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "ground-control-rockfall-during-support-installation",
+          "hazardFamily": "ground_control",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 9,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-039",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 26420,
+      "latencyMs": 26420,
+      "telemetry": {
+        "promptTokens": 6000,
+        "outputTokens": 2371,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-010",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "unguarded-pulley-pinch-point",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "belt-check-without-energy-isolation",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 10,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-043",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 23963,
+      "latencyMs": 23963,
+      "telemetry": {
+        "promptTokens": 6004,
+        "outputTokens": 2314,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-011",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "mobile-equipment-blind-corner-no-traffic-control",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 11,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-047",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 18225,
+      "latencyMs": 18225,
+      "telemetry": {
+        "promptTokens": 6013,
+        "outputTokens": 1583,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-012",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "loto-failure-mechanical-service",
+          "hazardFamily": "loto_stored_energy",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 12,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-051",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 16700,
+      "latencyMs": 16700,
+      "telemetry": {
+        "promptTokens": 6010,
+        "outputTokens": 1596,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-013",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "slick-haul-ramp-surface",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "missing-berm-containment",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 13,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-055",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 21295,
+      "latencyMs": 21295,
+      "telemetry": {
+        "promptTokens": 6010,
+        "outputTokens": 2003,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-014",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "stored-timber-uncontrolled-shift",
+          "hazardFamily": "material_handling",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 14,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-059",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 27748,
+      "latencyMs": 27748,
+      "telemetry": {
+        "promptTokens": 6012,
+        "outputTokens": 2594,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-015",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "highwall-collapse",
+          "hazardFamily": "ground_control",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 15,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-063",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 18737,
+      "latencyMs": 18737,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 1629,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-016",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "blind-intersection-haul-truck",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 16,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-067",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 22024,
+      "latencyMs": 22024,
+      "telemetry": {
+        "promptTokens": 6003,
+        "outputTokens": 2089,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-017",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "conveyor-nip-point-entanglement",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 17,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-MSHA-071",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 14020,
+      "latencyMs": 14020,
+      "telemetry": {
+        "promptTokens": 6003,
+        "outputTokens": 1157,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-018",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "rotating-shaft-guard-removed",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 18,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-003",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 10346,
+      "latencyMs": 10346,
+      "telemetry": {
+        "promptTokens": 6014,
+        "outputTokens": 886,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-019",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "trenching-shoring-1",
+          "hazardFamily": "trenching_shoring",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 19,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-007",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 14132,
+      "latencyMs": 14132,
+      "telemetry": {
+        "promptTokens": 6016,
+        "outputTokens": 1108,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-020",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "grain_bin_no_atmospheric_testing",
+          "hazardFamily": "confined_space",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "grain_engulfment_shifting_grain",
+          "hazardFamily": "confined_space",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 20,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-011",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 23957,
+      "latencyMs": 23957,
+      "telemetry": {
+        "promptTokens": 6015,
+        "outputTokens": 2131,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-021",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "fall-protection-absent",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 21,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-015",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 8654,
+      "latencyMs": 8654,
+      "telemetry": {
+        "promptTokens": 6014,
+        "outputTokens": 717,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-022",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "ammonia-refrigerant-leak",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "missing-respiratory-protection",
+          "hazardFamily": "respiratory_protection",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 22,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-019",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 15208,
+      "latencyMs": 15208,
+      "telemetry": {
+        "promptTokens": 6020,
+        "outputTokens": 1397,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-023",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "forklift-overspeed-pedestrian-walkway",
+          "hazardFamily": "mobile_equipment",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 23,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-023",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 15583,
+      "latencyMs": 15583,
+      "telemetry": {
+        "promptTokens": 6016,
+        "outputTokens": 1422,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-024",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "milling-machine-unguarded-rotating-parts",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 24,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-027",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 6839,
+      "latencyMs": 6839,
+      "telemetry": {
+        "promptTokens": 6003,
+        "outputTokens": 551,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-025",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "blocked-emergency-exit-aisle",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 25,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-031",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 8910,
+      "latencyMs": 8910,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 727,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-026",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "excavation-lack-of-shoring",
+          "hazardFamily": "trenching_shoring",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 26,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-035",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 18851,
+      "latencyMs": 18851,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 1767,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-027",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "press-guard-override",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 27,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-039",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 11927,
+      "latencyMs": 11927,
+      "telemetry": {
+        "promptTokens": 6002,
+        "outputTokens": 894,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-028",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "blocked-fire-exit-aisle",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 28,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-043",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 9674,
+      "latencyMs": 9674,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 815,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-029",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "crane-powerline-contact",
+          "hazardFamily": "electrical",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 29,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-047",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 22620,
+      "latencyMs": 22620,
+      "telemetry": {
+        "promptTokens": 6005,
+        "outputTokens": 1910,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-030",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "scaffold-overload-collapse",
+          "hazardFamily": "scaffolds",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 30,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 33773,
+      "latencyMs": 33773,
+      "telemetry": {
+        "promptTokens": 6010,
+        "outputTokens": 3046,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-031",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "blocked-emergency-exit",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 31,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1005",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 8425,
+      "latencyMs": 8425,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 677,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-032",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "blocked-emergency-exit",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 32,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1009",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 9931,
+      "latencyMs": 9931,
+      "telemetry": {
+        "promptTokens": 6004,
+        "outputTokens": 774,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-033",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "scaffold-base-support-collapse",
+          "hazardFamily": "scaffolds",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 33,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1013",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 18737,
+      "latencyMs": 18737,
+      "telemetry": {
+        "promptTokens": 6006,
+        "outputTokens": 1687,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-034",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "fall-no-harness-15ft",
+          "hazardFamily": "falls",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 34,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1017",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 10036,
+      "latencyMs": 10036,
+      "telemetry": {
+        "promptTokens": 6007,
+        "outputTokens": 724,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-035",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "unshored-trench-sandy-soil",
+          "hazardFamily": "trenching_shoring",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 35,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1021",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 13304,
+      "latencyMs": 13304,
+      "telemetry": {
+        "promptTokens": 6011,
+        "outputTokens": 871,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-036",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "uncontrolled-chemical-release",
+          "hazardFamily": "chemical_storage",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 36,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1025",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 11058,
+      "latencyMs": 11058,
+      "telemetry": {
+        "promptTokens": 6001,
+        "outputTokens": 1031,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": []
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-037",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "toxic-vapor-no-ventilation",
+          "hazardFamily": "respiratory_protection",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "uncleaned-chemical-area",
+          "hazardFamily": "housekeeping",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 37,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1029",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 41368,
+      "latencyMs": 41368,
+      "telemetry": {
+        "promptTokens": 6008,
+        "outputTokens": 4106,
+        "binding": {
+          "total": 3,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-038",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "unprotected-trench",
+          "hazardFamily": "trenching_shoring",
+          "conditionState": "ACTIVE"
+        },
+        {
+          "candidateKey": "no-ladder-egress",
+          "hazardFamily": "emergency_egress",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 38,
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "sourceId": "SRC-OSHA-1033",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 12604,
+      "latencyMs": 12604,
+      "telemetry": {
+        "promptTokens": 5998,
+        "outputTokens": 1132,
+        "binding": {
+          "total": 2,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 2,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 2,
+        "boundStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY",
+          "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-039",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "scaffold-fall-protection",
+          "hazardFamily": "scaffolds",
+          "conditionState": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "candidateKey": "grinder-guarding",
+          "hazardFamily": "machine_guarding",
+          "conditionState": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "candidateKey": "grinding-ignition-source-process-plant",
+          "hazardFamily": "hot_work",
+          "conditionState": "INSUFFICIENT_EVIDENCE"
+        }
+      ],
+      "raisedClarification": true,
+      "assertedState": "INSUFFICIENT_EVIDENCE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 39,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-JURISDICTION-CONSTRUCTION-PLANT-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 64926,
+      "latencyMs": 64926,
+      "telemetry": {
+        "promptTokens": 6053,
+        "outputTokens": 6548,
+        "binding": {
+          "total": 4,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 3,
+      "validatedAssertsActive": false,
+      "validatedStates": [
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "candidateBorneClarification": true,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 3,
+        "boundStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "INSUFFICIENT_EVIDENCE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "boundAssertsActive": false,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-040",
+      "schemaValid": true,
+      "retries": 0,
+      "candidates": [
+        {
+          "candidateKey": "worker-proximity-moving-railcar",
+          "hazardFamily": "struck_by",
+          "conditionState": "ACTIVE"
+        }
+      ],
+      "raisedClarification": false,
+      "assertedState": "ACTIVE",
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 40,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-JURISDICTION-RAIL-SPUR-MINE-PLANT-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "VALIDATED",
+      "totalMs": 29908,
+      "latencyMs": 29908,
+      "telemetry": {
+        "promptTokens": 6044,
+        "outputTokens": 3011,
+        "binding": {
+          "total": 1,
+          "unbound": 0,
+          "ambiguous": 0
+        },
+        "failureKind": null
+      },
+      "validationState": "VALID",
+      "validationIssueCodes": [],
+      "validatedHazardCount": 1,
+      "validatedAssertsActive": true,
+      "validatedStates": [
+        "ACTIVE"
+      ],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": {
+        "boundHazardCount": 1,
+        "boundStates": [
+          "ACTIVE"
+        ],
+        "boundAssertsActive": true,
+        "rejected": [],
+        "demoted": [],
+        "issueCodes": [
+          "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+        ]
+      },
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-041",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 41,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-COAL-UG-BELT-SPILLAGE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 52320,
+      "latencyMs": 52320,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-042",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 42,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-COAL-UG-SCOOP-BATTERY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 167,
+      "latencyMs": 167,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-043",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 43,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-GUARDING-CLEANUP-LOTO-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 804,
+      "latencyMs": 804,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-044",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 44,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-MNM-UG-ORE-PASS-BARRICADE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 150,
+      "latencyMs": 150,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-045",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 45,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-MOBILE-NO-PEDESTRIAN-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 182,
+      "latencyMs": 182,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-046",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 46,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MSHA-SURFACE-DUMP-BERM-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 160,
+      "latencyMs": 160,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-047",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 47,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MULTI-CONFINED-HOTWORK-ENTRY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 191,
+      "latencyMs": 191,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-048",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 48,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-MULTI-NOISE-FORKLIFT-CO-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 167,
+      "latencyMs": 167,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-049",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 49,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-CONFINED-NO-ENTRY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 169,
+      "latencyMs": 169,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-050",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 50,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-SPOIL-PILE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 160,
+      "latencyMs": 160,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-051",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 51,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-POWERLINE-CRANE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 190,
+      "latencyMs": 190,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-052",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 52,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-TRENCH-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 145,
+      "latencyMs": 145,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-053",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 53,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-ELECTRICAL-FALSE-BLOCKED-ACCESS-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 140,
+      "latencyMs": 140,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-054",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 54,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-ELECTRICAL-TEMPORARY-POWER-GFCI-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 154,
+      "latencyMs": 154,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-055",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 55,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-EMERGENCY-EXIT-BLOCKED-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 158,
+      "latencyMs": 158,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-056",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 56,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-FALSE-TRENCH-LADDER-PLATFORM-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 176,
+      "latencyMs": 176,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-057",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 57,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-FORKLIFT-TRAINING-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 165,
+      "latencyMs": 165,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-058",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 58,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-GI-CONVEYOR-TRAINING-ONLY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 157,
+      "latencyMs": 157,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-059",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 59,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-GI-HEAT-STRESS-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 153,
+      "latencyMs": 153,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-060",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 60,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-GI-MACHINE-JAM-CLEARING-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 154,
+      "latencyMs": 154,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-061",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 61,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-GI-PRESSURE-HOSE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 172,
+      "latencyMs": 173,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-062",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 62,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-GRINDER-GUARD-NO-PPE-ISSUE-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 165,
+      "latencyMs": 165,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-063",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 63,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-HOTWORK-COMBUSTIBLES-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 163,
+      "latencyMs": 163,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-064",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 64,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-LOTO-TRAINING-ONLY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 155,
+      "latencyMs": 155,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-065",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 65,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-SCAFFOLD-GUARDRAIL-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 164,
+      "latencyMs": 164,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-066",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 66,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-TRENCH-EGRESS-COMPLIANT-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 168,
+      "latencyMs": 168,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-067",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 67,
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "sourceId": "FIELD-V2-OSHA-TRENCH-SHALLOW-NO-ENTRY-001",
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regulatoryContext": {
+        "value": "unknown",
+        "provenance": "UNKNOWN"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 152,
+      "latencyMs": 152,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-068",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 68,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F1-01",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 167,
+      "latencyMs": 167,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-069",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 69,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F1-02",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 166,
+      "latencyMs": 166,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-070",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 70,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F1-03",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 256,
+      "latencyMs": 256,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-071",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 71,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F1-04",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 147,
+      "latencyMs": 147,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-072",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 72,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F2-01",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 171,
+      "latencyMs": 171,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-073",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 73,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F2-02",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 147,
+      "latencyMs": 147,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-074",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 74,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F2-03",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 147,
+      "latencyMs": 147,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-075",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 75,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F2-04",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 218,
+      "latencyMs": 218,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-076",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 76,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F3-01",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 148,
+      "latencyMs": 148,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-077",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 77,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F3-02",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 147,
+      "latencyMs": 147,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-078",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 78,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F3-03",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 151,
+      "latencyMs": 151,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-079",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 79,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F4-01",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 154,
+      "latencyMs": 154,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-080",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 80,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F4-02",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 322,
+      "latencyMs": 322,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-081",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 81,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F4-03",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 146,
+      "latencyMs": 146,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-082",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 82,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F5-01",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 146,
+      "latencyMs": 146,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-083",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 83,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F5-02",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 155,
+      "latencyMs": 155,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-084",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 84,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F5-03",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 144,
+      "latencyMs": 144,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-085",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 85,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F6-01",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 148,
+      "latencyMs": 148,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-086",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 86,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F6-02",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 142,
+      "latencyMs": 142,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-087",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 87,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F6-03",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 145,
+      "latencyMs": 146,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-088",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 88,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F7-01",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-construction",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 157,
+      "latencyMs": 157,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-089",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 89,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F7-02",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 147,
+      "latencyMs": 147,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-090",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 90,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F7-03",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regulatoryContext": {
+        "value": "msha",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 145,
+      "latencyMs": 145,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      }
+    },
+    {
+      "rowId": "H2A-091",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 91,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F8-01",
+      "familyVariant": "F8a",
+      "pole": "REGRESSION_ACTIVE",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 138,
+      "latencyMs": 138,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      }
+    },
+    {
+      "rowId": "H2A-092",
+      "schemaValid": false,
+      "retries": 0,
+      "candidates": [],
+      "raisedClarification": false,
+      "assertedState": null,
+      "nonRetryableValidationReasons": [],
+      "safetyConsequentialRejection": false,
+      "decisionBoundaryCodes": [],
+      "executionIndex": 92,
+      "provenanceClass": "AUTHORED_CONTROL",
+      "sourceId": "AC-F8-02",
+      "familyVariant": "F8b",
+      "pole": "NEGATIVE_CONTROL",
+      "regulatoryContext": {
+        "value": "osha-general-industry",
+        "provenance": "USER_CONFIRMED"
+      },
+      "redactionVersion": "hazlenz.l3.redaction.v1",
+      "redactionCount": 0,
+      "redactionsPerRule": [],
+      "attempts": 1,
+      "providerId": "ollama:claude-sonnet-5",
+      "outcomeKind": "PROVIDER_UNAVAILABLE",
+      "totalMs": 140,
+      "latencyMs": 140,
+      "telemetry": {
+        "promptTokens": null,
+        "outputTokens": null,
+        "binding": null,
+        "failureKind": "PERMANENT_CONFIGURATION_ERROR"
+      },
+      "validationState": null,
+      "validationIssueCodes": [],
+      "validatedHazardCount": 0,
+      "validatedAssertsActive": false,
+      "validatedStates": [],
+      "candidateBorneClarification": false,
+      "proposalLevelClarificationCount": 0,
+      "semanticTier": null,
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      }
+    }
+  ],
+  "finishedAt": "2026-08-25T21:08:05.136Z",
+  "completedRows": 92
+}

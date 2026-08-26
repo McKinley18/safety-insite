@@ -1,0 +1,90 @@
+L3 RUN-2 FINAL PRE-SPEND EXECUTION GUARD -- FROZEN IDENTITIES AND THE UNSPENT PROOF
+recorded 2026-08-25 | HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230
+
+1. FROZEN IDENTITIES -- RECOMPUTED FROM THE ACTUAL FILES
+
+  PASS  RUN-2 holdout f887cfd1...
+  PASS  RUN-2 holdout rebuild f887cfd1...
+  PASS  ORIGINAL frozen scorer ea5e50ae...
+  PASS  v2 validity wrapper b9a0a6bc...
+  PASS  v2 wrapper, Amendment-3 original b9a0a6bc...
+  PASS  HOLDOUT_FREEZE 67e6b47c...
+  PASS  governing plan (Amd 1+2+3) a7da57e4...
+  PASS  reasoning prompt 426302a4...
+  PASS  reasoning contract types 5f70281c...
+  PASS  deterministic validator 942ac7cc...
+  PASS  semantic evidence binder c1f9d29d...
+  PASS  sanctioned input builder 2865ae91...
+  PASS  locked cohort harness 73f74131...
+  PASS  anthropic transport shim 76d3e039...
+
+  PASS  git diff HEAD over backend/src and safescope-data is EMPTY -- 0 lines
+  PASS  the locked cohort harness is unmodified against HEAD -- 0 lines
+
+2. THE RUN-2 ACCEPTANCE ARTIFACT
+  PASS  all 15 component digests reproduce their manifest lines -- 15/15
+  PASS  RUN-2 acceptance-artifact identity unchanged -- 9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+
+3. RUN-1 IS NOT REWRITTEN
+  PASS  the spent Run-1 package verifies byte-identical to its own manifest -- 31/31
+  PASS  the Run-1 runner was NOT modified -- it remains 8d8a6479...
+  Run-1 was read for transport/error metadata ONLY, and read-only.
+  RUN1_HOLDOUT_SPENT stays TRUE. Offsets 0 and 3 stay RETIRED.
+  RUN1_MODEL_ACCEPTANCE_RESULT stays NOT_ESTABLISHED.
+
+4. THE UNSPENT PROOF -- RUN 2
+  PASS  Run-2 holdout still has 93 rows -- 93
+  PASS  every URL literal in every EXECUTED file targets 127.0.0.1 only -- checked 7 files
+  PASS  no EXECUTED file reads a credential environment variable
+  shell-execution sites in EXECUTED files, enumerated in full:
+      verification/synthetic-dk-tests.ts  ->  node
+      preservation/prove-unspent.js  ->  git rev-parse HEAD
+      preservation/prove-unspent.js  ->  git diff --stat HEAD -- backend/src safescope-data
+      preservation/prove-unspent.js  ->  git diff --stat HEAD -- backend/scripts/ablate-l32g-state-separation.ts
+      preservation/prove-unspent.js  ->  git status --porcelain=v1
+      preservation/prove-unspent.js  ->  git stash list
+      preservation/prove-unspent.js  ->  git tag
+      preservation/prove-unspent.js  ->  git diff --cached --stat
+      preservation/prove-unspent.js  ->  git rev-list --left-right --count @{u}...HEAD
+  PASS  every shell-execution site invokes git (read-only) or node (the local 127.0.0.1 fixture)
+  PASS  every git invocation is READ-ONLY (rev-parse / status / diff / stash list / tag / rev-list) -- git rev-parse HEAD | git diff --stat HEAD -- backend/src safescope-data | git diff --stat HEAD -- backend/scripts/ablate-l32g-state-separation.ts | git status --porcelain=v1 | git stash list | git tag | git diff --cached --stat | git rev-list --left-right --count @{u}...HEAD
+  PASS  runner/run-run2-acceptance.ts exists but was NOT executed by this phase
+  PASS  runner/run-run2-sealed.sh exists but was NOT executed by this phase
+  PASS  the run shell refuses to start without an explicit authorized run directory
+  PASS  the run driver refuses to start without the D-K global abort path
+  PASS  the synthetic suite never opens the Run-2 holdout file
+  PASS  the replay never opens the Run-2 holdout file
+  PASS  the fixture binds 127.0.0.1 only and has no outbound primitive
+  PASS  the suite reaches only 127.0.0.1
+  PASS  the replay makes no network call at all
+
+  Run-2 observation values opened ............ 0
+  Run-2 rows transmitted .................... 0
+  reserved source rows transmitted .......... 0
+  provider calls ............................ 0
+  readiness probes .......................... 0
+  credential reads .......................... 0
+  inference executions ...................... 0
+  G1-G10 evaluations on provider output ..... 0
+  API cost .................................. $0.00
+
+  What this phase DID read from the Run-2 holdout: its BYTES (to hash), its row COUNT, and
+  the NAMES of its keys. No `observation` value, no `expect` value and no sourceId was
+  printed, opened, transmitted or written anywhere by this phase. Compare section 62.8: the
+  Run-2 schedule itself was derived by reading sort keys and counts only.
+
+  RUN2_HOLDOUT_SPENT = FALSE
+  Gauntlet offset 1 and realism offset 0 remain SELECTED, FROZEN and UNSPENT.
+  Gauntlet offsets 2, 3 and realism offsets 1, 2 remain RESERVED.
+  The 100-row gauntlet.seed remains UNOPENED.
+
+5. WORKTREE PRESERVATION
+  PASS  no unrelated tracked file was modified by this phase
+  PASS  the only NEW untracked path from this phase is its own evidence package
+  PASS  all 4 stashes untouched -- 4
+  PASS  all 23 tags unchanged -- 23
+  PASS  nothing staged
+  PASS  no divergence from upstream -- 0	0
+  Nothing committed. Nothing pushed. Nothing deployed. No stash touched. No tag moved.
+
+TOTAL 40 checks -- PASS 40 -- FAIL 0

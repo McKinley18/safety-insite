@@ -83,8 +83,8 @@ export default function ForgotPasswordPage() {
               </div>
               {message ? <p role="status" className="text-center text-sm font-semibold text-slate-600">{message}</p> : null}
 
-              <div className="mt-2 border-t border-slate-200 pt-4 text-center">
-                <AppTextLink href="/login" className="block">
+              <div className="mt-2 flex justify-center border-t border-slate-200 pt-3">
+                <AppTextLink href="/login" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3">
                   Return to sign in
                 </AppTextLink>
               </div>

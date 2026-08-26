@@ -22,6 +22,21 @@
   --warning: #F97316;
   --danger: #DC2626;
 
+  /* The orange accent, in the ONE role where it carries white foreground text.
+     The brand orange #F47C20 measures 2.71:1 against white and Tailwind's
+     orange-500 #F97316 measures 2.80:1 -- both well under the 4.5:1 WCAG AA
+     requirement for normal text, on "Add Task", "Add Site", "Start" and "Upload".
+     #BB5609 is the SAME hue (26deg) and the SAME saturation (0.906) as #F47C20
+     with only the lightness reduced, so the brand character is preserved; it
+     measures 4.72:1 against white.
+     This is deliberately a separate token from --warning / --app-warning, which
+     are light BACKGROUNDS carrying dark text (the offline badge) and are correct
+     as they are -- darkening those would break the text sitting on them.
+     Identical in light and dark: it is a solid surface with white text in both,
+     so its contrast must not move with the theme. */
+  --app-accent-strong: #BB5609;
+  --app-accent-strong-hover: #A34B08;
+
   --app-page-bg: #f3f7fb;
   --app-page-bg-alt: #e6edf5;
   --app-surface-elevated: #ffffff;
@@ -50,7 +65,13 @@
   --disabled-background: #E2E8F0;
   --disabled-text: #64748B;
 
-  --sentinel-mobile-tabbar-height: calc(76px + env(safe-area-inset-bottom, 0px));
+  /* Measured height of .mobile-tab-bar, not a guess: 4 tab links at min-h-11 plus the
+     bar's own padding. It was 76px while the bar also carried a copyright line; with
+     that line removed the bar measures 57px, and leaving the variable at 76 reserved
+     19px of dead space at the bottom of every scrollable app screen. Everything that
+     positions against the bar -- page bottom padding, the finding-builder dock -- reads
+     this one value, so it has to track the real bar. */
+  --sentinel-mobile-tabbar-height: calc(58px + env(safe-area-inset-bottom, 0px));
   --sentinel-finding-builder-bottom: calc(var(--sentinel-mobile-tabbar-height) - 1.65rem);
   --sentinel-finding-builder-show-bottom: calc(var(--sentinel-mobile-tabbar-height) - 1.1rem);
   --sentinel-mobile-bottom-safe-space: calc(var(--sentinel-mobile-tabbar-height) + 2.25rem);
@@ -282,6 +303,11 @@ body,
   font-weight: 700;
   text-align: center;
   text-transform: capitalize;
+  /* Five steps across a phone: a label that wraps makes its own step taller than the
+     other four and breaks the baseline of the progress rule underneath them. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .guided-progress-step.is-current {
@@ -899,6 +925,31 @@ body {
   background: var(--app-warning-bg-hex);
 }
 
+/* The strong-accent surface: the AA-compliant orange (--app-accent-strong, 4.72:1
+   against white) carrying WHITE text.
+   Declared as a real class rather than left to a `bg-[var(--app-accent-strong)]`
+   utility at the call site, because AppButton's `accent` variant applies the plain
+   CSS class `.bg-app-warning` -- a light amber surface intended for BLACK text --
+   and a Tailwind arbitrary-value utility does not reliably win that specificity
+   contest. The result was "Add Task" on the Home page rendering white on #fff7ed at
+   1.06:1 in light mode, while dark mode looked correct only because a separate
+   `.dark .command-center-add-task` !important rule happened to override it.
+   One class, both themes, no per-page patching. */
+.app-accent-strong-surface:not(:disabled) {
+  background: var(--app-accent-strong) !important;
+  border-color: var(--app-accent-strong) !important;
+  color: #ffffff !important;
+}
+
+.app-accent-strong-surface:hover:not(:disabled) {
+  background: var(--app-accent-strong-hover) !important;
+}
+
+/* Disabled buttons are deliberately NOT repainted: the app's disabled tokens
+   (--disabled-background / --disabled-text) already read as inactive, and WCAG 2.1
+   SC 1.4.3 exempts inactive controls from the contrast minimum. Forcing the accent
+   here would make a disabled control look enabled-but-faded. */
+
 .bg-app-danger {
   background: var(--app-danger-bg-hex);
 }
@@ -1009,6 +1060,22 @@ body {
   color: var(--app-text-primary) !important;
 }
 
+/* The raw brand blue on a dark app surface measures 3.5:1 for the small uppercase
+   eyebrow labels that use it (`text-[#1D72B8]` with no `dark:` variant, e.g.
+   "Observed Condition" and "Uploaded Evidence" on /inspection), below the 4.5:1
+   required at that size. Map those onto the dark counterpart the rest of the app
+   already pairs it with, which is the dark value of --link.
+   `:not([class*="bg-"])` is what makes this safe: the same utility is also used for
+   dark-blue text ON a light chip (`bg-[#E8F4FF] text-[#1D72B8]`, e.g. the profile
+   avatar), whose background does not flip in dark mode -- lightening those took them
+   to 1.9:1. Eyebrow labels carry no background utility; chips do.
+   `:where()` keeps specificity at zero so `.inspection-panel-light`'s !important
+   brand-blue rule, which deliberately holds the light value on its always-white
+   surface, still wins. */
+.dark :where(.text-\[\#1D72B8\]):not([class*="bg-"]) {
+  color: var(--link);
+}
+
 .dark :where(.text-slate-700, .text-gray-700, .text-zinc-700) {
   color: var(--app-text-secondary) !important;
 }
@@ -1083,16 +1150,6 @@ body {
   border-color: #94a3b8 !important;
   color: #ffffff !important;
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.24), 0 0 14px rgba(93, 183, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-}
-
-.dark .command-center-add-task {
-  background: #f47c20 !important;
-  border-color: #f47c20 !important;
-  color: #ffffff !important;
-}
-
-.dark .command-center-add-task:hover {
-  background: #d96510 !important;
 }
 
 .generated-report-card {
@@ -1657,14 +1714,14 @@ body.sentinel-keyboard-open {
 
 .insite-inspection-action-orange {
   border: 1px solid rgba(253, 186, 116, 0.6);
-  background: #F97316;
+  background: var(--app-accent-strong);
   box-shadow:
     0 1px 2px rgba(15, 23, 42, 0.08),
     0 0 0 1px rgba(253, 186, 116, 0.4);
 }
 
 .insite-inspection-action-orange:hover {
-  background: #EA580C;
+  background: var(--app-accent-strong-hover);
 }
 
 .insite-inspection-action-navy {
@@ -2106,6 +2163,32 @@ body.sentinel-keyboard-open {
 .inspection-panel-light .muted,
 .inspection-panel-light small {
   color: #334155;
+}
+
+/* `.inspection-panel-light` hard-codes a white background in BOTH themes, but the
+   global dark remaps above (`.dark :where(.text-slate-700) { ... !important }` and
+   friends) are !important and therefore beat this panel's own un-flagged colour
+   rules. In dark mode its descendants were repainted light slate on the panel's
+   white background -- measured 1.05:1 and 1.23:1 on /inspection-cover, effectively
+   unreadable. Re-assert the panel's own colours at the same weight, exactly as its
+   brand-blue rule above already does. */
+.dark .inspection-panel-light,
+.dark .inspection-panel-light h1,
+.dark .inspection-panel-light h2,
+.dark .inspection-panel-light h3,
+.dark .inspection-panel-light h4,
+.dark .inspection-panel-light p,
+.dark .inspection-panel-light label,
+.dark .inspection-panel-light li,
+.dark .inspection-panel-light span,
+.dark .inspection-panel-light div {
+  color: #0f172a !important;
+}
+
+.dark .inspection-panel-light .inspection-muted,
+.dark .inspection-panel-light .muted,
+.dark .inspection-panel-light small {
+  color: #334155 !important;
 }
 
 .inspection-input-light {

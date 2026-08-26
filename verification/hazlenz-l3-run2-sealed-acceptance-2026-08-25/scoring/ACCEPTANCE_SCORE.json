@@ -1,0 +1,217 @@
+{
+  "phase": "L3 RUN-2 FINAL SINGLE-USE SEALED ACCEPTANCE",
+  "scoredAt": "2026-08-26T00:31:37.600Z",
+  "run2AcceptanceArtifactIdentity": "9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc",
+  "run2ExecutionGuardIdentity": "eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1",
+  "preExecutionGateDeclarationSha256": "eec48a5d032db4f3d5adfa86b191c83d3f33c21ddfcd94bac000010db60c3f58",
+  "acceptanceContractSha256": "9d94efb642c35957ea1b342ca50c1d8b4da9890b99762a5c3dc23897e5f6febe",
+  "v2WrapperSha256": "b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100",
+  "originalScorerSha256": "ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6",
+  "holdoutSha256": "f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f",
+  "rawProcessA": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json",
+    "sha256": "b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3",
+    "rows": 93,
+    "requestsScheduled": 93,
+    "providerCalls": 93,
+    "dkFired": false
+  },
+  "rawProcessB": {
+    "path": "/Users/mckinley/Desktop/Safety_InSite/verification/hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-B.json",
+    "sha256": "514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f",
+    "rows": 93,
+    "requestsScheduled": 93,
+    "providerCalls": 93,
+    "dkFired": false
+  },
+  "RUN2_HOLDOUT_SPENT": true,
+  "GAUNTLET_OFFSET_1": "RETIRED",
+  "REALISM_OFFSET_0": "RETIRED",
+  "score": {
+    "scorerV2Id": "hazlenz.l3.acceptance-scorer.v2.complete-provider-evaluation",
+    "frozenScorerId": "hazlenz.l3.acceptance-scorer.attempt2.v1",
+    "frozenScorerSha256": "ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6",
+    "holdoutId": "holdout-l3-acceptance-run2",
+    "providerEvaluation": {
+      "EXPECTED_ROWS": 93,
+      "PROVIDER_EVALUATED_ROWS": 93,
+      "rowIdSetsEqual": true,
+      "notEvaluatedRowIds": [],
+      "undeclaredRowIds": [],
+      "processBEvaluatedRows": 93,
+      "processBNotEvaluatedRowIds": [],
+      "completeProviderEvaluation": true,
+      "definition": "PROVIDER_EVALUATED = the provider returned HTTP 200 through the frozen shim and the response reached the frozen response/schema boundary ({ok:true}, or {ok:false} with MALFORMED_STRUCTURED_OUTPUT or PROVIDER_REFUSAL). Transport, billing, authentication, workspace, model-access and other pre-output rejections are NOT provider-evaluated. Never inferred from transmission, attempt, error placeholder or record existence.",
+      "evaluatedFailureKinds": [
+        "MALFORMED_STRUCTURED_OUTPUT",
+        "PROVIDER_REFUSAL"
+      ],
+      "notEvaluatedFailureKinds": [
+        "TIMEOUT",
+        "UNAVAILABLE",
+        "TRANSIENT_ERROR",
+        "PERMANENT_CONFIGURATION_ERROR"
+      ]
+    },
+    "scorable": true,
+    "invalidReasons": [],
+    "resultSet": {
+      "expected": 93,
+      "received": 93,
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "gates": [
+      {
+        "name": "G1",
+        "denominator": 36,
+        "violations": 1,
+        "threshold": "ZERO",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G2",
+        "denominator": 21,
+        "violations": 4,
+        "precision": 0.8095238095238095,
+        "threshold": "100%",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G3",
+        "hard": true,
+        "threshold": "100% on BOTH, never merged (D-58)",
+        "denominatorA": 30,
+        "numeratorA": 17,
+        "recallA": 0.5666666666666667,
+        "denominatorB": 29,
+        "numeratorB": 17,
+        "recallB": 0.5862068965517241,
+        "pass": false
+      },
+      {
+        "name": "G4",
+        "denominator": 21,
+        "violations": 4,
+        "threshold": "ZERO",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G5",
+        "denominator": 93,
+        "violations": 1,
+        "threshold": "ZERO",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G6",
+        "denominator": 93,
+        "violations": 1,
+        "byCode": {
+          "EVIDENCE_OUT_OF_BOUNDS": 1
+        },
+        "threshold": "ZERO (every code)",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G7",
+        "denominator": 11,
+        "violations": 0,
+        "threshold": "ZERO",
+        "pass": true,
+        "hard": true
+      },
+      {
+        "name": "G8",
+        "denominator": 93,
+        "violations": 0,
+        "byCode": {},
+        "threshold": "ZERO",
+        "pass": true,
+        "hard": true
+      },
+      {
+        "name": "G9",
+        "denominator": 93,
+        "violations": 14,
+        "reproducibility": 0.8494623655913979,
+        "threshold": "100% across 2 processes",
+        "pass": false,
+        "hard": true
+      },
+      {
+        "name": "G10",
+        "denominator": 93,
+        "conforming": 93,
+        "rate": 1,
+        "threshold": ">=99% after <=1 retry",
+        "pass": true,
+        "hard": false
+      }
+    ],
+    "byProvenance": {
+      "INDEPENDENT_GAUNTLET": {
+        "rows": 38,
+        "g1Denominator": 36,
+        "g1Misses": 1,
+        "g3DenominatorA": 0,
+        "g3NumeratorA": 0,
+        "g3DenominatorB": 0,
+        "g3NumeratorB": 0,
+        "g4Denominator": 0,
+        "g4FalseActive": 0,
+        "g7Pole": 0,
+        "g7Violations": 0,
+        "schemaConforming": 38
+      },
+      "INDEPENDENT_REALISM": {
+        "rows": 30,
+        "g1Denominator": 0,
+        "g1Misses": 0,
+        "g3DenominatorA": 24,
+        "g3NumeratorA": 14,
+        "g3DenominatorB": 23,
+        "g3NumeratorB": 14,
+        "g4Denominator": 0,
+        "g4FalseActive": 0,
+        "g7Pole": 0,
+        "g7Violations": 0,
+        "schemaConforming": 30
+      },
+      "AUTHORED_CONTROL": {
+        "rows": 25,
+        "g1Denominator": 0,
+        "g1Misses": 0,
+        "g3DenominatorA": 6,
+        "g3NumeratorA": 3,
+        "g3DenominatorB": 6,
+        "g3NumeratorB": 3,
+        "g4Denominator": 21,
+        "g4FalseActive": 4,
+        "g7Pole": 11,
+        "g7Violations": 0,
+        "schemaConforming": 25
+      }
+    },
+    "failedGates": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G9"
+    ],
+    "gateArithmeticAuthoritative": true,
+    "gateArithmeticNote": "AUTHORITATIVE -- complete provider evaluation, frozen gate verdicts stand as returned.",
+    "terminal": "L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9",
+    "pass": false,
+    "modelAcceptanceResult": "ESTABLISHED_FAIL"
+  }
+}

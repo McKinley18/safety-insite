@@ -1,0 +1,22 @@
+{
+  "probeId": "l3-provider-readiness-probe-v1",
+  "classification": "NON_HOLDOUT_PROVIDER_READINESS_PROBE",
+  "purpose": "Establish Anthropic credential usability, provider callability, request compatibility, returned model identity and response structural shape. NOT a quality measurement.",
+  "acceptanceSemantics": "NONE",
+  "provenance": "AUTHORED FOR THIS READINESS PHASE ALONE. Not drawn from, derived from, sampled from, paraphrased from, or summarised from safescope-gauntlet.source.v1.json, safescope-gauntlet.seed.json, safescope-field-realism-pack-v2.v1.json, the frozen holdout, any reserved offset, any prior sealed holdout, any development set, or the exhausted field corpus.",
+  "carriesNoTruthMetadata": {
+    "expectedLabel": null,
+    "truthState": null,
+    "gateMembership": null,
+    "family": null,
+    "pole": null,
+    "clarificationExpected": null,
+    "shouldHaveMissingEvidence": null,
+    "expectActive": null
+  },
+  "regulatoryContext": "OSHA_GENERAL_INDUSTRY",
+  "observationText": "A portable step stool is stored upright beside a workbench in a maintenance bay. The stool is not in use, no employee is on it, and the bay is unoccupied at the time of the walkthrough.",
+  "whyThisText": "Deliberately mundane and low-signal. It names one ordinary object in one ordinary state with no incident, no exposure and no corrected or negated condition, so that no gate axis this programme measures is exercised by it and no acceptance-shaped judgement can be read out of the response. It exists to make an HTTP request well-formed, nothing more.",
+  "scoringProhibition": "MUST NOT be scored by scorer/acceptance-scorer.js (ea5e50ae...) or by any other scorer. MUST NOT be evaluated against G1-G10. MUST NOT be assessed for whether its hazard reasoning is correct.",
+  "singleUse": "Exactly one request. No retry with an alternate prompt, alternate schema, alternate model or alternate provider."
+}

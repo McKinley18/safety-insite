@@ -1,0 +1,29 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (2026-08-25)
+EGRESS AUDIT
+
+  DESTINATIONS CONTACTED                     1     api.anthropic.com/v1/messages
+  REQUESTS ISSUED TO THAT DESTINATION        1     HTTP 200, attempt 1
+  ANY OTHER NETWORK DESTINATION              0
+
+  The runner's only outbound call is to 127.0.0.1:11439 -- the frozen shim, running locally.
+  The shim is the sole process that speaks to Anthropic, and its transport log records exactly
+  one entry.
+
+  NETWORK PRIMITIVES IN THIS PACKAGE'S OWN SCRIPTS
+    identities/derive-frozen-identities.ts        ZERO occurrences of fetch / http / https /
+                                                  net / dns / axios / child_process
+    runner/readiness-probe-call.ts                ONE occurrence: `fetch(${CFG.endpoint}/api/chat)`
+                                                  -- to 127.0.0.1, guarded by the single-call
+                                                  counter that throws on a second entry.
+
+  WHAT LEFT THE MACHINE
+    the frozen synthetic NON_HOLDOUT probe observation (185 bytes), inside the frozen prompt and
+    schema envelope, and NOTHING ELSE.
+
+    holdout rows                 0
+    reserved rows                0
+    gauntlet.seed rows           0
+    protected-source rows        0
+    customer data                0 -- none exists in this path
+    the credential value         sent ONLY as the x-api-key header by the frozen shim, never
+                                 logged, echoed, hashed or written to any artifact

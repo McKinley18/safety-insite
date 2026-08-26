@@ -226,7 +226,7 @@ export default function QuickInspectionPage() {
             href="/inspections"
             variant="accent"
             size="sm"
-            className="mx-auto inline-flex !w-24 items-center justify-center rounded-full !bg-orange-500 px-4 py-2 text-xs font-black !text-white shadow-none transition hover:!bg-orange-600"
+            className="mx-auto inline-flex !w-24 items-center justify-center rounded-full px-4 py-2 text-xs font-black shadow-none transition"
           >
             Change
           </AppLinkButton>

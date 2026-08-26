@@ -1,0 +1,80 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION -- ATTEMPT 1 INVALIDATED
+recorded 2026-08-24
+
+  TERMINAL: L3_ACCEPTANCE_HOLDOUT_CONSTRUCTION_BLOCKED -- AMENDMENT_IMPLEMENTATION_CONTRADICTION
+
+  HOLDOUT_FREEZE.txt for this attempt:
+    f0e33f140c10102654b25d47f5e7027a9b19865126d8c226655b0ac99e3585cc
+  It is NOT rewritten. Phase 2's rule is explicit: "If a defect is discovered requiring a freeze
+  change: STOP and invalidate this construction attempt. Do not rewrite the freeze in place."
+  This file records the invalidation ALONGSIDE the freeze; the freeze itself is untouched.
+
+  NO HOLDOUT WAS MATERIALIZED. Phase 5 was never reached.
+
+== THE CONTRADICTION ==
+  Amendment 1 (INDEPENDENT_EVIDENCE_PLAN.md @ 1f2edfff...) states the G4 denominator TWICE, and the
+  two statements are incompatible.
+
+  line 494  STATES a cardinality  : "G4 (false ACTIVE) denominator: exactly 18"
+  line 495  ENUMERATES the set    : "every authored row whose truth state is non-ACTIVE:
+                                     F1, F2, F3, F4, F5, F6 and F8b"
+
+  The enumerated set sums to:
+      F1 4 + F2 4 + F3 3 + F4 3 + F5 3 + F6 3 + F8b 1 = 21
+  The stated cardinality is 18. The difference is EXACTLY F6 (n=3).
+
+  18 is reachable only by excluding F6 from the G4 denominator. Two other clauses of the same
+  amendment forbid that exclusion:
+    line 480  the F6 row of the D-D.3 family table sets F6's G4 column to YES.
+    line 497  "F3 and F6 must be resolvable only by a question, never by asserting an unobserved
+              fact: a row that asserts ACTIVE on either is a G4 false-ACTIVE and a G3 recall miss."
+
+  So the amendment simultaneously requires F6 to be in the G4 denominator and requires the G4
+  denominator to have a cardinality that is only attainable with F6 out of it.
+
+  Measured from the authored controls actually materialized under the frozen family table:
+    G3 authored members : 6   MATCHES the frozen "exactly 6"   (F3 3 + F6 3)
+    G7 pole             : 11  MATCHES the frozen "exactly 11"  (F1 4 + F2 4 + F7 3)
+    G4 denominator      : 21  CONTRADICTS the frozen "exactly 18"
+  Only G4 is affected. G3 and G7 are internally consistent.
+
+== WHY THIS WAS NOT REPAIRED ==
+  The G4 denominator is a GATE-BEARING quantity: Phase 6 of the construction contract requires
+  proving "G4 denominator = exactly 18", and G4 itself is a hard zero gate (D-84).
+
+  The construction contract forbids every available repair:
+    "Do not repair a frozen rule silently."
+    "Do not change Amendment 1."
+    "Do not alter the F1-F8 family allocation."
+    "Do not alter a control's truth assignment after authoring."
+    "If Amendment 1 cannot be implemented exactly: STOP with AMENDMENT_IMPLEMENTATION_CONTRADICTION."
+
+  Choosing 21 edits the amendment's stated cardinality. Choosing 18 removes F6 from G4, which
+  contradicts two other clauses AND silently alters an authored control's frozen truth assignment.
+  Both are amendment changes, and neither is this phase's authority.
+
+  D-72 stands: changing a requirement is the user's call.
+
+== PROVENANCE OF THE DEFECT -- RECORDED, NOT CONCEALED ==
+  The error was introduced by the AMENDMENT phase (D-86), not by this construction phase. When the
+  derived memberships were written, the G4 arithmetic was computed as
+      F1 4 + F2 4 + F3 3 + F4 3 + F5 3 + F8b 1 = 18
+  omitting F6's 3, while the accompanying prose enumerated F6 explicitly. The formal executability
+  review at that phase checked that the per-family allocation summed to 25 and that the G4
+  denominator was PREDECLARED -- it did not cross-check the derived cardinality against the
+  enumerated set. That is a real gap in that review, and it is recorded here rather than repaired.
+
+  The same class of check DID hold for G3 (6) and G7 (11), which is why only G4 is affected.
+
+== WHAT THIS ATTEMPT PRODUCED, AND ITS STATUS ==
+  HOLDOUT_FREEZE.txt          f0e33f14...  written before any selection; VALID as a record of what
+                                           attempt 1 froze; INVALIDATED as a construction identity.
+  builder/authored-controls.js 4237fc3b...  the 25 controls, authored from the frozen family table
+                                           ALONE with the positive stride unopened. Retained as
+                                           evidence of authoring independence. NOT admitted to any
+                                           holdout, because no holdout exists.
+  holdout/                    EMPTY -- nothing was materialized.
+  scorer/                     EMPTY -- not written.
+
+  No row was selected from any protected source. No source identifier was materialized. No
+  observation text from any protected source was read, printed or inspected.

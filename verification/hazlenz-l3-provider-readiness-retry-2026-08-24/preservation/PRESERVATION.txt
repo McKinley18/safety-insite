@@ -1,0 +1,95 @@
+L3 PROVIDER READINESS RETRY -- PRESERVATION
+recorded 2026-08-25T02:06:48Z
+
+== GIT ==
+  HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230   UNCHANGED
+  branch          release/insite-rc-2026-08-18
+  upstream        origin/release/insite-rc-2026-08-18  a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  divergence      0/0  (ahead/behind)
+  staged entries  0
+  tag objects     23  -- none created, moved or deleted
+  stash entries   4  -- NO STASH OPERATION PERFORMED
+
+  -- stash identities, read-only --
+  b7ee2d048e63689c18f6ca39d4fcf2d76190391a  stash@{0}  On main: hold corrective action routing patch
+  df9bc6e00fa0db87ac9d36d023737c195ff3f731  stash@{1}  On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  9141dc76fd09901de889c7a8944ae2b411913d5a  stash@{2}  On antigravity/render-memory-standards-compression: scratch files before memory merge
+  b128c1975d630d8f2aa2f80da321ec592c5ac2b9  stash@{3}  On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== WORKTREE ==
+   M backend/scripts/test-canonical-workflow.ts
+   M backend/scripts/test-private-storage-reports.ts
+   M docs/INSITE_CURRENT_STATE.json
+   M docs/INSITE_ENGINEERING_BLUEPRINT.md
+   M frontend-next/app/inspection-workspace/page.tsx
+   M frontend-next/app/inspections/page.tsx
+   M frontend-next/lib/auth.ts
+   M frontend-next/lib/canonicalWorkflowApi.ts
+   M frontend-next/lib/planEntitlements.ts
+   M verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+   M verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+  ?? "Safety InSite Logos/"
+  ?? verification/hazlenz-l3-2p-provider-requirements-adjudication-2026-08-24/
+  ?? verification/hazlenz-l3-2q-clarification-precision-adjudication-2026-08-24/
+  ?? verification/hazlenz-l3-2r-acceptance-pre-authorization-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+  ?? verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/
+  ?? verification/hazlenz-l3-evidence-plan-amendment-2026-08-24/
+  ?? verification/hazlenz-l3-final-acceptance-2026-08-24/
+  ?? verification/hazlenz-l3-provider-readiness-2026-08-24/
+  ?? verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+
+== 16 FROZEN COMPONENT HASHES (canonical Attempt-2 package) ==
+  2dd16886f24eadfb9f78f364bd16e9a2a5fc6390e0018edb13ace0dc7e727e2c  ACCEPTANCE_ARTIFACT_FREEZE.txt
+  41a42aeb7df8d018c4871850f90eb5cf9d558d419ecc3a51df22f5b696821cf6  scorer/synthetic-scorer-tests.js
+  548d70fb93276f1563318751313f7a22c1bb9224a57d300b3992b0efa5eb2996  analysis/PHASE4_DF_PRESELECTION_GATE.txt
+  56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05  builder/authored-controls.js
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  holdout/holdout-l3-acceptance-attempt2.json
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  rebuild/holdout-l3-acceptance-attempt2.json
+  8650f243b47e86ce7b77fa5e5c8778f94762b0a02fc2e18cfc3943556ce4c4d2  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+  9410de1a0efb4eef9a3af024c00f2ec88968ddbb0deba130c8e0b6a44e1a70c4  builder/build-holdout.js
+  95e3cb8b122dcdfa80f1b8c1377b0473c9aaafec85a0a0f0cb538428e7be7717  validation/validate-holdout.js
+  a05f3782173be7b03db2ffa0d2f2bd6624801a0581386f3afc81374cee3337f5  validation/REBUILD_PROOF.txt
+  a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62  HOLDOUT_FREEZE.txt
+  c5e94e5cdda654acf22f5d2b74d06e33fbf72e9b2836b9691e74acb862a70733  validation/STRUCTURAL_VALIDATION.txt
+  cd958e30b6ab9048394c65fb4f35a75f3c477bb0c299e24495ec21b79d92bd8a  validation/OVERLAP_SURFACES.txt
+  e2d4380c996ce6ed9a91645601d5df4a86db348e30cc4905725c2e4c51a918de  analysis/PHASE7_AUTHORED_CONTROLS.txt
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  scorer/acceptance-scorer.js
+  f8390d54938a67267d9490ad345749fd127f989a2821162bce19e7c4e98abeb4  analysis/phase7-authored-controls.js
+
+  ACCEPTANCE ARTIFACT IDENTITY  189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  REQUIRED                      189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  VERDICT                       MATCH -- 16/16 components, and LINE-FOR-LINE IDENTICAL to the
+                                recorded ACCEPTANCE_ARTIFACT_MANIFEST.txt block.
+
+  holdout sha256   69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   MATCH
+  scorer  sha256   ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6   MATCH
+
+  NO FROZEN ACCEPTANCE ARTIFACT WAS ALTERED. All 16 were read only.
+
+== PROTECTED SOURCES ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== GOVERNING PLAN (READ ONLY) ==
+  8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+
+== UNRELATED EXISTING WORK -- PRESERVED, NOT TOUCHED ==
+  Eleven modified files and ten untracked verification/product packages were present before this
+  phase and are unchanged after it. None was staged, reverted, discarded, stashed or rewritten.
+  The prior blocked readiness attempt, verification/hazlenz-l3-provider-readiness-2026-08-24/,
+  is PRESERVED AS HISTORICAL EVIDENCE and was NOT rewritten as though the credential had been
+  present. Attempt 1 (hazlenz-l3-acceptance-holdout-frozen-2026-08-24/) likewise untouched and
+  still INVALIDATED.
+
+  git diff HEAD -- backend/src      = 0 lines
+  git diff HEAD -- safescope-data   = 0 lines
+
+== EGRESS ==
+  inference calls 0 | API requests 0 | destinations contacted 0 | bytes transmitted 0
+  holdout rows transmitted 0 | reserved rows transmitted 0 | cost $0.00
+  No credential was obtained, so it appears in ZERO artifacts.
+  Claude Code authentication neither inspected nor used (s.47.7).

@@ -1,0 +1,53 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PRESERVATION AND SPEND, POST-RUN
+recorded 2026-08-25T21:19:11Z
+
+HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230   (unchanged)
+branch          release/insite-rc-2026-08-18
+upstream        origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+divergence L/R  0/0
+stashes         4   (4 before; NONE created, applied or dropped)
+tags            23   (23 before, unchanged)
+staged          0
+
+git diff HEAD -- backend/src        0 lines
+git diff HEAD -- safescope-data     0 lines
+
+=== THE FROZEN ARTIFACTS, RE-HASHED AFTER THE RUN ===
+  MATCH     frozen holdout                     69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+            holdout bytes                      105561  (105561)
+  MATCH     acceptance scorer                  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+  MATCH     acceptance-artifact identity       189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+            components                         16  (16)
+  MATCH     safescope-gauntlet.source.v1.json  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH     safescope-gauntlet.seed.json       49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  MATCH     safescope-field-realism-pack-v2.v1.json 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+
+  THE HOLDOUT FILE IS BYTE-IDENTICAL. Its CONTENT is unchanged; its RESERVATION IS SPENT.
+  Those are different facts and this record keeps them apart.
+
+=== PERMANENT SINGLE-USE STATE ===
+  HOLDOUT_SPENT            TRUE   since 2026-08-25T20:53:23.892Z, at the first transmission
+  GAUNTLET_OFFSET_0        RETIRED, permanently
+  REALISM_OFFSET_3         RETIRED, permanently
+  reverted?                NO. The transition is irreversible and is not reverted by the run's
+                           failure, by the provider error, or by this terminal.
+  re-run of the spent holdout   NOT PERFORMED
+
+=== STILL RESERVED AND UNSPENT (frozen reservation schedule, D-A.11 / D-B.11) ===
+  gauntlet.source.v1  offset 1 -> run 2 (38 rows) | offset 2 -> run 3 (37) | offset 3 -> run 4 (37)
+  field-realism-pack  offset 0 -> run 2 (30 rows) | offset 1 -> run 3 (29) | offset 2 -> run 4 (29)
+  gauntlet.seed       ENTIRE 100-row tranche, never opened
+  Reservation is immutable and may never be reassigned on semantic composition, family balance,
+  difficulty, or any observed model performance (D-A).
+
+=== EGRESS ACCOUNTING ===
+  destinations contacted            1   api.anthropic.com
+  provider calls                    184  (92 process A + 92 process B; attempts = 1 on all)
+  HTTP 200                          40
+  HTTP 400 invalid_request_error    144
+  transport-level retries           0
+  semantic retries                  0   (prohibited, and not reachable in the code path)
+  observations transmitted          92 distinct holdout observations, twice (once per process)
+  credential                        sent only as the x-api-key header by the frozen shim; never
+                                    logged, echoed, hashed or written to any artifact
+  customer or production InSite data transmitted   NONE

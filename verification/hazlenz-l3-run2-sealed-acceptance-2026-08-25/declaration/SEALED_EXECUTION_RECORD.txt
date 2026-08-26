@@ -1,0 +1,67 @@
+L3 RUN-2 FINAL SINGLE-USE SEALED ACCEPTANCE -- SEALED EXECUTION RECORD
+APPEND-ONLY. Created BEFORE any observation text was opened. NEVER rewritten to fit the result.
+
+repository HEAD          a7b21a2636b4a80ecaf823aef4558d9ea8915230
+branch                   release/insite-rc-2026-08-18
+upstream                 origin/release/insite-rc-2026-08-18 @ a7b21a26 (0/0)
+
+RUN2_ACCEPTANCE_ARTIFACT_IDENTITY
+                         9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+RUN2_EXECUTION_GUARD_IDENTITY
+                         eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1
+holdout sha256           f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+
+pre-execution gate declaration
+                         eec48a5d032db4f3d5adfa86b191c83d3f33c21ddfcd94bac000010db60c3f58
+acceptance contract file eebd -> 9d94efb642c35957ea1b342ca50c1d8b4da9890b99762a5c3dc23897e5f6febe
+acceptance contract canonical digest (file bytes without trailing newline)
+                         f02a812b45fb7203732cf653b34ad87ed77b08f58bcb9c292f7064d16d20e74b
+
+provider                 Anthropic
+requested model          claude-sonnet-5      (no fallback model, no fallback provider)
+
+prompt                   426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5
+  L3_SYSTEM_PROMPT       b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  version                hazlenz.l3.prompt.v6
+run schema (asserted at runtime on the first row's own schema)
+                         a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+contract types           5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1
+validator                942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298
+binder                   c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47
+input builder (D-81)     2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e
+cohort harness           73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+shim                     76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083
+
+original frozen scorer   ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+v2 validity wrapper      b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100
+
+D-K guard                ce9c749380d4713098f0215a72797921b70d9c8a67408b132b37ead34adf9ed1
+D-K execution loop       20290a85267b75a11f4778eee7a9bb24fe0ffbd85a5805faa93a257f41103d7d
+run driver               d97eb94c93ce094322e153a9f86bc6257e4c12146c7ea1d990b5e11fb5d02d88
+run shell                95b3ca8ccd0fe056888d7994ec0372c6e42e5b14aaca3fb7d78b56924506a28a
+
+complete-provider-evaluation predicate (D-G.2 / D-G.3)
+  EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS AND row-id SET EQUALITY, every required process.
+  TRUE: {ok:true} | MALFORMED_STRUCTURED_OUTPUT | PROVIDER_REFUSAL
+  FALSE: TIMEOUT | UNAVAILABLE | TRANSIENT_ERROR | PERMANENT_CONFIGURATION_ERROR
+  FAIL-CLOSED on an undeclared field.
+
+D-K abort predicate
+  Abort at the FIRST required row that ends PROVIDER_EVALUATED = FALSE once the frozen retry
+  policy for that row is exhausted. GLOBAL across the process pair. No streak, no threshold.
+
+expected rows per process               93
+expected required provider evaluations  186
+initial RUN2_HOLDOUT_SPENT              FALSE
+independent tranche                     gauntlet offset 1, realism offset 0
+authored controls                       25 fresh (D-I)
+denominators derived, not declared      G1 36 | DEN_A 30 (authored 6) | G4 21 | G7 11 | rest 93
+
+user authorization identity
+  Explicit user authorization for HazLenz Level-3 Run-2 Final Single-Use Sealed Acceptance using
+  Anthropic / claude-sonnet-5, binding BOTH identities named above, and explicitly accepting that
+  RUN2_HOLDOUT_SPENT becomes TRUE permanently at first transmission regardless of terminal.
+  User-attested available credit at authorization: $40.00 against a governed requirement of
+  $18.038745. PROVIDER_CAPACITY = PASS.
+
+THIS RECORD WILL NOT BE REWRITTEN. Results are appended as separate frozen artifacts.

@@ -1,0 +1,11 @@
+L3 PROVIDER READINESS -- PHASE 4 INNER IDENTITY RE-DERIVATION
+cohort first scenario id  E-FLD-147   (already-open diagnostic material)
+allowed hazard families   24
+
+MATCH     L3_PROMPT_VERSION          hazlenz.l3.prompt.v6
+MATCH     sha256(L3_SYSTEM_PROMPT)   b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+MATCH     run schema sha256          a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+MATCH     locked cohort harness      73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+
+OK = 4  MISMATCH = 0
+NO INFERENCE. NO NETWORK. NO PROTECTED SOURCE READ. NO HOLDOUT ROW READ.

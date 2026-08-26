@@ -1,0 +1,110 @@
+L3-2r -- PRESERVATION, EGRESS AND CREDENTIAL AUDIT
+recorded 2026-08-24T20:41:17Z
+
+== git ==
+HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+upstream: refs/remotes/origin/release/insite-rc-2026-08-18  divergence: 0/0
+live remote ref: a7b21a2636b4a80ecaf823aef4558d9ea8915230
+worktree porcelain entries: 14  (8 at the a7b21a26 checkpoint)
+tags: 23   staged index entries: 0
+
+== SEALED ACCEPTANCE CORPUS -- HASH-VERIFIED, NOT OPENED, CONTENTS NOT INSPECTED ==
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  matches L3-2k / L3-2l / L3-2m / L3-2n / L3-2o / L3-2p / L3-2q records: YES
+  D-81's privacy rule rests on section 37.10's CHARACTERISATION of the corpus, not on reading it.
+
+== THE IDENTITY SET TO PIN AT ACCEPTANCE (D-82) ==
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  backend/scripts/activate-l32j-shipped-corpus.ts
+  d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db  backend/scripts/diagnose-l32k-shipped-residual.ts
+  76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/anthropic-ollama-shim.js
+  shipped L3_SYSTEM_PROMPT digest b8cc50fc... (v6) and run schema a522cf5a... are recorded in L3-2o and unchanged.
+
+== PROTECTED EXCLUDED PRODUCT WORK -- UNTOUCHED ==
+  backend/scripts/test-canonical-workflow.ts           unstaged=27 staged=0
+  backend/scripts/test-private-storage-reports.ts      unstaged=44 staged=0
+  frontend-next/app/inspection-workspace/page.tsx      unstaged=12 staged=0
+  frontend-next/app/inspections/page.tsx               unstaged=15 staged=0
+  frontend-next/lib/auth.ts                            unstaged=19 staged=0
+  frontend-next/lib/canonicalWorkflowApi.ts            unstaged=30 staged=0
+  frontend-next/lib/planEntitlements.ts                unstaged=38 staged=0
+  Safety InSite Logos/ : 11 files untracked, not staged
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== PRODUCTION SOURCE, B08 AND THE ADAPTER ==
+  git diff HEAD -- backend/src : 0 lines
+  git diff HEAD -- backend/scripts : 71 lines -- ENTIRELY the two protected excluded test repairs (27 + 44)
+  B08 altered                  : NO (cohort source unchanged vs HEAD: 0 lines)
+  hosted production adapter    : NOT BUILT. backend/src still declares only the interface,
+     ollama-reasoning-provider.ts and unavailable-reasoning-provider.ts. Section 45.6 stands.
+     PRECISION, so a future auditor is not misled by a literal grep: a case-insensitive grep of
+     backend/src for anthropic|generativelanguage|googleapis|openai returns exactly ONE hit --
+     backend/src/safescope-v2/reasoning-l3/state-facts.ts:305, a PROSE COMMENT reading
+     "minLength/minItems are deliberately avoided here -- section 31.1 recorded that Anthropic's
+     structured ...". It is not an import, a client, an endpoint or an adapter; the file is tracked
+     at HEAD and byte-unchanged (0 diff lines). backend/package.json carries ZERO hosted-provider
+     SDK dependencies. Section 45.6's finding is therefore intact in substance; its wording
+     "grep ... returns nothing" is literally true only for CODE references.
+
+== DOCUMENTATION CHANGES -- ADDITIVE VS THE a7b21a26 CHECKPOINT ==
+  672	22	docs/INSITE_CURRENT_STATE.json
+  645	0	docs/INSITE_ENGINEERING_BLUEPRINT.md
+  103	0	verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+  blueprint deleted lines vs HEAD : 0
+  + blueprint section 50, decisions D-79/D-80/D-81/D-82, one EVIDENCE INDEX row
+  + current state: one new top-level key, l32rAcceptancePreAuthorization (74 -> 75)
+  PROVIDER_REQUIREMENTS.md: NOT MODIFIED BY THIS PHASE. L3-2r clarified P-05/P-06/P-07 against
+     current documentation but adjudicated no requirement text; P-02R, P-08R and P-09R untouched.
+     Its 174 added lines vs HEAD are L3-2p's and L3-2q's, unchanged.
+  D-55 through D-78 preserved verbatim; two L3-2o DOCUMENTATION assertions corrected on new
+     evidence and recorded as corrections (retention default, and the ZDR disposition that rests on it).
+
+== REGRESSION ==
+  15 suites, 1085 assertions, 0 failed; backend tsc --noEmit exit 0.
+
+== EGRESS, MEASURED ==
+  hosted-provider INFERENCE calls : 0        local (ollama) inference calls : 0
+  API requests to api.anthropic.com: 0       metadata / availability probes : 0
+  documentation fetches           : 3       total API cost                 : $0.00
+    - https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
+    - https://www.anthropic.com/legal/commercial-terms
+    - https://platform.claude.com/docs/en/about-claude/models/overview.md
+  content transmitted in those fetches : NONE -- no credential, no scenario text, no corpus bytes.
+
+== CREDENTIAL AUDIT ==
+  ANTHROPIC_API_KEY present : 0   <-- ABSENT. Execution-time item.
+  value read, printed, echoed, logged, hashed or persisted : NO -- no credential was read at all
+  prefix or suffix revealed : NO      auth or metadata probe issued : NO
+  Claude Code authentication : UNCHANGED (claude.ai OAuth)
+
+== NOT DONE, BY CONSTRUCTION ==
+  sealed acceptance corpus opened                                   : NO
+  sealed corpus semantic contents read                              : NO
+  sealed acceptance run executed                                    : NO
+  Anthropic / Gemini / qwen inference                               : NO
+  Sonnet tuned, or effort changed                                   : NO
+  prompt / schema / validator / binder modified                     : NO
+  clarification behaviour modified                                  : NO
+  provider thresholds modified (P-02R / P-08R / P-09R)              : NO
+  B08 altered                                                       : NO
+  production hosted adapter built                                   : NO
+  production provider selected                                      : NO
+  Level-1 customer authority changed                                : NO
+  L3-3 begun                                                        : NO
+  deployed / committed / pushed / merged / rebased / reset          : NO
+  restored / cleaned / stash operation of any kind                  : NO
+  provider eligibility (D-77) re-derived                            : NO
+  historical measured result rewritten                              : NO
+  protected excluded product work staged or modified                : NO

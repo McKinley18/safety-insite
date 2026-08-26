@@ -48,12 +48,18 @@ const workflowOptions: {
 }[] = [
   {
     id: "quick",
-    title: "Quick Inspection",
+    title: "Quick Capture",
     eyebrow: "Free",
+    // Verified against the live API for a Free account: HazLenz analysis, standards
+    // suggestions, findings, corrective actions and report generation all answer a
+    // Free account with 402 PAID_SUBSCRIPTION_REQUIRED. The previous copy promised
+    // "hazard category, quick action, and report output" on the Free card, none of
+    // which a Free account can reach. What Free genuinely delivers is the capture and
+    // storage of the observation itself, which is what this now says.
     description:
-      "Capture a single finding quickly with photo evidence, observed condition, location, hazard category, quick action, and report output.",
+      "Record an observation quickly with photo evidence, location, and notes. Saved to the inspection record.",
     details:
-      "Best when you see one issue and need to document it quickly without the full guided inspection workflow.",
+      "Best when you need the observation documented and stored. HazLenz AI analysis, standards, findings, corrective actions, and reports are on Pro.",
     route: "/inspection-workspace",
     entitlement: "quickCapture",
     tierLabel: "Free",
@@ -152,6 +158,10 @@ export default function InspectionsPage() {
 
   async function startInspection(workflow = selectedWorkflow) {
     if (!hasPlanEntitlement(workflow.entitlement, planCode)) return;
+    if (regulatoryContext === "unknown") {
+      setPersistenceStatus("Select a regulatory context before starting the inspection.");
+      return;
+    }
     if (!selectedSiteId) {
       setPersistenceStatus("Create or select a saved site before starting.");
       return;
@@ -255,7 +265,7 @@ export default function InspectionsPage() {
         <SectionHeader
           eyebrow="Start"
           title="Choose inspection type"
-          description="Use Quick Inspection for fast free capture, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
+          description="Use Quick Capture to record and store an observation on Free, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
         />
 
         <div className="mx-auto mt-5 mb-6 max-w-3xl border-b border-slate-200 pb-6 dark:border-white/15">
@@ -300,7 +310,7 @@ export default function InspectionsPage() {
                   type="button"
                   disabled={saving || !newSiteName.trim()}
                   onClick={addSite}
-                  className="self-center rounded-full bg-[#F47C20] px-4 py-2 text-xs font-black text-white transition hover:bg-[#D96510] disabled:opacity-50 sm:self-end"
+                  className="self-center rounded-full app-accent-strong-surface px-4 py-2 text-xs font-black text-white transition disabled:opacity-50 sm:self-end"
                 >
                   Save site
                 </button>
@@ -322,7 +332,7 @@ export default function InspectionsPage() {
                 </option>
               ))}
             </select>
-            <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-slate-500">
+            <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-slate-600 dark:text-slate-300">
               Set once for this inspection. Every finding inherits it, so HazLenz will not ask which agency applies for each one.
             </span>
           </label>
@@ -422,7 +432,7 @@ export default function InspectionsPage() {
                             setSelectedWorkflow(workflow);
                             void startInspection(workflow);
                           }}
-                          className="inline-flex w-full items-center justify-center rounded-full bg-[#F47C20] px-4 py-2.5 text-center text-sm font-black text-white shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-6"
+                          className="inline-flex w-full items-center justify-center rounded-full app-accent-strong-surface px-4 py-2.5 text-center text-sm font-black text-white shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-6"
                         >
                           {saving ? "Saving…" : `Start ${workflow.title}`}
                         </button>

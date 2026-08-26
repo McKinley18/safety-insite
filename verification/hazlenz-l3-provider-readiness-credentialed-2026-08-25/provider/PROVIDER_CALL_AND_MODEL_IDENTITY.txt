@@ -1,0 +1,58 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASES 5 AND 6 -- THE ONE REAL ANTHROPIC CALL, AND THE MODEL-IDENTITY GATE
+
+================================================================================
+PHASE 5 -- PROVIDER CALLABILITY
+================================================================================
+  provider                       Anthropic  (api.anthropic.com/v1/messages)
+  authentication                 ANTHROPIC_API_KEY, inherited from the parent environment.
+                                 Claude Code's own claude.ai / subscription authentication was
+                                 NEITHER INSPECTED NOR USED (s.47.7).
+  execution path                 the FROZEN anthropic-ollama-shim.js @ 76d3e039, started
+                                 UNMODIFIED, on 127.0.0.1:11439
+  observation sent               the pre-frozen NON_HOLDOUT_PROVIDER_READINESS_PROBE ONLY
+                                 observationText sha256
+                                 52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+                                 verified against the frozen value BEFORE the request was built,
+                                 and the runner throws rather than send anything else.
+
+  PROVIDER CALL COUNT            1
+  transport records              1     (transport/transport-readiness.jsonl)
+  HTTP status                    200
+  attempt                        1     -- no retry occurred
+  latency                        9917 ms (shim) / 9938 ms (runner)
+  stop_reason                    end_turn   -- not max_tokens, so the answer is not truncated
+  prompt / output tokens         6052 / 246
+  cost                           one request; no repeat, no sweep, no cohort
+
+  NO PRELIMINARY CONNECTIVITY REQUEST WAS MADE. The first and only real Anthropic request this
+  phase issued was the frozen probe, exactly as the authorization requires.
+
+  PROVIDER_CALLABILITY = PASS
+
+================================================================================
+PHASE 6 -- EXACT MODEL IDENTITY
+================================================================================
+  REQUESTED_MODEL                claude-sonnet-5
+  RETURNED_MODEL                 claude-sonnet-5
+
+  WHERE THE RETURNED IDENTITY COMES FROM, AND WHERE IT DOES NOT.
+
+    PROVIDER EVIDENCE, and the only thing this gate is decided on:
+      transport-readiness.jsonl  "respondedModel":"claude-sonnet-5"
+      The frozen shim writes that field from `r.payload.model` -- the `model` field of ANTHROPIC'S
+      OWN RESPONSE BODY, read off the HTTP 200 payload of this call. It is not derived from the
+      request, and the shim has no code path that substitutes a default into it.
+
+    NOT USED AS IDENTITY EVIDENCE, and named here so it cannot be mistaken for it:
+      results/readiness-call.json  "envelopeModelField":"claude-sonnet-5"
+      That field is the shim's Ollama-envelope echo of `body.model || MODEL` -- i.e. the REQUEST
+      string. It agrees, but it is request-side and proves nothing on its own.
+
+    ALSO NOT USED, all four forbidden and none attempted:
+      the request string alone | local configuration | shim defaults | historical L3-2o evidence.
+
+  requested == returned, both exactly the pre-authorized Anthropic / claude-sonnet-5.
+  No alternate Claude model was requested. No other provider was contacted.
+
+  MODEL_IDENTITY = PASS

@@ -1,0 +1,194 @@
+{
+  "checks": [
+    {
+      "id": "frozen: run2 raw process A byte-identical",
+      "pass": true,
+      "detail": "b666da3cfb68…"
+    },
+    {
+      "id": "frozen: run2 raw process B byte-identical",
+      "pass": true,
+      "detail": "514b6c2ed91c…"
+    },
+    {
+      "id": "frozen: acceptance scorer v2 wrapper byte-identical",
+      "pass": true,
+      "detail": "b9a0a6bc9cae…"
+    },
+    {
+      "id": "frozen: frozen acceptance scorer byte-identical",
+      "pass": true,
+      "detail": "ea5e50aea265…"
+    },
+    {
+      "id": "frozen: run2 holdout byte-identical",
+      "pass": true,
+      "detail": "f887cfd1fb7e…"
+    },
+    {
+      "id": "frozen verdict: terminal unchanged",
+      "pass": true,
+      "detail": "L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9"
+    },
+    {
+      "id": "frozen verdict: modelAcceptanceResult unchanged",
+      "pass": true,
+      "detail": "ESTABLISHED_FAIL"
+    },
+    {
+      "id": "frozen verdict: scorable unchanged",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "id": "frozen verdict: pass unchanged",
+      "pass": true,
+      "detail": "false"
+    },
+    {
+      "id": "frozen verdict: failedGates unchanged",
+      "pass": true,
+      "detail": "[\"G1\",\"G2\",\"G3\",\"G4\",\"G5\",\"G6\",\"G9\"]"
+    },
+    {
+      "id": "production: only the declared files under backend/src are touched",
+      "pass": true,
+      "detail": "[\"backend/src/safescope-v2/reasoning-l3/condition-state-resolution.ts\",\"backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts\"]"
+    },
+    {
+      "id": "production: condition-state-resolution.ts sha256",
+      "pass": true,
+      "detail": "47278ea374edceb35f567f5e5781108828d9d514e6ae25be5df36e390d6f13e6"
+    },
+    {
+      "id": "production: reasoning-runner.ts sha256",
+      "pass": true,
+      "detail": "599f5d2ab479a2b3bf4097c1068aa8c2790b9b70e7a8b11b0bab3ea7b2174cc8"
+    },
+    {
+      "id": "data: git diff HEAD -- safescope-data is empty",
+      "pass": true,
+      "detail": "0 lines"
+    },
+    {
+      "id": "data: no eval corpus (holdout or development) modified",
+      "pass": true,
+      "detail": "0 lines"
+    },
+    {
+      "id": "reserves: no previously-committed verification artifact was modified by this phase",
+      "pass": true,
+      "detail": "[\"verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md\",\"verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md\"]"
+    },
+    {
+      "id": "reserves: gauntlet.seed not written by this phase",
+      "pass": true,
+      "detail": "seed-shaped files present: [\"safescope-gauntlet.seed.json\"]"
+    },
+    {
+      "id": "egress: no network primitive or credential read outside the declared seal files",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "id": "egress: the target set is non-empty (fail-closed)",
+      "pass": true,
+      "detail": "12 source files in package"
+    },
+    {
+      "id": "pre-existing work: backend/scripts/test-canonical-workflow.ts byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: backend/scripts/test-private-storage-reports.ts byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: frontend-next/app/inspection-workspace/page.tsx byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: frontend-next/app/inspections/page.tsx byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: frontend-next/lib/auth.ts byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: frontend-next/lib/canonicalWorkflowApi.ts byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: frontend-next/lib/planEntitlements.ts byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "pre-existing work: verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md byte-identical to phase start",
+      "pass": true,
+      "detail": "unchanged"
+    },
+    {
+      "id": "master docs: blueprint edit is ADDITIVE (0 lines deleted against HEAD)",
+      "pass": true,
+      "detail": "+3818 -0"
+    },
+    {
+      "id": "master docs: current-state lost no top-level key",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "id": "master docs: historical Run-2 phase records preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "master docs: the new phase record is present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "spend: provider calls this phase = 0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "spend: anthropic inference this phase = 0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "spend: API cost this phase = $0.00",
+      "pass": true,
+      "detail": "$0.00"
+    },
+    {
+      "id": "spend: no corpus opened, none spent",
+      "pass": true,
+      "detail": "gauntlet offsets 2,3 and realism 1,2 remain RESERVED"
+    }
+  ],
+  "passed": 36,
+  "total": 36,
+  "hiddenByExclusion": [
+    {
+      "file": "replay/recorded-output-replay.js",
+      "token": "fetch"
+    }
+  ],
+  "providerCalls": 0,
+  "apiCostUsd": 0
+}

@@ -1,0 +1,57 @@
+RUN-1 COUNTERFACTUAL STRUCTURAL REPLAY -- validation of the frozen D-K predicate
+executed 2026-08-25 | ZERO provider calls | ZERO inference | $0.00 | Run-1 package READ-ONLY
+
+SOURCE (transport and error metadata only; no observation, truth, gate or semantic field read)
+  results/raw-process-A.json      92 rows
+  results/raw-process-B.json      92 rows
+  transport/transport-A.jsonl     92 calls   statuses {"200":40,"400":52}
+  transport/transport-B.jsonl     92 calls   statuses {"400":92}
+
+WHAT ACTUALLY HAPPENED -- no abort predicate existed
+  process A issued            92 calls  (40 x 200, 52 x 400)
+  process B issued            92 calls  (92 x 400)
+  TOTAL PROVIDER CALLS        184
+  Process B continued issuing calls for all 92 of its rows AFTER complete-run scorability
+  had already become impossible in process A. That is the pattern D-K exists to prevent.
+
+WHAT D-K WOULD HAVE DONE -- replayed through the REAL guard and the REAL loop
+  process A first non-provider-evaluated row   executionIndex 41  H2A-041
+  its frozen failure kind                     PERMANENT_CONFIGURATION_ERROR
+  its D-K class                               PERMANENT_PROVIDER_REJECTION
+  D-K abort fired at                          H2A-041 (index 41), process A
+
+  process A would have issued                 41 calls
+  process B would have issued                 0 calls  (global abort already established)
+  TOTAL PROVIDER CALLS UNDER D-K              41
+
+  DOOMED CALLS D-K WOULD HAVE PREVENTED       143
+    of which, in process A                    51
+    of which, in process B                    92
+
+  rows A would never have issued              51
+  rows B would never have issued              92
+
+WHAT THE ABORT WOULD NOT HAVE CHANGED -- D-K reduces waste and does nothing else
+  HOLDOUT_SPENT                               true (unchanged -- D-H)
+  GAUNTLET_OFFSET_0 / REALISM_OFFSET_3        RETIRED, permanently
+  SCORABLE                                    false
+  terminal                                    L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+  MODEL_ACCEPTANCE_RESULT                     NOT_ESTABLISHED
+  automatic rerun                             NONE
+  corpus restored                             false
+  The corpus would have been spent all the same. Aborting saves money; it does not give
+  the corpus back.
+
+CHECKS
+  PASS  abort point is process A executionIndex 41
+  PASS  the abort row is the first HTTP 400 of the run
+  PASS  the 40 answered rows are all provider-evaluated
+  PASS  the abort row classifies as PERMANENT_PROVIDER_REJECTION
+  PASS  process B issues nothing under the global abort
+  PASS  doomed calls prevented = 143
+  PASS  this replay changed no Run-1 file
+
+TOTAL 7 checks -- PASS 7 -- FAIL 0
+
+THIS REPLAY IS VALIDATION ONLY. D-K IS UNCHANGED BY IT. Run-1 model performance is not
+reinterpreted: RUN1_MODEL_ACCEPTANCE_RESULT remains NOT_ESTABLISHED.

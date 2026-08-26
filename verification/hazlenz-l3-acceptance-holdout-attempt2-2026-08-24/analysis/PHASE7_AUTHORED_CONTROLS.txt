@@ -1,0 +1,35 @@
+== ATTEMPT 2 PHASE 7 -- AUTHORED CONTROLS, DECLARED vs DERIVED ==
+
+  QUANTITY                                            DECLARED   DERIVED   VERDICT
+  ------------------------------------------------------------------------------------------------
+  allocation F1                                              4         4   MATCH   [frozen family template]
+  allocation F2                                              4         4   MATCH   [frozen family template]
+  allocation F3                                              3         3   MATCH   [frozen family template]
+  allocation F4                                              3         3   MATCH   [frozen family template]
+  allocation F5                                              3         3   MATCH   [frozen family template]
+  allocation F6                                              3         3   MATCH   [frozen family template]
+  allocation F7                                              3         3   MATCH   [frozen family template]
+  allocation F8                                              2         2   MATCH   [frozen family template]
+  allocation sums to total                                  25        25   MATCH   [sum of frozen allocation]
+  authored control TOTAL                                    25        25   MATCH   [materialized controls]
+  G3 semantic  (clarificationExpected === true)              6         6   MATCH   [truth semantics]
+  G3 flag      (inG3Denominator)                             6         6   MATCH   [family template flag]
+  G3 enumerated(F3 + F6)                                     6         6   MATCH   [Amendment 1 enumeration]
+  G4 semantic  (truth state !== ACTIVE)                     21        21   MATCH   [truth semantics]
+  G4 flag      (inG4Denominator)                            21        21   MATCH   [family template flag]
+  G4 enumerated(F1..F6 + F8b)                               21        21   MATCH   [Amendment 2 D-E.1 enumeration]
+  G7 semantic  (pole === CLARIFICATION_MUST_NOT_ASK)        11        11   MATCH   [truth semantics]
+  G7 flag      (inG7Pole)                                   11        11   MATCH   [family template flag]
+  G7 enumerated(F1 + F2 + F7)                               11        11   MATCH   [Amendment 1 enumeration]
+  ACTIVE-truth complement (F7 + F8a)                         4         4   MATCH   [truth semantics]
+  closure  G4 + ACTIVE = total                              25        25   MATCH   [closure]
+  G7 pole outside F1/F2/F7                                   0         0   MATCH   [D-D.4]
+  provenanceClass AUTHORED_CONTROL                          25        25   MATCH   [D-D.5]
+  distinct sourceIds                                        25        25   MATCH   [D-D.6]
+  distinct NORM texts                                       25        25   MATCH   [D-D.6]
+  empty carriers                                             0         0   MATCH   [D-D.6]
+
+  quantities checked: 26   MATCH: 26   MISMATCH: 0
+
+  NO SOURCE ROW SELECTED. NO SOURCE IDENTIFIER READ. NO OBSERVATION TEXT PRINTED.
+  The positive stride remains UNOPENED: this phase imported only the authored-control module.

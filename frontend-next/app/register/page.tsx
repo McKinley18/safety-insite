@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/safescope";
 import { clearAuthSession } from "@/lib/auth";
 import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
+import { FREE_PRICE_DISPLAY, PRO_PRICE_DISPLAY } from "@/components/pricing/planData";
 import { AppTextLink } from "@/components/ui/AppTextLink";
 
 function validatePassword(password: string) {
@@ -33,6 +34,21 @@ export default function RegisterPage() {
   const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
   const [loading, setLoading] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+
+  // /pricing sends visitors here as /register?plan=pro. The parameter used to be
+  // ignored entirely, so "Choose Pro" landed on a form with Free preselected and the
+  // plan selector changed nothing.
+  //
+  // Read after mount from window.location rather than with useSearchParams(): this
+  // page is a single "use client" component, and in a production build a statically
+  // rendered client page that calls useSearchParams() without a <Suspense> boundary
+  // fails to build ("Missing Suspense boundary with useSearchParams"). Resolving on
+  // mount also keeps the first client render identical to the server HTML, which is
+  // the same reason the auth-dependent CTAs elsewhere in this app resolve this way.
+  useEffect(() => {
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    if (plan === "pro") setSelectedPlan("pro");
+  }, []);
 
   const checks = validatePassword(password);
   const passwordValid = Object.values(checks).every(Boolean);
@@ -107,12 +123,20 @@ export default function RegisterPage() {
       await response.json().catch(() => null);
 
       setStatusType("success");
-      setStatus("Account created successfully. Redirecting to sign in...");
+      // Public self-registration never grants a paid plan -- the backend always
+      // creates the account on Free and Stripe's webhook is what promotes it. Say
+      // so, and carry the Pro intent through sign-in so the visitor lands on
+      // checkout instead of being left on Free with no prompt.
+      setStatus(
+        selectedPlan === "pro"
+          ? "Account created on Free. Sign in to complete Pro checkout..."
+          : "Account created successfully. Redirecting to sign in...",
+      );
 
       clearAuthSession();
 
       setTimeout(() => {
-        router.push("/login");
+        router.push(selectedPlan === "pro" ? "/login?plan=pro" : "/login");
       }, 1200);
     } catch {
       setStatusType("error");
@@ -139,10 +163,12 @@ export default function RegisterPage() {
 
           <div className="relative mt-4 max-w-xl rounded-2xl bg-white/10 px-4 py-4 ring-1 ring-white/10">
             <p className="text-sm font-black leading-6 text-white">
-              Select the plan that best fits your inspection workflow.
+              Two plans. Pick the one that matches the work.
             </p>
             <p className="mt-1 text-xs font-semibold leading-5 text-blue-100">
-              You can start free, choose a paid tier for more HazLenz AI and reporting tools, and upgrade later as your needs grow.
+              Free keeps the inspection record. Pro adds the HazLenz AI review, the
+              standards, the corrective actions and the reports. You can move up later
+              without losing anything you have already captured.
             </p>
           </div>
 
@@ -155,7 +181,8 @@ export default function RegisterPage() {
             Select your plan
           </p>
           <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-            Choose Free to try the workflow, or Pro for full access to HazLenz AI review, reporting, and team tools.
+            Every account is created on Free. Choosing Pro takes you to secure checkout
+            after you sign in.
           </p>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -163,18 +190,18 @@ export default function RegisterPage() {
               {
                 id: "free" as const,
                 name: "Free",
-                price: "$0",
+                price: FREE_PRICE_DISPLAY,
                 badge: "Start here",
-                description: "Try the core workflow.",
-                details: "Core inspection capture, basic reports, and limited HazLenz AI reviews",
+                description: "Keep the record of what you saw.",
+                details: "Inspections, sites, observations with photo evidence, saved history, and calendar tasks",
               },
               {
                 id: "pro" as const,
                 name: "Pro",
-                price: "$9.99/mo",
+                price: `${PRO_PRICE_DISPLAY}/mo`,
                 badge: "Full access",
-                description: "For regular safety inspection work.",
-                details: "Full HazLenz AI review, professional reports, corrective-action tracking, cloud reports, team tools, and saved history",
+                description: "Turn observations into findings you can defend.",
+                details: "HazLenz AI hazard review, suggested MSHA / OSHA standards, findings and risk scoring, corrective-action tracking, and professional reports",
               },
             ].map((plan) => {
               const active = selectedPlan === plan.id;
@@ -274,7 +301,8 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute right-1 top-1/2 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-xl text-xs font-black text-[#1D72B8] dark:text-[#5DB7FF]"
             >
               {showPassword ? "Hide" : "Show"}
             </button>
@@ -306,12 +334,15 @@ export default function RegisterPage() {
             </div>
           </details>
 
-          <label className="flex gap-3 border-t border-slate-200 pt-3 text-xs font-semibold leading-5 text-slate-700 dark:border-slate-800 dark:text-slate-200">
+          {/* The whole label is the tap target. A bare 16px checkbox is well under the
+              44px phones need, and this one gates account creation. `min-h-11` plus the
+              label text gives a target the size of the row. */}
+          <label className="flex min-h-11 cursor-pointer items-start gap-3 border-t border-slate-200 py-3 text-xs font-semibold leading-5 text-slate-700 dark:border-slate-800 dark:text-slate-200">
             <input
               type="checkbox"
               checked={acceptedTerms}
               onChange={(event) => setAcceptedTerms(event.target.checked)}
-              className="mt-1 h-4 w-4 shrink-0"
+              className="mt-0.5 h-5 w-5 shrink-0 accent-[#1D72B8]"
             />
             <span>
               I understand Safety InSite and HazLenz AI provide decision-support only. Final safety, compliance, and corrective action decisions remain the responsibility of qualified personnel and the user organization.
@@ -334,9 +365,9 @@ export default function RegisterPage() {
             </p>
           )}
 
-          <div className="mt-2 border-t border-slate-200 pt-4 text-center">
-            <AppTextLink href="/login" className="block">
-            Sign in instead
+          <div className="mt-2 flex justify-center border-t border-slate-200 pt-3">
+            <AppTextLink href="/login" className="inline-flex min-h-11 items-center justify-center rounded-xl px-3">
+              Sign in instead
             </AppTextLink>
           </div>
         </div>

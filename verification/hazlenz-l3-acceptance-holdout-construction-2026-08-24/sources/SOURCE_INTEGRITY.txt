@@ -1,0 +1,54 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION -- PHASE 1 SOURCE PRESERVATION AND INTEGRITY
+recorded 2026-08-24
+
+== PROTECTED INDEPENDENT SOURCES -- RE-DERIVED FROM THE ACTUAL FILES ==
+  expected values are those recorded at L3-2r and at every phase since L3-2k.
+
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+    expected a95e5480...  MATCH: YES   bytes 184988   rows 150   mtime 2026-06-11T08:10:00Z
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+    expected 49aa40fd...  MATCH: YES   bytes  77638   rows 100   mtime 2026-06-11T08:10:00Z
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+    expected 6f6897f1...  MATCH: YES   bytes  87460   rows 117   mtime 2026-06-15T23:34:20Z
+
+  SOURCE INTEGRITY: PASS -- 3 of 3 byte-identical to the pre-authorization record.
+  No source artifact was modified. No source artifact was written to.
+
+== AGGREGATE INDEPENDENT EVIDENCE -- MEASURED AGAINST THE EXPECTED 366 ==
+  expected (command / section 37.10): 366 = 150 + 99 + 117
+  measured raw rows                 : 367 = 150 + 100 + 117
+  measured DISTINCT normalised texts: 366 = 150 +  99 + 117   <-- RECONCILES
+
+  RECONCILIATION: gauntlet.seed carries 100 rows, all with observation text, but only 99
+  DISTINCT normalised texts -- it contains one internal duplicate text pair. The plan's
+  "100 rows (99 with text)" is therefore imprecise in wording but correct in magnitude: the
+  366 figure is a DISTINCT-TEXT count, not a row count. Recorded because a duplicate-rejection
+  policy applied to the reserve tranche will encounter it.
+  This does not affect the two sources this construction phase would have drawn from.
+
+== CROSS-SOURCE DISJOINTNESS (normalised text, counts only) ==
+  gauntlet.source.v1 x gauntlet.seed        : 0
+  gauntlet.source.v1 x field-realism-pack-v2: 0
+  gauntlet.seed      x field-realism-pack-v2: 0
+  All three sources are mutually disjoint. Confirms the survey of record.
+
+== PLAN CHARACTERISATION -- VERIFIED OR CORRECTED ==
+  gauntlet.source.v1 severity critical 103 / high 36 / medium 11   plan says the same  VERIFIED
+  gauntlet.source.v1 "139 of 150 critical or high" (103+36=139)                        VERIFIED
+  gauntlet.source.v1 sourceType 66 fatality / 51 violation / 33 investigation          VERIFIED
+  gauntlet.source.v1 agency OSHA 84 / MSHA 66                                          VERIFIED
+  gauntlet.source.v1 21 distinct primaryHazardFamily                                   VERIFIED
+  gauntlet.source.v1 sourceId carried on every row (150/150)                           VERIFIED
+  field-realism-pack-v2 "shouldHaveMissingEvidence declared on 92 rows"                *** NOT VERIFIED ***
+    measured: === true on 87 | === false on 2 | field ABSENT on 28
+    The 92 figure traces to source-survey.json's "ambiguityish: 92" -- a HEURISTIC TEXT
+    SIGNAL, not a count of the declared field. The plan and section 37.10 report the
+    heuristic as if it were the field. See analysis/PLAN_EXECUTABILITY_ADJUDICATION.md E-3.
+
+== WHAT WAS NOT DONE ==
+  source rows opened for evaluation      : NO
+  observation text printed or persisted  : NO
+  scenario identifiers printed           : NO
+  any row selected                       : NO
+  any source artifact modified           : NO
+  inference of any kind                  : NO

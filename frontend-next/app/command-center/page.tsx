@@ -435,7 +435,7 @@ export default function DashboardPage() {
                 <AppLinkButton
                   href="/reports"
                   variant="accent"
-                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full bg-[#F47C20] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#D96510]"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full app-accent-strong-surface px-5 py-3 text-sm font-black !text-white shadow-none transition"
                 >
                   View Reports
                 </AppLinkButton>

@@ -1,0 +1,331 @@
+L3 ACCEPTANCE HOLDOUT -- FREEZE RECORD
+frozen at      2026-08-24
+frozen BEFORE  any selection code was written and before any source row was selected or authored.
+phase          L3 ACCEPTANCE HOLDOUT DETERMINISTIC CONSTRUCTION + FREEZE
+repo HEAD      a7b21a2636b4a80ecaf823aef4558d9ea8915230  (release/insite-rc-2026-08-18, upstream 0/0)
+
+THIS RECORD IS IMMUTABLE FOR THIS CONSTRUCTION ATTEMPT. If a defect requires a freeze change, the
+attempt is INVALIDATED and a new attempt is started. This file is never rewritten in place.
+
+================================================================================
+1. GOVERNING PLAN
+================================================================================
+  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+  sha256  1f2edfff7a4bc62af445088269be301b4ab2a6856ff28cc5bc6b13b334cf820f
+  binding section: "AMENDMENT 1 -- D-A ... D-D (2026-08-24) BINDING"
+  decision of record: D-86   blueprint section 53
+  Amendment 1 is BINDING and is NOT reinterpreted during implementation. Where it leaves a choice,
+  that is a defect in the amendment and construction STOPS rather than choosing.
+
+  GATE IDENTITIES -- D-84, UNCHANGED BY THIS PHASE:
+    G1  high-consequence misses (VALIDATED tier)                = ZERO
+    G2  clarification precision                                 = 100%
+    G3  clarification recall on BOTH registered denominators    = 100%
+    G4  false ACTIVE                                            = ZERO
+    G5  safety-consequential validator rejections               = ZERO
+    G6  every NON_RETRYABLE_VALIDATION_REASONS code             = ZERO
+    G7  CLARIFICATION_MUST_NOT_ASK violations                   = ZERO
+    G8  UNRESOLVED_DECISION_NOT_DECISION_CRITICAL and
+        INVALID_CLARIFICATION_DEPENDENCY                        = ZERO
+    G9  material safety-outcome reproducibility, 2 processes    = 100%
+    G10 schema conformance after <=1 retry                      = >=99%
+
+  SECTION 53.4 G3 PREDICATES -- FROZEN:
+    DEN_A = { r in holdout : r.clarificationExpected === true }              SCENARIO-LEVEL
+    NUM_A = { r in DEN_A   : provider raised a clarification on r }
+    DEN_B = { r in DEN_A   : provider emitted at least one candidate on r }  CANDIDATE-CONDITIONED
+    NUM_B = { r in DEN_B   : provider raised a clarification on r }
+    Zero-candidate output on a DEN_A row  = MISS, counted in DEN_A, excluded from NUM_A.
+    Zero-candidate output                  = EXCLUDED from DEN_B.
+    Malformed record                       = REMAINS in DEN_A and MISSES; excluded from DEN_B iff
+                                             it emitted no candidate.
+    |DEN_A| == 0                           = CONSTRUCTION/SCORING INVALIDITY, never a vacuous pass.
+    The two denominators are NEVER merged into one number (D-58). Neither threshold is weakened.
+
+================================================================================
+2. PROTECTED SOURCES
+================================================================================
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+      safescope-data/gauntlets/safescope-gauntlet.source.v1.json          150 physical rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+      safescope-data/gauntlets/safescope-gauntlet.seed.json               100 physical rows
+      (RESERVE TRANCHE -- checked for overlap, NOT drawn from by this holdout)
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+      safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json   117 physical rows
+
+  Physical source rows        : 367  (150 + 100 + 117)
+  Distinct normalized texts   : 366  (150 +  99 + 117)
+  gauntlet.seed duplicate     : exactly 1 duplicate group of size 2 -> 1 excess row.
+                                Verified structurally; no observation text was printed.
+
+================================================================================
+3. SHARED PRIMITIVES (Amendment 1, S-1 / S-2 / S-3 / S-4 / S-5)
+================================================================================
+  NORM(s)   = String(s).normalize('NFC').toLowerCase().replace(/\s+/g,' ').trim()
+              COMPARISON ONLY. Never alters text carried to the model.
+  CMP(a,b)  = Buffer.compare(Buffer.from(String(a),'utf8'), Buffer.from(String(b),'utf8'))
+              UTF-8 byte-wise ascending; shorter proper prefix first.
+              NO case folding. NO locale collation. NO Unicode normalization.
+              NO numeric-suffix awareness. Sort keys MUST be pairwise distinct or THROW.
+  OFFSET(digest,m) = parseInt(digest.slice(-8),16) % m
+              digest = lowercase 64-char SHA-256 hex of the whole source file's bytes;
+              last 8 hex characters read as a big-endian unsigned 32-bit integer.
+  VERBATIM  = exactly one carrier field per source reaches the model, copied byte-for-byte:
+              no normalization, no trimming, no case change, no re-encoding.
+              All other source fields are WITHHELD from the model and retained as truth metadata.
+  S-5 DRIFT GUARD = before ANY selection the builder verifies each source's SHA-256 AND physical
+              row count against the values above, and the governing plan's SHA-256. If any differs
+              it THROWS. It may NOT rescale a modulus, re-derive an offset, resize a partition,
+              or adapt in any way.
+
+================================================================================
+4. D-A -- gauntlet.source.v1 RESERVATION
+================================================================================
+  sort key                    : scenarioId          (present and distinct on 150/150)
+  comparator                  : CMP, ascending, raw key
+  case folding                : NONE
+  locale collation            : NONE
+  key normalization           : NONE
+  index                       : 0-based position in the ascending sorted array
+  modulus                     : 4
+  offset derivation           : parseInt(sha256.slice(-8),16) % 4
+  digest suffix               : 22f0adb4   -> uint32 586198452 -> % 4 = 0
+  ACCEPTANCE OFFSET (run 1)   : 0
+  selection predicate         : i % 4 === 0
+  EXPECTED SELECTED ROWS      : 38
+  partition sizes             : offset 0 -> 38 | 1 -> 38 | 2 -> 37 | 3 -> 37   (sum 150)
+  FUTURE RESERVATION ORDER    : 1 -> 2 -> 3        (immutable; never reassignable on semantic
+                                composition, family balance, difficulty or model performance)
+  verbatim observation carrier: observation
+  duplicate sort key          : THROW
+  duplicate NORM text         : THROW
+  discretionary replacement   : PROHIBITED. A selected row that is inconvenient, ambiguous,
+                                malformed, surprising or undesirable REMAINS SELECTED.
+
+================================================================================
+5. D-B -- field-realism-pack-v2 RESERVATION
+================================================================================
+  canonical identifier        : id                  (present and distinct on 117/117)
+                                RATIONALE: scenarioId is present on 0 of 117 rows.
+  verbatim observation carrier: hazardObservation   (present on 117/117)
+                                RATIONALE: observation is present on 0 of 117 rows.
+  WITHHELD FROM THE MODEL     : title, expectedTerms, taskContext, equipmentInvolved, siteType,
+                                industryContext, photosAvailable, employeeExposureKnown,
+                                shouldHaveMissingEvidence   (retained as truth metadata only)
+  stride population           : THE ENTIRE 117-ROW PHYSICAL SOURCE
+  ambiguity as selection input: PROHIBITED. shouldHaveMissingEvidence, and every other ambiguity
+                                heuristic, MUST NOT decide whether a row enters the stride.
+                                Ambiguity is read AFTER selection, from frozen metadata, solely to
+                                compute the already-registered G3 denominators.
+  comparator                  : CMP, ascending, raw key (identical definition to D-A)
+  modulus                     : 4
+  digest suffix               : 5231a9cb   -> uint32 1378986443 -> % 4 = 3
+  ACCEPTANCE OFFSET (run 1)   : 3
+  selection predicate         : i % 4 === 3
+  EXPECTED SELECTED ROWS      : 29
+  partition sizes             : offset 0 -> 30 | 1 -> 29 | 2 -> 29 | 3 -> 29   (sum 117)
+  FUTURE RESERVATION ORDER    : 0 -> 1 -> 2
+  missing carrier on selected : THROW (not skipped, not replaced)
+  shouldHaveMissingEvidence absent on a selected row : NOT an error -- a declared state handled by
+                                the G3 truth table in section 7.
+
+================================================================================
+6. D-C -- AMBIGUITY TRUTH METADATA
+================================================================================
+  shouldHaveMissingEvidence === true    : 87
+  shouldHaveMissingEvidence === false   :  2
+  field ABSENT                          : 28
+  field PRESENT                         : 89 / 117
+  The figure 92 is source-survey.json's complementSignals.ambiguityish -- a NON-AUTHORITATIVE
+  HEURISTIC TEXT SIGNAL. It is preserved as historical provenance and is PROHIBITED as truth
+  metadata for any builder, scorer or gate.
+
+================================================================================
+7. DERIVED TRUTH METADATA -- assigned ONCE at build time, never inferred from text
+================================================================================
+  clarificationExpected (Amendment 1, G3-DEN.0):
+    INDEPENDENT_GAUNTLET : false          (this source declares no ambiguity field; none inferred)
+    INDEPENDENT_REALISM  : row.shouldHaveMissingEvidence === true   (strict identity;
+                           false -> false; ABSENT -> false)
+    AUTHORED_CONTROL     : the value frozen for its family in section 8
+
+  highConsequence -- the G1 subset. Amendment 1 does not restate it, so it is fixed HERE, before
+  any selection, from frozen source metadata only:
+    INDEPENDENT_GAUNTLET : severityExpectation IN {critical, high}  -> true, else false
+                           TRACEABILITY: severityExpectation is the ONLY severity field the source
+                           carries (critical 103 / high 36 / medium 11), and section 37.10 states
+                           "139 of 150 rows are critical or high" -- 103 + 36 = 139. This is the
+                           only mapping consistent with the record, and it is a table lookup, not
+                           a judgement.
+    INDEPENDENT_REALISM  : false. The source carries NO severity field. The plan's
+                           "36 high-consequence-ish" is a HEURISTIC and D-C prohibits heuristics
+                           as truth metadata.
+    AUTHORED_CONTROL     : false. Controls are boundary tests, not high-consequence positives.
+
+  conditionState:
+    INDEPENDENT rows     : NOT ASSERTED (null). No condition state is declared for any independent
+                           row, because doing so would require semantic judgement about a regulator
+                           record. Independent rows are NOT members of the G4 denominator, which
+                           D-D fixes at exactly the 18 authored non-ACTIVE rows, so no gate depends
+                           on this and none is manufactured by its absence.
+    AUTHORED_CONTROL     : the value frozen for its family in section 8.
+
+================================================================================
+8. D-D -- AUTHORED CONTROLS: EXACTLY 25, ALLOCATION FROZEN
+================================================================================
+  TOTAL AUTHORED = 25.  Allocation F1 4 | F2 4 | F3 3 | F4 3 | F5 3 | F6 3 | F7 3 | F8 2 = 25.
+  Per-family counts MAY NOT be re-allocated. The total MAY NOT drift.
+
+  F1  explicit safe / negated condition                      n=4
+      construction  : observation asserts the hazard-bearing condition is ABSENT or NEGATED in
+                      plain declarative form; no hedging, no partial evidence
+      conditionState: NEGATED
+      ACTIVE        : PROHIBITED
+      clarification : PROHIBITED   clarificationExpected = false
+      pole          : CLARIFICATION_MUST_NOT_ASK
+      G3 no | G4 YES | G7 YES
+
+  F2  corrected / remediated condition                       n=4
+      construction  : observation states a previously deficient condition was CORRECTED before the
+                      close of the observation
+      conditionState: CORRECTED       acceptableStates: CORRECTED, REMOVED_FROM_SERVICE
+      ACTIVE        : PROHIBITED
+      clarification : PROHIBITED   clarificationExpected = false
+      pole          : CLARIFICATION_MUST_NOT_ASK
+      G3 no | G4 YES | G7 YES
+
+  F3  insufficient evidence                                  n=3
+      construction  : observation names a hazard-bearing condition but the decision-critical fact
+                      is EXPLICITLY not observable
+      conditionState: INSUFFICIENT_EVIDENCE
+      ACTIVE        : PROHIBITED
+      clarification : REQUIRED     clarificationExpected = true
+      pole          : CLARIFICATION_REQUIRED
+      G3 YES | G4 YES | G7 no
+
+  F4  subjective / non-factual observation                   n=3
+      construction  : evaluative impression with NO verifiable predicate; no specific missing fact
+                      exists to ask about
+      conditionState: UNKNOWN         acceptableStates: UNKNOWN, INSUFFICIENT_EVIDENCE
+      ACTIVE        : PROHIBITED
+      clarification : neither required nor gated   clarificationExpected = false
+      pole          : DECIDED_NON_ACTIVE
+      G3 no | G4 YES | G7 no
+
+  F5  conditional / hypothetical language                    n=3
+      construction  : condition framed as contingent or counterfactual; nothing asserted as realised
+      conditionState: HYPOTHETICAL
+      ACTIVE        : PROHIBITED
+      clarification : neither required nor gated   clarificationExpected = false
+      pole          : DECIDED_NON_ACTIVE
+      G3 no | G4 YES | G7 no
+
+  F6  absent decision-critical fact                          n=3
+      construction  : hazard IS established, but a fact that DECIDES the state is simply NOT PRESENT
+                      in the text -- absence by omission, not by explicit statement
+      conditionState: INSUFFICIENT_EVIDENCE
+      ACTIVE        : PROHIBITED
+      clarification : REQUIRED     clarificationExpected = true
+      pole          : CLARIFICATION_REQUIRED
+      G3 YES | G4 YES | G7 no
+
+  F7  sufficient evidence -- clarification MUST NOT be asked  n=3
+      construction  : hazard IS established AND every decision-critical fact IS explicitly present;
+                      a complete, decidable ACTIVE finding with no boundary
+      conditionState: ACTIVE
+      ACTIVE        : CORRECT (not prohibited)
+      clarification : PROHIBITED   clarificationExpected = false
+      pole          : CLARIFICATION_MUST_NOT_ASK
+      G3 no | G4 no | G7 YES
+
+  F8  paired positive / negative state distinction            n=2
+      construction  : ONE matched pair, minimally different. F8a asserts the condition realised;
+                      F8b negates that same condition using the same lexical head.
+      F8a conditionState ACTIVE  | ACTIVE correct   | clarification PROHIBITED
+          pole REGRESSION_ACTIVE | G3 no | G4 no  | G7 no
+      F8b conditionState NEGATED | ACTIVE PROHIBITED| clarification PROHIBITED
+          pole NEGATIVE_CONTROL  | G3 no | G4 YES | G7 no
+
+  DERIVED MEMBERSHIPS -- FROZEN, NOT RECOMPUTABLE LATER:
+    authored G3 (CLARIFICATION_REQUIRED) = EXACTLY 6   (F3 3 + F6 3)
+    G7 pole (CLARIFICATION_MUST_NOT_ASK) = EXACTLY 11  (F1 4 + F2 4 + F7 3)
+    G4 denominator (authored non-ACTIVE) = EXACTLY 18  (F1 4 + F2 4 + F3 3 + F4 3 + F5 3 + F8b 1)
+
+  G7 GOVERNANCE: membership is a property of the FAMILY SPECIFICATION and is NEVER self-authored
+    after inference. A family is intrinsically CLARIFICATION_MUST_NOT_ASK iff its construction rule
+    guarantees NO decision boundary exists. F1, F2, F7 qualify (precedents C-CS-05 and F-CL-04,
+    section 49.3). F4, F5, F8 are DELIBERATELY EXCLUDED: expectClarification=false is NOT the same
+    as MUST-NOT-ASK. NO INDEPENDENT_GAUNTLET OR INDEPENDENT_REALISM ROW MAY EVER CARRY THIS POLE.
+
+  AUTHORING INDEPENDENCE: controls are authored from this specification ALONE. The selected positive
+    stride MUST remain semantically UNOPENED during authoring. Controls are NOT derived from, and
+    NOT inspired by, any selected acceptance row. Truth labels are fixed BEFORE any model sees a row
+    and MAY NOT be revised afterwards.
+
+  EVIDENCE / AUTHORITY: F3 and F6 must be resolvable ONLY by a question, never by asserting an
+    unobserved fact -- asserting ACTIVE on either is a G4 false-ACTIVE AND a G3 recall miss.
+    F1, F2 and F8b must not have their negation recovered into an active hazard. No control may
+    induce a NON_RETRYABLE_VALIDATION_REASONS code; any such code is a G6 failure, reported, never
+    suppressed.
+
+================================================================================
+9. EXPECTED HOLDOUT COMPOSITION
+================================================================================
+  INDEPENDENT_GAUNTLET  38
+  INDEPENDENT_REALISM   29
+  AUTHORED_CONTROL      25
+  TOTAL ROWS            92
+  INDEPENDENT ROWS      67
+  AUTHORED ROWS         25
+  INDEPENDENT SHARE     approximately 72.8%   (67 / 92)
+
+================================================================================
+10. PROVENANCE FIELDS -- REQUIRED ON EVERY ROW
+================================================================================
+  provenanceClass : INDEPENDENT_GAUNTLET | INDEPENDENT_REALISM | AUTHORED_CONTROL
+  source          : source filename AND its frozen sha256, or the authored-by string
+  sourceId        : the frozen scenarioId / id, or AC-<family>-<nn>
+  selectionRule   : the exact rule string that placed the row in the holdout
+  pole            : as sections 7 and 8
+  family          : F1..F8 for authored rows; null otherwise
+  The by-provenance table (section 36.5) is MANDATORY. Every gated metric is reported BOTH overall
+  AND split by provenanceClass, so the independent number is always readable on its own.
+
+================================================================================
+11. OVERLAP AND DUPLICATE REJECTION -- THROW ON VIOLATION
+================================================================================
+  Comparison key: NORM(carrier). No silent de-duplication, no skipping, no replacement.
+  THE EIGHT SURFACES:
+    1. every observation in gauntlet.source.v1        (all 150 rows, not merely the selected 38)
+    2. every observation in field-realism-pack-v2     (all 117 rows)
+    3. every observation in gauntlet.seed             (all 100 rows -- reserve tranche)
+    4. every other authored control in this holdout
+    5. every row of all six prior sealed holdouts     holdout-l32{,b,c,d,e,f}.json
+    6. every row of every development set             including development-l32{,d,e,f}.json
+    7. every row of the exhausted field corpus        safescope-field-validation-dataset.v1.json
+    8. every observation from a previously spent acceptance offset of either source
+       (currently NONE exist -- no acceptance offset has ever been spent)
+  ADDITIONALLY THROW if any two rows within the assembled 92-row holdout share NORM(carrier),
+  or share a sourceId.
+
+================================================================================
+12. SINGLE-USE RULE
+================================================================================
+  THE FIRST INFERENCE CALL CONTAINING ANY ROW FROM THIS FROZEN HOLDOUT CHANGES
+
+      HOLDOUT_SPENT     false  ->  true
+
+  for the applicable single-use acceptance stride, and RETIRES gauntlet offset 0 and realism
+  offset 3 PERMANENTLY, whatever the result (section 29.8).
+
+  THIS CONSTRUCTION PHASE DOES NOT AUTHORIZE THAT TRANSITION.
+  Construction is authorized. Acceptance is not. Building a holdout is not the same act as
+  spending it. Spending it additionally requires: a valid ANTHROPIC_API_KEY under the Commercial
+  Terms (D-79); the execution-time provider/model identity gate passing for exactly
+  claude-sonnet-5; and EXPLICIT USER AUTHORIZATION.
+
+================================================================================
+13. THIS FILE
+================================================================================
+  Written BEFORE the builder existed and BEFORE any row was selected or authored.
+  Hashed immediately after writing. IMMUTABLE thereafter for this construction attempt.

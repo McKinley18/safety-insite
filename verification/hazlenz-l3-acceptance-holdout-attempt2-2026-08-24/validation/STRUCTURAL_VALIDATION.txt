@@ -1,0 +1,114 @@
+== ATTEMPT 2 -- STRUCTURAL VALIDATION (PHASES 10-13). NO OBSERVATION TEXT PRINTED. ==
+
+  CHECK                                                       EXPECTED      ACTUAL   VERDICT
+  --------------------------------------------------------------------------------------------------------
+  A1 governing plan sha256                                 8d8f6e8d... 8d8f6e8d...   PASS
+  A2 gauntlet sha256                                       a95e5480... a95e5480...   PASS
+  A3 gauntlet physical rows                                        150         150   PASS
+  A4 seed sha256                                           49aa40fd... 49aa40fd...   PASS
+  A5 seed physical rows                                            100         100   PASS
+  A6 realism sha256                                        6f6897f1... 6f6897f1...   PASS
+  A7 realism physical rows                                         117         117   PASS
+  B1 gauntlet sort keys pairwise distinct                          150         150   PASS
+  B2 realism sort keys pairwise distinct                           117         117   PASS
+  B3 gauntlet offset k = OFFSET(sha,4)                               0           0   PASS
+  B4 realism offset k = OFFSET(sha,4)                                3           3   PASS
+  B5 gauntlet partition sizes                              38,38,37,37 38,38,37,37   PASS
+  B6 realism partition sizes                               30,29,29,29 30,29,29,29   PASS
+  B7 gauntlet selected rows                                         38          38   PASS
+  B8 realism selected rows                                          29          29   PASS
+  B9 gauntlet reservations disjoint+exhaustive                     150         150   PASS
+  B10 gauntlet reservation union size                              150         150   PASS
+  B11 realism reservations disjoint+exhaustive                     117         117   PASS
+  B12 realism reservation union size                               117         117   PASS
+  C1 total rows                                                     92          92   PASS
+  C2 INDEPENDENT_GAUNTLET rows                                      38          38   PASS
+  C3 INDEPENDENT_REALISM rows                                       29          29   PASS
+  C4 AUTHORED_CONTROL rows                                          25          25   PASS
+  C5 INDEPENDENT rows                                               67          67   PASS
+  C6 independent share 1dp %                                      72.8        72.8   PASS
+  C7 stratum order gauntlet block                                 0-37        0-37   PASS
+  C8 stratum order realism block                                 38-66       38-66   PASS
+  C9 stratum order authored block                                67-91       67-91   PASS
+  C10 gauntlet block ascending CMP(sourceId)                      true        true   PASS
+  C11 realism block ascending CMP(sourceId)                       true        true   PASS
+  C12 authored block ascending CMP(sourceId)                      true        true   PASS
+  D1 rowIds unique                                                  92          92   PASS
+  D2 rowIds sequential H2A-001..H2A-092                           true        true   PASS
+  D3 sourceIds unique                                               92          92   PASS
+  D4 every row carries every required field                         92          92   PASS
+  D5 observation is a non-empty string on every row                 92          92   PASS
+  D6 constructionVersion on every row                               92          92   PASS
+  D7 expect{} complete on every row                                 92          92   PASS
+  D8 clarificationExpected is boolean on every row                  92          92   PASS
+  D9 family non-null iff AUTHORED_CONTROL                           92          92   PASS
+  D10 provenance source string carries the frozen sha256            67          67   PASS
+  D11 authored source string is the D-D.5 authored-by string          25          25   PASS
+  D12 selectionRule present and non-empty on every row              92          92   PASS
+  E1 gauntlet rows byte-identical to frozen source carrier          38          38   PASS
+  E2 realism rows byte-identical to frozen source carrier           29          29   PASS
+  E3 gauntlet holdout ids == the i%4===0 partition exactly          38          38   PASS
+  E4 realism holdout ids == the i%4===3 partition exactly           29          29   PASS
+  E5 gauntlet id set equals partition set                         true        true   PASS
+  E6 realism id set equals partition set                          true        true   PASS
+  E7 aggregate carrier digest == source-side digest        0b3ec7ba... 0b3ec7ba...   PASS
+  F1 gauntlet highConsequence == severityExpectation lookup          38          38   PASS
+  F2 realism highConsequence all false (no severity field)          29          29   PASS
+  F3 authored highConsequence all false                             25          25   PASS
+  F4 gauntlet clarificationExpected all false (G3-DEN.0)            38          38   PASS
+  F5 realism clarificationExpected == strict identity lookup          29          29   PASS
+  F6 independent rows carry conditionState null                     67          67   PASS
+  F7 no INDEPENDENT row carries the MUST-NOT-ASK pole (D-D.4)           0           0   PASS
+  F8 no INDEPENDENT row is in the G4 denominator                     0           0   PASS
+  G-alloc F1                                                         4           4   PASS
+  G-alloc F2                                                         4           4   PASS
+  G-alloc F3                                                         3           3   PASS
+  G-alloc F4                                                         3           3   PASS
+  G-alloc F5                                                         3           3   PASS
+  G-alloc F6                                                         3           3   PASS
+  G-alloc F7                                                         3           3   PASS
+  G-alloc F8                                                         2           2   PASS
+  G1 authored total                                                 25          25   PASS
+  G2 G3 authored semantic                                            6           6   PASS
+  G3 G3 authored flag                                                6           6   PASS
+  G4 G3 authored enumerated F3+F6                                    6           6   PASS
+  G5 G4 denominator semantic (truth !== ACTIVE)                     21          21   PASS
+  G6 G4 denominator flag                                            21          21   PASS
+  G7 G4 denominator enumerated F1..F6+F8b                           21          21   PASS
+  G8 G7 pole semantic                                               11          11   PASS
+  G9 G7 pole flag                                                   11          11   PASS
+  G10 G7 pole enumerated F1+F2+F7                                   11          11   PASS
+  G11 ACTIVE-truth complement (F7+F8a)                               4           4   PASS
+  G12 closure G4 + ACTIVE = 25                                      25          25   PASS
+  H1 |DEN_A| > 0 (never vacuous)                                  true        true   PASS
+  H2 |DEN_A| >= authored floor of 6                               true        true   PASS
+  H3 |DEN_A| authored contribution                                   6           6   PASS
+  H4 |DEN_A| == authored 6 + realism true-flag count                29          29   PASS
+  I1 distinct NORM carriers in holdout                              92          92   PASS
+  I2 duplicate sourceIds in holdout                                  0           0   PASS
+  I3 authored-control collisions across all surfaces                 0           0   PASS
+  I4 prior sealed/development/field-corpus surfaces checked        true        true   PASS   [46 files]
+  I5 gauntlet.seed drawn from                                    false       false   PASS
+  I6 previously spent acceptance offsets reused                      0           0   PASS   [no acceptance offset has ever been spent]
+  I7 gauntlet rows outside offset 0                                  0           0   PASS
+  I8 realism rows outside offset 3                                   0           0   PASS
+  I9 gauntlet x seed text intersection                               0           0   PASS
+  I10 gauntlet x realism text intersection                           0           0   PASS
+  I11 seed x realism text intersection                               0           0   PASS
+  I12 physical rows / distinct texts                           367/366     367/366   PASS
+  J1 document governingPlan sha256                         8d8f6e8d... 8d8f6e8d...   PASS
+  J2 document declares gauntlet offset                               0           0   PASS
+  J3 document declares realism offset                                3           3   PASS
+  J4 document seedReserve drawnFrom                              false       false   PASS
+  J5 document composition total                                     92          92   PASS
+  J6 serialization is 2-space JSON + single trailing LF           true        true   PASS
+
+  checks: 100   PASS: 100   FAIL: 0
+  overlap surfaces evaluated: 49  (3 protected sources + 46 prior sealed/development/field-corpus files)
+
+  holdout sha256 : 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  holdout bytes  : 105561
+  holdout rows   : 92
+
+  NO SEMANTIC INSPECTION WAS PERFORMED. No row was judged good, bad, representative,
+  difficult, balanced or replaceable. No row was added, dropped, swapped or re-ordered.

@@ -1,0 +1,26 @@
+L3 PROVIDER READINESS RETRY -- SYNTHETIC PROBE IDENTITY
+recorded 2026-08-25T02:04:18Z
+
+  >> FROZEN BEFORE THE CREDENTIAL RESULT WAS ACTED ON, AND BEFORE ANY PROVIDER CALL. <<
+
+  classification            NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  probe artifact            probe/probe-observation.json
+  artifact sha256           a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c
+  observationText sha256    52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+  observationText bytes     185
+
+  WHY IT IS HASHED NOW RATHER THAN AT CALL TIME. Freezing the probe BEFORE the provider is known
+  to be reachable removes any possibility that the probe was shaped by observed provider
+  behaviour. If a later retry sends a probe whose observationText hash is not 52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be,
+  the probe was changed and that fact is mechanically visible.
+
+  NON-HOLDOUT PROOF, MECHANICAL:
+    the observationText is authored, not selected. It is not a member of any protected source,
+    the frozen holdout, or any reserved tranche. Membership was not tested by SEARCHING the
+    protected sources for it -- doing so would require opening rows this phase is forbidden to
+    open. It is established by CONSTRUCTION: the string was written for this file and existed
+    nowhere before it.
+
+  holdout rows consulted to author it        0
+  reserved rows consulted to author it       0
+  protected source rows opened               0

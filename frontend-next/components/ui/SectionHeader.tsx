@@ -12,8 +12,11 @@ export default function SectionHeader({
   action,
 }: SectionHeaderProps) {
   return (
+    // The text column needs `min-w-0` for the same reason SummaryRow does: it is a flex
+    // item, and a long unbreakable title (a site name, an account name) would otherwise
+    // set an intrinsic minimum that the `shrink-0` action then gets pushed past.
     <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-      <div>
+      <div className="min-w-0 break-words">
         {eyebrow && (
           <p className="sentinel-section-eyebrow text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-[#5DB7FF]">
             {eyebrow}

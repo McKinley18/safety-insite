@@ -1,0 +1,43 @@
+L3 RUN-2 CAPACITY DETERMINATION -- PRESERVATION AND UNSPENT PROOF
+verified 2026-08-25
+
+== REPOSITORY ==
+  HEAD          a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch        release/insite-rc-2026-08-18
+  upstream      origin/release/insite-rc-2026-08-18
+  divergence    behind 0  ahead 0
+  EXPECTED HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230  -> MATCH
+
+== RUN-2 HOLDOUT IDENTITY (hashed from the actual file, not copied) ==
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/holdout/holdout-l3-acceptance-run2.json
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/rebuild/holdout-l3-acceptance-run2.json
+  EXPECTED f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  -> MATCH (both)
+  bytes   107018 | NO OBSERVATION VALUE WAS READ BY THIS PHASE
+
+== RUN-2 ACCEPTANCE-ARTIFACT IDENTITY (recomputed from all 15 components) ==
+  recomputed  9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+  expected    9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+  -> MATCH. All 15 component digests reproduce their manifest lines byte-for-byte.
+
+== SINGLE-USE STATE, UNCHANGED BY THIS PHASE ==
+  RUN2_HOLDOUT_SPENT ............ FALSE
+  gauntlet offset 1 ............. SELECTED, FROZEN, UNSPENT
+  realism  offset 0 ............. SELECTED, FROZEN, UNSPENT
+  gauntlet offsets 2,3 .......... RESERVED
+  realism  offsets 1,2 .......... RESERVED
+  gauntlet.seed (100 rows) ...... UNOPENED
+  RUN1 offsets (gauntlet 0, realism 3) .. REMAIN RETIRED; not revisited
+
+== ZERO-SPEND PROOF ==
+  provider calls this phase ..... 0
+  API cost this phase ........... $0.00
+  Run-2 rows transmitted ........ 0
+  reserved rows transmitted ..... 0
+  readiness/availability probes . 0
+  inference executions .......... 0
+  All token evidence was READ FROM RUN-1 TRANSPORT LOGS ALREADY PAID FOR.
+
+== FROZEN SURFACES NOT TOUCHED ==
+  prompt, schema, validator, binder, input builder, shim, both scorers, every G1-G10
+  threshold and denominator, the Run-2 holdout, and the Run-2 acceptance artifact are
+  ALL BYTE-IDENTICAL. This phase wrote only its own package plus the two governed docs.

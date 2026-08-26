@@ -36,8 +36,16 @@ assert(normalizeBillingTier("expert") === "pro", "normalize retired expert -> pr
 assert(resolveTierForPriceId("price_pro_test") === "pro", "resolve pro price");
 assert(resolveTierForPriceId("price_legacy_expert_test") === "pro", "legacy expert price resolves to pro");
 assert(getBillingEntitlements("pro").priorityAiFeatures === true, "pro entitlements include former expert features");
-assert(getBillingEntitlements("free").hazlenzPreview === true, "free preview entitlement");
-assert(BILLING_PLAN_DEFINITIONS.pro.priceMonthly === 9.99, "pro price constant");
+assert(
+  !("hazlenzPreview" in getBillingEntitlements("free")),
+  "free tier declares no hazlenzPreview entitlement (removed for v1.0: it gated nothing and\n   read as an implemented preview to anyone writing customer copy)",
+);
+assert(
+  getBillingEntitlements("free").evidenceGapPrompts === false,
+  "free tier does not claim evidence-gap prompts (they come from the Pro-gated classify response)",
+);
+assert(getBillingEntitlements("pro").evidenceGapPrompts === true, "pro tier keeps evidence-gap prompts");
+assert(BILLING_PLAN_DEFINITIONS.pro.priceMonthly === 24.99, "pro price constant is the v1.0 launch price");
 assert(normalizeStripeSubscriptionStatus("ACTIVE") === "active", "normalize stripe status");
 assert(normalizeStripeSubscriptionStatus("paused") === "paused", "normalize paused status");
 assert(resolveAccessTier("pro", "active") === "pro", "active tier access");

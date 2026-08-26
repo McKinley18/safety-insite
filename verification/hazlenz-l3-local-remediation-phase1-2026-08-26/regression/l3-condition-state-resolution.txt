@@ -1,0 +1,6 @@
+TARGET SET: 8 condition states -- ACTIVE, CONTROLLED, CORRECTED, REMOVED_FROM_SERVICE, NEGATED, HYPOTHETICAL, INSUFFICIENT_EVIDENCE, UNKNOWN
+TARGET SET: 5 affectedDecision values -- hazard_identity, condition_state, regulatory_applicability, risk, corrective_action
+TARGET SET: 2 undecided states -- INSUFFICIENT_EVIDENCE, UNKNOWN
+RESOLVER UNDER TEST: hazlenz.l3.state-resolution.v1
+
+RC-2 CONDITION-STATE RESOLUTION: 155 passed, 0 failed

@@ -1,0 +1,47 @@
+L3 G9 GOVERNANCE + REMEDIATION PLANNING -- PRESERVATION AND ZERO-SPEND PROOF
+HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230
+
+1. RUN-2 EVIDENCE AND THE FROZEN VERDICT ARE UNCHANGED
+  PASS  raw A unchanged
+  PASS  raw B unchanged
+  PASS  gate declaration unchanged
+  PASS  acceptance contract unchanged
+  PASS  SCORE_BODY_DIGEST unchanged
+  PASS  terminal verbatim
+  PASS  MODEL_ACCEPTANCE_RESULT verbatim
+  PASS  G9 as scored unchanged
+
+2. NO GATE, SCORER OR PIPELINE STAGE WAS TOUCHED
+  PASS  original scorer byte-unchanged ea5e50ae...
+  PASS  v2 wrapper byte-unchanged b9a0a6bc...
+  PASS  run-2 holdout byte-unchanged f887cfd1...
+  PASS  prompt byte-unchanged 426302a4...
+  PASS  validator byte-unchanged 942ac7cc...
+  PASS  binder byte-unchanged c1f9d29d...
+  PASS  input builder byte-unchanged 2865ae91...
+  PASS  shim byte-unchanged 76d3e039...
+  PASS  git diff HEAD over backend/src and safescope-data EMPTY
+
+3. NO UNSPENT CORPUS OPENED, ZERO PROVIDER CONTACT
+  PASS  zero url literals in the whole package
+  PASS  zero credential reads
+  PASS  zero network call primitives
+  PASS  gauntlet.seed never referenced by any analysis file (scanner self-excluded)
+  self-scan of the scanner itself: no substantive hits
+     (the corpus-name match that fired here was a REGEX LITERAL in the scanner, not a read.)
+  PASS  the scanner itself performs no url, credential or network operation
+  PASS  the scanner never OPENS a reserved corpus -- proven by enumerating its readFileSync targets
+  provider calls 0 | inference 0 | credential reads 0 | API cost $0.00
+  Reserved tranches: gauntlet offsets 2,3 and realism offsets 1,2 remain RESERVED.
+  gauntlet.seed remains UNOPENED. No unspent corpus was read, opened or inspected.
+
+4. WORKTREE
+  PASS  4 stashes untouched
+  PASS  23 tags unchanged
+  PASS  nothing staged
+  PASS  no upstream divergence
+  PASS  HEAD unchanged
+  Nothing committed, pushed, deployed or stashed. No database touched. G9 NOT amended.
+  RC-1..RC-4 NOT marked repaired. Nothing implemented.
+
+TOTAL 28 checks -- PASS 28 -- FAIL 0

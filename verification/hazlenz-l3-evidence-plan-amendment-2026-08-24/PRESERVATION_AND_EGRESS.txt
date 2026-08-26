@@ -1,0 +1,125 @@
+L3 INDEPENDENT EVIDENCE PLAN AMENDMENT -- PRESERVATION, EGRESS AND POST-PHASE VERIFICATION
+recorded 2026-08-24
+
+== TERMINAL ==
+  L3_INDEPENDENT_EVIDENCE_PLAN_AMENDED -- HOLDOUT_CONSTRUCTION_REAUTHORIZATION_REQUIRED
+  PLAN_EXECUTABLE = TRUE | HOLDOUT_CONSTRUCTED_AND_FROZEN = FALSE | HOLDOUT_SPENT = FALSE
+  Specification phase only. This is NOT a model result; no inference occurred.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: origin/release/insite-rc-2026-08-18   divergence: 0/0
+  staged index entries: 0   tags: 23   stash entries: 4
+  git diff HEAD -- backend/src    : 0 lines
+  git diff HEAD -- safescope-data : 0 lines
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== PROTECTED SOURCES -- BEFORE AND AFTER, IDENTICAL, NEVER OPENED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-gauntlet.source.v1.json      150 physical rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-gauntlet.seed.json           100 physical rows
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-field-realism-pack-v2.v1.json 117 physical rows
+  MATCH: YES, all three, byte-identical before and after this phase.
+  Opened for evaluation: NO. Previewed: NO. Semantically inspected: NO.
+  Rows selected/materialized: NO. Source identities printed: NO. Observation text printed: NO.
+
+  EVIDENCE INVENTORY -- TWO DISTINCT NUMBERS, NEVER CONFLATED:
+    PHYSICAL SOURCE ROWS   : 367  (150 + 100 + 117)
+    DISTINCT NORM TEXTS    : 366  (150 +  99 + 117)   gauntlet.seed holds ONE internal duplicate pair
+  Remaining unopened independent evidence: ALL OF IT. Reserved but unspent -- gauntlet offsets 1,2,3;
+  realism offsets 0,1,2; the entire gauntlet.seed reserve tranche. NOTHING IS RETIRED.
+
+== FROZEN CONFIGURATION -- RE-DERIVED THIS PHASE: OK=10  MISMATCH=0 ==
+  426302a4  reasoning-prompt.ts            5f70281c  reasoning-contract.types.ts
+  942ac7cc  deterministic-safety-validator c1f9d29d  semantic-evidence-binding.ts
+  2865ae91  reasoning-input-builder.ts     73f74131  ablate-l32g-state-separation.ts
+  0b3b8d86  activate-l32j-shipped-corpus   d90cb89c  diagnose-l32k-shipped-residual.ts
+  76d3e039  anthropic-ollama-shim.js       7d748111  score.js
+  Prompt hazlenz.l3.prompt.v6 / L3_SYSTEM_PROMPT b8cc50fc... and run schema a522cf5a... are carried
+  by reasoning-prompt.ts @ 426302a4 and reasoning-contract.types.ts @ 5f70281c, verified above.
+  G1 through G10 (D-84): UNCHANGED. Acceptance provider/model decision: UNCHANGED.
+
+== NEGATIVE EXISTENCE PROOFS -- MEASURED, NOT ASSERTED ==
+  HOLDOUT_FREEZE.txt files in repository        : 6  (L3-2, 2b, 2c, 2d, 2e, 2f -- all pre-existing)
+  ... of those naming a95e5480 or 6f6897f1      : 0   <-- NO ACCEPTANCE FREEZE RECORD EXISTS
+  acceptance holdout artifacts in eval/         : 0   <-- NO ACCEPTANCE HOLDOUT EXISTS
+  build-l3* builders targeting acceptance srcs  : 0   <-- NO ACCEPTANCE BUILDER EXISTS
+  acceptance scorer                             : 0   <-- NOT CREATED
+  authored negative controls                    : 0   <-- NOT AUTHORED
+
+== ARTIFACTS CREATED BY THIS PHASE (specification + evidence only; no production file) ==
+  e5ee84db6f511c3b1e14bda4d987d5dc664c285e16f0d1af5c9ea7c6fa53c6e8  STATUS.md
+  430cb66808f38db01641f76d793cd5f6b74321759e4333733ed7a2ab8bae0b00  NEXT_ACTION.md
+  fbf02489321ea7c38743a59adf6561d9ce598a24e6fe731b8e33d52ae835a4e1  INDEX.md
+  8e319a1b440d5df4562e827ab00339677d5e7d84e281608bdc6a601b02844b9b  analysis/verify-amendment-executability.js
+  14296704159a9de75845e95f083432eda0481b68cb7a35260319b6cc2a51b382  analysis/EXECUTABILITY_REVIEW.txt  (50 checks, 50 YES, 0 NO)
+  38ed0c5976df7dbc520d5eff046043d02a867e1699ba5961db7c90e38dec7a76  sources/SOURCE_INTEGRITY.txt
+
+== PLAN OF RECORD, AMENDED IN PLACE (the amendment itself lives here, not in this package) ==
+  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+  Amendment 1 -- D-A .. D-D appended; three superseded clauses struck IN PLACE with provenance kept.
+  No historical text was deleted.
+
+== PROVIDER EXECUTION ACCOUNTING ==
+  API requests to api.anthropic.com            : 0
+  inference calls (hosted)                     : 0
+  inference calls (local / ollama)             : 0
+  metadata or availability probes              : 0
+  provider abstraction invoked                 : NO
+  destinations contacted                       : NONE
+  prompt / output / thought tokens             : 0 / 0 / 0
+  measured cost                                : $0.00
+  scenarios evaluated                          : 0
+
+== CREDENTIAL ==
+  credential required by this phase            : NO -- specification only
+  ANTHROPIC_API_KEY read / inspected / printed : NO
+  any credential path probed                   : NO
+  Claude Code claude.ai OAuth used             : NO -- forbidden by section 47.7, not attempted
+
+== EXTERNAL TRANSMISSION ==
+  bytes transmitted externally                 : NONE
+  customer or production InSite data           : NONE transmitted
+  protected-source bytes                       : NONE transmitted
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  Unchanged by construction: no production file modified, git diff HEAD -- backend/src is 0 lines,
+  and section 45.6 stands that no hosted adapter exists in backend/src to change it.
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN. L3-3 REMAINS UNAUTHORIZED.
+
+== PROTECTED EXCLUDED PRODUCT WORK -- UNTOUCHED BY THIS PHASE ==
+  backend/scripts/test-canonical-workflow.ts, test-private-storage-reports.ts,
+  frontend-next/{app/inspection-workspace/page.tsx, app/inspections/page.tsx, lib/auth.ts,
+  lib/canonicalWorkflowApi.ts, lib/planEntitlements.ts},
+  verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md,
+  "Safety InSite Logos/" (11 untracked files)  -- all unstaged and unmodified by this phase.
+
+== NOT DONE, BY CONSTRUCTION ==
+  HOLDOUT_FREEZE.txt created                                        : NO
+  acceptance holdout created                                        : NO
+  holdout builder created or executed                               : NO
+  acceptance rows selected                                          : NO
+  selected source IDs printed or materialized                       : NO
+  observation text printed                                          : NO
+  sealed observations semantically inspected                        : NO
+  ~25 negative controls authored                                    : NO
+  acceptance scorer created or run                                  : NO
+  G1..G10 changed, weakened, or given an escape hatch               : NO
+  G3 threshold relaxed (remains 100% on BOTH denominators)          : NO
+  prompt / schema / validator / binder / input builder modified      : NO
+  Anthropic / Claude / Gemini / Ollama / OpenAI called              : NO
+  provider credential accessed                                      : NO
+  production provider selected                                      : NO
+  L3-3 begun                                                        : NO
+  customer authority changed                                        : NO
+  D-79 .. D-85 rewritten                                            : NO -- D-86 ADDED
+  source artifact modified                                          : NO
+  historical measurement silently deleted                           : NO -- 92 preserved, marked superseded
+  deployed / committed / pushed / merged / rebased / reset          : NO
+  restored / cleaned / stash operation of any kind                  : NO

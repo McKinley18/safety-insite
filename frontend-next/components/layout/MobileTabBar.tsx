@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { APP_NAME } from "@/lib/brand";
 
 const tabs = [
   { href: "/command-center", label: "Home", icon: "🏠" },
@@ -56,7 +55,11 @@ export default function MobileTabBar() {
     <nav
       aria-label="Mobile primary navigation"
       data-keyboard-open={keyboardOpen ? "true" : "false"}
-      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-white/10 bg-[#07111F] px-2 pb-[max(env(safe-area-inset-bottom),0.25rem)] pt-1 text-white shadow-[0_-8px_24px_rgba(15,23,42,0.28)] backdrop-blur-xl transition-transform duration-150 dark:bg-[#07111F]/96 lg:hidden"
+      // The copyright line that used to sit inside this bar was removed. It is fixed
+      // chrome on every application screen, it cost roughly 24px of a phone viewport
+      // that the content needs, and a rights notice does not belong inside primary
+      // navigation -- the public footer already carries one.
+      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-white/10 bg-[#07111F] px-2 pb-[max(env(safe-area-inset-bottom),0.35rem)] pt-1.5 text-white shadow-[0_-8px_24px_rgba(15,23,42,0.28)] backdrop-blur-xl transition-transform duration-150 dark:bg-[#07111F]/96 lg:hidden"
     >
       <div className="mx-auto grid max-w-md grid-cols-4 gap-1.5">
         {tabs.map((tab) => {
@@ -82,9 +85,6 @@ export default function MobileTabBar() {
           );
         })}
       </div>
-      <p className="mt-1.5 border-t border-white/10 pt-1.5 text-center text-[10px] font-semibold leading-4 text-slate-300">
-        © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
-      </p>
     </nav>
   );
 }

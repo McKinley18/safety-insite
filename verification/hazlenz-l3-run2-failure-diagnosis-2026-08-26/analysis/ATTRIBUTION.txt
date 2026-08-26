@@ -1,0 +1,333 @@
+L3 RUN-2 ACCEPTANCE FAILURE -- PIPELINE ATTRIBUTION
+ZERO provider calls. $0.00. Derived from frozen Run-2 evidence only.
+
+STRUCTURAL CONSTRAINTS, PROVEN NOT ASSUMED
+  scored tier == VALIDATED tier on 93/93 rows
+  scored tier == BOUND tier on     86/93 rows
+  rows where the binder rejected or demoted: 4
+  => LAYER E (BINDER) CANNOT REACH THE SCORER. It is structurally excluded as a root cause,
+     not merely judged unlikely. D-58 keeps the two tiers separate by design.
+  => The VALIDATOR is byte-frozen and deterministic, so any A/B disagreement proves the
+     PROPOSAL differed. Pipeline stages cannot manufacture divergence.
+
+PER-LAYER ROW COUNTS (30 distinct failing rows)
+  A. PROVIDER_REASONING                  11
+  B. PROVIDER_STATE_RESOLUTION           4
+  C. PROVIDER_CLARIFICATION_DECISION     14
+  D. PROVIDER_EVIDENCE_SELECTION         1
+
+  PROVIDER-ORIGIN rows      30 / 30
+  PIPELINE-ORIGIN rows      0 / 30
+  INDETERMINATE rows        0 / 30
+
+================ G1 -- 1 contributing rows ================
+  H2B-004  INDEPENDENT_GAUNTLET  gates=G1,G5,G6,G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["EVIDENCE_OUT_OF_BOUNDS"]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: ZERO validated candidates on a highConsequence row
+     ATTRIBUTION: D. PROVIDER_EVIDENCE_SELECTION
+        the validator REJECTED the model's own proposal with EVIDENCE_OUT_OF_BOUNDS. The validator is byte-frozen (942ac7cc) and deterministic, and process B validated the SAME row VALID with a candidate -- so the rejected artefact is the model's output, not a pipeline fault. The validator enforcing a real defect is the validator working, not a validator defect.
+
+================ G2 -- 4 contributing rows ================
+  H2B-002  INDEPENDENT_GAUNTLET  gates=G2
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     B: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     scorer counted it because: raisedClarification=true on a row whose frozen truth has clarificationExpected=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        the model raised a clarification on a row whose frozen truth is clarificationExpected=false. It was candidate-borne (true) and survived validation and binding untouched, so the decision to ask is the model's.
+
+  H2B-080  AUTHORED_CONTROL / F4  gates=G2
+     truth: state=UNKNOWN hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     scorer counted it because: raisedClarification=true on a row whose frozen truth has clarificationExpected=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        the model raised a clarification on a row whose frozen truth is clarificationExpected=false. It was candidate-borne (true) and survived validation and binding untouched, so the decision to ask is the model's.
+
+  H2B-081  AUTHORED_CONTROL / F4  gates=G2,G9
+     truth: state=UNKNOWN hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: raisedClarification=true on a row whose frozen truth has clarificationExpected=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        the model raised a clarification on a row whose frozen truth is clarificationExpected=false. It was candidate-borne (true) and survived validation and binding untouched, so the decision to ask is the model's.
+
+  H2B-082  AUTHORED_CONTROL / F4  gates=G2
+     truth: state=UNKNOWN hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     scorer counted it because: raisedClarification=true on a row whose frozen truth has clarificationExpected=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        the model raised a clarification on a row whose frozen truth is clarificationExpected=false. It was candidate-borne (true) and survived validation and binding untouched, so the decision to ask is the model's.
+
+================ G3 -- 13 contributing rows ================
+  H2B-040  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-045  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-048  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=2 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=2 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-054  INDEPENDENT_REALISM  gates=G3,G9
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=NEGATED clar=false codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-057  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-060  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=CONTROLLED clar=false codes=[]
+     B: val=VALID cands=1 state=CONTROLLED clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-063  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-066  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-067  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-068  INDEPENDENT_REALISM  gates=G3
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=0 state=null clar=false codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-086  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+  H2B-087  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+  H2B-088  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: clarificationExpected=true but raisedClarification=false
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+================ G4 -- 4 contributing rows ================
+  H2B-079  AUTHORED_CONTROL / F3  gates=G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     B: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     scorer counted it because: assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE","INSUFFICIENT_EVIDENCE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+  H2B-086  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+  H2B-087  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+  H2B-088  AUTHORED_CONTROL / F6  gates=G3,G4
+     truth: state=INSUFFICIENT_EVIDENCE hc=false clarExpected=true activeProhibited=true
+     A: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)
+     ATTRIBUTION: B. PROVIDER_STATE_RESOLUTION
+        the model asserted ACTIVE where frozen truth is INSUFFICIENT_EVIDENCE and activeProhibited=true. The validator accepted it (state VALID) and the binder BOUND it (["ACTIVE"]) -- neither stage removed it, so neither can be the origin. Process B is identical, so it is deterministic model behaviour, not sampling noise.
+
+================ G5 -- 1 contributing rows ================
+  H2B-004  INDEPENDENT_GAUNTLET  gates=G1,G5,G6,G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["EVIDENCE_OUT_OF_BOUNDS"]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: validator state REJECTED_MODEL_OUTPUT !== VALID on a row owed a hazard (truth ACTIVE or highConsequence)
+     ATTRIBUTION: D. PROVIDER_EVIDENCE_SELECTION
+        the validator REJECTED the model's own proposal with EVIDENCE_OUT_OF_BOUNDS. The validator is byte-frozen (942ac7cc) and deterministic, and process B validated the SAME row VALID with a candidate -- so the rejected artefact is the model's output, not a pipeline fault. The validator enforcing a real defect is the validator working, not a validator defect.
+
+================ G6 -- 1 contributing rows ================
+  H2B-004  INDEPENDENT_GAUNTLET  gates=G1,G5,G6,G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["EVIDENCE_OUT_OF_BOUNDS"]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: non-retryable validator codes ["EVIDENCE_OUT_OF_BOUNDS"]
+     ATTRIBUTION: D. PROVIDER_EVIDENCE_SELECTION
+        the validator REJECTED the model's own proposal with EVIDENCE_OUT_OF_BOUNDS. The validator is byte-frozen (942ac7cc) and deterministic, and process B validated the SAME row VALID with a candidate -- so the rejected artefact is the model's output, not a pipeline fault. The validator enforcing a real defect is the validator working, not a validator defect.
+
+================ G9 -- 14 contributing rows ================
+  H2B-004  INDEPENDENT_GAUNTLET  gates=G1,G5,G6,G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["EVIDENCE_OUT_OF_BOUNDS"]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":null,"clar":false,"any":false} B={"state":"ACTIVE","clar":false,"any":true}
+     ATTRIBUTION: D. PROVIDER_EVIDENCE_SELECTION
+        the validator REJECTED the model's own proposal with EVIDENCE_OUT_OF_BOUNDS. The validator is byte-frozen (942ac7cc) and deterministic, and process B validated the SAME row VALID with a candidate -- so the rejected artefact is the model's output, not a pipeline fault. The validator enforcing a real defect is the validator working, not a validator defect.
+
+  H2B-014  INDEPENDENT_GAUNTLET  gates=G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=VALID cands=2 state=ACTIVE clar=false codes=[]
+     B: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"ACTIVE","clar":false,"any":true} B={"state":"ACTIVE","clar":true,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A ACTIVE/false/true vs B ACTIVE/true/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-024  INDEPENDENT_GAUNTLET  gates=G9
+     truth: state=null hc=true clarExpected=false activeProhibited=false
+     A: val=VALID cands=2 state=ACTIVE clar=false codes=[]
+     B: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["UNGROUNDED_CORRECTIVE_ACTION"]
+     scorer counted it because: material(A) !== material(B): A={"state":"ACTIVE","clar":false,"any":true} B={"state":null,"clar":false,"any":false}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        the validator rejected on ONE side only (A VALID [] | B REJECTED_MODEL_OUTPUT ["UNGROUNDED_CORRECTIVE_ACTION"]). A deterministic validator cannot reject one of two identical inputs => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-042  INDEPENDENT_REALISM  gates=G9
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"INSUFFICIENT_EVIDENCE","clar":true,"any":true} B={"state":"ACTIVE","clar":true,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A INSUFFICIENT_EVIDENCE/true/true vs B ACTIVE/true/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-043  INDEPENDENT_REALISM  gates=G9
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"INSUFFICIENT_EVIDENCE","clar":true,"any":true} B={"state":"ACTIVE","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A INSUFFICIENT_EVIDENCE/true/true vs B ACTIVE/false/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-054  INDEPENDENT_REALISM  gates=G3,G9
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=1 state=NEGATED clar=false codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"NEGATED","clar":false,"any":true} B={"state":null,"clar":false,"any":false}
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        clarification expected; the model expressed NONE in EITHER carrier (candidate-borne=false, proposal-level=0). Nothing existed to be dropped downstream, so no pipeline stage can have removed it. Process B also failed to raise -- deterministic.
+
+  H2B-056  INDEPENDENT_REALISM  gates=G9
+     truth: state=null hc=false clarExpected=true activeProhibited=false
+     A: val=VALID cands=2 state=ACTIVE clar=true codes=[]
+     B: val=VALID cands=1 state=ACTIVE clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"ACTIVE","clar":true,"any":true} B={"state":"ACTIVE","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A ACTIVE/true/true vs B ACTIVE/false/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-070  AUTHORED_CONTROL / F1  gates=G9
+     truth: state=NEGATED hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=0 state=null clar=false codes=[]
+     B: val=VALID cands=1 state=NEGATED clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":null,"clar":false,"any":false} B={"state":"NEGATED","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A null/false/false vs B NEGATED/false/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-072  AUTHORED_CONTROL / F1  gates=G9
+     truth: state=NEGATED hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=0 state=null clar=false codes=[]
+     B: val=VALID cands=1 state=NEGATED clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":null,"clar":false,"any":false} B={"state":"NEGATED","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A null/false/false vs B NEGATED/false/true). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-073  AUTHORED_CONTROL / F2  gates=G9
+     truth: state=CORRECTED hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=CORRECTED clar=false codes=[]
+     B: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["UNGROUNDED_CORRECTIVE_ACTION"]
+     scorer counted it because: material(A) !== material(B): A={"state":"CORRECTED","clar":false,"any":true} B={"state":null,"clar":false,"any":false}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        the validator rejected on ONE side only (A VALID [] | B REJECTED_MODEL_OUTPUT ["UNGROUNDED_CORRECTIVE_ACTION"]). A deterministic validator cannot reject one of two identical inputs => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-074  AUTHORED_CONTROL / F2  gates=G9
+     truth: state=CORRECTED hc=false clarExpected=false activeProhibited=true
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["UNGROUNDED_CORRECTIVE_ACTION"]
+     B: val=VALID cands=1 state=CORRECTED clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":null,"clar":false,"any":false} B={"state":"CORRECTED","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        the validator rejected on ONE side only (A REJECTED_MODEL_OUTPUT ["UNGROUNDED_CORRECTIVE_ACTION"] | B VALID []). A deterministic validator cannot reject one of two identical inputs => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-075  AUTHORED_CONTROL / F2  gates=G9
+     truth: state=CORRECTED hc=false clarExpected=false activeProhibited=true
+     A: val=REJECTED_MODEL_OUTPUT cands=0 state=null clar=false codes=["UNGROUNDED_CORRECTIVE_ACTION"]
+     B: val=VALID cands=1 state=CORRECTED clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":null,"clar":false,"any":false} B={"state":"CORRECTED","clar":false,"any":true}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        the validator rejected on ONE side only (A REJECTED_MODEL_OUTPUT ["UNGROUNDED_CORRECTIVE_ACTION"] | B VALID []). A deterministic validator cannot reject one of two identical inputs => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+
+  H2B-081  AUTHORED_CONTROL / F4  gates=G2,G9
+     truth: state=UNKNOWN hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=INSUFFICIENT_EVIDENCE clar=true codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"INSUFFICIENT_EVIDENCE","clar":true,"any":true} B={"state":null,"clar":false,"any":false}
+     ATTRIBUTION: C. PROVIDER_CLARIFICATION_DECISION
+        the model raised a clarification on a row whose frozen truth is clarificationExpected=false. It was candidate-borne (true) and survived validation and binding untouched, so the decision to ask is the model's.
+
+  H2B-093  AUTHORED_CONTROL / F8b  gates=G9
+     truth: state=NEGATED hc=false clarExpected=false activeProhibited=true
+     A: val=VALID cands=1 state=NEGATED clar=false codes=[]
+     B: val=VALID cands=0 state=null clar=false codes=[]
+     scorer counted it because: material(A) !== material(B): A={"state":"NEGATED","clar":false,"any":true} B={"state":null,"clar":false,"any":false}
+     ATTRIBUTION: A. PROVIDER_REASONING
+        both processes validated VALID yet the scored fields differ (A NEGATED/false/true vs B null/false/false). Identical frozen input, identical deterministic validator => THE PROPOSAL DIFFERED. Provider-origin non-determinism.
+

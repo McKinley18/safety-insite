@@ -1,0 +1,3015 @@
+{
+  "diagnosisId": "hazlenz.l3.run2.failure-diagnosis.v1",
+  "providerCalls": 0,
+  "apiCostUsd": 0,
+  "evidence": {
+    "holdoutSha256": "f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f",
+    "rawProcessASha256": "b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3",
+    "rawProcessBSha256": "514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f",
+    "frozenTerminal": "L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9",
+    "frozenPass": false,
+    "frozenModelAcceptanceResult": "ESTABLISHED_FAIL"
+  },
+  "ledgerReproducesFrozenScorer": true,
+  "reproductionAssertions": [
+    {
+      "gate": "G1",
+      "derived": 1,
+      "frozen": 1,
+      "match": true
+    },
+    {
+      "gate": "G2",
+      "derived": 4,
+      "frozen": 4,
+      "match": true
+    },
+    {
+      "gate": "G3 misses (DEN_A - NUM_A)",
+      "derived": 13,
+      "frozen": 13,
+      "match": true
+    },
+    {
+      "gate": "G4",
+      "derived": 4,
+      "frozen": 4,
+      "match": true
+    },
+    {
+      "gate": "G5",
+      "derived": 1,
+      "frozen": 1,
+      "match": true
+    },
+    {
+      "gate": "G6 rows",
+      "derived": 1,
+      "frozen": 1,
+      "match": true
+    },
+    {
+      "gate": "G7",
+      "derived": 0,
+      "frozen": 0,
+      "match": true
+    },
+    {
+      "gate": "G8",
+      "derived": 0,
+      "frozen": 0,
+      "match": true
+    },
+    {
+      "gate": "G9",
+      "derived": 14,
+      "frozen": 14,
+      "match": true
+    },
+    {
+      "gate": "G10 non-conforming",
+      "derived": 0,
+      "frozen": 0,
+      "match": true
+    }
+  ],
+  "binderInvisibility": {
+    "binderActedRows": 4,
+    "scoredTierMatchesValidatedTier": 93,
+    "scoredTierMatchesBoundTier": 86,
+    "totalRows": 93
+  },
+  "failingRowCounts": {
+    "G1": 1,
+    "G2": 4,
+    "G3": 13,
+    "G4": 4,
+    "G5": 1,
+    "G6": 1,
+    "G7": 0,
+    "G8": 0,
+    "G9": 14,
+    "G10": 0
+  },
+  "distinctFailingRows": 30,
+  "ledger": [
+    {
+      "rowId": "H2B-002",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "sourceId": "SRC-MSHA-006",
+      "gates": [
+        "G2"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "loto_stored_energy"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "loto_stored_energy"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_EVIDENCE_NOT_SELECTIVE",
+            "SEMANTIC_EVIDENCE_NOT_SELECTIVE"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G2": "raisedClarification=true on a row whose frozen truth has clarificationExpected=false"
+      }
+    },
+    {
+      "rowId": "H2B-004",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "sourceId": "SRC-MSHA-014",
+      "gates": [
+        "G1",
+        "G5",
+        "G6",
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "REJECTED_OUTPUT",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "REJECTED_MODEL_OUTPUT",
+        "validationIssueCodes": [
+          "EVIDENCE_OUT_OF_BOUNDS"
+        ],
+        "nonRetryableValidationReasons": [
+          "EVIDENCE_OUT_OF_BOUNDS"
+        ],
+        "safetyConsequentialRejection": true,
+        "decisionBoundaryCodes": [
+          "EVIDENCE_OUT_OF_BOUNDS"
+        ],
+        "binder": null,
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "mobile_equipment"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G1": "ZERO validated candidates on a highConsequence row",
+        "G5": "validator state REJECTED_MODEL_OUTPUT !== VALID on a row owed a hazard (truth ACTIVE or highConsequence)",
+        "G6": "non-retryable validator codes [\"EVIDENCE_OUT_OF_BOUNDS\"]",
+        "G9": "material(A) !== material(B): A={\"state\":null,\"clar\":false,\"any\":false} B={\"state\":\"ACTIVE\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-014",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "sourceId": "SRC-MSHA-060",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "fire"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "fire"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"ACTIVE\",\"clar\":false,\"any\":true} B={\"state\":\"ACTIVE\",\"clar\":true,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-024",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "sourceId": "SRC-OSHA-028",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "trenching_shoring",
+          "emergency_egress"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_EVIDENCE_NOT_SELECTIVE",
+            "SEMANTIC_EVIDENCE_NOT_SELECTIVE"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "REJECTED_OUTPUT",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "REJECTED_MODEL_OUTPUT",
+        "validationIssueCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": true,
+        "decisionBoundaryCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "binder": null,
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"ACTIVE\",\"clar\":false,\"any\":true} B={\"state\":null,\"clar\":false,\"any\":false}"
+      }
+    },
+    {
+      "rowId": "H2B-040",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-JURISDICTION-MINE-CONTRACTOR-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "machine_guarding"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "machine_guarding"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-042",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-MSHA-COAL-UG-CABLE-HANGING-001",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "electrical"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "struck_by"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"INSUFFICIENT_EVIDENCE\",\"clar\":true,\"any\":true} B={\"state\":\"ACTIVE\",\"clar\":true,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-043",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-MSHA-COLD-STRESS-001",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "personal_protective_equipment"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "personal_protective_equipment"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"INSUFFICIENT_EVIDENCE\",\"clar\":true,\"any\":true} B={\"state\":\"ACTIVE\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-045",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-MSHA-MNM-UG-REFUGE-ROUTE-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "emergency_egress"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "emergency_egress"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-048",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-MULTI-ELECTRICAL-WET-PEDESTRIAN-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "walking_working_surfaces"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "walking_working_surfaces"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-054",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-ELECTRICAL-FALSE-CLOSED-PANEL-001",
+      "gates": [
+        "G3",
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "NEGATED"
+        ],
+        "candidateFamilies": [
+          "electrical"
+        ],
+        "assertedState": "NEGATED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "NEGATED"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false",
+        "G9": "material(A) !== material(B): A={\"state\":\"NEGATED\",\"clar\":false,\"any\":true} B={\"state\":null,\"clar\":false,\"any\":false}"
+      }
+    },
+    {
+      "rowId": "H2B-056",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-EYEWASH-BLOCKED-001",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "chemical_storage",
+          "chemical_storage"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "chemical_storage"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"ACTIVE\",\"clar\":true,\"any\":true} B={\"state\":\"ACTIVE\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-057",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-FALSE-TRENCH-RAMP-WAREHOUSE-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "emergency_egress"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "emergency_egress"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-060",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-GI-HOTWORK-PERMIT-OK-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 1,
+        "candidateStates": [
+          "CONTROLLED"
+        ],
+        "candidateFamilies": [
+          "hot_work"
+        ],
+        "assertedState": "CONTROLLED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "hot-work-maintenance-shop",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 1,
+        "candidateStates": [
+          "CONTROLLED"
+        ],
+        "candidateFamilies": [
+          "hot_work"
+        ],
+        "assertedState": "CONTROLLED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "hot-work-controlled",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-063",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-HAND-PPE-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "personal_protective_equipment"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "personal_protective_equipment"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-066",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-SILICA-ACTIVE-CUTTING-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "respiratory_protection"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "respiratory_protection"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-067",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-OSHA-TRENCH-EGRESS-MISSING-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "trenching_shoring"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "trenching_shoring"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-068",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "sourceId": "FIELD-V2-UNKNOWN-PHOTO-ONLY-001",
+      "gates": [
+        "G3"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false"
+      }
+    },
+    {
+      "rowId": "H2B-070",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "sourceId": "AC2-F1-02",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "NEGATED"
+        ],
+        "candidateFamilies": [
+          "trenching_shoring"
+        ],
+        "assertedState": "NEGATED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "NEGATED"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":null,\"clar\":false,\"any\":false} B={\"state\":\"NEGATED\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-072",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "sourceId": "AC2-F1-04",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "NEGATED"
+        ],
+        "candidateFamilies": [
+          "falls"
+        ],
+        "assertedState": "NEGATED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "ladderway-handrail-landing",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":null,\"clar\":false,\"any\":false} B={\"state\":\"NEGATED\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-073",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "sourceId": "AC2-F2-01",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "CORRECTED"
+        ],
+        "candidateFamilies": [
+          "machine_guarding"
+        ],
+        "assertedState": "CORRECTED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "picking-belt-estop-slack",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "REJECTED_OUTPUT",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "REJECTED_MODEL_OUTPUT",
+        "validationIssueCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "binder": null,
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"CORRECTED\",\"clar\":false,\"any\":true} B={\"state\":null,\"clar\":false,\"any\":false}"
+      }
+    },
+    {
+      "rowId": "H2B-074",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "sourceId": "AC2-F2-02",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "REJECTED_OUTPUT",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "REJECTED_MODEL_OUTPUT",
+        "validationIssueCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "binder": null,
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 1,
+        "candidateStates": [
+          "CORRECTED"
+        ],
+        "candidateFamilies": [
+          "fire"
+        ],
+        "assertedState": "CORRECTED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "fire-door-held-open",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":null,\"clar\":false,\"any\":false} B={\"state\":\"CORRECTED\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-075",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "sourceId": "AC2-F2-03",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "REJECTED_OUTPUT",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "REJECTED_MODEL_OUTPUT",
+        "validationIssueCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [
+          "UNGROUNDED_CORRECTIVE_ACTION"
+        ],
+        "binder": null,
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 1,
+        "candidateStates": [
+          "CORRECTED"
+        ],
+        "candidateFamilies": [
+          "electrical"
+        ],
+        "assertedState": "CORRECTED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [
+            {
+              "candidateKey": "electrical-extension-lead-split-sheath",
+              "codes": [
+                "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+              ]
+            }
+          ],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE",
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":null,\"clar\":false,\"any\":false} B={\"state\":\"CORRECTED\",\"clar\":false,\"any\":true}"
+      }
+    },
+    {
+      "rowId": "H2B-079",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F3",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "sourceId": "AC2-F3-03",
+      "gates": [
+        "G4"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "loto_stored_energy"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 2,
+        "candidateStates": [
+          "ACTIVE",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "electrical",
+          "loto_stored_energy"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 2,
+          "boundStates": [
+            "ACTIVE",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G4": "assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)"
+      }
+    },
+    {
+      "rowId": "H2B-080",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "sourceId": "AC2-F4-01",
+      "gates": [
+        "G2"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "housekeeping"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "housekeeping"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G2": "raisedClarification=true on a row whose frozen truth has clarificationExpected=false"
+      }
+    },
+    {
+      "rowId": "H2B-081",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "sourceId": "AC2-F4-02",
+      "gates": [
+        "G2",
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "lifting_rigging"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G2": "raisedClarification=true on a row whose frozen truth has clarificationExpected=false",
+        "G9": "material(A) !== material(B): A={\"state\":\"INSUFFICIENT_EVIDENCE\",\"clar\":true,\"any\":true} B={\"state\":null,\"clar\":false,\"any\":false}"
+      }
+    },
+    {
+      "rowId": "H2B-082",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "sourceId": "AC2-F4-03",
+      "gates": [
+        "G2"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "housekeeping"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "INSUFFICIENT_EVIDENCE",
+        "candidateCount": 1,
+        "candidateStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "candidateFamilies": [
+          "housekeeping"
+        ],
+        "assertedState": "INSUFFICIENT_EVIDENCE",
+        "raisedClarification": true,
+        "candidateBorneClarification": true,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G2": "raisedClarification=true on a row whose frozen truth has clarificationExpected=false"
+      }
+    },
+    {
+      "rowId": "H2B-086",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "sourceId": "AC2-F6-01",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "machine_guarding"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "machine_guarding"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false",
+        "G4": "assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)"
+      }
+    },
+    {
+      "rowId": "H2B-087",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "sourceId": "AC2-F6-02",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "falls"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "falls"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false",
+        "G4": "assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)"
+      }
+    },
+    {
+      "rowId": "H2B-088",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "sourceId": "AC2-F6-03",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "scaffolds"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "VALIDATED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "ACTIVE"
+        ],
+        "candidateFamilies": [
+          "scaffolds"
+        ],
+        "assertedState": "ACTIVE",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "ACTIVE"
+          ],
+          "boundAssertsActive": true,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": true,
+      "scorerReason": {
+        "G3": "clarificationExpected=true but raisedClarification=false",
+        "G4": "assertedState=ACTIVE on an inG4Denominator row (frozen truth INSUFFICIENT_EVIDENCE)"
+      }
+    },
+    {
+      "rowId": "H2B-093",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "family": "F8",
+      "familyVariant": "F8b",
+      "pole": "NEGATIVE_CONTROL",
+      "sourceId": "AC2-F8-02",
+      "gates": [
+        "G9"
+      ],
+      "expectedTruth": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "processA": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 1,
+        "candidateStates": [
+          "NEGATED"
+        ],
+        "candidateFamilies": [
+          "loto_stored_energy"
+        ],
+        "assertedState": "NEGATED",
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 1,
+          "boundStates": [
+            "NEGATED"
+          ],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": [
+            "SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT",
+            "SEMANTIC_CONTROL_ADEQUACY_RECORDED"
+          ]
+        },
+        "providerEvaluated": true
+      },
+      "processB": {
+        "present": true,
+        "schemaValid": true,
+        "retries": 0,
+        "attempts": 1,
+        "outcomeKind": "NO_HAZARD_ESTABLISHED",
+        "candidateCount": 0,
+        "candidateStates": [],
+        "candidateFamilies": [],
+        "assertedState": null,
+        "raisedClarification": false,
+        "candidateBorneClarification": false,
+        "proposalLevelClarificationCount": 0,
+        "validationState": "VALID",
+        "validationIssueCodes": [],
+        "nonRetryableValidationReasons": [],
+        "safetyConsequentialRejection": false,
+        "decisionBoundaryCodes": [],
+        "binder": {
+          "boundHazardCount": 0,
+          "boundStates": [],
+          "boundAssertsActive": false,
+          "rejected": [],
+          "demoted": [],
+          "issueCodes": []
+        },
+        "providerEvaluated": true
+      },
+      "abAgreeOnScoredFields": false,
+      "scorerReason": {
+        "G9": "material(A) !== material(B): A={\"state\":\"NEGATED\",\"clar\":false,\"any\":true} B={\"state\":null,\"clar\":false,\"any\":false}"
+      }
+    }
+  ]
+}

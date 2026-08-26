@@ -1,0 +1,83 @@
+L3 PROVIDER READINESS RETRY -- FINAL STATE
+recorded 2026-08-25T02:11:42Z
+
+  TERMINAL
+    L3_PROVIDER_READINESS_BLOCKED -- CREDENTIAL_OR_CALLABILITY_FAILURE
+
+  STATE BITS
+    PLAN_EXECUTABLE                                      = TRUE
+    HOLDOUT_CONSTRUCTED_AND_FROZEN                       = TRUE
+    HOLDOUT_SPENT                                        = FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+    SEALED ACCEPTANCE IS NOT AUTHORIZED.
+
+  REPOSITORY
+    HEAD      a7b21a2636b4a80ecaf823aef4558d9ea8915230   UNCHANGED
+    branch    release/insite-rc-2026-08-18   upstream origin/release/insite-rc-2026-08-18   divergence 0/0
+    staged 0 | tags 23 (untouched) | stashes 4 (NO stash operation)
+    git diff HEAD -- backend/src      = 0 lines
+    git diff HEAD -- safescope-data   = 0 lines
+
+  CANONICAL ATTEMPT-2 PACKAGE (resolved mechanically)
+    verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+
+  CREDENTIAL
+    ANTHROPIC_API_KEY_PRESENT = FALSE   (unchanged from D-90; not persisted anywhere)
+    obtained NO | printed NO | logged NO | hashed NO | persisted NO | counted NO
+    Claude Code authentication inspected NO | used NO
+
+  PROVIDER
+    provider                        Anthropic
+    requested model                 claude-sonnet-5   (NOT SENT)
+    returned model                  NONE
+    PROVIDER_CALLABILITY            UNKNOWN   (not PASS, not FAIL)
+    MODEL_IDENTITY                  UNKNOWN   (NOT a MODEL_IDENTITY_MISMATCH)
+    EXECUTION_PATH_COMPATIBILITY    UNKNOWN   (not PASS)
+    required PASS/PASS/PASS         NOT OBTAINED
+    provider calls 0 | destinations 0 | cost $0.00
+
+  SYNTHETIC PROBE
+    classification            NON_HOLDOUT_PROVIDER_READINESS_PROBE
+    artifact sha256           a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c
+    observationText sha256    52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+    hashed before use         YES
+    transmitted               NO
+
+  ZERO-HOLDOUT-EXPOSURE
+    holdout rows read for provider input 0 | transmitted 0
+    reserved rows read for provider input 0 | transmitted 0
+    scorer executions on provider output 0 | acceptance results 0
+
+  FROZEN IDENTITIES
+    11 outer + 4 inner = 15 checks.  OK = 15   MISMATCH = 0
+    ANY FROZEN IDENTITY CHANGED: NO
+
+  ACCEPTANCE ARTIFACT, RE-VERIFIED AFTER ALL DOCUMENTATION EDITS
+    189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+    required 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+
+  PROTECTED SOURCES, AFTER
+    a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+    49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+    6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+  GOVERNING PLAN, AFTER (READ ONLY)
+    8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+
+  DOCUMENTATION, AFTER
+    62029f0a0b50f8160a0be8ed07cc51decdc8582ef9c9dd6b5fc36ac16abcf598  docs/INSITE_ENGINEERING_BLUEPRINT.md
+    f1f122b81be748bf1e863fd0ba956979d84f3cb0e153320f35faa44a7acfb6ca  docs/INSITE_CURRENT_STATE.json
+
+  HISTORICAL EVIDENCE PRESERVED
+    verification/hazlenz-l3-provider-readiness-2026-08-24/  (D-90, s.57) -- UNCHANGED, and NOT
+    rewritten as though the credential had been present.
+    verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/ (Attempt 1, D-87) -- UNCHANGED,
+    still INVALIDATED.
+
+  EXACT NEXT PREREQUISITE
+    Make ANTHROPIC_API_KEY durably visible to this session's shells -- shell profile, a
+    .claude/settings.local.json env block, or relaunch with it exported in the parent shell --
+    for an organization under the Anthropic Commercial Terms (D-79). Then re-run this gate and
+    send the already-frozen probe 52520318... Passing it still does NOT authorize spending the
+    holdout; a separate explicit user authorization is required first.

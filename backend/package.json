@@ -218,7 +218,8 @@
     "test:l32g-state-separation": "ts-node scripts/test-l32g-state-separation.ts",
     "test:l32i-clarification-carrier": "ts-node scripts/test-l32i-clarification-carrier.ts",
     "test:l32j-carrier-activation": "ts-node scripts/test-l32j-carrier-activation.ts",
-    "score:l32g-order": "ts-node scripts/score-l32g-order-sensitivity.ts"
+    "score:l32g-order": "ts-node scripts/score-l32g-order-sensitivity.ts",
+    "test:l3-condition-state-resolution": "ts-node scripts/test-l3-condition-state-resolution.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1096.0",

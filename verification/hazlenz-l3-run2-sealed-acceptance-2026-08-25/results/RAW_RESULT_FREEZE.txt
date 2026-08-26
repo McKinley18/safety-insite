@@ -1,0 +1,125 @@
+L3 RUN-2 SEALED ACCEPTANCE -- RAW RESULT FREEZE
+PHASE 11. Frozen BEFORE any G1-G10 scoring. Raw evidence is not modified after scoring.
+
+holdout sha256                 f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+expected rows per process      93
+expected required evaluations  186
+
+================ PROCESS A ================
+  raw result sha256            b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3
+  transport log sha256         fa2741f68d9488dd5a56e03cf08cae34dd421993937d8939b2eae99dde9ee7ef
+  pid / started / finished     80057 / 2026-08-25T23:21:08.456Z / 2026-08-25T23:50:52.393Z
+  holdout asserted             f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+  run schema asserted          a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  system prompt asserted       b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  requested model              claude-sonnet-5
+
+  rows expected                93
+  rows attempted (issued)      93
+  rows recorded                93
+  rows never issued            0
+  PROVIDER_EVALUATED rows      93
+  NOT provider-evaluated       0
+  undeclared providerEvaluated 0
+  row-id SET EQUALITY          true
+
+  provider calls               93   (r.providerCalls = 93)
+  HTTP status counts           {"200":93}
+  returned model identities    {"claude-sonnet-5":93}
+  stop reasons                 {"end_turn":93}
+  attempts per row             {"1":93}
+  retries beyond the first     0
+
+  outcome kinds                {"VALIDATED":77,"REJECTED_OUTPUT":3,"INSUFFICIENT_EVIDENCE":6,"NO_HAZARD_ESTABLISHED":7}
+  provider failure kinds       {"null":93}
+  provider failure classes     {"PROVIDER_EVALUATED":93}
+
+  VALIDATOR OUTCOMES
+    validation states          {"VALID":90,"REJECTED_MODEL_OUTPUT":3}
+    schemaValid true/false     {"true":93}
+    rows with any issue code   3
+    issue codes seen           {"EVIDENCE_OUT_OF_BOUNDS":1,"UNGROUNDED_CORRECTIVE_ACTION":2}
+    non-retryable codes seen   {"EVIDENCE_OUT_OF_BOUNDS":1}
+    safetyConsequentialReject  1
+
+  BINDER OUTCOMES (D-58: the SEMANTIC tier, never merged with the VALIDATED tier)
+    rows reaching the binder   90
+    bound hazard counts        {"0":8,"1":61,"2":18,"3":3}
+    rows asserting ACTIVE      60
+    binder rejections          4
+    binder demotions           0
+    binder rejection codes     {"SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE":4}
+
+  VALIDATED-TIER SUMMARY (scorer input, recorded not interpreted)
+    validated hazard counts    {"0":7,"1":65,"2":18,"3":3}
+    assertedState              {"ACTIVE":60,"null":7,"INSUFFICIENT_EVIDENCE":16,"NEGATED":3,"CONTROLLED":2,"CORRECTED":2,"HYPOTHETICAL":3}
+    raisedClarification        {"false":72,"true":21}
+
+  D-K fired in this process    false
+  D-K global state observed    false
+
+================ PROCESS B ================
+  raw result sha256            514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f
+  transport log sha256         aadb88fac0d6baaef1719cb8263b8b5f3c4cdbc52e9b2040ccdde4d376c6edf4
+  pid / started / finished     83682 / 2026-08-25T23:50:55.716Z / 2026-08-26T00:22:03.346Z
+  holdout asserted             f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+  run schema asserted          a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  system prompt asserted       b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  requested model              claude-sonnet-5
+
+  rows expected                93
+  rows attempted (issued)      93
+  rows recorded                93
+  rows never issued            0
+  PROVIDER_EVALUATED rows      93
+  NOT provider-evaluated       0
+  undeclared providerEvaluated 0
+  row-id SET EQUALITY          true
+
+  provider calls               93   (r.providerCalls = 93)
+  HTTP status counts           {"200":93}
+  returned model identities    {"claude-sonnet-5":93}
+  stop reasons                 {"end_turn":93}
+  attempts per row             {"1":93}
+  retries beyond the first     0
+
+  outcome kinds                {"VALIDATED":75,"REJECTED_OUTPUT":2,"INSUFFICIENT_EVIDENCE":10,"NO_HAZARD_ESTABLISHED":6}
+  provider failure kinds       {"null":93}
+  provider failure classes     {"PROVIDER_EVALUATED":93}
+
+  VALIDATOR OUTCOMES
+    validation states          {"VALID":91,"REJECTED_MODEL_OUTPUT":2}
+    schemaValid true/false     {"true":93}
+    rows with any issue code   2
+    issue codes seen           {"UNGROUNDED_CORRECTIVE_ACTION":2}
+    non-retryable codes seen   {}
+    safetyConsequentialReject  1
+
+  BINDER OUTCOMES (D-58: the SEMANTIC tier, never merged with the VALIDATED tier)
+    rows reaching the binder   91
+    bound hazard counts        {"0":11,"1":61,"2":17,"3":2}
+    rows asserting ACTIVE      62
+    binder rejections          7
+    binder demotions           0
+    binder rejection codes     {"SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE":6,"SEMANTIC_NEGATION_UNADDRESSED":1}
+
+  VALIDATED-TIER SUMMARY (scorer input, recorded not interpreted)
+    validated hazard counts    {"0":7,"1":66,"2":18,"3":2}
+    assertedState              {"ACTIVE":62,"null":7,"INSUFFICIENT_EVIDENCE":13,"CONTROLLED":2,"NEGATED":3,"CORRECTED":3,"HYPOTHETICAL":3}
+    raisedClarification        {"false":74,"true":19}
+
+  D-K fired in this process    false
+  D-K global state observed    false
+
+================ D-K STATE ================
+  D_K_FIRED = FALSE. No abort flag exists. The guard was armed and stayed dormant.
+
+================ SPEND ================
+  SPEND_TRANSITION.jsonl sha256  5ee3b36ec868e7a9f6df13e5c4cadcce5aa832e1138d2b02ae2ce1940fc78862
+  {"ts":"2026-08-25T23:21:08.457Z","processLabel":"A","pid":80057,"event":"HOLDOUT_SPEND_INITIATED","HOLDOUT_SPEND_INITIATED":true,"aboutToTransmit":"H2B-001","holdoutSha256":"f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f"}
+  {"ts":"2026-08-25T23:21:08.457Z","processLabel":"A","pid":80057,"event":"HOLDOUT_SPENT","HOLDOUT_SPENT":true,"GAUNTLET_OFFSET_1":"RETIRED","REALISM_OFFSET_0":"RETIRED","transmitted":"H2B-001","irreversible":true}
+  {"ts":"2026-08-25T23:50:55.717Z","processLabel":"B","pid":83682,"event":"HOLDOUT_SPEND_INITIATED","HOLDOUT_SPEND_INITIATED":true,"aboutToTransmit":"H2B-001","holdoutSha256":"f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f"}
+  {"ts":"2026-08-25T23:50:55.717Z","processLabel":"B","pid":83682,"event":"HOLDOUT_SPENT","HOLDOUT_SPENT":true,"GAUNTLET_OFFSET_1":"RETIRED","REALISM_OFFSET_0":"RETIRED","transmitted":"H2B-001","irreversible":true}
+
+  RUN2_HOLDOUT_SPENT = TRUE | GAUNTLET_OFFSET_1 = RETIRED | REALISM_OFFSET_0 = RETIRED
+  Caused by TRANSMISSION alone (D-H). Independent of scorability and of every terminal below.

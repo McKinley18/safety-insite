@@ -1,0 +1,65 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION ATTEMPT 2 -- PHASE 4 D-F PRE-SELECTION CARDINALITY GATE
+recorded 2026-08-24, BEFORE any source-row selection code was written or executed.
+
+checker : verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/analysis/derive-cardinalities.js
+checker sha256 : 6e85735d756751539df1cbda9017a0937c1605cc8b276def9f4eda736ddb0ff2
+governing plan : 8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+family template basis : the frozen F1-F8 family/truth rules, materialised structurally in
+                        verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/builder/authored-controls.js
+                        (STRUCTURAL ARTIFACT ONLY -- admitted to NO holdout, including Attempt 2's)
+
+== PHASE 3 -- DECLARED vs INDEPENDENTLY DERIVED ==
+
+  QUANTITY                                                    DECLARED       DERIVED   VERDICT
+  --------------------------------------------------------------------------------------------------------
+  gauntlet physical rows                                           150           150   MATCH   [source file]
+  gauntlet.seed physical rows                                      100           100   MATCH   [source file]
+  realism physical rows                                            117           117   MATCH   [source file]
+  gauntlet offset k (D-A)                                            0             0   MATCH   [OFFSET(sha256,4)]
+  gauntlet partition sizes                                 38,38,37,37   38,38,37,37   MATCH   [CMP(scenarioId) asc, i%4]
+  gauntlet SELECTED rows                                            38            38   MATCH   [i % 4 === 0]
+  realism offset k (D-B)                                             3             3   MATCH   [OFFSET(sha256,4)]
+  realism partition sizes                                  30,29,29,29   30,29,29,29   MATCH   [CMP(id) asc, i%4]
+  realism SELECTED rows                                             29            29   MATCH   [i % 4 === 3]
+  physical source rows total                                       367           367   MATCH   [sum of sources]
+  distinct NORM texts total                                        366           366   MATCH   [NORM over carriers]
+  gauntlet.seed distinct texts                                      99            99   MATCH   [NORM over observation]
+  shouldHaveMissingEvidence true                                    87            87   MATCH   [frozen field]
+  shouldHaveMissingEvidence false                                    2             2   MATCH   [frozen field]
+  shouldHaveMissingEvidence absent                                  28            28   MATCH   [frozen field]
+  shouldHaveMissingEvidence present                                 89            89   MATCH   [frozen field]
+  authored allocation F1                                             4             4   MATCH   [frozen family template]
+  authored allocation F2                                             4             4   MATCH   [frozen family template]
+  authored allocation F3                                             3             3   MATCH   [frozen family template]
+  authored allocation F4                                             3             3   MATCH   [frozen family template]
+  authored allocation F5                                             3             3   MATCH   [frozen family template]
+  authored allocation F6                                             3             3   MATCH   [frozen family template]
+  authored allocation F7                                             3             3   MATCH   [frozen family template]
+  authored allocation F8                                             2             2   MATCH   [frozen family template]
+  authored control TOTAL                                            25            25   MATCH   [frozen family template]
+  holdout TOTAL rows                                                92            92   MATCH   [D-A + D-B + D-D]
+  INDEPENDENT rows                                                  67            67   MATCH   [D-A + D-B]
+  INDEPENDENT share (1dp %)                                       72.8          72.8   MATCH   [67 / 92]
+  G3 authored (semantic: clarificationExpected===true)               6             6   MATCH   [truth semantics]
+  G3 authored (declared flag inG3Denominator)                        6             6   MATCH   [family template flag]
+  G3 authored (enumerated F3+F6)                                     6             6   MATCH   [Amendment 1 enumeration]
+  G7 pole (semantic: pole===CLARIFICATION_MUST_NOT_ASK)             11            11   MATCH   [truth semantics]
+  G7 pole (declared flag inG7Pole)                                  11            11   MATCH   [family template flag]
+  G7 pole (enumerated F1+F2+F7)                                     11            11   MATCH   [Amendment 1 enumeration]
+  G4 denominator (semantic: truth state non-ACTIVE)                 21            21   MATCH   [truth semantics]
+  G4 denominator (declared flag inG4Denominator)                    21            21   MATCH   [family template flag]
+  G4 denominator (enumerated F1..F6 + F8b)                          21            21   MATCH   [Amendment 1 enumeration]
+  authored ACTIVE-truth rows (F7 + F8a)                              4             4   MATCH   [truth semantics]
+  G4 members + ACTIVE members = total                               25            25   MATCH   [closure]
+
+  quantities checked: 39   MATCH: 39   MISMATCH: 0
+
+  NOTE: the "declared" column for G4 carries the AMENDMENT 2 value (21). Amendment 1
+        declared 18 against an enumerated membership of 21 -- the contradiction D-87 recorded.
+        Amendment 2 changes ONLY that number. No family joins or leaves G4.
+
+NO ROW SELECTED. NO IDENTIFIER PRINTED. NO OBSERVATION TEXT PRINTED. NOTHING MATERIALISED.
+
+GATE RESULT: 39 / 39 MATCH, 0 MISMATCH -- Phase 4 PASSES. Source-row selection is unblocked.
+No total was hard-coded as proof of membership: every derived column comes from a frozen
+membership rule or a frozen source file.

@@ -27,7 +27,6 @@ export type BillingFeatureKey =
   | "workspaceFiltering"
   | "companyAnalytics"
   | "sharedReports"
-  | "hazlenzPreview"
   | "hazlenzFullReview"
   | "standardsReasoning"
   | "professionalReports"
@@ -51,6 +50,19 @@ export type BillingPlanDefinition = {
   entitlements: BillingEntitlements;
 };
 
+// v1.0 Free is the record-keeping tier. Every key below is the MEASURED behaviour of a
+// Free account against the running API, not an aspiration.
+//
+// `hazlenzPreview` was removed rather than left dormant: it was declared true for Free in
+// both this table and the frontend copy, was read by no code in either codebase, and gated
+// nothing -- so it read as "Free has a HazLenz preview" to anyone writing customer copy,
+// which is how the launch marketing came to advertise a preview that returns 402. It is not
+// referenced by any schema, migration or persisted row (EntitlementGrant and UserSubscription
+// store a tier, never this map), so removing it carries no migration risk. Reintroduce it only
+// alongside an endpoint that actually serves a preview.
+//
+// `evidenceGapPrompts` is false for the same reason it is unreachable: evidence-gap prompts
+// are produced by the classify response, and classify requires `fullSafeScope` (Pro).
 const freeEntitlements: BillingEntitlements = {
   fullSafeScope: false,
   cloudReports: false,
@@ -66,12 +78,11 @@ const freeEntitlements: BillingEntitlements = {
   workspaceFiltering: false,
   companyAnalytics: false,
   sharedReports: false,
-  hazlenzPreview: true,
   hazlenzFullReview: false,
   standardsReasoning: false,
   professionalReports: false,
   correctiveActionRecommendations: false,
-  evidenceGapPrompts: true,
+  evidenceGapPrompts: false,
   deeperExplainability: false,
   advancedReportReview: false,
   advancedStandardsSupport: false,
@@ -98,6 +109,7 @@ const proEntitlements: BillingEntitlements = {
   standardsReasoning: true,
   professionalReports: true,
   correctiveActionRecommendations: true,
+  evidenceGapPrompts: true,
   deeperExplainability: true,
   advancedReportReview: true,
   advancedStandardsSupport: true,
@@ -110,14 +122,14 @@ export const BILLING_PLAN_DEFINITIONS: Record<BillingTier, BillingPlanDefinition
     tier: "free",
     label: "Free",
     priceMonthly: 0,
-    description: "Basic inspection capture and limited advisory review.",
+    description: "Inspection and observation records with photo evidence. No HazLenz AI analysis.",
     stripePriceEnv: null,
     entitlements: freeEntitlements,
   },
   pro: {
     tier: "pro",
     label: "Pro",
-    priceMonthly: 9.99,
+    priceMonthly: 24.99,
     description: "Full access: professional inspection workflow, HazLenz AI review, cloud reports, team and audit tools.",
     stripePriceEnv: "STRIPE_PRO_PRICE_ID",
     legacyStripePriceEnv: "STRIPE_PLUS_PRICE_ID",

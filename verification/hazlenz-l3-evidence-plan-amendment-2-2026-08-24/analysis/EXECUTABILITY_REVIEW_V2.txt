@@ -1,0 +1,192 @@
+
+== SECTION A. DETERMINISM (re-proved from scratch) ==
+
+  gauntlet.sha             YES    source sha256 matches the frozen value
+                                  a95e54809c41b3eb...
+  gauntlet.rows            YES    physical row count === 150
+                                  150
+  gauntlet.keyPresent      YES    sort key 'scenarioId' present on every row
+                                  150/150
+  gauntlet.keyDistinct     YES    sort keys pairwise distinct => CMP is a STRICT TOTAL order
+                                  150/150
+  gauntlet.carrier         YES    verbatim carrier 'observation' non-empty on every row
+                                  150/150
+  gauntlet.offset          YES    offset derives mechanically to 0
+                                  last8=22f0adb4 uint32=586198452 %4=0
+  gauntlet.twoImpl         YES    TWO INDEPENDENT IMPLEMENTATIONS select the identical row set
+                                  |A|=38 |B|=38 identical=true
+  gauntlet.selCount        YES    reserved partition size === 38
+                                  38
+  gauntlet.partition       YES    partition sizes === [38,38,37,37] summing to 150
+                                  [38,38,37,37]
+  gauntlet.disjoint        YES    the four reservations are disjoint and exhaustive
+                                  overlap=0 covered=150/150
+  realism.sha              YES    source sha256 matches the frozen value
+                                  6f6897f11aa3b174...
+  realism.rows             YES    physical row count === 117
+                                  117
+  realism.keyPresent       YES    sort key 'id' present on every row
+                                  117/117
+  realism.keyDistinct      YES    sort keys pairwise distinct => CMP is a STRICT TOTAL order
+                                  117/117
+  realism.carrier          YES    verbatim carrier 'hazardObservation' non-empty on every row
+                                  117/117
+  realism.offset           YES    offset derives mechanically to 3
+                                  last8=5231a9cb uint32=1378986443 %4=3
+  realism.twoImpl          YES    TWO INDEPENDENT IMPLEMENTATIONS select the identical row set
+                                  |A|=29 |B|=29 identical=true
+  realism.selCount         YES    reserved partition size === 29
+                                  29
+  realism.partition        YES    partition sizes === [30,29,29,29] summing to 117
+                                  [30,29,29,29]
+  realism.disjoint         YES    the four reservations are disjoint and exhaustive
+                                  overlap=0 covered=117/117
+  seed.sha                 YES    reserve tranche sha256 matches
+                                  49aa40fdcc507d54...
+  inventory.physical       YES    physical rows === 367
+                                  367
+  inventory.distinct       YES    distinct NORM texts === 366
+                                  150+99+117
+  inventory.disjoint       YES    all three sources mutually disjoint under NORM
+                                  0/0/0
+  ambiguity.truth          YES    ambiguity truth measures 87 true / 2 false / 28 absent
+                                  87/2/28
+
+== SECTION B. D-F DERIVED-CARDINALITY CONSISTENCY (new) ==
+
+  alloc.F1                 YES    family F1 allocation === 4 (derived from frozen template)
+                                  4
+  alloc.F2                 YES    family F2 allocation === 4 (derived from frozen template)
+                                  4
+  alloc.F3                 YES    family F3 allocation === 3 (derived from frozen template)
+                                  3
+  alloc.F4                 YES    family F4 allocation === 3 (derived from frozen template)
+                                  3
+  alloc.F5                 YES    family F5 allocation === 3 (derived from frozen template)
+                                  3
+  alloc.F6                 YES    family F6 allocation === 3 (derived from frozen template)
+                                  3
+  alloc.F7                 YES    family F7 allocation === 3 (derived from frozen template)
+                                  3
+  alloc.F8                 YES    family F8 allocation === 2 (derived from frozen template)
+                                  2
+  alloc.total              YES    authored total === 25 (derived, not hard-coded)
+                                  25
+  composition.total        YES    holdout total === 92 (38 + 29 + 25, all derived)
+                                  38+29+25
+  composition.independent  YES    INDEPENDENT rows === 67 (derived)
+                                  67
+  composition.share        YES    INDEPENDENT share === 72.8% (derived)
+                                  72.8%
+  G3.tripleAgree           YES    G3 authored: semantic === flag === enumerated === 6
+                                  semantic=6 flag=6 enumerated=6
+  G7.tripleAgree           YES    G7 pole: semantic === flag === enumerated === 11
+                                  semantic=11 flag=11 enumerated=11
+  G4.tripleAgree           YES    G4 denominator: semantic === flag === enumerated === 21 (AMENDMENT 2)
+                                  semantic=21 flag=21 enumerated=21
+  G4.closure               YES    G4 members + ACTIVE-truth members exhaust the 25 exactly (21 + 4)
+                                  21 + 4 = 25
+  G4.notEighteen           YES    the superseded value 18 is NOT reproducible from any frozen membership
+                                  all three derivations = 21
+
+== SECTION C. CLAUSE PRESENCE (base + A1 + A2) ==
+
+  A1.present               YES    Amendment 1 is present and NOT erased
+                                  AMENDMENT 1 - D-A … D-D (2026-08-24) BINDING...
+  A2.present               YES    Amendment 2 is present and append-only
+                                  AMENDMENT 2 - D-E G4 DENOMINATOR RECONCILIAT...
+  A1.intact                YES    Amendment 1 original G4 line preserved verbatim
+                                  G4 (false ACTIVE) denominator: exactly 18...
+  D-A.modulus              YES    D-A modulus explicit
+                                  | 6 | modulus | m = 4 |...
+  D-A.reserve              YES    D-A reservation schedule explicit
+                                  0 → 1 → 2 → 3, cyclic from k...
+  D-B.mapping              YES    D-B canonical identifier explicit
+                                  Canonical scenario identifier: id....
+  D-B.carrier              YES    D-B verbatim carrier explicit
+                                  Canonical verbatim observation carrier: haza...
+  D-B.pop                  YES    D-B strides the full 117-row population
+                                  THE ENTIRE 117-ROW PHYSICAL SOURCE....
+  D-B.noflag               YES    D-B forbids ambiguity-gated selection
+                                  is FORBIDDEN as a selection criterion...
+  D-C.truth                YES    D-C names the only ambiguity truth source
+                                  The only ambiguity truth source is the decla...
+  D-C.numbers              YES    D-C records 87 / 2 / 28
+                                  | === true | 87 |...
+  G3.denA                  YES    G3 DEN_A is an executable predicate
+                                  DEN_A = { r ∈ holdout : r.clarificationExpec...
+  G3.denB                  YES    G3 DEN_B is an executable predicate
+                                  DEN_B = { r ∈ DEN_A : provider emitted at le...
+  G3.absent                YES    G3 absent-field treatment explicit
+                                  absent → false...
+  G3.zero                  YES    G3 zero-candidate treatment explicit
+                                  is a MISS, counted in the denominator...
+  G3.threshold             YES    G3 threshold unchanged at 100% on both
+                                  recall_A === 1.0 AND recall_B === 1.0...
+  D-D.total                YES    D-D total is exact
+                                  The total is exactly 25....
+  D-D.alloc                YES    D-D per-family allocation exact
+                                  4 + 4 + 3 + 3 + 3 + 3 + 3 + 2 = 25...
+  D-D.g7gov                YES    G7 membership is a family property
+                                  G7 MEMBERSHIP IS A PROPERTY OF THE FAMILY SP...
+  D-D.prov                 YES    provenance marking predeclared
+                                  | provenanceClass | INDEPENDENT_GAUNTLET · I...
+  D-D.overlap              YES    duplicate/overlap normalization predeclared
+                                  Comparison key: NORM(carrier)...
+  D-D.indep                YES    authoring independence predeclared
+                                  MUST NOT be read, previewed, or semantically...
+  S-1                      YES    NORM defined exactly
+                                  NORM(s) = String(s).normalize('NFC').toLower...
+  S-2                      YES    CMP defined exactly
+                                  CMP(a, b) = Buffer.compare(...
+  S-3                      YES    OFFSET defined exactly
+                                  OFFSET(digest, m) = parseInt(digest.slice(-8...
+  S-5                      YES    source-drift guard predeclared
+                                  If either differs, the builder MUST THROW....
+  inv.counts               YES    physical-vs-distinct distinction recorded
+                                  The 366 of record is the DISTINCT-TEXT count...
+  D-E.value                YES    D-E declares the G4 denominator as 21
+                                  | G4 DENOMINATOR | | 21 |...
+  D-E.arith                YES    D-E shows the arithmetic
+                                  4 + 4 + 3 + 3 + 3 + 3 + 1 = 21...
+  D-E.scope                YES    D-E changes only the cardinality
+                                  G4 DECLARED CARDINALITY: 18 → 21. NOTHING EL...
+  D-E.f6                   YES    D-E preserves F6 in G4
+                                  change F6's membership...
+  D-E.preserve             YES    D-E preserves the false-ACTIVE semantics
+                                  An ACTIVE result on F3 or F6 is a G4 false-A...
+  D-E.nature               YES    D-E records the defect as arithmetic, not substantive
+                                  18 was an arithmetic contradiction, not a co...
+  D-E.closure              YES    D-E records the closure check
+                                  21 + 4 = 25...
+  D-F.invariant            YES    D-F derived-cardinality invariant present
+                                  FOR EVERY FROZEN ACCEPTANCE SET WHOSE MEMBER...
+  D-F.general              YES    D-F is general, not G4-specific
+                                  This invariant is general. It is not limited...
+  D-F.never                YES    D-F forbids inheriting a declared number
+                                  A declared number must NEVER be accepted mer...
+  D-F.cross                YES    D-F requires semantic/flag cross-check
+                                  A disagreement between the two is itself a c...
+  D-F.stop                 YES    D-F stops rather than opportunistically repairing
+                                  Do not repair a second contradiction...
+  A1.freezeDead            YES    Attempt-1 freeze may never be reused
+                                  MUST NEVER be reused as the freeze identity ...
+  A2.newFreeze             YES    Attempt 2 requires a NEW freeze record
+                                  Attempt 2 requires a NEW construction author...
+  A2.unspent               YES    holdout remains unspent
+                                  HOLDOUT_SPENT remains false....
+
+== PHASE 4 -- INDEPENDENT EXECUTABILITY REVIEW, FULL RE-RUN ==
+  governing plan: base + Amendment 1 + Amendment 2
+  criteria: 84   YES: 84   NO: 0
+  RESULT: 84/84 independently executable
+
+  (1) every construction decision predetermined BEFORE source selection : YES
+  (2) every declared derived cardinality agrees with its membership     : YES
+
+  The Amendment-1 verdict of 50/50 was NOT inherited. Every criterion above was
+  re-evaluated, and Section B did not exist in that review -- it is the gap that let
+  the G4 contradiction through.
+
+NO ROW SELECTED FOR OUTPUT. NO SOURCE IDENTIFIER PRINTED. NO OBSERVATION TEXT PRINTED.
+NO HOLDOUT, NO FREEZE RECORD, NO BUILDER OUTPUT, NO SCORER. NO INFERENCE. NO EGRESS.

@@ -1,0 +1,24 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASE 4 -- FROZEN EXECUTION IDENTITIES, COMPLETE RESULT
+recorded 2026-08-25T20:24:50Z
+
+  provider                   Anthropic
+  authorized / requested     claude-sonnet-5
+  prompt identity            hazlenz.l3.prompt.v6                     MATCH (re-derived)
+  sha256(L3_SYSTEM_PROMPT)   b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf  MATCH (re-derived)
+  run schema (serialised)    a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385  MATCH
+                             RE-SERIALISED THROUGH THE FROZEN buildProposalSchema() PATH on the
+                             locked cohort's first scenario E-FLD-147 -- NOT inferred from the
+                             outer file digest of reasoning-contract.types.ts alone.
+  sanctioned input builder   2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  MATCH
+  cohort harness             73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  MATCH
+  Anthropic shim             76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  MATCH
+  acceptance scorer          ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  MATCH
+  validator                  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  MATCH
+  binder                     c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  MATCH
+
+  TOTALS   outer file digests  OK = 11  MISMATCH = 0
+           inner re-derived    OK =  4  MISMATCH = 0
+           COMBINED            OK = 15  MISMATCH = 0
+
+  NO FROZEN IDENTITY WAS MODIFIED, AND NONE NEEDED TO BE. The gate proceeds to Phase 5.

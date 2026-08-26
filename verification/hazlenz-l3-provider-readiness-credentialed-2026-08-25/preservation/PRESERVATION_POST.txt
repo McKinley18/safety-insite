@@ -1,0 +1,67 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASE 8 -- PRESERVATION, POST
+recorded 2026-08-25T20:29:11Z
+
+HEAD                a7b21a2636b4a80ecaf823aef4558d9ea8915230         (unchanged)
+branch              release/insite-rc-2026-08-18
+upstream            origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+divergence L/R      0/0
+stash count         4   (4 before, NONE created, NONE applied, NONE dropped)
+tag count           23   (23 before, unchanged)
+staged files        0
+
+=== PRODUCTION AND DATA SURFACES -- UNTOUCHED ===
+git diff HEAD -- backend/src         0 lines
+git diff HEAD -- backend/scripts     0 lines (the three frozen harnesses)
+git diff HEAD -- safescope-data      0 lines
+git diff HEAD -- verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24  (untracked package, hash-verified above)
+
+=== THE UNRELATED WORKTREE, PRESERVED BYTE-FOR-BYTE ===
+All 11 pre-existing tracked modifications and all pre-existing untracked directories are
+intact. NO reset, NO checkout --, NO restore, NO stash, NO clean was run at any point.
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+ M verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+ M verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+?? "Safety InSite Logos/"
+?? verification/hazlenz-l3-2p-provider-requirements-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2q-clarification-precision-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2r-acceptance-pre-authorization-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2026-08-24/
+?? verification/hazlenz-l3-final-acceptance-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-credentialed-2026-08-25/
+?? verification/hazlenz-l3-provider-readiness-final-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+
+=== WHAT THIS PHASE ADDED ===
+One new untracked evidence directory: verification/hazlenz-l3-provider-readiness-credentialed-2026-08-25/
+Nothing else was created, modified or deleted outside it, except the two master documents
+docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json, which this phase is
+required to update and which were already modified in the pre-existing worktree.
+
+=== FROZEN IDENTITIES, RE-CHECKED AFTER THE PROVIDER CALL ===
+  OK        backend/scripts/activate-l32j-shipped-corpus.ts
+  OK        backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+  OK        backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  OK        backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+  OK        backend/scripts/ablate-l32g-state-separation.ts
+  OK        verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/anthropic-ollama-shim.js
+  OK        verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/score.js
+  OK        backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  OK        backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  OK        backend/scripts/diagnose-l32k-shipped-residual.ts
+  OK        verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/scorer/acceptance-scorer.js
+
+  OK = 11   MISMATCH = 0   -- unchanged by the provider call

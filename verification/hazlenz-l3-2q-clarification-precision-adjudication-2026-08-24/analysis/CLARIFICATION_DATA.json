@@ -1,0 +1,249 @@
+{
+  "phase": "L3-2q",
+  "role": "CLARIFICATION PRECISION ADJUDICATION -- zero inference, frozen artifacts only",
+  "cohort": {
+    "HIGH_CONSEQUENCE": [
+      "E-FLD-147",
+      "E-OA-07",
+      "F-WC-02",
+      "F-WC-03",
+      "F-WC-09",
+      "F-FLD-159"
+    ],
+    "CLARIFICATION_REQUIRED": [
+      "F-OA-01 [Q required]",
+      "F-OA-02 [Q required]",
+      "F-CL-01 [Q required]",
+      "F-CL-03 [Q required]",
+      "B10 [Q required]"
+    ],
+    "CLARIFICATION_MUST_NOT_ASK": [
+      "C-CS-05",
+      "F-CL-04"
+    ],
+    "REGRESSION_ACTIVE": [
+      "B08",
+      "C11",
+      "RC-08",
+      "H-AM-05",
+      "H-FLD-141",
+      "H-NG-02"
+    ],
+    "NEGATIVE_CONTROL": [
+      "F-PS-04",
+      "F-NT-01",
+      "F-TB-02"
+    ],
+    "DECIDED_NON_ACTIVE": [
+      "F-NC-01",
+      "F-COR-01"
+    ]
+  },
+  "providers": {
+    "claude-sonnet-5 A": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/6",
+      "unnecessaryQuestions": [
+        {
+          "id": "B08",
+          "pole": "REGRESSION_ACTIVE"
+        }
+      ]
+    },
+    "claude-sonnet-5 B": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/6",
+      "unnecessaryQuestions": [
+        {
+          "id": "B08",
+          "pole": "REGRESSION_ACTIVE"
+        }
+      ]
+    },
+    "gemini-3.7-flash A *": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/5",
+      "unnecessaryQuestions": []
+    },
+    "gemini-3.6-flash A *": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/5",
+      "unnecessaryQuestions": []
+    },
+    "gemini-3.1-pro-prev *": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/5",
+      "unnecessaryQuestions": []
+    },
+    "qwen3-coder:30b *": {
+      "mustNotAskPole": {
+        "scenarios": [
+          "C-CS-05",
+          "F-CL-04"
+        ],
+        "askedOnAny": false,
+        "score": "2/2"
+      },
+      "recallCandidate": "5/5",
+      "recallScenario": "5/5",
+      "precision": "5/5",
+      "unnecessaryQuestions": []
+    }
+  },
+  "b08": {
+    "claude-sonnet-5 A": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 5,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedAssertsActive": true,
+      "validatedHazardCount": 5,
+      "raisedQuestion": true,
+      "carriedBy": "CANDIDATE",
+      "undecidedCandidatePresent": true
+    },
+    "claude-sonnet-5 B": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 4,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedAssertsActive": true,
+      "validatedHazardCount": 4,
+      "raisedQuestion": true,
+      "carriedBy": "CANDIDATE",
+      "undecidedCandidatePresent": true
+    },
+    "gemini-3.7-flash A *": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "validationState": "REJECTED_MODEL_OUTPUT",
+      "validationIssues": [
+        "UNGROUNDED_CORRECTIVE_ACTION"
+      ],
+      "validatedAssertsActive": false,
+      "validatedHazardCount": null,
+      "raisedQuestion": false,
+      "carriedBy": "none",
+      "undecidedCandidatePresent": false
+    },
+    "gemini-3.6-flash A *": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedAssertsActive": true,
+      "validatedHazardCount": 2,
+      "raisedQuestion": false,
+      "carriedBy": "none",
+      "undecidedCandidatePresent": false
+    },
+    "gemini-3.1-pro-prev *": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedAssertsActive": true,
+      "validatedHazardCount": 2,
+      "raisedQuestion": false,
+      "carriedBy": "none",
+      "undecidedCandidatePresent": false
+    },
+    "qwen3-coder:30b *": {
+      "pole": "REGRESSION_ACTIVE",
+      "expectActive": true,
+      "expectClarification": false,
+      "candidateCount": 2,
+      "modelStates": [
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "validationState": "VALID",
+      "validationIssues": [],
+      "validatedAssertsActive": true,
+      "validatedHazardCount": 2,
+      "raisedQuestion": false,
+      "carriedBy": "none",
+      "undecidedCandidatePresent": false
+    }
+  }
+}

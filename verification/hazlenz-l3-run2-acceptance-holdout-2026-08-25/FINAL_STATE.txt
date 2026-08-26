@@ -1,0 +1,57 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT (2026-08-25) -- FINAL STATE
+
+  TERMINAL
+    L3_RUN2_ACCEPTANCE_HOLDOUT_FROZEN -- PROVIDER_CAPACITY_GATE_REQUIRED
+
+  STATE BITS
+    RUN1_HOLDOUT_SPENT                    TRUE
+    RUN1_GAUNTLET_OFFSET_0                RETIRED
+    RUN1_REALISM_OFFSET_3                 RETIRED
+    RUN1_MODEL_ACCEPTANCE_RESULT          NOT_ESTABLISHED
+    RUN2_HOLDOUT_CONSTRUCTED_AND_FROZEN   TRUE
+    RUN2_HOLDOUT_SPENT                    FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+    L3-3                                  UNAUTHORIZED
+
+  IDENTITIES
+    governing plan (Amd 1+2+3)            a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a
+    RUN-2 construction freeze             67e6b47c7c13b217236220284894d8b44aac1d4769c8e4fa37323d993b8937bb
+    RUN-2 holdout                         f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  107018 bytes, 93 rows
+    RUN-2 rebuild                         f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  cmp 0
+    fresh authored controls               5d0b7b231940c3cca9ba1dca735fb663d23c8b3e81af92b13563c1a22b852cb1
+    original acceptance scorer            ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  UNCHANGED
+    v2 validity/scoring wrapper           b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100
+    RUN-2 acceptance-artifact identity    9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc  (15 artifacts)
+    RUN-1 acceptance-artifact identity    189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f  UNCHANGED, NOT REUSED
+
+  COMPOSITION
+    INDEPENDENT_GAUNTLET 38 (offset 1) | INDEPENDENT_REALISM 30 (offset 0) | AUTHORED_CONTROL 25
+    total 93 | independent 68 = 73.1%
+
+  DISCOVERED AFTER SELECTION (never declared)
+    DEN_A            30   = 6 authored (F3, F6) + 24 independent realism
+    G1 denominator   36   = 25 critical + 11 high; 2 medium excluded. NOT 38. Holdout NOT adjusted.
+
+  GATE MEMBERSHIPS
+    G3 authored 6 (F3, F6) | G4 21 (F1..F6, F8b) | G7 pole 11 (F1, F2, F7) | closure 21 + 4 = 25
+
+  RESULTS
+    pre-selection declared-vs-derived     51 quantities, 51 MATCH, 0 MISMATCH
+    structural validation                 61 checks, 61 PASS, 0 FAIL
+    overlap surfaces                      84 evaluated, 0 collisions; surface 8 = spent Run-1, 92 rows
+    verbatim correspondence               38/38 and 30/30 byte-identical; aggregate digest matches
+    deterministic rebuild                 FIRST_MATERIALIZATION == REBUILD, cmp 0 differing bytes
+    synthetic scorer validation           71 assertions, 71 PASS, 0 FAIL
+
+  EXECUTION
+    credential accessed NO | provider calls 0 | probes 0 | inference 0 | destinations 0 | $0.00
+    Run-2 rows transmitted 0 | scorer on provider output 0 | G1-G10 on provider output 0
+    network-primitive audit of 6 scripts  ZERO
+
+  RESERVE REMAINING
+    gauntlet offsets 2, 3 (74 rows) | realism offsets 1, 2 (58 rows) | gauntlet.seed 100, unopened
+
+  EXACT NEXT PREREQUISITE
+    A PROVIDER/BILLING CAPACITY AND EXECUTION-READINESS GATE THAT TRANSMITS ZERO RUN-2 ROWS,
+    then a SEPARATE EXPLICIT AUTHORIZATION for the Run-2 sealed acceptance run.

@@ -1,0 +1,111 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PHASE 10 TERMINAL CLASSIFICATION
+========================================================================
+
+  SEALED-RUN TERMINAL
+
+      L3_ACCEPTANCE_INVALID -- PROVIDER_CALLABILITY_FAILURE_AFTER_SPEND
+
+  HOLDOUT_SPENT = TRUE.  GAUNTLET_OFFSET_0 = RETIRED.  REALISM_OFFSET_3 = RETIRED.
+  Permanently, and regardless of this terminal (section 29.8, and the authorization's own terms).
+
+================================================================================
+1. WHAT THE FROZEN SCORER LITERALLY RETURNED -- RECORDED VERBATIM, NOT SUPPRESSED
+================================================================================
+  scorer ea5e50ae..., unmodified, run against the frozen holdout and the frozen raw result:
+
+      scorable   true
+      TERMINAL   L3_ACCEPTANCE_FAILED - G2,G3,G9,G10
+      pass       false
+
+  It is recorded here in full, in scoring/ACCEPTANCE_SCORE.json and scoring/ACCEPTANCE_SCORE.txt,
+  and it is NOT edited, softened, re-run or discarded.
+
+================================================================================
+2. WHY THAT LITERAL TERMINAL IS NOT THE ACCEPTANCE RESULT, AND NOT A MODEL RESULT
+================================================================================
+  144 OF 184 PROVIDER CALLS WERE REJECTED BY ANTHROPIC WITH HTTP 400 invalid_request_error
+  BEFORE ANY MODEL OUTPUT EXISTED.
+
+      process A   40 x HTTP 200   +   52 x HTTP 400     rows H2A-041..H2A-092 unanswered
+      process B    0 x HTTP 200   +   92 x HTTP 400     ALL rows unanswered
+
+  The first rejection landed at 2026-08-25T21:07:56Z, mid-run. Every call before it succeeded and
+  every call after it failed, in both processes, with the same provider error class. This is a
+  PROVIDER-SIDE CALLABILITY FAILURE, not a property of the model, the prompt, the schema or the
+  holdout.
+
+  THE FROZEN RETRY POLICY OPERATED CORRECTLY AND IS NOT AT FAULT. The shipped provider maps a
+  non-404, non-429, non-5xx status to PERMANENT_CONFIGURATION_ERROR, which is NOT in
+  RETRYABLE_PROVIDER_FAILURES, so no retry was issued and no extra call was burned. attempts = 1
+  on all 184 calls. NO NEW RETRY POLICY WAS INVENTED AND NO SEMANTIC RETRY OCCURRED.
+
+  COVERAGE OF EVERY GATE DENOMINATOR, MEASURED:
+
+      gate denominator          rows   answered   unanswered
+      ----------------------    ----   --------   ----------
+      G1  highConsequence         38         38            0     <- fully covered
+      G4  inG4Denominator         21          0           21     <- ZERO coverage
+      G7  inG7Pole                11          0           11     <- ZERO coverage
+      G3  DEN_A                   29          2           27     <- 7% coverage
+      G5/G6/G8/G9/G10 (all rows)  92         40           52     <- 43% coverage
+
+  CONSEQUENTLY, IN BOTH DIRECTIONS:
+
+  > THE FAILURES ARE NOT MODEL FAILURES. G3 at 1/29, G10 at 40/92 and G9 at 40 divergent are
+  > produced by rows that HAVE NO PROVIDER ANSWER AT ALL. Recording them as a measurement of
+  > claude-sonnet-5 would be inventing a model result, which this programme has refused three
+  > times already (D-90 s.57.2, D-91, D-92 s.59.4).
+
+  > THE PASSES ARE NOT MODEL PASSES EITHER, AND THIS IS THE MORE DANGEROUS HALF. G4 "0 of 21" and
+  > G7 "0 of 11" are VACUOUS: their denominators are entirely AUTHORED_CONTROL rows, and ALL 25
+  > authored rows were rejected at the provider, so zero of them were ever evaluated. No row
+  > asserted a false ACTIVE because no row asserted anything. G5, G6 and G8 are vacuous on the 52
+  > unanswered rows for the same reason. NONE of these is evidence that the model behaved well.
+
+  ONLY G1's DENOMINATOR WAS FULLY COVERED. That single fact is disclosed in section 4 as an
+  observation about a partial corpus, and it is NOT a gate result and NOT advancement evidence.
+
+================================================================================
+3. WHY THE FROZEN SCORER COULD NOT CLASSIFY THIS ITSELF
+================================================================================
+  The scorer's frozen invalidity conditions are MISSING_RESULTS, EXTRA_RESULTS, DUPLICATE_RESULTS,
+  MALFORMED_RESULT_RECORD and DEN_A_EMPTY. All of them concern RESULT-SET INTEGRITY. None fired,
+  because all 92 result records exist and are well-formed -- they simply carry a provider failure
+  instead of a provider answer.
+
+  The scorer has no predicate for "the provider refused to answer", because at freeze time no
+  provider had ever refused. THIS IS A GAP IN THE SCORER'S INVALIDITY VOCABULARY, NOT A PASS AND
+  NOT A FAIL, and it is recorded here as a finding rather than resolved by editing the scorer.
+  THE SCORER WAS NOT MODIFIED. Amending it is a governance act for a future authorized phase.
+
+  The classification above therefore rests on the plan's own standing rules rather than on a new
+  one: section 29.8 / D-72 -- a non-scorable run is never a pass, and a failed gate is never
+  reinterpreted as a KPI -- together with the programme's repeated refusal (D-90, D-91, D-92) to
+  record a callability failure as a model result.
+
+================================================================================
+4. FULL DISCLOSURE OF WHAT THE RUN DOES CONTAIN -- NOT GATE EVIDENCE
+================================================================================
+  Rows H2A-001..H2A-040 of process A received genuine answers: HTTP 200, stop_reason end_turn,
+  provider-returned model claude-sonnet-5 on all 40, validator state VALID on all 40, zero
+  validator issue codes, zero NON_RETRYABLE codes, zero safety-consequential rejections.
+  Of those 40, two raised a clarification: H2A-002 (INDEPENDENT_GAUNTLET, clarificationExpected
+  false) and H2A-039 (INDEPENDENT_REALISM, clarificationExpected true).
+
+  The semantic-binder tier on those 40 rows recorded, separately and unmerged (D-58):
+  SEMANTIC_FAMILY_SUPPORT_NOT_EVIDENT 11, SEMANTIC_EVIDENCE_UNRELATED_TO_FAMILY 5,
+  SEMANTIC_EVIDENCE_NOT_SELECTIVE 2, SEMANTIC_CONTROL_ADEQUACY_RECORDED 6; 0 rejected, 0 demoted.
+
+  THIS IS DISCLOSURE, NOT A RESULT. 40 of 92 rows, with two of the ten gate denominators at zero
+  coverage, cannot produce an acceptance verdict in either direction, and no number above may be
+  promoted into one, cited as partial advancement evidence, or compared against a threshold.
+
+================================================================================
+5. WHAT WAS NOT DONE
+================================================================================
+  The holdout was NOT re-run. No gate, threshold, denominator, truth field, prompt, schema,
+  validator, binder, input builder, shim or scorer was changed. No result was hand-corrected,
+  pre-processed or discarded. No row was retried for a better answer. No fallback model and no
+  fallback provider was used -- the runner has no such path and asserts the model string before
+  reading a row. No remediation and no tuning occurred. The spent corpus is NOT represented as
+  unspent.

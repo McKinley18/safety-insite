@@ -1,0 +1,278 @@
+{
+  "phase": "L3-2p",
+  "role": "REQUIREMENTS ADJUDICATION -- zero inference, frozen artifacts only",
+  "providers": {
+    "claude-sonnet-5 A": {
+      "source": "hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/results/S5-SHIPPED_A.json",
+      "rows": 24,
+      "rejections": 1,
+      "aggregateValidityPct": 95.8,
+      "safetyConsequential": [],
+      "safetyPreserving": [
+        {
+          "id": "F-COR-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        }
+      ],
+      "codes": {
+        "UNGROUNDED_CORRECTIVE_ACTION": 1
+      },
+      "hcValidated": "13/13",
+      "hcModel": "13/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/6",
+      "unnecessary": [
+        "B08"
+      ]
+    },
+    "claude-sonnet-5 B": {
+      "source": "hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/results/S5-SHIPPED_B.json",
+      "rows": 24,
+      "rejections": 2,
+      "aggregateValidityPct": 91.7,
+      "safetyConsequential": [],
+      "safetyPreserving": [
+        {
+          "id": "F-NC-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        },
+        {
+          "id": "F-COR-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        }
+      ],
+      "codes": {
+        "UNGROUNDED_CORRECTIVE_ACTION": 2
+      },
+      "hcValidated": "13/13",
+      "hcModel": "13/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/6",
+      "unnecessary": [
+        "B08"
+      ]
+    },
+    "gemini-3.7-flash A *": {
+      "source": "hazlenz-l3-2n-provider-qualification-2026-08-24/results/F37-SHIPPED_A.json",
+      "rows": 24,
+      "rejections": 7,
+      "aggregateValidityPct": 70.8,
+      "safetyConsequential": [
+        {
+          "id": "E-OA-07",
+          "pole": "HIGH_CONSEQUENCE"
+        },
+        {
+          "id": "F-FLD-159",
+          "pole": "HIGH_CONSEQUENCE"
+        },
+        {
+          "id": "B08",
+          "pole": "REGRESSION_ACTIVE"
+        },
+        {
+          "id": "C11",
+          "pole": "REGRESSION_ACTIVE"
+        },
+        {
+          "id": "RC-08",
+          "pole": "REGRESSION_ACTIVE"
+        },
+        {
+          "id": "H-FLD-141",
+          "pole": "REGRESSION_ACTIVE"
+        }
+      ],
+      "safetyPreserving": [
+        {
+          "id": "F-COR-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        }
+      ],
+      "codes": {
+        "UNGROUNDED_CORRECTIVE_ACTION": 7
+      },
+      "hcValidated": "7/13",
+      "hcModel": "13/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/5",
+      "unnecessary": []
+    },
+    "gemini-3.6-flash A *": {
+      "source": "hazlenz-l3-2n-provider-qualification-2026-08-24/results/F36-SHIPPED_A.json",
+      "rows": 24,
+      "rejections": 4,
+      "aggregateValidityPct": 83.3,
+      "safetyConsequential": [
+        {
+          "id": "F-FLD-159",
+          "pole": "HIGH_CONSEQUENCE"
+        },
+        {
+          "id": "C11",
+          "pole": "REGRESSION_ACTIVE"
+        },
+        {
+          "id": "RC-08",
+          "pole": "REGRESSION_ACTIVE"
+        }
+      ],
+      "safetyPreserving": [
+        {
+          "id": "F-COR-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        }
+      ],
+      "codes": {
+        "UNGROUNDED_CORRECTIVE_ACTION": 4
+      },
+      "hcValidated": "10/13",
+      "hcModel": "13/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/5",
+      "unnecessary": []
+    },
+    "gemini-3.1-pro-prev *": {
+      "source": "hazlenz-l3-2j-cross-provider-closure-2026-08-24/results/shipped-gemini-V_PRE_ACTIVATION.json",
+      "rows": 24,
+      "rejections": 1,
+      "aggregateValidityPct": 95.8,
+      "safetyConsequential": [],
+      "safetyPreserving": [
+        {
+          "id": "F-COR-01",
+          "pole": "DECIDED_NON_ACTIVE"
+        }
+      ],
+      "codes": {
+        "UNGROUNDED_CORRECTIVE_ACTION": 1
+      },
+      "hcValidated": "13/13",
+      "hcModel": "13/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/5",
+      "unnecessary": []
+    },
+    "qwen3-coder:30b *": {
+      "source": "hazlenz-l3-2j-carrier-activation-2026-08-24/results/shipped-qwen-V_PRE_ACTIVATION.json",
+      "rows": 24,
+      "rejections": 1,
+      "aggregateValidityPct": 95.8,
+      "safetyConsequential": [
+        {
+          "id": "E-FLD-147",
+          "pole": "HIGH_CONSEQUENCE"
+        }
+      ],
+      "safetyPreserving": [],
+      "codes": {
+        "DUPLICATE_CANDIDATE": 1
+      },
+      "hcValidated": "11/13",
+      "hcModel": "12/13",
+      "falseActive": "0/11",
+      "clarRecallCandidate": "5/5",
+      "clarRecallScenario": "5/5",
+      "clarPrecision": "5/5",
+      "unnecessary": []
+    }
+  },
+  "reproducibility": {
+    "claude-sonnet-5": {
+      "rows": 24,
+      "underL32oKey": [
+        "F-CL-01",
+        "F-CL-03",
+        "B08",
+        "H-AM-05",
+        "H-NG-02",
+        "F-NC-01"
+      ],
+      "underL32nKey": [
+        "F-CL-01",
+        "F-CL-03",
+        "F-NC-01"
+      ],
+      "underSafetyKey": []
+    },
+    "gemini-3.7-flash": {
+      "rows": 24,
+      "underL32oKey": [
+        "H-FLD-141",
+        "F-PS-04",
+        "F-NC-01"
+      ],
+      "underL32nKey": [
+        "H-FLD-141",
+        "F-NC-01"
+      ],
+      "underSafetyKey": [
+        "H-FLD-141"
+      ]
+    },
+    "gemini-3.6-flash": {
+      "rows": 24,
+      "underL32oKey": [
+        "B08",
+        "C11",
+        "F-NT-01",
+        "F-TB-02",
+        "F-NC-01"
+      ],
+      "underL32nKey": [
+        "B08",
+        "C11",
+        "F-NC-01"
+      ],
+      "underSafetyKey": [
+        "B08",
+        "C11"
+      ]
+    },
+    "gemini-3.1-pro-prev": {
+      "rows": 24,
+      "underL32oKey": [
+        "F-NT-01",
+        "F-TB-02"
+      ],
+      "underL32nKey": [],
+      "underSafetyKey": []
+    }
+  },
+  "keyDefinitions": {
+    "KEY_L32O": [
+      "outcome",
+      "candidateCount",
+      "modelStates",
+      "modelAssertsActive",
+      "validationState",
+      "validatedAssertsActive",
+      "candidateBorneClarification",
+      "validatedProposalLevelClarification"
+    ],
+    "KEY_L32N": [
+      "outcome",
+      "modelAssertsActive",
+      "validationState",
+      "validatedAssertsActive",
+      "candidateBorneClarification",
+      "validatedProposalLevelClarification"
+    ],
+    "KEY_SAFETY": [
+      "modelAssertsActive",
+      "validatedAssertsActive",
+      "candidateBorneClarification",
+      "clarificationCarriedAnywhere"
+    ]
+  }
+}

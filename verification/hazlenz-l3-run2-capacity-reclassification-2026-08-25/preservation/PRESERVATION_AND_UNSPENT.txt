@@ -1,0 +1,62 @@
+L3 RUN-2 CAPACITY RECLASSIFICATION -- PRESERVATION AND UNSPENT PROOF
+verified 2026-08-25
+
+== REPOSITORY ==
+  HEAD          a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch        release/insite-rc-2026-08-18
+  divergence    behind 0  ahead 0
+  EXPECTED HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230  -> MATCH
+
+== RUN-2 IDENTITIES, RECOMPUTED FROM THE ACTUAL FILES ==
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/holdout/holdout-l3-acceptance-run2.json
+  EXPECTED f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f  -> MATCH
+  artifact identity recomputed  9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+  EXPECTED                      9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc  -> MATCH
+  NO RUN-2 OBSERVATION VALUE WAS OPENED BY THIS PHASE.
+
+== PRIOR DETERMINATION PACKAGE -- NOT REWRITTEN ==
+  Every file of hazlenz-l3-run2-capacity-determination-2026-08-25/ is byte-identical to its
+  own PACKAGE_MANIFEST.txt. The $16.97 determination stands as recorded; it was superseded
+  by a funding change, NOT amended, and its INSUFFICIENT verdict was correct on its input.
+  MATCH     INDEX.md
+  MATCH     NEXT_ACTION.md
+  MATCH     STATUS.md
+  MATCH     cost/CAPACITY_DETERMINATION.txt
+  MATCH     cost/compute-run2-capacity.js
+  MATCH     preservation/PRESERVATION_AND_UNSPENT.txt
+
+== CREDENTIAL / IDENTITY / EXECUTION-PATH EVIDENCE -- PRESERVED, NOT RE-PURCHASED ==
+  D-93 (section 60) established PROVIDER_CALLABILITY = PASS, MODEL_IDENTITY = PASS and
+  EXECUTION_PATH_COMPATIBILITY = PASS, and section 61 independently corroborated all three:
+  40 HTTP-200 calls, respondedModel = claude-sonnet-5 on every one, end_turn throughout,
+  full prompt/schema/binder/validator traversal. NONE OF THAT WAS RE-TESTED HERE -- re-proving
+  it costs money and funding is not a reason to re-buy evidence that already exists.
+
+  A ZERO-COST, NON-TRANSMITTING credential PRESENCE probe was run (no provider contact,
+  no value printed) to confirm nothing had materially changed:
+    current env / login shell / interactive shell .. PRESENT on all three paths
+    length class .................................... 108 (unchanged in class from D-93)
+    positive control ............................... DETECTED -- the instrument can see a
+                                                     variable, so PRESENT is a measurement
+  NO MATERIAL CHANGE. The three axes are carried forward unchanged.
+
+== ZERO-SPEND PROOF ==
+  provider calls this phase ..... 0
+  API cost this phase ........... $0.00
+  readiness/availability probes . 0
+  Run-2 rows transmitted ........ 0
+  reserved rows transmitted ..... 0
+  Run-2 observations opened ..... 0
+  inference executions .......... 0
+  RUN2_HOLDOUT_SPENT ............ FALSE
+
+== SINGLE-USE STATE, UNCHANGED ==
+  gauntlet offset 1 / realism offset 0 .. SELECTED, FROZEN, UNSPENT
+  gauntlet offsets 2,3 / realism 1,2 .... RESERVED
+  gauntlet.seed (100 rows) .............. UNOPENED
+  RUN1 offsets 0 and 3 .................. REMAIN RETIRED; not revisited
+
+== FROZEN SURFACES NOT TOUCHED ==
+  prompt, schema, validator, binder, input builder, shim, both scorers, every G1-G10
+  threshold and denominator, the Run-2 holdout and the Run-2 acceptance artifact are ALL
+  BYTE-IDENTICAL. This phase wrote only its own package plus the two governed docs.

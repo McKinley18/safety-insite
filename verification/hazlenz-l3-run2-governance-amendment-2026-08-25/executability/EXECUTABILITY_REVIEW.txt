@@ -1,0 +1,65 @@
+L3 RUN-2 GOVERNANCE AMENDMENT -- PHASE 9 INDEPENDENT EXECUTABILITY REVIEW
+
+=== A. UNIQUE DERIVABILITY OF THE RUN-2 CORPUS ===
+  OK       declared-vs-derived report exists and reports 0 mismatches
+  OK       Run-2 offsets uniquely derivable (single cyclic rule, no free parameter)
+  OK       Run-2 source counts uniquely derivable from partition arithmetic
+  OK       Run-2 total uniquely derivable
+  OK       S-5 drift guard re-asserted on both sources
+  OK       S-2 pairwise-distinct sort keys re-asserted on both sources
+
+=== B. FRESH AUTHORED-CONTROL REQUIREMENT IS UNAMBIGUOUS ===
+  OK       D-I forbids reuse of Run-1 authored controls in terms, not by implication
+  OK       D-I fixes the count at exactly 25
+  OK       D-I defers authoring to the separately authorized construction phase
+  OK       D-I refuses to weaken the overlap rule
+  OK       D-I preserves G3/G4/G7 membership rules unchanged
+
+=== C. OVERLAP SURFACES REMAIN UNIQUELY SPECIFIED ===
+  OK       D-D.6 eight surfaces still present and unmodified in Amendment 1
+  OK       Amendment 3 adds the spent Run-1 holdout as a checked surface without renumbering
+  OK       surface 8 ("previously spent acceptance offset") is now non-empty and mechanically satisfiable
+
+=== D. GATE MEMBERSHIPS REMAIN UNIQUELY DERIVABLE ===
+  OK       G3 authored 6 re-derived
+  OK       G4 denominator 21 re-derived
+  OK       G7 pole 11 re-derived
+  OK       G4 closure 21 + ACTIVE-truth 4 = 25 re-derived
+  OK       enumerated memberships agree with the declared family sets
+
+=== E. COMPLETE-PROVIDER-EVALUATION VALIDITY IS UNIQUELY DECIDABLE ===
+  OK       the predicate is set equality over rowIds, not a percentage or a threshold
+  OK       PROVIDER_EVALUATED is defined over the frozen transport taxonomy, exhaustively
+  OK       frozen failure taxonomy read from shipped source   TIMEOUT,UNAVAILABLE,MALFORMED_STRUCTURED_OUTPUT,PROVIDER_REFUSAL,TRANSIENT_ERROR,PERMANENT_CONFIGURATION_ERROR
+  OK       every frozen provider failure kind is classified exactly once (total and disjoint)   6 classifications for 6 kinds
+  OK       no classification names a kind the frozen taxonomy does not define
+  OK       frozen retryable set unchanged: TIMEOUT, TRANSIENT_ERROR, MALFORMED_STRUCTURED_OUTPUT   TIMEOUT,TRANSIENT_ERROR,MALFORMED_STRUCTURED_OUTPUT
+  OK       absence of the declaration fails closed
+  OK       no semantic judgment is required to decide provider completeness
+
+=== F. SCORABLE AND HOLDOUT_SPENT CANNOT BE CONFLATED ===
+  OK       D-H declares them orthogonal in terms
+  OK       the v2 return object exposes no spend field at all
+  OK       SCORABLE=false is representable while spend is TRUE elsewhere
+
+=== G. THE ABORT PREDICATE IS MECHANICALLY DECIDABLE ===
+  OK       abort fires on the first row ending PROVIDER_EVALUATED=false after the frozen retry is exhausted
+  OK       abort needs no threshold, streak length or tuning constant
+  OK       abort reads only the frozen transport classification
+  OK       abort does not add or remove a retry
+  OK       abort does not restore the corpus
+
+=== H. NO SUBSTANTIVE GATE CHANGED, NO THRESHOLD WEAKENED ===
+  OK       the frozen scorer file is byte-unchanged
+  OK       the frozen holdout file is byte-unchanged
+  OK       Run-1 acceptance-artifact identity 189a3cbf... unchanged by this amendment   16 components
+  OK       v2 === frozen on 92 independently perturbed COMPLETE runs (gates, terminal and pass)   92 cases
+  OK       no threshold string was altered anywhere in the gate objects
+
+=== I. NO SEMANTIC JUDGMENT IS REQUIRED DURING CONSTRUCTION ===
+  OK       D-J selects no row and reads no observation
+  OK       |DEN_A| is explicitly deferred per D-B.3
+  OK       the derivation script did not read shouldHaveMissingEvidence
+
+OK = 43   DEFECT = 0
+THE AMENDED PLAN IS INDEPENDENTLY EXECUTABLE.

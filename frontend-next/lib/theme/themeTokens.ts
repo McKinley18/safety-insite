@@ -4,6 +4,42 @@ export const THEME_STORAGE_KEY = "safety_insite_theme";
 export const LEGACY_DARK_MODE_KEY = "sentinel_dark_mode";
 export const LEGACY_THEME_VERSION_KEY = "sentinel_theme_version";
 
+/**
+ * Routes that always render on the fixed light brand palette, whatever the
+ * signed-in theme preference is: the public account journey, the marketing pages,
+ * and /upgrade (which renders the same fixed-light PricingContent as /pricing).
+ *
+ * This list is the single source of truth. It previously existed as three
+ * independent copies -- in `AppShell`, in `ThemeController`, and as a literal array
+ * inside the pre-paint script in `app/layout.tsx` -- and they drifted: /upgrade was
+ * pinned by two of the three, so `<html>` resolved to light while
+ * `applyThemeToDocument` still stamped `dark` on `<body>`, leaving a light card on a
+ * dark page background. Anything that pins the palette must read it from here.
+ */
+export const FIXED_LIGHT_THEME_ROUTES = [
+  "/login",
+  "/register",
+  "/create-account",
+  "/forgot-password",
+  "/reset-password",
+  "/unlock",
+  "/about",
+  "/legal",
+  "/security",
+  "/hazlenz",
+  "/pricing",
+  "/upgrade",
+] as const;
+
+export function usesFixedLightTheme(pathname: string) {
+  return (
+    pathname === "/" ||
+    FIXED_LIGHT_THEME_ROUTES.some(
+      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+    )
+  );
+}
+
 export const themePreferenceLabels: Record<ThemePreference, string> = {
   light: "Light",
   dark: "Dark",

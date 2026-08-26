@@ -14,6 +14,11 @@ async function json(path: string, options: RequestInit = {}, expected = 200) {
   return body;
 }
 
+// Held at module scope so the failure path can close it. An open pg connection keeps the event
+// loop alive, so a suite that threw after connecting used to hang indefinitely instead of
+// reporting — the failure then presented as a harness timeout rather than as the error it was.
+let db: any = null;
+
 async function main() {
   const suffix = Date.now();
   const password = 'Phase5!StrongPass123';
@@ -25,11 +30,15 @@ async function main() {
   const [a, b] = await Promise.all(emails.map(login));
   const headersA = { authorization: `Bearer ${a.token}` };
   const headersB = { authorization: `Bearer ${b.token}` };
-  const db = new Client({ connectionString: databaseUrl });
+  db = new Client({ connectionString: databaseUrl });
   await db.connect();
   await db.query(
+    // Tier is 'pro': migration 1800000005900-RetireExpertTier retired the Expert tier (Pro now
+    // includes everything Expert granted) and tightened the CHECK constraint to tier IN ('pro').
+    // This fixture still said 'expert', so the insert failed the constraint on any schema at or
+    // past that migration. Matches the convention already corrected in grant-test-entitlement.ts.
     `INSERT INTO entitlement_grants ("userId",source,tier,status,"startsAt","endsAt","issuedByUserId",reason)
-     VALUES ($1,'pilot','expert','active',now(),now()+interval '1 day',$1,'Phase 5 disposable integration test')`,
+     VALUES ($1,'pilot','pro','active',now(),now()+interval '1 day',$1,'Phase 5 disposable integration test')`,
     [a.user.id],
   );
   const site = await json('/sites', { method: 'POST', headers: headersA, body: JSON.stringify({ name: `Phase 5 ${suffix}` }) }, 201);
@@ -111,7 +120,8 @@ async function main() {
   }));
 }
 
-main().catch(error => {
+main().catch(async error => {
   console.error(error instanceof Error ? error.message : error);
   process.exitCode = 1;
+  if (db) await db.end().catch(() => {});
 });

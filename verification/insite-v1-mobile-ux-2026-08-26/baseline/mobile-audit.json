@@ -1,0 +1,6743 @@
+{
+  "summary": {
+    "appUrl": "http://localhost:3020",
+    "viewports": [
+      "320px (PHONE_REQUIRED)",
+      "360px (PHONE_REQUIRED)",
+      "375px (PHONE_REQUIRED)",
+      "390px (PHONE_REQUIRED)",
+      "430px (PHONE_REQUIRED)",
+      "768px (TABLET)",
+      "1024px (TABLET_LANDSCAPE)",
+      "1440px (DESKTOP)"
+    ],
+    "routesAudited": 18,
+    "combinations": 144,
+    "HORIZONTAL_PAGE_OVERFLOW": 0,
+    "horizontalOverflowAllWidths": 0,
+    "nonHttp200": 0,
+    "routeThemeConsoleErrorRows": 24,
+    "phoneClippedControlRows": 0,
+    "phoneSmallTouchTargetRows": 65,
+    "phoneUnmaskedOverflowRows": 0
+  },
+  "results": [
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1640,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4014,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3386,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4561,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2675,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2182,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 260,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1297,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 917,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 260,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 859,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 210,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1876,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1522,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 720,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 720,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1588,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "26",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "27",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "28",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "29",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "30",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "31",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "1",
+          "w": 19,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "2",
+          "w": 19,
+          "h": 40
+        }
+      ],
+      "smallTargetCount": 42,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3956,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1297,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4409,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w320",
+      "viewportWidth": 320,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 886,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1528,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3747,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3134,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4173,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2475,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2094,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 300,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 917,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 300,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 859,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 250,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1784,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1434,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 780,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 780,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1527,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "26",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "27",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "28",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "29",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "30",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "31",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "1",
+          "w": 25,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "2",
+          "w": 25,
+          "h": 40
+        }
+      ],
+      "smallTargetCount": 42,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3808,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4032,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w360",
+      "viewportWidth": 360,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 886,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1474,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3647,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2926,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 4061,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2371,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2026,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 315,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 917,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 315,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 859,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 265,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1760,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1420,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 812,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 812,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1509,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "26",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "27",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "28",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "29",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "30",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "31",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "1",
+          "w": 27,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "2",
+          "w": 27,
+          "h": 40
+        }
+      ],
+      "smallTargetCount": 42,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3740,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3920,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w375",
+      "viewportWidth": 375,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 886,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1426,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3495,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2858,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3996,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2319,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1986,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 330,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 917,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 330,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 844,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 280,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1713,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1384,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 844,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 844,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1522,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "26",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "27",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "28",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "29",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "30",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "31",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "1",
+          "w": 29,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "2",
+          "w": 29,
+          "h": 40
+        }
+      ],
+      "smallTargetCount": 42,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3676,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3844,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w390",
+      "viewportWidth": 390,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 886,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1386,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3261,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2602,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3871,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2199,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1922,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 370,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1225,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 932,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 370,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 932,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 320,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1671,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1336,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 932,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 932,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1502,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "26",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "27",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "28",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "29",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "30",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "31",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "1",
+          "w": 35,
+          "h": 40
+        },
+        {
+          "tag": "button",
+          "label": "2",
+          "w": 35,
+          "h": 40
+        }
+      ],
+      "smallTargetCount": 42,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3468,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1225,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3739,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w430",
+      "viewportWidth": 430,
+      "viewportClass": "PHONE_REQUIRED",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 932,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1122,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2769,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2189,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 3044,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1810,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1729,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 622,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1321,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1024,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 338,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1024,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 422,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1649,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Open Calendar",
+          "w": 110,
+          "h": 31
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 26,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "Task priority",
+          "w": 522,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Add Task",
+          "w": 84,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "Show completed",
+          "w": 103,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 5,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1337,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1024,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1024,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1560,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "input",
+          "label": "",
+          "w": 177,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 131,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "CriticalHighMediumLow",
+          "w": 101,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 127,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Schedule",
+          "w": 77,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Calendar Controls",
+          "w": 646,
+          "h": 20
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 8,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2928,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1321,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2867,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w768",
+      "viewportWidth": 768,
+      "viewportClass": "TABLET",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1024,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1041,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2254,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1885,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2821,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1630,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1511,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 438,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1124,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 900,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 432,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 900,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 422,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1447,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Open Calendar",
+          "w": 110,
+          "h": 31
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 26,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "Task priority",
+          "w": 759,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Add Task",
+          "w": 87,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "Show completed",
+          "w": 103,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 5,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 900,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 900,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1605,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "input",
+          "label": "",
+          "w": 272,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 155,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "CriticalHighMediumLow",
+          "w": 155,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 194,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Schedule",
+          "w": 77,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Calendar Controls",
+          "w": 886,
+          "h": 20
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 8,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2761,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1124,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2711,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1024",
+      "viewportWidth": 1024,
+      "viewportClass": "TABLET_LANDSCAPE",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 900,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "routeId": "home",
+      "routeClass": "MARKETING",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1041,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Inspection-first safety intelligence for real field work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/about",
+      "routeId": "about",
+      "routeClass": "MARKETING",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2084,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Safety inspections, built for action."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/hazlenz",
+      "routeId": "hazlenz",
+      "routeClass": "MARKETING",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1861,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "HazLenz AI."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/pricing",
+      "routeId": "pricing",
+      "routeClass": "MARKETING",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2789,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Choose the level of safety intelligence your work requires."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/legal",
+      "routeId": "legal",
+      "routeClass": "MARKETING",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1606,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Legal disclaimer."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/register",
+      "routeId": "register",
+      "routeClass": "AUTH",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1491,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 16,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Sign in instead",
+          "w": 535,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Select a plan."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/login",
+      "routeId": "login",
+      "routeClass": "AUTH",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1224,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/forgot-password",
+      "routeId": "forgot-password",
+      "routeClass": "AUTH",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1000,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 432,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Reset access."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reset-password",
+      "routeId": "reset-password",
+      "routeClass": "AUTH",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1000,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Return to sign in",
+          "w": 422,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 4,
+      "h1": [
+        "Choose a new password"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/command-center",
+      "routeId": "command-center",
+      "routeClass": "PRODUCT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1448,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "Open Calendar",
+          "w": 110,
+          "h": 31
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 26,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "Task priority",
+          "w": 933,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Add Task",
+          "w": 89,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "Show completed",
+          "w": 103,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 5,
+      "h1": [
+        "Home"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/inspections",
+      "routeId": "inspections",
+      "routeClass": "PRODUCT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1245,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Start field work."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/inspection-workspace",
+      "routeId": "inspection-workspace",
+      "routeClass": "PRODUCT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1000,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/reports",
+      "routeId": "reports",
+      "routeClass": "PRODUCT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1000,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Inspection Reports"
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/safety-calendar",
+      "routeId": "safety-calendar",
+      "routeClass": "PRODUCT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1755,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "input",
+          "label": "",
+          "w": 333,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 191,
+          "h": 34
+        },
+        {
+          "tag": "select",
+          "label": "CriticalHighMediumLow",
+          "w": 191,
+          "h": 34
+        },
+        {
+          "tag": "input",
+          "label": "",
+          "w": 238,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Schedule",
+          "w": 77,
+          "h": 34
+        },
+        {
+          "tag": "button",
+          "label": "Calendar Controls",
+          "w": 1062,
+          "h": 20
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        },
+        {
+          "tag": "button",
+          "label": "",
+          "w": 40,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 8,
+      "h1": [
+        "Organize inspections, actions, follow-ups, and review work."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/settings",
+      "routeId": "settings",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2349,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Add Site",
+          "w": 81,
+          "h": 32
+        }
+      ],
+      "smallTargetCount": 1,
+      "h1": [
+        "Settings."
+      ],
+      "consoleErrors": [
+        "Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "/profile",
+      "routeId": "profile",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1224,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "button",
+          "label": "Show",
+          "w": 32,
+          "h": 16
+        },
+        {
+          "tag": "a",
+          "label": "Create an account",
+          "w": 121,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Forgot password?",
+          "w": 122,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 6,
+      "h1": [
+        "Welcome back."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/upgrade",
+      "routeId": "upgrade",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 2679,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [],
+      "smallTargetCount": 0,
+      "h1": [
+        "Choose the plan that matches how your safety work is growing."
+      ],
+      "consoleErrors": []
+    },
+    {
+      "route": "/unlock",
+      "routeId": "unlock",
+      "routeClass": "ACCOUNT",
+      "viewport": "w1440",
+      "viewportWidth": 1440,
+      "viewportClass": "DESKTOP",
+      "status": 200,
+      "error": null,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "unmaskedOverflow": 0,
+      "unmaskedOffenders": [],
+      "unmaskedRealOffenders": 0,
+      "scrollHeight": 1000,
+      "overflow": 0,
+      "offenders": [],
+      "realOffenders": 0,
+      "clipped": [],
+      "clippedCount": 0,
+      "smallTargets": [
+        {
+          "tag": "a",
+          "label": "About",
+          "w": 40,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "Legal",
+          "w": 37,
+          "h": 20
+        },
+        {
+          "tag": "a",
+          "label": "HazLenz AI",
+          "w": 74,
+          "h": 20
+        }
+      ],
+      "smallTargetCount": 3,
+      "h1": [
+        "Create Local PIN"
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

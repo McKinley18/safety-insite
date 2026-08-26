@@ -1,0 +1,84 @@
+L3 PROVIDER READINESS -- PRESERVATION, PRE-PHASE
+recorded 2026-08-25T01:30:13Z
+
+== GIT ==
+HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230
+branch          release/insite-rc-2026-08-18
+upstream        origin/release/insite-rc-2026-08-18  a7b21a2636b4a80ecaf823aef4558d9ea8915230
+divergence      ahead/behind 0/0
+staged entries  0
+tag objects     23
+stash entries   4  -- NO STASH OPERATION PERFORMED
+
+-- stash identities (read-only) --
+b7ee2d048e63689c18f6ca39d4fcf2d76190391a  stash@{0}  On main: hold corrective action routing patch
+df9bc6e00fa0db87ac9d36d023737c195ff3f731  stash@{1}  On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+9141dc76fd09901de889c7a8944ae2b411913d5a  stash@{2}  On antigravity/render-memory-standards-compression: scratch files before memory merge
+b128c1975d630d8f2aa2f80da321ec592c5ac2b9  stash@{3}  On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+-- tag objects --
+  checkpoint-pre-ui-consolidation-20260528-172809
+  checkpoint-pre-ui-consolidation-f699d98
+  checkpoint/pre-modularization-theme-consolidation-20260528-195809
+  checkpoint/shared-ui-primitives-auth-settings-complete-20260528
+  checkpoint/shared-ui-primitives-low-risk-pages-20260528
+  insite-hazlenz-verified-baseline-2026-08-19
+  insite-inspection-ui-verified-2026-08-19
+  insite-visual-acceptance-verified-2026-08-19
+  local-expanded-scoped-knowledge-regressions-20260527
+  local-msha-scoped-knowledge-retrieval-20260527
+  local-safescope-knowledge-scoring-checkpoint-20260527
+  production-standards-engine-live
+  release-critical-standards-coverage-local
+  safescope-ai-upgrade-prework-20260528-173000
+  safescope-brain-green-2026-06-01
+  safescope-production-classify-working-20260524
+  safescope-report-workflow-live
+  safescope-understanding-precision-green-001
+  safescope-v2-standards-ui-live
+  safety-insite-cleanup-2026-06-17
+  theme-overhaul-before-reset-verified
+  v1-backend-stable
+  v1.0-condition-engine-verified
+
+== WORKTREE (porcelain) ==
+   M backend/scripts/test-canonical-workflow.ts
+   M backend/scripts/test-private-storage-reports.ts
+   M docs/INSITE_CURRENT_STATE.json
+   M docs/INSITE_ENGINEERING_BLUEPRINT.md
+   M frontend-next/app/inspection-workspace/page.tsx
+   M frontend-next/app/inspections/page.tsx
+   M frontend-next/lib/auth.ts
+   M frontend-next/lib/canonicalWorkflowApi.ts
+   M frontend-next/lib/planEntitlements.ts
+   M verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+   M verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+  ?? "Safety InSite Logos/"
+  ?? verification/hazlenz-l3-2p-provider-requirements-adjudication-2026-08-24/
+  ?? verification/hazlenz-l3-2q-clarification-precision-adjudication-2026-08-24/
+  ?? verification/hazlenz-l3-2r-acceptance-pre-authorization-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+  ?? verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+  ?? verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/
+  ?? verification/hazlenz-l3-evidence-plan-amendment-2026-08-24/
+  ?? verification/hazlenz-l3-final-acceptance-2026-08-24/
+  ?? verification/hazlenz-l3-provider-readiness-2026-08-24/
+
+== PROTECTED SOURCES ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+== GOVERNING PLAN ==
+  8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+  lines 754  (expected 754, binding through Amendment 2)
+
+== BLUEPRINT / CURRENT STATE (before Phase 9) ==
+  9fb27c0024c778283f4f2671bdf8b22940737603bf9159014bda498671efdc16  docs/INSITE_ENGINEERING_BLUEPRINT.md
+  3b929aa124a4858d0e5561c3e9bc83d1f2bccd859b51a797bfc3e40a9c22553e  docs/INSITE_CURRENT_STATE.json
+
+== FROZEN HOLDOUT + SCORER ==
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/rebuild/holdout-l3-acceptance-attempt2.json
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/scorer/acceptance-scorer.js

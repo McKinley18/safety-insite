@@ -38,7 +38,9 @@ function ResetPasswordForm() {
           {submitting ? "Resetting…" : "Reset password"}
         </AppButton>
         {message ? <p role="status" className="mt-4 text-sm font-semibold text-slate-700">{message}</p> : null}
-        <AppTextLink href="/login" className="mt-5 block">Return to sign in</AppTextLink>
+        <AppTextLink href="/login" className="mt-4 inline-flex min-h-11 items-center justify-center rounded-xl px-3">
+          Return to sign in
+        </AppTextLink>
       </form>
     </section>
   );

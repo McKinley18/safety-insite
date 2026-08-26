@@ -1,0 +1,70 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASE 7 -- EXECUTION-PATH COMPATIBILITY  (STRUCTURAL ONLY)
+
+  Derived from the ONE synthetic readiness response. Nothing else was run.
+
+================================================================================
+THE TRAVERSAL, STAGE BY STAGE
+================================================================================
+  1. FROZEN ANTHROPIC ADAPTER / SHIM        76d3e039, unmodified
+       accepted the frozen Ollama request envelope the sealed harnesses emit
+       converted the run schema at the wire level, reporting its three DOCUMENTED, PRE-EXISTING
+       deviations as counters rather than silently:
+           minItemsStripped 1 | maxItemsStripped 1 | emptyEnumStripped 1
+       These are D1-D3 of the shim's own frozen header -- transport-level keywords Anthropic does
+       not support, each independently enforced by deterministic-safety-validator.ts. They are
+       properties of the frozen shim, NOT changes made by this phase, and the shim's digest is
+       unchanged at 76d3e039.
+       returned HTTP 200 and an Ollama-shaped envelope: done = true, done_reason = null.
+
+  2. RESPONSE / SCHEMA BOUNDARY
+       message.content parsed as JSON                    YES (380 chars, no parse error)
+       MALFORMED_STRUCTURED_OUTPUT                       NO
+       top-level keys      outcome, observationInterpretation, hazardCandidates
+       `outcome` present                                 YES
+       `hazardCandidates` present and an array           YES
+
+  3. FROZEN BINDER                          bindProposal, shipped, unmodified
+       reached without throwing                          YES
+       binder error                                      NONE
+       quote binding stat        total 0 | unbound 0 | ambiguous 0
+
+  4. FROZEN VALIDATOR                       942ac7cc, unmodified
+       reached without throwing                          YES
+       validator error                                   NONE
+       validation state                                  VALID
+       validation issue codes                            [] (none)
+       validated hazard count                            0
+
+  EVERY STAGE OF THE FROZEN PATH WAS TRAVERSED AND NONE REJECTED THE RESPONSE STRUCTURALLY.
+
+  EXECUTION_PATH_COMPATIBILITY = PASS
+
+================================================================================
+WHAT THIS IS NOT, STATED SO IT CANNOT BE READ AS MORE THAN IT IS
+================================================================================
+  The response carried ZERO hazard candidates. That is recorded as a STRUCTURAL FACT and is
+  NOT interpreted, in either direction:
+
+    - it is NOT evidence the model reasons correctly;
+    - it is NOT evidence the model reasons incorrectly;
+    - it is NOT a G4 result, a G3 result, or any other gate result;
+    - it is NOT a negative-control pass.
+
+  The probe was authored to be mundane and low-signal precisely so that no gate axis this
+  programme measures is exercised by it, and its own frozen record forbids scoring it. A
+  zero-candidate structured answer proves the envelope, the schema boundary, the binder and the
+  validator all accept a real provider response. It proves nothing about hazard reasoning, and
+  nothing here claims otherwise.
+
+  NOT RUN, DELIBERATELY:
+    acceptance scorer executions on provider output      0
+    G1-G10 evaluations                                   0
+    hazard-accuracy judgement                            NOT PERFORMED
+    semantic-quality judgement                           NOT PERFORMED
+    tuning                                               NO
+    remediation                                          NO
+
+  NO FROZEN GOVERNED IDENTITY HAD TO CHANGE FOR THE PATH TO WORK, and none was changed. The
+  prompt, schema, validator, binder, input builder, shim and scorer are all byte-identical to
+  their frozen digests after this phase (see identities/ and unspent/).

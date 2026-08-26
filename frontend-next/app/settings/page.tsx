@@ -309,7 +309,7 @@ export default function SettingsHubPage() {
             type="button"
             disabled={siteSaving || newSiteName.trim().length < 2}
             onClick={() => void addSite()}
-            className="self-center rounded-full bg-[#F47C20] px-4 py-2 text-xs font-black text-white transition hover:bg-[#D96510] disabled:cursor-not-allowed disabled:opacity-50 sm:self-end"
+            className="inline-flex min-h-11 items-center justify-center self-stretch rounded-full app-accent-strong-surface px-5 text-xs font-black text-white transition disabled:cursor-not-allowed disabled:opacity-50 sm:self-end"
           >
             Add Site
           </button>
@@ -325,7 +325,12 @@ export default function SettingsHubPage() {
             return (
               <div
                 key={site.id}
-                className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-600 dark:bg-[#16283D]"
+                // A grid item defaults to `min-width: auto`, so this row refused to shrink
+                // below its content minimum: at 320px it stayed 341px wide inside a 222px
+                // column and pushed its own Edit/Delete buttons past the viewport edge,
+                // where the shell's `overflow-x-hidden` made them unreachable rather than
+                // merely off-screen. The site name inside already truncates.
+                className="min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-600 dark:bg-[#16283D]"
               >
                 {editing ? (
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center">

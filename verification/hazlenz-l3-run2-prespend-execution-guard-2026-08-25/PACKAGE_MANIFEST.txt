@@ -1,0 +1,32 @@
+L3 RUN-2 FINAL PRE-SPEND EXECUTION GUARD (2026-08-25) -- PACKAGE MANIFEST
+sha256  relative-path, sorted. PACKAGE_MANIFEST.txt itself is excluded.
+
+0c0a0d5f7bc800527076479c3009c4f57d0d0de136a9096545e63fe8f0ebcb1f  INDEX.md
+1eb30d56f5be2b3b6edd73bd0441409724c4ac8400823cf5d00833a970fb4464  preservation/PRESERVATION_PRE.txt
+20290a85267b75a11f4778eee7a9bb24fe0ffbd85a5805faa93a257f41103d7d  guard/acceptance-execution-loop.ts
+2ee69c18ba241dc96e3cf646f40338532a820345529994102d11f2d0f7a8c3ec  STATUS.md
+2f2899b9e7bafdee2dfd64113ca527d4149d2a6413ab5351b549ae4413ee4d20  preservation/prove-unspent.js
+521300c2d854cdb41ca5bb2ce5791fbd8eb383efeea28d2c907af20bb3e39972  verification/synthetic-dk-tests.ts
+537c444bc58971445916a8cc16a01e5e8d3d80e3f2854d0878e5fcbe39fb6474  verification/fixture-transport-server.js
+60241545d9ecb32d05b24e98079a2fa8a26ccaf50a0fe5925c4056165f92490e  preservation/FROZEN_IDENTITY_AND_UNSPENT_PROOF.txt
+64fb21752f0307a78e94a78dc76b85ca97fe7095418285dd17d0926a3c4c2546  verification/tsconfig.guard.json
+869618785f7f694164299b27ee269e7f8d73fc1c5c78893847d39027cf874fe8  replay/RUN1_COUNTERFACTUAL_REPLAY.txt
+881e3064ada501952822188c637b39206f9c64ee312668a587189604a1774628  preservation/artifact-identity-impact.js
+946821ccd6a2ef5201f558bc462c0bea80b3e1c48b8d7afdd22033cd34a47635  verification/SYNTHETIC_DK_VERIFICATION.txt
+95b3ca8ccd0fe056888d7994ec0372c6e42e5b14aaca3fb7d78b56924506a28a  runner/run-run2-sealed.sh
+b47771e08285b21d03b4bb3eda04007540df6e3b45abc326f195b5cbca1b7f12  preservation/ARTIFACT_IDENTITY_IMPACT.txt
+ce9c749380d4713098f0215a72797921b70d9c8a67408b132b37ead34adf9ed1  guard/dk-abort-guard.ts
+d97eb94c93ce094322e153a9f86bc6257e4c12146c7ea1d990b5e11fb5d02d88  runner/run-run2-acceptance.ts
+dadd9f688afd4fd7f8453103f9d85f9665b9b6a63e8aea99763d519ed2bdd4d2  replay/run1-counterfactual-replay.ts
+dbbe9ac374207b52b853482c770b7c812d4e35e315f0b6f8dfede58d639691a3  NEXT_ACTION.md
+
+RUN2_EXECUTION_GUARD_IDENTITY (sha256 of the sorted manifest of the FOUR execution-surface
+files only -- guard/dk-abort-guard.ts, guard/acceptance-execution-loop.ts,
+runner/run-run2-acceptance.ts, runner/run-run2-sealed.sh):
+  eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1
+
+RUN2_ACCEPTANCE_ARTIFACT_IDENTITY, UNCHANGED BY THIS PHASE:
+  9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+
+RUN2_HOLDOUT_SPENT = FALSE. NO PROVIDER ACTIVITY IS AUTHORIZED BY THIS PACKAGE.
+Wiring the abort is not authorizing the run.

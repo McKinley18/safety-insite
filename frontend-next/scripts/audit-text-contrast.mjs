@@ -24,9 +24,15 @@ mkdirSync(outDir, { recursive: true });
 const ROUTES = [
   "/", "/about", "/pricing", "/legal", "/hazlenz",
   "/login", "/register", "/forgot-password",
-  "/command-center", "/inspections", "/reports", "/safety-calendar",
-  "/settings", "/profile",
+  "/command-center", "/inspections", "/inspection-workspace", "/reports",
+  "/safety-calendar", "/settings", "/profile", "/upgrade",
 ];
+
+// Phone width matters for contrast as well as layout: several surfaces swap
+// backgrounds at the sm/lg breakpoints, so a desktop-only pass cannot clear them.
+const VIEWPORT = process.env.VIEWPORT_WIDTH
+  ? { width: Number(process.env.VIEWPORT_WIDTH), height: 900 }
+  : { width: 1440, height: 1000 };
 
 const SCAN = () => {
   const lum = ([r, g, b]) => {
@@ -37,6 +43,18 @@ const SCAN = () => {
   // oklch and Chrome preserves it. Scraping digits out of those would treat
   // lightness/chroma as if they were R/G/B, so colours are converted to sRGB by
   // painting them, which is the only conversion guaranteed to match rendering.
+  // WCAG 1.4.3 exempts inactive components: "Text or images of text that are part of
+  // an inactive user interface component ... have no contrast requirement." A disabled
+  // button is deliberately low-contrast to signal that it cannot be used, so measuring
+  // it reports a defect the standard does not recognise and hides the real ones.
+  const isInactive = (el) => {
+    let n = el;
+    while (n && n.nodeType === 1) {
+      if (n.disabled === true || n.getAttribute("aria-disabled") === "true") return true;
+      n = n.parentElement;
+    }
+    return false;
+  };
   const _cvs = document.createElement("canvas");
   _cvs.width = _cvs.height = 1;
   const _ctx = _cvs.getContext("2d", { willReadFrequently: true });
@@ -71,6 +89,7 @@ const SCAN = () => {
     if (!text) continue;
     const r = el.getBoundingClientRect();
     if (r.width < 4 || r.height < 4) continue;
+    if (isInactive(el)) continue; // WCAG 1.4.3 exempts inactive components -- see isInactive.
     // First opaque ancestor background.
     let bg = null;
     for (let p = el; p; p = p.parentElement) {
@@ -110,7 +129,22 @@ const ANALYSE = ([dataUrl, cssColor]) => new Promise((resolve) => {
     c.width = img.width; c.height = img.height;
     const ctx = c.getContext("2d", { willReadFrequently: true });
     ctx.drawImage(img, 0, 0);
-    const { data } = ctx.getImageData(0, 0, c.width, c.height);
+    // Sample the INTERIOR only. An element screenshot is its border box, so a pill or
+    // card with a light border on a light page contributes a ring of border pixels that
+    // no text ever sits on -- and because the ring is the most colour-distant cluster
+    // from the text colour, the "background" search below would pick it. That is how a
+    // white label on a dark #172334 gradient (9.7:1 measured) was reported as 2.56:1
+    // against its own #94a3b8 border. Inset by the element's border width plus a small
+    // margin for the anti-aliased edge and the corner radius.
+    const inset = Math.min(
+      6,
+      Math.max(2, Math.round(Math.min(c.width, c.height) * 0.12)),
+    );
+    const x0 = Math.min(inset, Math.floor(c.width / 3));
+    const y0 = Math.min(inset, Math.floor(c.height / 3));
+    const w = Math.max(1, c.width - x0 * 2);
+    const h = Math.max(1, c.height - y0 * 2);
+    const { data } = ctx.getImageData(x0, y0, w, h);
     const counts = new Map();
     for (let i = 0; i < data.length; i += 4) {
       const key = (data[i] << 16) | (data[i + 1] << 8) | data[i + 2];
@@ -135,18 +169,26 @@ const ANALYSE = ([dataUrl, cssColor]) => new Promise((resolve) => {
   img.src = dataUrl;
 });
 
-const db = await connectDb();
+// AUTH_BYPASS=1 audits an app running with NEXT_PUBLIC_DISABLE_AUTH=true. No database
+// is touched and no account fixture is created, which is what makes this runnable as a
+// zero-cost local check: the CLAUDE.md data-protection rule forbids provisioning against
+// a non-disposable target just to read a page. The signed-in routes still render, because
+// the bypass is exactly what the local dev configuration uses.
+const AUTH_BYPASS = process.env.AUTH_BYPASS === "1";
+const db = AUTH_BYPASS ? null : await connectDb();
 const browser = await chromium.launch({ headless: true });
 const confirmed = [];
 let candidateCount = 0;
 
 try {
   for (const theme of ["light", "dark"]) {
-    const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+    const context = await browser.newContext({ viewport: VIEWPORT });
     await applyTheme(context, theme);
     const page = await context.newPage();
-    const account = await createProAccount(page, db, "contrast");
-    await signIn(page, account.email, account.password);
+    if (!AUTH_BYPASS) {
+      const account = await createProAccount(page, db, "contrast");
+      await signIn(page, account.email, account.password);
+    }
 
     for (const route of ROUTES) {
       try {
@@ -195,7 +237,7 @@ try {
   }
 } finally {
   await browser.close();
-  await db.end();
+  if (db) await db.end();
 }
 
 writeFileSync(`${outDir}/text-contrast.json`, JSON.stringify({ confirmed, candidateCount }, null, 2));

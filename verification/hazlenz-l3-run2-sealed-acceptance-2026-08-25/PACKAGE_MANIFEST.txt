@@ -1,0 +1,50 @@
+L3 RUN-2 FINAL SINGLE-USE SEALED ACCEPTANCE (2026-08-25/26) -- PACKAGE MANIFEST
+sha256  relative-path, sorted. PACKAGE_MANIFEST.txt itself is excluded.
+
+012842929fc1f3cbd9c5f4fa0b17b8cefbf973e4e45084e829ca6fbccb9ed86e  runner/shim-A.log
+2a7efce3f5541079a9229acdcd4fd7174805f9af61a1ebb461b416f862f4662d  runner/run-B.log
+2cb4790840d88f8bef51c5b389d80c077b34df3ef38ad1b6e20fcab843c377d6  runner/shim-B.log
+2fc42d9450e7e0624304cf63f8614e2179b623d4ee7cf39ac7e2629f54c8122b  preservation/prove-post-run.js
+2fc630a31ea2da4cee84d8a0326704f733ac159f8e4514f3d148eefa64291f63  NEXT_ACTION.md
+39574037c6080604e6697d02689b5b0b069c4153a34ed69fed348166c1dbd03f  results/RAW_RESULT_SUMMARY.json
+3fa516d4e506757ab3fff8fa1f0c795ad424064857b34ac35a04b3cca27039ff  scoring/ACCEPTANCE_SCORE.json
+514b6c2ed91c647abeef24d12447c034c719891daff969919b5fdfa323be641f  results/raw-process-B.json
+5285c52dfb4662f0a0addf2ef046a0e567e377a39bf74355190f33de34c7c87c  declaration/enumerate-acceptance-contract.js
+5ee3b36ec868e7a9f6df13e5c4cadcce5aa832e1138d2b02ae2ce1940fc78862  spend/SPEND_TRANSITION.jsonl
+5fa207a62a94880750a7783e6a9ec056ebf4f7d9c210fe39f6f71afc0961c217  scoring/score-run2-acceptance.js
+796d84a97204acfefef0a0b51e845ff36dcd63144240d4df0af49b412171fc88  declaration/SEALED_EXECUTION_RECORD.txt
+7af026e280f005134e007ed61da53c44ec77485476b0268431c9c33c978ecc91  scoring/TERMINAL_CLASSIFICATION.txt
+85dfaa64b1ba296253943496d81fb7387336f66b4e3388586f3f3f5bac25fa52  INDEX.md
+88832982650f37c50b55364c1de7cf62e9c81d1551f513702f1b9e0dfec8e799  runner/run-A.log
+8b87f3679518e90b91269c450846ad6ee6ae8d0d42554368db3f9c2e822a86aa  cost/account-run2-cost.js
+9d94efb642c35957ea1b342ca50c1d8b4da9890b99762a5c3dc23897e5f6febe  declaration/ACCEPTANCE_CONTRACT.json
+a2dec6beede4046f19a42daa561d882306d615d12cf637023f7154a433813662  preservation/PRESERVATION_POST.txt
+aadb88fac0d6baaef1719cb8263b8b5f3c4cdbc52e9b2040ccdde4d376c6edf4  transport/transport-B.jsonl
+b26aba3dc7e8e62154c9681ff7ed848d159bc81bebdbf896b912eeb28e873cb1  STATUS.md
+b34bd2d93b25cd87810f5adab579cccdc03d1139af899c1b56ecefd3e3b311ae  results/RAW_RESULT_FREEZE.txt
+b666da3cfb68614001b5664c61a153420cba21d7d450173f9a4f43c9e4a8e3c3  results/raw-process-A.json
+c6a1a46af001875f51ba932ff814d44e6042a0ae886c7a13bf1618184190bbbb  runner/run-sealed.log
+eae16dcea3d129c2c0767e7e96dff750c24740e57485394ba6d1905dcff4eebb  scoring/SCORE_DETERMINISM.txt
+ed1fbe3b595004df0e0f3c29fca8191fb7861d01e40d8ee81da9749c139fa419  results/freeze-raw-results.js
+eec48a5d032db4f3d5adfa86b191c83d3f33c21ddfcd94bac000010db60c3f58  declaration/PRE_EXECUTION_GATE_DECLARATION.txt
+ef66588bc41e7ebcb7c12c0d7c46220cb915a3e9ebf4f8cd0f0428645f048f34  scoring/prove-score-determinism.js
+fa2741f68d9488dd5a56e03cf08cae34dd421993937d8939b2eae99dde9ee7ef  transport/transport-A.jsonl
+fd119c7602794ccfe58cd4519182e0e43a3c12eea75fcc79745c248105e47b9a  cost/COST_ACCOUNTING.txt
+
+TERMINAL   L3_ACCEPTANCE_FAILED -- G1,G2,G3,G4,G5,G6,G9
+SCORABLE = TRUE | MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL
+RUN2_HOLDOUT_SPENT = TRUE | GAUNTLET_OFFSET_1 = RETIRED | REALISM_OFFSET_0 = RETIRED
+186 provider calls | 186 x HTTP 200 | claude-sonnet-5 on every one | $5.666386
+
+DURABLE IDENTITY OF THE RESULT:
+  SCORE_BODY_DIGEST = 435f83142bb0cdfb5033e62c53d93fd746f4ee83844751281d068c8316270b7a
+  The whole score envelope with the wall-clock scoredAt and the two invocation path strings
+  removed -- the only two environment-dependent fields, neither carrying verdict information.
+  Proven invariant across three independent scoring runs in scoring/SCORE_DETERMINISM.txt.
+  The FILE hash of ACCEPTANCE_SCORE.json varies with the clock and is NOT the result identity.
+
+All evidence outputs are READ-ONLY on disk. PRESERVATION_POST.txt regenerates byte-identically
+when unlocked and re-run; the timestamped scoring artifacts do not, which is why the durable
+identity above is a body digest and not a file hash.
+
+THE CORPUS IS SPENT. IT MUST NOT BE RE-RUN, AND ITS 93 OBSERVATIONS MUST NOT BE TUNED AGAINST.

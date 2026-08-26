@@ -1,0 +1,82 @@
+ATTEMPT 2 -- D-D.6 OVERLAP SURFACES ACTUALLY EVALUATED
+recorded 2026-08-24. File paths and distinct-text counts only -- NO observation text.
+
+SURFACES 1-3, the three protected sources:
+    1  safescope-data/gauntlets/safescope-gauntlet.source.v1.json         150 rows / 150 distinct
+    2  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json  117 rows / 117 distinct
+    3  safescope-data/gauntlets/safescope-gauntlet.seed.json              100 rows /  99 distinct  RESERVE, checked but NOT drawn from
+
+SURFACE 4, authored-vs-authored, and the additional within-holdout clause (NORM(carrier) and
+sourceId), are enforced inside the builder by THROW. Measured: 25 distinct authored texts,
+92 distinct holdout carriers, 92 distinct sourceIds.
+
+SURFACES 5-7, EVERY prior sealed holdout, EVERY development set, the exhausted field corpus:
+    4  backend/src/safescope-v2/reasoning-l3/eval/development-l32.json                                        30 distinct
+    5  backend/src/safescope-v2/reasoning-l3/eval/development-l32d.json                                       22 distinct
+    6  backend/src/safescope-v2/reasoning-l3/eval/development-l32e.json                                       38 distinct
+    7  backend/src/safescope-v2/reasoning-l3/eval/development-l32f.json                                       60 distinct
+    8  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json                                            66 distinct
+    9  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json                                           81 distinct
+   10  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json                                           72 distinct
+   11  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json                                           77 distinct
+   12  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json                                           84 distinct
+   13  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json                                           97 distinct
+   14  safescope-data/benchmarks/safescope-field-validation-dataset.v1.json                                  200 distinct
+   15  verification/hazlenz-evidence-intake-foundation-2026-07-29/HOLDOUT_CORPUS_EXPECTED.json                80 distinct
+   16  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/development-l32.json                 15 distinct
+   17  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/holdout-l32.json                     66 distinct
+   18  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json                     66 distinct
+   19  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json                     66 distinct
+   20  verification/hazlenz-l3-2b-binder-precision-2026-08-22/contracts/development-l32.json                  30 distinct
+   21  verification/hazlenz-l3-2b-binder-precision-2026-08-22/contracts/holdout-l32b.json                     81 distinct
+   22  verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-1.json                      81 distinct
+   23  verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-2.json                      81 distinct
+   24  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json   81 distinct
+   25  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-1.json                         72 distinct
+   26  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-2.json                         72 distinct
+   27  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json   81 distinct
+   28  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32c-run.json   72 distinct
+   29  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json               77 distinct
+   30  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json               77 distinct
+   31  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json   81 distinct
+   32  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json   72 distinct
+   33  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json   77 distinct
+   34  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json                        84 distinct
+   35  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json                        84 distinct
+   36  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/contracts/holdout-l32f.frozen.json               97 distinct
+   37  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json                       97 distinct
+   38  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json                       97 distinct
+   39  verification/hazlenz-response-quality-2026-08-09/OPAQUE_HOLDOUT.json                                   12 distinct
+   40  verification/hazlenz-semantic-adjudication-2026-08-08/HAZLENZ_HOLDOUT_SEMANTIC_ADJUDICATION.json        4 distinct
+   41  verification/hazlenz-semantic-adjudication-2026-08-08/HOLDOUT_RECALL_MISSES.json                        4 distinct
+   42  verification/hazlenz-standards-temporal-quality-2026-08-09/DEVELOPMENT_CORPUS.json                     60 distinct
+   43  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT.json                         20 distinct
+   44  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT_V2.json                      20 distinct
+   45  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT_V3.json                      20 distinct
+   46  verification/hazlenz-temporal-foundation-2026-08-09/NEW_TEMPORAL_HOLDOUT.json                          20 distinct
+   47  verification/hazlenz-temporal-foundation-2026-08-09/OPAQUE_HOLDOUT_FINAL.json                          20 distinct
+   48  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT.json               27 distinct
+   49  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RUN.json           27 distinct
+
+  The six canonical prior sealed holdouts are covered explicitly:
+    holdout-l32.json      PRESENT
+    holdout-l32b.json     PRESENT
+    holdout-l32c.json     PRESENT
+    holdout-l32d.json     PRESENT
+    holdout-l32e.json     PRESENT
+    holdout-l32f.json     PRESENT
+  The development sets are covered explicitly:
+    development-l32.json    PRESENT
+    development-l32d.json   PRESENT
+    development-l32e.json   PRESENT
+    development-l32f.json   PRESENT
+  The exhausted field corpus is covered explicitly:
+    safescope-field-validation-dataset.v1.json  PRESENT
+
+SURFACE 8, previously spent acceptance offsets: NONE EXIST -- no acceptance offset has ever
+been spent, so the surface is empty by fact rather than by omission.
+
+TOTAL SURFACES EVALUATED: 49
+AUTHORED-CONTROL COLLISIONS ACROSS ALL SURFACES: 0
+Any collision is a builder THROW -- never a skip, never a silent de-duplication, never a
+replacement. No row was substituted, because no collision occurred.

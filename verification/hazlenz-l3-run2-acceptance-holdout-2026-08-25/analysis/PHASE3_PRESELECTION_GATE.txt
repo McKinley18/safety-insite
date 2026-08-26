@@ -1,0 +1,71 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT -- PHASE 3 PRE-SELECTION DECLARED-VS-DERIVED GATE
+EXECUTED BEFORE ANY SELECTION CODE. No observation read. No row selected. |DEN_A| NOT computed.
+
+=== A. SOURCE IDENTITY AND STRUCTURE (S-5, S-2) ===
+  MATCH     gauntlet sha256 (S-5 drift guard)                    derived a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4 declared a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH     gauntlet physical rows (S-5)                         derived 150          declared 150
+  MATCH     gauntlet sort key 'scenarioId' on every row          derived true         declared true
+  MATCH     gauntlet sort keys pairwise distinct (S-2)           derived 150          declared 150
+  MATCH     realism sha256 (S-5 drift guard)                     derived 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb declared 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+  MATCH     realism physical rows (S-5)                          derived 117          declared 117
+  MATCH     realism sort key 'id' on every row                   derived true         declared true
+  MATCH     realism sort keys pairwise distinct (S-2)            derived 117          declared 117
+
+=== B. OFFSET DERIVATION AND RESERVATION SCHEDULE (S-3, D-A.11, D-B.11) ===
+  MATCH     gauntlet S-3 base offset k0                          derived 0            declared 0
+  MATCH     realism  S-3 base offset k0                          derived 3            declared 3
+  MATCH     gauntlet partition sizes                             derived [38,38,37,37] declared [38,38,37,37]
+  MATCH     realism  partition sizes                             derived [30,29,29,29] declared [30,29,29,29]
+  MATCH     gauntlet run-1 offset (SPENT/RETIRED)                derived 0            declared 0
+  MATCH     realism  run-1 offset (SPENT/RETIRED)                derived 3            declared 3
+  MATCH     gauntlet RUN-2 offset                                derived 1            declared 1
+  MATCH     realism  RUN-2 offset                                derived 0            declared 0
+  MATCH     gauntlet RUN-2 selected rows                         derived 38           declared 38
+  MATCH     realism  RUN-2 selected rows                         derived 30           declared 30
+
+=== C. PROTECTED / RESERVE STATE ===
+  MATCH     gauntlet offsets RETIRED before run 2                derived [0]          declared [0]
+  MATCH     realism  offsets RETIRED before run 2                derived [3]          declared [3]
+  MATCH     gauntlet offsets still reserved AFTER run 2          derived [2,3]        declared [2,3]
+  MATCH     realism  offsets still reserved AFTER run 2          derived [1,2]        declared [1,2]
+  MATCH     gauntlet.seed drawn from                             derived false        declared false
+  MATCH     gauntlet.seed opened by this phase                   derived false        declared false
+  MATCH     gauntlet rows remaining unopened after run 2         derived 74           declared 74
+  MATCH     realism  rows remaining unopened after run 2         derived 58           declared 58
+
+=== D. AUTHORED-CONTROL ALLOCATION AND GATE MEMBERSHIP (D-D.3, D-D.4, D-E) ===
+  MATCH     Run-1 authored-controls.js digest (spec source, NOT reused as content) derived 56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05 declared 56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05
+  MATCH     allocation F1                                        derived 4            declared 4
+  MATCH     allocation F2                                        derived 4            declared 4
+  MATCH     allocation F3                                        derived 3            declared 3
+  MATCH     allocation F4                                        derived 3            declared 3
+  MATCH     allocation F5                                        derived 3            declared 3
+  MATCH     allocation F6                                        derived 3            declared 3
+  MATCH     allocation F7                                        derived 3            declared 3
+  MATCH     allocation F8                                        derived 2            declared 2
+  MATCH     allocation sum                                       derived 25           declared 25
+  MATCH     G3 authored membership count                         derived 6            declared 6
+  MATCH     G4 authored membership count                         derived 21           declared 21
+  MATCH     G7 authored membership count                         derived 11           declared 11
+  MATCH     G3 enumerated families                               derived F3,F6        declared F3,F6
+  MATCH     G4 enumerated families                               derived F1,F2,F3,F4,F5,F6,F8b declared F1,F2,F3,F4,F5,F6,F8b
+  MATCH     G7 enumerated families                               derived F1,F2,F7     declared F1,F2,F7
+  MATCH     G4 closure: inG4 + ACTIVE-truth complement           derived 25           declared 25
+  MATCH     clarificationExpected===true families are exactly F3,F6 derived F3,F6        declared F3,F6
+  MATCH     G7 pole is literally CLARIFICATION_MUST_NOT_ASK on all members derived true         declared true
+  MATCH     F4,F5,F8a excluded from G7 despite clarificationExpected false (D-D.4) derived true         declared true
+
+=== E. RUN-2 COMPOSITION ===
+  MATCH     RUN-2 independent rows                               derived 68           declared 68
+  MATCH     RUN-2 authored rows                                  derived 25           declared 25
+  MATCH     RUN-2 total rows                                     derived 93           declared 93
+  MATCH     RUN-2 independent proportion                         derived 73.1%        declared 73.1%
+  MATCH     RUN-2 total inside the plan ~90-100 band             derived true         declared true
+
+=== F. DEFERRED BY RULE ===
+  |DEN_A| for Run 2:  NOT COMPUTED. D-B.3 requires discovery from frozen metadata AFTER
+  authorized selection. Computing it here would let construction see its own G3 denominator
+  before selection -- precisely defect E-3. No shouldHaveMissingEvidence value was read.
+
+OK = 51   MISMATCH = 0
+PRE-SELECTION GATE PASSES. Selection code may be authored (Phase 4 freeze first).

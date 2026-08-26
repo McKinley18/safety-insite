@@ -25,12 +25,15 @@ NEXT_PUBLIC_API_URL=http://localhost:4000
 NEXT_PUBLIC_DISABLE_AUTH=true
 NEXT_PUBLIC_USE_LOCAL_STORAGE=true
 NEXT_PUBLIC_DEV_FORCE_PRO=false
-NEXT_PUBLIC_DEV_FORCE_EXPERT=false
 ```
 
-When auth is disabled locally, billing defaults to Free. Set exactly one
-`NEXT_PUBLIC_DEV_FORCE_PRO=true` or `NEXT_PUBLIC_DEV_FORCE_EXPERT=true` in a
-non-production environment only when paid-plan behavior needs to be tested.
+When auth is disabled locally, billing defaults to Free. Set
+`NEXT_PUBLIC_DEV_FORCE_PRO=true` in a non-production environment only when
+paid-plan behavior needs to be tested.
+
+v1.0 ships two plans: **Free ($0)** and **Pro ($24.99/month)**. The Expert tier is
+retired -- `NEXT_PUBLIC_DEV_FORCE_EXPERT` was removed because it named a tier that no
+longer exists and was read by no code.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

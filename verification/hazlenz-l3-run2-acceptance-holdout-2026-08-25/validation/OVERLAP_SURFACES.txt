@@ -1,0 +1,103 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT -- D-D.6 OVERLAP SURFACES ACTUALLY EVALUATED
+File paths and distinct-text counts only -- NO observation text.
+
+SURFACES 1-3, the three protected sources:
+    1  1 gauntlet.source.v1 (all 150)                                        150 distinct
+    2  2 field-realism-pack-v2 (all 117)                                     117 distinct
+    3  3 gauntlet.seed (all 100, reserve)                                    99 distinct
+
+SURFACE 4, authored-vs-authored, and the within-holdout clause (NORM(carrier) and sourceId),
+are enforced inside the builder by THROW. Measured: 25 distinct fresh authored texts,
+93 distinct holdout carriers, 93 distinct sourceIds.
+
+SURFACES 5-8, EVERY prior sealed holdout, EVERY development set, the exhausted field corpus,
+AND THE SPENT RUN-1 ACCEPTANCE HOLDOUT:
+    4  backend/src/safescope-v2/reasoning-l3/eval/development-l32.json                                   30 distinct
+    5  backend/src/safescope-v2/reasoning-l3/eval/development-l32d.json                                  22 distinct
+    6  backend/src/safescope-v2/reasoning-l3/eval/development-l32e.json                                  38 distinct
+    7  backend/src/safescope-v2/reasoning-l3/eval/development-l32f.json                                  60 distinct
+    8  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32.json                                       66 distinct
+    9  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32b.json                                      81 distinct
+   10  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32c.json                                      72 distinct
+   11  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32d.json                                      77 distinct
+   12  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32e.json                                      84 distinct
+   13  backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json                                      97 distinct
+   14  safescope-data/benchmarks/safescope-field-validation-dataset.v1.json                             200 distinct
+   15  verification/hazlenz-domain-association-2026-08-09/OPAQUE_HOLDOUT_RAW.json                         1 distinct
+   16  verification/hazlenz-domain-association-execution-2026-08-09/EVIDENCE_HOLDOUT_RUN.json             1 distinct
+   17  verification/hazlenz-evidence-intake-foundation-2026-07-29/HOLDOUT_CORPUS_EXPECTED.json           80 distinct
+   18  verification/hazlenz-evidence-intake-foundation-2026-07-29/HOLDOUT_CORPUS_RESULTS.json             1 distinct
+   19  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/development-l32.json            15 distinct
+   20  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/contracts/holdout-l32.json                66 distinct
+   21  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-1.json                66 distinct
+   22  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-run-2.json                66 distinct
+   23  verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/results/holdout-score-1.json               1 distinct
+   24  verification/hazlenz-l3-2b-binder-precision-2026-08-22/contracts/development-l32.json             30 distinct
+   25  verification/hazlenz-l3-2b-binder-precision-2026-08-22/contracts/holdout-l32b.json                81 distinct
+   26  verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-1.json                 81 distinct
+   27  verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-run-2.json                 81 distinct
+   28  verification/hazlenz-l3-2b-binder-precision-2026-08-22/results/holdout-score-1.json                1 distinct
+   29  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json  81 distinct
+   30  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-score.json   1 distinct
+   31  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-1.json                    72 distinct
+   32  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-run-2.json                    72 distinct
+   33  verification/hazlenz-l3-2c-gate-polarity-2026-08-22/results/holdout-score-1.json                   1 distinct
+   34  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-run.json  81 distinct
+   35  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32b-score.json   1 distinct
+   36  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32c-run.json  72 distinct
+   37  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/REGRESSION-EVIDENCE-holdout-l32c-score.json   1 distinct
+   38  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-1.json          77 distinct
+   39  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-run-2.json          77 distinct
+   40  verification/hazlenz-l3-2d-clarification-precision-2026-08-22/results/holdout-score-1.json         1 distinct
+   41  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-run.json  81 distinct
+   42  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32b-score.json   1 distinct
+   43  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-run.json  72 distinct
+   44  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32c-score.json   1 distinct
+   45  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-run.json  77 distinct
+   46  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/REGRESSION-EVIDENCE-holdout-l32d-score.json   1 distinct
+   47  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-1.json                   84 distinct
+   48  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-run-2.json                   84 distinct
+   49  verification/hazlenz-l3-2e-syntactic-role-2026-08-23/results/holdout-score-1.json                  1 distinct
+   50  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/contracts/holdout-l32f.frozen.json          97 distinct
+   51  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json                  97 distinct
+   52  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json                  97 distinct
+   53  verification/hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-score-1.json                 1 distinct
+   54  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json  92 distinct   <== SPENT RUN-1, SURFACE 8 (NEW FOR RUN 2)
+   55  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/rebuild/holdout-l3-acceptance-attempt2.json  92 distinct   <== SPENT RUN-1, SURFACE 8 (NEW FOR RUN 2)
+   56  verification/hazlenz-regulatory-release-phase/HOLDOUT_CORPUS_RERUN.json                            1 distinct
+   57  verification/hazlenz-response-quality-2026-08-09/OPAQUE_HOLDOUT.json                              12 distinct
+   58  verification/hazlenz-semantic-adjudication-2026-08-08/BASELINE_HOLDOUT_RAW.json                    1 distinct
+   59  verification/hazlenz-semantic-adjudication-2026-08-08/HAZLENZ_HOLDOUT_SEMANTIC_ADJUDICATION.json   4 distinct
+   60  verification/hazlenz-semantic-adjudication-2026-08-08/HOLDOUT_RECALL_MISSES.json                   4 distinct
+   61  verification/hazlenz-semantic-adjudication-2026-08-08/ITERATION_HOLDOUT_RAW.json                   1 distinct
+   62  verification/hazlenz-semantic-adjudication-2026-08-08/ITERATION_HOLDOUT_RECALL_MISSES.json         1 distinct
+   63  verification/hazlenz-semantic-adjudication-2026-08-08/ITERATION_HOLDOUT_SCORE.json                 1 distinct
+   64  verification/hazlenz-standards-temporal-quality-2026-08-09/DEVELOPMENT_CORPUS.json                60 distinct
+   65  verification/hazlenz-standards-temporal-quality-2026-08-09/HOLDOUT_V3_METRICS.json                 1 distinct
+   66  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT.json                    20 distinct
+   67  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT_V2.json                 20 distinct
+   68  verification/hazlenz-standards-temporal-quality-2026-08-09/OPAQUE_HOLDOUT_V3.json                 20 distinct
+   69  verification/hazlenz-temporal-foundation-2026-08-09/NEW_HOLDOUT_RAW.json                           1 distinct
+   70  verification/hazlenz-temporal-foundation-2026-08-09/NEW_HOLDOUT_SCORE.json                         1 distinct
+   71  verification/hazlenz-temporal-foundation-2026-08-09/NEW_TEMPORAL_HOLDOUT.json                     20 distinct
+   72  verification/hazlenz-temporal-foundation-2026-08-09/OPAQUE_HOLDOUT_FINAL.json                     20 distinct
+   73  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_FINAL_HOLDOUT_RESULTS.json       1 distinct
+   74  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT.json          27 distinct
+   75  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_EXPECTED.json   1 distinct
+   76  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RAW.json       1 distinct
+   77  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RAW_FINAL.json   1 distinct
+   78  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RAW_ITER1.json   1 distinct
+   79  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RAW_RERUN.json   1 distinct
+   80  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RAW_THIRD.json   1 distinct
+   81  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RESULTS.json   1 distinct
+   82  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_PRECISION_HOLDOUT_RUN.json      27 distinct
+   83  verification/safety-insite-blocker-elimination-2026-08-05/HAZLENZ_THIRD_FINAL_HOLDOUT_RAW.json     1 distinct
+   84  verification/safety-insite-independent-ai-readiness-2026-08-04/HAZLENZ_FINAL_HOLDOUT_RESULTS.json   1 distinct
+
+TOTAL SURFACES EVALUATED: 84
+FRESH AUTHORED-CONTROL COLLISIONS: 0
+WITHIN-HOLDOUT DUPLICATE CARRIERS: 0    DUPLICATE sourceIds: 0
+
+The SPENT RUN-1 HOLDOUT is surface 8 and it is NOT weakened because Run-1 controls went
+unanswered by the provider. Membership in a spent sealed corpus prohibits reuse on its own.
+gauntlet.seed is CHECKED but NOT DRAWN FROM and remains the unopened reserve tranche.

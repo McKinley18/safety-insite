@@ -1,0 +1,66 @@
+L3 PROVIDER READINESS -- PHASES 5, 6 AND 7 WERE NOT REACHED
+
+Phase 3's contract is explicit: "If absent: STOP." ANTHROPIC_API_KEY_PRESENT = FALSE, so the
+phase stopped before Phase 5. This file records what therefore does not exist, so that no later
+reader mistakes an absence for an omission.
+
+== PHASE 5 -- SAME-PATH DISPOSABLE PROVIDER PROBE  NOT EXECUTED ==
+
+  synthetic disposable probe observation authored     : NO
+  probe identity / sha256 recorded                    : N/A -- nothing was authored to hash
+  adapter/API path exercised                          : NONE
+  Anthropic shim (76d3e039...) started                : NO
+  POST https://api.anthropic.com/v1/messages          : NOT ISSUED
+  provider calls issued                               : 0
+
+  The path that WOULD have been used is recorded here for the run that eventually executes, and
+  was verified to require NO code change:
+
+    harness/probe --(Ollama /api/chat wire protocol)--> anthropic-ollama-shim.js @ 76d3e039
+      --> POST https://api.anthropic.com/v1/messages
+          headers  content-type, x-api-key, anthropic-version: 2023-06-01
+          body     model = ANTHROPIC_MODEL_ID or the shim default 'claude-sonnet-5'
+                   max_tokens, system, messages[user]
+                   output_config.format = { type: 'json_schema', schema: convertSchema(format) }
+                   temperature / seed / num_ctx deliberately NOT forwarded (D4/D5/D6)
+      --> toOllamaEnvelope() --> response parser/schema boundary --> bindProposal()
+      --> validateReasoningProposal() @ 942ac7cc
+
+  The shim already logs `respondedModel: r.payload.model` on every 200, which is the exact field
+  Phase 6's identity gate needs. No instrumentation would have to be added.
+
+== PHASE 6 -- EXACT MODEL IDENTITY GATE  NOT REACHED ==
+
+  REQUESTED_MODEL   claude-sonnet-5   (authorized; would have been sent)
+  RETURNED_MODEL    NONE -- no provider response exists
+
+  IDENTITY GATE RESULT: NOT EVALUATED.
+
+  This is NOT a MODEL_IDENTITY_MISMATCH. A mismatch is a measured disagreement between a
+  requested and a returned identity. No identity was returned, so there is nothing to compare
+  and the mismatch terminal is NOT the correct one. The correct terminal is the credential one.
+
+== PHASE 7 -- EXECUTION-PATH COMPATIBILITY  NOT REACHED ==
+
+  provider response obtained                          : NO
+  response structurally usable                        : NOT DETERMINED
+  frozen validator behaviour reproduced on a real
+    provider response                                 : NOT DETERMINED
+
+  NO provider-specific incompatibility was found, because none could be looked for. This is
+  recorded as UNKNOWN, not as PASS. The last real Anthropic responses through this shim were
+  L3-2o's (D-70), which passed the same path at 24/24 with 0 disagreements -- but that is PRIOR
+  evidence about a prior run, not a result of this phase, and it is not restated as one.
+
+== WHAT WAS NOT DONE INSTEAD ==
+
+  substituted another Claude model to "prove the path"    : NO
+  substituted Gemini / OpenAI / Ollama / a local model    : NO
+  used Claude Code's own claude.ai session as the
+    experiment credential                                : NO -- forbidden by s.47.7
+  mocked or stubbed a provider response to let Phase 7
+    report a PASS                                        : NO -- a simulated response proves
+                                                           nothing about provider callability,
+                                                           and reporting it as compatibility
+                                                           evidence would be a fabricated result
+  opened a holdout or reserved row for any purpose        : NO

@@ -60,8 +60,8 @@ export class OfflineReasoningMobileResilienceService {
       likelyHazardDomains,
       evidenceGaps,
       requiredSyncActions: [
-          'Sync observation with Sentinel backend',
-          'Review full SafeScope reasoning trace once online',
+          'Sync observation with Safety InSite',
+          'Review full HazLenz AI reasoning trace once online',
           'Verify against latest citations'
       ],
       supervisorQuestions,

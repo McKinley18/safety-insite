@@ -1,0 +1,75 @@
+L3 PROVIDER READINESS RETRY -- PHASES 5, 6 AND 7 WERE NOT REACHED
+
+Phase 3's contract: "If FALSE: STOP." ANTHROPIC_API_KEY_PRESENT = FALSE, so the phase stopped
+before Phase 5. Recorded here so no reader mistakes an absence for an omission.
+
+== PHASE 5 -- SAME-PATH DISPOSABLE PROBE  NOT EXECUTED ==
+
+  synthetic probe observation authored           YES -- probe/probe-observation.json
+  probe artifact sha256                          a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c
+  observationText sha256                         52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+  classification                                 NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  TRANSMITTED                                    NO
+  adapter/API path exercised                     NONE
+  Anthropic shim (76d3e039) started              NO
+  POST https://api.anthropic.com/v1/messages     NOT ISSUED
+  provider calls issued                          0
+  HTTP/API success or failure                    NEITHER -- no request was made
+
+  The probe was authored and frozen anyway, deliberately. Freezing it BEFORE the provider is
+  known to be reachable means the next retry sends a probe that demonstrably predates any
+  observation of provider behaviour, and any change to it is mechanically visible.
+
+  THE PATH THAT WOULD BE USED, verified to need no code change:
+
+    probe --(Ollama /api/chat wire protocol)--> anthropic-ollama-shim.js @ 76d3e039
+      --> POST https://api.anthropic.com/v1/messages
+          headers  content-type · x-api-key · anthropic-version: 2023-06-01
+          body     model = ANTHROPIC_MODEL_ID or the shim default 'claude-sonnet-5'
+                   max_tokens · system · messages[user]
+                   output_config.format = { type: 'json_schema', schema: convertSchema(format) }
+                   temperature / seed / num_ctx deliberately NOT forwarded (D4 / D5 / D6)
+      --> toOllamaEnvelope()  --> parser/schema boundary  --> bindProposal()
+      --> validateReasoningProposal() @ 942ac7cc
+
+== PHASE 6 -- EXACT MODEL IDENTITY  NOT REACHED ==
+
+  REQUESTED_MODEL   claude-sonnet-5   -- authorized, and NOT SENT
+  RETURNED_MODEL    NONE -- no provider response exists
+  provider metadata NONE
+
+  IDENTITY GATE RESULT: NOT EVALUATED.
+
+  THIS IS NOT `MODEL_IDENTITY_MISMATCH`. A mismatch is a MEASURED DISAGREEMENT between a
+  requested and a returned identity. Nothing was returned, so there is nothing to compare, and
+  recording a mismatch would be inventing a provider result.
+
+  Identity was NOT inferred from the request, and NOT inferred from prior L3-2o evidence --
+  both are explicitly forbidden by this phase's contract, and neither was attempted.
+
+== PHASE 7 -- EXECUTION-PATH COMPATIBILITY  NOT REACHED ==
+
+  PROVIDER_CALLABILITY            NOT DETERMINED
+  MODEL_IDENTITY                  NOT DETERMINED
+  EXECUTION_PATH_COMPATIBILITY    NOT DETERMINED
+
+  All three are recorded as UNKNOWN, never as PASS. The required success result
+  (PASS / PASS / PASS) was NOT obtained, so the success terminal is not available.
+
+  No provider-specific incompatibility was found, because none could be looked for. The last
+  real Anthropic responses through this shim were L3-2o's (D-70), 24/24 with 0 disagreements --
+  PRIOR evidence about a PRIOR run, not a result of this phase, and not restated as one.
+
+== WHAT WAS NOT DONE INSTEAD ==
+
+  substituted another Claude model                          NO
+  substituted Gemini / OpenAI / Ollama / a local model      NO
+  used Claude Code session authentication                   NO -- forbidden by s.47.7
+  mocked or stubbed a provider response so Phase 7 could
+    report PASS                                             NO -- a simulated response proves
+                                                            nothing about callability, and
+                                                            reporting it as compatibility
+                                                            evidence would be a fabricated result
+  used an acceptance row or a reserved row                   NO
+  tuned the prompt or changed the schema                     NO
+  retried with a different model                             NO

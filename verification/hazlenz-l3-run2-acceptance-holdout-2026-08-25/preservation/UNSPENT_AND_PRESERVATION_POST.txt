@@ -1,0 +1,61 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT -- PHASE 18: UNSPENT PROOF AND PRESERVATION, POST-CONSTRUCTION
+recorded 2026-08-25T22:02:19Z
+
+=== RUN-2 IS UNSPENT ===
+  Anthropic credential accessed                       NO -- ANTHROPIC_API_KEY was not read, tested or referenced
+  provider calls                                      0
+  provider probes                                     0
+  destinations contacted                              0
+  inference calls                                     0
+  tokens / cost                                       0 / $0.00
+  Run-2 holdout rows transmitted                      0
+  reserved Run-2 source rows transmitted              0
+  acceptance scorer run on provider output            0
+  G1-G10 evaluated on provider output                 0
+  acceptance result artifacts                         0 -- none exists
+  tuning / remediation                                NO / NO
+
+  RUN2_HOLDOUT_SPENT = FALSE
+  Gauntlet offset 1 and realism offset 0 are SELECTED AND FROZEN BUT UNSPENT.
+  Nothing new is retired by this phase.
+
+=== RUN 1 PRESERVED INDEPENDENTLY, AND NOT REWRITTEN ===
+  RUN1_HOLDOUT_SPENT                                  TRUE
+  RUN1_GAUNTLET_OFFSET_0                              RETIRED
+  RUN1_REALISM_OFFSET_3                               RETIRED
+  RUN1_MODEL_ACCEPTANCE_RESULT                        NOT_ESTABLISHED
+
+=== NETWORK-PRIMITIVE AUDIT OF EVERY SCRIPT IN THIS PACKAGE ===
+  6 scripts scanned (analysis/preselection-gate.js, builder/authored-controls-run2.js,
+  builder/build-holdout-run2.js, scorer/acceptance-scorer-v2.frozen-copy.js,
+  scorer/synthetic-run2-tests.js, validation/validate-holdout-run2.js)
+  occurrences of fetch / require('http') / https.request / axios / net. / dns. /
+  child_process / XMLHttpRequest:  ZERO
+  Verified twice, by grep and by an independent line-by-line scan.
+  NO SCRIPT IN THIS PACKAGE CAN CONTACT A PROVIDER.
+
+=== FROZEN ARTIFACTS, RE-HASHED AFTER CONSTRUCTION ===
+  MATCH   gauntlet.source.v1               a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH   gauntlet.seed (UNOPENED)         49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  MATCH   field-realism-pack-v2            6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+  MATCH   RUN-1 holdout (spent)            69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  MATCH   original acceptance scorer       ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+  MATCH   governing plan                   a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a
+  MATCH   RUN-2 construction freeze        67e6b47c7c13b217236220284894d8b44aac1d4769c8e4fa37323d993b8937bb
+  MATCH   RUN-2 holdout                    f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+
+  OK = 8   DRIFT = 0
+
+  RUN-1 acceptance-artifact identity: 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  UNCHANGED (189a3cbf...)  16 components
+
+=== REPOSITORY ===
+  HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230   (unchanged)
+  upstream        origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  divergence      0/0
+  stashes         4   (NONE created, applied or dropped)
+  tags            23
+  staged          0
+  git diff HEAD -- backend/src      0 lines
+  git diff HEAD -- safescope-data   0 lines
+  Run-1 evidence packages modified  NO

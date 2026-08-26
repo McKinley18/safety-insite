@@ -48,10 +48,17 @@ async function main() {
   await classify(users[0].token, 402);
   const db = new Client({ connectionString: databaseUrl });
   await db.connect();
+  // The fixture tier is 'pro', not 'expert'. Migration 1800000005900-RetireExpertTier
+  // rewrote every 'expert' grant to 'pro' and narrowed entitlement_grants_tier_check to
+  // CHECK (tier = 'pro'), so an 'expert' insert now violates the constraint and this
+  // suite could not reach its assertions at all. The production schema is correct and
+  // the fixture was the stale part: 'pro' is exactly what a retired 'expert' grant
+  // normalizes to, so the boundary being tested -- expired grant denies, active grant
+  // allows -- is unchanged.
   await db.query(
     `INSERT INTO entitlement_grants
      ("userId", source, tier, status, "startsAt", "endsAt", reason)
-     VALUES ($1, 'test', 'expert', 'active', now() - interval '2 hour',
+     VALUES ($1, 'test', 'pro', 'active', now() - interval '2 hour',
              now() - interval '1 hour', 'Expired boundary fixture')`,
     [users[0].userId],
   );
@@ -59,7 +66,7 @@ async function main() {
   await db.query(
     `INSERT INTO entitlement_grants
      ("userId", source, tier, status, "startsAt", "endsAt", reason)
-     VALUES ($1, 'test', 'expert', 'active', now() - interval '1 minute',
+     VALUES ($1, 'test', 'pro', 'active', now() - interval '1 minute',
              now() + interval '2 hour', 'Active boundary fixture')`,
     [users[0].userId],
   );

@@ -1,0 +1,68 @@
+PHASE 7 -- FROZEN-IDENTITY IMPACT
+verification/hazlenz-l3-run2-prespend-execution-guard-2026-08-25 | 2026-08-25
+
+1. THE FROZEN RUN-2 ACCEPTANCE ARTIFACT -- RECOMPUTED, NOT COPIED
+   components declared in the manifest: 15
+   component digests reproducing their manifest line: 15 / 15
+   recomputed identity: 9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+   expected identity:   9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+   -> MATCH
+
+2. THE EXECUTION SURFACE D-K WAS WIRED INTO
+   ce9c749380d4713098f0215a72797921b70d9c8a67408b132b37ead34adf9ed1  guard/dk-abort-guard.ts
+   20290a85267b75a11f4778eee7a9bb24fe0ffbd85a5805faa93a257f41103d7d  guard/acceptance-execution-loop.ts
+   d97eb94c93ce094322e153a9f86bc6257e4c12146c7ea1d990b5e11fb5d02d88  runner/run-run2-acceptance.ts
+   95b3ca8ccd0fe056888d7994ec0372c6e42e5b14aaca3fb7d78b56924506a28a  runner/run-run2-sealed.sh
+
+3. DOES THE FROZEN ARTIFACT INCLUDE THE RUNNER/HARNESS BEING MODIFIED?
+   manifest components, in full:
+     validation/STRUCTURAL_VALIDATION.txt
+     builder/build-holdout-run2.js
+     validation/REBUILD_PROOF.txt
+     scorer/SYNTHETIC_SCORER_VALIDATION.txt
+     builder/authored-controls-run2.js
+     ACCEPTANCE_ARTIFACT_FREEZE.txt
+     HOLDOUT_FREEZE.txt
+     analysis/PHASE3_PRESELECTION_GATE.txt
+     analysis/preselection-gate.js
+     validation/OVERLAP_SURFACES.txt
+     scorer/acceptance-scorer-v2.frozen-copy.js
+     scorer/synthetic-run2-tests.js
+     validation/validate-holdout-run2.js
+     holdout/holdout-l3-acceptance-run2.json
+     rebuild/holdout-l3-acceptance-run2.json
+
+   The manifest contains NO runner, NO harness, NO execution driver and NO shell script.
+   Its 15 components are: the holdout and its deterministic rebuild, the builder and the
+   authored-control source, the pre-selection gate and its output, the structural/rebuild/
+   overlap validation outputs and the validator, the v2 scorer frozen copy and its synthetic
+   tests and their output, the HOLDOUT_FREEZE and the ACCEPTANCE_ARTIFACT_FREEZE.
+
+   collisions found: 0
+
+4. WAS ANY FROZEN COMPONENT WRITTEN, MOVED OR RENAMED BY THIS PHASE?
+   every component reproduces its manifest line byte-for-byte: true
+   the artifact identity is unchanged:                        true
+
+5. DETERMINATION
+   RUN2_ACCEPTANCE_ARTIFACT_IDENTITY_UNCHANGED
+   RUN2_ACCEPTANCE_ARTIFACT_IDENTITY = 9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+
+   The runner is OUTSIDE the frozen artifact. It did not exist when the artifact was frozen:
+   section 63.11 froze the EXAM (holdout, builder, validation, scorer), and section 63.12
+   named the D-K wiring as a still-owed PRECONDITION of executing it, not as a component of
+   it. Wiring D-K therefore mutates NO frozen component, and NOTHING had to be rebuilt.
+
+   The execution surface is frozen SEPARATELY, under its own new identity:
+
+     20290a85267b75a11f4778eee7a9bb24fe0ffbd85a5805faa93a257f41103d7d  guard/acceptance-execution-loop.ts
+     95b3ca8ccd0fe056888d7994ec0372c6e42e5b14aaca3fb7d78b56924506a28a  runner/run-run2-sealed.sh
+     ce9c749380d4713098f0215a72797921b70d9c8a67408b132b37ead34adf9ed1  guard/dk-abort-guard.ts
+     d97eb94c93ce094322e153a9f86bc6257e4c12146c7ea1d990b5e11fb5d02d88  runner/run-run2-acceptance.ts
+
+   RUN2_EXECUTION_GUARD_IDENTITY = eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1
+
+   Any change to any of those four files changes this identity. The Run-2 acceptance
+   authorization must therefore name BOTH identities.
+
+   THE RUN-2 HOLDOUT WAS NOT REBUILT BY THIS PHASE, IN EITHER BRANCH.

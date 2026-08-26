@@ -1,0 +1,107 @@
+L3 FINAL SEALED ACCEPTANCE -- PRESERVATION, EGRESS AND POST-RUN VERIFICATION
+recorded 2026-08-24T20:49:55Z
+
+== TERMINAL ==
+  L3_FINAL_ACCEPTANCE_INVALID -- NO_ACCEPTANCE_CONCLUSION
+  SEALED_STRIDE_NOT_EXPOSED -- NOT SPENT. This is NOT a model failure.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: refs/remotes/origin/release/insite-rc-2026-08-18  divergence: 0/0
+  live remote ref: a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  staged index entries: 0   tags: 23
+  worktree porcelain entries: 15  (8 at the a7b21a26 checkpoint)
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== SEALED SOURCES -- HASHES BEFORE AND AFTER, IDENTICAL, NEVER OPENED ==
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  Expected, from L3-2r and every phase since L3-2k:
+    49aa40fd... seed | a95e5480... source.v1 | 6f6897f1... field-realism-pack-v2
+  MATCH: YES, all three. Byte-identical before and after this phase.
+  Opened: NO.  Previewed: NO.  Selected from: NO.  Semantic contents inspected: NO.
+  Stride consumed: NONE.
+  Remaining unopened sealed evidence: ALL 366 INDEPENDENT ROWS
+    (gauntlet.source.v1 150 + gauntlet.seed 99 + field-realism-pack-v2 117),
+    roughly four future acceptance runs. NOTHING IS RETIRED.
+
+== FROZEN ACCEPTANCE CONFIGURATION -- recorded pre-open, binding on the future run ==
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  backend/scripts/activate-l32j-shipped-corpus.ts
+  d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db  backend/scripts/diagnose-l32k-shipped-residual.ts
+  76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/anthropic-ollama-shim.js
+  7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/score.js
+  prompt version: hazlenz.l3.prompt.v6   L3_SYSTEM_PROMPT sha256 b8cc50fc...   run schema a522cf5a...
+
+== NO UNAUTHORIZED IMPLEMENTATION CHANGE SINCE PRE-AUTHORIZATION ==
+  all 31 hashes recorded at L3-2o, re-derived now:
+    OK=31  MISMATCH=0
+  git diff HEAD -- backend/src : 0 lines
+  B08 / cohort source unchanged: 0 lines
+
+== PROVIDER EXECUTION ACCOUNTING ==
+  API requests to api.anthropic.com            : 0
+  inference calls (hosted)                     : 0
+  inference calls (local / ollama)             : 0
+  metadata or availability probes              : 0
+  destinations contacted                       : NONE
+  prompt tokens / output tokens / thought tokens: 0 / 0 / 0
+  measured cost                                : $0.00
+  process IDs / isolation                      : N/A -- no run process was started
+  redaction counts                             : N/A -- no row was constructed or transmitted
+  scenarios evaluated                          : 0
+  model identity bound to the run              : NONE -- the re-probe was unreachable
+
+== PII / EGRESS DISPOSITION ==
+  customer or production InSite data transmitted : NONE
+  sealed-corpus bytes transmitted                : NONE
+  public entity names transmitted                : NONE
+  D-81's privacy rule                            : NOT EXERCISED -- no input was constructed.
+    It remains recorded and binding on the future run.
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  Unchanged by construction: no production file modified, git diff HEAD -- backend/src is 0 lines,
+  and section 45.6 stands that no hosted adapter exists in backend/src to change it.
+
+== PROTECTED EXCLUDED PRODUCT WORK -- UNTOUCHED ==
+  backend/scripts/test-canonical-workflow.ts           unstaged=27 staged=0
+  backend/scripts/test-private-storage-reports.ts      unstaged=44 staged=0
+  frontend-next/app/inspection-workspace/page.tsx      unstaged=12 staged=0
+  frontend-next/app/inspections/page.tsx               unstaged=15 staged=0
+  frontend-next/lib/auth.ts                            unstaged=19 staged=0
+  frontend-next/lib/canonicalWorkflowApi.ts            unstaged=30 staged=0
+  frontend-next/lib/planEntitlements.ts                unstaged=38 staged=0
+  Safety InSite Logos/ : 11 files untracked, not staged
+
+== NOT DONE, BY CONSTRUCTION ==
+  sealed acceptance corpus opened / previewed / inspected           : NO
+  any stride selected or consumed                                   : NO
+  sealed acceptance run executed                                    : NO
+  Anthropic / Gemini / qwen inference                               : NO
+  another model substituted for claude-sonnet-5                     : NO
+  Claude Code OAuth used as the experiment credential               : NO
+  anything tuned or remediated                                      : NO
+  prompt / schema / validator / binder modified                     : NO
+  acceptance requirements or denominators changed                   : NO
+  a failed gate reinterpreted as a KPI                              : N/A -- no gate was measured
+  production hosted adapter built                                   : NO
+  production provider selected                                      : NO
+  Level-1 customer authority changed                                : NO
+  L3-3 begun                                                        : NO
+  deployed / committed / pushed / merged / rebased / reset          : NO
+  restored / cleaned / stash operation of any kind                  : NO
+  historical L3-2 result rewritten to match a final result          : NO
+  protected excluded product work staged or modified                : NO

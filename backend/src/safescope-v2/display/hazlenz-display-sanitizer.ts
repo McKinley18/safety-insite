@@ -15,6 +15,25 @@ const DISPLAY_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\bSafeScope recommendation\b/g, "HazLenz AI recommendation"],
   [/\bSafeScope engine\b/g, "HazLenz AI engine"],
   [/\bSafeScope\b/g, "HazLenz AI"],
+
+  // The retired product names, taken from the list that
+  // src/safescope-v2/tests/smoke/hazlenz-field-output-smoke.js already asserts must
+  // never appear in HazLenz field output. Only "SafeScope" had a rule, so a residual
+  // legacy string elsewhere in the engine still reached the customer -- the offline
+  // advisory returned "Sync observation with Sentinel backend" verbatim. This is the
+  // designated single point where display naming is corrected, so the remaining five
+  // names in that contract are handled here rather than hunted string by string.
+  //
+  // "Sentinel Safety" must precede the bare "Sentinel" rule, or the longer name would
+  // be rewritten to "Safety InSite Safety". These patterns are case-sensitive by
+  // design: they must not touch lowercase internal identifiers such as the
+  // `sentinel_*` storage keys or the `safescope-v2` API namespace.
+  [/\bSentinel Safety\b/g, "Safety InSite"],
+  [/\bSentinel\b/g, "Safety InSite"],
+  [/\bReviewCore\b/g, "HazLenz AI"],
+  [/\bGuideGuard\b/g, "Safety InSite"],
+  [/\bSightSignal\b/g, "Safety InSite"],
+  [/\bAuditAlly\b/g, "Safety InSite"],
 ];
 
 const DISPLAY_ENGINE_REPLACEMENTS: Record<string, string> = {

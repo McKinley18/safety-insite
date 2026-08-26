@@ -2,6 +2,8 @@ import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import ClientCacheCleanup from "@/components/system/ClientCacheCleanup";
 import ThemeController from "@/components/system/ThemeController";
+import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/brand";
+import { FIXED_LIGHT_THEME_ROUTES } from "@/lib/theme";
 
 // Resolves the theme and stamps it on <html> BEFORE the browser paints.
 //
@@ -12,13 +14,17 @@ import ThemeController from "@/components/system/ThemeController";
 // markup is necessarily `class="light"` (the server cannot know a given user's stored choice),
 // so a dark-mode user painted a light screen first and only flipped to dark after hydration:
 // measured first paint rgb(241,245,249) -> settled rgb(7,17,31).
+// The pinned-light route list is interpolated from lib/theme rather than repeated
+// here. This script runs before paint and cannot import at runtime, but it is built
+// at module scope, so the array is serialised from the single source of truth --
+// which is what stops this copy drifting away from AppShell and ThemeController.
 const THEME_INIT = `
 (function () {
   try {
     var key = "safety_insite_theme";
     var legacyDarkKey = "sentinel_dark_mode";
     var path = window.location.pathname;
-    var fixedPublicPrefixes = ["/login", "/register", "/create-account", "/forgot-password", "/reset-password", "/unlock", "/about", "/legal", "/security", "/hazlenz", "/pricing"];
+    var fixedPublicPrefixes = ${JSON.stringify(FIXED_LIGHT_THEME_ROUTES)};
     var fixedPublicTheme = path === "/" || fixedPublicPrefixes.some(function (prefix) {
       return path === prefix || path.indexOf(prefix + "/") === 0;
     });
@@ -69,6 +75,22 @@ const THEME_INIT = `
   } catch (error) {}
 })();
 `;
+
+// Every route rendered with an empty <title>: the App Router emits none unless a
+// `metadata` export supplies one, and neither this layout nor any page had one. Browser
+// tabs, bookmarks, history entries and shared links all showed the bare URL.
+//
+// `title.template` gives each page a "<Page> · Safety InSite" tab name once it exports
+// its own `metadata.title`; `default` covers the routes that do not.
+export const metadata = {
+  title: {
+    default: `${APP_NAME} — ${APP_TAGLINE}`,
+    template: `%s · ${APP_NAME}`,
+  },
+  description: APP_DESCRIPTION,
+  applicationName: APP_NAME,
+  icons: { icon: "/icon.svg" },
+};
 
 export const viewport = {
   width: "device-width",

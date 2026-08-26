@@ -1,0 +1,49 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASE 8 -- HOLDOUT-UNSPENT RE-PROOF, AFTER THE ONE PROVIDER CALL
+recorded 2026-08-25T20:28:51Z
+
+=== THE FROZEN HOLDOUT, RE-HASHED AFTER THE CALL ===
+  sha256   69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  required 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  bytes    105561   (required 105561)
+  verdict  MATCH -- UNCHANGED
+
+=== ROW ACCOUNTING, STRUCTURAL ONLY ===
+  total rows              92   (required 92)
+  INDEPENDENT_GAUNTLET    38
+  INDEPENDENT_REALISM     29
+  AUTHORED_CONTROL        25
+  distinct rowIds         92   duplicates 0
+  observation VALUES read, printed or serialised    0 -- no `observation` field was accessed
+
+=== THE 16-COMPONENT ACCEPTANCE-ARTIFACT IDENTITY, RECOMPUTED AFTER THE CALL ===
+  components               16   (required 16)
+  recomputed identity      189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  required identity        189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  verdict                  MATCH -- UNCHANGED
+
+=== PROTECTED SOURCES -- FILE DIGESTS ONLY, NO ROW OPENED ===
+  6f6897f1...  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+  49aa40fd...  safescope-data/gauntlets/safescope-gauntlet.seed.json
+  a95e5480...  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+
+=== SPEND ACCOUNTING ===
+  holdout observations used as provider input         0
+  holdout rows transmitted                            0
+  reserved rows transmitted                           0
+  gauntlet.seed rows transmitted                      0
+  protected-source rows opened / read for content     0
+  acceptance scorer executions on provider output     0
+  acceptance scorer executions at all                 0
+  G1-G10 evaluations                                  0
+  acceptance result artifacts                         0 -- none exists
+  tuning                                              NO
+  remediation                                         NO
+  provider calls                                      1 -- the synthetic NON_HOLDOUT probe, and nothing else
+  offsets retired                                     0 -- gauntlet offset 0 and realism offset 3 remain RESERVED AND UNSPENT
+
+  HOLDOUT_SPENT = FALSE
+
+  The one synthetic readiness call does not spend the acceptance corpus. Nothing is retired.
+  gauntlet offsets 1, 2, 3 and realism offsets 0, 1, 2 remain reserved; the entire
+  gauntlet.seed tranche remains unopened.

@@ -1,0 +1,93 @@
+L3 RUN-2 ACCEPTANCE -- SYNTHETIC SCORER VALIDATION AGAINST THE FROZEN RUN-2 CONFIGURATION
+
+=== FROZEN IDENTITIES ===
+  PASS   original scorer ea5e50ae, byte-unchanged
+  PASS   v2 validity layer b9a0a6bc, byte-identical to the amendment original
+  PASS   Run-2 holdout f887cfd1
+  PASS   Run-2 holdout carries 93 rows
+
+=== 1. COMPLETE VALID ALL-PASS PRESERVES THE ORIGINAL SCORER OUTCOME ===
+  PASS   original scorer all-pass baseline is a PASS   L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS   v2 pass identical to original
+  PASS   v2 terminal identical to original   L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS   v2 gates byte-identical to original
+  PASS   v2 byProvenance identical
+  PASS   gate arithmetic AUTHORITATIVE on a complete run
+  PASS   modelAcceptanceResult ESTABLISHED_PASS
+
+=== 2. EVERY COMPLETE G1..G10 FAILURE REMAINS EQUIVALENT ===
+  PASS   G1 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G1,G9
+  PASS   G1 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G2 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G2,G9
+  PASS   G2 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G3 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G3,G9
+  PASS   G3 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G4 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G4,G9
+  PASS   G4 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G5 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G5
+  PASS   G5 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G6 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G6
+  PASS   G6 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G7 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G2,G7,G9
+  PASS   G7 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G8 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G8
+  PASS   G8 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G9 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G9
+  PASS   G9 modelAcceptanceResult ESTABLISHED_FAIL
+  PASS   G10 failure preserved and v2 identical to the original scorer   L3_ACCEPTANCE_FAILED — G1,G10
+  PASS   G10 modelAcceptanceResult ESTABLISHED_FAIL
+
+=== 3. INCOMPLETE PROVIDER EVALUATION -> NOT_SCORABLE ===
+  PASS   the original scorer alone would still report scorable = true
+  PASS   ONE missing provider evaluation is sufficient: scorable = false
+  PASS   raises INCOMPLETE_PROVIDER_EVALUATION
+  PASS   EXPECTED_ROWS 93, PROVIDER_EVALUATED_ROWS 92
+  PASS   terminal NOT_SCORABLE   L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+  PASS   modelAcceptanceResult NOT_ESTABLISHED
+  PASS   MANY missing provider evaluations: scorable = false
+  PASS   PROVIDER_EVALUATED_ROWS = 40 of 93
+  PASS   notEvaluatedRowIds = 53
+
+=== 4. MALFORMED / REFUSAL COUNT AS PROVIDER-EVALUATED WHERE FROZEN ===
+  PASS   MALFORMED_STRUCTURED_OUTPUT is an EVALUATED kind
+  PASS   PROVIDER_REFUSAL is an EVALUATED kind
+  PASS   TIMEOUT / UNAVAILABLE / TRANSIENT / PERMANENT are NOT evaluated
+  PASS   a malformed-but-evaluated answer keeps the run SCORABLE
+  PASS   and it still fails G10 -- G10 keeps its teeth   rate 96.8%
+
+=== 5. PROVIDER-ERROR PLACEHOLDERS CANNOT CREATE SUBSTANTIVE PASS OR FAIL ===
+  PASS   the original scorer alone awards vacuous hard-zero PASSES
+  PASS   v2 refuses: scorable = false
+  PASS   no substantive PASS is reachable
+  PASS   no substantive FAIL is claimed either
+  PASS   arithmetic marked NON-AUTHORITATIVE
+  PASS   terminal is NOT_SCORABLE, not FAILED and not PASSED   L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+
+=== 6. HOLDOUT_SPENT IS INDEPENDENT OF SCORABILITY ===
+  PASS   the v2 result object carries NO spend field
+  PASS   SCORABLE=false coexists with RUN2_HOLDOUT_SPENT held elsewhere
+
+=== 7. INCOMPLETE CAN NEVER PASS -- EXHAUSTIVE OVER ALL 93 ROWS, BOTH PROCESSES ===
+  PASS   no single withheld process-A evaluation yields pass (93 cases)
+  PASS   no single withheld process-B evaluation yields pass (93 cases)
+  PASS   an UNDECLARED providerEvaluated fails closed
+
+=== 8. RUN-2 DENOMINATORS ARE CORRECTLY BOUND ===
+  PASS   G1 denominator equals the frozen-metadata recount, whatever it is   36
+  PASS   G1 denominator is 36 for the offset-1 partition (25 critical + 11 high; 2 medium excluded)   36
+  PASS   G1 denominator is entirely INDEPENDENT_GAUNTLET rows
+  PASS   G3 DEN_A = 30 (Run-2, discovered after selection)   30
+  PASS   G4 denominator = 21 (Amendment 2 / D-E, unchanged)
+  PASS   G7 pole = 11 (unchanged)
+  PASS   G5/G6/G8/G9/G10 denominator = 93 (Run-2 row count)
+  PASS   G2 threshold still 100%
+  PASS   G3 threshold still 100% on BOTH
+  PASS   G10 threshold still >=99% after <=1 retry
+  PASS   hard-zero gates still hard and still ZERO
+  PASS   G10 remains the only non-hard gate
+  PASS   by-provenance rows 38 / 30 / 25
+  PASS   by-provenance G4 denominator is entirely authored
+  PASS   by-provenance G3 DEN_A splits 24 independent / 6 authored
+
+TOTAL: 71 assertions, 71 PASS, 0 FAIL
+NO PROVIDER CALL. NO INFERENCE. NO RUN-2 SEMANTIC EVALUATION. NO OBSERVATION VALUE READ.

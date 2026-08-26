@@ -1,0 +1,118 @@
+{
+  "checks": [
+    {
+      "id": "terminal matches frozen",
+      "pass": true,
+      "detail": "L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9 | frozen L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9"
+    },
+    {
+      "id": "failedGates match frozen",
+      "pass": true,
+      "detail": "[\"G1\",\"G2\",\"G3\",\"G4\",\"G5\",\"G6\",\"G9\"] | frozen [\"G1\",\"G2\",\"G3\",\"G4\",\"G5\",\"G6\",\"G9\"]"
+    },
+    {
+      "id": "modelAcceptanceResult matches frozen",
+      "pass": true,
+      "detail": "ESTABLISHED_FAIL"
+    },
+    {
+      "id": "scorable matches frozen",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "id": "pass matches frozen",
+      "pass": true,
+      "detail": "false"
+    },
+    {
+      "id": "gate G1 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G2 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G3 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G4 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G5 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G6 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G7 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G8 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G9 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "gate G10 byte-identical",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "id": "byProvenance byte-identical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "providerEvaluation complete",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider calls this replay = 0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "negative control moves G4",
+      "pass": true,
+      "detail": "G4 4 -> 21"
+    },
+    {
+      "id": "negative control moves G9",
+      "pass": true,
+      "detail": "G9 14 -> 4"
+    },
+    {
+      "id": "truth-reading transform refused",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "network seal intercepts https.request",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "passed": 22,
+  "total": 22,
+  "providerCalls": 0,
+  "apiCostUsd": 0
+}

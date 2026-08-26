@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 const { Client } = require('pg') as { Client: new (options: { connectionString: string }) => any };
 
 const baseUrl = process.env.API_BASE_URL || 'http://127.0.0.1:4104';
@@ -49,6 +50,17 @@ async function main() {
   const [loginA, loginB] = await Promise.all([login(emailA), login(emailB)]);
   const authA = { authorization: `Bearer ${loginA.token}` };
   const authB = { authorization: `Bearer ${loginB.token}` };
+
+  // This suite exercises paid surfaces (corrective-action assignments), so its freshly
+  // registered users need a paid entitlement. It previously relied on DEV_FORCE_EXPERT,
+  // which no longer exists -- its successor DEV_FORCE_PRO only tiers up the dev-bypass
+  // identity, not an authenticated user -- leaving the suite unable to run at all. Granted
+  // through the shared disposable-only helper, so its NODE_ENV=test and database-allowlist
+  // guards still apply and no billing guard is bypassed.
+  for (const userId of [loginA.user.id, loginB.user.id]) {
+    execFileSync('npx', ['ts-node', 'scripts/grant-test-entitlement.ts', userId, '2'],
+      { env: { ...process.env, NODE_ENV: 'test' }, stdio: 'pipe' });
+  }
 
   await request('/sites', {
     method: 'POST',

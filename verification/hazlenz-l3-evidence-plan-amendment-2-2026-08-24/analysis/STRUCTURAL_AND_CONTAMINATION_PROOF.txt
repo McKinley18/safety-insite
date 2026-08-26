@@ -1,0 +1,49 @@
+AMENDMENT 2 -- PHASE 5 AUTHORED-CONTROL STRUCTURAL RECHECK + PHASE 6 CONTAMINATION/SPEND PROOF
+recorded 2026-08-24
+
+== PHASE 5 -- AUTHORED-CONTROL STRUCTURAL RECHECK ==
+  Attempt-1 materialization used as a STRUCTURAL ARTIFACT ONLY. NOT admitted to any holdout.
+  builder/authored-controls.js  sha256:
+    4237fc3bf035286eb7b2f79d209ab6ebb4c8323169765803c4ee605056ef70d2  verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/builder/authored-controls.js
+    authored controls total                             25  DERIVED=25  MATCH
+    allocation 4+4+3+3+3+3+3+2                          DERIVED=4+4+3+3+3+3+3+2=25  MATCH
+
+    GATE MEMBERSHIPS -- derived from frozen family/truth rules, NOT hard-coded totals:
+    G3 expected 6                                       semantic=6 flag=6 enumerated=6  MATCH
+    G4 expected 21 (Amendment 2)                        semantic=21 flag=21 enumerated=21  MATCH
+    G7 expected 11                                      semantic=11 flag=11 enumerated=11  MATCH
+    closure: G4 + ACTIVE-truth = total                  21 + 4 = 25  MATCH
+    superseded 18 reproducible from any rule?           NO -- all three derivations yield 21
+
+    No authored control was changed to make a count fit. The controls are byte-identical
+    to their Attempt-1 materialization; only the DECLARED G4 number moved, 18 -> 21.
+
+== PHASE 6 -- CONTAMINATION AND SPEND PROOF ==
+  source rows selected into any holdout       : 0
+  source identifiers materialized into a holdout: 0
+  acceptance holdout files anywhere           : 0
+  eval/ acceptance artifacts                  : 0
+  Attempt-1 holdout/ scorer/ validation/      : [] [] []
+  acceptance scorer executed                  : NO -- no acceptance scorer exists
+  provider credential accessed                : NO
+  provider probe                              : NO
+  inference (hosted or local)                 : NO
+  external transmission                       : NONE
+
+  RESERVED OFFSETS -- ALL AVAILABLE, NONE SPENT:
+    gauntlet.source.v1  offsets 0, 1, 2, 3   (38 / 38 / 37 / 37 rows)
+    field-realism-pack-v2 offsets 0, 1, 2, 3 (30 / 29 / 29 / 29 rows)
+    gauntlet.seed reserve tranche            (100 physical rows / 99 distinct texts) -- UNOPENED
+  HOLDOUT_SPENT = FALSE.  HOLDOUT_CONSTRUCTED_AND_FROZEN = FALSE.  NOTHING RETIRED.
+
+  Proved WITHOUT semantically inspecting any reserved observation: this record cites row
+  counts, hashes and file existence only. No observation text was read or printed.
+
+== ATTEMPT-1 FREEZE -- HISTORICAL EVIDENCE ONLY ==
+  f0e33f140c10102654b25d47f5e7027a9b19865126d8c226655b0ac99e3585cc  verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/HOLDOUT_FREEZE.txt
+  UNCHANGED since it was written. MUST NEVER be reused as the freeze identity for Attempt 2,
+  and MUST NEVER be rewritten. Amendment 2 records this as binding.
+
+== NO NEW FREEZE WAS CREATED BY THIS PHASE ==
+  HOLDOUT_FREEZE files in repository: 7
+    6 pre-existing (L3-2, 2b, 2c, 2d, 2e, 2f) + 1 Attempt-1 (invalidated) = 7. No new freeze.

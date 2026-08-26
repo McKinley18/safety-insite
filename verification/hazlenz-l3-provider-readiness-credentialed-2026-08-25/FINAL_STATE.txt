@@ -1,0 +1,53 @@
+L3 PROVIDER READINESS GATE -- CREDENTIAL-PROVISIONED FINAL RETRY (2026-08-25)
+FINAL STATE
+
+  TERMINAL
+    READY_TO_AUTHORIZE_L3_SEALED_ACCEPTANCE -- ANTHROPIC -- claude-sonnet-5
+
+  STATE BITS
+    PLAN_EXECUTABLE                                    TRUE
+    HOLDOUT_CONSTRUCTED_AND_FROZEN                     TRUE
+    HOLDOUT_SPENT                                      FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+
+  THE THREE GATES
+    PROVIDER_CALLABILITY                               PASS
+    MODEL_IDENTITY                                     PASS
+    EXECUTION_PATH_COMPATIBILITY                       PASS
+
+  MEASURED
+    ANTHROPIC_API_KEY_PRESENT                          TRUE
+    provider                                           Anthropic
+    provider calls                                     1
+    HTTP status / attempt                              200 / 1
+    REQUESTED_MODEL                                    claude-sonnet-5
+    RETURNED_MODEL                                     claude-sonnet-5   (Anthropic response body)
+    probe classification                               NON_HOLDOUT_PROVIDER_READINESS_PROBE
+    probe observationText sha256                       52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+    frozen identities                                  OK = 15, MISMATCH = 0
+    acceptance-artifact identity, before and after     189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+    frozen holdout, before and after                   69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+
+  NOT DONE
+    holdout rows read for provider input               0
+    holdout rows transmitted                           0
+    reserved rows transmitted                          0
+    gauntlet.seed rows transmitted                     0
+    acceptance scorer executions on provider output    0
+    G1-G10 evaluations                                 0
+    acceptance result artifacts                        0
+    tuning / remediation                               NO / NO
+    offsets retired                                    0
+    L3-3 begun / production provider selected          NO / NO
+    commit / push / deploy                             NO / NO / NO
+
+  REPOSITORY
+    HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230, branch release/insite-rc-2026-08-18,
+    upstream origin/release/insite-rc-2026-08-18 at 0/0. 4 stashes untouched, 23 tags unchanged,
+    backend/src 0 lines changed, safescope-data 0 lines changed, all pre-existing unrelated
+    worktree modifications preserved.
+
+  EXACT NEXT PREREQUISITE
+    A SEPARATE EXPLICIT USER AUTHORIZATION to spend the single-use acceptance holdout.
+    Passing this gate does NOT authorize it.

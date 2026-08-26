@@ -1,0 +1,45 @@
+L3 PROVIDER READINESS RETRY -- ZERO-HOLDOUT-EXPOSURE BOUNDARY
+re-established BEFORE credential access and BEFORE any provider call
+
+== 1. PROHIBITED INPUT SET ==
+
+The readiness probe MUST NOT read, parse, print, serialize, transmit or derive request content
+from any of:
+
+  P1  the 92 frozen holdout rows                    (holdout/ and rebuild/, sha256 69665e41...)
+  P2  gauntlet.source.v1 offset 0    -- 38 rows     RESERVED, SPENDABLE
+  P3  field-realism-pack-v2 offset 3 -- 29 rows     RESERVED, SPENDABLE
+  P4  gauntlet.source.v1 offsets 1, 2, 3            RESERVED
+  P5  field-realism-pack-v2 offsets 0, 1, 2         RESERVED
+  P6  the entire gauntlet.seed tranche              RESERVED, UNOPENED
+  P7  the 25 AUTHORED_CONTROL rows
+  P8  any other reserved acceptance tranche
+
+P2-P6 exhaust every row of all three protected sources, so the operative rule needs no offset
+arithmetic and admits no edge case:
+
+  >> NO ROW OF ANY PROTECTED SOURCE OR OF THE FROZEN HOLDOUT IS OPENED, READ FOR CONTENT, <<
+  >> OR TRANSMITTED. Those files are touched ONLY by sha256, byte-length and row-count      <<
+  >> operations that never materialise observation text.                                    <<
+
+== 2. THE ONLY PERMITTED PROBE INPUT ==
+
+  classification   NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  artifact         probe/probe-observation.json      sha256 a818b09f...
+  observationText  sha256 52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+
+  Newly created for this phase. Hashed BEFORE use, and before the credential result was acted
+  on -- so it cannot have been shaped by observed provider behaviour.
+
+== 3. SCORER PROHIBITION ==
+
+  acceptance-scorer.js (ea5e50ae...) executions on provider output      MUST BE 0
+  G1..G10 evaluation of the probe response                             FORBIDDEN
+  judging whether the probe's hazard reasoning is correct              FORBIDDEN
+  tuning prompt / schema / model / parameters / retry policy           FORBIDDEN
+  retry with an alternate prompt, schema, model or provider            FORBIDDEN
+  Claude Code session authentication as the experiment credential      FORBIDDEN (s.47.7)
+  mocking or stubbing a provider response                              FORBIDDEN
+
+The probe establishes CALLABILITY, IDENTITY and STRUCTURAL COMPATIBILITY only. It is not a
+quality measurement and may never be reported as one.

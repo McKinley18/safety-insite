@@ -1,0 +1,65 @@
+L3 PROVIDER READINESS RETRY -- PHASE 4, FROZEN EXECUTION IDENTITIES RE-DERIVED
+recorded 2026-08-25T02:06:24Z
+
+Re-derived FROM SHIPPED SOURCE AND FROM THE FILES ON DISK, not from any prior phase's prose.
+NOTHING BELOW WAS MODIFIED. No identity was changed to obtain provider compatibility, and none
+would have needed to be.
+
+== 1. AUTHORIZED PROVIDER AND MODEL ==
+  provider            Anthropic
+  endpoint            https://api.anthropic.com   POST /v1/messages
+  authorized model    claude-sonnet-5   (D-70, D-77, D-82 -- pinned snapshot, no alias layer)
+  API version header  2023-06-01
+  inference config    thinking OMITTED; output_config.effort OMITTED;
+                      temperature / top_p / top_k / seed NOT TRANSMITTED -- inexpressible (D-72)
+
+== 2. OUTER FILE DIGESTS -- 11 checks, OK = 11, MISMATCH = 0 ==
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  backend/src/safescope-v2/reasoning-l3/reasoning-prompt.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  backend/src/safescope-v2/reasoning-l3/reasoning-contract.types.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  backend/src/safescope-v2/reasoning-l3/deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  backend/src/safescope-v2/reasoning-l3/semantic-evidence-binding.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  backend/src/safescope-v2/reasoning-l3/reasoning-input-builder.ts
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  backend/scripts/ablate-l32g-state-separation.ts
+  0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  backend/scripts/activate-l32j-shipped-corpus.ts
+  d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db  backend/scripts/diagnose-l32k-shipped-residual.ts
+  76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/anthropic-ollama-shim.js
+  7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a  verification/hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24/adapter/score.js
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/scorer/acceptance-scorer.js
+
+  required, and each MATCHED:
+    426302a4 prompt · 5f70281c contract types · 942ac7cc validator · c1f9d29d binder
+    2865ae91 sanctioned input builder · 73f74131 cohort harness · 0b3b8d86 shipped-corpus harness
+    d90cb89c residual harness · 76d3e039 Anthropic shim · 7d748111 score.js
+    ea5e50ae acceptance scorer
+
+== 3. INNER IDENTITIES -- RE-DERIVED FROM SHIPPED SOURCE, 4 / 4 MATCH ==
+  L3 PROVIDER READINESS -- PHASE 4 INNER IDENTITY RE-DERIVATION
+  cohort first scenario id  E-FLD-147   (already-open diagnostic material)
+  allowed hazard families   24
+  
+  MATCH     L3_PROMPT_VERSION          hazlenz.l3.prompt.v6
+  MATCH     sha256(L3_SYSTEM_PROMPT)   b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  MATCH     run schema sha256          a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  MATCH     locked cohort harness      73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+  
+  OK = 4  MISMATCH = 0
+  NO INFERENCE. NO NETWORK. NO PROTECTED SOURCE READ. NO HOLDOUT ROW READ.
+
+  The run schema is re-serialised through buildProposalSchema() on the locked 24-scenario
+  diagnostic cohort's first scenario and its digest re-derived DIRECTLY -- not accepted from the
+  outer file hash of reasoning-contract.types.ts. This is the check D-F demands of a declared
+  identity, and it is the same strengthening D-90 introduced.
+
+== 4. TOTAL ==
+  15 identity checks -- 11 outer + 4 inner.  OK = 15, MISMATCH = 0.
+  ANY FROZEN IDENTITY MODIFIED BY THIS PHASE: NO.
+
+== 5. WOULD THE PROBE HAVE REQUIRED A CODE CHANGE? ==
+  NO. anthropic-ollama-shim.js @ 76d3e039 already:
+    - reads ANTHROPIC_API_KEY from the environment and exits if it is unset;
+    - reads ANTHROPIC_MODEL_ID and DEFAULTS to 'claude-sonnet-5';
+    - sends x-api-key and anthropic-version: 2023-06-01 to POST /v1/messages;
+    - forwards the schema as output_config.format = { type: 'json_schema', schema: ... };
+    - logs respondedModel from the provider payload's 'model' field -- the exact field Phase 6's
+      identity gate must bind against, so the gate needs NO added instrumentation.
+  THE BLOCKER IS THE CREDENTIAL ALONE.

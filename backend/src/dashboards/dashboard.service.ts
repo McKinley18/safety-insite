@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
 import { getJwtSecret } from '../auth/jwt-secret.util';
 import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
@@ -25,8 +25,14 @@ export class DashboardService {
         ...decoded,
         userId,
         sub: String(userId || ''),
-        organizationId: decoded.organizationId || decoded.workspaceId || decoded.tenantId || 'default',
-        tenantId: decoded.tenantId || decoded.organizationId || decoded.workspaceId || 'default',
+        // NULL, never a 'default' sentinel. `organizationId` is a uuid column on
+        // both corrective_actions and sites, so a literal 'default' made every
+        // query by an individual (non-organization) account fail with Postgres
+        // 22P02 `invalid input syntax for type uuid` and surface as a 500.
+        // An individual account is scoped by ownerUserId instead -- the same
+        // organization-or-owner scope CorrectiveActionsService already uses.
+        organizationId: decoded.organizationId || decoded.workspaceId || null,
+        tenantId: decoded.tenantId || decoded.organizationId || decoded.workspaceId || null,
       };
     } catch {
       throw new UnauthorizedException('Invalid authorization token');
@@ -50,9 +56,14 @@ export class DashboardService {
 
     const query = this.actionRepo
       .createQueryBuilder('action')
-      .where('action.organizationId = :organizationId', {
-        organizationId: auth.organizationId,
-      });
+      .where(
+        auth.organizationId
+          ? 'action.organizationId = :organizationId'
+          : 'action.organizationId IS NULL AND action.ownerUserId = :ownerUserId',
+        auth.organizationId
+          ? { organizationId: auth.organizationId }
+          : { ownerUserId: String(auth.userId) },
+      );
 
     if (siteId) {
       query.andWhere('action.siteId = :siteId', { siteId });
@@ -76,18 +87,19 @@ export class DashboardService {
   async getCorporateSummary(authHeader: string) {
     const auth = this.getAuthContext(authHeader);
 
+    const scope = auth.organizationId
+      ? { organizationId: String(auth.organizationId) }
+      : { organizationId: IsNull(), ownerUserId: String(auth.userId) };
+
     const sites = await this.siteRepo.find({
-      where: { organizationId: auth.organizationId },
+      where: scope,
       order: { createdAt: 'DESC' },
     });
 
     const rankings = await Promise.all(
       sites.map(async (site) => {
         const actions = await this.actionRepo.find({
-          where: {
-            organizationId: auth.organizationId,
-            siteId: site.id,
-          },
+          where: { ...scope, siteId: site.id },
         });
 
         return {

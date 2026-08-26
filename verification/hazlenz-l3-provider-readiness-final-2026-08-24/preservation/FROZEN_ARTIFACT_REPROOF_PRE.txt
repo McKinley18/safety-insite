@@ -1,0 +1,40 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY
+PHASE 1: CANONICAL PACKAGE RESOLUTION + FROZEN ARTIFACT RE-PROOF (PRE-PROVIDER)
+recorded 2026-08-25T02:30:38Z
+
+== CANONICAL ATTEMPT-2 PACKAGE, RESOLVED MECHANICALLY (not by name) ==
+  holdout=0 scorer=0  verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24
+  holdout=0 scorer=0  verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24
+  holdout=1 scorer=3  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24
+  => exactly one directory contains a holdout file: hazlenz-l3-acceptance-holdout-attempt2-2026-08-24
+
+== FROZEN HOLDOUT (recomputed from disk) ==
+69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json
+  required 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  bytes    105561  (expected 105561)
+
+== ACCEPTANCE SCORER (recomputed from disk) ==
+ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/scorer/acceptance-scorer.js
+  required ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+
+== ACCEPTANCE ARTIFACT IDENTITY ==
+  components recomputed from disk: 16
+  line-for-line vs recorded manifest: IDENTICAL 16/16
+  identity 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  required 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+
+== STRUCTURAL ROW COUNT -- NO 'observation' VALUE READ ==
+  total rows  92
+    authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D  25
+    safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  29
+    safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  38
+  NOTE: only structural keys and counts touched; no observation text read, printed or serialised.
+
+== FROZEN READINESS PROBE (unchanged, not regenerated) ==
+a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c  verification/hazlenz-l3-provider-readiness-retry-2026-08-24/probe/probe-observation.json
+  recorded artifact sha256   a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c
+  observationText sha256     52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+  required                   52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+  observationText bytes      185  (recorded 185)
+  classification             NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  MATCH                      true

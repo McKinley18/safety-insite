@@ -1,0 +1,123 @@
+SYNTHETIC D-K VERIFICATION -- verification/hazlenz-l3-run2-prespend-execution-guard-2026-08-25
+executed 2026-08-25
+
+ZERO Anthropic access. ZERO provider calls. ZERO credential reads. ZERO Run-2 rows opened,
+read or transmitted. Transport is a local 127.0.0.1 fixture; the holdout and every observation
+are authored inside the suite. The guard, the execution loop, the shipped provider, the frozen
+retry policy, the frozen input builder and the frozen v2 scorer are all the REAL ones.
+
+ASSERTION 1 -- 93/93 in A and 93/93 in B: D-K never fires, all 186 requests scheduled
+  PASS  [1] A scheduled all 93 required requests -- scheduled=93
+  PASS  [1] B scheduled all 93 required requests -- scheduled=93
+  PASS  [1] all 186 required requests scheduled -- total=186
+  PASS  [1] D-K never fired
+  PASS  [1] no row was left un-issued
+  PASS  [1] A produced 93 scorer records
+  PASS  [1] B produced 93 scorer records
+  PASS  [1] allRequiredEvaluationsObtained is TRUE in both processes
+
+ASSERTION 2 -- first required evaluation in A is unevaluated
+  PASS  [2] D-K fired immediately
+  PASS  [2] abort row is the FIRST row
+  PASS  [2] no later A request was scheduled -- A scheduled=1
+  PASS  [2] A issued exactly the first row
+  PASS  [2] NO new B request scheduled after the global abort -- B scheduled=0
+  PASS  [2] B produced no scorer records
+  PASS  [2] total requests 1, not 186 -- total=1
+  PASS  [2] D-K did not fire a second time in B
+  PASS  [2] abort attributes the run to process A
+
+ASSERTION 3 -- unevaluated result at A row 41
+  PASS  [3] D-K fired at row 41
+  PASS  [3] exactly the 41 preceding-and-including requests remain -- A scheduled=41
+  PASS  [3] rows after the failure were NOT newly scheduled
+  PASS  [3] the 52 remaining A rows are recorded as NOT ISSUED -- notIssued=52
+  PASS  [3] the failing row itself IS recorded (raw evidence preserved)
+  PASS  [3] the failing row declares providerEvaluated=false
+  PASS  [3] the 40 preceding rows all declare providerEvaluated=true
+  PASS  [3] process B issued nothing
+  PASS  [3] total 41 requests instead of 186 -- total=41
+
+ASSERTION 4 -- unevaluated result in process B fires the GLOBAL abort
+  PASS  [4] A completed all 93 unaffected
+  PASS  [4] D-K fired in B
+  PASS  [4] the global abort is attributed to process B
+  PASS  [4] B stopped scheduling at its own failing row -- B scheduled=17
+  PASS  [4] the global abort state is visible to BOTH processes
+  PASS  [4] total 110 requests instead of 186 -- total=110
+  PASS  [4] the FIRST abort record is never overwritten by the sibling process
+  PASS  [4] the sibling issued nothing once the abort existed
+
+ASSERTION 5 -- MALFORMED model output counts as PROVIDER-EVALUATED  [REAL TRANSPORT]
+  PASS  [5] the frozen provider classified it MALFORMED_STRUCTURED_OUTPUT -- outcomeKind=MALFORMED_OUTPUT
+  PASS  [5] PROVIDER_EVALUATED = TRUE
+  PASS  [5] classified PROVIDER_EVALUATED, not a transport failure
+  PASS  [5] the frozen retry ceiling of one was applied by the frozen runner, not by D-K -- attempts=2 calls=2
+  PASS  [5] D-K does NOT fire solely because output was malformed
+  PASS  [5] downstream G10 remains capable of failing: the row is recorded non-conforming
+  PASS  [5] output truncated at the limit is EVALUATED, not a transport failure
+
+ASSERTION 6 -- PROVIDER REFUSAL with actual model output  [REAL TRANSPORT]
+  PASS  [6] the frozen provider classified it PROVIDER_REFUSAL -- failure=PROVIDER_REFUSAL
+  PASS  [6] PROVIDER_EVALUATED = TRUE where Amendment 3 freezes it
+  PASS  [6] D-K did NOT convert a refusal into a transport failure
+  PASS  [6] a refusal is NOT retried by the frozen policy
+  PASS  [6] D-K does not fire on a refusal
+
+ASSERTION 7 -- D-K fires ONLY after the frozen retry policy is exhausted  [REAL TRANSPORT]
+  PASS  [7] HTTP 5xx is TRANSIENT_ERROR in the frozen provider -- failure=TRANSIENT_ERROR
+  PASS  [7] the frozen retry was taken -- 2 attempts, 2 transport calls
+  PASS  [7] exhausted transient retries ending in no provider evaluation => FALSE
+  PASS  [7] classified TRANSIENT_TRANSPORT_FAILURE
+  PASS  [7] a transient failure RECOVERED by the frozen retry is EVALUATED -- outcomeKind=REJECTED_OUTPUT
+  PASS  [7] D-K would not fire on a recovered row
+  PASS  [7] the recovery cost exactly the one frozen retry
+  PASS  [7] HTTP 4xx is PERMANENT_CONFIGURATION_ERROR in the frozen provider
+  PASS  [7] a permanent rejection is NOT retried -- 1 attempt, 1 transport call -- attempts=1 calls=1
+  PASS  [7] PROVIDER_EVALUATED = FALSE
+  PASS  [7] classified PERMANENT_PROVIDER_REJECTION
+  PASS  [7] a hung transport is TIMEOUT in the frozen provider
+  PASS  [7] TIMEOUT took the frozen retry then gave up
+  PASS  [7] PROVIDER_EVALUATED = FALSE on exhausted TIMEOUT
+  PASS  [7] fail-closed on an unrecognised outcome kind
+  PASS  [7] fail-closed on an unrecognised failure kind
+
+ASSERTION 8 -- no semantic retry is introduced
+  PASS  [8] the guard contains no retry primitive
+  PASS  [8] the loop contains no retry primitive
+  PASS  [8] the loop calls issue() exactly once per scheduled row
+  PASS  [8] the runner calls runValidatedReasoning exactly once per scheduled row
+  PASS  [8] no third call is ever issued for one row -- the ceiling of one is untouched -- calls=2
+
+ASSERTION 9 -- HOLDOUT_SPENT = TRUE is irreversible once spend has begun
+  PASS  [9] spend was recorded BEFORE the first observation left the runner
+  PASS  [9] the abort record itself asserts HOLDOUT_SPENT = TRUE
+  PASS  [9] the abort record refuses to restore the corpus
+  PASS  [9] the abort record forbids an automatic rerun
+  PASS  [9] D-K fired but spend was not reverted
+  PASS  [9] no code path anywhere sets HOLDOUT_SPENT false or unretires an offset
+  PASS  [9] the abort class exposes no clear/reset/unfire operation
+
+ASSERTION 10 & 11 -- SCORABLE = FALSE after D-K, and no further request can restore it
+  PASS  [10] CONTROL: a complete pair is SCORABLE under the frozen v2 wrapper
+  PASS  [10] CONTROL: the frozen arithmetic is reachable and passes on a complete pair -- terminal=L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS  [10] CONTROL: complete provider evaluation is TRUE
+  PASS  [10] SCORABLE = FALSE after D-K fires
+  PASS  [10] terminal is the frozen NOT_SCORABLE terminal -- L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION
+  PASS  [10] INCOMPLETE_PROVIDER_EVALUATION is raised
+  PASS  [10] pass is FALSE
+  PASS  [10] the un-issued rows are counted as NOT evaluated, never inferred as evaluated -- evaluated=40
+  PASS  [11] one missing required evaluation keeps SCORABLE = FALSE with 92/93 perfect
+  PASS  [11] a record present but declared NOT evaluated also keeps SCORABLE = FALSE
+  PASS  [11] FAIL-CLOSED: an undeclared record cannot buy a pass
+  PASS  [11] an absent evaluation in the SECOND required process also blocks SCORABLE
+  PASS  [11] no further request can restore scorability -- the aborted run stays NOT_SCORABLE under every one of these four completions
+
+ASSERTION 12 -- a complete successful run is behaviourally identical, D-K dormant
+  PASS  [12] the same requests are issued, in the same order
+  PASS  [12] every scorer record is byte-identical once the D-K declaration is stripped
+  PASS  [12] the ONLY difference is the dormant D-K instrumentation
+  PASS  [12] no abort file is created on a complete run
+  PASS  [12] the guard reports itself dormant
+
+TOTAL 92 assertions -- PASS 92 -- FAIL 0

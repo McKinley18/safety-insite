@@ -1,0 +1,79 @@
+L3 PROVIDER READINESS -- FINAL STATE
+recorded 2026-08-25T01:39:49Z
+
+  TERMINAL
+    L3_PROVIDER_READINESS_BLOCKED -- CREDENTIAL_OR_CALLABILITY_FAILURE
+
+  STATE BITS
+    PLAN_EXECUTABLE                                    = TRUE
+    HOLDOUT_CONSTRUCTED_AND_FROZEN                     = TRUE
+    HOLDOUT_SPENT                                      = FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+    SEALED ACCEPTANCE IS NOT AUTHORIZED.
+
+  REPOSITORY
+    HEAD        a7b21a2636b4a80ecaf823aef4558d9ea8915230   UNCHANGED
+    branch      release/insite-rc-2026-08-18
+    upstream    origin/release/insite-rc-2026-08-18        divergence 0 / 0
+    staged 0 | tags 23 (untouched) | stashes 4 (NO stash operation)
+    git diff HEAD -- backend/src        = 0 lines
+    git diff HEAD -- safescope-data     = 0 lines
+
+  CREDENTIAL
+    ANTHROPIC_API_KEY_PRESENT = FALSE
+    obtained NO | printed NO | logged NO | hashed NO | persisted NO | counted NO
+    Claude Code authentication inspected NO | used NO
+
+  PROVIDER
+    provider                Anthropic
+    requested model         claude-sonnet-5   (NOT SENT -- no call was made)
+    returned model          NONE
+    identity gate           NOT EVALUATED (this is NOT a MODEL_IDENTITY_MISMATCH)
+    adapter/API path used   NONE
+    provider calls          0
+    destinations contacted  0
+    cost                    $0.00
+
+  PROBE
+    synthetic probe observation authored  NO -- Phase 5 was never reached
+    probe identity / hash                 N/A -- nothing was authored to hash
+    probe input classification            NON_HOLDOUT (by construction; none exists)
+
+  ZERO-HOLDOUT-EXPOSURE
+    holdout rows transmitted                       0
+    reserved rows transmitted                      0
+    holdout rows read for provider input           0
+    scorer executions on provider output           0
+    acceptance result artifacts                    0
+
+  FROZEN IDENTITIES
+    outer file digests                     OK = 10   MISMATCH = 0
+    inner identities re-derived            4 / 4 MATCH
+      hazlenz.l3.prompt.v6
+      b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf  L3_SYSTEM_PROMPT
+      a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385  run schema (RE-DERIVED)
+      73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  locked cohort harness
+    acceptance scorer  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  MATCH
+    ANY FROZEN IDENTITY CHANGED: NO
+
+  ACCEPTANCE ARTIFACT, RE-VERIFIED AFTER ALL DOCUMENTATION EDITS
+    189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+    required 189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+
+  PROTECTED SOURCES, AFTER
+    a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+    49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+    6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+
+  GOVERNING PLAN, AFTER (READ ONLY THIS PHASE)
+    8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+
+  DOCUMENTATION, AFTER
+    6867c5e1201e7db8dcd84961339f350da7297286f5714f1b021f011d3430b848  docs/INSITE_ENGINEERING_BLUEPRINT.md
+    f65dbe38b378cdf1b156b222f0b4f490863242dd48841dc76afa8679633ca13a  docs/INSITE_CURRENT_STATE.json
+
+  EXACT NEXT PREREQUISITE
+    Export ANTHROPIC_API_KEY for an organization under the Anthropic Commercial Terms (D-79) and
+    RE-RUN THIS READINESS GATE. Passing it still does NOT authorize spending the holdout; a
+    separate explicit user authorization is required before the single-use sealed acceptance run.

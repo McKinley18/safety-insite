@@ -1,0 +1,145 @@
+L3 RUN-2 FINAL SINGLE-USE SEALED ACCEPTANCE -- PRE-EXECUTION GATE DECLARATION
+written 2026-08-25, BEFORE ANY RUN-2 OBSERVATION VALUE WAS OPENED
+
+THIS DECLARATION IS WRITTEN FIRST AND IS NEVER REWRITTEN TO FIT THE RESULT.
+Everything that could decide this run is fixed here, and the acceptance contract it binds is
+hashed independently as declaration/ACCEPTANCE_CONTRACT.json.
+
+================================================================================
+1. AUTHORIZATION
+================================================================================
+  EXPLICIT USER AUTHORIZATION for HazLenz Level-3 Run-2 Final Single-Use Sealed Acceptance
+  using Anthropic / claude-sonnet-5, naming and binding BOTH required execution identities.
+
+  RUN2_ACCEPTANCE_ARTIFACT_IDENTITY  9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc
+  RUN2_EXECUTION_GUARD_IDENTITY      eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1
+
+  Both were RECOMPUTED FROM THE ACTUAL FILES before this declaration was written, and both MATCH.
+  This is the authorization to SPEND the fresh Run-2 independent acceptance corpus.
+
+================================================================================
+2. REPOSITORY STATE AT AUTHORIZATION
+================================================================================
+  HEAD       a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch     release/insite-rc-2026-08-18
+  upstream   origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  divergence 0 / 0
+  stashes    4, untouched      tags 23, unchanged      staged: none
+
+================================================================================
+3. THE FROZEN CORPUS
+================================================================================
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+      verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/holdout/holdout-l3-acceptance-run2.json
+      93 rows | INDEPENDENT_GAUNTLET 38 | INDEPENDENT_REALISM 30 | AUTHORED_CONTROL 25
+      gauntlet offset 1 | realism offset 0 | 25 FRESH authored controls (D-I)
+
+  Row ids, ordering, observation text, provenance, truth fields, gate memberships, source
+  identities and authored controls are used EXACTLY AS FROZEN. No row is curated, replaced,
+  reordered or skipped.
+
+================================================================================
+4. THE FROZEN EXECUTION PATH -- IDENTITIES ASSERTED AT RUNTIME, EACH THROWS ON DRIFT
+================================================================================
+  426302a4  reasoning-prompt.ts                b8cc50fc  sha256(L3_SYSTEM_PROMPT)
+  5f70281c  reasoning-contract.types.ts        a522cf5a  serialised run schema
+  942ac7cc  deterministic-safety-validator.ts  c1f9d29d  semantic-evidence-binding.ts
+  2865ae91  reasoning-input-builder.ts (D-81)  73f74131  ablate-l32g-state-separation.ts
+  76d3e039  anthropic-ollama-shim.js
+
+  prompt identity   L3_PROMPT_VERSION = hazlenz.l3.prompt.v6
+  provider          Anthropic          model  claude-sonnet-5
+  NO fallback model. NO fallback provider. NO new readiness probe. NO additional paid pretest.
+  thinking and output_config.effort OMITTED; sampling parameters inexpressible (D-72).
+
+  EXECUTION GUARD (D-K), the exact implementation previously validated at 92/92 assertions:
+  ce9c7493  guard/dk-abort-guard.ts            20290a85  guard/acceptance-execution-loop.ts
+  d97eb94c  runner/run-run2-acceptance.ts      95b3ca8c  runner/run-run2-sealed.sh
+
+================================================================================
+5. THE FROZEN SCORING PATH
+================================================================================
+  ea5e50ae  ORIGINAL FROZEN SCORER  acceptance-scorer.js -- REQUIRED AND CALLED, NOT REIMPLEMENTED
+  b9a0a6bc  V2 VALIDITY WRAPPER     acceptance-scorer-v2.frozen-copy.js -- verifies ea5e50ae's
+                                    digest at load and THROWS on drift
+
+  G1  ZERO   den 36    G2  100%  den result-dependent   G3  100% BOTH  DEN_A 30 (authored 6)
+  G4  ZERO   den 21    G5  ZERO  den 93                 G6  ZERO       den 93
+  G7  ZERO   den 11    G8  ZERO  den 93                 G9  100%       den 93
+  G10 >=99%  den 93
+
+  SCORABLE = frozenScorer.scorable AND completeProviderEvaluation
+  pass_v2  = pass_frozen AND completeProviderEvaluation
+
+================================================================================
+6. FIELD DERIVATION -- INHERITED VERBATIM FROM RUN 1, NOT RE-DECIDED
+================================================================================
+  Carried forward unchanged from the Run-1 pre-execution gate declaration
+  f54e649aa9c65fe3dcd62dc27cb8d65e72050d529910cf2ca3303a0d71031b97 section 6:
+
+  regulatoryContext   row.regime ? {value: regime, provenance: USER_CONFIRMED}
+                                 : {value: 'unknown', provenance: UNKNOWN}
+  schemaValid         validation !== null AND no RETRYABLE_VALIDATION_REASONS issue
+                      AND outcome.kind !== MALFORMED_OUTPUT
+  retries             max(0, attempts - 1)
+  candidates          validation.validated.hazards -> {candidateKey, hazardFamily, conditionState}
+  raisedClarification any validated hazard carries a clarification, OR unresolvedDecisions is non-empty
+  assertedState       'ACTIVE' if any validated hazard is ACTIVE, else the first hazard's state, else null
+  nonRetryableValidationReasons  issue codes in NON_RETRYABLE_VALIDATION_REASONS
+  safetyConsequentialRejection   validation !== null AND state !== VALID AND
+                                 (expect.conditionState === ACTIVE OR expect.highConsequence === true)
+  decisionBoundaryCodes          all validator issue codes
+
+  NEW IN RUN 2, the tenth field, required by Amendment 3 D-G.3:
+  providerEvaluated   declared MECHANICALLY from the frozen transport taxonomy. NEVER inferred from
+                      transmission, attempt, error placeholder or record existence. FAIL-CLOSED.
+
+================================================================================
+7. COMPLETE-PROVIDER-EVALUATION PREDICATE (D-G) -- FROZEN
+================================================================================
+  EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS
+  AND PROVIDER_EVALUATED_ROW_IDS = EXPECTED_ROW_IDS      (SET EQUALITY)
+  for EVERY required process, including G9's second isolated process.
+
+  TRUE   {ok:true} | MALFORMED_STRUCTURED_OUTPUT | PROVIDER_REFUSAL   (the model produced output)
+  FALSE  TIMEOUT | UNAVAILABLE | TRANSIENT_ERROR | PERMANENT_CONFIGURATION_ERROR
+
+  expected rows per process          93
+  expected required provider evals   186
+
+================================================================================
+8. D-K ABORT PREDICATE -- FROZEN, WIRED, PREVIOUSLY VERIFIED
+================================================================================
+  After spend, the run ABORTS at the first required row that ends PROVIDER_EVALUATED = FALSE once
+  the frozen retry policy for that row is exhausted. No streak. No threshold. No tuning constant.
+  No semantic inspection. GLOBAL across the required process pair.
+
+  On fire: stop requesting | preserve all raw evidence | RUN2_HOLDOUT_SPENT stays TRUE |
+  offsets stay RETIRED | SCORABLE = FALSE | no automatic rerun | corpus NOT restored.
+
+================================================================================
+9. SPEND -- IRREVERSIBLE, AND ORTHOGONAL TO SCORABILITY (D-H)
+================================================================================
+  initial RUN2_HOLDOUT_SPENT = FALSE
+
+  At the first transmission of any Run-2 observation to the provider boundary:
+      RUN2_HOLDOUT_SPENT = TRUE
+      GAUNTLET_OFFSET_1  = RETIRED
+      REALISM_OFFSET_0   = RETIRED
+  permanently, and INDEPENDENTLY of HTTP status, model response, PASS, FAIL, INVALID, provider
+  failure, billing failure, transport failure, process failure, D-K abort, partial completion,
+  malformed output or refusal.
+
+  INVALID MUST NEVER IMPLY UNSPENT. Run 2 will not be represented as unspent after first
+  transmission, and no scorer at any version carries a field capable of reverting spend.
+
+================================================================================
+10. WHAT THIS RUN MAY NOT DO
+================================================================================
+  No semantic retry. No prompt adjustment. No output repair. No hand-correction. No tuning. No
+  remediation. No post-result threshold or denominator adjustment. No alternate model. No alternate
+  provider. No re-run of the spent Run-2 corpus. No production-provider selection. No L3-3. No
+  customer-authority change. No deployment. No database mutation. No commit. No push. No stash
+  operation.
+
+  MEASUREMENT ONLY.

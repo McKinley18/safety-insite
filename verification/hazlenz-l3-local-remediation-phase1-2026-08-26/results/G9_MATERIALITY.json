@@ -1,0 +1,1142 @@
+{
+  "S0_IDENTITY_baseline": {
+    "divergent": 14,
+    "reproducibility": 0.8494623655913979,
+    "G9-S1_safety_material": 7,
+    "G9-S2_traceability_only": 7,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-042",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-072",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-073",
+        "klass": "G9-S2",
+        "a": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-074",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-075",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  },
+  "S1_authoritative_tier_BOUND": {
+    "divergent": 10,
+    "reproducibility": 0.8924731182795699,
+    "G9-S1_safety_material": 7,
+    "G9-S2_traceability_only": 3,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-042",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  },
+  "S2_BOUND_plus_demote_not_delete": {
+    "divergent": 14,
+    "reproducibility": 0.8494623655913979,
+    "G9-S1_safety_material": 7,
+    "G9-S2_traceability_only": 7,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-042",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-072",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-073",
+        "klass": "G9-S2",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-074",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-075",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  },
+  "S3_S2_plus_carrier_clarification": {
+    "divergent": 14,
+    "reproducibility": 0.8494623655913979,
+    "G9-S1_safety_material": 11,
+    "G9-S2_traceability_only": 3,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-042",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-072",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-073",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-074",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-075",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  },
+  "S4_RC2_proposal_level_approximation": {
+    "divergent": 13,
+    "reproducibility": 0.8602150537634409,
+    "G9-S1_safety_material": 6,
+    "G9-S2_traceability_only": 7,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-072",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-073",
+        "klass": "G9-S2",
+        "a": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-074",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-075",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "CORRECTED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  },
+  "S5_S2_plus_S4": {
+    "divergent": 13,
+    "reproducibility": 0.8602150537634409,
+    "G9-S1_safety_material": 6,
+    "G9-S2_traceability_only": 7,
+    "rows": [
+      {
+        "id": "H2B-004",
+        "klass": "G9-S1",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-014",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-024",
+        "klass": "G9-S1",
+        "a": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-043",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-054",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-056",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": "ACTIVE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-070",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-072",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-073",
+        "klass": "G9-S2",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-074",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-075",
+        "klass": "G9-S2",
+        "a": {
+          "state": null,
+          "clar": false,
+          "any": false
+        },
+        "b": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": false,
+          "any": true
+        }
+      },
+      {
+        "id": "H2B-081",
+        "klass": "G9-S1",
+        "a": {
+          "state": "INSUFFICIENT_EVIDENCE",
+          "clar": true,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      },
+      {
+        "id": "H2B-093",
+        "klass": "G9-S2",
+        "a": {
+          "state": "NEGATED",
+          "clar": false,
+          "any": true
+        },
+        "b": {
+          "state": null,
+          "clar": false,
+          "any": false
+        }
+      }
+    ]
+  }
+}

@@ -393,7 +393,8 @@ export class SafescopeV2Controller {
     }
   }
 
-  @UseGuards(JwtGuard, RolesGuard)
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
+  @RequireEntitlement('fullSafeScope')
   @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('visual-evidence/evaluate')
   async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput, @Req() req: Request & { user?: any }) {
@@ -407,7 +408,8 @@ export class SafescopeV2Controller {
     }
   }
 
-  @UseGuards(JwtGuard, RolesGuard)
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
+  @RequireEntitlement('fullSafeScope')
   @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('real-image-analysis/evaluate')
   async evaluateRealImage(@Body() input: RealImageAnalysisInput, @Req() req: Request & { user?: any }) {
@@ -421,7 +423,8 @@ export class SafescopeV2Controller {
     }
   }
 
-  @UseGuards(JwtGuard, RolesGuard)
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
+  @RequireEntitlement('fullSafeScope')
   @Roles("INDIVIDUAL", "MEMBER", "MANAGER", "ORGANIZATION_ADMIN", "ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER")
   @Post("offline/evaluate")
   async evaluateOffline(@Body() input: OfflineReasoningInput, @Req() req: Request & { user?: any }) {

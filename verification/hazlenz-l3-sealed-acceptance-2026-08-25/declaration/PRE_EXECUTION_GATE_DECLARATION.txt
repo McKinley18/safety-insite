@@ -1,0 +1,214 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PRE-EXECUTION GATE DECLARATION
+=======================================================================
+
+WRITTEN BEFORE ANY HOLDOUT OBSERVATION CONTENT WAS OPENED, READ OR TRANSMITTED.
+HOLDOUT_SPENT = FALSE at the moment this file was written.
+
+NOTHING BELOW IS NEW ACCEPTANCE POLICY. Every gate, denominator, threshold, invalidity condition
+and terminal rule is transcribed from artifacts frozen before any sealed row was seen by anyone:
+D-84 / blueprint section 51.3, section 53.4 / Amendment 1 G3-DEN, Amendment 2 / D-E, and the
+frozen scorer scorer/acceptance-scorer.js @ ea5e50ae... which implements them.
+
+Once this file is hashed, NO GATE MAY CHANGE. A gate that turns out to be inconvenient after a
+result is seen is not re-opened (D-72, D-84).
+
+================================================================================
+1. THE TEN FROZEN GATES  (D-84, blueprint 51.3; implemented by ea5e50ae...)
+================================================================================
+  #    gate                                              threshold        class
+  ---  ------------------------------------------------  ---------------  ----------
+  G1   high-consequence misses, VALIDATED tier           ZERO             HARD
+  G2   clarification precision                           100%             HARD
+  G3   clarification recall, BOTH denominators           100% on BOTH     HARD
+  G4   false ACTIVE                                      ZERO             HARD
+  G5   safety-consequential validator rejections         ZERO             HARD
+  G6   every NON_RETRYABLE_VALIDATION_REASONS code       ZERO             HARD
+  G7   CLARIFICATION_MUST_NOT_ASK violations             ZERO             HARD
+  G8   UNRESOLVED_DECISION_NOT_DECISION_CRITICAL and
+       INVALID_CLARIFICATION_DEPENDENCY                  ZERO             HARD
+  G9   material safety-outcome reproducibility,
+       two isolated processes                            100%             HARD
+  G10  schema conformance after <= 1 retry               >= 99%           THRESHOLD
+
+  HARD-ZERO GATES: G1, G4, G5, G6, G7, G8.
+  HARD-100% GATES: G2, G3 (both denominators), G9.
+  THE ONLY THRESHOLD GATE: G10 at >= 99%. It is the only gate that is not hard.
+
+================================================================================
+2. DENOMINATORS -- FIXED BY THE FROZEN HOLDOUT, NOT BY ANY RESULT
+================================================================================
+  G1   rows with expect.highConsequence === true
+  G2   rows on which the run RAISED a clarification (result-dependent by definition;
+       the PREDICATE -- expect.clarificationExpected !== true is an imprecision -- is frozen)
+  G3   DEN_A (scenario-level)          rows with expect.clarificationExpected === true
+       DEN_B (candidate-conditioned)   DEN_A rows on which the run produced >= 1 candidate
+       Both recalls are reported SEPARATELY and are NEVER merged (D-58).
+  G4   rows with expect.inG4Denominator === true    -- Amendment 2 / D-E fixes cardinality at 21
+       (F1 4 + F2 4 + F3 3 + F4 3 + F5 3 + F6 3 + F8b 1). The superseded 18 is unreachable.
+  G5   all 92 rows
+  G6   all 92 rows
+  G7   rows with expect.inG7Pole === true           -- exactly the 11 authored F1/F2/F7 rows.
+       F4, F5 and F8 are DELIBERATELY EXCLUDED (D-D.4); expectClarification === false is NOT
+       the same as MUST-NOT-ASK.
+  G8   all 92 rows
+  G9   all 92 rows
+  G10  all 92 rows
+
+  The expected values are recorded here BEFORE execution and are re-derived from the holdout at
+  Phase 4 by counting frozen metadata only:
+       |G1 denominator|  = to be counted at Phase 4 from expect.highConsequence
+       |DEN_A|           = 29   (freeze s.3: 6 authored F3/F6 + 23 realism shouldHaveMissingEvidence)
+       |G4 denominator|  = 21   (Amendment 2 / D-E)
+       |G7 pole|         = 11   (D-D.3 / D-D.4)
+  A COUNTED VALUE THAT DISAGREES WITH A FROZEN VALUE IS A STOP CONDITION, NOT AN ADJUSTMENT.
+
+================================================================================
+3. INVALID-RUN CONDITIONS  (frozen in ea5e50ae..., not extended here)
+================================================================================
+  MALFORMED_RESULT_RECORD   a result record with no string rowId
+  MISSING_RESULTS           any holdout rowId with no result
+  EXTRA_RESULTS             any result rowId not in the holdout
+  DUPLICATE_RESULTS         any rowId appearing more than once in the result set
+  DEN_A_EMPTY               |DEN_A| = 0 -- a scoring INVALIDITY, never a vacuous 100% (G3-DEN.3)
+
+  If any fires, the run is NOT SCORABLE and is NEVER a pass.
+
+================================================================================
+4. TERMINAL CLASSIFICATION RULES  (frozen in ea5e50ae...)
+================================================================================
+  not scorable                 -> L3_ACCEPTANCE_NOT_SCORABLE - RESULT_SET_INVALID
+  scorable, 0 failed gates     -> L3_ACCEPTANCE_PASSED - ALL_TEN_GATES_MET
+  scorable, >= 1 failed gate   -> L3_ACCEPTANCE_FAILED - <comma-separated failed gate names>
+
+  pass = scorable AND zero failed gates. A failed gate is NEVER reinterpreted as a quality KPI,
+  and a non-scorable run is never a pass (D-72).
+
+  G9 SPECIFICALLY: if a second isolated process is not supplied, G9 CANNOT PASS. The frozen
+  scorer sets pass = false with the note "SECOND PROCESS NOT SUPPLIED". This run therefore
+  executes TWO isolated processes (section 38.3), each covering all 92 rows.
+
+================================================================================
+5. RESULT-RECORD CONTRACT  (the scorer's own documented input, ea5e50ae... lines 36-41)
+================================================================================
+  { rowId, schemaValid, retries, candidates[], raisedClarification, assertedState,
+    nonRetryableValidationReasons[], safetyConsequentialRejection, decisionBoundaryCodes[] }
+
+================================================================================
+6. FIELD DERIVATION -- DECLARED NOW, BEFORE ANY OBSERVATION IS OPENED
+================================================================================
+  The frozen scorer defines the GATES. It does not define how the shipped pipeline's output maps
+  onto its input fields, because no acceptance harness existed at freeze time (HOLDOUT_FREEZE.txt
+  s.13). Each mapping below is therefore DECLARED HERE, BEFORE EXECUTION, and derived from a
+  frozen artifact that is named. NO MAPPING MAY BE CHANGED AFTER A RESULT IS SEEN.
+
+  EXECUTION PATH -- the shipped, governed sequence, nothing rewritten:
+      buildReasoningInput (2865ae91, MANDATORY per D-81)
+        -> OllamaReasoningProvider.analyzeObservation  [L3_SYSTEM_PROMPT b8cc50fc,
+             buildProposalSchema a522cf5a, buildUserPrompt -- all shipped, unmodified]
+        -> the frozen anthropic-ollama-shim.js (76d3e039) -> api.anthropic.com, claude-sonnet-5
+        -> bindProposal (shipped)
+        -> validateReasoningProposal (942ac7cc)
+        -> bindEvidenceSemantically (c1f9d29d)
+      composed by the SHIPPED runValidatedReasoning (reasoning-runner.ts), which is the only
+      place the four stages are composed and which carries the FROZEN retry ceiling of ONE.
+
+  rowId
+      the holdout row's frozen rowId. Verbatim.
+
+  schemaValid
+      TRUE iff the provider returned a structured proposal that parsed and bound, AND the
+      validator raised no RETRYABLE_VALIDATION_REASONS code (SCHEMA_INVALID,
+      CONTRACT_VERSION_MISMATCH -- validation-result.types.ts).
+      FALSE on MALFORMED_OUTPUT, PROVIDER_TIMEOUT, PROVIDER_UNAVAILABLE, or a schema-shape code.
+
+  retries
+      attempts - 1, where `attempts` is the SHIPPED runner's own counter. The retry ceiling is
+      ONE and it is the frozen policy of reasoning-runner.ts. NO NEW RETRY POLICY IS INVENTED.
+      A retry occurs ONLY for: a RETRYABLE_PROVIDER_FAILURE (TIMEOUT, TRANSIENT_ERROR,
+      MALFORMED_STRUCTURED_OUTPUT) or a validator state of RETRYABLE_MODEL_OUTPUT whose issues
+      are ALL retryable. A SEMANTIC retry -- re-asking because an answer is undesirable -- is
+      PROHIBITED and is not reachable in this code path.
+
+  candidates
+      the VALIDATED-tier hazards: validation.validated.hazards.
+      WHY THIS TIER: D-58 fixes a two-tier vocabulary -- MODEL tier and VALIDATED tier -- and G1
+      names the VALIDATED tier explicitly. The frozen precedent for that field is
+      activate-l32j-shipped-corpus.ts (0b3b8d86) and score.js (7d748111), both of which read
+      validation.validated.hazards.
+      THE SEMANTIC-BINDER TIER IS ALSO RECORDED on every row (boundHazards, demotions, binder
+      issue codes) so the two tiers are visible separately and NEVER merged (D-58). It is
+      recorded, not scored, because D-84 names the VALIDATED tier.
+
+  raisedClarification
+      candidate-borne clarification OR a non-empty validated proposal-level unresolvedDecisions --
+      i.e. `clarificationCarriedAnywhere`, the frozen field of activate-l32j (0b3b8d86) that
+      score.js (7d748111) reads. A clarification counts wherever the pipeline carries it.
+
+  assertedState
+      'ACTIVE' iff any VALIDATED-tier hazard has conditionState === 'ACTIVE'; otherwise the
+      state string of the first validated hazard, or null when there is none. The frozen scorer
+      tests only `=== 'ACTIVE'`. This is `validatedAssertsActive` of 0b3b8d86 / 7d748111.
+
+  nonRetryableValidationReasons
+      the validator's issue codes intersected with NON_RETRYABLE_VALIDATION_REASONS
+      (validation-result.types.ts, ten codes). Reported, never suppressed (D-D.3).
+
+  safetyConsequentialRejection
+      TRUE iff the validator state is NOT 'VALID' AND the row's frozen truth owed a hazard.
+      L3-2p (analysis/adjudicate.js) froze the severity split: "A rejection is SAFETY_CONSEQUENTIAL
+      exactly when the row's ground truth owed a hazard, because the runner discards the whole
+      proposal on any deciding issue, so the owed hazard is not delivered."
+      OWED A HAZARD, on this holdout, using DECLARED truth only and inferring nothing from text,
+      pole or heuristic:
+          expect.conditionState === 'ACTIVE'     (the holdout's exact analogue of expectActive)
+       OR expect.highConsequence === true        (the holdout's own declaration that the row owes
+                                                  a validated finding -- it is G1's denominator)
+      This is the UNION of the two declared truths that assert an owed hazard. It is the stricter
+      reading, which is the conservative direction for a hard-zero safety gate.
+
+  decisionBoundaryCodes
+      all validator issue codes. The frozen scorer applies its own filter to the two G8 codes.
+
+================================================================================
+7. EXECUTION PARAMETERS NOT FIXED BY THE FREEZE -- DECLARED NOW, NOT LATER
+================================================================================
+  HOLDOUT_FREEZE.txt s.13 fixes the prompt, schema, validator, binder, input builder, shim and
+  scorer identities. It does NOT state a regulatory regime or hazard-family list for the run.
+  Both are declared here, before any observation is opened, and neither is adjustable afterwards.
+
+  regulatoryContext
+      AUTHORED_CONTROL rows            { value: <the row's frozen `regime`>, provenance: 'USER_CONFIRMED' }
+      INDEPENDENT_GAUNTLET / REALISM   { value: 'unknown', provenance: 'UNKNOWN' }
+      WHY: those rows carry `regime: null` -- the holdout declares NO regime for them, and S-4
+      withheld every non-carrier source field. `'unknown'` is a FIRST-CLASS state of
+      L3RegulatoryContextValue whose contract comment reads "HYBRID (section 29.8). `unknown` is a
+      real state, never silently resolved." Choosing a regime for a row that declares none would
+      be inventing truth; using the contract's own unknown state invents nothing.
+
+  allowedHazardFamilies
+      the 24 families of the digest-locked cohort harness ablate-l32g-state-separation.ts
+      (73f74131), READ from that file rather than retyped. It is the governed family list, it is
+      in the frozen acceptance configuration, and family coverage of record is 24 of 24.
+
+  eligibleRegulatoryCandidates
+      NONE supplied, exactly as every frozen harness (0b3b8d86, d90cb89c, 73f74131) does. The
+      model is given no candidate ids and therefore cannot cite one.
+
+  inference configuration
+      L3_2_INFERENCE_CONFIG, unmodified: temperature 0, seed 20260822, num_ctx 8192.
+      The frozen shim does NOT forward temperature, seed or num_ctx to Anthropic (its documented
+      deviations D4/D5/D6): no determinism control is expressible on this provider (D-72).
+      `thinking` and `output_config.effort` are OMITTED -- provider defaults, nothing tuned.
+
+  process isolation
+      TWO isolated OS processes (section 38.3), A and B, each executing all 92 rows, each with
+      its own freshly started shim process. Process B exists solely to make G9 measurable.
+
+================================================================================
+8. WHAT THIS RUN MAY NOT DO
+================================================================================
+  no change to: the holdout, any truth field, gate membership, G1-G10, any threshold, the prompt,
+  the schema, the validator, the binder, the input builder, the shim, the scorer, the provider or
+  the model. No fallback model. No fallback provider. No semantic retry. No tuning. No
+  remediation. No prompt iteration. No post-result threshold adjustment. No hand-corrected
+  output. No row skipped or curated. All 92 rows belong to the run.

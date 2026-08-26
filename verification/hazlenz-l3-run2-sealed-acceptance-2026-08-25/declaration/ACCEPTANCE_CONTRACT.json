@@ -1,0 +1,268 @@
+{
+  "contractId": "hazlenz.l3.run2.acceptance-contract.v1",
+  "enumeratedBeforeSemanticExposure": true,
+  "holdoutSha256": "f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f",
+  "expectedRows": 93,
+  "expectedRowIds": [
+    "H2B-001",
+    "H2B-002",
+    "H2B-003",
+    "H2B-004",
+    "H2B-005",
+    "H2B-006",
+    "H2B-007",
+    "H2B-008",
+    "H2B-009",
+    "H2B-010",
+    "H2B-011",
+    "H2B-012",
+    "H2B-013",
+    "H2B-014",
+    "H2B-015",
+    "H2B-016",
+    "H2B-017",
+    "H2B-018",
+    "H2B-019",
+    "H2B-020",
+    "H2B-021",
+    "H2B-022",
+    "H2B-023",
+    "H2B-024",
+    "H2B-025",
+    "H2B-026",
+    "H2B-027",
+    "H2B-028",
+    "H2B-029",
+    "H2B-030",
+    "H2B-031",
+    "H2B-032",
+    "H2B-033",
+    "H2B-034",
+    "H2B-035",
+    "H2B-036",
+    "H2B-037",
+    "H2B-038",
+    "H2B-039",
+    "H2B-040",
+    "H2B-041",
+    "H2B-042",
+    "H2B-043",
+    "H2B-044",
+    "H2B-045",
+    "H2B-046",
+    "H2B-047",
+    "H2B-048",
+    "H2B-049",
+    "H2B-050",
+    "H2B-051",
+    "H2B-052",
+    "H2B-053",
+    "H2B-054",
+    "H2B-055",
+    "H2B-056",
+    "H2B-057",
+    "H2B-058",
+    "H2B-059",
+    "H2B-060",
+    "H2B-061",
+    "H2B-062",
+    "H2B-063",
+    "H2B-064",
+    "H2B-065",
+    "H2B-066",
+    "H2B-067",
+    "H2B-068",
+    "H2B-069",
+    "H2B-070",
+    "H2B-071",
+    "H2B-072",
+    "H2B-073",
+    "H2B-074",
+    "H2B-075",
+    "H2B-076",
+    "H2B-077",
+    "H2B-078",
+    "H2B-079",
+    "H2B-080",
+    "H2B-081",
+    "H2B-082",
+    "H2B-083",
+    "H2B-084",
+    "H2B-085",
+    "H2B-086",
+    "H2B-087",
+    "H2B-088",
+    "H2B-089",
+    "H2B-090",
+    "H2B-091",
+    "H2B-092",
+    "H2B-093"
+  ],
+  "provenanceComposition": {
+    "INDEPENDENT_GAUNTLET": 38,
+    "INDEPENDENT_REALISM": 30,
+    "AUTHORED_CONTROL": 25
+  },
+  "gates": {
+    "G1": {
+      "name": "high-consequence misses (VALIDATED tier)",
+      "threshold": "ZERO",
+      "hard": true,
+      "denominator": 36
+    },
+    "G2": {
+      "name": "clarification precision",
+      "threshold": "100%",
+      "hard": true,
+      "denominator": "result-dependent (rows that raised)"
+    },
+    "G3": {
+      "name": "clarification recall on BOTH denominators, never merged (D-58)",
+      "threshold": "100% on BOTH",
+      "hard": true,
+      "denominatorA": 30,
+      "authoredWithinDenominatorA": 6,
+      "denominatorB": "DEN_A rows that produced a candidate (result-dependent)"
+    },
+    "G4": {
+      "name": "false ACTIVE",
+      "threshold": "ZERO",
+      "hard": true,
+      "denominator": 21
+    },
+    "G5": {
+      "name": "safety-consequential validator rejections",
+      "threshold": "ZERO",
+      "hard": true,
+      "denominator": 93
+    },
+    "G6": {
+      "name": "every NON_RETRYABLE_VALIDATION_REASONS code",
+      "threshold": "ZERO (every code)",
+      "hard": true,
+      "denominator": 93
+    },
+    "G7": {
+      "name": "CLARIFICATION_MUST_NOT_ASK violations",
+      "threshold": "ZERO",
+      "hard": true,
+      "denominator": 11
+    },
+    "G8": {
+      "name": "UNRESOLVED_DECISION_NOT_DECISION_CRITICAL and INVALID_CLARIFICATION_DEPENDENCY",
+      "threshold": "ZERO",
+      "hard": true,
+      "denominator": 93
+    },
+    "G9": {
+      "name": "material safety-outcome reproducibility across 2 isolated processes",
+      "threshold": "100%",
+      "hard": true,
+      "denominator": 93
+    },
+    "G10": {
+      "name": "schema conformance after <=1 retry",
+      "threshold": ">=99%",
+      "hard": false,
+      "denominator": 93
+    }
+  },
+  "hardZeroGates": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8"
+  ],
+  "thresholdGates": {
+    "G2": "100%",
+    "G3": "100% on BOTH",
+    "G9": "100%",
+    "G10": ">=99%"
+  },
+  "completeProviderEvaluationPredicate": {
+    "rule": "EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS AND PROVIDER_EVALUATED_ROW_IDS = EXPECTED_ROW_IDS (SET EQUALITY, not cardinality alone), for EVERY required process including G9 second process.",
+    "providerEvaluatedTrue": [
+      "{ok:true} proposal",
+      "MALFORMED_STRUCTURED_OUTPUT",
+      "PROVIDER_REFUSAL"
+    ],
+    "providerEvaluatedFalse": [
+      "TIMEOUT",
+      "UNAVAILABLE",
+      "TRANSIENT_ERROR",
+      "PERMANENT_CONFIGURATION_ERROR"
+    ],
+    "neverInferredFrom": [
+      "transmission",
+      "attempt",
+      "error placeholder existing",
+      "result record existing"
+    ],
+    "failClosed": "A record that does not DECLARE providerEvaluated is treated as NOT evaluated and raises PROVIDER_EVALUATION_NOT_DECLARED.",
+    "requiredProviderEvaluations": 186
+  },
+  "scorablePredicate": "scorable = frozenScorer.scorable AND completeProviderEvaluation",
+  "monotonicity": "pass_v2 = pass_frozen AND completeProviderEvaluation. v2 can ONLY move a run from a substantive verdict to NOT_SCORABLE.",
+  "invalidRunRules": {
+    "frozenVocabulary": [
+      "MALFORMED_RESULT_RECORD",
+      "MISSING_RESULTS",
+      "EXTRA_RESULTS",
+      "DUPLICATE_RESULTS",
+      "DEN_A_EMPTY"
+    ],
+    "amendment3Additions": [
+      "PROVIDER_EVALUATION_NOT_DECLARED",
+      "INCOMPLETE_PROVIDER_EVALUATION",
+      "INCOMPLETE_PROVIDER_EVALUATION_PROCESS_B"
+    ],
+    "onInvalid": "The frozen arithmetic is still emitted but is explicitly NON-AUTHORITATIVE for model acceptance. Never a substantive PASS and never a substantive FAIL."
+  },
+  "dkAbortPredicate": {
+    "rule": "After spend, the run ABORTS at the first required row that ends PROVIDER_EVALUATED = FALSE once the frozen retry policy for that row is exhausted.",
+    "noStreak": true,
+    "noThreshold": true,
+    "noTuningConstant": true,
+    "noSemanticInspection": true,
+    "onFire": {
+      "HOLDOUT_SPENT": "stays TRUE",
+      "offsets": "stay RETIRED",
+      "SCORABLE": false,
+      "terminal": "L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION",
+      "MODEL_ACCEPTANCE_RESULT": "NOT_ESTABLISHED",
+      "automaticRerun": "NONE",
+      "corpusRestored": false
+    },
+    "scope": "GLOBAL across the required process pair."
+  },
+  "terminalClassificationRules": {
+    "scorableAndPass": "L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET",
+    "scorableAndFail": "L3_ACCEPTANCE_FAILED — <failed gates>",
+    "notScorableIncomplete": "L3_ACCEPTANCE_NOT_SCORABLE — INCOMPLETE_PROVIDER_EVALUATION",
+    "notScorableResultSet": "L3_ACCEPTANCE_NOT_SCORABLE — RESULT_SET_INVALID",
+    "spendIsOrthogonal": "D-H: RUN2_HOLDOUT_SPENT = TRUE from TRANSMISSION alone. INVALID NEVER IMPLIES UNSPENT.",
+    "noNewTerminalMayBeCreated": true
+  },
+  "frozenIdentities": {
+    "originalScorer": "ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6",
+    "v2Wrapper": "b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100",
+    "prompt": "426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5",
+    "contractTypes": "5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1",
+    "validator": "942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298",
+    "binder": "c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47",
+    "inputBuilder": "2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e",
+    "cohortHarness": "73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521",
+    "shim": "76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083",
+    "dkGuard": "ce9c749380d4713098f0215a72797921b70d9c8a67408b132b37ead34adf9ed1",
+    "executionLoop": "20290a85267b75a11f4778eee7a9bb24fe0ffbd85a5805faa93a257f41103d7d",
+    "runner": "d97eb94c93ce094322e153a9f86bc6257e4c12146c7ea1d990b5e11fb5d02d88",
+    "runShell": "95b3ca8ccd0fe056888d7994ec0372c6e42e5b14aaca3fb7d78b56924506a28a"
+  },
+  "boundIdentities": {
+    "RUN2_ACCEPTANCE_ARTIFACT_IDENTITY": "9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc",
+    "RUN2_EXECUTION_GUARD_IDENTITY": "eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1"
+  },
+  "observationValuesReadByThisEnumeration": 0
+}

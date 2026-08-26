@@ -1,0 +1,118 @@
+[swept] w320 (320px) — 18 routes
+[swept] w360 (360px) — 18 routes
+[swept] w375 (375px) — 18 routes
+[swept] w390 (390px) — 18 routes
+[swept] w430 (430px) — 18 routes
+[swept] w768 (768px) — 18 routes
+[swept] w1024 (1024px) — 18 routes
+[swept] w1440 (1440px) — 18 routes
+
+=== MOBILE RESPONSIVE AUDIT ===
+{
+  "appUrl": "http://localhost:3020",
+  "viewports": [
+    "320px (PHONE_REQUIRED)",
+    "360px (PHONE_REQUIRED)",
+    "375px (PHONE_REQUIRED)",
+    "390px (PHONE_REQUIRED)",
+    "430px (PHONE_REQUIRED)",
+    "768px (TABLET)",
+    "1024px (TABLET_LANDSCAPE)",
+    "1440px (DESKTOP)"
+  ],
+  "routesAudited": 18,
+  "combinations": 144,
+  "HORIZONTAL_PAGE_OVERFLOW": 0,
+  "horizontalOverflowAllWidths": 0,
+  "nonHttp200": 0,
+  "routeThemeConsoleErrorRows": 24,
+  "phoneClippedControlRows": 0,
+  "phoneSmallTouchTargetRows": 0,
+  "phoneUnmaskedOverflowRows": 0
+}
+
+--- console errors ---
+  /inspections @320px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @320px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @320px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @360px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @360px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @360px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @375px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @375px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @375px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @390px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @390px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @390px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @430px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @430px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @430px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @768px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @768px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @768px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @1024px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @1024px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @1024px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+  /inspections @1440px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+      Access to fetch at 'http://localhost:4000/inspections' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-
+  /reports @1440px
+      Access to fetch at 'http://localhost:4000/inspection-reports' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No '
+      Failed to load resource: net::ERR_FAILED
+  /settings @1440px
+      Access to fetch at 'http://localhost:4000/sites?limit=100' from origin 'http://localhost:3020' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Acc
+      Failed to load resource: net::ERR_FAILED
+
+Artifacts: /Users/mckinley/Desktop/Safety_InSite/verification/insite-v1-mobile-ux-2026-08-26/after/mobile-audit.json + /Users/mckinley/Desktop/Safety_InSite/verification/insite-v1-mobile-ux-2026-08-26/after/screenshots
+
+HORIZONTAL_PAGE_OVERFLOW = 0 across all required phone widths.

@@ -1,0 +1,179 @@
+{
+  "A": {
+    "rowsWhereBinderDeletedEverything": 4,
+    "deletedACorrectState": 3,
+    "deletedAnUnsupportedState": 0,
+    "truthDoesNotPinAState": 1,
+    "detail": [
+      {
+        "rowId": "H2B-060",
+        "deletedStates": [
+          "CONTROLLED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "highConsequence": false,
+        "verdict": "TRUTH_DOES_NOT_PIN_A_STATE"
+      },
+      {
+        "rowId": "H2B-071",
+        "deletedStates": [
+          "NEGATED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-073",
+        "deletedStates": [
+          "CORRECTED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-076",
+        "deletedStates": [
+          "CORRECTED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      }
+    ]
+  },
+  "B": {
+    "rowsWhereBinderDeletedEverything": 6,
+    "deletedACorrectState": 5,
+    "deletedAnUnsupportedState": 0,
+    "truthDoesNotPinAState": 1,
+    "detail": [
+      {
+        "rowId": "H2B-060",
+        "deletedStates": [
+          "CONTROLLED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "highConsequence": false,
+        "verdict": "TRUTH_DOES_NOT_PIN_A_STATE"
+      },
+      {
+        "rowId": "H2B-071",
+        "deletedStates": [
+          "NEGATED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-072",
+        "deletedStates": [
+          "NEGATED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-074",
+        "deletedStates": [
+          "CORRECTED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-075",
+        "deletedStates": [
+          "CORRECTED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      },
+      {
+        "rowId": "H2B-076",
+        "deletedStates": [
+          "CORRECTED"
+        ],
+        "codes": [
+          "SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE"
+        ],
+        "truthState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "highConsequence": false,
+        "verdict": "DELETED_A_STATE_THAT_MATCHES_TRUTH"
+      }
+    ]
+  }
+}

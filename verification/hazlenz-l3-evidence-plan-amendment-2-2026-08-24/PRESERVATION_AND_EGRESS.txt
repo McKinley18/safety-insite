@@ -1,0 +1,109 @@
+L3 INDEPENDENT EVIDENCE PLAN AMENDMENT 2 -- PRESERVATION, EGRESS AND POST-PHASE VERIFICATION
+recorded 2026-08-24
+
+== TERMINAL ==
+  L3_INDEPENDENT_EVIDENCE_PLAN_AMENDED_V2 -- HOLDOUT_CONSTRUCTION_REAUTHORIZATION_REQUIRED
+  PLAN_EXECUTABLE = TRUE | HOLDOUT_CONSTRUCTED_AND_FROZEN = FALSE | HOLDOUT_SPENT = FALSE
+  Specification phase only. Not a model result; no inference occurred.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: origin/release/insite-rc-2026-08-18   divergence: 0/0
+  staged index entries: 0   tags: 23   stash entries: 4 (inspected, NEVER operated on)
+  git diff HEAD -- backend/src    : 0 lines
+  git diff HEAD -- safescope-data : 0 lines
+  A clean worktree was NOT required. Unrelated work is preserved byte-for-byte.
+
+== PROTECTED SOURCES -- BEFORE AND AFTER, IDENTICAL, NEVER SEMANTICALLY OPENED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  gauntlet.source.v1      150 rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  gauntlet.seed           100 rows
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  field-realism-pack-v2   117 rows
+  MATCH: 3 of 3. Physical rows 367 | distinct NORM texts 366.
+  Rows selected: NONE. Identifiers materialized: NONE. Observation text read/printed: NONE.
+
+== GOVERNING PLAN -- AMENDED APPEND-ONLY ==
+  BEFORE : 1f2edfff7a4bc62af445088269be301b4ab2a6856ff28cc5bc6b13b334cf820f
+  AFTER  : 9e161cab9f2c409e0f51887f6a2f62491b237e8e29bee0a154b18d8621db4a18
+  Amendment 2 appended below Amendment 1. AMENDMENT 1 WAS NOT REWRITTEN OR ERASED, and its original
+  G4 line ("denominator: exactly 18") survives VERBATIM at line 494.
+  RESIDUAL, RECORDED: that line is deliberately left UNMARKED, so the plan is correct only when READ
+  THROUGH AMENDMENT 2. Blueprint section 53.5 now carries a supersession pointer for the same reason,
+  added without altering the historical finding.
+
+== FROZEN CONFIGURATION -- RE-DERIVED: OK=10  MISMATCH=0 ==
+  426302a4 reasoning-prompt.ts            5f70281c reasoning-contract.types.ts
+  942ac7cc deterministic-safety-validator c1f9d29d semantic-evidence-binding.ts
+  2865ae91 reasoning-input-builder.ts     73f74131 ablate-l32g-state-separation.ts
+  0b3b8d86 activate-l32j-shipped-corpus   d90cb89c diagnose-l32k-shipped-residual.ts
+  76d3e039 anthropic-ollama-shim.js       7d748111 score.js
+  Governed inner identities (recorded separately from the outer file digests):
+    prompt hazlenz.l3.prompt.v6 / L3_SYSTEM_PROMPT b8cc50fc... ; run schema a522cf5a...
+  G1..G10 UNCHANGED. Both G3 denominators UNCHANGED. G7 membership rule UNCHANGED.
+  G4 FROZEN MEMBERSHIP UNCHANGED -- only its DECLARED CARDINALITY was corrected, 18 -> 21.
+  Acceptance provider/model decision UNCHANGED -- Anthropic / claude-sonnet-5, NOT probed.
+
+== ATTEMPT 1 -- INVALIDATED, PRESERVED, UNCHANGED ==
+  f0e33f140c10102654b25d47f5e7027a9b19865126d8c226655b0ac99e3585cc  HOLDOUT_FREEZE.txt
+  c4b80a2bba8b52b4a784ef99a7a35ddebd212024c3eb340da728cb2c259215ce  ATTEMPT_INVALIDATED.txt
+  4237fc3bf035286eb7b2f79d209ab6ebb4c8323169765803c4ee605056ef70d2  builder/authored-controls.js
+  The freeze is HISTORICAL EVIDENCE ONLY: never reusable as Attempt 2's freeze identity, never to be
+  rewritten. Attempt 1 is NOT rewritten as though it succeeded.
+  NO NEW FREEZE WAS CREATED BY THIS PHASE. Freeze records in repository: 7
+    = 6 pre-existing (L3-2, 2b, 2c, 2d, 2e, 2f) + 1 Attempt-1 (invalidated).
+
+== ARTIFACTS CREATED BY THIS PHASE ==
+  ca5b9f6100093b2391bd9c167f3a16dd27ed78e4266d2895f4150fd17abf59b4  STATUS.md
+  302d8368ede7cb6145713aa8004d8eba6840dc9fa237405ad6dbd29d729148df  NEXT_ACTION.md
+  76db35e5fbab484c234d7e144a25ba20d382c14559b41efcaa2d6b71ae5a0d0c  INDEX.md
+  6e85735d756751539df1cbda9017a0937c1605cc8b276def9f4eda736ddb0ff2  analysis/derive-cardinalities.js
+  9e230532056f9bcafd44d7dae95d417077be41a71524d0ae1d6cda90daa4bd2c  analysis/DERIVED_CARDINALITY_TABLE.txt
+  f1119f683fca5834c76ab77b4e20fcadb13f6be3508223bb5edebd5870b0de08  analysis/verify-amendment-v2-executability.js
+  0c8cacd5ba05a57167de9da7e981ba51ce2f9f376bcfd13da11d0a7f4868e0ec  analysis/EXECUTABILITY_REVIEW_V2.txt
+  2ea7dc0a7f5f8ecaed86bccd5da42a4626849f1f2a345e68df00296070f03e50  analysis/STRUCTURAL_AND_CONTAMINATION_PROOF.txt
+
+== PROVIDER EXECUTION ACCOUNTING ==
+  API requests to api.anthropic.com : 0     inference calls (hosted)      : 0
+  inference calls (local / ollama)  : 0     metadata/availability probes  : 0
+  provider abstraction invoked      : NO    destinations contacted        : NONE
+  holdout rows sent anywhere        : 0 -- no holdout exists
+  prompt / output / thought tokens  : 0 / 0 / 0     measured cost : $0.00
+
+== CREDENTIAL ==
+  ANTHROPIC_API_KEY accessed / read / printed : NO
+  any Anthropic credential accessed           : NO
+  Claude Code authentication inspected        : NO
+  any credential path probed                  : NO
+
+== EXTERNAL TRANSMISSION ==
+  bytes transmitted externally : NONE   protected-source bytes : NONE
+  authored-control text        : NONE   customer/production data : NONE
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  No production file modified; git diff HEAD -- backend/src is 0 lines; section 45.6 stands.
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN.  L3-3 REMAINS UNAUTHORIZED.
+
+== NOT DONE, BY CONSTRUCTION ==
+  holdout constructed                                    : NO
+  freeze record created                                  : NO
+  any source row selected or materialized                : NO
+  reserved semantic evidence inspected                   : NO
+  G4 frozen membership changed                           : NO -- only the declared cardinality
+  any authored control or truth state changed            : NO
+  G1..G10 changed                                        : NO
+  either G3 denominator changed                          : NO
+  G7 membership changed                                  : NO
+  Amendment 1 rewritten or erased                        : NO
+  prompt / schema / validator / binder / input builder   : UNCHANGED
+  Anthropic / Claude / Gemini / Ollama / OpenAI invoked   : NO
+  claude-sonnet-5 probed                                 : NO
+  holdout spent                                          : NO
+  production provider selected                           : NO
+  L3-3 begun                                             : NO
+  customer authority changed                             : NO
+  D-79 .. D-87 rewritten                                 : NO -- D-88 ADDED
+  Attempt 1 rewritten as a success                       : NO
+  second contradiction repaired opportunistically        : NO -- none was found
+  deployed / committed / pushed / merged / rebased / reset: NO
+  restored / cleaned / stash operation of any kind       : NO

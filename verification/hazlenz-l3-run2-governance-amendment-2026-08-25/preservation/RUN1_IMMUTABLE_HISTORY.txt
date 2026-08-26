@@ -1,0 +1,57 @@
+L3 RUN-2 GOVERNANCE AMENDMENT -- PHASE 1: RUN 1 IS IMMUTABLE HISTORICAL EVIDENCE
+================================================================================
+
+  Nothing in this phase rewrites Run 1. Its corpus stays spent, its offsets stay retired, its raw
+  results stay byte-identical, and its literal frozen-scorer output stays on the record verbatim.
+
+================================================================================
+1. THE THREE STATEMENTS, PRESERVED TOGETHER
+================================================================================
+  FROZEN_SCORER_LITERAL_OUTPUT = L3_ACCEPTANCE_FAILED -- G2,G3,G9,G10
+  GOVERNED_RUN_TERMINAL        = L3_ACCEPTANCE_INVALID -- PROVIDER_CALLABILITY_FAILURE_AFTER_SPEND
+  MODEL_ACCEPTANCE_RESULT      = NOT_ESTABLISHED
+
+================================================================================
+2. WHY ALL THREE COEXIST WITHOUT CONTRADICTION
+================================================================================
+  They answer three DIFFERENT questions, and conflating any two of them is the error.
+
+  (1) THE LITERAL OUTPUT answers: "what did this deterministic function return on these inputs?"
+      It is a mechanical fact about a program run. It is TRUE, it is reproducible, and it must
+      never be suppressed, edited or re-run to something more convenient. It is preserved
+      verbatim in the Run-1 package.
+
+  (2) THE GOVERNED TERMINAL answers: "what does the programme record as the outcome of the run?"
+      The frozen scorer could not reach this answer because its invalidity vocabulary asks only
+      result-set-shape questions and has no predicate for 'the provider refused to answer'. The
+      governed terminal supplies the classification the scorer's vocabulary could not express.
+      It does NOT overrule the scorer's arithmetic -- it states the CONDITIONS under which that
+      arithmetic is meaningful, and those conditions were not met.
+
+  (3) THE MODEL RESULT answers: "what has been measured about claude-sonnet-5?"
+      NOTHING. 52 of 92 rows were never evaluated; G4's and G7's denominators were evaluated ZERO
+      times. Both the failures AND the passes in (1) are artifacts of absent evaluation.
+
+  >> (1) IS A FACT ABOUT A PROGRAM. (2) IS A FACT ABOUT A RUN. (3) IS A FACT ABOUT A MODEL.
+  >> ONLY (3) COULD EVER ADVANCE OR BLOCK L3-3, AND (3) IS EMPTY.
+
+  This is the same discipline D-90, D-91 and D-92 applied to the three blocked readiness attempts:
+  a provider-side failure is recorded as a provider-side failure, never promoted into a statement
+  about the model. What is new here is that the failure happened AFTER spend, so it cost the
+  corpus -- which changes the price, not the classification.
+
+================================================================================
+3. WHAT IS PRESERVED, PERMANENTLY
+================================================================================
+  HOLDOUT_SPENT                    TRUE      (since 2026-08-25T20:53:23.892Z)
+  GAUNTLET_OFFSET_0                RETIRED
+  REALISM_OFFSET_3                 RETIRED
+  Run-1 raw process A              32adb9faaa5b84735c1fc98cc57e605b3d25a0c9f472b2db5b7795af0aea0594
+  Run-1 raw process B              06c0111fbdf81081bf3eb68a12922dd4c0f3a5b7befc68a7aba6070b25791860
+  Run-1 frozen scorer output       scoring/ACCEPTANCE_SCORE.json -- unedited
+  Run-1 terminal classification    d1d77ac9c29df9b42d2555edd80866538c0ae4b14d1a13fe5842f40fe3717f6d
+  D-94 and blueprint section 61    NOT rewritten as though Run 1 had never occurred
+
+  NOT DONE BY THIS PHASE: no rewrite of Run 1 as unspent; no rerun of its 92 rows; no reuse of its
+  independent rows; no reuse of its authored controls; no replacement of its raw results; no change
+  to its frozen scorer output; no removal of its literal L3_ACCEPTANCE_FAILED line.

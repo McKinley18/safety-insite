@@ -1,0 +1,55 @@
+L3 RUN-2 SEALED ACCEPTANCE -- COST AND CALL ACCOUNTING
+DOCUMENTATION ONLY. No additional provider call was made to produce this.
+pricing: claude-sonnet-5  $2 / MTok input, $10 / MTok output (L3-2o assertion 13)
+
+PROCESS A
+  provider calls                  93
+  HTTP status counts              {"200":93}
+  calls returning usage           93
+  input tokens                    560,534   mean 6027.25
+  output tokens                   166,980   mean 1795.48
+  cost                            $2.790868
+  rows recorded                   93
+  requests scheduled              93
+  rows never issued (D-K)         0
+  provider-evaluated rows         93
+  total attempts                  93
+  extra attempts beyond the first 0   (frozen transport + shape retry, ceiling of one)
+  outcome kinds                   {"VALIDATED":77,"REJECTED_OUTPUT":3,"INSUFFICIENT_EVIDENCE":6,"NO_HAZARD_ESTABLISHED":7}
+  D-K fired in this process       false
+
+PROCESS B
+  provider calls                  93
+  HTTP status counts              {"200":93}
+  calls returning usage           93
+  input tokens                    560,534   mean 6027.25
+  output tokens                   175,445   mean 1886.51
+  cost                            $2.875518
+  rows recorded                   93
+  requests scheduled              93
+  rows never issued (D-K)         0
+  provider-evaluated rows         93
+  total attempts                  93
+  extra attempts beyond the first 0   (frozen transport + shape retry, ceiling of one)
+  outcome kinds                   {"VALIDATED":75,"REJECTED_OUTPUT":2,"INSUFFICIENT_EVIDENCE":10,"NO_HAZARD_ESTABLISHED":6}
+  D-K fired in this process       false
+
+TOTAL
+  provider calls                    186
+  input tokens                      1,121,068
+  output tokens                     342,425
+  ACTUAL API COST                   $5.666386
+
+AGAINST THE GOVERNED PROJECTIONS (D-97 / D-98, unchanged)
+  A observed-mean projection        $5.691860
+  B observed-max envelope           $14.430996
+  C governed requirement (B x 1.25) $18.038745
+  user-attested available credit    $40.00
+  actual as a fraction of C         31.41%
+  credit remaining (attested basis) $34.333614
+
+D-K AVOIDED CALLS
+  D-K did not fire. No calls were avoided and none needed to be.
+
+RUN2_HOLDOUT_SPENT = TRUE | GAUNTLET_OFFSET_1 = RETIRED | REALISM_OFFSET_0 = RETIRED
+Spend follows from TRANSMISSION alone (D-H) and is independent of this accounting.

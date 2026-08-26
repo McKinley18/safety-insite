@@ -1,5 +1,5 @@
-import PricingContent from "@/components/pricing/PricingContent";
+import UpgradeContent from "@/components/billing/UpgradeContent";
 
 export default function UpgradePage() {
-  return <PricingContent mode="upgrade" />;
+  return <UpgradeContent />;
 }

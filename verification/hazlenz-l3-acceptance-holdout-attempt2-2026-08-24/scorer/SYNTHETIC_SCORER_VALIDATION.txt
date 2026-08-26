@@ -1,0 +1,122 @@
+== ATTEMPT 2 PHASE 16 -- SYNTHETIC SCORER VALIDATION ==
+   NO PROVIDER RUN. NO INFERENCE. NO HOLDOUT SEMANTICS CONSUMED.
+   Fixtures are synthesized from frozen truth metadata (rowIds and gate flags) only.
+
+  PASS  all-pass baseline: every gate met
+         expected: pass=true, failedGates=[]
+         observed: pass=true failed=[] scorable=true
+  PASS  G1 fails: a high-consequence row yields zero candidates
+         expected: G1 in failedGates
+         observed: failed=[G1,G9]
+  PASS  G2 fails: a clarification raised where none is expected
+         expected: G2 in failedGates, precision < 1
+         observed: failed=[G2,G9] precision=0.9666666666666667
+  PASS  G3 fails: a DEN_A row raises no clarification (recall_A < 1)
+         expected: G3 in failedGates
+         observed: failed=[G3,G9] recallA=0.9655172413793104
+  PASS  G4 fails: ACTIVE asserted on a G4-denominator row
+         expected: G4 in failedGates
+         observed: failed=[G4,G9]
+  PASS  G5 fails: one safety-consequential validator rejection
+         expected: G5 in failedGates
+         observed: failed=[G5]
+  PASS  G6 fails: one NON_RETRYABLE_VALIDATION_REASONS code
+         expected: G6 in failedGates, code counted
+         observed: failed=[G6] byCode={"SOME_CODE":1}
+  PASS  G7 fails: a clarification raised on the MUST-NOT-ASK pole
+         expected: G7 in failedGates
+         observed: failed=[G2,G7,G9]
+  PASS  G8 fails: a decision-boundary code is emitted
+         expected: G8 in failedGates
+         observed: failed=[G8]
+  PASS  G8 ignores codes outside its two frozen codes
+         expected: G8 passes on an unrelated code
+         observed: failed=[]
+  PASS  G9 fails: the two processes diverge materially on one row
+         expected: G9 in failedGates
+         observed: failed=[G9]
+  PASS  G9 cannot pass without a second isolated process
+         expected: G9 in failedGates when process B absent
+         observed: failed=[G9]
+  PASS  G10 fails: schema conformance below 99%
+         expected: G10 in failedGates
+         observed: failed=[G1,G10] rate=0.9783
+  PASS  G10 counts >1 retry as non-conforming
+         expected: a 2-retry row is not conforming
+         observed: conforming=91/92
+  PASS  hard-zero gates: exactly one violation is enough to fail
+         expected: G4 fails on a single false ACTIVE
+         observed: violations=1 pass=false
+  PASS  a failed hard gate is never softened into a percentage pass
+         expected: G3 pass=false at 28/29
+         observed: recallA=0.9655 pass=false
+  PASS  G3 arithmetic: DEN_A == the frozen clarificationExpected set
+         expected: DEN_A = 29, authored 6 + realism 23
+         observed: DEN_A=29 authored=6 realism=23
+  PASS  G3-DEN.1: a zero-candidate DEN_A row STAYS in DEN_A and MISSES
+         expected: DEN_A unchanged, NUM_A drops
+         observed: DEN_A=29 NUM_A=28
+  PASS  G3-DEN.2: a zero-candidate row is EXCLUDED from DEN_B
+         expected: DEN_B drops by exactly 1
+         observed: DEN_B 29 -> 28
+  PASS  G3-DEN: a malformed record REMAINS in DEN_A and MISSES
+         expected: DEN_A unchanged, G3 fails
+         observed: DEN_A=29 pass=false
+  PASS  G3-DEN.3: the two recalls are reported separately and never merged
+         expected: recallA and recallB distinct fields
+         observed: recallA=0.9655 recallB=1
+  PASS  G3 membership: DEN_A is exactly the clarificationExpected===true set
+         expected: no other row enters DEN_A
+         observed: DEN_A=29 gauntlet-in-DEN_A=0
+  PASS  G4 membership: the denominator is exactly 21 authored non-ACTIVE rows
+         expected: denominator=21, all AUTHORED
+         observed: denominator=21 allAuthored=true
+  PASS  G4 membership: the superseded 18 is not reachable
+         expected: F6 IS inside the denominator
+         observed: F6=3 F6-in-G4=3 denominator=21 without-F6=18
+  PASS  F3 ACTIVE is a G4 false-ACTIVE AND a G3 recall miss
+         expected: both G3 and G4 fail (D-E.3)
+         observed: failed=[G3,G4,G9]
+  PASS  F6 ACTIVE is a G4 false-ACTIVE AND a G3 recall miss
+         expected: both G3 and G4 fail (D-E.3)
+         observed: failed=[G3,G4,G9]
+  PASS  G7 membership: the pole is exactly 11 authored rows, F1+F2+F7
+         expected: no independent row in the pole
+         observed: pole=11 families=F1,F2,F7 independent=0
+  PASS  G7: F4/F5/F8 are NOT in the pole despite expectClarification=false
+         expected: section 49.3 distinction preserved
+         observed: F4/F5/F8-in-pole=0 failed=[G2,G9]
+  PASS  missing result: run is NOT scorable and NOT a pass
+         expected: scorable=false, pass=false
+         observed: scorable=false pass=false reasons=[MISSING_RESULTS]
+  PASS  extra result: run is NOT scorable
+         expected: EXTRA_RESULTS recorded
+         observed: scorable=false reasons=[EXTRA_RESULTS]
+  PASS  duplicate result: run is NOT scorable
+         expected: DUPLICATE_RESULTS recorded
+         observed: scorable=false reasons=[DUPLICATE_RESULTS]
+  PASS  malformed result record is rejected, not silently dropped
+         expected: MALFORMED_RESULT_RECORD recorded
+         observed: scorable=false reasons=[MALFORMED_RESULT_RECORD,MISSING_RESULTS]
+  PASS  scoring is deterministic: identical inputs give identical output
+         expected: two runs byte-identical
+         observed: identical=true
+  PASS  terminal classification: all gates met
+         expected: L3_ACCEPTANCE_PASSED
+         observed: L3_ACCEPTANCE_PASSED — ALL_TEN_GATES_MET
+  PASS  terminal classification: a gate fails
+         expected: L3_ACCEPTANCE_FAILED names the gate
+         observed: L3_ACCEPTANCE_FAILED — G4,G9
+  PASS  terminal classification: result set invalid
+         expected: L3_ACCEPTANCE_NOT_SCORABLE
+         observed: L3_ACCEPTANCE_NOT_SCORABLE — RESULT_SET_INVALID
+  PASS  by-provenance table is produced for all three classes
+         expected: independent numbers readable alone
+         observed: G 38 / R 29 / A 25, authored G4 21
+  PASS  |DEN_A| = 0 is a scoring invalidity, never a vacuous 100%
+         expected: not scorable on an empty denominator
+         observed: scorable=false pass=false reasons=[DEN_A_EMPTY]
+
+  cases: 38   PASS: 38   FAIL: 0
+
+  No gate threshold was adjusted to make a case pass. No G1..G10 semantics were changed.

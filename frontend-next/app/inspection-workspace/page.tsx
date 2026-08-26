@@ -30,6 +30,29 @@ import { getStoredPlanCode, getVerifiedPlanCode, hasPlanEntitlement, type Billin
 
 type Step = "capture" | "review" | "risk" | "followup" | "complete";
 
+const STEP_ORDER: Step[] = ["capture", "review", "risk", "followup", "complete"];
+
+// Short forms, sized for a five-across progress bar on a 320px screen.
+const STEP_LABELS: Record<Step, string> = {
+  capture: "Capture",
+  review: "Review",
+  risk: "Risk",
+  followup: "Action",
+  complete: "Done",
+};
+
+/**
+ * True when the server refused an action because the account's plan does not
+ * include it. `apiJson` collapses the response to `new Error(body.message)`, so
+ * the entitlement guard's message is the only signal that survives to the UI.
+ */
+function isEntitlementRefusal(error: unknown) {
+  return (
+    error instanceof Error &&
+    /paid subscription is required/i.test(error.message)
+  );
+}
+
 function selectedInspectionId() {
   try {
     const value = JSON.parse(
@@ -374,6 +397,10 @@ export default function InspectionWorkspacePage() {
   // supersedes that observation's findings. See BASELINE/FINAL_REPORT for the audit.
   const [captureMode, setCaptureMode] = useState<"initial" | "additional">("initial");
   const [planCode, setPlanCode] = useState<BillingTier>(() => getStoredPlanCode() as BillingTier);
+  // Set when HazLenz analysis is refused for entitlement reasons (HTTP 402). The
+  // observation itself is already persisted at that point, so this is a paywall,
+  // not a lost capture -- and it needs to say so.
+  const [analysisLocked, setAnalysisLocked] = useState(false);
   const [status, setStatus] = useState("Loading server-saved inspection…");
   const [busy, setBusy] = useState(false);
   const [staleAnalysis, setStaleAnalysis] = useState(false);
@@ -691,7 +718,17 @@ export default function InspectionWorkspacePage() {
       );
       setCaptureMode("initial");
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Analysis was not saved.");
+      // The backend refuses HazLenz analysis for a Free account with
+      // 402 PAID_SUBSCRIPTION_REQUIRED. Surfacing that raw message left the
+      // inspector staring at "A paid subscription is required for this feature."
+      // with no explanation of what was kept or where to go next.
+      const message = error instanceof Error ? error.message : "Analysis was not saved.";
+      if (isEntitlementRefusal(error)) {
+        setAnalysisLocked(true);
+        setStatus("Observation saved. HazLenz AI analysis is a Pro feature.");
+      } else {
+        setStatus(message);
+      }
     } finally {
       setBusy(false);
     }
@@ -1115,7 +1152,9 @@ export default function InspectionWorkspacePage() {
   return (
     <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
       <header>
-        <p className="text-xs font-bold uppercase tracking-widest text-sky-600">Safety InSite</p>
+        {/* sky-600 measured 3.57:1 on this panel, under the 4.5 normal-text requirement.
+            sky-700 is the same hue family and measures 5.26:1. */}
+        <p className="text-xs font-bold uppercase tracking-widest text-sky-700 dark:text-sky-300">Safety InSite</p>
         {/* "Server-saved inspection" described our persistence model, not the customer's task. */}
         <h1 className="mt-2 text-3xl font-black">{inspection?.title || "Inspection"}</h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
@@ -1124,11 +1163,14 @@ export default function InspectionWorkspacePage() {
         </p>
       </header>
 
+      {/* Five steps share the width of a phone screen, so every label has to survive
+          being about 70px wide. "Complete" did not: it wrapped to a second line and left
+          that step taller than the other four. The labels below are the short forms. */}
       <nav aria-label="Inspection progress" className="guided-progress">
-        {(["capture", "review", "risk", "followup", "complete"] as Step[]).map((item, index) => (
+        {STEP_ORDER.map((item, index) => (
           <span key={item} aria-current={step === item ? "step" : undefined}
             className={step === item ? "guided-progress-step is-current" : "guided-progress-step"}>
-            {index + 1}. {item === "followup" ? "Action" : item}
+            {index + 1}. {STEP_LABELS[item]}
           </span>
         ))}
       </nav>
@@ -1158,7 +1200,33 @@ export default function InspectionWorkspacePage() {
         </section>
       )}
 
-      {step === "capture" && inspection && (
+      {step === "capture" && inspection && analysisLocked && (
+        <section className="guided-card space-y-3">
+          <div className="rounded-lg border border-amber-300 bg-amber-50 p-3">
+            <h2 className="text-sm font-black leading-5 text-amber-900">
+              HazLenz AI analysis is available on the Pro plan.
+            </h2>
+            <p className="mt-1 text-xs font-semibold leading-5 text-amber-800">
+              Your observation, photo evidence, and site details are saved to this
+              inspection and stay exactly as you entered them. Pro adds the HazLenz AI
+              hazard analysis, suggested MSHA / OSHA standards, risk scoring, recorded
+              findings, corrective actions, and the generated report.
+            </p>
+            <AppLinkButton
+              href="/upgrade"
+              variant="accent"
+              className="mt-3 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-center !text-white"
+            >
+              Upgrade to Pro
+            </AppLinkButton>
+          </div>
+          <button type="button" onClick={() => setAnalysisLocked(false)} className="guided-secondary-button">
+            Back to the observation
+          </button>
+        </section>
+      )}
+
+      {step === "capture" && inspection && !analysisLocked && (
         <section className="guided-card space-y-3">
           {captureMode === "additional" && (
             <div className="guided-subcard space-y-2" data-testid="additional-observation-banner">
@@ -1214,6 +1282,7 @@ export default function InspectionWorkspacePage() {
               onChange={(event) => void persistRegulatoryContext(event.target.value as RegulatoryContext)}
               className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-slate-950"
             >
+              <option value="unknown" disabled>Select regulatory context</option>
               {REGULATORY_CONTEXT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}

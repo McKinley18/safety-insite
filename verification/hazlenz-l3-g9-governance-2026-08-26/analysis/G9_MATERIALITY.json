@@ -1,0 +1,432 @@
+{
+  "providerCalls": 0,
+  "apiCostUsd": 0,
+  "frozenTerminal": "L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9",
+  "frozenModelAcceptanceResult": "ESTABLISHED_FAIL",
+  "frozenG9": {
+    "name": "G9",
+    "denominator": 93,
+    "violations": 14,
+    "reproducibility": 0.8494623655913979,
+    "threshold": "100% across 2 processes",
+    "pass": false,
+    "hard": true
+  },
+  "g9ComparesFields": [
+    "assertedState",
+    "raisedClarification",
+    "hasCandidate"
+  ],
+  "g9DoesNotCompare": [
+    "evidence spans",
+    "corrective-action text",
+    "rationale/wording",
+    "candidate keys",
+    "hazard family",
+    "candidate count",
+    "binder outcomes",
+    "validator issue codes"
+  ],
+  "hasCandidateRedundantWithState": true,
+  "materiality": {
+    "G9-S1": 7,
+    "G9-S2": 7,
+    "G9-S3": 0
+  },
+  "perRow": [
+    {
+      "rowId": "H2B-004",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "A": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "B": {
+        "state": "ACTIVE",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S1",
+      "reason": "ACTIVE asserted in exactly one process",
+      "overlapsGates": [
+        "G1",
+        "G5",
+        "G6"
+      ],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-014",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "A": {
+        "state": "ACTIVE",
+        "clar": false,
+        "any": true
+      },
+      "B": {
+        "state": "ACTIVE",
+        "clar": true,
+        "any": true
+      },
+      "differingFields": [
+        "raisedClarification"
+      ],
+      "classification": "G9-S1",
+      "reason": "clarification raised in exactly one process",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-024",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "A": {
+        "state": "ACTIVE",
+        "clar": false,
+        "any": true
+      },
+      "B": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S1",
+      "reason": "ACTIVE asserted in exactly one process",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-042",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "A": {
+        "state": "INSUFFICIENT_EVIDENCE",
+        "clar": true,
+        "any": true
+      },
+      "B": {
+        "state": "ACTIVE",
+        "clar": true,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState"
+      ],
+      "classification": "G9-S1",
+      "reason": "ACTIVE asserted in exactly one process",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-043",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "A": {
+        "state": "INSUFFICIENT_EVIDENCE",
+        "clar": true,
+        "any": true
+      },
+      "B": {
+        "state": "ACTIVE",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "raisedClarification"
+      ],
+      "classification": "G9-S1",
+      "reason": "ACTIVE asserted in exactly one process AND clarification raised in exactly one process",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-054",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "A": {
+        "state": "NEGATED",
+        "clar": false,
+        "any": true
+      },
+      "B": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (NEGATED vs null). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [
+        "G3"
+      ],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-056",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "A": {
+        "state": "ACTIVE",
+        "clar": true,
+        "any": true
+      },
+      "B": {
+        "state": "ACTIVE",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "raisedClarification"
+      ],
+      "classification": "G9-S1",
+      "reason": "clarification raised in exactly one process",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-070",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F1",
+      "A": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "B": {
+        "state": "NEGATED",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs NEGATED). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-072",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F1",
+      "A": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "B": {
+        "state": "NEGATED",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs NEGATED). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-073",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "A": {
+        "state": "CORRECTED",
+        "clar": false,
+        "any": true
+      },
+      "B": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (CORRECTED vs null). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-074",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "A": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "B": {
+        "state": "CORRECTED",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs CORRECTED). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-075",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "A": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "B": {
+        "state": "CORRECTED",
+        "clar": false,
+        "any": true
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs CORRECTED). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    },
+    {
+      "rowId": "H2B-081",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F4",
+      "A": {
+        "state": "INSUFFICIENT_EVIDENCE",
+        "clar": true,
+        "any": true
+      },
+      "B": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "differingFields": [
+        "assertedState",
+        "raisedClarification",
+        "hasCandidate"
+      ],
+      "classification": "G9-S1",
+      "reason": "clarification raised in exactly one process",
+      "overlapsGates": [
+        "G2"
+      ],
+      "customerCouldReceiveDifferentSafetyConclusion": true
+    },
+    {
+      "rowId": "H2B-093",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F8b",
+      "A": {
+        "state": "NEGATED",
+        "clar": false,
+        "any": true
+      },
+      "B": {
+        "state": null,
+        "clar": false,
+        "any": false
+      },
+      "differingFields": [
+        "assertedState",
+        "hasCandidate"
+      ],
+      "classification": "G9-S2",
+      "reason": "both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (NEGATED vs null). Traceability and downstream processing differ; the safety conclusion does not.",
+      "overlapsGates": [],
+      "customerCouldReceiveDifferentSafetyConclusion": false
+    }
+  ],
+  "counterfactuals": {
+    "A_frozen_G9": {
+      "divergent": 14,
+      "reproducibility": 0.8494623655913979,
+      "rowIds": [
+        "H2B-004",
+        "H2B-014",
+        "H2B-024",
+        "H2B-042",
+        "H2B-043",
+        "H2B-054",
+        "H2B-056",
+        "H2B-070",
+        "H2B-072",
+        "H2B-073",
+        "H2B-074",
+        "H2B-075",
+        "H2B-081",
+        "H2B-093"
+      ]
+    },
+    "B_safety_decision": {
+      "divergent": 7,
+      "reproducibility": 0.9247311827956989,
+      "rowIds": [
+        "H2B-004",
+        "H2B-014",
+        "H2B-024",
+        "H2B-042",
+        "H2B-043",
+        "H2B-056",
+        "H2B-081"
+      ]
+    },
+    "C_customer_visible": {
+      "divergent": 4,
+      "reproducibility": 0.956989247311828,
+      "rowIds": [
+        "H2B-004",
+        "H2B-024",
+        "H2B-042",
+        "H2B-043"
+      ]
+    },
+    "D_state_plus_clarification": {
+      "divergent": 14,
+      "reproducibility": 0.8494623655913979,
+      "rowIds": [
+        "H2B-004",
+        "H2B-014",
+        "H2B-024",
+        "H2B-042",
+        "H2B-043",
+        "H2B-054",
+        "H2B-056",
+        "H2B-070",
+        "H2B-072",
+        "H2B-073",
+        "H2B-074",
+        "H2B-075",
+        "H2B-081",
+        "H2B-093"
+      ]
+    }
+  },
+  "noCounterfactualCreatesAPass": true
+}

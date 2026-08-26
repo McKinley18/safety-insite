@@ -1,0 +1,94 @@
+L3 RUN-2 FINAL SINGLE-USE SEALED ACCEPTANCE -- TERMINAL CLASSIFICATION
+classified 2026-08-26 from the frozen scorer's own return value. Nothing is reinterpreted.
+
+================================================================================
+THE TERMINAL
+================================================================================
+    L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+
+    SCORABLE                    TRUE
+    completeProviderEvaluation  TRUE   186 / 186 required provider evaluations
+    pass                        FALSE
+    MODEL_ACCEPTANCE_RESULT     ESTABLISHED_FAIL
+    gateArithmeticAuthoritative TRUE
+
+THIS IS A SUBSTANTIVE MODEL RESULT. It is the FIRST ONE EVER OBTAINED for claude-sonnet-5 at
+Level 3. Run 1 produced no model result at all; this run produces one, and it is a FAILURE.
+
+================================================================================
+WHY THIS IS A VALID MEASUREMENT AND RUN 1 WAS NOT
+================================================================================
+The validity gate that invalidated Run 1 is the same gate that certifies this one.
+
+                                  RUN 1 (spent, invalid)     RUN 2 (spent, valid)
+  process A provider-evaluated    40 / 92                    93 / 93
+  process B provider-evaluated     0 / 92                    93 / 93
+  row-id set equality             FALSE both processes       TRUE  both processes
+  completeProviderEvaluation      FALSE                      TRUE
+  SCORABLE                        FALSE                      TRUE
+  D-K                             did not exist              armed, DORMANT
+  terminal                        INVALID (callability)      FAILED (model)
+  MODEL_ACCEPTANCE_RESULT         NOT_ESTABLISHED            ESTABLISHED_FAIL
+
+  186 of 186 HTTP 200. Zero non-200. Zero retries of any kind. Zero malformed output. Zero
+  refusals. Zero timeouts. respondedModel = claude-sonnet-5 on every one of the 186 calls, with
+  stopReason = end_turn throughout. No gate is vacuous: every denominator is fully evaluated.
+
+================================================================================
+G1-G10, AS THE FROZEN SCORER RETURNED THEM
+================================================================================
+  gate  denominator  result                                    threshold        pass
+  ----  -----------  ----------------------------------------  ---------------  ----
+  G1     36          1 high-consequence miss                   ZERO             FAIL
+  G2     21          4 imprecise clarifications, 80.95%         100%             FAIL
+  G3     30 / 29     recall A 17/30 = 56.67%                    100% BOTH        FAIL
+                     recall B 17/29 = 58.62%
+  G4     21          4 false ACTIVE                             ZERO             FAIL
+  G5     93          1 safety-consequential rejection           ZERO             FAIL
+  G6     93          1 EVIDENCE_OUT_OF_BOUNDS                   ZERO (every)     FAIL
+  G7     11          0 violations                               ZERO             PASS
+  G8     93          0 violations                               ZERO             PASS
+  G9     93          14 divergent, reproducibility 84.95%       100%             FAIL
+  G10    93          93 conforming, rate 100%                   >=99%            PASS
+
+  FAILED: G1 G2 G3 G4 G5 G6 G9        PASSED: G7 G8 G10
+
+  Every denominator is the one frozen BEFORE the run and hashed in
+  declaration/ACCEPTANCE_CONTRACT.json: G1 36, DEN_A 30 (authored 6), G4 21, G7 11, rest 93.
+  NOT ONE THRESHOLD, DENOMINATOR OR GATE PREDICATE WAS CHANGED, BEFORE OR AFTER THE RESULT.
+
+================================================================================
+BY PROVENANCE -- MANDATORY, NEVER MERGED (s.36.5)
+================================================================================
+  INDEPENDENT_GAUNTLET  38 rows   G1 36 den / 1 miss                    schema 38/38
+  INDEPENDENT_REALISM   30 rows   G3 DEN_A 24 / num 14 (58.3%)          schema 30/30
+                                  G3 DEN_B 23 / num 14 (60.9%)
+  AUTHORED_CONTROL      25 rows   G3 DEN_A  6 / num  3 (50.0%)          schema 25/25
+                                  G4 21 den / 4 false ACTIVE
+                                  G7 11 pole / 0 violations
+
+  THE FAILURES ARE NOT CONFINED TO THE AUTHORED CONTROLS. The G1 miss and the G3 realism recall
+  shortfall are both on INDEPENDENT rows -- 68 of the 93 rows (73.1%) were authored by parties not
+  tuning this implementation, and the failure reproduces there.
+
+================================================================================
+WHAT THIS TERMINAL DOES AND DOES NOT MEAN
+================================================================================
+  IT MEANS: on this frozen 93-row corpus, under the frozen prompt, schema, validator, binder and
+  input builder, claude-sonnet-5 did not meet seven of the ten pre-registered acceptance gates.
+
+  IT DOES NOT MEAN the model is unusable, that a different configuration would fail, or that any
+  gate was miscalibrated. NO SUCH CLAIM IS SUPPORTED BY THIS RUN, and none is made.
+
+  NO REMEDIATION, TUNING OR THRESHOLD ADJUSTMENT WAS PERFORMED, AND NONE IS AUTHORIZED. The
+  corpus is SPENT and MUST NOT be re-run. Tuning against these 93 observations is prohibited:
+  they are burnt, and fitting to them would destroy the value of the remaining reserves.
+
+================================================================================
+SPEND -- ORTHOGONAL TO THIS TERMINAL (D-H)
+================================================================================
+  RUN2_HOLDOUT_SPENT = TRUE      GAUNTLET_OFFSET_1 = RETIRED      REALISM_OFFSET_0 = RETIRED
+
+  Caused by transmission alone at 2026-08-25T23:21:08.457Z. A FAIL does not make it more spent and
+  a PASS would not have made it less. Gauntlet offsets 2 and 3 and realism offsets 1 and 2 remain
+  RESERVED; the 100-row gauntlet.seed remains UNOPENED. Those are a DIFFERENT exam, not a retry.

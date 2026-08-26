@@ -1,0 +1,107 @@
+{
+ "viewport": "390x844",
+ "results": [
+  {
+   "step": "1 login @390px",
+   "pass": true,
+   "detail": "http://localhost:3041/command-center"
+  },
+  {
+   "step": "2 inspections hub renders",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "3 jurisdiction/governing-body control present on the start form",
+   "pass": true,
+   "detail": "siteCreated=true"
+  },
+  {
+   "step": "3b inspection created with jurisdiction persisted",
+   "pass": true,
+   "detail": "ctx=osha-general-industry"
+  },
+  {
+   "step": "5 photo/evidence control renders and is tappable",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "4 observation entered on a phone viewport",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "6 HazLenz Level-1 analysis completes on phone",
+   "pass": true,
+   "detail": "button=\"Save and review with HazLenz AI\""
+  },
+  {
+   "step": "7 standards displayed / attached to findings",
+   "pass": true,
+   "detail": "findings=3"
+  },
+  {
+   "step": "8 risk / corrective-action review recorded",
+   "pass": true,
+   "detail": "reviewed=3/3"
+  },
+  {
+   "step": "9 Add Finding finalized every candidate",
+   "pass": true,
+   "detail": "finalized=3/3"
+  },
+  {
+   "step": "10 saved/persisted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "11 refresh survives",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "12 findings still present after refresh",
+   "pass": true,
+   "detail": "finalized findings=3"
+  },
+  {
+   "step": "13 complete inspection",
+   "pass": true,
+   "detail": "in_review=201 completed=201"
+  },
+  {
+   "step": "14 report generated",
+   "pass": true,
+   "detail": "status=201 v=1"
+  },
+  {
+   "step": "14b report visible on the phone reports page",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "step": "15 logout then login",
+   "pass": true,
+   "detail": "http://localhost:3041/command-center"
+  },
+  {
+   "step": "16 data remains accessible",
+   "pass": true,
+   "detail": "inspections=1"
+  },
+  {
+   "step": "no uncaught page errors during the phone journey",
+   "pass": true,
+   "detail": "none"
+  },
+  {
+   "step": "no horizontal page scrolling at 390px on any step",
+   "pass": true,
+   "detail": "none"
+  }
+ ],
+ "overflows": [],
+ "pageErrors": []
+}

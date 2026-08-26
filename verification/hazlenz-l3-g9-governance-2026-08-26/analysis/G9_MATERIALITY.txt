@@ -1,0 +1,174 @@
+G9 GOVERNANCE REVIEW -- WHAT G9 MEASURES, AND WHAT IT DOES NOT
+ZERO provider calls. $0.00. No unspent corpus opened. The frozen result is unchanged.
+
+THE FROZEN G9 PROJECTION, VERBATIM FROM ea5e50ae...:
+    material(res) = { state: assertedState, clar: raisedClarification, any: hasCandidate }
+    denominator 93 (ALL rows) | comparison unit: one holdout row | threshold 100% | HARD
+
+FIELDS G9 COMPARES (3):
+    assertedState        the VALIDATED-tier condition state
+    raisedClarification  boolean -- was a question raised at all
+    hasCandidate         boolean -- was any hazard candidate recognised
+
+FIELDS G9 DOES **NOT** COMPARE -- this is the decisive structural fact:
+    evidence spans/offsets ... NOT compared    corrective-action text ..... NOT compared
+    rationale / wording ...... NOT compared    candidate keys ............. NOT compared
+    hazard family ............ NOT compared    number of candidates ....... NOT compared
+    binder outcomes .......... NOT compared    validator issue codes ...... NOT compared
+
+  => G9 IS ALREADY A DECISION-LEVEL GATE, NOT A STRUCTURAL ONE. It cannot be failed by
+     wording, span or representational variation, because it never looks at them.
+     The category "G9-S3 NON_MATERIAL_REPRESENTATIONAL_DIVERGENCE" is therefore
+     STRUCTURALLY EMPTY FOR G9 BY CONSTRUCTION -- not empty by luck on this corpus.
+
+  Is the third field redundant with the first? MEASURED: true
+  (assertedState is null exactly when no candidate exists, on all 186 records, so `any`
+   carries no information beyond `state` on this corpus.)
+
+WHICH REPRODUCIBILITY PROPERTY DOES G9 CURRENTLY MEASURE?
+    A. exact structural reproducibility ....... NO  -- spans/wording/families all ignored
+    B. decision reproducibility ............... YES -- this is what it measures
+    C. safety-outcome reproducibility ......... PARTLY -- it is a superset of C: it also
+                                                counts non-ACTIVE state distinctions and
+                                                hazard-recognition presence
+    D. customer-visible reproducibility ....... NOT DIRECTLY -- depends on what the product
+                                                surfaces; see the materiality table below
+
+================================================================================
+PART 2 -- MATERIALITY OF THE 14 G9 DIVERGENCES
+================================================================================
+
+H2B-004  INDEPENDENT_GAUNTLET   G9-S1
+   A: state=null clar=false any=false
+   B: state=ACTIVE clar=false any=true
+   differing fields: assertedState, hasCandidate
+   overlaps: G1,G5,G6
+   customer could receive a materially different safety conclusion: YES
+   reason: ACTIVE asserted in exactly one process
+
+H2B-014  INDEPENDENT_GAUNTLET   G9-S1
+   A: state=ACTIVE clar=false any=true
+   B: state=ACTIVE clar=true any=true
+   differing fields: raisedClarification
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: YES
+   reason: clarification raised in exactly one process
+
+H2B-024  INDEPENDENT_GAUNTLET   G9-S1
+   A: state=ACTIVE clar=false any=true
+   B: state=null clar=false any=false
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: YES
+   reason: ACTIVE asserted in exactly one process
+
+H2B-042  INDEPENDENT_REALISM   G9-S1
+   A: state=INSUFFICIENT_EVIDENCE clar=true any=true
+   B: state=ACTIVE clar=true any=true
+   differing fields: assertedState
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: YES
+   reason: ACTIVE asserted in exactly one process
+
+H2B-043  INDEPENDENT_REALISM   G9-S1
+   A: state=INSUFFICIENT_EVIDENCE clar=true any=true
+   B: state=ACTIVE clar=false any=true
+   differing fields: assertedState, raisedClarification
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: YES
+   reason: ACTIVE asserted in exactly one process AND clarification raised in exactly one process
+
+H2B-054  INDEPENDENT_REALISM   G9-S2
+   A: state=NEGATED clar=false any=true
+   B: state=null clar=false any=false
+   differing fields: assertedState, hasCandidate
+   overlaps: G3
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (NEGATED vs null). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-056  INDEPENDENT_REALISM   G9-S1
+   A: state=ACTIVE clar=true any=true
+   B: state=ACTIVE clar=false any=true
+   differing fields: raisedClarification
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: YES
+   reason: clarification raised in exactly one process
+
+H2B-070  AUTHORED_CONTROL / F1   G9-S2
+   A: state=null clar=false any=false
+   B: state=NEGATED clar=false any=true
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs NEGATED). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-072  AUTHORED_CONTROL / F1   G9-S2
+   A: state=null clar=false any=false
+   B: state=NEGATED clar=false any=true
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs NEGATED). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-073  AUTHORED_CONTROL / F2   G9-S2
+   A: state=CORRECTED clar=false any=true
+   B: state=null clar=false any=false
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (CORRECTED vs null). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-074  AUTHORED_CONTROL / F2   G9-S2
+   A: state=null clar=false any=false
+   B: state=CORRECTED clar=false any=true
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs CORRECTED). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-075  AUTHORED_CONTROL / F2   G9-S2
+   A: state=null clar=false any=false
+   B: state=CORRECTED clar=false any=true
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (null vs CORRECTED). Traceability and downstream processing differ; the safety conclusion does not.
+
+H2B-081  AUTHORED_CONTROL / F4   G9-S1
+   A: state=INSUFFICIENT_EVIDENCE clar=true any=true
+   B: state=null clar=false any=false
+   differing fields: assertedState, raisedClarification, hasCandidate
+   overlaps: G2
+   customer could receive a materially different safety conclusion: YES
+   reason: clarification raised in exactly one process
+
+H2B-093  AUTHORED_CONTROL / F8b   G9-S2
+   A: state=NEGATED clar=false any=true
+   B: state=null clar=false any=false
+   differing fields: assertedState, hasCandidate
+   overlaps: none (G9 only)
+   customer could receive a materially different safety conclusion: NO
+   reason: both processes agree there is NO active hazard and agree on the clarification decision; they differ only in whether a non-active candidate was surfaced (NEGATED vs null). Traceability and downstream processing differ; the safety conclusion does not.
+
+TOTALS   G9-S1 7   G9-S2 7   G9-S3 0   (of 14)
+
+G9-S3 is EMPTY BY CONSTRUCTION, not by chance: G9 never compares a representational field.
+
+================================================================================
+PART 3 -- DIAGNOSTIC COUNTERFACTUALS  *** NOT A RESCORE. NOT A RETROACTIVE PASS. ***
+================================================================================
+
+  A_frozen_G9                  divergent 14 / 93   reproducibility 84.95%
+  B_safety_decision            divergent  7 / 93   reproducibility 92.47%
+  C_customer_visible           divergent  4 / 93   reproducibility 95.70%
+  D_state_plus_clarification   divergent 14 / 93   reproducibility 84.95%
+
+  FROZEN G9 AS SCORED: 14 divergent, 84.95% -- and the counterfactual A reproduces it exactly: true
+
+  EVEN UNDER THE MOST PERMISSIVE PROJECTION (C, the safety conclusion alone), Run 2 does NOT
+  reach 100%: 4 rows still differ. AND SEVEN OTHER GATES
+  FAILED INDEPENDENTLY OF G9 -- G1, G2, G3, G4, G5 and G6 are unaffected by any G9 projection.
+  NO CHOICE OF G9 DEFINITION TURNS RUN 2 INTO A PASS. The frozen terminal is not in play.
+
+  RUN 2 REMAINS: L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL

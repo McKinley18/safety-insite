@@ -1,0 +1,77 @@
+L3 RUN-2 SEALED ACCEPTANCE -- POST-RUN PRESERVATION AND NON-TAMPERING PROOF
+HEAD a7b21a2636b4a80ecaf823aef4558d9ea8915230
+
+1. THE FROZEN EXECUTION PATH IS BYTE-IDENTICAL TO WHAT THE DECLARATION BOUND
+  PASS  prompt 426302a4...
+  PASS  contract types 5f70281c...
+  PASS  validator 942ac7cc...
+  PASS  binder c1f9d29d...
+  PASS  input builder 2865ae91...
+  PASS  cohort harness 73f74131...
+  PASS  shim 76d3e039...
+  PASS  holdout f887cfd1...
+  PASS  original scorer ea5e50ae...
+  PASS  v2 wrapper b9a0a6bc...
+  PASS  D-K guard ce9c7493...
+  PASS  D-K loop 20290a85...
+  PASS  run driver d97eb94c...
+  PASS  run shell 95b3ca8c...
+  PASS  git diff HEAD over backend/src and safescope-data is EMPTY -- 0 lines
+
+2. THE DECLARATION WAS WRITTEN FIRST AND NEVER REWRITTEN
+  PASS  pre-execution gate declaration unchanged
+  PASS  sealed execution record unchanged
+  PASS  acceptance contract unchanged
+  PASS  G1 denominator matches the PRE-DECLARED value -- 36 vs 36
+  PASS  G3 DEN_A matches the PRE-DECLARED value -- 30 vs 30
+  PASS  G4 denominator matches the PRE-DECLARED value -- 21 vs 21
+  PASS  G7 denominator matches the PRE-DECLARED value -- 11 vs 11
+  PASS  G5 denominator is the full corpus 93
+  PASS  G6 denominator is the full corpus 93
+  PASS  G8 denominator is the full corpus 93
+  PASS  G9 denominator is the full corpus 93
+  PASS  G10 denominator is the full corpus 93
+  threshold LABEL differences (abbreviation only, recorded not hidden):
+      G3: declared "100% on BOTH" | scorer "100% on BOTH, never merged (D-58)"
+      G9: declared "100%" | scorer "100% across 2 processes"
+      G10: declared ">=99%" | scorer ">=99% after <=1 retry"
+  PASS  the 7 gates whose labels are identical match exactly
+  PASS  G3 substantive threshold is 100% on BOTH denominators, unmerged
+  PASS  G9 substantive threshold is 100% across the 2 required processes
+  PASS  G10 substantive threshold is >=99% after <=1 retry
+  PASS  every HARD gate declared hard is still hard in the scorer
+  PASS  G10 is the only non-hard gate, as pre-declared
+  PASS  the pre-declared hard-zero set is exactly the scorer ZERO-threshold set
+
+3. NO TUNING, REMEDIATION OR SEMANTIC RETRY
+  PASS  zero retries of any kind in process A
+  PASS  zero retries of any kind in process B
+  PASS  provider calls equal rows -- no extra call was ever issued
+  PASS  no row was skipped or curated in A
+  PASS  no row was skipped or curated in B
+  PASS  raw evidence is read-only on disk
+  PASS  raw result A hash matches the pre-scoring freeze
+  PASS  raw result B hash matches the pre-scoring freeze
+
+4. SPEND IS RECORDED, IRREVERSIBLE AND NOT DERIVED FROM THE RESULT
+  PASS  HOLDOUT_SPENT recorded TRUE
+  PASS  both offsets recorded RETIRED
+  PASS  no artifact anywhere sets HOLDOUT_SPENT false
+  PASS  the scorer carries no field capable of reverting spend
+  PASS  spend timestamp precedes the score timestamp
+
+5. PRIOR EVIDENCE IS NOT REWRITTEN
+  PASS  Run-1 sealed acceptance verifies byte-identical to its own manifest -- 31/31
+  PASS  Run-2 holdout construction verifies byte-identical to its own manifest -- 22/22
+  PASS  D-K guard package verifies byte-identical to its own manifest -- 18/18
+
+6. WORKTREE
+  PASS  4 stashes untouched -- 4
+  PASS  23 tags unchanged -- 23
+  PASS  nothing staged
+  PASS  no divergence from upstream
+  PASS  nothing committed -- HEAD unchanged
+  Nothing committed. Nothing pushed. Nothing deployed. No stash touched. No tag moved.
+  No database was created, migrated, seeded or mutated by this run.
+
+TOTAL 55 checks -- PASS 55 -- FAIL 0

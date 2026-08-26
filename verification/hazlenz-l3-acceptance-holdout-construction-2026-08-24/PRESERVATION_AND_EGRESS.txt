@@ -1,0 +1,128 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION -- PRESERVATION, EGRESS AND POST-PHASE VERIFICATION
+recorded 2026-08-24
+
+== TERMINAL ==
+  L3_ACCEPTANCE_HOLDOUT_CONSTRUCTION_BLOCKED -- PLAN_NOT_EXECUTABLE_AS_PREAUTHORIZED
+  NEGATIVE_CONTROL_PROCEDURE_NOT_PREDECLARED -- independently satisfied at Phase 3
+  No holdout was built. No stride was spent. This is NOT a model failure and there is
+  no model performance result in this phase.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: origin/release/insite-rc-2026-08-18   divergence: 0/0
+  staged index entries: 0   tags: 23   stash entries: 4
+  git diff HEAD -- backend/src    : 0 lines
+  git diff HEAD -- safescope-data : 0 lines
+
+== stash -- INSPECTED, NEVER OPERATED ON ==
+  stash@{0}: On main: hold corrective action routing patch
+  stash@{1}: On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+  stash@{2}: On antigravity/render-memory-standards-compression: scratch files before memory merge
+  stash@{3}: On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+
+== PROTECTED SOURCES -- HASHES BEFORE AND AFTER, IDENTICAL, NEVER OPENED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-gauntlet.source.v1.json
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-gauntlet.seed.json
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-field-realism-pack-v2.v1.json
+  MATCH: YES, all three, byte-identical before and after this phase.
+  Opened for evaluation: NO.  Previewed: NO.  Selected from: NO.  Observation text printed: NO.
+  Stride consumed: NONE.
+  Remaining unopened independent evidence: ALL 366 DISTINCT ROWS
+    (source.v1 150 + seed 99 + field-realism-pack-v2 117). NOTHING IS RETIRED.
+
+  What WAS read: field NAMES, row COUNTS, structural flag counts, severity/sourceType/agency
+  tallies, and normalised-text INTERSECTION COUNTS. The same class of act as
+  survey-l32g-evidence-sources.ts under D-83, which "printed no observation text and ran no
+  inference and no scoring."
+
+== FROZEN CONFIGURATION -- RE-DERIVED THIS PHASE: OK=10  MISMATCH=0 ==
+  426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5  reasoning-prompt.ts
+  5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1  reasoning-contract.types.ts
+  942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298  deterministic-safety-validator.ts
+  c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47  semantic-evidence-binding.ts
+  2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e  reasoning-input-builder.ts
+  73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521  ablate-l32g-state-separation.ts
+  0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190  activate-l32j-shipped-corpus.ts
+  d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db  diagnose-l32k-shipped-residual.ts
+  76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083  anthropic-ollama-shim.js
+  7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a  score.js
+  prompt version hazlenz.l3.prompt.v6 / L3_SYSTEM_PROMPT b8cc50fc... and run schema a522cf5a...
+  are carried by reasoning-prompt.ts @ 426302a4 and reasoning-contract.types.ts @ 5f70281c,
+  both verified byte-identical above.
+
+  Prompt, schema, validator, binder, sanctioned input builder, shim and harnesses: UNCHANGED.
+  G1 through G10 (D-84): UNCHANGED. Acceptance provider/model decision: UNCHANGED.
+
+== ARTIFACTS CREATED BY THIS PHASE (evidence only -- no production file) ==
+  b1a4ae5469eaa408e4d50c8e00ccf2eee1700dd09a4cd04c2c97d2d86effa7bc  analysis/survey-acceptance-source-structure.js
+  561832833d6d7d4b104a8af47b2d947a16f22fc7bb1080709e7c4b632441abb6  analysis/STRUCTURAL_MEASUREMENTS.txt
+  329a9cd60d6f2feb06ecebe4b74f7964daf4a50111a36f4a0c920f6eb8b92703  analysis/PLAN_EXECUTABILITY_ADJUDICATION.md
+  070580baa3f34feff7edd11c8218a458c839f8eea150de575978609b95f278b1  sources/SOURCE_INTEGRITY.txt
+  8bacd3941d469e210e2dfc4e105b47b62c6257c3d982ab3bb577334a333734ab  STATUS.md
+  9655941bada813257679205bba5568c510f4b1b49775624ae5bc6e1d9d10f887  NEXT_ACTION.md
+  7370050b26c09fc33c983648f5c0669d95bfbb23f5d79fcf032fc80885b06e8f  INDEX.md
+  HOLDOUT_FREEZE.txt : DELIBERATELY ABSENT -- Phase 2 was never reached. Writing one would
+    have required declaring a stride rule the plan does not contain.
+
+== PROVIDER EXECUTION ACCOUNTING ==
+  API requests to api.anthropic.com            : 0
+  inference calls (hosted)                     : 0
+  inference calls (local / ollama)             : 0
+  metadata or availability probes              : 0
+  provider abstraction invoked                 : NO
+  destinations contacted                       : NONE
+  prompt / output / thought tokens             : 0 / 0 / 0
+  measured cost                                : $0.00
+  scenarios evaluated                          : 0
+  model identity bound to any run              : NONE
+
+== CREDENTIAL ==
+  credential required by this phase            : NO -- Phase 8: "Credential presence is NOT
+                                                 required for successful completion of this phase."
+  ANTHROPIC_API_KEY read / inspected / printed : NO
+  any credential path probed                   : NO
+  Claude Code claude.ai OAuth used             : NO -- forbidden by section 47.7, not attempted
+
+== EXTERNAL TRANSMISSION ==
+  bytes transmitted externally                 : NONE
+  customer or production InSite data            : NONE transmitted
+  protected-source bytes                        : NONE transmitted
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  Unchanged by construction: no production file modified, git diff HEAD -- backend/src is 0 lines,
+  and section 45.6 stands that no hosted adapter exists in backend/src to change it.
+
+== PROTECTED EXCLUDED PRODUCT WORK -- UNTOUCHED ==
+  backend/scripts/test-canonical-workflow.ts        unstaged, unmodified by this phase
+  backend/scripts/test-private-storage-reports.ts   unstaged, unmodified by this phase
+  frontend-next/app/inspection-workspace/page.tsx   unstaged, unmodified by this phase
+  frontend-next/app/inspections/page.tsx            unstaged, unmodified by this phase
+  frontend-next/lib/auth.ts                         unstaged, unmodified by this phase
+  frontend-next/lib/canonicalWorkflowApi.ts         unstaged, unmodified by this phase
+  frontend-next/lib/planEntitlements.ts             unstaged, unmodified by this phase
+  verification/hazlenz-level3-architecture-.../PROVIDER_REQUIREMENTS.md  unmodified by this phase
+  Safety InSite Logos/ : 11 files untracked, untouched
+
+== NOT DONE, BY CONSTRUCTION ==
+  HOLDOUT_FREEZE.txt written                                        : NO
+  stride rule invented or declared                                  : NO
+  any row selected or materialised                                  : NO
+  builder written                                                   : NO
+  negative control authored                                         : NO
+  positive stride opened to decide what controls to author           : NO
+  holdout artifact created                                          : NO
+  acceptance scorer written                                         : NO
+  G1..G10 changed, weakened, or given an escape hatch               : NO
+  a denominator removed or redefined                                : NO
+  claude-sonnet-5 5/6 diagnostic result used to weaken G2           : NO
+  prompt / schema / validator / binder / input builder modified      : NO
+  production provider selected                                      : NO
+  production hosted adapter built                                   : NO
+  L3-3 begun                                                        : NO
+  Level-1 customer authority changed                                : NO
+  source artifact modified                                          : NO
+  deployed / committed / pushed / merged / rebased / reset          : NO
+  restored / cleaned / stash operation of any kind                  : NO
+  blocked condition silently repaired                               : NO

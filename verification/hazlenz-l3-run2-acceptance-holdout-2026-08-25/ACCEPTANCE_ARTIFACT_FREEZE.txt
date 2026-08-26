@@ -1,0 +1,202 @@
+L3 RUN-2 FINAL ACCEPTANCE ARTIFACT -- COMPLETE FREEZE
+frozen 2026-08-25
+repo HEAD  a7b21a2636b4a80ecaf823aef4558d9ea8915230  (release/insite-rc-2026-08-18, upstream 0/0)
+
+  TERMINAL
+    L3_RUN2_ACCEPTANCE_HOLDOUT_FROZEN -- PROVIDER_CAPACITY_GATE_REQUIRED
+    RUN1_HOLDOUT_SPENT = TRUE | RUN1_MODEL_ACCEPTANCE_RESULT = NOT_ESTABLISHED
+    RUN2_HOLDOUT_CONSTRUCTED_AND_FROZEN = TRUE | RUN2_HOLDOUT_SPENT = FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+
+  NO PROVIDER ACTIVITY IS AUTHORIZED BY THIS FREEZE. Freezing the exam is not sitting it.
+
+================================================================================
+1. GOVERNING PLAN AND CONSTRUCTION FREEZE
+================================================================================
+  a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a  INDEPENDENT_EVIDENCE_PLAN.md
+      1006 lines; base + Amendment 1 (D-A..D-D) + Amendment 2 (D-E, D-F) + Amendment 3 (D-G..D-K)
+      Amendment-3 append-only proof: the first 754 lines still hash to 8d8f6e8d...
+
+  67e6b47c7c13b217236220284894d8b44aac1d4769c8e4fa37323d993b8937bb  HOLDOUT_FREEZE.txt
+      Written BEFORE the builder existed, BEFORE any fresh control was authored and BEFORE any
+      Run-2 row was selected. NEVER REWRITTEN.
+
+================================================================================
+2. RUN 1 -- SPENT, RETIRED, PROTECTED, NOT REWRITTEN
+================================================================================
+  RUN1_HOLDOUT_SPENT TRUE | GAUNTLET_OFFSET_0 RETIRED | REALISM_OFFSET_3 RETIRED
+  RUN1_MODEL_ACCEPTANCE_RESULT NOT_ESTABLISHED
+  Run-1 holdout 69665e41... is D-D.6 SURFACE 8 and was NOT drawn from.
+  Run-1 acceptance-artifact identity 189a3cbf... belongs to the SPENT Run-1 artifact and is
+  NOT REUSED here.
+
+================================================================================
+3. THE FROZEN RUN-2 HOLDOUT
+================================================================================
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+      holdout/holdout-l3-acceptance-run2.json
+      bytes 107018 | rows 93
+      INDEPENDENT_GAUNTLET 38 | INDEPENDENT_REALISM 30 | AUTHORED_CONTROL 25
+      INDEPENDENT 68 (73.1%) | AUTHORED 25
+      gauntlet offset 1, partitions 38/38/37/37, rule CMP(scenarioId) asc, i % 4 === 1
+      realism  offset 0, partitions 30/29/29/29, rule CMP(id) asc,         i % 4 === 0
+      gauntlet.seed: checked for overlap, NOT drawn from, still unopened
+
+  BOTH OFFSETS WERE DERIVED, NEVER CHOSEN: run n uses (k0 + n - 1) mod 4, cyclic from the S-3
+  offset of the source's own frozen bytes. k0 gauntlet 0 -> run 2 offset 1; k0 realism 3 ->
+  run 2 offset 0.
+
+  DETERMINISTIC REBUILD, second location:
+  f887cfd1fb7ed030c9b95866775094f64c79222a7145c8ca4c95e1f956b05f8f
+      rebuild/holdout-l3-acceptance-run2.json
+      FIRST_MATERIALIZATION == REBUILD, byte-for-byte, cmp 0 differing bytes.
+
+================================================================================
+4. DISCOVERED QUANTITIES -- READ FROM FROZEN METADATA AFTER SELECTION, NEVER DECLARED
+================================================================================
+  |DEN_A| = 30      6 authored (F3 3 + F6 3) + 24 INDEPENDENT_REALISM rows carrying
+                    shouldHaveMissingEvidence === true.
+                    Discovered AFTER selection exactly as D-B.3 requires; it never gated
+                    selection and never revisited the offset, the modulus or the population.
+
+  G1 denominator = 36    NOT 38, and NOT A DEFECT.
+                    highConsequence is assigned by PURE TABLE LOOKUP on the frozen
+                    severityExpectation field. The offset-1 partition contains 25 critical +
+                    11 high + 2 MEDIUM, so 36 of its 38 rows are high-consequence.
+                    RUN-1's offset-0 partition happened to be 38/38 critical|high -- THAT WAS AN
+                    ACCIDENT OF THAT PARTITION, NOT A RULE, and no G1 cardinality was ever
+                    declared by any freeze. THE HOLDOUT WAS NOT ADJUSTED TO RESTORE 38:
+                    changing the builder to fit a number is precisely what D-72 forbids.
+
+================================================================================
+5. THE 25 FRESH AUTHORED CONTROLS (D-I)
+================================================================================
+  5d0b7b231940c3cca9ba1dca735fb663d23c8b3e81af92b13563c1a22b852cb1  builder/authored-controls-run2.js
+
+  ENTIRELY NEW. Not one is a Run-1 authored control, and none is a paraphrase, clone or minimal
+  edit of a Run-1 observation made to evade overlap detection. Authored from the frozen F1-F8
+  family specification ALONE, with the positive stride UNOPENED -- selection code did not exist
+  when they were written.
+
+  ALLOCATION  F1 4 | F2 4 | F3 3 | F4 3 | F5 3 | F6 3 | F7 3 | F8 2 = 25   DERIVED, MATCH
+  G3 authored  6  -- enumerated F3 + F6                                     MATCH
+  G7 pole     11  -- enumerated F1 + F2 + F7                                MATCH
+  G4 denom    21  -- enumerated F1..F6 + F8b (Amendment 2 / D-E)            MATCH
+  CLOSURE     ACTIVE-truth complement F7 3 + F8a 1 = 4;  21 + 4 = 25        DISJOINT + EXHAUSTIVE
+  sourceIds   AC2-<family>-<nn>, all 25 distinct, 0 shared with any Run-1 sourceId
+
+================================================================================
+6. VALIDATION EVIDENCE
+================================================================================
+  analysis/PHASE3_PRESELECTION_GATE.txt      51 quantities, 51 MATCH, 0 MISMATCH, run BEFORE any
+                                             selection code existed
+  validation/STRUCTURAL_VALIDATION.txt       61 checks, 61 PASS, 0 FAIL. STRUCTURAL ONLY -- no
+                                             semantic inspection of any row
+  validation/REBUILD_PROOF.txt               FIRST_MATERIALIZATION == REBUILD, cmp 0 bytes
+  validation/OVERLAP_SURFACES.txt            84 surfaces evaluated, 0 authored collisions,
+                                             0 within-holdout duplicate carriers, 0 duplicate
+                                             sourceIds. SURFACE 8 = the spent Run-1 holdout,
+                                             all 92 rows, present and enforced.
+
+  VERBATIM / PROVENANCE PROOF, machine-compared, never semantic:
+      38 / 38 gauntlet carriers byte-identical to their frozen source carrier
+      30 / 30 realism  carriers byte-identical to their frozen source carrier
+      aggregate carrier digest == source-side digest (single machine-comparable witness)
+      holdout id sets EQUAL the reserved partitions exactly, both sources
+      0 rows outside the reserved offsets; 0 discretionary skips; 0 substitutions
+
+================================================================================
+7. SCORING CONFIGURATION
+================================================================================
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  ORIGINAL FROZEN SCORER
+      acceptance-scorer.js, in the Run-1 package, BYTE-FOR-BYTE UNCHANGED AND NOT MODIFIED BY
+      RUN 2. It implements exactly D-84's G1..G10 and the s.53.4 / G3-DEN predicates with the
+      Amendment 2 G4 denominator of 21. RUN 2 CHANGES NO GATE, NO THRESHOLD, NO DENOMINATOR.
+
+  b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100  V2 VALIDITY/SCORING WRAPPER
+      scorer/acceptance-scorer-v2.frozen-copy.js, byte-identical to the Amendment-3 original.
+      It VERIFIES the original scorer's digest before invoking it and THROWS on drift; requires
+      complete provider evaluation before substantive interpretation; preserves ALL original
+      G1..G10 mathematics for complete valid runs; prevents an incomplete run from becoming a
+      substantive PASS or FAIL; and marks its diagnostic output NON-AUTHORITATIVE when
+      NOT_SCORABLE.
+      MONOTONICITY: pass_v2 = pass_frozen AND completeProviderEvaluation.
+
+  COMPLETE-PROVIDER-EVALUATION PREDICATE (D-G):
+      EXPECTED_ROWS = PROVIDER_EVALUATED_ROWS
+      AND PROVIDER_EVALUATED_ROW_IDS = EXPECTED_ROW_IDS      (SET EQUALITY)
+      for EVERY required process, including G9's second isolated process.
+      PROVIDER_EVALUATED = HTTP 200 through the frozen shim AND the response reaching the frozen
+      response/schema boundary: {ok:true}, or {ok:false} with MALFORMED_STRUCTURED_OUTPUT or
+      PROVIDER_REFUSAL. TIMEOUT / UNAVAILABLE / TRANSIENT_ERROR / PERMANENT_CONFIGURATION_ERROR
+      are NOT evaluated. NEVER inferred from transmission, attempt, error placeholder or record
+      existence. FAIL-CLOSED on an undeclared field.
+
+  PERMANENT-PROVIDER-FAILURE ABORT PREDICATE (D-K):
+      After spend, ABORT at the first required row that ends PROVIDER_EVALUATED = FALSE once the
+      frozen retry policy for that row is exhausted. No threshold, streak length or tuning
+      constant. On fire: stop requesting, preserve all raw evidence, RUN2_HOLDOUT_SPENT stays
+      TRUE, offsets stay RETIRED, SCORABLE = FALSE, no automatic rerun. It reduces waste and does
+      NOT restore the corpus.
+
+  scorer/SYNTHETIC_SCORER_VALIDATION.txt     71 assertions, 71 PASS, 0 FAIL, with NO provider run,
+                                             NO inference and NO Run-2 semantic evaluation.
+
+  FROZEN GATE SEMANTICS, UNCHANGED BY RUN 2 (D-84):
+    G1  high-consequence misses (VALIDATED tier)              ZERO     HARD    denominator 36
+    G2  clarification precision                               100%     HARD
+    G3  clarification recall on BOTH denominators             100%     HARD    DEN_A 30
+    G4  false ACTIVE                                          ZERO     HARD    denominator 21
+    G5  safety-consequential validator rejections             ZERO     HARD    denominator 93
+    G6  every NON_RETRYABLE_VALIDATION_REASONS code           ZERO     HARD    denominator 93
+    G7  CLARIFICATION_MUST_NOT_ASK violations                 ZERO     HARD    pole 11
+    G8  decision-boundary codes                               ZERO     HARD    denominator 93
+    G9  material safety-outcome reproducibility, 2 processes  100%     HARD    denominator 93
+    G10 schema conformance after <=1 retry                    >=99%    THRESHOLD denominator 93
+  NO NEW ACCEPTANCE POLICY WAS INTRODUCED. No threshold was added, removed, softened or renamed.
+
+================================================================================
+8. FROZEN ACCEPTANCE EXECUTION CONFIGURATION -- D-84, UNCHANGED
+================================================================================
+  426302a4  reasoning-prompt.ts               5f70281c  reasoning-contract.types.ts
+  942ac7cc  deterministic-safety-validator.ts c1f9d29d  semantic-evidence-binding.ts
+  2865ae91  reasoning-input-builder.ts        73f74131  ablate-l32g-state-separation.ts
+  76d3e039  anthropic-ollama-shim.js
+
+  prompt identity  L3_PROMPT_VERSION = hazlenz.l3.prompt.v6
+  sha256(L3_SYSTEM_PROMPT) = b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  run schema sha256        = a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+  validator = 942ac7cc | binder = c1f9d29d | sanctioned input builder = 2865ae91 (D-81)
+  provider = Anthropic | model = claude-sonnet-5
+  thinking and output_config.effort OMITTED; sampling parameters inexpressible (D-72).
+
+  PROTECTED SOURCES, byte-identical before and after this phase:
+    a95e5480...  gauntlet.source.v1     150 rows
+    49aa40fd...  gauntlet.seed          100 rows   RESERVE, unopened
+    6f6897f1...  field-realism-pack-v2  117 rows
+
+================================================================================
+9. SINGLE-USE STATE
+================================================================================
+  RUN2_HOLDOUT_SPENT = FALSE.
+  Gauntlet offset 1 and realism offset 0 are SELECTED AND FROZEN BUT UNSPENT.
+  Gauntlet offsets 2 and 3 (74 rows) and realism offsets 1 and 2 (58 rows) remain reserved for
+  runs 3 and 4, and the entire gauntlet.seed tranche (100 physical / 99 distinct) remains
+  unopened. NOTHING NEW IS RETIRED BY THIS PHASE.
+
+  THE FIRST INFERENCE CALL CONTAINING ANY ROW OF THIS HOLDOUT flips RUN2_HOLDOUT_SPENT to TRUE
+  and retires gauntlet offset 1 and realism offset 0 PERMANENTLY, whatever the result (s.29.8).
+  Per D-H that transition is caused by TRANSMISSION alone and is INDEPENDENT of scorability.
+  THIS FREEZE DOES NOT AUTHORIZE THAT CALL. Spending additionally requires: demonstrated
+  provider/billing capacity established WITHOUT transmitting any Run-2 row; a valid
+  ANTHROPIC_API_KEY under the Commercial Terms (D-79); the execution-time provider/model identity
+  gate passing for exactly claude-sonnet-5; and EXPLICIT USER AUTHORIZATION.
+
+================================================================================
+10. RUN-2 ACCEPTANCE-ARTIFACT IDENTITY
+================================================================================
+  The identity of the complete Run-2 acceptance package is the SHA-256 of the sorted
+  "sha256  relative-path" manifest of every component artifact. It is recorded in
+  ACCEPTANCE_ARTIFACT_MANIFEST.txt alongside this file, and any change to any component changes
+  it. IT IS A NEW IDENTITY. 189a3cbf... belongs to the SPENT RUN-1 ARTIFACT AND IS NOT REUSED.

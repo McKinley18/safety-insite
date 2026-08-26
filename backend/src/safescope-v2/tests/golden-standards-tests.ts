@@ -6,6 +6,40 @@ import { ApplicableStandardsService } from '../../applicable-standards/applicabl
 
 const databaseUrl = process.env.DATABASE_URL;
 
+/**
+ * This suite only READS standards, but it was constructing its DataSource with
+ * `synchronize: true` and defaulting to the `safescope` development database when
+ * DATABASE_URL was unset -- so `npm run test:safescope-standards` with no explicit
+ * target pointed TypeORM schema synchronisation at the protected corpus and would
+ * reconcile `standards_master` to the current entity definition without warning.
+ *
+ * Two changes, both minimal:
+ *   - `synchronize: false`, because nothing here needs to write schema; and
+ *   - the same explicit disposable-target guard the mutating suites already use
+ *     (scripts/test-entitlement-grant-helper.ts, test-reviewer-approval.ts,
+ *     test-regulatory-release-lifecycle.ts), so the resolved target is printed and
+ *     a non-disposable one is refused before a connection is opened.
+ *
+ * A read against the real corpus is still legitimate, so the guard accepts an
+ * explicit opt-in rather than forbidding it outright.
+ */
+function assertReadTargetIsIntentional() {
+  const target = new URL(databaseUrl || 'postgresql://localhost/UNSET');
+  const dbName = databaseUrl
+    ? target.pathname.replace('/', '')
+    : process.env.DB_NAME || process.env.DB_DATABASE || 'safescope';
+  console.log(`Resolved database target: database=${dbName} (read-only, synchronize disabled)`);
+
+  if (/^test_/.test(dbName)) return;
+  if (process.env.ALLOW_PROTECTED_CORPUS_READ === dbName) return;
+
+  throw new Error(
+    `Refusing to run against a non-disposable database: ${dbName}. ` +
+      `Point DATABASE_URL at a test_* database, or set ` +
+      `ALLOW_PROTECTED_CORPUS_READ=${dbName} to read the real corpus deliberately.`,
+  );
+}
+
 const ds = new DataSource({
   type: 'postgres',
   url: databaseUrl || undefined,
@@ -15,7 +49,7 @@ const ds = new DataSource({
   password: databaseUrl ? undefined : process.env.DB_PASSWORD || 'password',
   database: databaseUrl ? undefined : process.env.DB_NAME || 'safescope',
   entities: [Standard],
-  synchronize: true,
+  synchronize: false,
 });
 
 function canonicalizeCitation(cit: string): string {
@@ -32,6 +66,7 @@ function isCitationMatch(dbCit: string, targetCit: string): boolean {
 }
 
 async function run() {
+  assertReadTargetIsIntentional();
   await ds.initialize();
 
   const repo = ds.getRepository(Standard);

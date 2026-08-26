@@ -1,0 +1,27 @@
+ATTEMPT 2 -- PHASE 14 DETERMINISTIC REBUILD PROOF
+recorded 2026-08-24
+
+The holdout was rebuilt independently into a SECOND LOCATION from the same frozen inputs and the
+same governing plan. Neither output was chosen for looking preferable: they are REQUIRED to be
+identical, and they are.
+
+FIRST MATERIALIZATION : verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json
+REBUILD               : verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/rebuild/holdout-l3-acceptance-attempt2.json
+
+69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json
+69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/rebuild/holdout-l3-acceptance-attempt2.json
+
+cmp(1)                : BYTE-FOR-BYTE IDENTICAL, 0 differing bytes
+byte count            : 105561 == 105561
+
+  row ordering / rowIds            : True
+  sourceId sequence                : True
+  provenanceClass sequence         : True
+  pole sequence                    : True
+  selectionRule sequence           : True
+  carrier bytes                    : True
+  truth / gate metadata            : True
+  provenance sourceMeta            : True
+
+RESULT: FIRST_MATERIALIZATION == REBUILD.  Phase 14 PASSES.
+        The NONDETERMINISTIC_MATERIALIZATION terminal is not reached.

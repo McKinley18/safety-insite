@@ -1,0 +1,298 @@
+{
+  "byLayer": {
+    "C. PROVIDER_CLARIFICATION_DECISION": 14,
+    "D. PROVIDER_EVIDENCE_SELECTION": 1,
+    "A. PROVIDER_REASONING": 11,
+    "B. PROVIDER_STATE_RESOLUTION": 4
+  },
+  "providerRows": 30,
+  "pipelineRows": 0,
+  "indeterminate": 0,
+  "binderStructurallyExcluded": true,
+  "binderInvisibility": {
+    "binderActedRows": 4,
+    "scoredTierMatchesValidatedTier": 93,
+    "scoredTierMatchesBoundTier": 86,
+    "totalRows": 93
+  },
+  "rows": [
+    {
+      "rowId": "H2B-002",
+      "gates": [
+        "G2"
+      ],
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-004",
+      "gates": [
+        "G1",
+        "G5",
+        "G6",
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "layer": "D. PROVIDER_EVIDENCE_SELECTION"
+    },
+    {
+      "rowId": "H2B-014",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-024",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "familyVariant": null,
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-040",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-042",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-043",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-045",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-048",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-054",
+      "gates": [
+        "G3",
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-056",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-057",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-060",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-063",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-066",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-067",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-068",
+      "gates": [
+        "G3"
+      ],
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "familyVariant": null,
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-070",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F1",
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-072",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F1",
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-073",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-074",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-075",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F2",
+      "layer": "A. PROVIDER_REASONING"
+    },
+    {
+      "rowId": "H2B-079",
+      "gates": [
+        "G4"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F3",
+      "layer": "B. PROVIDER_STATE_RESOLUTION"
+    },
+    {
+      "rowId": "H2B-080",
+      "gates": [
+        "G2"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F4",
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-081",
+      "gates": [
+        "G2",
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F4",
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-082",
+      "gates": [
+        "G2"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F4",
+      "layer": "C. PROVIDER_CLARIFICATION_DECISION"
+    },
+    {
+      "rowId": "H2B-086",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F6",
+      "layer": "B. PROVIDER_STATE_RESOLUTION"
+    },
+    {
+      "rowId": "H2B-087",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F6",
+      "layer": "B. PROVIDER_STATE_RESOLUTION"
+    },
+    {
+      "rowId": "H2B-088",
+      "gates": [
+        "G3",
+        "G4"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F6",
+      "layer": "B. PROVIDER_STATE_RESOLUTION"
+    },
+    {
+      "rowId": "H2B-093",
+      "gates": [
+        "G9"
+      ],
+      "provenanceClass": "AUTHORED_CONTROL",
+      "familyVariant": "F8b",
+      "layer": "A. PROVIDER_REASONING"
+    }
+  ]
+}

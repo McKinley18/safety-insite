@@ -1,0 +1,58 @@
+L3 RUN-2 CAPACITY RECLASSIFICATION AFTER FUNDING INCREASE — ZERO NEW SPEND
+========================================================================================
+
+PROVIDER CALLS MADE BY THIS SCRIPT: 0    API COST OF THIS SCRIPT: $0.00
+ONLY INPUT CHANGED: available credit $16.97 -> $40.00
+
+--- 1. PRIOR DETERMINISTIC EVIDENCE — INTACT AND RE-DERIVED ---
+  prior script sha256 ...... 125e12500f7873685473fa1eef2639a76ff4b6d6726f82f34380fe5c2966c123
+  expected ................. 125e12500f7873685473fa1eef2639a76ff4b6d6726f82f34380fe5c2966c123
+  -> MATCH. The prior package is NOT rewritten by this phase.
+
+--- 2. REQUIREMENT RE-DERIVED FROM THE SAME PRIMARY EVIDENCE (40 successful Run-1 calls) ---
+  A  observed-mean projection ......... $5.691860   frozen $5.691860   REPRODUCES
+  B  observed-max-envelope projection . $14.430996   frozen $14.430996   REPRODUCES
+  C  requirement (max(A,B) x 1.25) ..... $18.038745   frozen $18.038745   REPRODUCES
+
+  -> ALL THREE REPRODUCE. No token re-analysis was required and none was performed.
+     Token evidence, pricing, workload and headroom rule are UNCHANGED from the prior phase.
+
+--- 3. RECLASSIFICATION ---
+  user-attested available credit .... $40.00
+  frozen requirement ................ $18.038745
+  HEADROOM_DOLLARS = 40.00 - 18.038745 = $21.961255
+  HEADROOM_PERCENT .................. 121.745%
+  CAPACITY MULTIPLE ................. 2.217x
+
+  credit / A (observed mean) ........ 7.028x
+  credit / B (max envelope) ......... 2.772x
+
+  MECHANICAL TEST: 40.00 >= 18.038745  ->  true
+  PROVIDER_CAPACITY = PASS
+
+--- 4. TAIL RISK NOW COVERED (raised as a caveat by the prior phase) ---
+  semantic-retry worst case, 372 calls at max envelope .. $28.861992  -> COVERED
+  semantic-retry worst case, 372 calls at mean .......... $11.383721  -> COVERED
+  max_tokens=16384 deterministic ceiling, 186 calls ..... $32.725956  -> COVERED
+  the same ceiling carrying the 1.25x headroom rule ..... $40.907445  -> NOT COVERED
+  Every envelope the prior phase flagged as uncovered at $16.97 is now covered at $40.00,
+  INCLUDING the absolute max_tokens=16384 deterministic ceiling. The single remaining
+  uncovered figure is that ceiling PLUS the 1.25x headroom, and it is not the governed
+  requirement: the governed requirement is B x 1.25, which the credit covers 2.217x. The
+  ceiling is a worst case in which EVERY row emits the full 16,384-token cap; observed mean
+  output was 1,857.95 and observed max 6,548. Reported, not treated as the expected path.
+
+--- 5. RUN-2 UNSPENT PROOF ---
+  provider calls this phase ........ 0
+  new API cost this phase .......... $0.00
+  Run-2 rows transmitted ........... 0
+  reserved rows transmitted ........ 0
+  Run-2 observations opened ........ 0
+  RUN2_HOLDOUT_SPENT ............... FALSE
+
+  TERMINAL: READY_TO_AUTHORIZE_L3_RUN2_SEALED_ACCEPTANCE — ANTHROPIC — claude-sonnet-5
+
+  READY_TO_AUTHORIZE IS NOT AUTHORIZATION. The sealed Run-2 acceptance run still requires
+  EXPLICIT USER AUTHORIZATION, and the first inference call containing any Run-2 row flips
+  RUN2_HOLDOUT_SPENT to TRUE and retires gauntlet offset 1 and realism offset 0 PERMANENTLY,
+  whatever the result. THIS SCRIPT DOES NOT EXECUTE ACCEPTANCE.

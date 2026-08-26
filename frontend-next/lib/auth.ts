@@ -215,10 +215,13 @@ export function clearAuthSession() {
 
 export function authHeaders() {
   const token = getAuthToken();
+  const apiToken = token === LOCAL_DEV_AUTH_TOKEN && isLocalDevAuthBypassEnabled()
+    ? null
+    : token;
 
   return {
     "Content-Type": "application/json",
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(apiToken ? { Authorization: `Bearer ${apiToken}` } : {}),
   };
 }
 

@@ -1,0 +1,113 @@
+L3 ACCEPTANCE HOLDOUT CONSTRUCTION (ATTEMPT 1) -- PRESERVATION, EGRESS AND POST-PHASE VERIFICATION
+recorded 2026-08-24
+
+== TERMINAL ==
+  L3_ACCEPTANCE_HOLDOUT_CONSTRUCTION_BLOCKED -- AMENDMENT_IMPLEMENTATION_CONTRADICTION
+  PLAN_EXECUTABLE = FALSE (regressed) | HOLDOUT_CONSTRUCTED_AND_FROZEN = FALSE | HOLDOUT_SPENT = FALSE
+  NO HOLDOUT WAS MATERIALIZED. This is NOT a model failure; no inference occurred.
+
+== git ==
+  HEAD    : a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch  : release/insite-rc-2026-08-18
+  upstream: origin/release/insite-rc-2026-08-18   divergence: 0/0
+  staged index entries: 0   tags: 23   stash entries: 4 (inspected, never operated on)
+  git diff HEAD -- backend/src    : 0 lines
+  git diff HEAD -- backend/scripts: 27+44 lines, PRE-EXISTING protected product work, untouched here
+  git diff HEAD -- safescope-data : 0 lines
+
+== PROTECTED SOURCES -- BEFORE AND AFTER, IDENTICAL, NO ROW SELECTED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  gauntlet.source.v1        150 rows
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  gauntlet.seed             100 rows
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  field-realism-pack-v2     117 rows
+  MATCH: YES, all three, byte-identical before and after.
+  Rows selected: NONE. Source identifiers materialized: NONE. Observation text read/printed: NONE.
+  Physical rows 367 | distinct NORM texts 366 | gauntlet.seed duplicate: 1 group of size 2,
+  proved structurally with no text printed.
+
+== GOVERNING PLAN ==
+  1f2edfff7a4bc62af445088269be301b4ab2a6856ff28cc5bc6b13b334cf820f
+      INDEPENDENT_EVIDENCE_PLAN.md  -- MATCH, and UNCHANGED by this phase. Amendment 1 NOT edited.
+
+== FROZEN CONFIGURATION -- RE-DERIVED: OK=10  MISMATCH=0 ==
+  426302a4 reasoning-prompt.ts          5f70281c reasoning-contract.types.ts
+  942ac7cc deterministic-safety-validator c1f9d29d semantic-evidence-binding.ts
+  2865ae91 reasoning-input-builder.ts   73f74131 ablate-l32g-state-separation.ts
+  0b3b8d86 activate-l32j-shipped-corpus d90cb89c diagnose-l32k-shipped-residual.ts
+  76d3e039 anthropic-ollama-shim.js     7d748111 score.js
+  GOVERNED INNER IDENTITIES (recorded separately from the outer file digests above):
+    prompt identity  hazlenz.l3.prompt.v6   L3_SYSTEM_PROMPT sha256 b8cc50fc...
+    run schema sha256 a522cf5a...
+    carried by reasoning-prompt.ts @ 426302a4 and reasoning-contract.types.ts @ 5f70281c.
+  G1..G10 (D-84): UNCHANGED. Both G3 denominators: UNCHANGED. G7 membership rule: UNCHANGED.
+  Acceptance provider/model decision: UNCHANGED -- Anthropic / claude-sonnet-5, NOT probed.
+
+== ARTIFACTS OF THIS ATTEMPT ==
+  f0e33f140c10102654b25d47f5e7027a9b19865126d8c226655b0ac99e3585cc  HOLDOUT_FREEZE.txt
+      written BEFORE any selection code existed; NOT REWRITTEN; invalidated as a construction identity
+  c4b80a2bba8b52b4a784ef99a7a35ddebd212024c3eb340da728cb2c259215ce  ATTEMPT_INVALIDATED.txt
+  4237fc3bf035286eb7b2f79d209ab6ebb4c8323169765803c4ee605056ef70d2  builder/authored-controls.js
+  8f5f6e113bd89511ab912cf8be976c22de59bb51b3067d03aa24e2029aa68194  STATUS.md
+  c89e40b53bdffc565a4be91e1dc4929add72076d9d82a393a3a7709cccb43345  NEXT_ACTION.md
+  3906c758c8c221479adefbef2c70808559218dd4706b064abb3b9fb711bfedef  INDEX.md
+
+== NEGATIVE EXISTENCE PROOFS -- MEASURED ==
+  acceptance holdout artifacts anywhere         : 0   <-- holdout/ is EMPTY
+  acceptance scorer                             : 0   <-- scorer/ is EMPTY
+  acceptance builder executed                   : NO  -- no selection code was ever run
+  rows selected from any protected source       : 0
+  freeze records naming the acceptance sources  : 1   (this attempt's, invalidated)
+
+== PROVIDER EXECUTION ACCOUNTING ==
+  API requests to api.anthropic.com            : 0
+  inference calls (hosted)                     : 0
+  inference calls (local / ollama)             : 0
+  metadata / availability / model probes       : 0
+  provider abstraction invoked                 : NO
+  holdout rows sent anywhere                   : 0 -- no holdout exists
+  destinations contacted                       : NONE
+  prompt / output / thought tokens             : 0 / 0 / 0
+  measured cost                                : $0.00
+
+== CREDENTIAL ==
+  ANTHROPIC_API_KEY accessed / read / printed  : NO
+  any Anthropic credential accessed            : NO
+  Claude Code authentication inspected         : NO
+  any credential path probed                   : NO
+
+== EXTERNAL TRANSMISSION ==
+  bytes transmitted externally                 : NONE
+  protected-source bytes transmitted           : NONE
+  authored-control text transmitted            : NONE
+  customer or production InSite data           : NONE
+
+== CUSTOMER AUTHORITY ==
+  CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE.
+  No production file modified; git diff HEAD -- backend/src is 0 lines; section 45.6 stands that no
+  hosted adapter exists in backend/src to change it.
+  PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN.  L3-3 REMAINS UNAUTHORIZED.
+
+== NOT DONE, BY CONSTRUCTION ==
+  holdout materialized                                              : NO
+  acceptance builder created or executed                            : NO (only the authored-control
+                                                                      module exists; it selects nothing)
+  acceptance scorer created                                         : NO
+  any protected-source row selected                                 : NO
+  selected source identifiers materialized or printed               : NO
+  observation text read, printed or semantically inspected          : NO
+  HOLDOUT_FREEZE.txt rewritten in place                             : NO -- attempt invalidated instead
+  Amendment 1 changed                                               : NO
+  F1..F8 allocation altered                                         : NO
+  a control's truth assignment altered after authoring              : NO
+  G1..G10 changed                                                   : NO
+  either G3 denominator changed                                     : NO
+  G7 membership changed                                             : NO
+  prompt / schema / validator / binder / input builder modified      : NO
+  Anthropic / Claude / Gemini / Ollama / OpenAI invoked              : NO
+  claude-sonnet-5 probed                                            : NO
+  production provider selected                                      : NO
+  L3-3 begun                                                        : NO
+  customer authority changed                                        : NO
+  D-79 .. D-86 rewritten                                            : NO -- D-87 ADDED
+  deployed / committed / pushed / merged / rebased / reset          : NO
+  restored / cleaned / stash operation of any kind                  : NO
+  frozen rule silently repaired                                     : NO

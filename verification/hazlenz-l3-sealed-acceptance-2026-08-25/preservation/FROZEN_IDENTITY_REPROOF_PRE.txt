@@ -1,0 +1,52 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- PHASE 1 FROZEN-IDENTITY RE-PROOF, BEFORE SPEND
+recomputed from disk, never copied from the authorization
+recorded 2026-08-25T20:49:23Z
+
+=== 16 ACCEPTANCE-ARTIFACT COMPONENTS ===
+  2dd16886f24eadfb9f78f364bd16e9a2a5fc6390e0018edb13ace0dc7e727e2c  ACCEPTANCE_ARTIFACT_FREEZE.txt
+  41a42aeb7df8d018c4871850f90eb5cf9d558d419ecc3a51df22f5b696821cf6  scorer/synthetic-scorer-tests.js
+  548d70fb93276f1563318751313f7a22c1bb9224a57d300b3992b0efa5eb2996  analysis/PHASE4_DF_PRESELECTION_GATE.txt
+  56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05  builder/authored-controls.js
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  holdout/holdout-l3-acceptance-attempt2.json
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  rebuild/holdout-l3-acceptance-attempt2.json
+  8650f243b47e86ce7b77fa5e5c8778f94762b0a02fc2e18cfc3943556ce4c4d2  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+  9410de1a0efb4eef9a3af024c00f2ec88968ddbb0deba130c8e0b6a44e1a70c4  builder/build-holdout.js
+  95e3cb8b122dcdfa80f1b8c1377b0473c9aaafec85a0a0f0cb538428e7be7717  validation/validate-holdout.js
+  a05f3782173be7b03db2ffa0d2f2bd6624801a0581386f3afc81374cee3337f5  validation/REBUILD_PROOF.txt
+  a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62  HOLDOUT_FREEZE.txt
+  c5e94e5cdda654acf22f5d2b74d06e33fbf72e9b2836b9691e74acb862a70733  validation/STRUCTURAL_VALIDATION.txt
+  cd958e30b6ab9048394c65fb4f35a75f3c477bb0c299e24495ec21b79d92bd8a  validation/OVERLAP_SURFACES.txt
+  e2d4380c996ce6ed9a91645601d5df4a86db348e30cc4905725c2e4c51a918de  analysis/PHASE7_AUTHORED_CONTROLS.txt
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  scorer/acceptance-scorer.js
+  f8390d54938a67267d9490ad345749fd127f989a2821162bce19e7c4e98abeb4  analysis/phase7-authored-controls.js
+
+  components 16 (required 16)
+  MATCH     ACCEPTANCE IDENTITY            189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  line-for-line vs the recorded manifest: IDENTICAL
+
+=== HOLDOUT AND SCORER ===
+  MATCH     holdout sha256                 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   105561 bytes
+  MATCH     scorer sha256                  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+
+=== FROZEN EXECUTION-PATH IDENTITIES (outer digests) ===
+  MATCH     ablate-l32g-state-separation.ts 73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+  MATCH     activate-l32j-shipped-corpus.ts 0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190
+  MATCH     diagnose-l32k-shipped-residual.ts d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db
+  MATCH     deterministic-safety-validator.ts 942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298
+  MATCH     reasoning-contract.types.ts    5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1
+  MATCH     reasoning-input-builder.ts     2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e
+  MATCH     reasoning-prompt.ts            426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5
+  MATCH     semantic-evidence-binding.ts   c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47
+  MATCH     anthropic-ollama-shim.js       76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083
+  MATCH     score.js                       7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a
+
+=== GOVERNING PLAN (base + Amendment 1 + Amendment 2) ===
+  MATCH     INDEPENDENT_EVIDENCE_PLAN.md   8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+  MATCH     HOLDOUT_FREEZE.txt             a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62
+
+=== PROTECTED SOURCES (file digests only, no row opened) ===
+  MATCH     safescope-gauntlet.source.v1.json a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  RECORDED  safescope-gauntlet.seed.json   49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  MATCH     safescope-field-realism-pack-v2.v1.json 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+
+OVERALL: ALL FROZEN IDENTITIES MATCH -- PHASE 1 DOES NOT STOP THE RUN

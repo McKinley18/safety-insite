@@ -1,0 +1,102 @@
+L3 RUN-2 ACCEPTANCE HOLDOUT CONSTRUCTION -- PHASE 1 PRESERVATION
+recorded 2026-08-25T21:48:48Z
+
+HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230
+branch          release/insite-rc-2026-08-18
+upstream        origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+divergence L/R  0/0
+staged          0
+
+=== complete worktree ===
+ M backend/scripts/test-canonical-workflow.ts
+ M backend/scripts/test-private-storage-reports.ts
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/lib/auth.ts
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M frontend-next/lib/planEntitlements.ts
+ M verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+ M verification/hazlenz-level3-architecture-2026-08-22/PROVIDER_REQUIREMENTS.md
+?? "Safety InSite Logos/"
+?? verification/hazlenz-l3-2p-provider-requirements-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2q-clarification-precision-adjudication-2026-08-24/
+?? verification/hazlenz-l3-2r-acceptance-pre-authorization-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-construction-2026-08-24/
+?? verification/hazlenz-l3-acceptance-holdout-frozen-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2-2026-08-24/
+?? verification/hazlenz-l3-evidence-plan-amendment-2026-08-24/
+?? verification/hazlenz-l3-final-acceptance-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-credentialed-2026-08-25/
+?? verification/hazlenz-l3-provider-readiness-final-2026-08-24/
+?? verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+?? verification/hazlenz-l3-run2-acceptance-holdout-2026-08-25/
+?? verification/hazlenz-l3-run2-governance-amendment-2026-08-25/
+?? verification/hazlenz-l3-sealed-acceptance-2026-08-25/
+
+=== stash identities -- NOT OPERATED ON ===
+stash@{0} b7ee2d048e63689c18f6ca39d4fcf2d76190391a On main: hold corrective action routing patch
+stash@{1} df9bc6e00fa0db87ac9d36d023737c195ff3f731 On main: leftover hazlenz mechanism-confidence-corrective-action work after companion patch
+stash@{2} 9141dc76fd09901de889c7a8944ae2b411913d5a On antigravity/render-memory-standards-compression: scratch files before memory merge
+stash@{3} b128c1975d630d8f2aa2f80da321ec592c5ac2b9 On antigravity/hazlenz-candidate-qa-promotion-plan: antigravity candidate QA WIP
+(count 4)
+
+=== tag objects ===
+checkpoint-pre-ui-consolidation-20260528-172809 commit f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint-pre-ui-consolidation-f699d98 commit f699d9859bb9e24919ed6cecabbb7027bf517d62
+checkpoint/pre-modularization-theme-consolidation-20260528-195809 commit 176d1ec93702517a4c9e31dc7d95a6c67888efc9
+checkpoint/shared-ui-primitives-auth-settings-complete-20260528 commit e9f248b722c5b63cbaee0c1cfff493e50fc7b1ab
+checkpoint/shared-ui-primitives-low-risk-pages-20260528 commit 3c9bae76217ccad8f71d375c70678f8f9862251e
+insite-hazlenz-verified-baseline-2026-08-19 tag 02fb824815e8149d500de68b206f6ac19e0735f3
+insite-inspection-ui-verified-2026-08-19 tag b25103b0534098cbdde967dc77c85b56a2bcf050
+insite-visual-acceptance-verified-2026-08-19 tag 7bf58ec6a152061631017262b9aba2497ece035c
+local-expanded-scoped-knowledge-regressions-20260527 commit 73aadbc49e49cedf037d877417199b94cb34ebac
+local-msha-scoped-knowledge-retrieval-20260527 commit 3b67a52482522877e6b5ae30e2425207a2493224
+local-safescope-knowledge-scoring-checkpoint-20260527 commit 06d2048b1a20efe00f66959e9f4f7fe645fc681c
+production-standards-engine-live commit 66a47e0e42f8e37babbbe495e449d160c29392c7
+release-critical-standards-coverage-local commit f984922db3e50347f28f720fa730ac74e18abfc7
+safescope-ai-upgrade-prework-20260528-173000 commit f699d9859bb9e24919ed6cecabbb7027bf517d62
+safescope-brain-green-2026-06-01 commit 6d8a796242159e583b654d2bbc36aa0a334883c8
+safescope-production-classify-working-20260524 commit 29efa94247abdbe756e9ceb5f248712e59ef96d0
+safescope-report-workflow-live commit 9da6c5214f0fef7939a83d1abff3eed7e3ae3a37
+safescope-understanding-precision-green-001 commit 05aafadc042eb3ba4b89ae040fd49b0e9ff74e04
+safescope-v2-standards-ui-live commit 2c997e30cb3f2fe2b58e562d40938cc62ae719b4
+safety-insite-cleanup-2026-06-17 commit 8a9e6439f0434b559d7658f9750577c750e1a51f
+theme-overhaul-before-reset-verified commit 6b2cd84d977633d6ea5112c0aa536077c2b72c2c
+v1-backend-stable tag 41b1078ec7875b92e9768a42c2db6bd950740b93
+v1.0-condition-engine-verified commit eb8c664352dd036255ae41c2d43feaae18790403
+(count 23)
+
+=== SINGLE-USE STATE, VERIFIED BEFORE CONSTRUCTION ===
+  RUN1_HOLDOUT_SPENT                    TRUE
+  RUN1_GAUNTLET_OFFSET_0                RETIRED
+  RUN1_REALISM_OFFSET_3                 RETIRED
+  RUN1_MODEL_ACCEPTANCE_RESULT          NOT_ESTABLISHED
+  RUN2_HOLDOUT_CONSTRUCTED_AND_FROZEN   FALSE  (this phase changes it)
+  RUN2_HOLDOUT_SPENT                    FALSE  (this phase does NOT change it)
+
+=== FROZEN IDENTITIES, RECOMPUTED FROM DISK ===
+  MATCH   governing plan (Amd 1+2+3)             a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a
+  MATCH   gauntlet.source.v1                     a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH   gauntlet.seed (NOT OPENED)             49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  MATCH   field-realism-pack-v2                  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+  MATCH   RUN-1 holdout (SPENT, protected)       69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  MATCH   original acceptance scorer             ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+  MATCH   v2 validity/scoring wrapper            b9a0a6bc9caebbc6218f3646276fcacdab598eca49a357711fa0d8ec054f1100
+  MATCH   RUN-1 authored controls (protected)    56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05
+  MATCH   reasoning-prompt.ts                    426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5
+  MATCH   reasoning-contract.types.ts            5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1
+  MATCH   deterministic-safety-validator.ts      942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298
+  MATCH   semantic-evidence-binding.ts           c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47
+  MATCH   reasoning-input-builder.ts             2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e
+  MATCH   anthropic-ollama-shim.js               76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083
+  MATCH   ablate-l32g (cohort/FAM)               73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+
+  OK = 15   DRIFT = 0
+  NO SOURCE DRIFT. Construction may proceed to Phase 3.
+
+  NO reserved source observation was semantically inspected by this phase.
+  gauntlet.seed was hash-verified ONLY and remains UNOPENED.

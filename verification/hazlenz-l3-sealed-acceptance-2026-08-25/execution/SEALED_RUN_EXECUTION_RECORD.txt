@@ -1,0 +1,94 @@
+L3 FINAL SINGLE-USE SEALED ACCEPTANCE -- SEALED-RUN EXECUTION RECORD
+====================================================================
+
+  APPEND-ONLY. CREATED BEFORE ANY HOLDOUT OBSERVATION CONTENT WAS READ.
+  HOLDOUT_SPENT AT CREATION = FALSE
+
+  THIS IDENTITY IS NOT REWRITTEN TO FIT A LATER RESULT. If a configuration change becomes
+  necessary during the run, the run STOPS; the frozen configuration is not modified and continued.
+
+================================================================================
+REPOSITORY
+================================================================================
+  HEAD                    a7b21a2636b4a80ecaf823aef4558d9ea8915230
+  branch                  release/insite-rc-2026-08-18
+  upstream                origin/release/insite-rc-2026-08-18 @ the same SHA, divergence 0/0
+
+================================================================================
+FROZEN ACCEPTANCE ARTIFACT
+================================================================================
+  acceptance-artifact identity   189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+                                 16/16 components, recomputed from disk, line-for-line identical
+  holdout                        verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/
+                                   holdout/holdout-l3-acceptance-attempt2.json
+  holdout sha256                 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  holdout bytes                  105561
+  expected holdout row count     92   (INDEPENDENT_GAUNTLET 38 + INDEPENDENT_REALISM 29
+                                       + AUTHORED_CONTROL 25)
+  scorer                         scorer/acceptance-scorer.js
+  scorer sha256                  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+  governing plan                 8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+                                 (base + Amendment 1 D-A..D-D + Amendment 2 D-E, D-F)
+  construction freeze            a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62
+
+================================================================================
+PROVIDER AND MODEL
+================================================================================
+  provider                       Anthropic, POST https://api.anthropic.com/v1/messages
+  model                          claude-sonnet-5     -- NO FALLBACK PERMITTED
+  Anthropic shim                 76d3e0397c138e72a3eeafec2ebbd8bf23f5f387dea8b7d8a365392ad895a083
+                                 anthropic-ollama-shim.js, started UNMODIFIED
+  preceding callability proof    D-93 / blueprint section 60 -- 1 call, HTTP 200, requested and
+                                 returned claude-sonnet-5, all three readiness axes PASS
+
+================================================================================
+FROZEN EXECUTION PATH
+================================================================================
+  prompt identity                hazlenz.l3.prompt.v6
+  sha256(L3_SYSTEM_PROMPT)       b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+  reasoning-prompt.ts            426302a4c79d64ed1ecf122b216b3ff96295f26d54c2575956d3823cf22b19d5
+  run schema (serialised)        a522cf5aa2d556824100139adf4951e75b9135c42f6d0c771009cc97e99da385
+                                 re-derived through buildProposalSchema(); the runner ASSERTS this
+                                 digest on the first row's schema and THROWS on any difference
+  reasoning-contract.types.ts    5f70281ce5ba14228a2002f3ae00eca0d0ae9668881f19eb0c84fe3d913d91b1
+  validator                      942ac7cc20c2153c03ba5a6af2f7ecb62d1a5769b411ec849f32efb7eb69c298
+  semantic binder                c1f9d29dea446d6b86237b7cce305514de6734bec5dae8e879768492d7e6eb47
+  sanctioned input builder       2865ae91a7f50ff5794ea5d116399662e01116a2e9f34a585ac0ff276dbccc9e
+                                 MANDATORY per D-81; redaction hazlenz.l3.redaction.v1 with
+                                 per-rule counts recorded
+  locked cohort harness          73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521
+                                 (source of the 24-family allowed list, read not retyped)
+  shipped-corpus harness         0b3b8d864cfebf33600560832d2736ab07139483d4ac84e5b9d1f754833cd190
+  residual harness               d90cb89c5f20871766e97be20f58578d093eed4ee9a3d191133c2201225ba1db
+  L3-2o scorer                   7d748111b88e0acf9000bb28c6ec62868d0e0e10f124ecb1654c7544afde4d0a
+  composition of the four stages runValidatedReasoning (reasoning-runner.ts, SHIPPED) -- provider
+                                 -> validator -> semantic binder -> outcome, retry ceiling ONE
+  inference configuration        L3_2_INFERENCE_CONFIG unmodified: temperature 0, seed 20260822,
+                                 num_ctx 8192. The frozen shim does NOT forward any of them
+                                 (documented deviations D4/D5/D6) -- no determinism control is
+                                 expressible on this provider (D-72).
+                                 `thinking` and `output_config.effort` OMITTED.
+  process isolation              TWO isolated OS processes (section 38.3), A then B, each running
+                                 all 92 rows, each with its own freshly started shim process
+
+================================================================================
+PRE-EXECUTION GATE DECLARATION
+================================================================================
+  declaration/PRE_EXECUTION_GATE_DECLARATION.txt
+  sha256   f54e649aa9c65fe3dcd62dc27cb8d65e72050d529910cf2ca3303a0d71031b97
+
+  Hashed BEFORE any observation was opened. It enumerates G1-G10, every denominator, every
+  hard-zero gate, every threshold, the invalid-run conditions, the terminal classification rules,
+  the result-record field derivation and the two execution parameters the freeze left unstated.
+  NO GATE AND NO MAPPING MAY CHANGE AFTER THIS HASH.
+
+================================================================================
+SINGLE-USE STATE AT RECORD CREATION
+================================================================================
+  authorized single-use          YES -- explicit user authorization of 2026-08-25
+  HOLDOUT_SPENT                  FALSE
+  gauntlet offset                0   -- RESERVED, not yet retired
+  realism offset                 3   -- RESERVED, not yet retired
+
+  THE FIRST TRANSMISSION OF ANY HOLDOUT OBSERVATION FLIPS HOLDOUT_SPENT TO TRUE PERMANENTLY AND
+  RETIRES BOTH OFFSETS, WHATEVER THE RESULT (section 29.8).

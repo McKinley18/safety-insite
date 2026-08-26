@@ -1,0 +1,52 @@
+L3 PROVIDER READINESS -- CREDENTIAL-PROVISIONED FINAL RETRY (attempt 4)
+PHASE 2 -- ZERO-HOLDOUT-EXPOSURE BOUNDARY
+
+  WRITTEN BEFORE CREDENTIAL HANDLING AND BEFORE ANY PROVIDER ACTIVITY.
+
+================================================================================
+THE ONLY AUTHORIZED PROVIDER INPUT
+================================================================================
+  the pre-frozen NON_HOLDOUT_PROVIDER_READINESS_PROBE
+    verification/hazlenz-l3-provider-readiness-retry-2026-08-24/probe/probe-observation.json
+    observationText sha256  52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+    frozen by D-91 (s.58.3), re-verified from disk by this phase, NOT regenerated.
+
+  NOTHING ELSE MAY BE READ, PARSED OR DERIVED INTO THE REQUEST.
+
+================================================================================
+PROHIBITED AS PROVIDER INPUT -- read for content, parsed, derived from, or transmitted
+================================================================================
+  1. any of the 92 rows of holdout/holdout-l3-acceptance-attempt2.json (69665e41...)
+  2. gauntlet offset 0                 (the reserved acceptance tranche)
+  3. realism  offset 3                 (the reserved acceptance tranche)
+  4. gauntlet offsets 1, 2, 3          (reserved for later runs)
+  5. realism  offsets 0, 1, 2          (reserved for later runs)
+  6. gauntlet.seed, in its entirety    (100 physical / 99 distinct, unopened)
+  7. any other reserved acceptance evidence
+
+  s.57.5 FINDING, CARRIED FORWARD: the reserved offsets cover EVERY row of all three protected
+  sources. There is no non-reserved row anywhere, so there is no "harmless spare" to borrow, and
+  borrowing one would retire a reservation to run a readiness check. A synthetic authored
+  observation is the only construction that spends nothing -- which is why the contract requires
+  one, and why this boundary needs no offset arithmetic at all:
+
+      NO ROW OF ANY PROTECTED SOURCE OR OF THE HOLDOUT IS OPENED, READ FOR CONTENT,
+      PARSED FOR VALUES, OR TRANSMITTED.
+
+================================================================================
+WHAT THIS PHASE DOES NOT DO, DELIBERATELY
+================================================================================
+  It does NOT search the protected source observation text for similarity with the synthetic
+  probe. Doing so would require opening exactly the rows this phase may not open. The probe's
+  NON_HOLDOUT status was established BY CONSTRUCTION -- the string was authored for that file and
+  existed nowhere before it -- and construction, not search, is the standard the contract sets.
+
+================================================================================
+WHAT REMAINS PERMITTED
+================================================================================
+  Structural verification of the frozen holdout WITHOUT reading observation values:
+    - the file digest and byte count
+    - the row count and the provenance-class counts (38 / 29 / 25)
+    - rowId uniqueness
+  These read structure and identifiers only. No `observation` value is read, printed or
+  serialised anywhere in this package.

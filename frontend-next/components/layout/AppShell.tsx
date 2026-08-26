@@ -17,9 +17,9 @@ import {
   isSessionUnlocked,
   lockSession,
 } from "@/lib/pinSecurity";
-import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
 import { getAuthUser, hasAuthToken, logout } from "@/lib/auth";
+import { usesFixedLightTheme } from "@/lib/theme";
 
 function computeProfileInitials(user: { firstName?: string; lastName?: string; name?: string; email?: string }) {
   const first = (user.firstName || "").trim();
@@ -109,7 +109,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   // The public account journey has a fixed brand presentation. Keep these pages on
   // their designed light-card/navy palette regardless of the signed-in app preference.
-  const usesFixedAccountTheme = isAuthPublicPage || isMarketingPage;
+  //
+  // The pinned set comes from lib/theme (FIXED_LIGHT_THEME_ROUTES), not from
+  // `authPublicRoutes`/`marketingRoutes` above -- those two also drive layout
+  // (public footer, signed-out chrome), which is a different question from which
+  // palette a route paints on. /upgrade is the case that separates them: it is an
+  // authenticated app route that keeps the app nav, but it renders the same
+  // fixed-light PricingContent as /pricing (bg-white cards, bg-[#E8F4FF] panels,
+  // hard-coded text-[#102A43] buttons), and under the dark theme those surfaces kept
+  // their light backgrounds while globals.css remapped the text on them to light --
+  // measured 1.1:1 and 1.2:1, effectively invisible.
+  const usesFixedAccountTheme = usesFixedLightTheme(pathname);
 
   // Auth and marketing pages should keep the public layout.
   // A stale local token should not make public pages show the signed-in profile badge.
@@ -123,11 +133,20 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
 
+    // <body> is stamped as well as <html>. applyThemeToDocument() (the other writer,
+    // via ThemeController) sets the class on both, and globals.css paints the page
+    // background off `body`. Updating only the root here left `body.dark` in place on
+    // a pinned-light route, so the light card sat on the dark page background.
+    const body = document.body;
+
     if (usesFixedAccountTheme) {
       root.classList.remove("dark");
       root.classList.add("light");
       root.setAttribute("data-theme", "light");
       root.style.colorScheme = "light";
+      body?.classList.remove("dark");
+      body?.classList.add("light");
+      if (body) body.style.colorScheme = "light";
       return;
     }
 
@@ -138,6 +157,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     root.classList.add(savedTheme);
     root.setAttribute("data-theme", savedTheme);
     root.style.colorScheme = savedTheme;
+    body?.classList.remove("light", "dark");
+    body?.classList.add(savedTheme);
+    if (body) body.style.colorScheme = savedTheme;
   }, [usesFixedAccountTheme]);
 
   useEffect(() => {
@@ -210,16 +232,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return;
     if (DISABLE_AUTH_FOR_LOCAL_DEV || isPublicPage || pathname === "/unlock") return;
 
-    const alreadyAttempted = window.sessionStorage.getItem(
-      "sentinel_brain_sync_attempted",
-    );
-
-    if (!alreadyAttempted && navigator.onLine) {
-      window.sessionStorage.setItem("sentinel_brain_sync_attempted", "true");
-      downloadSafeScopeBrainBundle().catch(() => {
-        // App startup should never be blocked by brain bundle refresh.
-      });
-    }
+    // The offline HazLenz brain bundle prefetch is disabled for v1.0.
+    //
+    // downloadSafeScopeBrainBundle() requests GET {API}/offline/safescope-brain-bundle.json,
+    // and the API exposes no such route: the bundle is written to backend/dist/offline/ by the
+    // manual `export:safescope-knowledge` script, and the backend registers no static-asset
+    // handler, so the request 404s in every environment. The failure was already swallowed, but
+    // it still fired a console 404 on every signed-in session and the local brain was never
+    // populated. Re-enable this together with a route that actually serves an approved bundle.
 
     if (!isPinRequired()) return;
 
@@ -302,7 +322,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
               <div className="flex shrink-0 items-center gap-3">
                 {!isOnline && (
-                  <div className="flex items-center gap-2 rounded-full bg-app-warning px-4 py-1.5 text-[13px] ring-1 ring-orange-500/20" title="Offline Mode: Using local HazLenz AI Brain">
+                  <div className="flex items-center gap-2 rounded-full bg-app-warning px-4 py-1.5 text-[13px] ring-1 ring-orange-500/20" title="Offline — changes you make are kept on this device until the connection returns">
                     <WifiOff className="h-3.5 w-3.5 text-orange-700 dark:text-orange-200" />
                     <span className="hidden text-xs font-black text-orange-800 dark:text-orange-100 sm:inline-block">Offline</span>
                   </div>
@@ -407,12 +427,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
+      {/* The v1.0 release marker. This was a neon-green "Beta" chip -- the only use of
+          #39FF88 anywhere in the product, and the only glowing element in a palette
+          built on the #1D72B8 / #102A43 brand tokens. It now states the shipped
+          version in the muted secondary text token, consistent with the rest of the
+          chrome. */}
       <div className="mx-auto flex w-full max-w-[1200px] justify-end px-3 pt-2 sm:px-5 md:px-6">
         <span
-          className="py-1 text-[11px] font-black uppercase tracking-[0.24em] text-[#39FF88] drop-shadow-[0_0_7px_rgba(57,255,136,0.9)] sm:text-xs"
-          title="Safety InSite beta release"
+          className="py-1 text-[11px] font-black uppercase tracking-[0.24em] text-app-secondary sm:text-xs"
+          title={`${APP_NAME} version 1.0`}
         >
-          Beta
+          v1.0
         </span>
       </div>
 
@@ -424,14 +449,27 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {showPublicFooter && (
         <footer className="mt-auto w-full bg-[#07111F] text-white">
           <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-black">
-              <Link href="/about" className="text-slate-200 transition hover:text-[#5DB7FF]">
+            {/* Standalone footer destinations, not inline prose links: each one needs a
+                real tap target on a phone. The text was 20px tall, well under the 44px
+                both platforms publish, so the padding here is the touch target rather
+                than decoration. */}
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm font-black">
+              <Link
+                href="/about"
+                className="inline-flex min-h-11 items-center rounded-xl px-3 text-slate-200 transition hover:bg-white/10 hover:text-[#5DB7FF]"
+              >
                 About
               </Link>
-              <Link href="/legal" className="text-slate-200 transition hover:text-[#5DB7FF]">
+              <Link
+                href="/legal"
+                className="inline-flex min-h-11 items-center rounded-xl px-3 text-slate-200 transition hover:bg-white/10 hover:text-[#5DB7FF]"
+              >
                 Legal
               </Link>
-              <Link href="/hazlenz" className="text-slate-200 transition hover:text-[#5DB7FF]">
+              <Link
+                href="/hazlenz"
+                className="inline-flex min-h-11 items-center rounded-xl px-3 text-slate-200 transition hover:bg-white/10 hover:text-[#5DB7FF]"
+              >
                 HazLenz AI
               </Link>
             </div>

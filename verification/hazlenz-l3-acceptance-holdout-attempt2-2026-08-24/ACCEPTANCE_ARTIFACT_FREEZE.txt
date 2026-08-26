@@ -1,0 +1,178 @@
+L3 FINAL ACCEPTANCE ARTIFACT -- COMPLETE FREEZE  (construction Attempt 2)
+frozen 2026-08-24
+repo HEAD  a7b21a2636b4a80ecaf823aef4558d9ea8915230  (release/insite-rc-2026-08-18, upstream 0/0)
+
+  TERMINAL
+    L3_ACCEPTANCE_HOLDOUT_FROZEN -- PROVIDER_GATE_REQUIRED_BEFORE_ACCEPTANCE_AUTHORIZATION
+    PLAN_EXECUTABLE = TRUE | HOLDOUT_CONSTRUCTED_AND_FROZEN = TRUE | HOLDOUT_SPENT = FALSE
+    CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE
+    PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN
+
+  NO PROVIDER ACTIVITY IS AUTHORIZED BY THIS FREEZE. Freezing the exam is not sitting it.
+
+================================================================================
+1. GOVERNING PLAN IDENTITY
+================================================================================
+  verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md
+  sha256  8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4    754 lines
+  binding through: base plan + AMENDMENT 1 (D-A..D-D) + AMENDMENT 2 (D-E, D-F)
+  decisions of record: D-86 (s.53), D-87 (s.54), D-88 (s.55), D-89 (s.56, this phase)
+
+  sha256 before this phase's non-normative annotation:
+          9e161cab9f2c409e0f51887f6a2f62491b237e8e29bee0a154b18d8621db4a18    747 lines
+  change: ONE NON_NORMATIVE_SUPERSESSION_ANNOTATION, a 7-line pure insertion beside Amendment 1's
+          G4 line. 0 deletions, 0 modifications. SEMANTIC_DELTA = 0. Amendment 1's original G4
+          statement and its original value 18 survive VERBATIM.
+
+================================================================================
+2. ATTEMPT-2 CONSTRUCTION FREEZE
+================================================================================
+  a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62  HOLDOUT_FREEZE.txt
+  Written BEFORE the builder existed and BEFORE any row was selected or authored. NOT rewritten.
+  Distinct from Attempt 1's freeze f0e33f14..., which remains untouched historical evidence and
+  was never reused as this attempt's identity.
+
+================================================================================
+3. THE FROZEN HOLDOUT
+================================================================================
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+      holdout/holdout-l3-acceptance-attempt2.json
+      bytes 105561 | rows 92
+      INDEPENDENT_GAUNTLET 38 | INDEPENDENT_REALISM 29 | AUTHORED_CONTROL 25
+      INDEPENDENT 67 (72.8%) | AUTHORED 25
+      gauntlet offset 0, partitions 38/38/37/37, rule CMP(scenarioId) asc, i % 4 === 0
+      realism  offset 3, partitions 30/29/29/29, rule CMP(id) asc,         i % 4 === 3
+      gauntlet.seed: checked for overlap, NOT drawn from
+      |DEN_A| = 29 -- 6 authored (F3 3 + F6 3) + 23 INDEPENDENT_REALISM rows carrying
+      shouldHaveMissingEvidence === true. Discovered from frozen metadata AFTER selection, exactly
+      as D-B.3 requires; it was never computed at amendment time and never gated selection.
+
+  DETERMINISTIC REBUILD, second location:
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+      rebuild/holdout-l3-acceptance-attempt2.json
+      FIRST_MATERIALIZATION == REBUILD, byte-for-byte, cmp 0 differing bytes.
+
+================================================================================
+4. BUILDER AND AUTHORED CONTROLS
+================================================================================
+  9410de1a0efb4eef9a3af024c00f2ec88968ddbb0deba130c8e0b6a44e1a70c4  builder/build-holdout.js
+  56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05  builder/authored-controls.js
+
+  The 25 controls were authored from the frozen F1-F8 family specification ALONE, with the
+  positive stride UNOPENED, and are Attempt 2's own -- Attempt 1's controls (4237fc3b...) are a
+  structural artifact only and were admitted to no holdout, this one included.
+
+  ALLOCATION  F1 4 | F2 4 | F3 3 | F4 3 | F5 3 | F6 3 | F7 3 | F8 2 = 25   DERIVED, MATCH
+  G3 authored  6  -- semantic 6 | flag 6 | enumerated F3+F6 6            TRIPLE AGREEMENT
+  G7 pole     11  -- semantic 11 | flag 11 | enumerated F1+F2+F7 11      TRIPLE AGREEMENT
+  G4 denom    21  -- semantic 21 | flag 21 | enumerated F1..F6+F8b 21    TRIPLE AGREEMENT
+  CLOSURE     ACTIVE-truth complement F7 3 + F8a 1 = 4;  21 + 4 = 25     DISJOINT + EXHAUSTIVE
+  The superseded 18 is NOT reachable from any frozen membership rule. Removing F6 from the
+  denominator would be required to reach it, and three clauses of Amendment 1 forbid that.
+
+================================================================================
+5. VALIDATION EVIDENCE
+================================================================================
+  95e3cb8b122dcdfa80f1b8c1377b0473c9aaafec85a0a0f0cb538428e7be7717  validation/validate-holdout.js
+  c5e94e5cdda654acf22f5d2b74d06e33fbf72e9b2836b9691e74acb862a70733  validation/STRUCTURAL_VALIDATION.txt
+      100 structural checks, 100 PASS, 0 FAIL. STRUCTURAL ONLY -- no semantic inspection.
+  a05f3782173be7b03db2ffa0d2f2bd6624801a0581386f3afc81374cee3337f5  validation/REBUILD_PROOF.txt
+  cd958e30b6ab9048394c65fb4f35a75f3c477bb0c299e24495ec21b79d92bd8a  validation/OVERLAP_SURFACES.txt
+      49 surfaces evaluated: the 3 protected sources + 46 prior sealed holdouts, development sets
+      and the exhausted field corpus. All six canonical prior sealed holdouts
+      holdout-l32{,b,c,d,e,f}.json PRESENT; development-l32{,d,e,f}.json PRESENT;
+      safescope-field-validation-dataset.v1.json PRESENT.
+      AUTHORED-CONTROL COLLISIONS: 0. Within-holdout duplicate carriers: 0. Duplicate sourceIds: 0.
+  548d70fb93276f1563318751313f7a22c1bb9224a57d300b3992b0efa5eb2996  analysis/PHASE4_DF_PRESELECTION_GATE.txt
+      D-F pre-selection gate: 39 quantities, 39 MATCH, 0 MISMATCH, run BEFORE any selection code.
+  f8390d54938a67267d9490ad345749fd127f989a2821162bce19e7c4e98abeb4  analysis/phase7-authored-controls.js
+  e2d4380c996ce6ed9a91645601d5df4a86db348e30cc4905725c2e4c51a918de  analysis/PHASE7_AUTHORED_CONTROLS.txt
+      26 quantities, 26 MATCH, 0 MISMATCH, from Attempt 2's own controls.
+
+  VERBATIM / PROVENANCE PROOF, machine-compared, never semantic:
+      38 / 38 gauntlet rows byte-identical to their frozen source carrier
+      29 / 29 realism  rows byte-identical to their frozen source carrier
+      aggregate carrier digest == source-side digest (single machine-comparable witness)
+      holdout id sets equal the reserved partitions exactly, both sources
+      0 rows outside the reserved offsets; 0 discretionary skips; 0 substitutions
+
+================================================================================
+6. THE ACCEPTANCE SCORER
+================================================================================
+  ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6  scorer/acceptance-scorer.js
+  41a42aeb7df8d018c4871850f90eb5cf9d558d419ecc3a51df22f5b696821cf6  scorer/synthetic-scorer-tests.js
+  8650f243b47e86ce7b77fa5e5c8778f94762b0a02fc2e18cfc3943556ce4c4d2  scorer/SYNTHETIC_SCORER_VALIDATION.txt
+      38 synthetic cases, 38 PASS, 0 FAIL. NO PROVIDER RUN. NO INFERENCE. NO HOLDOUT SEMANTICS
+      CONSUMED -- every fixture is synthesized from rowIds and frozen gate flags only.
+
+  FROZEN GATE SEMANTICS IMPLEMENTED EXACTLY (D-84, unchanged by this phase):
+    G1  high-consequence misses (VALIDATED tier)              ZERO     HARD
+    G2  clarification precision                               100%     HARD
+    G3  clarification recall on BOTH denominators             100%     HARD (both, never merged)
+    G4  false ACTIVE, denominator 21                          ZERO     HARD
+    G5  safety-consequential validator rejections             ZERO     HARD
+    G6  every NON_RETRYABLE_VALIDATION_REASONS code           ZERO     HARD
+    G7  CLARIFICATION_MUST_NOT_ASK violations                 ZERO     HARD
+    G8  UNRESOLVED_DECISION_NOT_DECISION_CRITICAL and
+        INVALID_CLARIFICATION_DEPENDENCY                      ZERO     HARD
+    G9  material safety-outcome reproducibility, 2 processes  100%     HARD
+    G10 schema conformance after <=1 retry                    >=99%    THRESHOLD
+
+  s.53.4 / G3-DEN PREDICATES, implemented verbatim: zero-candidate on a DEN_A row is a MISS that
+  stays in DEN_A; a zero-candidate row is EXCLUDED from DEN_B; a malformed record stays in DEN_A
+  and misses; |DEN_A| = 0 is a scoring invalidity, never a vacuous pass; the two recalls are
+  reported separately and are never merged (D-58).
+
+  D-E.3 PRESERVED: an ACTIVE result on F3 or F6 is a G4 false-ACTIVE AND a G3 recall miss --
+  proved by two dedicated synthetic cases.
+  D-D.4 PRESERVED: the G7 pole is exactly the 11 authored F1/F2/F7 rows; F4/F5/F8 are excluded
+  despite expectClarification = false, and a clarification on F4 is a G2 imprecision but NOT a
+  G7 violation -- proved by a dedicated synthetic case.
+  NO NEW ACCEPTANCE POLICY WAS INTRODUCED. No threshold was added, removed, softened or renamed.
+
+================================================================================
+7. FROZEN ACCEPTANCE CONFIGURATION -- RE-DERIVED, OK = 10, MISMATCH = 0
+================================================================================
+  426302a4  reasoning-prompt.ts               5f70281c  reasoning-contract.types.ts
+  942ac7cc  deterministic-safety-validator.ts c1f9d29d  semantic-evidence-binding.ts
+  2865ae91  reasoning-input-builder.ts        73f74131  ablate-l32g-state-separation.ts
+  0b3b8d86  activate-l32j-shipped-corpus.ts   d90cb89c  diagnose-l32k-shipped-residual.ts
+  76d3e039  anthropic-ollama-shim.js          7d748111  score.js
+
+  GOVERNED INNER IDENTITIES:
+    prompt identity  L3_PROMPT_VERSION = hazlenz.l3.prompt.v6
+    sha256(L3_SYSTEM_PROMPT) = b8cc50fce71950db0188103c352fde0243938d9210e2a219341b9255d9bcbacf
+                               RE-DERIVED FROM THE SHIPPED SOURCE BY THIS PHASE -- MATCH.
+    run schema sha256        = a522cf5a...  of record at D-84 / s.51.3, carried by
+                               reasoning-contract.types.ts @ 5f70281c (outer digest MATCHED)
+    validator                = deterministic-safety-validator.ts @ 942ac7cc
+    binder                   = semantic-evidence-binding.ts @ c1f9d29d
+    sanctioned input builder = reasoning-input-builder.ts @ 2865ae91
+    harness / shim           = anthropic-ollama-shim.js @ 76d3e039, score.js @ 7d748111
+    thinking and output_config.effort OMITTED; sampling parameters inexpressible (D-72).
+
+  PROTECTED SOURCES, byte-identical before and after this phase:
+    a95e5480...  gauntlet.source.v1     150 rows
+    49aa40fd...  gauntlet.seed          100 rows   RESERVE, unopened
+    6f6897f1...  field-realism-pack-v2  117 rows
+
+================================================================================
+8. SINGLE-USE STATE
+================================================================================
+  HOLDOUT_SPENT = FALSE.
+  gauntlet offset 0 and realism offset 3 are RESERVED AND UNSPENT. Offsets 1, 2, 3 (gauntlet) and
+  0, 1, 2 (realism) remain reserved for later runs, and the entire gauntlet.seed tranche
+  (100 physical / 99 distinct) remains unopened. NOTHING IS RETIRED.
+
+  THE FIRST INFERENCE CALL CONTAINING ANY ROW OF THIS HOLDOUT flips HOLDOUT_SPENT to TRUE and
+  retires gauntlet offset 0 and realism offset 3 permanently, whatever the result (s.29.8).
+  THIS FREEZE DOES NOT AUTHORIZE THAT CALL. Spending additionally requires a valid
+  ANTHROPIC_API_KEY under the Commercial Terms (D-79), the execution-time provider/model identity
+  gate passing for exactly claude-sonnet-5, and EXPLICIT USER AUTHORIZATION.
+
+================================================================================
+9. FINAL ACCEPTANCE-ARTIFACT IDENTITY
+================================================================================
+  The identity of the complete acceptance package is the SHA-256 of the sorted
+  "sha256  relative-path" manifest of every artifact named above. It is recorded in
+  ACCEPTANCE_ARTIFACT_MANIFEST.txt alongside this file, and any change to any component changes it.

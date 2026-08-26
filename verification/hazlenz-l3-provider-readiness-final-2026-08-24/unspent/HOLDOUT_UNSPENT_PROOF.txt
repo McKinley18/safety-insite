@@ -1,0 +1,64 @@
+L3 PROVIDER READINESS GATE -- CREDENTIAL-PROVISIONED FINAL RETRY
+PHASE 8: HOLDOUT-UNSPENT RE-PROOF  (POST-PHASE)
+recorded 2026-08-25T02:34:32Z
+
+== FROZEN HOLDOUT, RECOMPUTED AFTER THE PHASE ==
+  69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c  verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/holdout/holdout-l3-acceptance-attempt2.json
+  required 69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c   IDENTICAL to pre-phase
+  bytes    105561   (frozen 105561)
+
+== ACCEPTANCE-ARTIFACT IDENTITY, RECOMPUTED AFTER THE PHASE ==
+  components 16    line-for-line vs recorded manifest: IDENTICAL
+  identity   189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  required   189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f   UNCHANGED
+
+== THE THREE PROTECTED SOURCES -- FILE DIGESTS ONLY, NO ROW OPENED ==
+  a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4  safescope-data/gauntlets/safescope-gauntlet.source.v1.json
+    frozen a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe  safescope-data/gauntlets/safescope-gauntlet.seed.json
+    frozen 49aa40fd... (recorded prefix, D-90 section 57.7)
+  6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb  safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json
+    frozen 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+
+== ALL 92 ROWS UNCHANGED -- COUNTED STRUCTURALLY, NO 'observation' VALUE READ ==
+  total rows              92   required 92   MATCH
+  INDEPENDENT_GAUNTLET   38   required 38   MATCH
+  INDEPENDENT_REALISM    29   required 29   MATCH
+  AUTHORED_CONTROL       25   required 25   MATCH
+  unexpected provenance classes  0
+  distinct rowIds         92   duplicates 0
+  rows carrying a non-empty observation FIELD (existence only, value NOT read)  92
+
+  NOTE: only structural keys, class labels, ids and field EXISTENCE were touched.
+  No observation VALUE was read, printed, serialised, hashed or compared.
+
+== EXPENDITURE LEDGER ==
+  holdout observations used as provider input              0
+  holdout rows transmitted                                 0
+  reserved rows transmitted                                0
+  gauntlet.seed rows transmitted                           0
+  gauntlet.seed tranche opened                             NO
+  acceptance scorer executions on provider output          0
+  acceptance scorer executions at all                      0
+  G1-G10 evaluations                                       0
+  acceptance result artifacts                              0 -- none exists
+  tuning                                                   NO
+  remediation                                              NO
+  provider calls / destinations / cost                     0 / 0 / $0.00
+
+== PRODUCTION UNTOUCHED ==
+  git diff HEAD -- backend/src                                     0 lines
+  git diff HEAD -- backend/scripts/ablate-l32g-state-separation.ts 0 lines
+  git diff HEAD -- safescope-data                                  0 lines
+
+== NETWORK-PRIMITIVE AUDIT OF THIS PACKAGE'S ONE SCRIPT ==
+  script: identities/derive-frozen-identities.ts (read-only, copied byte-identical from the retry package)
+  occurrences of fetch / http / https / net / dns / child_process / axios / XMLHttpRequest:  0
+
+  HOLDOUT_SPENT = FALSE
+  Gauntlet offset 0 and realism offset 3 remain RESERVED AND UNSPENT.
+  Gauntlet 1, 2, 3 and realism 0, 1, 2 remain RESERVED.
+  The entire gauntlet.seed tranche remains UNOPENED. NOTHING IS RETIRED.
+
+  The one synthetic readiness call this phase was authorized to make was NOT made, because
+  Phase 3 stopped the gate. Even had it been made, it would not have spent the corpus.

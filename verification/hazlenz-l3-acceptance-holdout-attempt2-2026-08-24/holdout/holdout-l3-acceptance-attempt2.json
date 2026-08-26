@@ -1,0 +1,2575 @@
+{
+  "holdoutId": "holdout-l3-acceptance-attempt2",
+  "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2",
+  "governingPlan": {
+    "path": "verification/hazlenz-l3-2g-state-separation-2026-08-23/evidence-plan/INDEPENDENT_EVIDENCE_PLAN.md",
+    "sha256": "8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4"
+  },
+  "freezeRecord": "verification/hazlenz-l3-acceptance-holdout-attempt2-2026-08-24/HOLDOUT_FREEZE.txt",
+  "sources": {
+    "gauntlet": {
+      "path": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json",
+      "sha256": "a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "physicalRows": 150,
+      "offset": 0,
+      "partitionSizes": [
+        38,
+        38,
+        37,
+        37
+      ],
+      "selected": 38,
+      "selectionRule": "CMP(scenarioId) asc · i % 4 === 0"
+    },
+    "realism": {
+      "path": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json",
+      "sha256": "6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "physicalRows": 117,
+      "offset": 3,
+      "partitionSizes": [
+        30,
+        29,
+        29,
+        29
+      ],
+      "selected": 29,
+      "selectionRule": "CMP(id) asc · i % 4 === 3"
+    },
+    "seedReserve": {
+      "path": "safescope-data/gauntlets/safescope-gauntlet.seed.json",
+      "sha256": "49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe",
+      "physicalRows": 100,
+      "drawnFrom": false,
+      "note": "reserve tranche -- checked for overlap, NOT drawn from"
+    }
+  },
+  "composition": {
+    "INDEPENDENT_GAUNTLET": 38,
+    "INDEPENDENT_REALISM": 29,
+    "AUTHORED_CONTROL": 25,
+    "total": 92,
+    "independent": 67
+  },
+  "rows": [
+    {
+      "rowId": "H2A-001",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-001",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Excavator operator was traveling down a haul road when the machine veered off the road and fell over a 317-foot highwall.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-002",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-005",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Delivery truck driver was killed when his vehicle traveled off the roadway and overturned into a ravine.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-003",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-009",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Two powered haulage vehicles collided at a blind intersection in the pit area.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-004",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-013",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Miner was entangled in a belt conveyor tail pulley while cleaning material without stopping the belt.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-005",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-017",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker was fatally struck by shifting stock-piled material while clearing equipment at the base of the pile.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-006",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-021",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker crushed between conveyor belt and frame during belt tracking adjustment.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-007",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-030",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Mechanic entangled in tail pulley while adjusting belt tension on active conveyor.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-008",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-034",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Haul truck crashed through road barrier into ditch.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-009",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-039",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Miner struck by falling rock during roof support installation.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-010",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-043",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Mechanic caught between moving pulley and frame during belt check.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-011",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-047",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Haul truck struck a stationary vehicle due to blind corner speed and no traffic control.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-012",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-051",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Maintenance worker injured due to LOTO failure during mechanical equipment service.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-013",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-055",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Haul truck lost control on slick ramp and tipped over edge without berm containment.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-014",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-059",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Miner entrapped following uncontrolled shift of stored timber supplies in walkway.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-015",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-063",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Operator fatally struck by collapsing highwall during scaling operations.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-016",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-067",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Miner struck by haul truck while crossing blind intersection.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-017",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-MSHA-071",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker entangled in rotating belt conveyor nip point.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-018",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-003",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker was entangled in a rotating machine shaft after the safety guard was removed for production speed.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-019",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-007",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Excavation walls collapsed during pipe installation due to failure to use a trench box in unstable soil.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-020",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-011",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker entered a grain bin without performing atmospheric testing and was trapped by shifting grain.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-021",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-015",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker was not wearing a fall harness while installing building roof metal deck, 30 feet up.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-022",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-019",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "High-pressure hose leaked ammonia refrigerant; worker lacked respiratory protection in the spill area.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-023",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-023",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Forklift struck a wall because speed limit was ignored in high-traffic pedestrian walkway.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-024",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-027",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Rotating parts on milling machine lacked proper guarding.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-025",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-031",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Emergency fire exit aisle completely blocked by stacked crates.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-026",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-035",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Excavation walls failed during pipe installation; lack of shoring present.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-027",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-039",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker reached into press machine while in motion due to guard override.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-028",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-043",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Emergency fire exit aisle completely blocked by pallet storage.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-029",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-047",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Crane boom contacted power line while lifting heavy structural steel.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-030",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1001",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Scaffolding overloaded with concrete material collapsed, dropping two workers.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-031",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1005",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Emergency fire exit path completely obstructed by pallet inventory.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-032",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1009",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Emergency exit path completely obstructed by pallet inventory.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-033",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1013",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Scaffold setup lacking engineered base support caused collapse during use.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-034",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1017",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Installer working at 15 feet without harness system in high-exposure work zone.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-035",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1021",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Trench collapse occurred because no shoring or trench box was installed in sandy soil.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-036",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1025",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Valve failure released chemicals into work area; no containment.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-037",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1029",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Toxic vapor exposure; area lacked ventilation and cleanup.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "high"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-038",
+      "provenanceClass": "INDEPENDENT_GAUNTLET",
+      "source": "safescope-data/gauntlets/safescope-gauntlet.source.v1.json sha256 a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4",
+      "sourceId": "SRC-OSHA-1033",
+      "selectionRule": "gauntlet.source.v1 · CMP(scenarioId) asc · i % 4 === 0",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_POSITIVE",
+      "regime": null,
+      "observation": "Worker in unprotected trench without ladder.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": true,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "severityExpectation": "critical"
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-039",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-JURISDICTION-CONSTRUCTION-PLANT-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A contractor crew was installing pipe supports inside an operating processing plant. Workers used a scaffold and grinders. The note does not clarify whether OSHA construction, OSHA general industry, or MSHA applies.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-040",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-JURISDICTION-RAIL-SPUR-MINE-PLANT-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A railcar was being loaded near the mine plant boundary. The note does not confirm whether the work was under mine operations, railroad control, or contractor control. Workers were near moving rail equipment.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-041",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-COAL-UG-BELT-SPILLAGE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Coal spillage had accumulated along the beltline near a travelway. The note says miners walk through the area, but it does not confirm whether the belt was running, whether cleanup was underway, or whether guarding/lockout was needed.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-042",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-COAL-UG-SCOOP-BATTERY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A battery scoop was on charge in an underground shop. The area had a fan running, but the observation does not confirm hydrogen monitoring, charger condition, eyewash availability, or whether ignition sources were controlled.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-043",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-GUARDING-CLEANUP-LOTO-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A miner was cleaning spilled material near the tail pulley area while the conveyor was stopped. The report does not confirm whether the belt was locked out or only paused from the control room. Guarding around the pulley was partially removed.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-044",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-MNM-UG-ORE-PASS-BARRICADE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "An ore pass opening was observed near the drift. A chain was present but sagging, and the sign was dirty. The note does not confirm whether the opening was adequately barricaded or whether employees could access the edge.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-045",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-MOBILE-NO-PEDESTRIAN-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A loader was parked in the yard with the bucket lowered. No pedestrians were nearby, no travel was occurring, and no backing movement was observed. The concern was an expired pre-use inspection tag.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": false,
+        "shouldHaveMissingEvidence": null
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-046",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MSHA-SURFACE-DUMP-BERM-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "At the dump point, the berm appeared lower than the axle height of trucks using the area. The photo is angled and does not clearly show berm continuity or truck position during dumping.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-047",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MULTI-CONFINED-HOTWORK-ENTRY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A crew planned to weld inside a tank later in the shift. At the time of inspection, the manway was open and an entrant was checking tools near the opening. No atmospheric test, permit, attendant, ventilation, or hot work authorization was documented.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-048",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-MULTI-NOISE-FORKLIFT-CO-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Employees complained of headaches in a busy propane forklift charging and staging area with loud backup alarms. The note does not include CO readings, ventilation status, noise dosimetry, or forklift maintenance records.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-049",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-CONFINED-NO-ENTRY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A tank was labeled as a permit-required confined space, but the employee was only walking past it. No entry, partial body entry, testing, cleaning, or retrieval setup was involved in the observed condition.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": false,
+        "shouldHaveMissingEvidence": null
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-050",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-SPOIL-PILE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Spoil material was piled near the edge of an excavation. The note does not confirm excavation depth, soil type, distance from edge, or whether workers entered the trench.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-051",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-POWERLINE-CRANE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A crane boom was positioned near overhead utility lines. The observation does not confirm voltage, distance, de-energization, spotter use, or whether minimum approach distance was evaluated.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-052",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-CONSTRUCTION-TRENCH-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Employees were working in a trench beside a utility line. The photo shows vertical walls, but the depth, soil type, protective system, ladder access, and competent-person inspection were not documented.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-053",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-ELECTRICAL-FALSE-BLOCKED-ACCESS-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Three plastic storage bins were stacked in front of an office electrical panel, blocking clear working space clearance access. The panel outer door was closed, latched, and completely intact with no damaged parts or wiring.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-054",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-ELECTRICAL-TEMPORARY-POWER-GFCI-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Temporary portable extension cords and lighting strings were in use outdoor in wet weather. No ground fault circuit interrupter (GFCI) protection devices or assured grounding program records were provided.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-055",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-EMERGENCY-EXIT-BLOCKED-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Pallets of finished product were staged in front of an exit door. The exit sign was visible, but the path width and whether the door could open fully were not documented.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-056",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-FALSE-TRENCH-LADDER-PLATFORM-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "An employee was working on an elevated platform 12 feet high. The access ladder was missing, requiring workers to climb the structural scaffolding framing to reach the platform. No trench or excavation was involved.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-057",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-FORKLIFT-TRAINING-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Forklift was parked in the shipping area and the supervisor said the operator training file could not be located. No unsafe driving, pedestrian exposure, struck-by event, or equipment defect was observed during the inspection.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": false,
+        "shouldHaveMissingEvidence": null
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-058",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-GI-CONVEYOR-TRAINING-ONLY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "The audit note says conveyor pinch point training records were incomplete. No conveyor was running, no guard was missing, and no employee exposure to moving parts was observed.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-059",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-GI-HEAT-STRESS-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Employees were loading trailers in a hot warehouse during the afternoon. The note mentions sweating and fatigue, but no WBGT, temperature, workload, acclimatization, water access, or work-rest schedule was documented.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-060",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-GI-MACHINE-JAM-CLEARING-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "An employee was reaching toward a jammed packaging machine. The machine appeared stopped, but the note does not confirm whether it was locked out, blocked, or capable of unexpected movement.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-061",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-GI-PRESSURE-HOSE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A compressed air hose had cracked outer covering near a workstation. It is unclear whether the hose was pressurized, leaking, restrained, or removed from service.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-062",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-GRINDER-GUARD-NO-PPE-ISSUE-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A pedestal grinder had the tongue guard removed and the tool rest gap appeared excessive. The operator was wearing safety glasses, and no missing PPE was observed.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": false,
+        "shouldHaveMissingEvidence": null
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-063",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-HOTWORK-COMBUSTIBLES-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Employees were torch cutting a bracket near cardboard boxes and oily absorbent pads. The note does not mention hot work authorization, fire watch, combustible clearance, shielding, or post-work inspection.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-064",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-LOTO-TRAINING-ONLY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "The safety board had an outdated lockout/tagout training roster posted. No servicing, maintenance, machine access, or employee exposure to hazardous energy was occurring at the time of observation.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": false,
+        "shouldHaveMissingEvidence": null
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-065",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-SCAFFOLD-GUARDRAIL-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "Workers were on a scaffold platform and one side appeared to have a top rail but no midrail. The photo does not show platform height, access ladder, toe boards, or whether fall protection was used.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-066",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-TRENCH-EGRESS-COMPLIANT-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A worker was working in a 5-foot deep excavation trench. A structural extension ladder was secured inside the shoring box directly next to the worker, requiring less than 5 feet of lateral travel to egress.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": false
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-067",
+      "provenanceClass": "INDEPENDENT_REALISM",
+      "source": "safescope-data/benchmarks/safescope-field-realism-pack-v2.v1.json sha256 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb",
+      "sourceId": "FIELD-V2-OSHA-TRENCH-SHALLOW-NO-ENTRY-001",
+      "selectionRule": "field-realism-pack-v2 · CMP(id) asc · i % 4 === 3",
+      "family": null,
+      "familyVariant": null,
+      "pole": "INDEPENDENT_REALISM_ROW",
+      "regime": null,
+      "observation": "A shallow trench, measured at 3 feet deep, was excavated along the perimeter. No employees entered the excavation, and no work tasks were being performed inside the trench.",
+      "expect": {
+        "hazardEstablished": null,
+        "conditionState": null,
+        "acceptableStates": null,
+        "activeProhibited": false,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": {
+        "shouldHaveMissingEvidencePresent": true,
+        "shouldHaveMissingEvidence": true
+      },
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-068",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F1-01",
+      "selectionRule": "authored control, frozen family F1 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-general-industry",
+      "observation": "The chain drive on the packaging line was enclosed by a bolted sheet-metal guard that covered the full run of the chain from the drive sprocket to the driven sprocket, and no nip point was reachable from the operator position.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-069",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F1-02",
+      "selectionRule": "authored control, frozen family F1 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-construction",
+      "observation": "The floor opening on the second level was covered with a secured plate marked HOLE, and the cover was fastened to the deck at four points so that it could not be displaced by foot traffic.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-070",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F1-03",
+      "selectionRule": "authored control, frozen family F1 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-general-industry",
+      "observation": "Every acetylene and oxygen cylinder in the welding bay was stored upright in its rack with the valve cap fitted and a rated chain across the mid-body, and the fuel and oxidiser groups were separated by a rated partition.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-071",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F1-04",
+      "selectionRule": "authored control, frozen family F1 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F1",
+      "familyVariant": "F1",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "msha",
+      "observation": "The berm along the outer edge of the haul road was continuous for the full length of the grade and stood at mid-axle height of the largest vehicle using the road.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-072",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F2-01",
+      "selectionRule": "authored control, frozen family F2 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-general-industry",
+      "observation": "The eyewash station in the plating area was found with its outlet caps missing and the bowl fouled; the unit was flushed, fitted with new caps and returned to a working condition before the observation was closed.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-073",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F2-02",
+      "selectionRule": "authored control, frozen family F2 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-construction",
+      "observation": "A rebar cage on the deck had uncapped vertical bars at working height; protective caps rated for impalement were fitted to every exposed bar during the walk and were verified in place at the close of the observation.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-074",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F2-03",
+      "selectionRule": "authored control, frozen family F2 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-general-industry",
+      "observation": "A pallet jack with a leaking hydraulic cylinder was in use in the shipping aisle; it was tagged, taken out of service and moved to the maintenance bay before the observation ended.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-075",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F2-04",
+      "selectionRule": "authored control, frozen family F2 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F2",
+      "familyVariant": "F2",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "msha",
+      "observation": "The guard over the tail pulley of the stacker conveyor was found displaced at the start of the shift; it was refitted and secured with its original fasteners, and the fit was confirmed before the observation closed.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "CORRECTED",
+        "acceptableStates": [
+          "CORRECTED",
+          "REMOVED_FROM_SERVICE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-076",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F3-01",
+      "selectionRule": "authored control, frozen family F3 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F3",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "osha-general-industry",
+      "observation": "A vertical boring mill was running behind a fixed screen. The interlock switch on the access door sat on the far side of the column and was not visible from any position on the floor, so whether the interlock was engaged could not be established during the observation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-077",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F3-02",
+      "selectionRule": "authored control, frozen family F3 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F3",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "osha-construction",
+      "observation": "A personal fall arrest harness was worn by a worker on the leading edge. The lanyard ran behind a stack of decking and its anchorage end could not be seen from any accessible vantage point, so the anchorage it was connected to could not be established on site.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-078",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F3-03",
+      "selectionRule": "authored control, frozen family F3 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F3",
+      "familyVariant": "F3",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "msha",
+      "observation": "A portable gas detector was clipped to the belt of a miner entering the decline. The calibration due date was printed on the reverse of the instrument face and was obscured by the belt clip, so whether the instrument was within its calibration interval could not be established.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-079",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F4-01",
+      "selectionRule": "authored control, frozen family F4 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "osha-general-industry",
+      "observation": "The tone in the fabrication shop seemed careless, and the crew gave the impression of not taking the walk-through especially seriously.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-080",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F4-02",
+      "selectionRule": "authored control, frozen family F4 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "osha-construction",
+      "observation": "The site came across as poorly run compared with other projects of similar size, and the general atmosphere was uninspiring.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-081",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F4-03",
+      "selectionRule": "authored control, frozen family F4 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F4",
+      "familyVariant": "F4",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "msha",
+      "observation": "The surface plant looked tired and somewhat neglected, and the overall impression was of an operation that had seen better years.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "UNKNOWN",
+        "acceptableStates": [
+          "UNKNOWN",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-082",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F5-01",
+      "selectionRule": "authored control, frozen family F5 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F5",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "osha-general-industry",
+      "observation": "If the fixed ladder cage on the silo were ever removed, a climber would be exposed to the full thirty-two foot fall to the concrete pad below.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-083",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F5-02",
+      "selectionRule": "authored control, frozen family F5 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F5",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "osha-construction",
+      "observation": "Had the trench box been omitted from this excavation, the vertical face of sandy soil would have been left unsupported at a depth beyond the limit the plan allows.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-084",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F5-03",
+      "selectionRule": "authored control, frozen family F5 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F5",
+      "familyVariant": "F5",
+      "pole": "DECIDED_NON_ACTIVE",
+      "regime": "msha",
+      "observation": "Were the ventilation curtain in the crosscut to be taken down, methane would be expected to build up at the working face over the course of a shift.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "HYPOTHETICAL",
+        "acceptableStates": [
+          "HYPOTHETICAL"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-085",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F6-01",
+      "selectionRule": "authored control, frozen family F6 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "osha-general-industry",
+      "observation": "A maintenance technician was replacing the drive belt on the exhaust blower in the finishing room.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-086",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F6-02",
+      "selectionRule": "authored control, frozen family F6 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "osha-construction",
+      "observation": "A suspended scaffold was hanging from the parapet on the west face of the building.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-087",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F6-03",
+      "selectionRule": "authored control, frozen family F6 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F6",
+      "familyVariant": "F6",
+      "pole": "CLARIFICATION_REQUIRED",
+      "regime": "msha",
+      "observation": "A miner was positioned beneath the raised bed of a haul truck in the shop bay.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "INSUFFICIENT_EVIDENCE",
+        "acceptableStates": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": true,
+        "highConsequence": false,
+        "inG3Denominator": true,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-088",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F7-01",
+      "selectionRule": "authored control, frozen family F7 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F7",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-construction",
+      "observation": "A worker stood on the top rail of an unsecured extension ladder eleven feet above a concrete slab, reaching sideways beyond the ladder rails to set a conduit hanger. No fall protection of any kind was worn, no anchorage was present, the ladder feet were on loose gravel, and no second worker was holding the ladder.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-089",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F7-02",
+      "selectionRule": "authored control, frozen family F7 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F7",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "osha-general-industry",
+      "observation": "An operator reached into the die space of a running press brake to reposition a workpiece while the ram was cycling on a continuous stroke. The die opening measured four inches, the light curtain had been physically removed and lay on the floor beside the machine, and both hands of the operator entered the opening on each of the six strokes observed.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-090",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F7-03",
+      "selectionRule": "authored control, frozen family F7 (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F7",
+      "familyVariant": "F7",
+      "pole": "CLARIFICATION_MUST_NOT_ASK",
+      "regime": "msha",
+      "observation": "Two miners were working directly beneath a highwall that had an overhanging brow of loose rock approximately fifteen feet above them. No scaling had been done, the area was not barricaded, no spotter was posted, and the miners remained under the brow for the entire twenty-five minutes of the observation.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": true
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-091",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F8-01",
+      "selectionRule": "authored control, frozen family F8a (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F8",
+      "familyVariant": "F8a",
+      "pole": "REGRESSION_ACTIVE",
+      "regime": "osha-general-industry",
+      "observation": "The machine-mounted disconnect for the mixer was left unlocked during the blade change, and the mixer remained connected to its energy source while a mechanic worked inside the bowl.",
+      "expect": {
+        "hazardEstablished": true,
+        "conditionState": "ACTIVE",
+        "acceptableStates": [
+          "ACTIVE"
+        ],
+        "activeProhibited": false,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": false,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    },
+    {
+      "rowId": "H2A-092",
+      "provenanceClass": "AUTHORED_CONTROL",
+      "source": "authored by the L3 acceptance holdout construction phase under INDEPENDENT_EVIDENCE_PLAN Amendment 1 D-D",
+      "sourceId": "AC-F8-02",
+      "selectionRule": "authored control, frozen family F8b (HOLDOUT_FREEZE.txt s.8)",
+      "family": "F8",
+      "familyVariant": "F8b",
+      "pole": "NEGATIVE_CONTROL",
+      "regime": "osha-general-industry",
+      "observation": "The machine-mounted disconnect for the mixer was not left unlocked during the blade change; it was opened, locked and tagged by the mechanic, and the stored energy was verified at zero while a mechanic worked inside the bowl.",
+      "expect": {
+        "hazardEstablished": false,
+        "conditionState": "NEGATED",
+        "acceptableStates": [
+          "NEGATED"
+        ],
+        "activeProhibited": true,
+        "clarificationExpected": false,
+        "highConsequence": false,
+        "inG3Denominator": false,
+        "inG4Denominator": true,
+        "inG7Pole": false
+      },
+      "sourceMeta": null,
+      "constructionVersion": "L3-ACCEPTANCE-HOLDOUT-ATTEMPT-2"
+    }
+  ]
+}

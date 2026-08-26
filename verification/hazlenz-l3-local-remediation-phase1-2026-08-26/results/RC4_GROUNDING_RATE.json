@@ -1,0 +1,88 @@
+{
+  "code": "EVIDENCE_OUT_OF_BOUNDS",
+  "excludedThisPhase": {
+    "files": 1477,
+    "packagesScanned": [
+      "hazlenz-l3-2-semantic-reasoning-2026-08-22",
+      "hazlenz-l3-2b-binder-precision-2026-08-22",
+      "hazlenz-l3-2c-gate-polarity-2026-08-22",
+      "hazlenz-l3-2d-clarification-precision-2026-08-22",
+      "hazlenz-l3-2e-syntactic-role-2026-08-23",
+      "hazlenz-l3-2f-predicate-scope-2026-08-23",
+      "hazlenz-l3-2g-state-separation-2026-08-23",
+      "hazlenz-l3-2h-cross-provider-2026-08-23",
+      "hazlenz-l3-2h-cross-provider-final-2026-08-23",
+      "hazlenz-l3-2i-clarification-carrier-2026-08-24",
+      "hazlenz-l3-2j-carrier-activation-2026-08-24",
+      "hazlenz-l3-2j-cross-provider-closure-2026-08-24",
+      "hazlenz-l3-2k-shipped-residual-rootcause-2026-08-24",
+      "hazlenz-l3-2n-provider-qualification-2026-08-24",
+      "hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24",
+      "hazlenz-l3-acceptance-holdout-attempt2-2026-08-24",
+      "hazlenz-l3-run2-acceptance-holdout-2026-08-25",
+      "hazlenz-l3-run2-failure-diagnosis-2026-08-26",
+      "hazlenz-l3-run2-sealed-acceptance-2026-08-25",
+      "hazlenz-l3-sealed-acceptance-2026-08-25"
+    ],
+    "evaluations": 5263,
+    "oobRecords": 3,
+    "hits": [
+      {
+        "file": "hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+        "id": null
+      },
+      {
+        "file": "hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+        "id": null
+      },
+      {
+        "file": "hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json",
+        "id": "H2B-004"
+      }
+    ]
+  },
+  "includedThisPhase": {
+    "files": 1482,
+    "packagesScanned": [
+      "hazlenz-l3-2-semantic-reasoning-2026-08-22",
+      "hazlenz-l3-2b-binder-precision-2026-08-22",
+      "hazlenz-l3-2c-gate-polarity-2026-08-22",
+      "hazlenz-l3-2d-clarification-precision-2026-08-22",
+      "hazlenz-l3-2e-syntactic-role-2026-08-23",
+      "hazlenz-l3-2f-predicate-scope-2026-08-23",
+      "hazlenz-l3-2g-state-separation-2026-08-23",
+      "hazlenz-l3-2h-cross-provider-2026-08-23",
+      "hazlenz-l3-2h-cross-provider-final-2026-08-23",
+      "hazlenz-l3-2i-clarification-carrier-2026-08-24",
+      "hazlenz-l3-2j-carrier-activation-2026-08-24",
+      "hazlenz-l3-2j-cross-provider-closure-2026-08-24",
+      "hazlenz-l3-2k-shipped-residual-rootcause-2026-08-24",
+      "hazlenz-l3-2n-provider-qualification-2026-08-24",
+      "hazlenz-l3-2o-anthropic-provider-qualification-2026-08-24",
+      "hazlenz-l3-acceptance-holdout-attempt2-2026-08-24",
+      "hazlenz-l3-run2-acceptance-holdout-2026-08-25",
+      "hazlenz-l3-run2-failure-diagnosis-2026-08-26",
+      "hazlenz-l3-run2-sealed-acceptance-2026-08-25",
+      "hazlenz-l3-sealed-acceptance-2026-08-25"
+    ],
+    "evaluations": 5263,
+    "oobRecords": 3,
+    "hits": [
+      {
+        "file": "hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-1.json",
+        "id": null
+      },
+      {
+        "file": "hazlenz-l3-2f-predicate-scope-2026-08-23/results/holdout-run-2.json",
+        "id": null
+      },
+      {
+        "file": "hazlenz-l3-run2-sealed-acceptance-2026-08-25/results/raw-process-A.json",
+        "id": "H2B-004"
+      }
+    ]
+  },
+  "deltaHits": [],
+  "thresholdFromBlueprint69_6": 500,
+  "sufficientToEstablishSystematicCause": true
+}

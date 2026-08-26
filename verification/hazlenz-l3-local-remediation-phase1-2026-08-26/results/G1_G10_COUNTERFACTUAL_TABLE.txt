@@ -1,0 +1,30 @@
+RUN2_RECORDED_OUTPUT_COUNTERFACTUAL_REPLAY  --  diagnostic only, NOT an acceptance result
+The historical Run-2 terminal is unchanged: L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+
+gate  IDENTITY_baseli authoritative_t BOUND_plus_demo S2_plus_carrier RC2_proposal_le      S2_plus_S4
+G1               1/36            1/36            1/36            1/36            1/36            1/36
+G2         4/21 81.0%      4/21 81.0%      4/21 81.0%      7/25 72.0%      4/21 81.0%      4/21 81.0%
+G3    A 17/30 B 17/29 A 17/30 B 17/28 A 17/30 B 17/29 A 18/30 B 18/29 A 17/30 B 17/29 A 17/30 B 17/29
+G4               4/21            4/21            4/21            4/21            3/21            3/21
+G5               1/93            1/93            1/93            1/93            1/93            1/93
+G6               1/93            1/93            1/93            1/93            1/93            1/93
+G7               0/11            0/11            0/11            3/11            0/11            0/11
+G8               0/93            0/93            0/93            0/93            0/93            0/93
+G9       14/93 84.95%    10/93 89.25%    14/93 84.95%    14/93 84.95%    13/93 86.02%    13/93 86.02%
+G10      93/93 100.0%    93/93 100.0%    93/93 100.0%    93/93 100.0%    93/93 100.0%    93/93 100.0%
+
+failed gates:
+  S0_IDENTITY_baseline                   G1,G2,G3,G4,G5,G6,G9
+  S1_authoritative_tier_BOUND            G1,G2,G3,G4,G5,G6,G9
+  S2_BOUND_plus_demote_not_delete        G1,G2,G3,G4,G5,G6,G9
+  S3_S2_plus_carrier_clarification       G1,G2,G3,G4,G5,G6,G7,G9
+  S4_RC2_proposal_level_approximation    G1,G2,G3,G4,G5,G6,G9
+  S5_S2_plus_S4                          G1,G2,G3,G4,G5,G6,G9
+
+terminal (counterfactual, NOT an acceptance result):
+  S0_IDENTITY_baseline                   L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  S1_authoritative_tier_BOUND            L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  S2_BOUND_plus_demote_not_delete        L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  S3_S2_plus_carrier_clarification       L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G7,G9
+  S4_RC2_proposal_level_approximation    L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9
+  S5_S2_plus_S4                          L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9

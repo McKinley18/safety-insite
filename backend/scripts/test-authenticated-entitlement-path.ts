@@ -32,8 +32,11 @@ async function grant(userId: string) {
   const db = new Client({ connectionString: databaseUrl });
   await db.connect();
   try {
+    // 'pro', not 'expert': RetireExpertTier1800000005900 narrowed
+    // entitlement_grants_tier_check to CHECK (tier = 'pro'), and a retired 'expert'
+    // grant normalizes to exactly this tier.
     await db.query(`INSERT INTO entitlement_grants ("userId",source,tier,status,"startsAt","endsAt",reason)
-      VALUES ($1,'test','expert','active',now()-interval '1 minute',now()+interval '2 hours','Authenticated entitlement path regression')`, [userId]);
+      VALUES ($1,'test','pro','active',now()-interval '1 minute',now()+interval '2 hours','Authenticated entitlement path regression')`, [userId]);
   } finally { await db.end(); }
 }
 

@@ -1,0 +1,50 @@
+L3 RUN-2 GOVERNANCE AMENDMENT -- PRESERVATION
+recorded 2026-08-25T21:40:28Z
+
+HEAD            a7b21a2636b4a80ecaf823aef4558d9ea8915230
+branch          release/insite-rc-2026-08-18
+upstream        origin/release/insite-rc-2026-08-18 @ a7b21a2636b4a80ecaf823aef4558d9ea8915230
+divergence L/R  0/0
+stashes         4   (NONE created, applied or dropped)
+tags            23
+staged          0
+
+git diff HEAD -- backend/src       0 lines
+git diff HEAD -- safescope-data    0 lines
+
+=== GOVERNING PLAN, BEFORE AND AFTER THE APPEND ===
+  before (Amendments 1+2)   8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4   754 lines
+  after  (+ Amendment 3)    a7da57e4ebc330809a9fc08728c73af667c815c76eda50b1b87a0ac4564ed35a   1006 lines
+  APPEND-ONLY PROOF: sha256 of the first 754 lines after the append =
+    8d8f6e8d4a34e16a90f19b511bf31b4dfe255bae9ad142856c913e625f4dd7c4
+  Amendments 1 and 2 are preserved BYTE-FOR-BYTE. 0 lines deleted or modified by this phase.
+
+  NOTE: the Run-1 holdout records governingPlan.sha256 = 8d8f6e8d..., which is the plan AS IT
+  STOOD AT ITS CONSTRUCTION. That remains a true historical statement and is not edited; the
+  append preserves those bytes verbatim as the prefix of the amended file.
+
+=== FROZEN ARTIFACTS, UNCHANGED BY THIS PHASE ===
+  MATCH     frozen holdout                         69665e41d975f67515bf9864e221a4b05c0811e4c48089e4671c8a2ae1cc094c
+  MATCH     frozen acceptance scorer               ea5e50aea265370c9de72245c1c34075b44f0c3f2c8c91303c2f5eb92097d0b6
+  MATCH     authored-controls.js                   56b73f851786ea2ca4b1b01a5eac92bf6bed4beb098086cba27c5babc71d2f05
+  MATCH     HOLDOUT_FREEZE.txt                     a0d97b3f78e3c8b63436ad48b7baad1b2743a303fe12fb10018d2421f8523d62
+  MATCH     Run-1 acceptance-artifact identity     189a3cbf780d859d45f753ea41e616591cb4fdfa9dd2d86b8d44ef4871f1cb1f
+  MATCH     safescope-gauntlet.source.v1.json      a95e54809c41b3eb88ea35de133c5576e63c921944ca4724597852f922f0adb4
+  MATCH     safescope-gauntlet.seed.json           49aa40fdcc507d549f22b59c9791823c3f1196034543df1746c8eb5d857b73fe
+  MATCH     safescope-field-realism-pack-v2.v1.json 6f6897f11aa3b174b2863fad4edc895625e0a3d27e1318dbd2371dcd5231a9cb
+
+  RUN-1 EVIDENCE PACKAGE: read-only. No file of
+  verification/hazlenz-l3-sealed-acceptance-2026-08-25/ was modified by this phase.
+
+=== EXECUTION ACCOUNTING ===
+  credential accessed               NO -- ANTHROPIC_API_KEY was not read, tested or referenced
+  provider calls                    0
+  provider probes                   0
+  destinations contacted            0
+  inference calls                   0
+  tokens                            0
+  cost                              $0.00
+  rows selected                     0
+  observations opened               0
+  observations transmitted          0
+  additional corpus spent           0 -- gauntlet offsets 1,2,3 / realism 0,1,2 / gauntlet.seed all UNSPENT

@@ -36,6 +36,14 @@ export function AppPanel({
   return (
     <Component
       className={[
+        // `min-w-0` because a panel is routinely a grid or flex item, and such an item
+        // defaults to `min-width: auto` -- it refuses to shrink below its content's
+        // intrinsic minimum. On /profile at 390px that kept this panel 410px wide inside
+        // a 326px column and carried the page content out to 442px, clipping "Edit account
+        // details", "Sign Out" and "Delete Account" past the viewport edge. The page did not
+        // report horizontal overflow because the shell carries `overflow-x-hidden`, so the
+        // controls were not merely off-screen, they were unreachable.
+        "min-w-0",
         "rounded-xl",
         variantClasses[variant],
         paddingClasses[padding],

@@ -12,10 +12,8 @@ export type PersistedSite = {
 
 /**
  * Inspection-level regulatory context, established ONCE at inspection setup and inherited by
- * every observation/finding. Same vocabulary HazLenz's evidence model uses. `unknown` means
- * "Not sure / Let HazLenz determine" -- HazLenz may infer a regime from strong observation
- * wording (labelled as inferred, never as user-confirmed) or ask one targeted question whose
- * answer is then persisted back onto the inspection.
+ * every observation/finding. Same vocabulary HazLenz's evidence model uses. `unknown` remains
+ * supported for legacy and incomplete records, but new inspections require an explicit context.
  */
 export type RegulatoryContext = "osha-general-industry" | "osha-construction" | "msha" | "unknown";
 
@@ -23,11 +21,10 @@ export const REGULATORY_CONTEXT_OPTIONS: Array<{ value: RegulatoryContext; label
   { value: "osha-general-industry", label: "OSHA — General Industry", description: "29 CFR 1910" },
   { value: "osha-construction", label: "OSHA — Construction", description: "29 CFR 1926" },
   { value: "msha", label: "MSHA", description: "30 CFR mining" },
-  { value: "unknown", label: "Not sure / Let HazLenz determine", description: "HazLenz keeps candidates conditional and asks once if it matters" },
 ];
 
 export function regulatoryContextLabel(value: string | null | undefined) {
-  return REGULATORY_CONTEXT_OPTIONS.find((option) => option.value === value)?.label || "Not sure / Let HazLenz determine";
+  return REGULATORY_CONTEXT_OPTIONS.find((option) => option.value === value)?.label || "Regulatory context not established";
 }
 
 /** Maps the Settings page's stored default (`sentinel_regulatory_scope`) onto the inspection vocabulary. */

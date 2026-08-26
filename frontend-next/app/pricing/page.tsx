@@ -1,21 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
+// /pricing is the acquisition page and stays the acquisition page for everyone.
+//
+// It used to switch into "upgrade" mode for a signed-in visitor, which is how
+// /pricing and /upgrade came to render the same component with the same content.
+// A signed-in visitor who deliberately opens /pricing wants the full comparison;
+// the in-product conversion path is /upgrade, which is now a different page.
 import PricingContent from "@/components/pricing/PricingContent";
-import { hasAuthToken } from "@/lib/auth";
 
 export default function PricingPage() {
-  // hasAuthToken() reads localStorage, so it is always false during SSR but true
-  // for a signed-in visitor on the client. Seeding useState with it made the server
-  // render the "public" pricing copy while the first client render produced the
-  // "upgrade" copy, which React reports as hydration error #418 and repairs by
-  // discarding and re-rendering the tree. Resolving after mount keeps the first
-  // client render identical to the server HTML.
-  const [mode, setMode] = useState<"public" | "upgrade">("public");
-
-  useEffect(() => {
-    if (hasAuthToken()) setMode("upgrade");
-  }, []);
-
-  return <PricingContent mode={mode} />;
+  return <PricingContent />;
 }

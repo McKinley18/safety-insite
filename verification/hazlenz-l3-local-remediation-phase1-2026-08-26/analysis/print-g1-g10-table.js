@@ -1,0 +1,27 @@
+'use strict';
+const fs = require('fs'), path = require('path');
+const d = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'results', 'COUNTERFACTUAL_SCENARIOS.json'), 'utf8'));
+const g = (label, name) => d.full[label].gates.find(x => x.name === name);
+const B = 'S0_IDENTITY_baseline';
+const cols = Object.keys(d.full);
+const line = (name, fmt) => {
+  const cells = cols.map(c => String(fmt(g(c, name))).padStart(16)).join('');
+  console.log(`${name.padEnd(5)}${cells}`);
+};
+console.log('RUN2_RECORDED_OUTPUT_COUNTERFACTUAL_REPLAY  --  diagnostic only, NOT an acceptance result');
+console.log('The historical Run-2 terminal is unchanged: L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9\n');
+console.log('gate '.padEnd(5) + cols.map(c => c.replace(/^S\d_/, '').slice(0, 15).padStart(16)).join(''));
+line('G1', x => `${x.violations}/${x.denominator}`);
+line('G2', x => `${x.violations}/${x.denominator} ${(x.precision * 100).toFixed(1)}%`);
+line('G3', x => `A ${x.numeratorA}/${x.denominatorA} B ${x.numeratorB}/${x.denominatorB}`);
+line('G4', x => `${x.violations}/${x.denominator}`);
+line('G5', x => `${x.violations}/${x.denominator}`);
+line('G6', x => `${x.violations}/${x.denominator}`);
+line('G7', x => `${x.violations}/${x.denominator}`);
+line('G8', x => `${x.violations}/${x.denominator}`);
+line('G9', x => `${x.violations}/${x.denominator} ${(x.reproducibility * 100).toFixed(2)}%`);
+line('G10', x => `${x.conforming}/${x.denominator} ${(x.rate * 100).toFixed(1)}%`);
+console.log('\nfailed gates:');
+for (const c of cols) console.log(`  ${c.padEnd(38)} ${d.full[c].failedGates.join(',')}`);
+console.log('\nterminal (counterfactual, NOT an acceptance result):');
+for (const c of cols) console.log(`  ${c.padEnd(38)} ${d.full[c].terminal}`);

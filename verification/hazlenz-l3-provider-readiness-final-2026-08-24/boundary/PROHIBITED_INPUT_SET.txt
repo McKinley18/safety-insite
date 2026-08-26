@@ -1,0 +1,49 @@
+L3 PROVIDER READINESS GATE -- CREDENTIAL-PROVISIONED FINAL RETRY
+PHASE 2: ZERO-HOLDOUT-EXPOSURE BOUNDARY
+
+WRITTEN BEFORE THE CREDENTIAL WAS TOUCHED AND BEFORE ANY PROVIDER ACTIVITY.
+
+== THE ONE AUTHORIZED OBSERVATION ==
+
+  classification         NON_HOLDOUT_PROVIDER_READINESS_PROBE
+  artifact               verification/hazlenz-l3-provider-readiness-retry-2026-08-24/
+                           probe/probe-observation.json
+  artifact sha256        a818b09f8f7e49c755178b65e03941a21d688404e9a333f4cf0ce03a41e9fd6c
+  observationText sha256 52520318956ac8d0bf0d33b1430816edd91da8b64ed0477e374a378d2491f5be
+
+  This probe is ALREADY FROZEN (D-91, section 58.3). This phase RE-VERIFIED its hashes from disk
+  and did NOT replace, edit or regenerate it. Sending an already-frozen probe is what makes any
+  change to it mechanically visible.
+
+== THE PROHIBITED SET -- NOTHING BELOW MAY BE READ FOR REQUEST CONTENT OR TRANSMITTED ==
+
+  1. all 92 rows of the frozen holdout 69665e41...
+  2. safescope-gauntlet.source.v1.json  offset 0   (RESERVED, holdout-bearing)
+  3. safescope-field-realism-pack-v2.v1.json  offset 3   (RESERVED, holdout-bearing)
+  4. safescope-gauntlet.source.v1.json  offsets 1, 2, 3   (RESERVED)
+  5. safescope-field-realism-pack-v2.v1.json  offsets 0, 1, 2   (RESERVED)
+  6. safescope-gauntlet.seed.json -- the entire tranche, UNOPENED
+  7. any prior sealed holdout, any development set, the exhausted field corpus
+  8. any other reserved acceptance evidence
+
+  As section 57.5 established and this phase reaffirms WITHOUT recomputing any offset: the reserved
+  offsets cover EVERY ROW of all three protected sources. There is no non-reserved row anywhere,
+  therefore no 'harmless spare' exists to borrow, and borrowing one would retire a reservation to
+  run a readiness check. The boundary reduces to a rule that needs no offset arithmetic:
+
+    NO ROW OF ANY PROTECTED SOURCE, AND NO ROW OF THE HOLDOUT, IS OPENED, READ FOR CONTENT,
+    DERIVED FROM, PARAPHRASED, SUMMARISED, OR TRANSMITTED.
+
+== WHAT IS NOT DONE, AND WHY ==
+
+  NO SIMILARITY SEARCH OF THE PROTECTED SOURCES FOR THE PROBE TEXT. Searching those sources for
+  the synthetic string would require opening exactly the rows this phase may not open -- the check
+  would violate the boundary it claims to verify. The probe's NON_HOLDOUT status rests on
+  CONSTRUCTION, not on search: the string was authored for that file and existed nowhere before it
+  (D-91, section 58.3).
+
+== WHAT REMAINS PERMITTED ==
+
+  Structural verification of the frozen holdout -- file sha256, byte length, row count and
+  provenance-key tallies -- WITHOUT reading any 'observation' value. Phase 1 performed exactly
+  that: 92 rows counted as 38 + 29 + 25 with no observation text read, printed or serialised.
