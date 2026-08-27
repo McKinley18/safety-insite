@@ -1,0 +1,32 @@
+     (sign-in retry after 62s)
+PASS production registers a service worker
+PASS the production page is controlled by the service worker
+PASS the controlling worker is the InSite shell worker
+     offline goto -> 200 fromSW: true
+PASS the production offline shell loads with the network severed
+PASS an inspection is created and an observation recorded with no connection
+PASS the draft survives an offline refresh on production
+PASS the observation survives an offline refresh on production
+PASS no horizontal overflow at 390px offline on production (measured 0px)
+     draft-list items: 1
+     first sync -> SYNCED after 4s :: Synced to Safety InSite — 1 observation(s).
+PASS the production sync settles SYNCED
+PASS exactly one production inspection was produced (1)
+PASS re-syncing produced NO duplicate inspection (1)
+PASS the observation was written exactly once (1)
+  [pageerror] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+PASS the second account sees none of the first account's on-device drafts
+PASS the first account's observation text is not visible to the second
+PASS no horizontal overflow at 390px online on production (measured 0px)
+
+{
+  "passed": true,
+  "passes": 15,
+  "failures": 0,
+  "acceptanceTag": "v1-offline-browser-acceptance-1787794713830",
+  "created": {
+    "inspectionIds": [
+      "90c69cf1-ee49-45e9-b568-8becc8f6e017"
+    ]
+  }
+}

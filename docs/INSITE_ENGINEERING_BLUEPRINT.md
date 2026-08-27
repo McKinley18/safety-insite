@@ -13360,6 +13360,150 @@ Production verification of the deployed release is recorded in §81.11 and in
 `v1OfflineSyncIdempotency` in `docs/INSITE_CURRENT_STATE.json`.
 
 
+### 81.11 Production release and migration `EXECUTED`
+
+| | |
+|---|---|
+| `FINAL_V1_REMEDIATION_SHA` | `e9355e911c221f94c96d2a1b241b4d938435fae2` |
+| previous production | `1da529a0e9f78abd5cbbbc156a99016207695ef0` |
+| push | fast-forward `1da529a0..e9355e91`, **no force**, one commit |
+| migrations | `46 → 47`, `OfflineSyncIdempotency1800000015000` |
+| backend deploy | `dep-da7ounss728c73ej8um0`, `live`, commit `e9355e911c22`, finished `2026-08-27T01:15:43Z` |
+| frontend deploy | `dpl_8PGAZwpnLWrViHHE8QLZDa6f2wjk`, `READY`, `githubCommitSha e9355e91…`, ref `main` |
+
+Backend `/health` reports `gitCommit e9355e911c221f94c96d2a1b241b4d938435fae2`,
+`versionSourceStatus RENDER_GIT_COMMIT`, `nodeEnv production`, `database up`. **Backend and
+frontend run the same SHA.**
+
+Migration applied **before** the push, as 81.9 classified it. Preflight was read-only and found no
+drift: 46 applied, an exact ordered prefix of the repo's 47, exactly one pending. After: 47 rows,
+all three columns `varchar(128) NULL`, all three partial unique indexes present, **row counts
+identical** (`user` 27, `inspection` 2, `observations` 2, `storage_objects` 1, `organization` 8),
+and **every pre-existing row carries `NULL`** — nothing was rewritten.
+
+### 81.11.1 An operator error, recorded rather than buried `STATED_UNCERTAINTY`
+
+The first production migration attempt **failed**: `cannot execute ALTER TABLE in a read-only
+transaction`.
+
+Cause, established rather than guessed: the read-only preflight had run
+`SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY` through Neon's **pooler** endpoint. In
+transaction pooling that setting persists on the *pooled server connection* and is inherited by
+whichever client next reuses that backend. `pg_db_role_setting` was empty and `pg_settings.source`
+read `session`, which is what distinguishes a leaked session default from a persistent
+configuration change.
+
+**No data was modified** — the migration aborted before its first statement, `migrations` still read
+46 and no `clientRequestId` column existed. The leak was cleared deliberately rather than waited
+out (`SET SESSION CHARACTERISTICS AS TRANSACTION READ WRITE` across the pool, then twelve fresh
+pooled connections re-checked at `off`, plus a rolled-back write probe), because the running API
+connects through that same pooler and a poisoned backend would have failed real customer writes.
+
+The migration was then applied over the **direct** (non-pooled) endpoint, which is the correct
+channel for DDL regardless. Recorded so the next operator does not run a read-only preflight
+through a pooler.
+
+### 81.12 Production verification `VERIFICATION`
+
+Two suites against live production. **No payment. Stripe unmodified. No Pro granted.**
+
+**API contract — 28 assertions, 0 failures.**
+
+| | |
+|---|---|
+| backend health, SHA, `nodeEnv` | ok / `e9355e91…` / production |
+| a new production account | starts on **Free** |
+| pricing | Free **$0**, Pro **$24.99/month**, Expert absent |
+| Free HazLenz classify | **402** |
+| Free saved history | site, inspection and observation created, listed and reopened |
+| replay the identifier | returns the **same** production inspection |
+| six concurrent replays | resolve to **one** inspection |
+| different identifier, identical title/site/second | **distinct** inspection |
+| replay the observation identifier | returns the **same** observation |
+| replay the photo identifier | returns the **same** evidence object |
+| `USER_P2` reads `P1`'s inspection by UUID | **404**; absent from `P2`'s list |
+| `P2` replays `P1`'s identifier | gets a **new** inspection of their own, never `P1`'s |
+| `P2` appends to / uploads against `P1`'s inspection | **404** either way |
+| unauthenticated list | **401** |
+| creates with no identifier | still unconstrained — the online path is unchanged |
+
+**Browser — 15 assertions, 0 failures**, at 390px against `https://safety-insite.vercel.app`.
+
+Service worker registered, controlling, and it is `/sw.js`. With the network severed at the worker,
+the shell loads, an inspection is created and an observation recorded, and **both survive an
+offline refresh**. Reconnecting and syncing produced **exactly one** production inspection, with the
+observation written **exactly once**; **re-syncing produced no duplicate**. Signing out and into a
+second account showed **none** of the first account's on-device drafts and none of its observation
+text. Horizontal overflow **0** offline and online.
+
+### 81.12.1 Three production characteristics worth stating plainly `STATED_UNCERTAINTY`
+
+**The asset cache is empty on production, and the offline shell still works.** Vercel serves
+`/_next/static/**` as `immutable`, so the browser satisfies those requests from its own HTTP cache
+and they never reach the service worker's `fetch` handler. Measured: `insite-shell-v1-shell` holds
+the document, the manifest, the icon and `/offline.html`; `insite-shell-v1-assets` is **not
+created at all**. Offline reopening is therefore currently carried by the document in Cache Storage
+plus the browser's HTTP cache for JavaScript — proven working on production, but a weaker guarantee
+than the local build suggested, because the HTTP cache is evictable independently. Recorded as
+`V1-OFFLINE-ASSETCACHE-01`, a follow-up (precache the build's chunks from a build manifest), not a
+blocker: offline capture demonstrably works end to end on production.
+
+**A cold Render instance can make the first sync report `SYNC_FAILED` while the server commits.**
+Observed live: an idle free-plan instance exceeded the client's 25-second timeout, the draft showed
+`SYNC_FAILED`, and the server had already created the inspection. The retry settled `SYNCED` with
+**exactly one** inspection and **one** observation. That is precisely the case the identity
+contract exists for, observed unplanned on production rather than injected by a test. With the
+instance warm the first sync settled `SYNCED` in **4 seconds**.
+
+**One React #418 hydration text mismatch** was logged during the account-switch leg of the browser
+run. It is **not reproducible** on a normal production load of `/field-capture` — probed with and
+without service-worker control, zero errors both times — and `check:hydration` is clean across 21
+routes at 390px. No functional assertion was affected. Its exact trigger is **not established**, so
+it is recorded as an open observation rather than explained.
+
+### 81.13 Production acceptance data `DISCLOSURE`
+
+The verification created clearly-marked disposable rows in production, all under
+`@insite-acceptance.test` with a `v1-offline-*` local part:
+
+* **17** acceptance accounts, every one matching `v1-offline%@insite-acceptance.test`
+* **9** acceptance inspections (`title LIKE 'v1-offline%'`), **5** acceptance sites
+
+Separation was measured, not assumed: `0` other accounts on that domain, and **15** real
+(non-acceptance, not soft-deleted) accounts, unchanged. Nothing belonging to a real account was
+read, modified or deleted. The rows are left in place and disclosed rather than cleaned up, because
+deleting production rows is itself a mutation this phase was not asked to make.
+
+### 81.14 Final state
+
+```
+PRODUCTION_REMEDIATION_DEPLOYED = TRUE
+V1_FREE_HISTORY                 = COMPLETE
+V1_MENU_01                      = FIXED
+V1_PRICE_01                     = FIXED
+V1_CLOSURECHK_01                = FIXED
+CROSS_USER_SERVER_ISOLATION     = PASS
+CROSS_USER_OFFLINE_ISOLATION    = PASS
+OFFLINE_FIELD_CAPTURE           = SUPPORTED
+OFFLINE_SYNC                    = SUPPORTED
+OFFLINE_SYNC_IDEMPOTENCY        = PASS
+OFFLINE_HAZLENZ                 = ONLINE_REQUIRED
+PRODUCTION_STRIPE_PRICE         = USD_2499_MONTHLY
+LIVE_PAYMENT_PROOF              = FALSE
+```
+
+Open, non-blocking: `V1-OFFLINE-ASSETCACHE-01` (81.12.1), the unattributed React #418 observation,
+the two documented §13.1 HazLenz failures, the three unrun KG suites of §76.9, dead
+`BILLING_SUCCESS_URL`/`BILLING_CANCEL_URL`, and production's `STRIPE_SECRET_KEY` lacking Prices Read.
+
+**Terminal:** `INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE —
+FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING`
+
+The **only** remaining launch evidence gap is the paid path: a real payment → Stripe webhook →
+subscription persisted → Pro entitlement activates → entitlement survives logout/login. It stays
+`DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`. Production has still never processed a real
+payment, and this phase did not manufacture one.
+
 ---
 
 ## EVIDENCE INDEX

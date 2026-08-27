@@ -1,0 +1,54 @@
+# acceptance tag: v1-offline-acceptance-1787793497350
+
+PASS backend health ok and database up
+PASS backend runs FINAL_V1_REMEDIATION_SHA
+PASS backend nodeEnv is production
+PASS acceptance account P1 registered and signed in
+PASS a new production account starts on the Free tier
+PASS Free is $0 in production
+PASS Pro is $24.99/month in production
+PASS Expert is not offered in production
+PASS Free HazLenz classification is refused with 402 in production
+PASS Free account can create a site
+PASS Free account can create an inspection carrying a client identity
+PASS Free account can record an observation
+PASS Free saved history lists the account's own inspection
+PASS reopening the inspection returns its own observation
+PASS replaying the identifier returns the SAME production inspection
+PASS six concurrent replays resolve to one production inspection
+PASS a different identifier creates a distinct inspection despite identical title, site and time
+PASS replaying the observation identifier returns the SAME observation
+PASS evidence upload succeeds in production
+PASS replaying the photo identifier returns the SAME evidence object
+PASS acceptance account P2 registered and distinct
+PASS P2 cannot read P1's inspection by known UUID (404)
+PASS P1's inspection is absent from P2's list
+PASS P2 replaying P1's identifier gets a NEW inspection of their own, never P1's
+PASS P2 cannot append to P1's inspection, identifier or not
+PASS P2 cannot upload evidence to P1's inspection, identifier or not
+PASS unauthenticated inspection list is refused with 401
+PASS creates carrying NO identifier remain unconstrained (the online path is unchanged)
+
+{
+  "passed": true,
+  "passes": 28,
+  "failures": 0,
+  "acceptanceTag": "v1-offline-acceptance-1787793497350",
+  "created": {
+    "userIds": [
+      "89a4e1ea-22bd-4533-abb1-12771ea3d7a1",
+      "4725f36c-ae84-4466-a329-0fca3d288132"
+    ],
+    "siteIds": [
+      "46a808c2-34b0-4955-b9ba-a0494fdc9b4b",
+      "5a4b33bf-b6ca-4c1d-8bef-215994074546"
+    ],
+    "inspectionIds": [
+      "886e1e08-3a18-4971-910e-0377ed49282c",
+      "b981a3cb-876d-4388-bb51-03e44abd499c",
+      "8b63c162-64b7-4890-b38a-cf73cbcd60e1",
+      "65a20dfb-da56-455d-b98a-ff74f9e3215c",
+      "e5be90bd-e3f9-4e45-b8ec-28b1cd5560db"
+    ]
+  }
+}

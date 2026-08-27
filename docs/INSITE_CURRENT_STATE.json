@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_OFFLINE_SYNC_IDEMPOTENCY_HARDENED — RELEASE COMMIT PREPARED",
+  "checkpoint": "INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE — FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING",
   "readiness": "NO LOCAL FUNCTIONAL OR RESPONSIVE BLOCKERS. The three gaps blueprint 73.11 recorded are closed: the hydration mismatch is NOT_REPRODUCIBLE and now has a permanent check; the phone inspection workflow was driven end to end at 390px (20/20); and the three routes previously measured empty were re-measured populated, which surfaced and fixed four real mobile defects. Everything remaining is a production commerce or release action.",
-  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: deploy the sections 78/79/80 remediation, which is implemented and verified locally and has NOT been committed, pushed or deployed.",
+  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: V1-OFFLINE-ASSETCACHE-01 (precache the build's chunks so the offline shell does not depend on the browser's HTTP cache for JavaScript).",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -130,8 +130,8 @@
     "governedCutoverModeSetInProduction": false,
     "customerDefaultMode": "LEGACY",
     "note": "GOVERNED_CUTOVER_MODE is unset everywhere outside disposable verification servers. MUST_REVERIFY against live environment.",
-    "productionMigrationsApplied": 40,
-    "productionMigrationsNote": "Production still has 40 applied migrations, latest RefreshTokens1800000008000. The six governed-release migrations (1800000009000-1800000014000) remain UNAPPLIED in production. Operation 1 applied migrations only to disposable local test_op1_* databases.",
+    "productionMigrationsApplied": 47,
+    "productionMigrationsNote": "Production has 47 applied migrations, latest OfflineSyncIdempotency1800000015000, applied 2026-08-27 before the e9355e91 deploy. The six governed-release migrations (1800000009000-1800000014000) were applied by section 76.",
     "changedByOperation1": false
   },
   "cutover": {
@@ -10335,7 +10335,7 @@
     "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — production has still never processed a real payment, and sections 78, 79 and 80 are all undeployed."
   },
   "v1OfflineSyncIdempotency": {
-    "terminal": "PENDING_PRODUCTION_VERIFICATION — recorded by the documentation checkpoint that follows the release commit",
+    "terminal": "INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE — FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 81",
     "evidenceRoot": "verification/insite-v1-offline-sync-idempotency-2026-08-26/",
@@ -10372,7 +10372,14 @@
       "destructiveOperations": "NONE. No DROP TABLE, DROP COLUMN, TRUNCATE or DELETE in up(). Nothing is rewritten and no constraint can reject an existing row.",
       "classification": "REQUIRED_BEFORE_NEW_CODE and SAFE_BEFORE_NEW_CODE — the same classification section 76 applied to its six migrations. The running pre-release code selects only the columns its entities declare and never sees the new one, so it tolerates the migration; the new code requires it.",
       "order": "migration -> push/deploy. No ordering uncertainty.",
-      "rehearsal": "Applied to a fresh disposable database from zero: 47 migrations, exit 0, 47 rows in the migrations table, all three partial unique indexes present and confirmed via pg_indexes. Also applied to the already-migrated verification database. The down() statements were executed inside a rolled-back transaction to confirm they are valid SQL. Local rehearsal ran on PostgreSQL 16.13; production is 17.11 — a stated difference, not a matched control."
+      "rehearsal": "Applied to a fresh disposable database from zero: 47 migrations, exit 0, 47 rows in the migrations table, all three partial unique indexes present and confirmed via pg_indexes. Also applied to the already-migrated verification database. The down() statements were executed inside a rolled-back transaction to confirm they are valid SQL. Local rehearsal ran on PostgreSQL 16.13; production is 17.11 — a stated difference, not a matched control.",
+      "appliedToProduction": {
+        "order": "migration applied BEFORE the push, as classified",
+        "preflight": "read-only; 46 applied, an exact ordered prefix of the repo's 47, exactly one pending, zero drift",
+        "after": "47 rows; all three columns varchar(128) NULL; all three partial unique indexes present",
+        "rowCountsIdentical": "user 27, inspection 2, observations 2, storage_objects 1, organization 8 — identical before and after",
+        "existingRowsUntouched": "every pre-existing row carries NULL in the new column; nothing was rewritten"
+      }
     },
     "concurrency": {
       "problem": "A check-then-insert is not a lock: two concurrent replays both miss the check and both insert.",
@@ -10486,6 +10493,112 @@
       "secretScan": "Staged-content scan clean. No API key, token, private key, connection string or credential in the staged diff; the only credential-shaped strings are test fixtures with literal passwords in disposable verification scripts."
     },
     "livePaymentProof": false,
-    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — unchanged. Nothing in this phase touches Stripe, performs a payment, or grants Pro."
+    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — unchanged. Nothing in this phase touches Stripe, performs a payment, or grants Pro.",
+    "FINAL_V1_REMEDIATION_SHA": "e9355e911c221f94c96d2a1b241b4d938435fae2",
+    "release": {
+      "previousProductionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+      "FINAL_V1_REMEDIATION_SHA": "e9355e911c221f94c96d2a1b241b4d938435fae2",
+      "push": "fast-forward 1da529a0..e9355e91, ONE commit, no force",
+      "backendDeploy": "dep-da7ounss728c73ej8um0, live, commit e9355e911c22, finished 2026-08-27T01:15:43Z",
+      "frontendDeploy": "dpl_8PGAZwpnLWrViHHE8QLZDa6f2wjk, READY, githubCommitSha e9355e911c221f94c96d2a1b241b4d938435fae2, ref main",
+      "backendHealth": "gitCommit e9355e911c221f94c96d2a1b241b4d938435fae2, versionSourceStatus RENDER_GIT_COMMIT, nodeEnv production, database up",
+      "sameSha": true
+    },
+    "operatorError": {
+      "issueId": "V1-OFFLINE-POOLERLEAK-01",
+      "whatHappened": "The FIRST production migration attempt failed with 'cannot execute ALTER TABLE in a read-only transaction'.",
+      "cause": "The read-only preflight had run SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY through Neon's POOLER endpoint. In transaction pooling that setting persists on the pooled SERVER connection and is inherited by whichever client next reuses that backend. Established rather than guessed: pg_db_role_setting was empty and pg_settings.source read 'session', which is what distinguishes a leaked session default from a persistent configuration change.",
+      "dataImpact": "NONE. The migration aborted before its first statement; migrations still read 46 and no clientRequestId column existed.",
+      "remediation": "Cleared deliberately rather than waited out — SET SESSION CHARACTERISTICS AS TRANSACTION READ WRITE across the pool, then twelve fresh pooled connections re-checked at 'off', plus a rolled-back write probe. This mattered because the running API connects through that same pooler and a poisoned backend would have failed real customer writes.",
+      "thenApplied": "Over the DIRECT (non-pooled) endpoint, which is the correct channel for DDL regardless.",
+      "lesson": "Do not run a read-only preflight through a connection pooler."
+    },
+    "productionVerification": {
+      "payment": "NONE. Stripe unmodified. No Pro granted.",
+      "apiContract": {
+        "assertions": 28,
+        "failures": 0,
+        "evidence": "verification/insite-v1-offline-sync-idempotency-2026-08-26/production-api-acceptance.txt"
+      },
+      "browser": {
+        "assertions": 15,
+        "failures": 0,
+        "viewport": "390x844",
+        "target": "https://safety-insite.vercel.app",
+        "evidence": "verification/insite-v1-offline-sync-idempotency-2026-08-26/production-browser-acceptance.txt"
+      },
+      "proved": [
+        "backend health ok, database up, running FINAL_V1_REMEDIATION_SHA in production",
+        "a new production account starts on Free; pricing is Free $0 / Pro $24.99 monthly; Expert absent",
+        "Free HazLenz classify is refused with 402",
+        "Free saved history: site, inspection and observation created, listed and reopened",
+        "replaying an identifier returns the SAME production inspection; six CONCURRENT replays resolve to one",
+        "a different identifier creates a distinct inspection despite identical title, site and second",
+        "replaying an observation identifier returns the SAME observation; replaying a photo identifier returns the SAME evidence object",
+        "USER_P2 reading P1's inspection by UUID gets 404, and it is absent from P2's list",
+        "P2 replaying P1's identifier gets a NEW inspection of their own, never P1's",
+        "P2 cannot append to, or upload evidence against, P1's inspection either way (404)",
+        "unauthenticated inspection list is 401",
+        "creates carrying no identifier remain unconstrained — the online path is unchanged",
+        "service worker registered, controlling, and it is /sw.js",
+        "with the network severed AT THE WORKER: the shell loads, an inspection is created, an observation recorded, and BOTH survive an offline refresh",
+        "reconnect and sync produced EXACTLY ONE production inspection with the observation written EXACTLY ONCE; re-syncing produced NO duplicate",
+        "signing into a second account on the same device showed NONE of the first account's on-device drafts or observation text",
+        "horizontal overflow 0 at 390px offline and online"
+      ]
+    },
+    "productionCharacteristics": {
+      "assetCacheEmptyOnProduction": {
+        "issueId": "V1-OFFLINE-ASSETCACHE-01",
+        "measured": "insite-shell-v1-shell holds the document, manifest, icon and /offline.html. insite-shell-v1-assets is NOT CREATED AT ALL on production.",
+        "cause": "Vercel serves /_next/static/** as immutable, so the browser satisfies those requests from its own HTTP cache and they never reach the service worker's fetch handler. Locally, next start's headers differ and the requests do reach it.",
+        "consequence": "Offline reopening is currently carried by the document in Cache Storage plus the browser's HTTP cache for JavaScript. Proven working on production, but a weaker guarantee than the local build suggested, because the HTTP cache is evictable independently of Cache Storage.",
+        "disposition": "Follow-up (precache the build's chunks from a build manifest). NOT a blocker: offline capture demonstrably works end to end on production."
+      },
+      "coldStartSyncFailure": {
+        "observed": "An idle Render free-plan instance exceeded the client's 25-second timeout: the draft showed SYNC_FAILED while the server had already created the inspection.",
+        "recovery": "The retry settled SYNCED with EXACTLY ONE inspection and ONE observation — precisely the case the identity contract exists for, observed unplanned on production rather than injected by a test.",
+        "warmInstance": "With the instance warm the first sync settled SYNCED in 4 seconds."
+      },
+      "react418Observation": {
+        "observed": "One React #418 hydration text mismatch logged during the account-switch leg of the browser run.",
+        "notReproducible": "Probed a normal production load of /field-capture with and without service-worker control: zero errors both times. check:hydration is clean across 21 routes at 390px.",
+        "impact": "No functional assertion was affected.",
+        "disposition": "Trigger NOT established. Recorded as an open observation rather than explained."
+      }
+    },
+    "productionAcceptanceData": {
+      "convention": "All rows carry @insite-acceptance.test with a v1-offline-* local part.",
+      "accounts": 17,
+      "inspections": 9,
+      "sites": 5,
+      "separationMeasured": "0 other accounts on that domain; 15 real (non-acceptance, not soft-deleted) accounts, unchanged.",
+      "realDataTouched": "NONE — nothing belonging to a real account was read, modified or deleted.",
+      "disposition": "Left in place and disclosed rather than cleaned up, because deleting production rows is itself a mutation this phase was not asked to make."
+    },
+    "finalState": {
+      "PRODUCTION_REMEDIATION_DEPLOYED": true,
+      "V1_FREE_HISTORY": "COMPLETE",
+      "V1_MENU_01": "FIXED",
+      "V1_PRICE_01": "FIXED",
+      "V1_CLOSURECHK_01": "FIXED",
+      "CROSS_USER_SERVER_ISOLATION": "PASS",
+      "CROSS_USER_OFFLINE_ISOLATION": "PASS",
+      "OFFLINE_FIELD_CAPTURE": "SUPPORTED",
+      "OFFLINE_SYNC": "SUPPORTED",
+      "OFFLINE_SYNC_IDEMPOTENCY": "PASS",
+      "OFFLINE_HAZLENZ": "ONLINE_REQUIRED",
+      "PRODUCTION_STRIPE_PRICE": "USD_2499_MONTHLY",
+      "LIVE_PAYMENT_PROOF": false
+    },
+    "remainingGap": "The ONLY remaining launch evidence gap is the paid path: a real payment -> Stripe webhook -> subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION. Production has still never processed a real payment, and this phase did not manufacture one.",
+    "openNonBlocking": [
+      "V1-OFFLINE-ASSETCACHE-01",
+      "the unattributed React #418 observation",
+      "the two documented section 13.1 HazLenz failures",
+      "the three unrun KG suites of section 76.9",
+      "dead BILLING_SUCCESS_URL/BILLING_CANCEL_URL",
+      "production's STRIPE_SECRET_KEY lacking Prices Read"
+    ]
   }
 }
