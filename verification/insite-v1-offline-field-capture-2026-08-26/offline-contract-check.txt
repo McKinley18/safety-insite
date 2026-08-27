@@ -1,0 +1,74 @@
+
+> frontend-next@1.0.0 check:offline-field-capture
+> node scripts/check-offline-field-capture.mjs
+
+PASS 1. a draft never attached to a server record cannot conflict with one
+PASS 1. an unchanged server record is not a conflict
+PASS 1. a server record that advanced while offline IS a conflict
+PASS 1. an archived server record is a conflict rather than an append target
+PASS 1. a retry ADOPTS the record its interrupted attempt already created
+PASS 1. a same-titled record predating the attempt is filtered out, leaving one unambiguous match
+PASS 1. a record predating the attempt is never adopted on its own
+PASS 1. a server record already claimed by another local draft is never adopted
+PASS 1. with no interrupted attempt on record, nothing is adopted
+PASS 1. two equally plausible candidates refuse adoption rather than guess
+PASS 2. the service worker ignores every cross-origin request (the API lives on its own origin)
+PASS 2. the service worker never handles an authorised request
+PASS 2. the service worker never handles a same-origin /api/ request
+PASS 2. the service worker never caches an RSC payload
+PASS 2. the service worker never handles a non-GET request
+PASS 2. activating a new worker version deletes the superseded shell caches
+PASS 2. only an explicit route allowlist may have its document shell cached
+PASS 2. a non-allowlisted offline navigation falls back to the static offline document
+PASS 2. the offline fallback document references no external asset it could not fetch offline
+PASS 2. the offline fallback states what does and does not work without a connection
+PASS 2. the offline fallback routes the user to the workflow that does work
+PASS 2. no code path writes an authorised response into the cache
+PASS 2. the installed application starts at Field Capture
+PASS 2. the manifest declares a standalone display mode
+PASS 2. the manifest is declared once, via the App Router file convention
+PASS 2. the shell worker is registered from the root layout
+PASS 2. registration matches the documented Next.js service-worker call
+PASS 2. legacy-cache cleanup no longer unregisters the offline shell worker
+PASS 2. legacy-cache cleanup no longer deletes the offline shell caches
+PASS 2. the offline namespace is a digest, so no raw account identifier becomes an IndexedDB key
+PASS 2. with no signed-in account the namespace resolves to null, so no query can be formed
+PASS 2. drafts are indexed by the per-account namespace
+PASS 2. a listing re-filters on the namespace rather than trusting the index alone
+PASS 2. a single-record read re-checks the namespace
+PASS 2. a decrypted draft carrying a foreign namespace is discarded, not returned
+PASS 2. every asynchronous store entry point resolves an identity before touching storage
+PASS 2. the offline store never falls back to localStorage
+PASS 2. draft payloads are encrypted under the per-account key before being written
+PASS 2. removing an account's offline data destroys its key material with its rows
+PASS 2. the offline store never persists a field named like "password"
+PASS 2. the offline store never persists a field named like "refreshToken"
+PASS 2. the offline store never persists a field named like "authToken"
+PASS 2. the offline store never persists a field named like "sentinel_auth_token"
+PASS 2. the offline store never persists a field named like "stripe"
+PASS 2. the offline store never persists a field named like "cardNumber"
+PASS 2. synchronisation issues no PATCH or DELETE against server-held records
+PASS 2. synchronisation never transitions a server inspection's status
+PASS 2. an attempt marker is persisted BEFORE the non-idempotent create
+PASS 2. the server identifier is recorded before anything is appended to it
+PASS 2. an already-acknowledged observation is skipped on retry rather than re-posted
+PASS 2. SYNCED is claimed only when every part was acknowledged by the server
+PASS 2. a staleness check runs before any append and can stop it
+PASS 2. synchronisation never runs HazLenz analysis
+PASS 2. the API client declares a no-retry policy for non-idempotent creates
+PASS 2. createPersistedSite() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. createPersistedInspection() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. addPersistedObservation() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. uploadInspectionEvidence() does not auto-retry
+PASS 2. new local work on a synced draft returns it to LOCAL_ONLY instead of still claiming SYNCED
+PASS 2. the UI distinguishes device-saved from server-saved in its own words
+PASS 2. the capture page states the online boundary for HazLenz and reports
+PASS 2. the sync control names connectivity as the requirement when offline
+PASS 2. the offline badge does not claim automatic background synchronisation
+PASS 2. the removed false offline claim has not returned
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_inspections_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_report_drafts_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_inspection_sync_queue_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_active_local_inspection_id
+
+{"passed":true,"passes":68,"failures":0}

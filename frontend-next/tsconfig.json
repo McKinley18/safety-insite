@@ -41,7 +41,9 @@
     ".next-ux/types/**/*.ts",
     ".next-ux/dev/types/**/*.ts",
     ".next-release/types/**/*.ts",
-    ".next-release/dev/types/**/*.ts"
+    ".next-release/dev/types/**/*.ts",
+    ".next-offline-build/types/**/*.ts",
+    ".next-offline-build/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

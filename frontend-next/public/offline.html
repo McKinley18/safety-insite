@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>No connection · Safety InSite</title>
+    <!--
+      The service worker's navigation fallback.
+
+      This is deliberately a PLAIN STATIC DOCUMENT rather than a Next.js route. A cached Next
+      document is only inert until it hydrates: the App Router then reconciles against the CURRENT
+      URL and re-renders, so an /offline route served as the fallback for /some/other/path was
+      replaced in the browser by that path's client render (or by Next's 404) the moment hydration
+      finished -- measured, not assumed. Nothing here hydrates, so what the worker serves is what
+      the field user actually reads.
+
+      It therefore also carries its own styling. No application CSS, no fonts, no images: an
+      external reference is exactly what cannot be fetched in the situation this page exists for.
+    -->
+    <style>
+      :root {
+        color-scheme: light dark;
+        --page: #f3f7fb;
+        --surface: #ffffff;
+        --border: #dbe4ee;
+        --text: #0b1320;
+        --muted: #475569;
+        --accent: #1d72b8;
+        --accent-text: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --page: #07111f;
+          --surface: #0b1320;
+          --border: rgba(255, 255, 255, 0.15);
+          --text: #f8fafc;
+          --muted: #cbd5e1;
+          --accent: #1d72b8;
+          --accent-text: #ffffff;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100svh;
+        padding: 24px 16px;
+        background: var(--page);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      main {
+        width: 100%;
+        max-width: 560px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px 20px;
+      }
+      .eyebrow {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      h1 { margin: 8px 0 0; font-size: 24px; line-height: 1.2; letter-spacing: -0.02em; }
+      p { margin: 12px 0 0; font-size: 14px; line-height: 1.6; font-weight: 600; color: var(--muted); }
+      strong { color: var(--text); font-weight: 900; }
+      .actions { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+      a.button, button.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        font-family: inherit;
+      }
+      a.button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+      @media (min-width: 520px) { .actions { flex-direction: row; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">No connection</p>
+      <h1>This page needs a connection</h1>
+      <p>
+        Safety InSite could not reach the network, and this screen was not saved on this device.
+      </p>
+      <p>
+        <strong>Field Capture still works.</strong> Observations, locations and photos you record
+        there are saved on this device and sync when you are back online.
+      </p>
+      <p>
+        <strong>HazLenz AI analysis, report generation and PDF export need a connection.</strong>
+        They run on Safety InSite's servers, so they resume once you reconnect. Nothing is analysed
+        or generated on the device.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="/field-capture">Go to Field Capture</a>
+        <button class="button" type="button" onclick="window.location.reload()">Try again</button>
+      </div>
+    </main>
+  </body>
+</html>

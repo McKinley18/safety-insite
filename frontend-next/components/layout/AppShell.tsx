@@ -70,6 +70,7 @@ const navItems = [
       "/inspections",
       "/inspection",
       "/inspection-cover",
+      "/field-capture",
     ],
   },
   { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
@@ -95,6 +96,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [hasAuthSession, setHasAuthSession] = useState(false);
   const [profileInitials, setProfileInitials] = useState("");
   const isOnline = useNetworkStatus();
+
+  // The offline badge must describe the route the user is actually on, because the two capture
+  // surfaces make DIFFERENT promises and a single sentence cannot be true of both. Field Capture
+  // persists to per-user IndexedDB, so its work survives a reload with no connection. The guided
+  // workspace persists nothing locally by design (its record is server-authoritative), so work
+  // there is still lost on reload -- saying otherwise would be the false offline claim §79.6
+  // removed. Neither message promises automatic background sync, because there is none: sync is an
+  // explicit action on /field-capture.
+  const onOfflineCaptureRoute =
+    pathname === "/field-capture" || pathname.startsWith("/field-capture/");
+  const offlineBadgeTitle = onOfflineCaptureRoute
+    ? "Offline — Field Capture keeps saving to this device. HazLenz analysis and syncing to Safety InSite resume when the connection returns; sync is a button you press, not automatic."
+    : "Offline — HazLenz analysis and saving to Safety InSite are unavailable here. Anything typed but not yet saved on this screen is not stored on this device and will be lost if you reload. Use Field Capture to record work that must survive being offline.";
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
   const profileButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -322,7 +336,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
               <div className="flex shrink-0 items-center gap-3">
                 {!isOnline && (
-                  <div className="flex items-center gap-2 rounded-full bg-app-warning px-4 py-1.5 text-[13px] ring-1 ring-orange-500/20" title="Offline — changes you make are kept on this device until the connection returns">
+                  <div className="flex items-center gap-2 rounded-full bg-app-warning px-4 py-1.5 text-[13px] ring-1 ring-orange-500/20" title={offlineBadgeTitle}>
                     <WifiOff className="h-3.5 w-3.5 text-orange-700 dark:text-orange-200" />
                     <span className="hidden text-xs font-black text-orange-800 dark:text-orange-100 sm:inline-block">Offline</span>
                   </div>
@@ -345,11 +359,29 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     {profileInitials}
                   </button>
 
+                  {/*
+                    V1-MENU-01: this overlay must be OPAQUE, and BOTH of its background values are
+                    written as arbitrary hex on purpose. Two separate mechanisms in globals.css
+                    otherwise make it translucent, and the page ghosts through the menu labels:
+
+                      1. `bg-app-surface` is hand-written in globals.css AFTER the tailwind import,
+                         so on equal specificity it wins -- and it resolves to --app-surface, which
+                         is translucent by design (rgba(255,255,255,0.94) light,
+                         rgba(15,23,42,0.9) dark). That token is shared with 13 other surfaces and
+                         is NOT changed here.
+                      2. `.dark :where(.bg-white) { background-color: var(--app-surface) !important }`
+                         remaps the plain `bg-white` utility back onto that same translucent token
+                         in dark mode, with !important -- which also silently defeated the opaque
+                         `dark:bg-[#07111F]` that was already declared on this element.
+
+                    `bg-[#FFFFFF]` and `dark:bg-[#07111F]` are matched by neither rule, so the menu
+                    stays fully opaque in both themes. Measured: alpha 1 light and dark.
+                  */}
                   {profileOpen && portalMounted &&
                     createPortal(
                       <div
                         ref={profileMenuRef}
-                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-app-border bg-app-surface text-app-primary shadow-2xl shadow-slate-950/20 dark:bg-[#07111F] sm:right-4 sm:top-[82px]"
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-app-border bg-[#FFFFFF] text-app-primary shadow-2xl shadow-slate-950/20 dark:bg-[#07111F] sm:right-4 sm:top-[82px]"
                       >
 
                       {isPinRequired() && (

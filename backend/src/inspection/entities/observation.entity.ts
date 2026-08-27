@@ -26,6 +26,14 @@ export class Observation {
   @Column({ type: 'integer', default: 1 })
   version: number;
 
+  /**
+   * Client-minted idempotency identity for one offline observation. Unique per
+   * (inspectionId, createdByUserId) -- partial index `uq_observation_client_request`,
+   * migration 1800000015000. NULL for the online path and everything predating the column.
+   */
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  clientRequestId: string | null;
+
   @Column({ type: 'uuid' })
   createdByUserId: string;
 

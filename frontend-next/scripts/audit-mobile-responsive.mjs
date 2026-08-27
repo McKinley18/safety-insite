@@ -56,6 +56,10 @@ const ROUTES = [
   { path: "/command-center", id: "command-center", cls: "PRODUCT" },
   { path: "/inspections", id: "inspections", cls: "PRODUCT" },
   { path: "/inspection-workspace", id: "inspection-workspace", cls: "PRODUCT" },
+  // Offline field capture is a phone-first field surface, so it belongs in the phone sweep like
+  // every other product route. (The offline fallback is public/offline.html, a static document
+  // outside the Next route table -- it is measured by the offline verification suite instead.)
+  { path: "/field-capture", id: "field-capture", cls: "PRODUCT" },
   { path: "/reports", id: "reports", cls: "PRODUCT" },
   { path: "/safety-calendar", id: "safety-calendar", cls: "PRODUCT" },
   { path: "/settings", id: "settings", cls: "ACCOUNT" },

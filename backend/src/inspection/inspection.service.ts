@@ -8,6 +8,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, IsNull, QueryFailedError, Repository } from 'typeorm';
 import { AuthenticatedUser, isOrganizationManager, requireAuthenticatedUser } from '../common/authenticated-user';
+import { isUniqueViolation } from '../common/unique-violation';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { SitesService } from '../sites/sites.service';
@@ -148,22 +149,59 @@ export class InspectionService {
     return inspection;
   }
 
+  /**
+   * Resolves an idempotency identifier to the row it already created, for THIS user only.
+   *
+   * Scoped to `createdByUserId` rather than to the organisation on purpose. Authorised
+   * organisation sharing governs who may READ an inspection; it does not govern whose write a
+   * request is. Keying on the creator means a member of an organisation can never resolve or adopt
+   * a colleague's inspection by presenting their identifier, which is the property Phase 2
+   * requirement 4 asks for and is strictly narrower than the read model.
+   */
+  private async findByClientRequestId(user: AuthenticatedUser, clientRequestId: string) {
+    return this.inspections.findOne({
+      where: { createdByUserId: user.userId, clientRequestId },
+    });
+  }
+
   async create(rawUser: unknown, dto: CreateInspectionDto) {
     const user = requireAuthenticatedUser(rawUser);
+
+    // Fast path: the identifier already resolves, so this is a replay of an attempt that landed.
+    if (dto.clientRequestId) {
+      const existing = await this.findByClientRequestId(user, dto.clientRequestId);
+      if (existing) return existing;
+    }
+
     const site = await this.sites.findAccessible(user, dto.siteId);
-    const saved = await this.inspections.save(this.inspections.create({
-      title: dto.title.trim(),
-      siteId: site.id,
-      organizationId: site.organizationId,
-      ownerUserId: site.ownerUserId,
-      createdByUserId: user.userId,
-      status: 'draft',
-      version: 1,
-      regulatoryContext: dto.regulatoryContext || 'unknown',
-      completedAt: null,
-      completedByUserId: null,
-      archivedAt: null,
-    }));
+
+    let saved: Inspection;
+    try {
+      saved = await this.inspections.save(this.inspections.create({
+        title: dto.title.trim(),
+        siteId: site.id,
+        organizationId: site.organizationId,
+        ownerUserId: site.ownerUserId,
+        createdByUserId: user.userId,
+        clientRequestId: dto.clientRequestId || null,
+        status: 'draft',
+        version: 1,
+        regulatoryContext: dto.regulatoryContext || 'unknown',
+        completedAt: null,
+        completedByUserId: null,
+        archivedAt: null,
+      }));
+    } catch (error) {
+      // The check above is not a lock. Two concurrent replays of the same identifier both miss it
+      // and both insert; the partial unique index rejects the loser. The DATABASE is the authority
+      // that one identifier means one row, so a unique violation here is the idempotent outcome,
+      // not a failure -- re-read and return what won.
+      if (dto.clientRequestId && isUniqueViolation(error)) {
+        const winner = await this.findByClientRequestId(user, dto.clientRequestId);
+        if (winner) return winner;
+      }
+      throw error;
+    }
     if (saved.regulatoryContext !== 'unknown') {
       await this.audits.save(this.audits.create({
         actorUserId: user.userId, organizationId: saved.organizationId,
@@ -310,13 +348,32 @@ export class InspectionService {
   async addObservation(rawUser: unknown, inspectionId: string, dto: CreateObservationDto) {
     const user = requireAuthenticatedUser(rawUser);
     await this.findAccessible(user, inspectionId, true);
-    return this.observations.save(this.observations.create({
-      inspectionId,
-      rawText: dto.rawText.trim(),
-      evidenceSource: dto.evidenceSource || 'direct_observation',
-      version: 1,
-      createdByUserId: user.userId,
-    }));
+
+    const idempotencyScope = dto.clientRequestId
+      ? { inspectionId, createdByUserId: user.userId, clientRequestId: dto.clientRequestId }
+      : null;
+
+    if (idempotencyScope) {
+      const existing = await this.observations.findOne({ where: idempotencyScope });
+      if (existing) return existing;
+    }
+
+    try {
+      return await this.observations.save(this.observations.create({
+        inspectionId,
+        rawText: dto.rawText.trim(),
+        evidenceSource: dto.evidenceSource || 'direct_observation',
+        clientRequestId: dto.clientRequestId || null,
+        version: 1,
+        createdByUserId: user.userId,
+      }));
+    } catch (error) {
+      if (idempotencyScope && isUniqueViolation(error)) {
+        const winner = await this.observations.findOne({ where: idempotencyScope });
+        if (winner) return winner;
+      }
+      throw error;
+    }
   }
 
   async updateObservation(rawUser: unknown, observationId: string, dto: UpdateObservationDto) {

@@ -94,6 +94,24 @@ const LEGACY_EXPERT_ALLOWLIST = new Map([
     "backend/src/billing/billing-regression.ts",
     "Asserts the retired-Expert normalization above still holds.",
   ],
+  [
+    "frontend-next/components/pricing/planData.ts",
+    "Declares the canonical launch contract 'EXPERT = NOT_A_V1_PLAN'. The word appears only "
+      + "in that declaration -- the file defines Free and Pro and no Expert plan. Pinned below "
+      + "by CONTRACT_DECLARATION_ONLY so the entry cannot silently cover a real Expert plan "
+      + "reintroduced into this file later.",
+  ],
+]);
+
+// A file-level allowlist entry is a blunt instrument: it would let ANY future Expert
+// reference into that file. planData.ts is the single source of truth for what a customer
+// is offered, so it is the last file where that should be possible. Its entry above is
+// therefore pinned -- every /expert/i line in it must BE the contract declaration.
+const CONTRACT_DECLARATION_ONLY = new Map([
+  [
+    "frontend-next/components/pricing/planData.ts",
+    /^\s*\/\/.*EXPERT\s*=\s*NOT_A_V1_PLAN\.?\s*$/,
+  ],
 ]);
 
 const expertHits = customerFacingFiles.filter((file) => /expert/i.test(read(file)));
@@ -103,6 +121,18 @@ assert(
   "'Expert' appears only in allowlisted internal-legacy files",
   unexpectedExpert.join(", "),
 );
+for (const [file, allowedLine] of CONTRACT_DECLARATION_ONLY) {
+  const offending = read(file)
+    .split("\n")
+    .map((line, index) => [index + 1, line])
+    .filter(([, line]) => /expert/i.test(line) && !allowedLine.test(line));
+  assert(
+    offending.length === 0,
+    `${file} names Expert ONLY in the canonical 'EXPERT = NOT_A_V1_PLAN' contract line`,
+    offending.map(([n, line]) => `line ${n}: ${line.trim()}`).join(" | "),
+  );
+}
+
 for (const file of LEGACY_EXPERT_ALLOWLIST.keys()) {
   assert(
     expertHits.includes(file) || !customerFacingFiles.includes(file),

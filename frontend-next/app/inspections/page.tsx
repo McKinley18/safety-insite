@@ -80,6 +80,25 @@ const workflowOptions: {
   },
 ];
 
+const PERSISTED_STATUS_LABELS: Record<PersistedInspection["status"], string> = {
+  draft: "Draft",
+  in_review: "In review",
+  completed: "Completed",
+  archived: "Archived",
+};
+
+function regulatoryContextFromPersisted(inspection: PersistedInspection): RegulatoryContext {
+  return (inspection.regulatoryContext as RegulatoryContext) || "unknown";
+}
+
+function formatSavedAt(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" })
+    + " · "
+    + date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+}
+
 function getProgramStatus(programs: InspectionProgramRecord[]) {
   return {
     scheduled: programs.length || 0,
@@ -200,6 +219,38 @@ export default function InspectionsPage() {
     } finally {
       setSaving(false);
     }
+  }
+
+  // V1-FREEHIST-01 (history half): reopen an already-persisted inspection.
+  //
+  // This is the ONLY other writer of `sentinel_selected_inspection_context` besides
+  // startInspection() above, and it writes the same shape on purpose -- the workspace reads
+  // `persistedInspectionId` from it and re-fetches everything else from the server, so the
+  // record a user reopens is always the server's copy, scoped by the same ownerUserId /
+  // organizationId predicate that produced this list. Nothing here widens access: the list is
+  // whatever GET /inspections already returned for THIS account.
+  //
+  // Before this existed, starting a second Quick Capture overwrote the selection context and
+  // the earlier inspection became unreachable in the UI even though it was intact on the server.
+  function resumeInspection(inspection: PersistedInspection) {
+    const context = regulatoryContextFromPersisted(inspection);
+    window.localStorage.setItem(
+      "sentinel_selected_inspection_context",
+      JSON.stringify({
+        persistedInspectionId: inspection.id,
+        persistedSiteId: inspection.siteId,
+        persistenceState: "saved",
+        inspectionType: "quick_hazard_capture",
+        inspectionTitle: inspection.title,
+        agency: regulatoryContextLabel(context),
+        regulatoryContext: context,
+        workflowDepth: "quick",
+      }),
+    );
+    // Drop any report draft belonging to the previously selected inspection, exactly as
+    // startInspection() does, so one inspection's cover page cannot bleed onto another.
+    void clearActiveInspectionDraft();
+    router.push("/inspection-workspace");
   }
 
   async function addSite() {
@@ -341,6 +392,33 @@ export default function InspectionsPage() {
             {persistedInspections.length === 1 ? "" : "s"}
           </p>
         </div>
+        {/*
+          Offline field capture. Kept as its own route rather than folded into the two workflow
+          cards above, because it is a genuinely different guarantee: those two create the record
+          on the SERVER before anything else happens, so both need a connection at the first step.
+          Field Capture records on the device first and syncs on demand.
+        */}
+        <div className="mx-auto mt-4 max-w-3xl rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700">
+          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-[#5DB7FF]">
+            No signal on site?
+          </p>
+          <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-white">
+            Field Capture works offline
+          </h3>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            Record observations, locations and photos with no connection. They are saved on this
+            device and sync to Safety InSite when you choose. HazLenz AI analysis and reports still
+            need a connection.
+          </p>
+          <AppLinkButton
+            href="/field-capture"
+            variant="accent"
+            className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 py-2 !text-white sm:w-auto"
+          >
+            Open Field Capture
+          </AppLinkButton>
+        </div>
+
         <div className="mx-auto mt-4 grid max-w-3xl justify-items-center gap-3 sm:grid-cols-2">
           {workflowOptions.map((workflow) => {
             const selected = selectedWorkflow.id === workflow.id;
@@ -451,6 +529,66 @@ export default function InspectionsPage() {
               </article>
             );
           })}
+        </div>
+
+        {/*
+          Saved history. Free's advertised "saved history" was previously untruthful: this page
+          already fetched listPersistedInspections() but rendered only its .length, so nothing
+          could be reopened and a second Quick Capture stranded the first inspection.
+
+          Deliberately minimal -- it lists what the existing endpoint already returns and resumes
+          through the existing workspace. No new endpoint, no new storage, no navigation redesign.
+          Entitlement is not consulted anywhere here: reading back your OWN saved records is
+          record-keeping, which Free is entitled to.
+        */}
+        <div className="mt-6 border-t border-slate-200 pt-5 dark:border-slate-700">
+          <SectionHeader
+            eyebrow="Saved history"
+            title="Your saved inspections"
+            description="Reopen any inspection you have already saved. Starting a new one never replaces these."
+          />
+          {persistedInspections.length === 0 ? (
+            <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+              No saved inspections yet. Start one above and it will appear here.
+            </p>
+          ) : (
+            <ul className="mt-3 flex flex-col gap-2">
+              {persistedInspections.map((inspection) => {
+                const site = sites.find((item) => item.id === inspection.siteId);
+                const savedAt = formatSavedAt(inspection.updatedAt);
+                return (
+                  // No `dark:` background: globals.css remaps `.bg-white` onto --app-surface in
+                  // dark mode with !important (see AppShell, V1-MENU-01), so any dark: value here
+                  // would be dead code. These cards sit inside a panel rather than floating over
+                  // page content, so the shared translucent surface is the correct, consistent
+                  // treatment -- unlike the account menu, which had to escape it.
+                  <li
+                    key={inspection.id}
+                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 dark:border-slate-700 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
+                        {inspection.title}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        {PERSISTED_STATUS_LABELS[inspection.status] || inspection.status}
+                        {site ? ` · ${site.name}` : ""}
+                        {` · ${regulatoryContextLabel(regulatoryContextFromPersisted(inspection))}`}
+                        {savedAt ? ` · ${savedAt}` : ""}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => resumeInspection(inspection)}
+                      className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full bg-[#1D72B8] px-5 py-2 text-sm font-black text-white transition hover:bg-[#155A92] active:scale-95"
+                    >
+                      Reopen
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
 
         <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">

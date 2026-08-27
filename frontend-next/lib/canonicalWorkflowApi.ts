@@ -203,11 +203,33 @@ export type HazLenzAnalysisResult = Record<string, unknown> & {
   }>;
 };
 
-async function apiJson<T>(path: string, init?: RequestInit): Promise<T> {
+/**
+ * `NON_IDEMPOTENT` disables apiFetch's transport-level retry.
+ *
+ * apiFetch retries once when the request THROWS (timeout or connection loss). For a GET, or for a
+ * POST that carries an idempotency key, that is safe and desirable. For a create that carries no
+ * key it is a duplicate factory: the server can commit the row and the response can still be lost,
+ * and the automatic retry then creates a second one. Measured, not theorised -- an interrupted
+ * offline sync produced TWO server inspections from one user action, because the retry fired
+ * before any client code could observe the failure.
+ *
+ * These calls now DO carry a client-supplied `clientRequestId`, and the server resolves it to the
+ * row it already created, so a transport retry would no longer duplicate. The no-retry policy is
+ * kept anyway: it applies to every caller including the ones that send no identifier (the whole
+ * online path), and a create that is idempotent at the server is still better not repeated blindly
+ * at the transport layer, where nothing can observe or report what happened.
+ */
+const NON_IDEMPOTENT = { retries: 0 } as const;
+
+async function apiJson<T>(
+  path: string,
+  init?: RequestInit,
+  options?: { timeoutMs?: number; retries?: number },
+): Promise<T> {
   const response = await apiFetch(`${API_BASE_URL}${path}`, {
     ...init,
     headers: { ...authHeaders(), ...(init?.headers || {}) },
-  });
+  }, options);
   if (response.status === 401) throw new Error("AUTH_REQUIRED");
   if (!response.ok) {
     const body = await response.json().catch(() => null);
@@ -224,7 +246,7 @@ export async function createPersistedSite(name: string) {
   return apiJson<PersistedSite>("/sites", {
     method: "POST",
     body: JSON.stringify({ name }),
-  });
+  }, NON_IDEMPOTENT);
 }
 
 export async function updatePersistedSite(id: string, name: string) {
@@ -248,11 +270,17 @@ export async function createPersistedInspection(input: {
   siteId: string;
   title: string;
   regulatoryContext?: RegulatoryContext;
+  /**
+   * Stable, client-minted identity for this inspection, replayed unchanged on every attempt.
+   * The server resolves it to the row it already created FOR THIS USER, so a create whose response
+   * was lost cannot become a duplicate. Omitting it keeps the original non-idempotent behaviour.
+   */
+  clientRequestId?: string;
 }) {
   return apiJson<PersistedInspection>("/inspections", {
     method: "POST",
     body: JSON.stringify(input),
-  });
+  }, NON_IDEMPOTENT);
 }
 
 /** Persists a change to the inspection-level regulatory context (optimistic-version guarded). */
@@ -271,11 +299,20 @@ export async function getPersistedInspection(id: string) {
   return apiJson<PersistedInspection>(`/inspections/${encodeURIComponent(id)}`);
 }
 
-export async function addPersistedObservation(inspectionId: string, rawText: string) {
+export async function addPersistedObservation(
+  inspectionId: string,
+  rawText: string,
+  /** See createPersistedInspection.clientRequestId. Scoped to this inspection and this user. */
+  clientRequestId?: string,
+) {
   return apiJson<PersistedObservation>(`/inspections/${encodeURIComponent(inspectionId)}/observations`, {
     method: "POST",
-    body: JSON.stringify({ rawText, evidenceSource: "direct_observation" }),
-  });
+    body: JSON.stringify({
+      rawText,
+      evidenceSource: "direct_observation",
+      ...(clientRequestId ? { clientRequestId } : {}),
+    }),
+  }, NON_IDEMPOTENT);
 }
 
 export async function updatePersistedObservation(observationId: string, rawText: string, version: number) {
@@ -285,9 +322,18 @@ export async function updatePersistedObservation(observationId: string, rawText:
   });
 }
 
-export async function uploadInspectionEvidence(inspectionId: string, file: File) {
+export async function uploadInspectionEvidence(
+  inspectionId: string,
+  file: File,
+  /**
+   * See createPersistedInspection.clientRequestId. This route is multipart, so the identifier
+   * travels as a form FIELD rather than in a JSON body.
+   */
+  clientRequestId?: string,
+) {
   const data = new FormData();
   data.append("file", file);
+  if (clientRequestId) data.append("clientRequestId", clientRequestId);
   const token = getAuthToken();
   const response = await apiFetch(
     `${API_BASE_URL}/inspections/${encodeURIComponent(inspectionId)}/evidence`,
@@ -296,6 +342,7 @@ export async function uploadInspectionEvidence(inspectionId: string, file: File)
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       body: data,
     },
+    NON_IDEMPOTENT,
   );
   if (response.status === 401) throw new Error("AUTH_REQUIRED");
   if (!response.ok) {

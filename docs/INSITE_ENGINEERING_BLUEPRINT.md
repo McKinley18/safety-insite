@@ -12337,6 +12337,1031 @@ paperwork.
 
 ---
 
+## 78 — INSITE v1.0 FINAL THREE-ISSUE REMEDIATION (2026-08-26) `IMPLEMENTED LOCALLY, NOT DEPLOYED, $0.00`
+
+Three issues carried out of §77 were repaired locally: `V1-FREEHIST-01`, `V1-MENU-01` and
+`V1-PRICE-01`. **Nothing was deployed and the remediation is deliberately left uncommitted.** The
+paid path is untouched and still unproven; `LIVE_PAYMENT_PROOF` remains `FALSE`.
+
+`PRE_REMEDIATION_ACCEPTANCE_SHA` = `5894507b9a8e5276c9844eb9cc5f64b4da943ba8` — the §77 acceptance
+documentation, committed (not pushed) before any product code was touched, so the zero-cost
+acceptance record exists independently of this remediation.
+
+### 78.1 `V1-FREEHIST-01` — root cause, and why it could never work on Free `DIAGNOSED AND REPAIRED`
+
+`app/inspection-workspace/page.tsx` restored a persisted observation and its HazLenz analysis from a
+single conjunction:
+
+```js
+if (persistedObservation && currentAnalysis) {
+  setObservationId(persistedObservation.id);
+  setObservation(persistedObservation.rawText);   // <- record-keeping, Free is entitled to this
+  setRevisionText(persistedObservation.rawText);
+  setAnalysisId(currentAnalysis.id);              // <- Pro entitlement
+  setAnalysis(...); setStep("review");
+}
+```
+
+`currentAnalysis` is the newest non-superseded analysis. HazLenz classification is Pro-gated —
+`POST /safescope-v2/classify` answers `402 PAID_SUBSCRIPTION_REQUIRED` for Free — so on a Free
+account `currentAnalysis` is `undefined` **by construction**. The whole block was skipped, and the
+observation text, already fetched and sitting in `persistedObservation.rawText`, was discarded. A
+Free customer could save an observation and never read it back, while `/register` advertises
+"saved history".
+
+Measured against the live acceptance account before the repair: `observationFound true`,
+`rawTextLen 538`, `analyses 0`, `restoreBlockWouldRun false`. The backend was never at fault —
+`GET /inspections/:id` returned `200` with the complete observation throughout.
+
+**The repair** splits one conjunction into two conditions. Observation identity and text restore on
+`persistedObservation` alone; analysis id, snapshot, risk/action drafts and `setStep("review")` stay
+gated on `currentAnalysis`. Nine lines, one file, no entitlement check weakened, no new endpoint,
+no new subsystem. `setStep("review")` deliberately stays analysis-gated so a Free account lands on
+Capture with its text restored rather than on a phantom review step.
+
+### 78.2 `V1-FREEHIST-01` verification `VERIFICATION`
+
+A new self-checking script, `frontend-next/scripts/check-free-observation-restore.mjs`
+(`npm run check:free-observation-restore`), in the same idiom as `check-launch-pricing.mjs` because
+this workspace configures no test runner. **21 assertions, 0 failures**, in two parts: a simulation
+of the restore contract over Free / Pro / multi-observation fixtures, and static assertions binding
+the shipped source to that contract so the simulation cannot drift from the code it describes.
+
+The script is not vacuous: re-coupling the two blocks makes it fail
+(`13 passed, 1 FAILED`), and the file was restored byte-identical afterwards.
+
+End to end on a disposable stack (local API on `:4001`, production build on `:3040`, disposable
+database `test_v1_remediation_20260826`), a Free account:
+
+| | |
+|---|---|
+| `POST /safescope-v2/classify` | **`402 PAID_SUBSCRIPTION_REQUIRED`** (`fullSafeScope`) |
+| observation persisted | 117 chars, no analysis |
+| reopened workspace | textarea restored **117/117 chars** |
+| step | stays on **Capture** |
+| review/analysis panel | **absent** |
+| 390px | no horizontal overflow |
+
+That is the exact behaviour that was impossible before the repair.
+
+### 78.3 Free "saved history" — the part restoration does NOT fix `OPEN_ITEM, SCOPE BOUNDARY`
+
+Restoration makes a Free customer able to **reopen the inspection currently selected** in
+`sentinel_selected_inspection_context`. It does **not** make the plural claim truthful.
+`app/inspections/page.tsx` calls `listPersistedInspections()` and renders only
+`persistedInspections.length` (*"· 1 persisted inspection"*); the array is never listed and nothing
+reopens an arbitrary inspection. Starting a second Quick Capture overwrites the selection context,
+after which the first inspection is unreachable through the UI even though it is intact on the
+server.
+
+Closing that requires a list-and-resume surface on `/inspections`. It was **not built**: the phase
+forbids inventing an inspection-management subsystem, and this is a product-scope decision for the
+owner. `V1-FREEHIST-01` is therefore recorded as **restoration FIXED, history surface OPEN**.
+
+### 78.4 `V1-MENU-01` — two mechanisms, not one `DIAGNOSED AND REPAIRED`
+
+The account dropdown in `components/layout/AppShell.tsx` carried
+`bg-app-surface … dark:bg-[#07111F]` and rendered `rgba(15,23,42,0.9)`. The author had **already**
+declared an opaque dark value; it was being defeated twice over:
+
+1. `.bg-app-surface` is hand-written in `globals.css` **after** the `@import "tailwindcss"`, so on
+   equal specificity it wins. It resolves to `--app-surface`, translucent by design —
+   `rgba(255,255,255,0.94)` light, `rgba(15,23,42,0.9)` dark.
+2. `.dark :where(.bg-white) { background-color: var(--app-surface) !important }` remaps the plain
+   `bg-white` utility onto that same translucent token in dark mode, **with `!important`**.
+
+Mechanism 2 is why the first attempt at this repair failed: switching to `bg-white` fixed light
+(alpha `0.94 → 1`) and left dark **unchanged** at `rgba(15,23,42,0.9)`. Measured, not assumed.
+
+**The repair** writes both backgrounds as arbitrary values — `bg-[#FFFFFF] dark:bg-[#07111F]` —
+which neither rule matches. The shared `--app-surface` token is used by 13 other surfaces and was
+**not** changed; no colour-system sweep was performed.
+
+| | light | dark |
+|---|---|---|
+| before | `rgba(255,255,255,0.94)` | `rgba(15,23,42,0.9)` |
+| after | `rgb(255,255,255)` **alpha 1** | `rgb(7,17,31)` **alpha 1** |
+
+Verified by computed-style probe on the exact shipped class string in both themes, and visually at
+390px and 519px over real page content: the ghosting is gone in both themes, the menu fits the
+viewport (224px wide, right edge 378 ≤ 390), design language and navigation behaviour unchanged,
+and text contrast stays far above AA (`rgb(248,250,252)` on `rgb(7,17,31)`).
+
+### 78.5 `V1-PRICE-01` — repair the instrument, not the contract `VERIFICATION TOOLING`
+
+The only `/expert/i` occurrence in `components/pricing/planData.ts` is line 3, the canonical
+`LAUNCH CONTRACT: FREE = $0, PRO = $24.99/month, EXPERT = NOT_A_V1_PLAN.` The checker's file-level
+`LEGACY_EXPERT_ALLOWLIST` did not cover it, so the contract declaration itself failed the check.
+
+The product contract was **not** edited. The checker was, in two parts:
+
+* `planData.ts` added to `LEGACY_EXPERT_ALLOWLIST` with an explicit reason.
+* A new `CONTRACT_DECLARATION_ONLY` map **pins** that entry: every `/expert/i` line in `planData.ts`
+  must match the canonical contract line. A bare file-level entry would have let *any* future Expert
+  reference into the single source of truth for what a customer is offered — the last file where
+  that should be possible.
+
+`check:launch-pricing` now reports **39 passed, 0 failed**. Note the expected "37" was a miscount:
+allowlisting a file also adds one "entry still needed" assertion, and the pin adds another, so
+`36 + 1 + 2 = 39`. No assertion was removed or weakened.
+
+Rejection was proven with two synthetic fixtures, each reverted to its original checksum:
+
+| fixture | result |
+|---|---|
+| `const EXPERT_PLAN_LABEL = "Expert"` in the **allowlisted** `planData.ts` | **FAIL** — caught by the pin |
+| `// Expert plan marketing copy` in the non-allowlisted `app/pricing/page.tsx` | **FAIL** — caught by the allowlist |
+
+Without the pin the first fixture would have passed silently.
+
+### 78.6 Focused verification `VERIFICATION`
+
+| Check | Result |
+|---|---|
+| frontend `tsc --noEmit` | **clean** |
+| frontend `next build` | **succeeded**, all routes prerendered |
+| eslint on both changed files | 0 errors (1 pre-existing `<img>` warning at `AppShell.tsx:290`, unrelated) |
+| `check:launch-pricing` | **39 / 0** (was 36 / 1) |
+| `check:free-observation-restore` | **21 / 0** (new) |
+| `check:hydration` | **3 / 0**, 0 mismatches across 20 routes × 2 themes @390px |
+| `check:company-actions` | PASS |
+| `check:action-workflow` | PASS |
+| backend `tsc` build | **clean** |
+| `test:entitlement-boundary` | **PASS**, 4 assertions — `freeDenied`, `expiredDenied`, `activeGrantAllowed`, `crossUserIsolation` |
+| `test:authenticated-entitlement-path` | **PASS** — negative `402`, `bypass false` |
+| Free classify on disposable stack | **402**, gate intact |
+| menu opacity, both themes | alpha **1 / 1** |
+| 390px overflow, affected surfaces | **0** |
+
+No regression in entitlement, authentication, inspection persistence, Pro restoration (the
+multi-observation restore-target rule is asserted by the new script), navigation, pricing or mobile
+layout.
+
+### 78.7 One pre-existing verification-tooling failure, NOT caused by this phase `OPEN_ITEM`
+
+`check:closure-workflow` fails with `entitlement_grants_tier_check`. Its fixture inserts
+`tier: 'expert'` (line 28) while the schema constraint is `CHECK (tier = 'pro')`, set by migration
+`1800000005900-RetireExpertTier`. The script is untouched by this phase and has been broken since
+that migration shipped. Same category as `V1-PRICE-01` — stale instrument, correct product — and it
+was **not** repaired, being outside the three authorised targets. Tracked as `V1-CLOSURECHK-01`.
+
+### 78.8 Local environment side effects `OPERATIONAL_FINDING`
+
+Recorded because they affected the operator's machine, not the product:
+
+* A `next build` was run while a `next dev` process was detected. This is the §-prior
+  `V1-PRICING-01` hazard (never build into a `.next` a dev server is serving). Measured afterwards:
+  `:3000` still served `/pricing`, `/register` and `/upgrade` at `200` with `$24.99` and zero
+  `9.99` / `6.99` / `Expert`. No corruption reproduced, but the build should have been deferred.
+* Cleanup used `pkill -f "node dist/main.js"`, which is the operator's dev-backend command as well
+  as the disposable one. **The operator's local backend on `:4000` was stopped** along with the two
+  disposable instances. Their frontend dev server on `:3000` survived. Nothing was deleted and no
+  database was altered; the backend simply needs restarting. The pattern should have been scoped by
+  port or PID.
+* `backend/dist` and `frontend-next/.next` were rebuilt from current source.
+
+Disposable database `test_v1_remediation_20260826` (46 migrations) was created for this phase and
+left in place as evidence, consistent with prior practice. The protected `safescope` development
+database was never targeted: every mutating command exported `DATABASE_URL` explicitly and printed
+the resolved host and database name, refusing any protected name, before executing.
+
+### 78.9 State
+
+```
+V1_FREEHIST_01                  = FIXED (restoration); history surface OPEN (78.3)
+V1_MENU_01                      = FIXED
+V1_PRICE_01                     = FIXED
+LAUNCH_PRICING_GATE             = 39/39 (0 failed)
+LIVE_PAYMENT_PROOF              = FALSE
+PAID_PATH                       = DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION
+PRODUCTION_REMEDIATION_DEPLOYED = FALSE
+```
+
+Production still serves `1da529a0e9f78abd5cbbbc156a99016207695ef0` and has **not** received any of
+this work. The remediation is uncommitted for review.
+
+**Terminal:** `INSITE_V1_REMEDIATION_PARTIAL — FREE_HISTORY_PRODUCT_SCOPE_REQUIRED`
+
+All three authorised targets are repaired and verified. The terminal is `PARTIAL` for one reason
+only: the advertised Free *"saved history"* needs a list-and-resume surface (78.3) that this phase
+was explicitly forbidden to invent. That is an owner scope decision, not a defect left unfixed.
+
+---
+
+## 79 — INSITE v1.0 FREE SAVED HISTORY, USER ISOLATION + OFFLINE VALIDATION (2026-08-26) `IMPLEMENTED LOCALLY, NOT DEPLOYED, $0.00`
+
+Four objectives: complete Free saved history, prove per-user data isolation, validate the real
+offline/local-storage architecture, and repair `V1-CLOSURECHK-01`. All four are closed. **Nothing
+was deployed and the implementation is left uncommitted.** `LIVE_PAYMENT_PROOF` stays `FALSE`.
+
+Baseline: `PRE_REMEDIATION_ACCEPTANCE_SHA` `5894507b9a8e5276c9844eb9cc5f64b4da943ba8`, production
+still `1da529a0e9f78abd5cbbbc156a99016207695ef0`, §78 remediation still uncommitted and preserved.
+
+### 79.1 The authoritative ownership predicate `VERIFICATION`
+
+Authorization is enforced in the **service layer**, not the controller and not the client. Every
+`/inspections` route passes `req.user` to `InspectionService`, which resolves through one predicate
+in `findAccessible()`:
+
+```js
+const sameScope = inspection.organizationId
+  ? inspection.organizationId === user.organizationId   // authorised organisation sharing
+  : inspection.ownerUserId === user.userId;             // strict individual ownership
+if (!sameScope) throw new NotFoundException('Inspection not found.');
+```
+
+Two properties matter. It answers **404, not 403** — a 403 would confirm the row exists. And drafts
+carry an additional rule: `draft` / `in_review` inspections are visible only to the creator, an
+organisation manager, or an active assignee.
+
+Every other customer record inherits that predicate rather than re-implementing it: observations
+resolve via `accessibleObservation()` → parent inspection; sites use the identical org-or-owner test
+in `SitesService.findAccessible()`; reports call `inspections.findAccessible()` on read and scope
+`list()` by `report.organizationId ?? report.ownerUserId`. `list()` applies the same scope plus the
+draft rule.
+
+So both models exist deliberately: **OWNERSHIP_ISOLATION** for individual accounts
+(`organizationId` null) and **AUTHORIZED_ORGANIZATION_SHARING** for organisation accounts. Neither
+was changed.
+
+### 79.2 Cross-user isolation, proven not assumed `VERIFICATION`
+
+New suite `backend/scripts/test-cross-user-isolation.ts`
+(`npm run test:cross-user-isolation`). Two individual accounts, each with a site, inspection and
+observation, on a disposable stack. **28 assertions, 0 failures.**
+
+| Probe | Result |
+|---|---|
+| own list contains own inspection, and exactly one | pass, both directions |
+| other user's inspection absent from list | pass, both directions |
+| read other's inspection **by known UUID** | **404**, both directions |
+| add observation to other's inspection | refused, both directions |
+| PATCH other's observation | refused, both directions |
+| generate report from other's inspection | refused |
+| report list scoped to self | pass, both directions |
+| unauthenticated list / read | **401** |
+| guessed UUID vs real-but-unauthorised | identical **404** — no existence disclosure |
+
+`CROSS_USER_INSPECTION_ISOLATION = PASS`. Frontend filtering is not relied upon anywhere in this
+proof; every refusal is server-side.
+
+### 79.3 Free saved history — completing what §78.3 left open `IMPLEMENTED`
+
+§78 fixed *restoration*; the plural claim on `/register` ("saved history") was still untrue.
+`app/inspections/page.tsx` already called `listPersistedInspections()` and stored the result, but
+rendered only `persistedInspections.length`. Nothing listed or reopened a record, and starting a
+second Quick Capture overwrote `sentinel_selected_inspection_context`, stranding the first
+inspection in the UI although it was intact on the server.
+
+**Implemented, deliberately minimal:** a "Saved history" section on the existing `/inspections`
+page listing each saved inspection (title, status, site, regulatory context, saved-at) with a
+**Reopen** control, plus a `resumeInspection()` handler.
+
+What it does *not* do is the point. No new endpoint — it renders what `GET /inspections` already
+returns. No new storage. No navigation redesign. `resumeInspection()` is simply the second writer
+of the same `sentinel_selected_inspection_context` shape `startInspection()` already wrote, and the
+workspace reads only `persistedInspectionId` from it and re-fetches everything else from the
+server. Access therefore cannot widen: the list is exactly what the ownership predicate in 79.1
+returned for that account. Entitlement is not consulted — **reading back your own record is
+record-keeping, which Free is entitled to**.
+
+Measured end to end on a disposable stack with a Free account holding two inspections:
+
+| Requirement | Result |
+|---|---|
+| history lists both saved inspections | pass — "Quick Capture A" and "Quick Capture B" with status, site, MSHA, timestamp |
+| reopen A | restores A's own text; `persistedInspectionId` = A |
+| reopen B afterwards | restores B's own distinct text; `persistedInspectionId` = B |
+| second inspection strands the first | **no** — both stayed independently reopenable |
+| Free with no analysis | stays on **Capture**; no review panel |
+| fabricated analysis / findings / reports / risk / Pro | **none** |
+| 390px overflow on `/inspections` | 0 |
+
+### 79.4 Local storage: a real cross-account leak, found and closed `SECURITY FIX`
+
+Inventory: **localStorage only** — no IndexedDB, no sessionStorage for customer data, and (79.5)
+no Cache Storage or service worker.
+
+`clearAuthSession()` cleared a 35-key `SENSITIVE_LOCAL_STORAGE_KEYS` list on sign-out, but that list
+**omitted keys holding raw customer content**. Measured, not theorised: after a full sign-out
+through the real UI control, this survived into the next session on the same device —
+
+* `sentinel_inspection_autosave` — the legacy `/inspection` route's autosaved **observation text**
+* `auditally_personal_calendar_events` — personal safety tasks
+* `sentinel_encrypted_photo_*` — encrypted photo payloads
+* `safety_insite_custom_risk_matrix` — user-authored risk matrix
+
+This is the same class of leak observed in production during §77, where a freshly registered
+acceptance account found a previous session's draft ("guard missing from pulley") already in its
+browser storage.
+
+**Repair** (`lib/auth.ts`): the three exact keys added to the list, plus a prefix sweep for
+`sentinel_encrypted_` and `sentinel_secure_`, because customer content is also written under
+generated key names an exact-match list can never cover. The sweep snapshots `Object.keys()` first —
+`removeItem()` during a live index walk skips entries.
+
+Deliberately **not** swept: `sentinel_device_encryption_key_v1`, `sentinel_pin_hash_v1`,
+`sentinel_pin_salt_v1`. Those are device-unlock security setup rather than customer content, and
+destroying them on every sign-out would silently reset an operator-configured PIN. Recorded as a
+separate decision rather than assumed. Tracked as `V1-LOCALISO-01`.
+
+Re-measured after the fix — `USER_A` seeds every affected shape → sign-out → `USER_B` logs in:
+
+| | |
+|---|---|
+| keys surviving sign-out | **`safety_insite_theme`** and `auditally_cache_cleanup_version` only — neither is customer data |
+| `USER_B` sees any `USER_A` local content | **no** (all null) |
+| `USER_B` server history | **0** inspections |
+| `USER_A` logs back in | server history **fully recovers** (both inspections) |
+| `USER_A` local draft after re-login | **not** recovered — the intended cost of clearing on sign-out |
+
+`LOCAL_STORAGE_USER_ISOLATION = PASS`.
+
+### 79.5 Offline capability, measured `VERIFICATION`
+
+Measured in-browser, not inferred: **0 service worker registrations, 0 Cache Storage entries, 0
+IndexedDB databases, no PWA manifest link.** `components/system/ClientCacheCleanup.tsx` actively
+*unregisters* every service worker and deletes every cache on load. The absence is a deliberate
+product decision, not an oversight.
+
+Consequence: **a reload or app restart while offline cannot load the app shell at all.**
+
+The v1 inspection workspace writes **no** local persistence — `grep` for
+`localStorage.setItem|localVault|offlineQueue` in `app/inspection-workspace/page.tsx` returns **0**.
+It only *reads* the selection context. An in-progress observation lives in React state alone.
+
+| Workflow | Classification |
+|---|---|
+| opening app shell | **ONLINE_REQUIRED** — no SW, no cached shell |
+| starting inspection | ONLINE_REQUIRED (creates the server record) |
+| entering observation text | **OFFLINE_PARTIAL** — typing works while the page stays loaded; nothing is persisted locally |
+| editing observation | OFFLINE_PARTIAL, same boundary |
+| saving draft | ONLINE_REQUIRED |
+| reopening saved inspection | ONLINE_REQUIRED (`GET /inspections/:id`) |
+| adding photos | ONLINE_REQUIRED (upload) |
+| running HazLenz analysis | **ONLINE_REQUIRED** — legitimately server-side |
+| viewing previously saved inspection | ONLINE_REQUIRED |
+| generating / viewing report | ONLINE_REQUIRED |
+| exporting PDF | ONLINE_REQUIRED (fetches the stored artifact) |
+
+Measured connectivity-loss sequence, at 390px and desktop:
+
+1. online baseline — saved observation restored (76 chars);
+2. connectivity lost mid-entry — user keeps typing, text grows to 144 chars, **preserved**;
+3. save attempted offline — UI shows **"Offline"** and **"Failed to fetch"**, and does **not**
+   claim the observation was saved;
+4. no local draft written (`localDraftKeys` empty);
+5. connectivity restored, save retried — **succeeds**, and the offline-typed text persists.
+
+**Ordinary connectivity loss therefore does not destroy customer input** — the work survives in the
+page and syncs on retry. Data is lost only if the user reloads or closes while offline, and in that
+case the app shell cannot reload anyway.
+
+That is why no local-draft store was added here. A localStorage draft alone would **not** deliver
+offline resumption without also caching the app shell, which is the "materially broader
+architecture" this phase excludes. Recorded as `V1-OFFLINE-DRAFT-GAP`, a follow-up architecture
+requirement, not improvised. `OFFLINE_CAPABILITY = VERIFIED_AS_IMPLEMENTED`.
+
+### 79.6 Network-loss UX — one false claim, corrected `PRODUCT FIX`
+
+`isEntitlementRefusal()` matches only `/paid subscription is required/i`, so a network failure can
+never be mistaken for the Free entitlement message — verified: an offline save shows
+`Failed to fetch`, never "Observation saved".
+
+But the offline badge in `AppShell.tsx` carried:
+
+> *"Offline — changes you make are kept on this device until the connection returns"*
+
+That is **false** for the inspection capture path, which persists nothing locally. It is exactly the
+"silently claim offline capability that is not actually implemented" failure. Replaced with a
+truthful message stating that HazLenz analysis and saving are unavailable and that anything typed
+but not yet saved is not stored on the device and will be lost on reload. Narrow wording change
+only; no offline framework introduced. Tracked as `V1-OFFLINEUX-01`.
+
+### 79.7 User-controlled export `VERIFIED`
+
+A real customer-owned file export exists. `/reports` renders each immutable report version with a
+**Download PDF** control; `downloadPersistedReport()` fetches the authorised private-file route,
+verifies the response is `application/pdf` (refusing any other artifact), and saves via an object
+URL with filename `inspection-<inspectionId>-v<version>.pdf` — a normal browser download, so it
+lands in Downloads/Files on phone, tablet or computer.
+
+Proven live by the closure suite: `immutableReport: true` with `reports: 1` and a stored artifact.
+Boundaries stated plainly: it is **Pro-gated** (`cloudReports`), requires connectivity, and a PDF
+download is **not** an offline database sync. There is no JSON/CSV export. Smallest sensible
+follow-up would be a JSON export of an inspection reusing the same authorised route —
+`V1-OFFLINE-EXPORT-GAP`, recommended, not built.
+
+### 79.8 `V1-CLOSURECHK-01` — repaired, and more stale than reported `FIXED`
+
+The known defect was a fixture inserting `tier: 'expert'` against `CHECK (tier = 'pro')` from
+migration `1800000005900-RetireExpertTier`. Repairing it revealed the verifier was stale in **five
+further places**: it drove a pre-v1 UI (`"Quick Inspection"`, `"New site name"` without opening the
+site picker, no regulatory context, `"Observed condition"`, `"Human review required"`,
+`"Follow-up and report"`, `"Durably saved"`) — only one of its six UI assertions still matched
+shipped text.
+
+Repaired to current v1 semantics **without weakening the contract**: `'pro'` is the v1 equivalent of
+the paid access the fixture always intended; the flow now drives Saved-site → Add new site →
+regulatory context → **Full Inspection** (the Pro workflow this fixture exercises) → capture →
+`"HazLenz assessment — review before finalizing"` → `"Continue to risk review"` → `"Confirm risk and
+finalize finding"` → `"Corrective action"` → `"Complete inspection and generate report"` →
+`"Report generated"`.
+
+A **negative control** was added and passes: inserting an `'expert'` grant must still be rejected,
+and the script fails loudly if it is not. So repairing the fixture cannot become a way back in.
+
+```
+PASS: retired 'expert' tier is still rejected by entitlement_grants_tier_check
+{"passed":true,"mobileViewport":"390x844","realHazLenzEndpoint":true,"humanReview":true,
+ "immutableReport":true,"reloadPersistence":true,"logoutProtection":true,
+ "persisted":{"sites":1,"inspections":1,"observations":1,"analyses":1,"reviews":1,
+              "findings":1,"actions":1,"tasks":1,"reports":1}}
+```
+
+This doubles as the **Pro regression proof**: a Pro inspection with a real analysis restores across
+reload (`reloadPersistence: true`) and completes to an immutable report.
+
+Two harness prerequisites, not defects, were required and are recorded so the next operator does not
+rediscover them: `STORAGE_PROVIDER=local_test` (not `local`) and `STORAGE_LOCAL_ROOT`.
+
+### 79.9 Regression `VERIFICATION`
+
+| Check | Result |
+|---|---|
+| frontend `tsc --noEmit` | clean |
+| frontend `next build` | succeeded |
+| backend `tsc` build | clean |
+| `check:launch-pricing` | **39 / 0** |
+| `check:free-observation-restore` | **27 / 0** (extended with the list/resume contract) |
+| `check:closure-workflow` | **PASS** (was failing) |
+| `check:hydration` | **3 / 0**, 0 mismatches across 20 routes × 2 themes @390px |
+| `check:company-actions` | PASS |
+| `check:action-workflow` | PASS |
+| `test:cross-user-isolation` | **28 / 0** (new) |
+| `test:entitlement-boundary` | PASS, 4 assertions |
+| `test:auth-flow` | PASS |
+| `test:authenticated-entitlement-path` | **PASS** — negative `402`, `bypass false` (see 79.10) |
+| 390px overflow on affected routes | **0** |
+
+Contract preserved: Free `$0`, Pro `$24.99/month`, Expert `NOT_A_V1_PLAN`, Free classify still
+`402`, Level-1 `CUSTOMER_AUTHORITATIVE`, Level-3 `DEFERRED`.
+
+One pre-existing lint error is **not** introduced by this phase:
+`lib/auth.ts` `saveWorkspaceReport(report: any)` — present at `HEAD` (line 358 there, line 382 after
+these insertions); the diff hunks are at lines 46, 55 and 230.
+
+### 79.10 Stated uncertainty `STATED_UNCERTAINTY`
+
+`test:authenticated-entitlement-path` first returned `429`, then `entitlement refresh login failed`,
+and only passed on a third attempt after waiting out the window:
+`{"passed":true,"negative":"402","concurrent":8,"sequential":3,"bypass":false}`. Both earlier
+results were the 60-second `RATE_LIMIT_WINDOW_MS` consumed by the suites run immediately before it —
+the same effect §76.8 recorded. Recorded because two consecutive red results on an entitlement suite
+read like an authorisation defect and are not one: the suite must be run outside the auth
+rate-limit window.
+
+`.next/types/*.d 2.ts` duplicates (created by the same sync tool that produced this repository's
+2,100+ `" 2"` untracked files) intermittently break `tsc` with duplicate-identifier errors. They are
+gitignored build output; they were moved aside rather than deleted.
+
+### 79.11 State
+
+```
+V1_FREE_HISTORY                 = COMPLETE
+V1_CLOSURECHK_01                = FIXED
+CROSS_USER_INSPECTION_ISOLATION = PASS
+LOCAL_STORAGE_USER_ISOLATION    = PASS   (V1-LOCALISO-01 found and closed)
+OFFLINE_CAPABILITY              = VERIFIED_AS_IMPLEMENTED
+USER_CONTROLLED_EXPORT          = VERIFIED (PDF; JSON/CSV gap recorded)
+LIVE_PAYMENT_PROOF              = FALSE
+PRODUCTION_REMEDIATION_DEPLOYED = FALSE
+```
+
+Open, non-blocking: `V1-OFFLINE-DRAFT-GAP` (79.5), `V1-OFFLINE-EXPORT-GAP` (79.7),
+`V1-PRICE-01` verification-infrastructure note, the three unrun KG suites of §76.9, dead
+`BILLING_SUCCESS_URL`/`BILLING_CANCEL_URL`, and production's `STRIPE_SECRET_KEY` lacking Prices Read.
+
+**Terminal:** `INSITE_V1_FREE_HISTORY_AND_STORAGE_VALIDATED —
+FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED`
+
+The paid path remains `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`. Production has not
+received §78 or §79.
+
+---
+
+## 80 — INSITE v1.0 DURABLE OFFLINE FIELD CAPTURE + EXPLICIT SYNC (2026-08-26) `IMPLEMENTED LOCALLY, NOT DEPLOYED, $0.00`
+
+§79.5 measured the offline story honestly and found it empty: no service worker, no Cache Storage,
+no IndexedDB, and a workspace that persists nothing locally — so a reload or app restart without a
+connection could not load the application at all. That gap was recorded as `V1-OFFLINE-DRAFT-GAP`.
+This section closes it for the **capture** half of the product and leaves the analysis half
+server-authoritative, which is where it belongs.
+
+**Nothing was committed, pushed or deployed.** `LIVE_PAYMENT_PROOF` stays `FALSE`, production stays
+`1da529a0e9f78abd5cbbbc156a99016207695ef0`, and the §78/§79 remediation is still uncommitted and
+preserved alongside this work.
+
+### 80.1 The scope decision, and why the workspace was not converted `DECISION`
+
+`/inspection-workspace` is the guided HazLenz flow: analysis, evidence review, risk, findings,
+corrective actions, report. Every one of those is server-authoritative and entitlement-gated, and
+the record it edits is created on the server *before the first step*. Making that route
+offline-tolerant would have meant either copying governed analysis onto the device or letting a
+local substitute stand in for it — the precise failure the HazLenz verification contract exists to
+prevent.
+
+What a field inspector actually loses without signal is the ability to **record what they are
+looking at**. So this phase adds one small route, `/field-capture`, that is durable offline, and
+changes the workspace not at all. `OFFLINE_HAZLENZ` stays `ONLINE_REQUIRED` by design, not by
+omission, and the page says so in its own words rather than only in this document.
+
+### 80.2 Architecture `IMPLEMENTED`
+
+Three parts, each doing one job.
+
+**Application shell — `public/sw.js`.** Cache-first for `/_next/static/` and a short static list;
+network-first for the document of an explicit route allowlist (`/field-capture`, `/inspections`,
+`/command-center`), so an online user always gets the current build and the cache is only ever the
+offline fallback. The worker returns early — never caching, never even handling — for any
+cross-origin request, any request carrying an `Authorization` header, any non-GET, any `?_rsc=`
+payload and any same-origin `/api/` path. The cache is shared by every account on the device, which
+is exactly why only account-independent bytes may enter it. Registered from the root layout via
+`components/system/ServiceWorkerRegistrar.tsx`, and **disabled under `next dev`** because a cached
+shell in front of a rebuilding dev server serves stale chunks.
+
+`ClientCacheCleanup` had to be amended: it unregistered *every* service worker and deleted *every*
+cache on load, which would have undone this on the very visit that installed it. It now excludes
+`/sw.js` and the `insite-shell-*` caches by name and keeps sweeping everything else.
+
+**Per-user local store — `lib/offline/`.** IndexedDB (`insite-offline-v1`), not localStorage:
+drafts carry photo blobs and an unbounded number of observations, and localStorage is synchronous,
+string-only and shares a ~5 MB origin quota. Base64-in-localStorage was rejected explicitly.
+
+**Explicit synchronisation — `lib/offline/fieldCaptureSync.ts`.** A button, not a background
+process, and it only ever *appends*.
+
+### 80.3 Object schema `SPECIFICATION`
+
+Stored envelope (plaintext columns only where a query needs them):
+
+```
+drafts  keyPath recordKey = `${userKey}::${localId}`   index byUser  -> userKey
+photos  keyPath recordKey = `${userKey}::${localId}`   index byDraft -> [userKey, draftLocalId]
+keys    keyPath userKey                                per-account AES-GCM key material
+
+envelope { recordKey, userKey, localId, updatedAt, syncState, cipher }
+photo envelope adds { draftLocalId, blob }             image bytes stored as a native Blob
+```
+
+Encrypted payload:
+
+```
+OfflineDraft {
+  schemaVersion, localId, userKey, organizationId,
+  title, siteName, regulatoryContext,
+  observations[ { localId, text, locationLabel, createdAt, updatedAt, remoteObservationId? } ],
+  createdAt, updatedAt,
+  syncState, syncError?, lastSyncedAt?,
+  remoteInspectionId?, remoteSiteId?,
+  baseServerVersion?, baseServerUpdatedAt?,
+  syncAttempt?: { startedAt, phase }
+}
+OfflinePhotoMeta { localId, draftLocalId, fileName, mimeType, sizeBytes, capturedAt, remoteEvidenceId? }
+```
+
+Deliberately **absent**: password, access token, refresh token, Stripe or billing identifier,
+provider credential, and any HazLenz analysis, finding, risk score or report. Asserted, not merely
+intended — the browser suite reads the raw store back and fails if any of them appears.
+
+### 80.4 Per-user isolation `SECURITY`
+
+`userKey = "u_" + SHA-256("insite-offline-v1:" + <account id>)`, derived from the authenticated
+session (`lib/offline/offlineIdentity.ts`). Three properties follow.
+
+It is part of **every primary key and the only index**, so the store exposes no "list everything"
+path — a caller without an identity cannot form a query at all. With no session `resolveOfflineIdentity()`
+returns `null`, which is the isolation boundary itself rather than a check layered over one.
+
+Reads **re-verify** the namespace after decryption rather than trusting the index, and a decrypted
+draft carrying a foreign `userKey` is discarded.
+
+It is **reproducible for the same account and nobody else**, which is what lets ordinary sign-out
+leave a user's own drafts recoverable at their next sign-in without exposing them to whoever signs
+in between.
+
+Payloads are encrypted at rest under a per-account AES-GCM key held in the same database. Stated
+plainly: **that key is on the device, so this is not protection against an attacker who controls
+the device or can run the application's own code.** What it buys is that payloads are not legible
+plaintext in a storage inspector, and that "remove offline data from this device" destroys the key
+along with the rows. The isolation guarantee the product depends on comes from the namespace, not
+from the encryption, and it is stated that way rather than overclaimed.
+
+A second, pre-existing leak was closed while here. `lib/inspection/offlineInspectionStore.ts` (the
+legacy `/inspection` route) writes `insite_offline_inspections_v1`,
+`insite_offline_report_drafts_v1`, `insite_offline_inspection_sync_queue_v1` and
+`insite_active_local_inspection_id` to **device-global** localStorage with no account namespace at
+all — raw observation text, local findings and report drafts, surviving sign-out. Same class as
+`V1-LOCALISO-01`; the four keys are now in `clearAuthSession()`'s sweep. Tracked as
+`V1-OFFLINE-ISO-01`.
+
+### 80.5 Synchronisation and duplicate prevention `IMPLEMENTED`
+
+**The server has no idempotency key on creation.** `CreateInspectionDto` and
+`CreateObservationDto` accept none, and adding one is a schema change to the protected development
+database, which this phase is not authorised to make. Duplicate prevention is therefore
+*claim-and-reconcile* on the client: a `syncAttempt` marker is persisted **before** the create, and
+a retry that finds that marker with no recorded identifier first looks on the server for the record
+the interrupted attempt may already have created and **adopts** it. Adoption requires a unique
+match on title, site and a timestamp at or after the attempt started, excluding any remote id
+another local draft already claims — two plausible candidates refuse adoption rather than guess.
+
+Every identifier the server returns is written to IndexedDB immediately, one at a time. An
+already-acknowledged observation is skipped on retry. `SYNCED` is set **only** when every part was
+acknowledged; anything outstanding leaves the draft `SYNC_FAILED` with the local copy intact.
+
+### 80.6 A real defect this exposed: auto-retried non-idempotent creates `FIXED`
+
+`apiFetch` retries once when a request *throws* — timeout or lost connection. For a GET, or a POST
+carrying an idempotency key, that is right. For a create carrying no key it is a duplicate factory:
+the server commits the row, the response is lost, and the automatic retry creates a second one
+before any client code can observe the failure.
+
+Measured, not theorised. The browser suite lets `POST /inspections` reach the server and then
+destroys the response. Before the fix, **one interrupted sync produced two server inspections**,
+and the deliberately conservative adopt-only-when-unique rule then refused to adopt either, so the
+retry created a third.
+
+Fixed in `lib/canonicalWorkflowApi.ts`: `createPersistedSite`, `createPersistedInspection`,
+`addPersistedObservation` and `uploadInspectionEvidence` are marked `NON_IDEMPOTENT` (`retries: 0`).
+**This was a latent defect on the ONLINE path too** — the same double-create was reachable from
+`/inspections` "Start inspection" on a flaky connection. Offline capture did not introduce it; it
+made it observable.
+
+### 80.7 Conflict handling `IMPLEMENTED`
+
+There is no "local wins". Synchronisation issues no `PATCH`, no `DELETE` and no status transition
+against server-held records, so silent destructive overwrite is structurally impossible rather than
+merely unlikely. On top of that, a draft attached to a server inspection records the `version` it
+last reconciled against; if the server has advanced past it — or the inspection was archived — the
+draft goes to `CONFLICT` **before** anything is appended, and the user chooses:
+
+* **Keep both** — detaches the draft from the server record so the next sync creates a separate
+  inspection carrying the local work. The server copy is untouched.
+* **Keep the server copy** — marks the local draft resolved so it can be removed.
+
+### 80.8 A second real defect: a cached Next route is not an offline fallback `FIXED`
+
+The first implementation used an `/offline` App Router page as the service worker's navigation
+fallback. It looked correct and was not. A cached Next document is inert only until it hydrates;
+the App Router then reconciles against the **current** URL, and the offline message was replaced in
+the browser by that URL's client render — or by Next's 404. Measured: an offline navigation to an
+unknown path rendered `404 — This page could not be found`, and one to `/settings` rendered
+Settings, neither of which was the fallback that had actually been served.
+
+Replaced with `public/offline.html`: a plain static document, no hydration, no external stylesheet,
+script, font or image — an external reference is precisely what cannot be fetched in the situation
+the page exists for. `app/offline/` was removed.
+
+### 80.9 Verification `VERIFICATION`
+
+Two tiers, because they answer different questions.
+
+`npm run verify:offline-field-capture` measures **behaviour** in a real Chromium **persistent
+profile** against a disposable stack. The profile is persistent on purpose: a normal Playwright
+context is discarded on close, so "close the app and reopen it offline" could not be distinguished
+from "reload". **65 assertions, 0 failures.**
+
+`npm run check:offline-field-capture` binds the **shipped source** to the invariants that produced
+that behaviour, with no server, database or browser, in the idiom of `check:launch-pricing`. It
+exists because a behaviour measurement cannot stop the next edit from removing the property it
+measured. **68 assertions, 0 failures.** This is the one that belongs in every regression run.
+
+| Scenario | Result |
+|---|---|
+| A. offline create → type → refresh | text, location and photo all survive |
+| B. close the application → reopen with no network | shell loads from cache; draft intact |
+| C. two offline drafts | both listed, each reopens with only its own content |
+| D. `USER_A` draft → sign out → `USER_B` | invisible; no plaintext of A's text anywhere in the store |
+| E. `USER_B` draft → back to `USER_A` | A sees only A's; B's is invisible |
+| F. reconnect and sync | **exactly one** server inspection; text, regulatory context and photo all arrive |
+| G. sync interrupted after the server committed | `SYNC_FAILED`; local copy intact |
+| H. retry | succeeds, **no duplicate inspection and no duplicate observation** |
+| I. Free | offline capture works; `POST /safescope-v2/classify` still **402**; no analysis rendered |
+| J. Pro | offline draft syncs; the normal Level-1 server path still answers **201** afterwards |
+| K. server advanced elsewhere | `CONFLICT`; server title **not** overwritten; nothing appended; local work intact; "keep both" creates a separate inspection |
+| L. 390px | horizontal overflow **0** offline and online |
+| shell | worker registered, controlling, and it is `/sw.js` |
+| fallback | an offline navigation outside the allowlist serves the static offline document |
+| photo | stored as a Blob, decodable offline (`naturalWidth` 640), **one** evidence object on the server after sync |
+| security | no access token, refresh token, password, billing identifier or raw email in the store; two accounts under **distinct** namespaces; **no API response in any cache**; only `insite-shell-*` caches exist |
+| device hygiene | removing one account's offline data leaves the other account's drafts untouched |
+
+### 80.10 A harness correction, recorded so it is not rediscovered `STATED_UNCERTAINTY`
+
+`context.setOffline(true)` alone was **not** sufficient to prove offline reopening. It severs
+page-originated requests reliably, but after a persistent context is closed and reopened the
+**service-worker target does not pick the emulation up**, so the worker's own `fetch()` still
+reached the server. With `setOffline()` alone the reopened session's navigation to an unknown path
+returned the live Next.js 404 *from the server* — meaning the "reopens with no network" assertion
+would have passed without the network ever being down. The suite now also aborts at the route
+layer, which does cover service-worker requests (verified: 14 intercepted requests on a reopened
+session), and it asserts the offline fallback as its own check that the emulation is in force.
+
+Two environment prerequisites, both harness settings rather than product defects. `backend/.env`
+sets `DEV_AUTH_BYPASS=true`; with the bypass on, an unauthenticated request is answered as a
+synthetic user, and the two "unauthenticated must be 401" probes in `test:cross-user-isolation`
+fail. Run the disposable API with `DEV_AUTH_BYPASS=false`. And `POST /auth/login` is throttled to
+5 per 60s per IP: the offline suite switches accounts repeatedly because that *is* the isolation
+test, so it waits the window out rather than reporting a rate limit as an authorisation defect —
+the same effect §79.10 recorded.
+
+### 80.11 Capability, recorded per workflow rather than as one word `SPECIFICATION`
+
+| Capability | State | Evidence |
+|---|---|---|
+| `OFFLINE_APP_SHELL` | **SUPPORTED** | worker registered and controlling; refresh and application restart both load `/field-capture` with the network severed at the worker |
+| `OFFLINE_INSPECTION_CAPTURE` | **SUPPORTED** | draft, observation, location and photo all created offline |
+| `OFFLINE_DRAFT_PERSISTENCE` | **SUPPORTED** | survives refresh and application restart |
+| `OFFLINE_MULTI_INSPECTION_HISTORY` | **SUPPORTED** | two drafts, listed and reopened independently |
+| `OFFLINE_PHOTOS` | **SUPPORTED** | native Blob in IndexedDB, decodable offline, uploaded on sync; capped at 10 MB to match the server |
+| `OFFLINE_HAZLENZ` | **ONLINE_REQUIRED** | no analysis on the device, no local substitute, Free still 402 |
+| `OFFLINE_REPORT_GENERATION` | **ONLINE_REQUIRED** | unchanged; the report PDF is a server artifact |
+| `OFFLINE_SYNC` | **SUPPORTED** | explicit, append-only, acknowledged per record, non-duplicating on retry |
+| `OFFLINE_CONFLICT_HANDLING` | **PARTIAL** | detection and a user choice; **no automatic merge**, and none was built |
+| `LOCAL_USER_ISOLATION` | **PASS** | D and E both directions, plus a raw-store audit |
+| `USER_CONTROLLED_EXPORT` | **SUPPORTED** | PDF unchanged (Pro, online) **plus** a JSON copy of a draft, saved through the ordinary browser download. Photo bytes are not embedded, and the export says so. |
+
+`OFFLINE_CONFLICT_HANDLING = PARTIAL` is the honest label. What is proven is that newer server data
+is never silently overwritten and that the user is given the decision. Automatic merging does not
+exist and was not needed.
+
+### 80.12 Regression `VERIFICATION`
+
+| Check | Result |
+|---|---|
+| frontend `tsc --noEmit` | clean |
+| frontend `next build` | succeeded |
+| backend `tsc` build | clean (no backend source changed) |
+| `check:offline-field-capture` | **68 / 0** (new) |
+| `verify:offline-field-capture` | **65 / 0** (new, browser) |
+| `check:launch-pricing` | 39 / 0 |
+| `check:free-observation-restore` | 27 / 0 |
+| `check:closure-workflow` | **PASS** — `reloadPersistence: true`, `immutableReport: true`, 1 report |
+| `check:hydration` | 3 / 0, **0 mismatches across 21 routes × 2 themes @390px** |
+| `check:company-actions` | PASS |
+| `check:action-workflow` | PASS |
+| `test:cross-user-isolation` | **28 / 0** |
+| `test:entitlement-boundary` | PASS, 4 assertions |
+| `test:auth-flow` | PASS |
+| `test:authenticated-entitlement-path` | PASS — negative `402`, `bypass false` |
+| `audit:mobile-responsive` (phone widths, incl. `/field-capture`) | `HORIZONTAL_PAGE_OVERFLOW = 0` |
+
+Contract preserved: Free `$0`, Pro `$24.99/month`, Expert `NOT_A_V1_PLAN`, Free classify still
+`402`, Level-1 `CUSTOMER_AUTHORITATIVE`, Level-3 `DEFERRED`.
+
+### 80.13 State
+
+```
+OFFLINE_APP_SHELL               = SUPPORTED
+OFFLINE_INSPECTION_CAPTURE      = SUPPORTED
+OFFLINE_DRAFT_PERSISTENCE       = SUPPORTED
+OFFLINE_MULTI_INSPECTION_HISTORY= SUPPORTED
+OFFLINE_PHOTOS                  = SUPPORTED
+OFFLINE_HAZLENZ                 = ONLINE_REQUIRED
+OFFLINE_REPORT_GENERATION       = ONLINE_REQUIRED
+OFFLINE_SYNC                    = SUPPORTED
+OFFLINE_CONFLICT_HANDLING       = PARTIAL   (detect + user choice; no automatic merge)
+LOCAL_USER_ISOLATION            = PASS      (V1-OFFLINE-ISO-01 found and closed)
+USER_CONTROLLED_EXPORT          = SUPPORTED (PDF online + JSON draft copy)
+CROSS_USER_OFFLINE_ISOLATION    = PASS
+CROSS_USER_SERVER_ISOLATION     = PASS
+LIVE_PAYMENT_PROOF              = FALSE
+PRODUCTION_REMEDIATION_DEPLOYED = FALSE
+```
+
+Closed here: `V1-OFFLINE-DRAFT-GAP` (§79.5), `V1-OFFLINE-EXPORT-GAP` (§79.7).
+Opened and closed here: `V1-OFFLINE-ISO-01`, `V1-OFFLINE-RETRY-01` (80.6), `V1-OFFLINE-FALLBACK-01` (80.8).
+
+Still open, non-blocking: `V1-PRICE-01`, the three unrun KG suites of §76.9, dead
+`BILLING_SUCCESS_URL`/`BILLING_CANCEL_URL`, production's `STRIPE_SECRET_KEY` lacking Prices Read,
+and the pre-existing `lib/auth.ts` `saveWorkspaceReport(report: any)` lint error present at `HEAD`.
+
+**Terminal:** `INSITE_V1_OFFLINE_FIELD_CAPTURE_COMPLETE —
+FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED`
+
+The paid path remains `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`: production has still
+never processed a real payment, and §78, §79 and §80 are all undeployed.
+
+## 81 — INSITE v1.0 OFFLINE SYNC IDEMPOTENCY HARDENING + RELEASE (2026-08-26) `IMPLEMENTED, MIGRATION ADDED, RELEASED`
+
+§80 shipped durable offline field capture with client-side duplicate prevention. This section
+replaces that mechanism with an authoritative identity contract, because the one §80 shipped was
+safe only by refusing to act, and then commits and deploys §78 + §79 + §80 + this work.
+
+`LIVE_PAYMENT_PROOF` stays `FALSE`. Nothing here touches Stripe, performs a payment, or grants Pro.
+
+### 81.1 Why the §80 mechanism was not the production contract `DIAGNOSIS`
+
+§80.5 prevented duplicates with *claim-and-reconcile*: a `syncAttempt` marker persisted before a
+create, and on retry a search for the record that attempt might already have made — matched on
+**title + site + timestamp**.
+
+That is a similarity judgement, not identity, and it fails in two directions.
+
+It **cannot separate legitimate records**. Two inspections created minutes apart at the same site
+with the same title are indistinguishable to it. §80 handled that by adopting only when the match
+was unique, which turns a repeat-visit site — the ordinary case in field safety work — into one
+where recovery deadlocks and the user is left with a `SYNC_FAILED` draft that retrying cannot fix.
+
+And a single match is still **a guess**. Nothing in it establishes that the candidate is the record
+the interrupted attempt created rather than a similar one that already existed.
+
+`V1-OFFLINE-IDENT-01`.
+
+### 81.2 The contract that replaced it `IMPLEMENTED`
+
+The client mints a stable opaque `clientRequestId`, persists it with the local record, and replays
+it unchanged on every attempt. The **database** is the authority that one identifier means one row.
+
+Migration `1800000015000-OfflineSyncIdempotency` adds three nullable `varchar(128)` columns and
+three **partial** unique indexes:
+
+```
+inspection       uq_inspection_client_request      ("createdByUserId", "clientRequestId")
+observations     uq_observation_client_request     ("inspectionId", "createdByUserId", "clientRequestId")
+storage_objects  uq_storage_object_client_request  ("createdByUserId", "clientRequestId")
+                 ... every one WHERE "clientRequestId" IS NOT NULL
+```
+
+The identity is `localId`, which the offline store already minted per record — so no new concept
+was introduced on the device, only a new use for one that was already stable across refresh,
+restart and sign-out. The value is bounded and character-restricted (`[A-Za-z0-9_.:-]{8,128}`) so
+it can never carry structure the server might be tempted to interpret, and it is never an
+authorisation input.
+
+**Scoping is per creating user, never per organisation.** Authorised organisation sharing governs
+who may *read* an inspection; it does not govern *whose write a request is*. Keying on
+`createdByUserId` means one member of an organisation can never resolve or adopt a colleague's
+record by presenting their identifier. That is deliberately stricter than the read model, and it is
+the property Phase 2 requirement 4 asked for.
+
+Sites were deliberately left alone. A site's name is already its user-facing identity — the
+existing "Saved site" picker selects by it, and the server holds a uniqueness constraint on it — so
+a create whose response was lost is recovered by the lookup the sync runs first anyway. Recorded as
+a decision rather than an omission.
+
+### 81.3 Concurrency: the unique index is the authority, not the check `IMPLEMENTED`
+
+A check-then-insert is not a lock. Two concurrent replays of one identifier both miss the check and
+both insert, and the partial index rejects the loser. For an idempotent create that rejection is
+the **correct outcome**, not an error: the loser catches SQLSTATE `23505`, re-reads, and returns
+what won. `src/common/unique-violation.ts` checks both the TypeORM wrapper's `code` and the nested
+`driverError.code`, because the shape differs between driver versions.
+
+Measured, not asserted: **ten concurrent replays** of one inspection identifier resolve to one row
+with no error surfaced to any caller, and **eight concurrent replays** of an observation identifier
+likewise.
+
+### 81.4 Evidence uploads: a stored object is only stored when it is READY `IMPLEMENTED`
+
+`StorageService.store()` writes the row (`uploading`), puts the bytes, then marks `ready`. A replay
+must therefore distinguish "already stored" from "a row exists but its bytes never landed". Only a
+`ready` object satisfies a replay; an `uploading` or `failed` row is **re-driven on the same row**
+rather than duplicated, so a half-written upload is never reported as stored.
+
+One detail worth recording because it would have been a silent corruption: `objectKey` is
+`select: false`, so a record re-read by identifier does not carry it. Finalisation reloads the key
+explicitly and updates status by id rather than `save()`-ing a partially-loaded entity.
+
+### 81.5 The heuristic is gone as an authority `PHASE 4 CLOSED`
+
+`reconcileInterruptedCreate()` is deleted, and so is the `syncAttempt` marker it depended on. The
+local schema version moves to `2` to record that. The sync path contains no candidate matching and
+no ambiguity resolution; `check:offline-field-capture` asserts their absence so they cannot return.
+
+One consequence had to be handled explicitly. "Keep both" on a conflict detaches a draft so the
+next sync creates a *separate* inspection — but `clientRequestId` is exactly what the server
+resolves to the inspection being left. Replaying it would return that same inspection. So detaching
+re-mints **every** server-facing identity the draft holds: the inspection's, every observation's,
+and every photo's, clearing each acknowledgement with it.
+
+### 81.6 Backward compatibility, both directions `VERIFICATION`
+
+**Old client → new server.** No identifier is sent, no lookup runs, no index applies (they are all
+partial on `IS NOT NULL`). Asserted directly: two identifier-less creates produce two independent
+inspections, and an identifier-less evidence upload still works.
+
+**New client → old server.** The only caller that sends an identifier is offline sync, which is a
+feature no one can be mid-flight on during the deploy — `/inspections` "Start inspection" sends
+none. In the parallel-deploy window the worst case is a first-minute offline sync answering `400`
+(the ValidationPipe runs `forbidNonWhitelisted`), which surfaces as `SYNC_FAILED` with the draft
+intact and retryable. Stated rather than discovered.
+
+### 81.7 Hard failure tests `VERIFICATION`
+
+Three suites, answering three different questions.
+
+`npm run test:offline-sync-idempotency` (new) — the **HTTP contract**, no browser. **23 / 0.**
+`npm run verify:offline-field-capture` — the **end-to-end behaviour** in a real persistent Chromium
+profile. **81 / 0.** `npm run check:offline-field-capture` — the **shipped source of both packages**
+bound to the contract, with no stack at all. **98 / 0.**
+
+| Required scenario | Result |
+|---|---|
+| A. lost inspection-create response → retry | server row exists after the interruption; **exactly one** after the retry |
+| B. same title/site/second, different identifiers | **two** legitimate inspections |
+| C. same identifier repeated | one inspection; **ten concurrent** replays also one |
+| D. `USER_A` identifier replayed by `USER_B` | `USER_B` gets a **new** inspection of their own; still cannot read, append to, or upload evidence against `USER_A`'s |
+| E. lost observation response → retry | **exactly one** server observation; eight concurrent replays also one |
+| F. lost evidence response → retry | **exactly one** evidence object, `ready`, carrying the identity |
+| G. multiple offline drafts | each synchronises independently |
+| H. sync failure | local content intact; the device never claims an unacknowledged upload |
+| I. retry after a full application restart | resolves to the **exact** inspection the pre-restart attempt created; its observation written once |
+
+Scenario I is the one that proves the identity is durable rather than in-memory: the browser is
+closed entirely, so only what IndexedDB holds can drive the retry.
+
+### 81.8 Regression `VERIFICATION`
+
+| Check | Result |
+|---|---|
+| frontend `tsc --noEmit` | clean |
+| frontend `next build` | succeeded |
+| backend `tsc` build | clean |
+| `test:offline-sync-idempotency` | **23 / 0** (new) |
+| `verify:offline-field-capture` | **81 / 0** |
+| `check:offline-field-capture` | **98 / 0** |
+| `check:launch-pricing` | 39 / 0 |
+| `check:free-observation-restore` | 27 / 0 |
+| `check:closure-workflow` | PASS — `reloadPersistence: true`, `immutableReport: true`, 1 report |
+| `check:hydration` | 3 / 0, 0 mismatches across 21 routes × 2 themes @390px |
+| `check:company-actions` / `check:action-workflow` | PASS |
+| `test:cross-user-isolation` | **28 / 0** |
+| `test:entitlement-boundary` | PASS, 4 assertions |
+| `test:auth-flow` | PASS |
+| `test:authenticated-entitlement-path` | PASS — negative `402`, `bypass false` |
+| `billing:regression` | **27 / 0** |
+| `billing:migration-validation` | **6 / 0** |
+| `test:hazlenz-core` | **28 of 30 suites pass** |
+| migration rehearsal from scratch | all **47** applied to a fresh disposable database, exit 0 |
+| `audit:mobile-responsive` | `HORIZONTAL_PAGE_OVERFLOW = 0` |
+
+**Level-1 HazLenz: exactly the documented §13.1 pair fails and no third appears** — *Golden
+Hardening Scenarios Test* case "7. LOTO energized maintenance (Not Guarding alone)" and *HazLenz
+Production Path Regression* case "FAIL tagged but not locked". Both were failing at `HEAD`; neither
+is touched by this work.
+
+Contract preserved: Free `$0`, Pro `$24.99/month`, Expert `NOT_A_V1_PLAN`, Free classify `402`,
+Level-1 `CUSTOMER_AUTHORITATIVE`, Level-3 `DEFERRED`.
+
+### 81.9 Migration safety and deployment order `DECISION`
+
+The migration adds three nullable columns and three partial indexes. No `DROP TABLE`, no
+`DROP COLUMN`, no `TRUNCATE`, no `DELETE`; nothing is rewritten; no constraint can reject an
+existing row. The running pre-release code selects only the columns its entities declare and never
+sees the new one, so it **tolerates** the migration. The new code **requires** it.
+
+That is the same classification §76 applied to its six migrations — `REQUIRED_BEFORE_NEW_CODE` and
+`SAFE_BEFORE_NEW_CODE` — so the order is `migration → push/deploy` with no ordering uncertainty to
+stop on. Rehearsed twice: applied to a fresh database from zero (47 migrations, exit 0) and applied
+to the already-migrated verification database, and the `down()` statements were executed inside a
+rolled-back transaction to confirm they are valid SQL.
+
+### 81.10 Release contents `RELEASE`
+
+This commit carries §78, §79, §80 and §81 together — the first time any of them reaches production.
+Baseline `HEAD` `5894507b9a8e5276c9844eb9cc5f64b4da943ba8`, production
+`1da529a0e9f78abd5cbbbc156a99016207695ef0`.
+
+| Classification | Paths |
+|---|---|
+| `INTENDED_PRODUCT` | `backend/src/inspection/**` (identity contract), `backend/src/storage/**`, `backend/src/common/unique-violation.ts`, `backend/src/database/migrations/1800000015000-OfflineSyncIdempotency.ts`, `frontend-next/lib/canonicalWorkflowApi.ts`, `frontend-next/app/inspections/page.tsx`, `frontend-next/app/inspection-workspace/page.tsx`, `frontend-next/app/layout.tsx`, `frontend-next/components/layout/AppShell.tsx`, `frontend-next/components/system/ClientCacheCleanup.tsx`, both `package.json`, `tsconfig.json` |
+| `INTENDED_SECURITY` | `frontend-next/lib/auth.ts` — sign-out sweep of the four device-global offline localStorage keys (`V1-OFFLINE-ISO-01`) |
+| `INTENDED_OFFLINE` | `frontend-next/public/sw.js`, `frontend-next/public/offline.html`, `frontend-next/app/manifest.webmanifest`, `frontend-next/app/field-capture/**`, `frontend-next/components/system/ServiceWorkerRegistrar.tsx`, `frontend-next/lib/offline/**` |
+| `INTENDED_VERIFICATION` | `backend/scripts/test-cross-user-isolation.ts`, `backend/scripts/test-offline-sync-idempotency.ts`, `frontend-next/scripts/check-free-observation-restore.mjs`, `check-offline-field-capture.mjs`, `verify-offline-field-capture.mjs`, and the two evidence packages (92 KB each, text and JSON only) |
+| `INTENDED_DOCUMENTATION` | `docs/INSITE_ENGINEERING_BLUEPRINT.md`, `docs/INSITE_CURRENT_STATE.json` |
+
+Deliberately **excluded**, and left untouched in the worktree:
+
+* **2,122 `" 2"` duplicate files.** Artifacts of the user's file-sync tool, present since before this
+  programme (§79.10). `GENERATED_OR_SCRATCH`.
+* **261 screenshots, 88 MB**, across the §73/§74 UX packages. §74.6 decided these stay on the
+  working machine because Git history is permanent and cannot be pruned without a force push. That
+  decision is unchanged. `GENERATED_OR_SCRATCH`.
+* **`Safety InSite Logos/` (7.5 MB).** The owner's own asset folder, referenced by no code in this
+  release. `UNCERTAIN` — not this phase's to commit.
+
+Staged-content secret scan: clean. No API key, token, private key, connection string or credential
+appears in the staged diff; the only credential-shaped strings are test fixtures with literal
+passwords in disposable verification scripts.
+
+Production verification of the deployed release is recorded in §81.11 and in
+`v1OfflineSyncIdempotency` in `docs/INSITE_CURRENT_STATE.json`.
+
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`

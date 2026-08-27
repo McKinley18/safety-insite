@@ -22,6 +22,13 @@ export class StorageObject {
   @Column({ type: 'char', length: 64 }) sha256: string;
   @Column({ type: 'varchar', length: 24, default: 'uploading' }) status: StorageStatus;
   @Column({ type: 'uuid' }) createdByUserId: string;
+  /**
+   * Client-minted idempotency identity for one offline evidence upload. Unique per creating user
+   * (partial index `uq_storage_object_client_request`, migration 1800000015000), so an upload whose
+   * response was lost resolves back to the same stored object instead of storing the bytes twice.
+   * NULL for every upload that sends none.
+   */
+  @Column({ type: 'varchar', length: 128, nullable: true }) clientRequestId: string | null;
   @Column({ type: 'timestamptz', nullable: true }) expiresAt: Date | null;
   @Column({ type: 'timestamptz', nullable: true }) deletedAt: Date | null;
   @Column({ type: 'uuid', nullable: true }) deletedByUserId: string | null;

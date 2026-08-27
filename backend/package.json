@@ -81,6 +81,8 @@
     "test:canonical-authorization": "ts-node scripts/test-canonical-organization-authorization.ts",
     "entitlement:test:grant": "ts-node scripts/grant-test-entitlement.ts",
     "test:entitlement-boundary": "ts-node scripts/test-entitlement-boundary.ts",
+    "test:cross-user-isolation": "ts-node scripts/test-cross-user-isolation.ts",
+    "test:offline-sync-idempotency": "ts-node scripts/test-offline-sync-idempotency.ts",
     "test:authenticated-entitlement-path": "ts-node scripts/test-authenticated-entitlement-path.ts",
     "test:private-storage-reports": "ts-node scripts/test-private-storage-reports.ts",
     "test:storage-provider": "ts-node scripts/test-storage-provider.ts",

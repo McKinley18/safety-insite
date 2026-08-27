@@ -1,6 +1,7 @@
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import ClientCacheCleanup from "@/components/system/ClientCacheCleanup";
+import ServiceWorkerRegistrar from "@/components/system/ServiceWorkerRegistrar";
 import ThemeController from "@/components/system/ThemeController";
 import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/brand";
 import { FIXED_LIGHT_THEME_ROUTES } from "@/lib/theme";
@@ -92,6 +93,14 @@ export const metadata = {
   icons: { icon: "/icon.svg" },
 };
 
+// app/manifest.webmanifest is the App Router file convention: Next serves it at
+// /manifest.webmanifest and emits the <link rel="manifest"> itself, so it is NOT repeated in the
+// `metadata.manifest` field above (that would emit a second, duplicate link).
+//
+// Installability is what makes the offline application shell reachable after the browser is
+// closed: an installed InSite launches at /field-capture, which the service worker can serve from
+// cache with no connection. See public/sw.js.
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
@@ -117,6 +126,7 @@ export default function RootLayout({
       </head>
       <body>
         <ClientCacheCleanup />
+        <ServiceWorkerRegistrar />
         <ThemeController />
         <AppShell>
           {children}

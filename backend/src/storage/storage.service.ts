@@ -4,6 +4,7 @@ import { createHash, randomUUID } from 'crypto';
 import { Repository } from 'typeorm';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { AuthenticatedUser, requireAuthenticatedUser } from '../common/authenticated-user';
+import { isUniqueViolation } from '../common/unique-violation';
 import { InspectionService } from '../inspection/inspection.service';
 import { StorageCategory, StorageObject } from './storage-object.entity';
 import { LocalTestStorageProvider, PrivateStorageProvider, S3PrivateStorageProvider } from './storage-provider';
@@ -43,34 +44,95 @@ export class StorageService {
     return base.toLowerCase().endsWith(ext) ? base : `${base}${ext}`;
   }
 
+  /**
+   * Resolves a client-minted idempotency identifier to the object it already stored, for THIS user.
+   *
+   * Only a `ready` object counts as already-stored. An `uploading` or `failed` row is an attempt
+   * whose bytes may never have reached the provider, so returning it would report a file as stored
+   * that cannot be downloaded. Those are re-attempted instead, which is safe because the row is
+   * reused rather than duplicated.
+   */
+  private async findStoredByClientRequestId(user: AuthenticatedUser, clientRequestId: string) {
+    return this.objects.findOne({ where: { createdByUserId: user.userId, clientRequestId } });
+  }
+
   async store(input: {
     user: unknown; category: StorageCategory; parentType: StorageObject['parentType']; parentId: string;
     organizationId: string | null; ownerUserId: string | null; contentType: string;
-    downloadName: string; body: Buffer; expiresAt?: Date | null;
+    downloadName: string; body: Buffer; expiresAt?: Date | null; clientRequestId?: string | null;
   }) {
     const user = requireAuthenticatedUser(input.user);
     if (!TYPES[input.category].has(input.contentType)) throw new BadRequestException('Unsupported file content type.');
     if (!input.body.length || input.body.length > LIMITS[input.category]) throw new BadRequestException('File size is outside the allowed range.');
+
+    const clientRequestId = input.clientRequestId || null;
+
+    // An upload whose response was lost must not store the bytes twice. Replaying the identifier
+    // returns the object the earlier attempt produced.
+    if (clientRequestId) {
+      const existing = await this.findStoredByClientRequestId(user, clientRequestId);
+      if (existing && existing.status === 'ready') return existing;
+      if (existing) {
+        // A row exists but its bytes never landed. Re-drive THAT row rather than creating another.
+        return this.putAndFinalize(user, existing, input.body, input.contentType);
+      }
+    }
+
     const provider = this.provider();
     const objectKey = `${input.category}/${new Date().toISOString().slice(0, 10)}/${randomUUID()}`;
-    const record = await this.objects.save(this.objects.create({
-      category: input.category, provider: provider.mode, objectKey,
-      organizationId: input.organizationId, ownerUserId: input.ownerUserId,
-      parentType: input.parentType, parentId: input.parentId, contentType: input.contentType,
-      downloadName: this.downloadName(input.downloadName, input.contentType),
-      sizeBytes: String(input.body.length), sha256: createHash('sha256').update(input.body).digest('hex'),
-      status: 'uploading', createdByUserId: user.userId, expiresAt: input.expiresAt || null,
-      deletedAt: null, deletedByUserId: null,
-    }));
+
+    let record: StorageObject;
     try {
-      await provider.put(objectKey, input.body, input.contentType);
+      record = await this.objects.save(this.objects.create({
+        category: input.category, provider: provider.mode, objectKey,
+        organizationId: input.organizationId, ownerUserId: input.ownerUserId,
+        parentType: input.parentType, parentId: input.parentId, contentType: input.contentType,
+        downloadName: this.downloadName(input.downloadName, input.contentType),
+        sizeBytes: String(input.body.length), sha256: createHash('sha256').update(input.body).digest('hex'),
+        status: 'uploading', createdByUserId: user.userId, clientRequestId,
+        expiresAt: input.expiresAt || null, deletedAt: null, deletedByUserId: null,
+      }));
+    } catch (error) {
+      // Concurrent replay: the partial unique index rejected this insert, so another attempt won.
+      if (clientRequestId && isUniqueViolation(error)) {
+        const winner = await this.findStoredByClientRequestId(user, clientRequestId);
+        if (winner && winner.status === 'ready') return winner;
+        if (winner) return this.putAndFinalize(user, winner, input.body, input.contentType);
+      }
+      throw error;
+    }
+
+    return this.putAndFinalize(user, record, input.body, input.contentType);
+  }
+
+  private async putAndFinalize(
+    user: AuthenticatedUser,
+    record: StorageObject,
+    body: Buffer,
+    contentType: string,
+  ) {
+    const provider = this.provider();
+    // `objectKey` is `select: false`, so a record re-read by identifier does not carry it. Reload
+    // it explicitly rather than writing the bytes to `undefined`.
+    const objectKey = record.objectKey || (await this.objects
+      .createQueryBuilder('object')
+      .addSelect('object.objectKey')
+      .where('object.id = :id', { id: record.id })
+      .getOne())?.objectKey;
+    if (!objectKey) throw new BadRequestException('The stored object could not be located.');
+
+    try {
+      await provider.put(objectKey, body, contentType);
+      // update() by id, not save(). A record re-read by client identifier was loaded without the
+      // `select: false` objectKey column, and save() round-trips the entity it was handed; a
+      // targeted column update cannot disturb a column this code never loaded.
+      await this.objects.update(record.id, { status: 'ready' });
       record.status = 'ready';
-      await this.objects.save(record);
       await this.audit(user, 'file_upload_completed', record);
       return record;
     } catch (error) {
+      await this.objects.update(record.id, { status: 'failed' });
       record.status = 'failed';
-      await this.objects.save(record);
       await provider.delete(objectKey).catch(() => undefined);
       throw error;
     }

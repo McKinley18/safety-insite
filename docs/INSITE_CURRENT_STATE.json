@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE — PAID_PATH_UNPROVEN",
+  "checkpoint": "INSITE_V1_OFFLINE_SYNC_IDEMPOTENCY_HARDENED — RELEASE COMMIT PREPARED",
   "readiness": "NO LOCAL FUNCTIONAL OR RESPONSIVE BLOCKERS. The three gaps blueprint 73.11 recorded are closed: the hydration mismatch is NOT_REPRODUCIBLE and now has a permanent check; the phone inspection workflow was driven end to end at 390px (20/20); and the three routes previously measured empty were re-measured populated, which surfaced and fixed four real mobile defects. Everything remaining is a production commerce or release action.",
-  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: V1-FREEHIST-01 and V1-MENU-01 remediation.",
+  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: deploy the sections 78/79/80 remediation, which is implemented and verified locally and has NOT been committed, pushed or deployed.",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -9826,6 +9826,666 @@
       },
       "notTested": "Cancellation, renewal and period-end transition were not exercised: no subscription exists, and the owner withheld payment authorization. No portal session was created.",
       "entitlementOnCancelContract": "resolveEffectiveTier() derives entitlement from Stripe status alone - 'active' or 'trialing' grant the tier, everything else resolves to free. There is deliberately NO periodEnd grace window (removed after a Stripe Test Clock proved it kept Pro alive past cancellation). Unverified in production."
-    }
+    },
+    "livePaymentProofStillFalse": true
+  },
+  "v1FinalThreeIssueRemediation": {
+    "terminal": "INSITE_V1_REMEDIATION_PARTIAL — FREE_HISTORY_PRODUCT_SCOPE_REQUIRED",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 78",
+    "preRemediationAcceptanceSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
+    "startingSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "productionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "productionRemediationDeployed": false,
+    "remediationCommitted": false,
+    "v1Freehist01": {
+      "status": "FIXED (restoration); history surface OPEN",
+      "rootCause": "app/inspection-workspace/page.tsx restored observation AND analysis from one conjunction, `if (persistedObservation && currentAnalysis)`. classify is Pro-gated (402), so currentAnalysis is undefined on Free BY CONSTRUCTION and the block -- including the already-fetched rawText -- was skipped.",
+      "backendAtFault": false,
+      "evidenceBeforeRepair": "observationFound true, rawTextLen 538, analyses 0, restoreBlockWouldRun false",
+      "repair": "Split into two conditions: observation identity+text restore on persistedObservation alone; analysis id, snapshot, risk/action drafts and setStep('review') stay gated on currentAnalysis.",
+      "entitlementWeakened": false,
+      "test": "frontend-next/scripts/check-free-observation-restore.mjs -- 21 assertions, 0 failures; proven non-vacuous (re-coupling yields 13 passed / 1 FAILED)",
+      "endToEnd": "Disposable stack: Free account classify=402; observation persisted 117 chars with no analysis; reopened workspace restored 117/117 chars; stayed on Capture; no review panel; no overflow at 390px."
+    },
+    "v1Freehist01RemainingGap": {
+      "issue": "The plural 'saved history' advertised on /register is still not truthful.",
+      "why": "app/inspections/page.tsx renders only persistedInspections.length; the array is never listed and nothing reopens an arbitrary inspection. Starting a second Quick Capture overwrites sentinel_selected_inspection_context, after which the earlier inspection is unreachable in the UI though intact on the server.",
+      "notBuilt": "A list-and-resume surface on /inspections. The phase forbade inventing an inspection-management subsystem; this is an owner product-scope decision."
+    },
+    "v1Menu01": {
+      "status": "FIXED",
+      "rootCause": "TWO mechanisms defeated the author's already-declared opaque dark:bg-[#07111F]: (1) .bg-app-surface is hand-written in globals.css after the tailwind import so it wins on equal specificity, resolving to the deliberately translucent --app-surface; (2) .dark :where(.bg-white){background-color:var(--app-surface)!important} remaps plain bg-white onto that same token in dark mode.",
+      "firstAttemptFailed": "Switching to bg-white fixed light (0.94 -> 1) and left dark unchanged at rgba(15,23,42,0.9) because of mechanism 2. Measured, not assumed.",
+      "repair": "bg-[#FFFFFF] dark:bg-[#07111F] -- arbitrary values matched by neither rule. Shared --app-surface token used by 13 other surfaces NOT changed; no colour-system sweep.",
+      "measuredBefore": {
+        "light": "rgba(255,255,255,0.94)",
+        "dark": "rgba(15,23,42,0.9)"
+      },
+      "measuredAfter": {
+        "light": "rgb(255,255,255) alpha 1",
+        "dark": "rgb(7,17,31) alpha 1"
+      },
+      "visualVerification": "Ghosting gone in both themes at 390px and 519px over real page content; menu 224px wide, right edge 378 <= 390; contrast rgb(248,250,252) on rgb(7,17,31), far above AA."
+    },
+    "v1Price01": {
+      "status": "FIXED",
+      "rootCause": "The only /expert/i occurrence in components/pricing/planData.ts is the canonical 'LAUNCH CONTRACT: FREE = $0, PRO = $24.99/month, EXPERT = NOT_A_V1_PLAN.' line; the file-level LEGACY_EXPERT_ALLOWLIST did not cover it, so the contract declaration failed the check.",
+      "productContractEdited": false,
+      "repair": "Added planData.ts to LEGACY_EXPERT_ALLOWLIST with an explicit reason, AND added a CONTRACT_DECLARATION_ONLY map pinning that entry so every /expert/i line in the file must be the canonical contract line. A bare file-level entry would have permitted any future Expert reference into the single source of truth for what a customer is offered.",
+      "before": "36 passed, 1 FAILED",
+      "after": "39 passed, 0 failed",
+      "countNote": "Expected '37' was a miscount: allowlisting a file also adds one 'entry still needed' assertion and the pin adds another, so 36 + 1 + 2 = 39. No assertion was removed or weakened.",
+      "rejectionProven": [
+        "EXPERT_PLAN_LABEL = \"Expert\" injected into the ALLOWLISTED planData.ts -> FAIL (caught by the pin)",
+        "'// Expert plan marketing copy' injected into non-allowlisted app/pricing/page.tsx -> FAIL (allowlist)",
+        "Both fixtures reverted to their original checksums."
+      ]
+    },
+    "focusedVerification": {
+      "frontendTsc": "clean",
+      "frontendBuild": "succeeded, all routes prerendered",
+      "eslintChangedFiles": "0 errors; 1 pre-existing <img> warning at AppShell.tsx:290, unrelated",
+      "checkLaunchPricing": "39/0",
+      "checkFreeObservationRestore": "21/0",
+      "checkHydration": "3/0, 0 mismatches across 20 routes x 2 themes @390px",
+      "checkCompanyActions": "PASS",
+      "checkActionWorkflow": "PASS",
+      "backendTscBuild": "clean",
+      "testEntitlementBoundary": "PASS, 4 assertions: freeDenied, expiredDenied, activeGrantAllowed, crossUserIsolation",
+      "testAuthenticatedEntitlementPath": "PASS, negative 402, bypass false",
+      "regressions": "none in entitlement, authentication, inspection persistence, Pro restoration, navigation, pricing or mobile layout"
+    },
+    "v1Closurechk01": {
+      "classification": "VERIFICATION_TOOLING — pre-existing, NOT caused by this phase, NOT repaired (out of scope)",
+      "failure": "check:closure-workflow fails on entitlement_grants_tier_check",
+      "cause": "Its fixture inserts tier 'expert' (line 28) while the schema constraint is CHECK (tier = 'pro'), set by migration 1800000005900-RetireExpertTier. Script untouched by this phase; broken since that migration shipped."
+    },
+    "localEnvironmentSideEffects": {
+      "buildAgainstRunningDevServer": "A next build ran while a next dev process was detected -- the V1-PRICING-01 hazard. Measured afterwards: :3000 still served /pricing, /register and /upgrade at 200 with $24.99 and zero 9.99/6.99/Expert. No corruption reproduced, but the build should have been deferred.",
+      "operatorBackendStopped": "Cleanup used pkill -f 'node dist/main.js', which matches the operator's dev backend as well as the disposable instances. The operator's local backend on :4000 was stopped. Their frontend dev server on :3000 survived. Nothing deleted, no database altered; it simply needs restarting. The pattern should have been scoped by port or PID.",
+      "rebuilt": "backend/dist and frontend-next/.next were rebuilt from current source."
+    },
+    "disposableDatabase": {
+      "name": "test_v1_remediation_20260826",
+      "migrations": 46,
+      "leftInPlace": true,
+      "protectedTargetSafety": "Every mutating command exported DATABASE_URL explicitly and printed the resolved host and database name, refusing any protected name, before executing. safescope was never targeted."
+    },
+    "filesModified": [
+      "frontend-next/app/inspection-workspace/page.tsx (V1-FREEHIST-01)",
+      "frontend-next/components/layout/AppShell.tsx (V1-MENU-01)",
+      "frontend-next/scripts/check-launch-pricing.mjs (V1-PRICE-01)",
+      "frontend-next/scripts/check-free-observation-restore.mjs (new test)",
+      "frontend-next/package.json (registers check:free-observation-restore)",
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md, docs/INSITE_CURRENT_STATE.json (this record)"
+    ]
+  },
+  "v1FreeHistoryAndStorageValidation": {
+    "terminal": "INSITE_V1_FREE_HISTORY_AND_STORAGE_VALIDATED — FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 79",
+    "startingSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
+    "productionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "productionRemediationDeployed": false,
+    "implementationCommitted": false,
+    "ownershipPredicate": {
+      "enforcedAt": "SERVICE layer (InspectionService.findAccessible), not controller, not client",
+      "predicate": "inspection.organizationId ? inspection.organizationId === user.organizationId : inspection.ownerUserId === user.userId",
+      "refusalCode": "404 NotFound, deliberately not 403 — a 403 would confirm the row exists",
+      "draftRule": "draft/in_review visible only to creator, organization manager, or active assignee",
+      "inheritedBy": "observations via accessibleObservation -> parent inspection; sites via SitesService.findAccessible (same predicate); reports via inspections.findAccessible on read and org-or-owner scoping on list",
+      "models": "OWNERSHIP_ISOLATION for individual accounts; AUTHORIZED_ORGANIZATION_SHARING for org accounts. Both intentional; neither changed."
+    },
+    "crossUserIsolation": {
+      "result": "PASS",
+      "suite": "backend/scripts/test-cross-user-isolation.ts (npm run test:cross-user-isolation)",
+      "assertions": 28,
+      "failures": 0,
+      "proved": [
+        "own list scoped to self, exactly one inspection each",
+        "other user's inspection absent from list, both directions",
+        "read by KNOWN UUID -> 404, both directions",
+        "cross-user add observation / PATCH observation refused, both directions",
+        "cross-user report generation refused",
+        "report list scoped to self",
+        "unauthenticated -> 401",
+        "guessed UUID indistinguishable from real-but-unauthorised (no existence disclosure)"
+      ],
+      "frontendFilteringRelied": false
+    },
+    "freeSavedHistory": {
+      "status": "COMPLETE",
+      "before": "app/inspections/page.tsx fetched listPersistedInspections() but rendered only persistedInspections.length; nothing listed or reopened a record, and starting a second Quick Capture overwrote sentinel_selected_inspection_context, stranding the first inspection in the UI.",
+      "implemented": "A 'Saved history' section on the existing /inspections page listing each saved inspection (title, status, site, regulatory context, saved-at) with a Reopen control, plus resumeInspection().",
+      "deliberatelyNotDone": [
+        "no new endpoint (renders what GET /inspections already returns)",
+        "no new storage",
+        "no navigation redesign",
+        "no new backend subsystem"
+      ],
+      "accessCannotWiden": "resumeInspection writes only the existing selection-context shape; the workspace reads persistedInspectionId and re-fetches from the server, so the list is exactly what the ownership predicate returned for that account.",
+      "entitlementConsulted": false,
+      "entitlementRationale": "Reading back your own record is record-keeping, which Free is entitled to.",
+      "multipleInspectionProof": "Free account with two inspections: history listed both; reopening A restored A's text; reopening B afterwards restored B's distinct text; neither stranded the other.",
+      "freeWithNoAnalysis": "stays on Capture; no review panel; no fabricated analysis, findings, reports, risk, corrective actions or Pro entitlement",
+      "mobileOverflow390": 0
+    },
+    "localStorageIsolation": {
+      "result": "PASS",
+      "issueId": "V1-LOCALISO-01",
+      "inventory": "localStorage only — no IndexedDB, no Cache Storage, no service worker, no sessionStorage customer data",
+      "defectFound": "clearAuthSession() cleared a 35-key list that OMITTED raw customer content. Measured after a real UI sign-out, these survived into the next session on the same device: sentinel_inspection_autosave (observation text), auditally_personal_calendar_events, sentinel_encrypted_photo_* and safety_insite_custom_risk_matrix.",
+      "sameClassAs": "the production leak observed in section 77, where a freshly registered acceptance account found a previous session's draft already in browser storage",
+      "repair": "lib/auth.ts: three exact keys added, plus a prefix sweep for sentinel_encrypted_ and sentinel_secure_ (generated key names an exact-match list cannot cover). The sweep snapshots Object.keys() first because removeItem() during a live index walk skips entries.",
+      "deliberatelyNotSwept": "sentinel_device_encryption_key_v1, sentinel_pin_hash_v1, sentinel_pin_salt_v1 — device-unlock security setup, not customer content; destroying them on every sign-out would silently reset an operator-configured PIN. Recorded as a separate decision.",
+      "afterFix": {
+        "survivingKeys": [
+          "safety_insite_theme",
+          "auditally_cache_cleanup_version"
+        ],
+        "userBSeesUserAContent": false,
+        "userBServerHistory": 0,
+        "userAServerHistoryRecovers": true,
+        "userALocalDraftRecovers": false
+      }
+    },
+    "offlineCapability": {
+      "result": "VERIFIED_AS_IMPLEMENTED",
+      "measured": "0 service worker registrations, 0 Cache Storage entries, 0 IndexedDB databases, no PWA manifest. ClientCacheCleanup.tsx actively unregisters every service worker and deletes every cache on load.",
+      "consequence": "A reload or app restart while offline cannot load the app shell at all.",
+      "workspaceLocalPersistence": "NONE — app/inspection-workspace/page.tsx writes no localStorage/localVault/offlineQueue; an in-progress observation lives in React state alone.",
+      "classification": {
+        "openingAppShell": "ONLINE_REQUIRED",
+        "startingInspection": "ONLINE_REQUIRED",
+        "enteringObservation": "OFFLINE_PARTIAL",
+        "editingObservation": "OFFLINE_PARTIAL",
+        "savingDraft": "ONLINE_REQUIRED",
+        "reopeningDraft": "ONLINE_REQUIRED",
+        "addingPhotos": "ONLINE_REQUIRED",
+        "runningHazLenzAnalysis": "ONLINE_REQUIRED",
+        "viewingPreviouslySavedInspection": "ONLINE_REQUIRED",
+        "generatingViewingReport": "ONLINE_REQUIRED",
+        "exportingData": "ONLINE_REQUIRED"
+      },
+      "measuredSequence": [
+        "online baseline: saved observation restored (76 chars)",
+        "connectivity lost mid-entry: typing continues to 144 chars, preserved",
+        "save attempted offline: UI shows 'Offline' and 'Failed to fetch'; does NOT claim saved",
+        "no local draft written",
+        "connectivity restored, retry succeeds and the offline-typed text persists"
+      ],
+      "dataLossVerdict": "Ordinary connectivity loss does NOT destroy customer input; work survives in the page and syncs on retry. Loss requires reloading or closing while offline, in which case the app shell cannot reload anyway.",
+      "whyNoLocalDraftAdded": "A localStorage draft alone would not deliver offline resumption without also caching the app shell — the materially broader architecture this phase excludes.",
+      "followUpGap": "V1-OFFLINE-DRAFT-GAP"
+    },
+    "networkLossUx": {
+      "issueId": "V1-OFFLINEUX-01",
+      "falseSaveRisk": "none — isEntitlementRefusal() matches only /paid subscription is required/i, so a network failure can never render the Free entitlement message. Verified: offline save shows 'Failed to fetch'.",
+      "defectFound": "The offline badge claimed 'changes you make are kept on this device until the connection returns'. False for the capture path, which persists nothing locally.",
+      "repair": "Replaced with a truthful message: HazLenz analysis and saving are unavailable, and anything typed but not yet saved is not stored on the device and will be lost on reload. Wording only; no offline framework introduced."
+    },
+    "userControlledExport": {
+      "result": "VERIFIED",
+      "capability": "/reports renders each immutable report version with a Download PDF control. downloadPersistedReport() fetches the authorised private-file route, refuses any non-application/pdf artifact, and saves via an object URL as inspection-<inspectionId>-v<version>.pdf — a normal browser download landing in Downloads/Files on phone, tablet or computer.",
+      "provenBy": "closure suite: immutableReport true, reports 1, artifact stored",
+      "boundaries": [
+        "Pro-gated (cloudReports)",
+        "requires connectivity",
+        "a PDF download is NOT an offline database sync",
+        "no JSON/CSV export exists"
+      ],
+      "recommendedFollowUp": "JSON export of an inspection reusing the same authorised route",
+      "gapId": "V1-OFFLINE-EXPORT-GAP"
+    },
+    "v1Closurechk01": {
+      "status": "FIXED",
+      "knownDefect": "fixture inserted tier 'expert' against CHECK (tier = 'pro') from migration 1800000005900-RetireExpertTier",
+      "alsoFound": "the verifier drove a pre-v1 UI; only 1 of its 6 UI assertions still matched shipped text",
+      "repair": "'pro' is the v1 equivalent of the paid access the fixture always intended; flow updated to Saved site -> Add new site -> regulatory context -> Full Inspection -> capture -> 'HazLenz assessment — review before finalizing' -> 'Continue to risk review' -> 'Confirm risk and finalize finding' -> 'Corrective action' -> 'Complete inspection and generate report' -> 'Report generated'",
+      "negativeControl": "Added and passing: inserting an 'expert' grant must still be rejected, and the script fails loudly if it is not — so repairing the fixture cannot become a way back in.",
+      "result": "PASS: {\"passed\":true,\"realHazLenzEndpoint\":true,\"humanReview\":true,\"immutableReport\":true,\"reloadPersistence\":true,\"logoutProtection\":true,\"persisted\":{\"sites\":1,\"inspections\":1,\"observations\":1,\"analyses\":1,\"reviews\":1,\"findings\":1,\"actions\":1,\"tasks\":1,\"reports\":1}}",
+      "doublesAsProRegression": true,
+      "harnessPrereqs": "STORAGE_PROVIDER=local_test (not 'local') and STORAGE_LOCAL_ROOT"
+    },
+    "regression": {
+      "frontendTsc": "clean",
+      "frontendBuild": "succeeded",
+      "backendTscBuild": "clean",
+      "checkLaunchPricing": "39/0",
+      "checkFreeObservationRestore": "27/0",
+      "checkClosureWorkflow": "PASS (was failing)",
+      "checkHydration": "3/0, 0 mismatches across 20 routes x 2 themes @390px",
+      "checkCompanyActions": "PASS",
+      "checkActionWorkflow": "PASS",
+      "testCrossUserIsolation": "28/0 (new)",
+      "testEntitlementBoundary": "PASS, 4 assertions",
+      "testAuthFlow": "PASS",
+      "testAuthenticatedEntitlementPath": "PASS, negative 402, bypass false (needed the auth rate-limit window to clear; two prior red results were 429 contention, not an authorisation defect)",
+      "mobileOverflowAffectedRoutes": "0 at 390px",
+      "preExistingLintNotIntroduced": "lib/auth.ts saveWorkspaceReport(report: any) — present at HEAD line 358; this phase's hunks are at lines 46, 55 and 230",
+      "contractPreserved": "Free $0, Pro $24.99/month, Expert NOT_A_V1_PLAN, Free classify 402, Level-1 CUSTOMER_AUTHORITATIVE, Level-3 DEFERRED"
+    },
+    "filesModified": [
+      "frontend-next/app/inspections/page.tsx (saved-history list + resumeInspection)",
+      "frontend-next/lib/auth.ts (V1-LOCALISO-01 local-storage isolation)",
+      "frontend-next/components/layout/AppShell.tsx (V1-OFFLINEUX-01 truthful offline message)",
+      "frontend-next/scripts/check-closure-inspection-workspace.mjs (V1-CLOSURECHK-01 + negative control)",
+      "frontend-next/scripts/check-free-observation-restore.mjs (extended with list/resume contract)",
+      "backend/scripts/test-cross-user-isolation.ts (new)",
+      "backend/package.json (registers test:cross-user-isolation)",
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md, docs/INSITE_CURRENT_STATE.json (this record)"
+    ]
+  },
+  "v1OfflineFieldCapture": {
+    "terminal": "INSITE_V1_OFFLINE_FIELD_CAPTURE_COMPLETE — FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 80",
+    "evidenceRoot": "verification/insite-v1-offline-field-capture-2026-08-26/",
+    "startingSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
+    "productionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "productionRemediationDeployed": false,
+    "implementationCommitted": false,
+    "closes": [
+      "V1-OFFLINE-DRAFT-GAP (section 79.5)",
+      "V1-OFFLINE-EXPORT-GAP (section 79.7)"
+    ],
+    "scopeDecision": {
+      "converted": "/field-capture — a NEW small route that is durable offline",
+      "notConverted": "/inspection-workspace — unchanged",
+      "why": "The workspace is the guided HazLenz flow (analysis, evidence, risk, findings, corrective actions, report). All of it is server-authoritative and entitlement-gated, and it creates the server record before the first step. Making it offline-tolerant would have required either copying governed analysis onto the device or letting a local substitute stand in for it. What a field inspector actually loses without signal is the ability to RECORD what they see, which is what this phase makes durable."
+    },
+    "architecture": {
+      "appShell": {
+        "file": "frontend-next/public/sw.js",
+        "strategy": "cache-first for /_next/static/ and a short static list; network-first for the document of an explicit route allowlist (/field-capture, /inspections, /command-center)",
+        "neverHandled": [
+          "any cross-origin request",
+          "any request carrying an Authorization header",
+          "any non-GET request",
+          "any ?_rsc= payload",
+          "any same-origin /api/ path"
+        ],
+        "fallback": "public/offline.html — a PLAIN STATIC document, not a Next route (see offlineFallbackDefect)",
+        "registration": "components/system/ServiceWorkerRegistrar.tsx, from the root layout; disabled under next dev because a cached shell in front of a rebuilding dev server serves stale chunks",
+        "cleanupAmendment": "ClientCacheCleanup unregistered EVERY service worker and deleted EVERY cache on load, which would have undone this on the visit that installed it. It now excludes /sw.js and insite-shell-* by name and keeps sweeping everything else.",
+        "manifest": "app/manifest.webmanifest (App Router file convention); start_url /field-capture; display standalone"
+      },
+      "localStore": {
+        "technology": "IndexedDB database insite-offline-v1",
+        "whyNotLocalStorage": "Drafts carry photo blobs and an unbounded number of observations. localStorage is synchronous, string-only and shares a ~5 MB origin quota; base64-in-localStorage was rejected explicitly.",
+        "stores": {
+          "drafts": "keyPath recordKey = `${userKey}::${localId}`, index byUser -> userKey",
+          "photos": "keyPath recordKey = `${userKey}::${localId}`, index byDraft -> [userKey, draftLocalId]; image bytes stored as a native Blob",
+          "keys": "keyPath userKey; per-account AES-GCM key material"
+        },
+        "envelopeFields": [
+          "recordKey",
+          "userKey",
+          "localId",
+          "updatedAt",
+          "syncState",
+          "cipher"
+        ],
+        "encryptedPayloadFields": [
+          "schemaVersion",
+          "localId",
+          "userKey",
+          "organizationId",
+          "title",
+          "siteName",
+          "regulatoryContext",
+          "observations[localId,text,locationLabel,createdAt,updatedAt,remoteObservationId?]",
+          "createdAt",
+          "updatedAt",
+          "syncState",
+          "syncError?",
+          "lastSyncedAt?",
+          "remoteInspectionId?",
+          "remoteSiteId?",
+          "baseServerVersion?",
+          "baseServerUpdatedAt?",
+          "syncAttempt?{startedAt,phase}"
+        ],
+        "photoMetaFields": [
+          "localId",
+          "draftLocalId",
+          "fileName",
+          "mimeType",
+          "sizeBytes",
+          "capturedAt",
+          "remoteEvidenceId?"
+        ],
+        "neverPersisted": [
+          "password",
+          "access token",
+          "refresh token",
+          "Stripe or billing identifier",
+          "provider credential",
+          "HazLenz analysis",
+          "finding",
+          "risk score",
+          "report"
+        ],
+        "neverPersistedProof": "The browser suite reads the raw IndexedDB rows back and fails if any of them appears."
+      }
+    },
+    "localUserIsolation": {
+      "result": "PASS",
+      "issueId": "V1-OFFLINE-ISO-01",
+      "namespace": "userKey = 'u_' + SHA-256('insite-offline-v1:' + <account id>), derived from the authenticated session",
+      "properties": [
+        "part of EVERY primary key and the only index, so the store exposes no 'list everything' path",
+        "with no session resolveOfflineIdentity() returns null, which IS the boundary rather than a check layered over one",
+        "reads re-verify the namespace after decryption; a decrypted draft with a foreign userKey is discarded",
+        "reproducible for the same account and nobody else, so ordinary sign-out leaves a user's own drafts recoverable at their next sign-in without exposing them to whoever signs in between"
+      ],
+      "encryptionAtRest": "AES-GCM under a per-account key held in the same database.",
+      "encryptionThreatModelStatedHonestly": "The key is on the device, so this is NOT protection against an attacker who controls the device or can run the application's own code. It buys that payloads are not legible plaintext in a storage inspector, and that 'remove offline data from this device' destroys the key with the rows. The isolation guarantee the product depends on comes from the NAMESPACE, not from the encryption.",
+      "preExistingLeakClosed": "lib/inspection/offlineInspectionStore.ts (legacy /inspection route) writes insite_offline_inspections_v1, insite_offline_report_drafts_v1, insite_offline_inspection_sync_queue_v1 and insite_active_local_inspection_id to DEVICE-GLOBAL localStorage with no account namespace — raw observation text, local findings and report drafts, surviving sign-out. Same class as V1-LOCALISO-01. All four keys are now in clearAuthSession()'s sweep.",
+      "logoutBehavior": "Ordinary sign-out makes the prior account's local content unreachable (no session -> no namespace -> no query). The data remains recoverable ONLY by the same authenticated account. An explicit 'remove this account's offline data from this device' control destroys that account's drafts, photos and key material and touches no other account."
+    },
+    "synchronization": {
+      "model": "Explicit, user-initiated, APPEND-ONLY. A button, not a background process.",
+      "states": [
+        "LOCAL_ONLY",
+        "SYNCING",
+        "SYNCED",
+        "SYNC_FAILED",
+        "CONFLICT"
+      ],
+      "serverHasNoIdempotencyKey": "CreateInspectionDto and CreateObservationDto accept no client-supplied key, and adding one is a schema change to the protected development database, which this phase is not authorised to make.",
+      "duplicatePrevention": "Claim-and-reconcile on the client: a syncAttempt marker is persisted BEFORE the create; a retry that finds the marker with no recorded identifier first looks for the record the interrupted attempt may already have created and ADOPTS it. Adoption requires a UNIQUE match on title, site and a timestamp at or after the attempt started, excluding any remote id another local draft already claims. Two plausible candidates refuse adoption rather than guess.",
+      "acknowledgementRule": "Every identifier the server returns is written to IndexedDB immediately, one at a time. An already-acknowledged observation is skipped on retry. SYNCED is set ONLY when every part was acknowledged; anything outstanding leaves the draft SYNC_FAILED with the local copy intact.",
+      "noHazLenz": "Synchronising capture does not run analysis. Analysis stays on the existing online, entitlement-gated path."
+    },
+    "conflictHandling": {
+      "state": "PARTIAL",
+      "structuralGuarantee": "Synchronisation issues no PATCH, no DELETE and no status transition against server-held records, so silent destructive overwrite is structurally impossible rather than merely unlikely.",
+      "stalenessCheck": "A draft attached to a server inspection records the version it last reconciled against. If the server advanced past it, or the inspection was archived, the draft goes to CONFLICT BEFORE anything is appended.",
+      "userChoice": [
+        "Keep both — detaches the draft so the next sync creates a SEPARATE inspection; the server copy is untouched",
+        "Keep the server copy — marks the local draft resolved so it can be removed"
+      ],
+      "whyPartial": "Detection and a user choice are implemented and proven. Automatic merging does not exist and was not built. PARTIAL is the honest label: what is proven is that newer server data is never silently overwritten and the user is given the decision."
+    },
+    "defectsFound": {
+      "autoRetriedNonIdempotentCreate": {
+        "issueId": "V1-OFFLINE-RETRY-01",
+        "status": "FIXED",
+        "defect": "apiFetch retries once when a request THROWS (timeout or lost connection). For a create carrying no idempotency key that is a duplicate factory: the server commits the row, the response is lost, and the automatic retry creates a second one before any client code can observe the failure.",
+        "measured": "The browser suite lets POST /inspections reach the server and then destroys the response. Before the fix, ONE interrupted sync produced TWO server inspections, and the deliberately conservative adopt-only-when-unique rule then refused to adopt either, so the retry created a third.",
+        "fix": "lib/canonicalWorkflowApi.ts — createPersistedSite, createPersistedInspection, addPersistedObservation and uploadInspectionEvidence are marked NON_IDEMPOTENT (retries: 0).",
+        "preExisting": "This was a latent defect on the ONLINE path too: the same double-create was reachable from /inspections 'Start inspection' on a flaky connection. Offline capture did not introduce it; it made it observable."
+      },
+      "offlineFallbackDefect": {
+        "issueId": "V1-OFFLINE-FALLBACK-01",
+        "status": "FIXED",
+        "defect": "An /offline App Router page used as the service worker's navigation fallback looked correct and was not. A cached Next document is inert only until it hydrates; the App Router then reconciles against the CURRENT URL, and the offline message was replaced in the browser by that URL's client render or by Next's 404.",
+        "measured": "An offline navigation to an unknown path rendered '404 — This page could not be found'; one to /settings rendered Settings. Neither was the fallback that had actually been served.",
+        "fix": "public/offline.html — a plain static document, no hydration, no external stylesheet, script, font or image. app/offline/ was removed."
+      }
+    },
+    "capability": {
+      "OFFLINE_APP_SHELL": "SUPPORTED",
+      "OFFLINE_INSPECTION_CAPTURE": "SUPPORTED",
+      "OFFLINE_DRAFT_PERSISTENCE": "SUPPORTED",
+      "OFFLINE_MULTI_INSPECTION_HISTORY": "SUPPORTED",
+      "OFFLINE_PHOTOS": "SUPPORTED",
+      "OFFLINE_HAZLENZ": "ONLINE_REQUIRED",
+      "OFFLINE_REPORT_GENERATION": "ONLINE_REQUIRED",
+      "OFFLINE_SYNC": "SUPPORTED",
+      "OFFLINE_CONFLICT_HANDLING": "PARTIAL",
+      "LOCAL_USER_ISOLATION": "PASS",
+      "USER_CONTROLLED_EXPORT": "SUPPORTED"
+    },
+    "capabilityEvidence": {
+      "OFFLINE_APP_SHELL": "worker registered and controlling and it is /sw.js; refresh AND application restart both load /field-capture with the network severed at the worker",
+      "OFFLINE_INSPECTION_CAPTURE": "draft, observation, location and photo all created with no connection",
+      "OFFLINE_DRAFT_PERSISTENCE": "survives refresh and survives closing and reopening the application",
+      "OFFLINE_MULTI_INSPECTION_HISTORY": "two drafts listed and reopened independently, neither showing the other's content",
+      "OFFLINE_PHOTOS": "native Blob in IndexedDB, decodable offline (naturalWidth 640), uploaded on sync with exactly one evidence object on the server; capped at 10 MB to match the server's FileInterceptor limit",
+      "OFFLINE_HAZLENZ": "no analysis on the device, no local substitute, Free classify still 402, no HazLenz output rendered on the capture page",
+      "OFFLINE_REPORT_GENERATION": "unchanged; the report PDF is a server artifact",
+      "OFFLINE_SYNC": "explicit, append-only, acknowledged per record; exactly one server inspection produced; retry after an interrupted create produced NO duplicate inspection and NO duplicate observation",
+      "OFFLINE_CONFLICT_HANDLING": "server advanced elsewhere -> CONFLICT; server title NOT overwritten; nothing appended; local work intact; 'keep both' created a separate inspection",
+      "LOCAL_USER_ISOLATION": "USER_A draft invisible to USER_B and the reciprocal; no plaintext of A's observation anywhere in the store; two accounts under DISTINCT namespaces; removing one account's offline data left the other's untouched",
+      "USER_CONTROLLED_EXPORT": "PDF unchanged (Pro, online) PLUS a JSON copy of a draft saved through the ordinary browser download. Photo bytes are not embedded and the export says so."
+    },
+    "verification": {
+      "tiers": "Two, answering different questions. verify:offline-field-capture measures BEHAVIOUR in a real Chromium PERSISTENT profile against a disposable stack — persistent on purpose, because a normal Playwright context is discarded on close and 'close the app and reopen it offline' could not otherwise be distinguished from 'reload'. check:offline-field-capture binds the SHIPPED SOURCE to the invariants that produced that behaviour, with no server, database or browser, because a behaviour measurement cannot stop the next edit from removing the property it measured.",
+      "browserSuite": {
+        "command": "npm run verify:offline-field-capture",
+        "assertions": 65,
+        "failures": 0,
+        "viewport": "390x844",
+        "database": "test_insite_v1_offline_20260826"
+      },
+      "contractSuite": {
+        "command": "npm run check:offline-field-capture",
+        "assertions": 68,
+        "failures": 0,
+        "requiresServer": false
+      },
+      "regressionSuiteToRun": "check:offline-field-capture — it needs no stack and is the drift guard"
+    },
+    "harnessCorrections": {
+      "serviceWorkerOfflineEmulation": "context.setOffline(true) alone was NOT sufficient to prove offline reopening. It severs page-originated requests reliably, but after a persistent context is closed and reopened the SERVICE-WORKER target does not pick the emulation up, so the worker's own fetch() still reached the server. With setOffline() alone, a reopened session's navigation to an unknown path returned the live Next.js 404 FROM THE SERVER — an assertion that would have passed without the network ever being down. The suite now also aborts at the route layer, which does cover service-worker requests (verified: 14 intercepted requests on a reopened session), and asserts the offline fallback as its own check that the emulation is in force.",
+      "devAuthBypass": "backend/.env sets DEV_AUTH_BYPASS=true. With the bypass on, an unauthenticated request is answered as a synthetic user, and the two 'unauthenticated must be 401' probes in test:cross-user-isolation fail. Run the disposable API with DEV_AUTH_BYPASS=false. Harness setting, not a product defect.",
+      "authRateLimit": "POST /auth/login is throttled to 5 per 60s per IP. The offline suite switches accounts repeatedly because that IS the isolation test, so it waits the window out rather than reporting a rate limit as an authorisation defect — the same effect section 79.10 recorded. Run the backend auth suites with a similar gap between them.",
+      "serviceWorkerNotInDev": "The worker is deliberately not registered under next dev; a cached shell in front of a rebuilding dev server serves stale chunks. The offline suite therefore needs a production build."
+    },
+    "regression": {
+      "frontendTsc": "clean",
+      "frontendBuild": "succeeded",
+      "backendBuild": "clean (no backend source changed)",
+      "check:offline-field-capture": "68 / 0 (new)",
+      "verify:offline-field-capture": "65 / 0 (new, browser)",
+      "check:launch-pricing": "39 / 0",
+      "check:free-observation-restore": "27 / 0",
+      "check:closure-workflow": "PASS — reloadPersistence true, immutableReport true, 1 report",
+      "check:hydration": "3 / 0, 0 mismatches across 21 routes x 2 themes @390px",
+      "check:company-actions": "PASS",
+      "check:action-workflow": "PASS",
+      "test:cross-user-isolation": "28 / 0",
+      "test:entitlement-boundary": "PASS, 4 assertions",
+      "test:auth-flow": "PASS",
+      "test:authenticated-entitlement-path": "PASS — negative 402, bypass false",
+      "audit:mobile-responsive": "HORIZONTAL_PAGE_OVERFLOW = 0 across all required phone widths, including /field-capture",
+      "contractPreserved": "Free $0, Pro $24.99/month, Expert NOT_A_V1_PLAN, Free classify 402, Level-1 CUSTOMER_AUTHORITATIVE, Level-3 DEFERRED"
+    },
+    "filesAdded": [
+      "frontend-next/public/sw.js",
+      "frontend-next/public/offline.html",
+      "frontend-next/app/manifest.webmanifest",
+      "frontend-next/app/field-capture/page.tsx",
+      "frontend-next/components/system/ServiceWorkerRegistrar.tsx",
+      "frontend-next/lib/offline/offlineIdentity.ts",
+      "frontend-next/lib/offline/offlineDb.ts",
+      "frontend-next/lib/offline/fieldCaptureStore.ts",
+      "frontend-next/lib/offline/fieldCaptureSync.ts",
+      "frontend-next/scripts/check-offline-field-capture.mjs",
+      "frontend-next/scripts/verify-offline-field-capture.mjs",
+      "verification/insite-v1-offline-field-capture-2026-08-26/"
+    ],
+    "filesModified": [
+      "frontend-next/app/layout.tsx (service-worker registrar; manifest via the App Router file convention)",
+      "frontend-next/app/inspections/page.tsx (Field Capture entry point)",
+      "frontend-next/components/layout/AppShell.tsx (route-aware, truthful offline badge; /field-capture under the Inspect nav root)",
+      "frontend-next/components/system/ClientCacheCleanup.tsx (stop unregistering the shell worker and deleting its caches)",
+      "frontend-next/lib/auth.ts (sweep the four legacy device-global offline localStorage keys)",
+      "frontend-next/lib/canonicalWorkflowApi.ts (NON_IDEMPOTENT on non-idempotent creates — V1-OFFLINE-RETRY-01)",
+      "frontend-next/package.json (check:offline-field-capture, verify:offline-field-capture)",
+      "frontend-next/scripts/audit-mobile-responsive.mjs (/field-capture added to the phone sweep)"
+    ],
+    "actionsNotPerformed": {
+      "committed": false,
+      "pushed": false,
+      "deployed": false,
+      "productionDatabaseModified": false,
+      "safescopeDevDatabaseModified": false,
+      "stripeModified": false,
+      "livePaymentPerformed": false,
+      "proGrantedManually": false,
+      "level3ProviderWorkPerformed": false,
+      "inferenceCallsPerformed": 0,
+      "apiCostUsd": 0
+    },
+    "livePaymentProof": false,
+    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — production has still never processed a real payment, and sections 78, 79 and 80 are all undeployed."
+  },
+  "v1OfflineSyncIdempotency": {
+    "terminal": "PENDING_PRODUCTION_VERIFICATION — recorded by the documentation checkpoint that follows the release commit",
+    "recordedAt": "2026-08-26",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 81",
+    "evidenceRoot": "verification/insite-v1-offline-sync-idempotency-2026-08-26/",
+    "startingSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
+    "previousProductionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
+    "issueId": "V1-OFFLINE-IDENT-01",
+    "whyTheSection80MechanismWasReplaced": {
+      "previousMechanism": "Client-side claim-and-reconcile: a syncAttempt marker persisted before a create, and on retry a search for the record that attempt might already have made, matched on title + site + timestamp.",
+      "defect1": "It is a similarity judgement, not identity. Two legitimate inspections created minutes apart at the same site with the same title are indistinguishable to it. Section 80 handled that by adopting only on a UNIQUE match, which turns a repeat-visit site — the ordinary case in field safety work — into one where recovery deadlocks and retrying cannot fix a SYNC_FAILED draft.",
+      "defect2": "Even a single match is a guess. Nothing established that the candidate was the record the interrupted attempt created rather than a similar one that already existed."
+    },
+    "identityContract": {
+      "mechanism": "The client mints a stable opaque clientRequestId, persists it with the local record, and replays it unchanged on every attempt. The DATABASE is the authority that one identifier means one row.",
+      "identityValue": "The offline store's existing localId — already stable across refresh, restart and sign-out — so no new concept was introduced on the device, only a new use for one that was already durable.",
+      "format": "[A-Za-z0-9_.:-]{8,128}. Bounded and character-restricted so it can never carry structure the server might interpret. It is an identity, never an authorisation input.",
+      "scoping": "Per CREATING USER, never per organisation. Authorised organisation sharing governs who may READ an inspection; it does not govern whose WRITE a request is. Keying on createdByUserId means one member of an organisation can never resolve or adopt a colleague's record by presenting their identifier — deliberately stricter than the read model.",
+      "sitesExcluded": "Sites are resolved by NAME and were deliberately left alone. A site's name is already its user-facing identity (the existing Saved site picker selects by it) and the server holds a uniqueness constraint on it, so a create whose response was lost is recovered by the lookup the sync runs first anyway."
+    },
+    "migration": {
+      "name": "OfflineSyncIdempotency1800000015000",
+      "file": "backend/src/database/migrations/1800000015000-OfflineSyncIdempotency.ts",
+      "appliedCountBefore": 46,
+      "appliedCountAfter": 47,
+      "columnsAdded": [
+        "inspection.clientRequestId varchar(128) NULL",
+        "observations.clientRequestId varchar(128) NULL",
+        "storage_objects.clientRequestId varchar(128) NULL"
+      ],
+      "indexes": {
+        "uq_inspection_client_request": "UNIQUE ON \"inspection\" (\"createdByUserId\", \"clientRequestId\") WHERE \"clientRequestId\" IS NOT NULL",
+        "uq_observation_client_request": "UNIQUE ON \"observations\" (\"inspectionId\", \"createdByUserId\", \"clientRequestId\") WHERE \"clientRequestId\" IS NOT NULL",
+        "uq_storage_object_client_request": "UNIQUE ON \"storage_objects\" (\"createdByUserId\", \"clientRequestId\") WHERE \"clientRequestId\" IS NOT NULL"
+      },
+      "destructiveOperations": "NONE. No DROP TABLE, DROP COLUMN, TRUNCATE or DELETE in up(). Nothing is rewritten and no constraint can reject an existing row.",
+      "classification": "REQUIRED_BEFORE_NEW_CODE and SAFE_BEFORE_NEW_CODE — the same classification section 76 applied to its six migrations. The running pre-release code selects only the columns its entities declare and never sees the new one, so it tolerates the migration; the new code requires it.",
+      "order": "migration -> push/deploy. No ordering uncertainty.",
+      "rehearsal": "Applied to a fresh disposable database from zero: 47 migrations, exit 0, 47 rows in the migrations table, all three partial unique indexes present and confirmed via pg_indexes. Also applied to the already-migrated verification database. The down() statements were executed inside a rolled-back transaction to confirm they are valid SQL. Local rehearsal ran on PostgreSQL 16.13; production is 17.11 — a stated difference, not a matched control."
+    },
+    "concurrency": {
+      "problem": "A check-then-insert is not a lock: two concurrent replays both miss the check and both insert.",
+      "resolution": "The partial unique index rejects the loser. For an idempotent create that rejection is the CORRECT outcome, not an error: the loser catches SQLSTATE 23505, re-reads, and returns what won. src/common/unique-violation.ts checks both the TypeORM wrapper's code and the nested driverError.code, because the shape differs between driver versions.",
+      "measured": "Ten concurrent replays of one inspection identifier resolve to one row with no error surfaced to any caller; eight concurrent replays of an observation identifier likewise."
+    },
+    "evidenceUploads": {
+      "readyOnly": "Only a READY stored object satisfies a replay. An uploading or failed row is an attempt whose bytes may never have reached the provider, so it is RE-DRIVEN on the same row rather than duplicated — a half-written upload is never reported as stored.",
+      "selectFalseHazard": "objectKey is select:false, so a record re-read by identifier does not carry it. Finalisation reloads the key explicitly and updates status BY ID rather than save()-ing a partially-loaded entity. Recorded because it would otherwise have been a silent corruption."
+    },
+    "heuristicRemoved": {
+      "deleted": [
+        "reconcileInterruptedCreate()",
+        "the syncAttempt marker it depended on"
+      ],
+      "localSchemaVersion": 2,
+      "assertedAbsent": "check:offline-field-capture asserts that no candidate matching and no ambiguity resolution survives in the sync path, so it cannot return.",
+      "conflictDetachConsequence": "'Keep both' detaches a draft so the next sync creates a SEPARATE inspection — but clientRequestId is exactly what the server resolves to the inspection being left, so replaying it would return that same inspection. Detaching therefore re-mints EVERY server-facing identity the draft holds (the inspection's, every observation's and every photo's) and clears each acknowledgement with it."
+    },
+    "backwardCompatibility": {
+      "oldClientNewServer": "No identifier is sent, no lookup runs, no index applies (all three are partial on IS NOT NULL). Asserted directly: two identifier-less creates produce two independent inspections, and an identifier-less evidence upload still works.",
+      "newClientOldServer": "The only caller that sends an identifier is offline sync — a feature nobody can be mid-flight on during the deploy, since /inspections 'Start inspection' sends none. In the parallel-deploy window the worst case is a first-minute offline sync answering 400 (the ValidationPipe runs forbidNonWhitelisted), surfacing as SYNC_FAILED with the draft intact and retryable. Stated rather than discovered."
+    },
+    "hardFailureTests": {
+      "A_lostInspectionCreateResponse": "server row exists after the interruption; EXACTLY ONE after the retry",
+      "B_sameContentDifferentIdentifiers": "TWO legitimate inspections despite identical title, site and second",
+      "C_sameIdentifierRepeated": "one inspection; ten CONCURRENT replays also one",
+      "D_crossUserIdentifierReuse": "USER_B replaying USER_A's identifier gets a NEW inspection of their own, never USER_A's; still cannot read, append to, or upload evidence against USER_A's inspection",
+      "E_lostObservationResponse": "EXACTLY ONE server observation after retry; eight concurrent replays also one",
+      "F_lostEvidenceResponse": "EXACTLY ONE evidence object, status ready, carrying the client-minted identity",
+      "G_multipleOfflineDrafts": "each synchronises independently",
+      "H_syncFailure": "local content intact; the device never claims an unacknowledged upload",
+      "I_retryAfterApplicationRestart": "resolves to the EXACT inspection the pre-restart attempt created; its observation written once. The browser is closed entirely, so only what IndexedDB holds can drive the retry — which is what proves the identity is durable rather than in-memory."
+    },
+    "suites": {
+      "test:offline-sync-idempotency": "23 / 0 (new) — the HTTP contract, no browser",
+      "verify:offline-field-capture": "81 / 0 — end-to-end in a real persistent Chromium profile",
+      "check:offline-field-capture": "98 / 0 — the shipped source of BOTH packages bound to the contract, no stack at all; the one that belongs in every regression run"
+    },
+    "regression": {
+      "frontendTsc": "clean",
+      "frontendBuild": "succeeded",
+      "backendBuild": "clean",
+      "check:launch-pricing": "39 / 0",
+      "check:free-observation-restore": "27 / 0",
+      "check:closure-workflow": "PASS — reloadPersistence true, immutableReport true, 1 report",
+      "check:hydration": "3 / 0, 0 mismatches across 21 routes x 2 themes @390px",
+      "check:company-actions": "PASS",
+      "check:action-workflow": "PASS",
+      "test:cross-user-isolation": "28 / 0",
+      "test:entitlement-boundary": "PASS, 4 assertions",
+      "test:auth-flow": "PASS",
+      "test:authenticated-entitlement-path": "PASS — negative 402, bypass false",
+      "billing:regression": "27 / 0",
+      "billing:migration-validation": "6 / 0",
+      "test:hazlenz-core": "28 of 30 suites pass. EXACTLY the documented section 13.1 pair fails and no third appears: Golden Hardening Scenarios Test case '7. LOTO energized maintenance (Not Guarding alone)' and HazLenz Production Path Regression case 'FAIL tagged but not locked'. Both were failing at HEAD; neither is touched by this work.",
+      "migrationRehearsal": "47 migrations applied to a fresh disposable database, exit 0",
+      "audit:mobile-responsive": "HORIZONTAL_PAGE_OVERFLOW = 0 across all required phone widths",
+      "contractPreserved": "Free $0, Pro $24.99/month, Expert NOT_A_V1_PLAN, Free classify 402, Level-1 CUSTOMER_AUTHORITATIVE, Level-3 DEFERRED"
+    },
+    "releaseInventory": {
+      "INTENDED_PRODUCT": [
+        "backend/src/inspection/** (identity contract)",
+        "backend/src/storage/**",
+        "backend/src/common/unique-violation.ts",
+        "backend/src/database/migrations/1800000015000-OfflineSyncIdempotency.ts",
+        "frontend-next/lib/canonicalWorkflowApi.ts",
+        "frontend-next/app/inspections/page.tsx",
+        "frontend-next/app/inspection-workspace/page.tsx",
+        "frontend-next/app/layout.tsx",
+        "frontend-next/components/layout/AppShell.tsx",
+        "frontend-next/components/system/ClientCacheCleanup.tsx",
+        "backend/package.json",
+        "frontend-next/package.json",
+        "frontend-next/tsconfig.json"
+      ],
+      "INTENDED_SECURITY": [
+        "frontend-next/lib/auth.ts — sign-out sweep of the four device-global offline localStorage keys (V1-OFFLINE-ISO-01)"
+      ],
+      "INTENDED_OFFLINE": [
+        "frontend-next/public/sw.js",
+        "frontend-next/public/offline.html",
+        "frontend-next/app/manifest.webmanifest",
+        "frontend-next/app/field-capture/**",
+        "frontend-next/components/system/ServiceWorkerRegistrar.tsx",
+        "frontend-next/lib/offline/**"
+      ],
+      "INTENDED_VERIFICATION": [
+        "backend/scripts/test-cross-user-isolation.ts",
+        "backend/scripts/test-offline-sync-idempotency.ts",
+        "frontend-next/scripts/check-free-observation-restore.mjs",
+        "frontend-next/scripts/check-offline-field-capture.mjs",
+        "frontend-next/scripts/verify-offline-field-capture.mjs",
+        "frontend-next/scripts/check-closure-inspection-workspace.mjs",
+        "frontend-next/scripts/check-launch-pricing.mjs",
+        "frontend-next/scripts/audit-mobile-responsive.mjs",
+        "verification/insite-v1-offline-field-capture-2026-08-26/ (92 KB, text and JSON only)",
+        "verification/insite-v1-offline-sync-idempotency-2026-08-26/ (92 KB, text and JSON only)"
+      ],
+      "INTENDED_DOCUMENTATION": [
+        "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+        "docs/INSITE_CURRENT_STATE.json"
+      ],
+      "GENERATED_OR_SCRATCH_excluded": [
+        "2,122 ' 2' duplicate files created by the owner's file-sync tool, present since before this programme (section 79.10)",
+        "261 screenshots totalling 88 MB across the section 73/74 UX packages — section 74.6 decided these stay on the working machine because Git history is permanent and cannot be pruned without a force push; that decision is unchanged"
+      ],
+      "UNCERTAIN_excluded": [
+        "Safety InSite Logos/ (7.5 MB) — the owner's own asset folder, referenced by no code in this release; not this phase's to commit"
+      ],
+      "secretScan": "Staged-content scan clean. No API key, token, private key, connection string or credential in the staged diff; the only credential-shaped strings are test fixtures with literal passwords in disposable verification scripts."
+    },
+    "livePaymentProof": false,
+    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — unchanged. Nothing in this phase touches Stripe, performs a payment, or grants Pro."
   }
 }

@@ -6,15 +6,35 @@ import {
   IsOptional,
   IsString,
   IsUUID,
+  Matches,
   MaxLength,
   Min,
   MinLength,
 } from 'class-validator';
 import { INSPECTION_REGULATORY_CONTEXTS, InspectionRegulatoryContext } from '../inspection.entity';
 
+/**
+ * Shape of a client-minted idempotency identity. Opaque to the server: it is compared, never
+ * parsed. Bounded and character-restricted so it can never carry structure the server might be
+ * tempted to interpret, and never be used as an authorisation input.
+ */
+export const CLIENT_REQUEST_ID_PATTERN = /^[A-Za-z0-9_.:-]{8,128}$/;
+
 export class CreateInspectionDto {
   @IsUUID()
   siteId: string;
+
+  /**
+   * Optional. When present, repeating this create with the same identifier returns the inspection
+   * already created for THIS user rather than creating a second one. Omitting it keeps the
+   * pre-existing, non-idempotent behaviour for the online path.
+   */
+  @IsString()
+  @IsOptional()
+  @Matches(CLIENT_REQUEST_ID_PATTERN, {
+    message: 'clientRequestId must be 8-128 characters of A-Z a-z 0-9 _ . : -',
+  })
+  clientRequestId?: string;
 
   @IsString()
   @MinLength(2)
@@ -64,6 +84,14 @@ export class CreateObservationDto {
   @IsNotEmpty()
   @MaxLength(20000)
   rawText: string;
+
+  /** Optional; see CreateInspectionDto.clientRequestId. Scoped to this inspection and this user. */
+  @IsString()
+  @IsOptional()
+  @Matches(CLIENT_REQUEST_ID_PATTERN, {
+    message: 'clientRequestId must be 8-128 characters of A-Z a-z 0-9 _ . : -',
+  })
+  clientRequestId?: string;
 
   @IsString()
   @IsOptional()

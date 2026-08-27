@@ -43,7 +43,34 @@ const SENSITIVE_LOCAL_STORAGE_KEYS = [
   "sentinel_workspace_id",
   "sentinel_safescope_brain_bundle_v1",
   "sentinel_safescope_brain_bundle_meta_v1",
+  // V1-LOCALISO-01. These three hold raw customer content and were being left behind on
+  // sign-out, so the next account to log in on a shared device inherited them. Measured: after a
+  // full sign-out, an autosaved observation draft ("unguarded pinch point, north conveyor"),
+  // personal calendar tasks and a photo blob all survived into the next session.
+  "sentinel_inspection_autosave",        // legacy /inspection route: raw observation text
+  "auditally_personal_calendar_events",  // personal safety tasks
+  "safety_insite_custom_risk_matrix",    // user-authored risk matrix
+  // V1-OFFLINE-ISO-01. lib/inspection/offlineInspectionStore.ts writes these DEVICE-GLOBAL
+  // localStorage keys from the legacy /inspection route. They hold raw observation text, local
+  // findings and report drafts with no account namespace at all, so they are the same class of
+  // cross-account leak as the three keys above and were surviving sign-out for the same reason.
+  // (The v1 offline field-capture store does NOT use localStorage; it is per-user IndexedDB and is
+  // unreachable without the signed-in account's derived namespace -- see lib/offline/.)
+  "insite_offline_inspections_v1",
+  "insite_offline_report_drafts_v1",
+  "insite_offline_inspection_sync_queue_v1",
+  "insite_active_local_inspection_id",
 ];
+
+// Customer content is also written under generated key names, which an exact-match list can
+// never cover: encrypted report/photo payloads (`sentinel_encrypted_<id>`) and the local vault
+// (`sentinel_secure_<id>`). Both families are swept on sign-out.
+//
+// Deliberately NOT swept: `sentinel_device_encryption_key_v1`, `sentinel_pin_hash_v1`,
+// `sentinel_pin_salt_v1`. Those are device-unlock security setup, not customer content, and
+// destroying them on every sign-out would silently reset a PIN the operator configured. That is
+// a separate decision from data isolation and is recorded rather than assumed.
+const SENSITIVE_LOCAL_STORAGE_PREFIXES = ["sentinel_encrypted_", "sentinel_secure_"];
 
 export type SentinelAuthUser = {
   firstName?: string;
@@ -209,6 +236,13 @@ export function clearAuthSession() {
   window.localStorage.removeItem(AUTH_REFRESH_TOKEN_KEY);
 
   SENSITIVE_LOCAL_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
+
+  // Snapshot the key list first: removeItem() during a live index walk skips entries.
+  for (const key of Object.keys(window.localStorage)) {
+    if (SENSITIVE_LOCAL_STORAGE_PREFIXES.some((prefix) => key.startsWith(prefix))) {
+      window.localStorage.removeItem(key);
+    }
+  }
 
   lockSession();
 }

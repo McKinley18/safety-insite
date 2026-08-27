@@ -15,6 +15,9 @@
     "check:phase6-adopted-release": "node scripts/check-phase5-inspection-report-release.mjs",
     "check:closure-workflow": "node scripts/check-closure-inspection-workspace.mjs",
     "check:launch-pricing": "node scripts/check-launch-pricing.mjs",
+    "check:free-observation-restore": "node scripts/check-free-observation-restore.mjs",
+    "check:offline-field-capture": "node scripts/check-offline-field-capture.mjs",
+    "verify:offline-field-capture": "node scripts/verify-offline-field-capture.mjs",
     "audit:mobile-responsive": "node scripts/audit-mobile-responsive.mjs",
     "audit:text-contrast": "node scripts/audit-text-contrast.mjs",
     "check:hydration": "node scripts/check-hydration.mjs"

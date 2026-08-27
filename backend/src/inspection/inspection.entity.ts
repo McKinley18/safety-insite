@@ -48,6 +48,11 @@ export function regulatoryContextProvenance(value: string | null | undefined): '
 @Index('idx_inspection_site_status', ['siteId', 'status'])
 @Index('idx_inspection_org_status', ['organizationId', 'status'])
 @Index('idx_inspection_owner_status', ['ownerUserId', 'status'])
+// The uniqueness that makes clientRequestId authoritative is a PARTIAL index (WHERE
+// "clientRequestId" IS NOT NULL) and is created by migration 1800000015000. TypeORM's decorator
+// cannot express a partial index, so it is declared there and only documented here -- do not
+// "fix" this by adding @Index([...], { unique: true }), which would try to constrain every NULL
+// row and reject the existing corpus.
 export class Inspection {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -66,6 +71,18 @@ export class Inspection {
 
   @Column()
   title: string;
+
+  /**
+   * Opaque idempotency identity minted by the CLIENT once per local inspection and replayed on
+   * every synchronisation attempt. Unique per creating user (partial index
+   * `uq_inspection_client_request`, migration 1800000015000), so a create whose response was lost
+   * resolves back to the same row instead of producing a duplicate.
+   *
+   * NULL for every inspection created without one -- the whole online path, and everything that
+   * existed before the column. It is an identity, never an authorisation input.
+   */
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  clientRequestId: string | null;
 
   @Column({ type: 'varchar', length: 24, default: 'draft' })
   status: 'draft' | 'in_review' | 'completed' | 'archived';

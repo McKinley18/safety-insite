@@ -521,11 +521,21 @@ export default function InspectionWorkspacePage() {
         const currentAnalysis = persistedObservation?.analyses
           ?.filter((item) => item.status !== "superseded")
           .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
-        if (persistedObservation && currentAnalysis) {
+        // Observation restoration and analysis restoration are deliberately SEPARATE.
+        //
+        // These were previously one `persistedObservation && currentAnalysis` block, which meant a
+        // Free account could never see its own saved observation again. HazLenz classification is
+        // Pro-gated (classify returns 402), so `currentAnalysis` is undefined on Free by
+        // construction and the entire block was skipped -- including the rawText the API had
+        // already returned in hand. Re-reading your own observation is record-keeping, which Free
+        // IS entitled to; re-reading an analysis is not. Keep them decoupled.
+        if (persistedObservation) {
           setObservationId(persistedObservation.id);
-          setAnalysisId(currentAnalysis.id);
           setObservation(persistedObservation.rawText);
           setRevisionText(persistedObservation.rawText);
+        }
+        if (persistedObservation && currentAnalysis) {
+          setAnalysisId(currentAnalysis.id);
           analysisRequestVersion.current = currentAnalysis.requestVersion || 0;
           const restoredAnalysis = currentAnalysis.resultSnapshot as HazLenzAnalysisResult;
           setAnalysis(restoredAnalysis);

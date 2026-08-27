@@ -1,0 +1,14 @@
+{
+  "name": "Safety InSite",
+  "short_name": "InSite",
+  "description": "Field safety inspection capture. Record observations on site, with or without a connection.",
+  "start_url": "/field-capture",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F3F7FB",
+  "theme_color": "#0a355f",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

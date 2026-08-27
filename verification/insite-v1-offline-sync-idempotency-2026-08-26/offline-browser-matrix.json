@@ -1,0 +1,333 @@
+{
+  "passed": true,
+  "passes": 81,
+  "failures": 0,
+  "viewport": "390x844",
+  "database": "test_insite_v1_idem_20260826",
+  "results": [
+    {
+      "label": "two disposable accounts registered and signed in",
+      "ok": true
+    },
+    {
+      "label": "service worker registered",
+      "ok": true
+    },
+    {
+      "label": "page is controlled by the service worker",
+      "ok": true
+    },
+    {
+      "label": "the controlling worker is the InSite shell worker",
+      "ok": true
+    },
+    {
+      "label": "IndexedDB and WebCrypto are available for the offline store",
+      "ok": true
+    },
+    {
+      "label": "A. the page reports Offline while the network is unreachable",
+      "ok": true
+    },
+    {
+      "label": "A. the app shell reloads offline and the draft list is restored",
+      "ok": true
+    },
+    {
+      "label": "A. observation text survives an offline refresh",
+      "ok": true
+    },
+    {
+      "label": "A. location survives an offline refresh",
+      "ok": true
+    },
+    {
+      "label": "L. no horizontal overflow at 390px offline (measured 0px)",
+      "ok": true
+    },
+    {
+      "label": "5. a photo captured offline is stored on the device and reported as not uploaded",
+      "ok": true
+    },
+    {
+      "label": "5. the photo survives an offline refresh",
+      "ok": true
+    },
+    {
+      "label": "5. the stored photo bytes are intact and decodable offline (naturalWidth 640)",
+      "ok": true
+    },
+    {
+      "label": "8. the sync control states that a connection is required while offline",
+      "ok": true
+    },
+    {
+      "label": "8. the sync control is disabled while offline rather than failing silently",
+      "ok": true
+    },
+    {
+      "label": "8. the page states that HazLenz analysis and reports require a connection",
+      "ok": true
+    },
+    {
+      "label": "B. field capture reopens after an application restart with no network",
+      "ok": true
+    },
+    {
+      "label": "B. the draft survives closing and reopening the application",
+      "ok": true
+    },
+    {
+      "label": "3. an offline navigation to a route outside the shell allowlist serves the static offline fallback",
+      "ok": true
+    },
+    {
+      "label": "3. the offline fallback tells the user which workflow does still work",
+      "ok": true
+    },
+    {
+      "label": "C. both offline drafts are listed independently",
+      "ok": true
+    },
+    {
+      "label": "C. draft A1 reopens with its own observation",
+      "ok": true
+    },
+    {
+      "label": "C. draft A2 reopens with its own observation and none of A1's",
+      "ok": true
+    },
+    {
+      "label": "D. USER_B cannot see USER_A's on-device drafts",
+      "ok": true
+    },
+    {
+      "label": "D. USER_A's observation text is not visible to USER_B",
+      "ok": true
+    },
+    {
+      "label": "12. no draft row holds customer observation text in cleartext",
+      "ok": true
+    },
+    {
+      "label": "E. USER_B's own draft is the only one USER_B sees",
+      "ok": true
+    },
+    {
+      "label": "E. USER_A signs back in and recovers only USER_A's drafts",
+      "ok": true
+    },
+    {
+      "label": "E. USER_B's draft is invisible to USER_A",
+      "ok": true
+    },
+    {
+      "label": "F. the draft reports SYNCED after synchronisation",
+      "ok": true
+    },
+    {
+      "label": "F. exactly one server inspection was produced (0 -> 1)",
+      "ok": true
+    },
+    {
+      "label": "F. the server inspection carries the draft's title",
+      "ok": true
+    },
+    {
+      "label": "F. the offline observation text reached the server",
+      "ok": true
+    },
+    {
+      "label": "F. the regulatory context chosen offline reached the server",
+      "ok": true
+    },
+    {
+      "label": "5. the offline photo is uploaded on sync and only THEN reported as uploaded",
+      "ok": true
+    },
+    {
+      "label": "5. exactly one evidence object reached server storage (1)",
+      "ok": true
+    },
+    {
+      "label": "G. an interrupted sync reports SYNC_FAILED",
+      "ok": true
+    },
+    {
+      "label": "G. the local observation is intact after a failed sync",
+      "ok": true
+    },
+    {
+      "label": "G. the interrupted attempt did reach the server (1 -> 2) — the retry below is the real duplicate test",
+      "ok": true
+    },
+    {
+      "label": "H. the retry succeeds",
+      "ok": true
+    },
+    {
+      "label": "H. the retry produced NO duplicate inspection (1 record(s) titled \"Offline draft A2\")",
+      "ok": true
+    },
+    {
+      "label": "H. the observation was not duplicated (1)",
+      "ok": true
+    },
+    {
+      "label": "H. the recovered inspection carries the client-minted identity that recovered it",
+      "ok": true
+    },
+    {
+      "label": "E. a lost observation response reports SYNC_FAILED",
+      "ok": true
+    },
+    {
+      "label": "E. the observation is still on the device after its response was lost",
+      "ok": true
+    },
+    {
+      "label": "E. the retry succeeds",
+      "ok": true
+    },
+    {
+      "label": "E. exactly ONE server observation exists after the lost response and the retry (1)",
+      "ok": true
+    },
+    {
+      "label": "F. the interrupted upload attempt was actually made",
+      "ok": true
+    },
+    {
+      "label": "F. the interrupted upload did reach server storage (1) — the retry below is the real duplicate test",
+      "ok": true
+    },
+    {
+      "label": "F. the device does NOT claim the photo was uploaded while its response was lost",
+      "ok": true
+    },
+    {
+      "label": "F. the retry succeeds",
+      "ok": true
+    },
+    {
+      "label": "F. exactly ONE evidence object exists after the lost response and the retry (1)",
+      "ok": true
+    },
+    {
+      "label": "F. the single evidence object is READY and carries the client-minted identity",
+      "ok": true
+    },
+    {
+      "label": "I. the interrupted create reached the server before the restart (2 -> 3)",
+      "ok": true
+    },
+    {
+      "label": "I. the post-restart retry succeeds",
+      "ok": true
+    },
+    {
+      "label": "I. the post-restart retry resolved to the SAME inspection, not a duplicate (1)",
+      "ok": true
+    },
+    {
+      "label": "I. it is the exact inspection the pre-restart attempt created",
+      "ok": true
+    },
+    {
+      "label": "I. its observation was written exactly once",
+      "ok": true
+    },
+    {
+      "label": "K. the server record was advanced from another device",
+      "ok": true
+    },
+    {
+      "label": "K. a stale local draft is put into CONFLICT, not merged",
+      "ok": true
+    },
+    {
+      "label": "K. the newer server title was NOT overwritten",
+      "ok": true
+    },
+    {
+      "label": "K. no local content was appended to the conflicting server record",
+      "ok": true
+    },
+    {
+      "label": "K. the local work is still intact on the device during a conflict",
+      "ok": true
+    },
+    {
+      "label": "K. resolving as \"keep both\" created a separate inspection (3 -> 4)",
+      "ok": true
+    },
+    {
+      "label": "K. the server copy remains untouched after conflict resolution",
+      "ok": true
+    },
+    {
+      "label": "I. Free HazLenz classification is still refused with 402 (got 402)",
+      "ok": true
+    },
+    {
+      "label": "I. the offline capture page renders no HazLenz analysis of any kind",
+      "ok": true
+    },
+    {
+      "label": "J. a Pro account synchronises an offline draft",
+      "ok": true
+    },
+    {
+      "label": "J. the Pro account's synced inspection is on the server",
+      "ok": true
+    },
+    {
+      "label": "J. the normal Level-1 HazLenz server path still works for Pro after sync (got 201)",
+      "ok": true
+    },
+    {
+      "label": "12. no access token is stored in the offline database",
+      "ok": true
+    },
+    {
+      "label": "12. no refresh token is stored in the offline database",
+      "ok": true
+    },
+    {
+      "label": "12. no password is stored in the offline database",
+      "ok": true
+    },
+    {
+      "label": "12. no billing or Stripe identifier is stored in the offline database",
+      "ok": true
+    },
+    {
+      "label": "12. no raw account email is stored in the offline database",
+      "ok": true
+    },
+    {
+      "label": "12. drafts from both accounts coexist under DISTINCT namespaces",
+      "ok": true
+    },
+    {
+      "label": "12. no API response was written into the shared HTTP cache",
+      "ok": true
+    },
+    {
+      "label": "12. only the versioned InSite shell caches exist",
+      "ok": true
+    },
+    {
+      "label": "9. removing offline data clears this account's drafts",
+      "ok": true
+    },
+    {
+      "label": "9. removing USER_B's offline data left USER_A's drafts untouched",
+      "ok": true
+    },
+    {
+      "label": "L. no horizontal overflow at 390px online (measured 0px)",
+      "ok": true
+    }
+  ]
+}

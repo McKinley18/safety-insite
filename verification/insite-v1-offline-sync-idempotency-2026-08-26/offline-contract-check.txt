@@ -1,0 +1,104 @@
+
+> frontend-next@1.0.0 check:offline-field-capture
+> node scripts/check-offline-field-capture.mjs
+
+PASS 1. a draft never attached to a server record cannot conflict with one
+PASS 1. an unchanged server record is not a conflict
+PASS 1. a server record that advanced while offline IS a conflict
+PASS 1. an archived server record is a conflict rather than an append target
+PASS 1. C. replaying the same identifier resolves to the row it already created
+PASS 1. D. USER_B presenting USER_A's identifier resolves to nothing — no cross-user adoption
+PASS 1. B. a DIFFERENT identifier resolves to nothing, even with an identical title, site and timestamp
+PASS 1. an absent identifier resolves to nothing, so the online path stays non-idempotent and unchanged
+PASS 1. rows carrying no identifier are unconstrained and cannot collide with each other
+PASS 1. a minted local identity is inside the server's accepted pattern: draft_11111111-2222-4333-8444-555555555555
+PASS 1. a minted local identity is inside the server's accepted pattern: obs_aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee
+PASS 1. a minted local identity is inside the server's accepted pattern: photo_00000000-0000-4000-8000-000000000000
+PASS 1. a minted local identity is inside the server's accepted pattern: draft_1a04079818c-9f3a2b1c
+PASS 1. the server's pattern rejects an identifier that is too short or carries unexpected characters
+PASS 2. the service worker ignores every cross-origin request (the API lives on its own origin)
+PASS 2. the service worker never handles an authorised request
+PASS 2. the service worker never handles a same-origin /api/ request
+PASS 2. the service worker never caches an RSC payload
+PASS 2. the service worker never handles a non-GET request
+PASS 2. activating a new worker version deletes the superseded shell caches
+PASS 2. only an explicit route allowlist may have its document shell cached
+PASS 2. a non-allowlisted offline navigation falls back to the static offline document
+PASS 2. the offline fallback document references no external asset it could not fetch offline
+PASS 2. the offline fallback states what does and does not work without a connection
+PASS 2. the offline fallback routes the user to the workflow that does work
+PASS 2. no code path writes an authorised response into the cache
+PASS 2. the installed application starts at Field Capture
+PASS 2. the manifest declares a standalone display mode
+PASS 2. the manifest is declared once, via the App Router file convention
+PASS 2. the shell worker is registered from the root layout
+PASS 2. registration matches the documented Next.js service-worker call
+PASS 2. legacy-cache cleanup no longer unregisters the offline shell worker
+PASS 2. legacy-cache cleanup no longer deletes the offline shell caches
+PASS 2. the offline namespace is a digest, so no raw account identifier becomes an IndexedDB key
+PASS 2. with no signed-in account the namespace resolves to null, so no query can be formed
+PASS 2. drafts are indexed by the per-account namespace
+PASS 2. a listing re-filters on the namespace rather than trusting the index alone
+PASS 2. a single-record read re-checks the namespace
+PASS 2. a decrypted draft carrying a foreign namespace is discarded, not returned
+PASS 2. every asynchronous store entry point resolves an identity before touching storage
+PASS 2. the offline store never falls back to localStorage
+PASS 2. draft payloads are encrypted under the per-account key before being written
+PASS 2. removing an account's offline data destroys its key material with its rows
+PASS 2. the offline store never persists a field named like "password"
+PASS 2. the offline store never persists a field named like "refreshToken"
+PASS 2. the offline store never persists a field named like "authToken"
+PASS 2. the offline store never persists a field named like "sentinel_auth_token"
+PASS 2. the offline store never persists a field named like "stripe"
+PASS 2. the offline store never persists a field named like "cardNumber"
+PASS 2. synchronisation issues no PATCH or DELETE against server-held records
+PASS 2. synchronisation never transitions a server inspection's status
+PASS 2. the server identifier is recorded before anything is appended to it
+PASS 2. the inspection create sends the draft's stable identity
+PASS 2. each observation create sends that observation's stable identity
+PASS 2. each evidence upload sends that photo's stable identity
+PASS 2. every local record seeds its server identity from its local id at creation
+PASS 2. the local schema version records that the identity contract replaced the attempt marker
+PASS 4. the title + site + timestamp adoption heuristic is no longer present in the sync path
+PASS 4. the client-side attempt marker it depended on is gone too
+PASS 4. no candidate-matching or ambiguity resolution survives in the sync path
+PASS 4. detaching a conflicted draft re-mints the inspection identity
+PASS 4. detaching re-mints every observation identity and clears its acknowledgement
+PASS 4. detaching re-mints every photo identity and clears its acknowledgement
+PASS 5. the migration adds a NULLABLE identity column, so existing rows are untouched
+PASS 5. uq_inspection_client_request makes the DATABASE the authority, scoped to the creating user
+PASS 5. uq_observation_client_request makes the DATABASE the authority, scoped to the creating user
+PASS 5. uq_storage_object_client_request makes the DATABASE the authority, scoped to the creating user
+PASS 5. every uniqueness index is PARTIAL, so rows without an identifier stay unconstrained
+PASS 5. the migration's up() performs no destructive operation
+PASS 5. inspection resolution is keyed on the CREATING USER, so one member cannot adopt another's
+PASS 5. observation resolution is keyed on the inspection AND the creating user
+PASS 5. evidence resolution is keyed on the creating user
+PASS 5. a concurrent replay losing the unique index is re-read and returned, not surfaced as an error
+PASS 5. the unique-violation test checks both the wrapper and the nested driver error
+PASS 5. the identifier is bounded and character-restricted, so it can never carry interpretable structure
+PASS 5. the identifier is OPTIONAL on both creates — the online path stays backward compatible
+PASS 5. the multipart evidence route accepts the identifier as a form field
+PASS 5. only a READY stored object satisfies a replay; a half-written one is re-driven, not reported as stored
+PASS 5. finalisation updates by id, so a record re-read without its select:false objectKey cannot be damaged
+PASS 2. an already-acknowledged observation is skipped on retry rather than re-posted
+PASS 2. SYNCED is claimed only when every part was acknowledged by the server
+PASS 2. a staleness check runs before any append and can stop it
+PASS 2. synchronisation never runs HazLenz analysis
+PASS 2. the API client declares a no-retry policy for non-idempotent creates
+PASS 2. createPersistedSite() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. createPersistedInspection() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. addPersistedObservation() does not auto-retry (a lost response would otherwise duplicate the record)
+PASS 2. uploadInspectionEvidence() does not auto-retry
+PASS 2. new local work on a synced draft returns it to LOCAL_ONLY instead of still claiming SYNCED
+PASS 2. the UI distinguishes device-saved from server-saved in its own words
+PASS 2. the capture page states the online boundary for HazLenz and reports
+PASS 2. the sync control names connectivity as the requirement when offline
+PASS 2. the offline badge does not claim automatic background synchronisation
+PASS 2. the removed false offline claim has not returned
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_inspections_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_report_drafts_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_offline_inspection_sync_queue_v1
+PASS 2. sign-out clears the legacy device-global offline key insite_active_local_inspection_id
+
+{"passed":true,"passes":98,"failures":0}
