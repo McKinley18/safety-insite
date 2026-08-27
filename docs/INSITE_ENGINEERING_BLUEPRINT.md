@@ -13866,6 +13866,136 @@ real payment, and this phase did not manufacture one.
 
 ---
 
+## 83 — INSITE v1.0 ACCEPTED RELEASE CANDIDATE PRESERVED BEFORE EXPERT-AI EXPANSION (2026-08-27) `PRESERVED, NOT DEPLOYED, $0.00`
+
+The §82 release candidate is committed and pushed as a recoverable checkpoint. **This is a
+preservation checkpoint, not deployment authorization.** Production continues to run
+`e9355e911c221f94c96d2a1b241b4d938435fae2` and was not touched.
+
+```
+INSITE_V1_ACCEPTED_RC_SHA = a1515cbc828e15896e399c17f4c36003c210aca8
+```
+
+| | |
+|---|---|
+| parent | `25f39bae9d5db87c9a825893f7e4404b024204ce` |
+| tree | `4cb861aa7e03298f7a44d13dfbc67639e1f4aa2c` |
+| push | fast-forward `25f39bae..a1515cbc`, **no force**, one commit |
+| `origin/main` | `a1515cbc…` — verified equal after push |
+| tag | `insite-v1-pre-expert-ai-baseline-2026-08-27` (annotated) → `a1515cbc…`, pushed |
+| deployed | **NO** — intentionally deferred |
+| migrations added | **0** (still 47) |
+
+### 83.1 Why deployment is deferred `DECISION`
+
+The owner elected to carry out further controlled pre-launch development before v1.0 reaches
+customers. Deploying the release candidate first would mean shipping, then immediately reopening,
+the same surfaces. The candidate is therefore **preserved rather than released**, so that the
+Expert expansion has an exact, verified point to return to.
+
+### 83.2 What was committed, and what was deliberately not `PRESERVATION`
+
+Sixteen files: the four §82 repairs, the test that guards them, two verification scripts, both
+master documents, and the five text/JSON evidence artifacts (116 KB). Total 2.7 MB, all text, no
+binary.
+
+Excluded and **left untouched in the worktree**, unchanged from §81.10's decision: **2,122 `" 2"`
+sync-tool duplicates**, **261 screenshots (88 MB)** across the §73/§74 UX packages, and
+**`Safety InSite Logos/`**. All **4 stashes** and the pre-existing **23 tags** are intact; the
+24th tag is the one created here.
+
+Staged-content secret scan: clean. No API key, token, private key, connection string, `.env`,
+browser/Playwright storage state, dump, build output or credential appears in the commit. The one
+`rk_live` string in `INSITE_CURRENT_STATE.json` is **prose** — *"Both `rk_live` restricted."* — with
+no key material, referencing the two Stripe keys only by sha256 prefix, and it predates this
+changeset.
+
+### 83.3 The accepted baseline was re-proven at this exact tree `VERIFICATION`
+
+Not carried forward from §82 — re-run before committing.
+
+| Check | Result |
+|---|---|
+| `test:hazlenz-core` | **31 / 31 suites** |
+| new LOTO degraded-gap suite | **20 / 0** |
+| `check:offline-field-capture` | **98 / 0** |
+| `verify:offline-shell-cold-start` | **16 / 0** |
+| `audit:text-contrast` | **0** failures |
+| `audit-blue-text` / `check-primary-button-sweep` | 0 failures |
+| `check:hydration` | 0 mismatches, 20 routes × 2 themes @390px |
+| frontend `next build` / backend `tsc` + build | succeeded / clean |
+
+#### 83.3.1 Frontend `tsc` reports 5 errors that are NOT a regression `STATED_UNCERTAINTY`
+
+`npx tsc --noEmit` in `frontend-next` exits non-zero with five errors, **all** in exactly two files:
+`.next/types/cache-life.d 2.ts` and `.next/types/routes.d 2.ts`.
+
+Both are sync-tool `" 2"` duplicates of **generated build output**; both are **untracked**; `.next/`
+is gitignored (`frontend-next/.gitignore:17`), so neither can ever be committed; and both are dated
+**2026-08-26 19:20**, predating this changeset. `tsconfig.json` deliberately includes
+`.next/types/**/*.ts`, which is how stale duplicates enter the program. The errors are *conflict*
+errors — they appear only once the originals are regenerated alongside the stale copies, which is
+why §82 recorded `tsc` clean before its final `next build` and this run does not.
+
+Proven rather than argued: re-running `tsc` against the same config with only those two paths
+excluded gives **0 errors**. `next build` — the gate Vercel actually runs, from a clean checkout
+with no `" 2"` files — **succeeds**. Recorded as build-artifact hygiene, not a source defect, and
+**not repaired here** because this operation authorizes no remediation beyond a malformed
+preservation artifact.
+
+### 83.4 The authorized pre-launch program `PLANNED — NOT IMPLEMENTED`
+
+Nothing below is implemented. No code, schema, provider integration or dependency for any of it
+exists in this commit. Each workstream is recorded so the next phase starts from a stated intent
+rather than an improvised one.
+
+**WORKSTREAM A — HazLenz Expert Intelligence.** Stronger contextual reasoning; multi-hazard
+reasoning; control-effectiveness reasoning; evidence-aware uncertainty; richer regulatory reasoning;
+more useful corrective-action guidance. **The deterministic Level-1 safety authority is preserved**
+— Expert capability may not become the authority that Level-1 currently holds, and nothing may claim
+infallibility.
+
+**WORKSTREAM B — HazLenz Expert Validation.** An expert-reviewed scenario corpus, and measurement
+of hazard recall, false positives, **dangerous omissions**, citation accuracy, risk accuracy,
+unsupported inference, clarification quality and corrective-action usefulness — with regression
+protection so a measured gain cannot silently decay. §82.1's lesson applies directly: a documented
+failure is not a permitted failure.
+
+**WORKSTREAM C — Multi-User Scale.** Identify hard-coded or artificial user limits; audit
+statelessness and stateful bottlenecks; database connection architecture; object-storage scaling;
+concurrent HazLenz capacity; load testing with p50/p95/p99 latency and error-rate thresholds; a
+stated scaling strategy. **No marketing claim of literal infinite capacity.**
+
+**WORKSTREAM D — Report Records and Ownership.** Establish the *exact current* persistence semantics
+first; then user report preferences, durable report storage, immutable finalized snapshots, report
+versioning, retention preferences, and an ownership model distinguishing `createdByUserId` from
+`owningOrganizationId` that stays compatible with future organization/RBAC work. **Account isolation
+is preserved** — the property `test:cross-user-isolation` (28/0) and §81.12 currently guarantee.
+
+### 83.5 Final state
+
+```
+INSITE_V1_ACCEPTED_RC_SHA = a1515cbc828e15896e399c17f4c36003c210aca8
+BASELINE_PROTECTED        = TRUE
+HAZLENZ_LEVEL1_BASELINE   = 31/31
+PRODUCTION_DEPLOYED       = FALSE  (intentionally deferred)
+PRODUCTION_RUNNING_SHA    = e9355e911c221f94c96d2a1b241b4d938435fae2
+LIVE_PAYMENT_PROOF        = FALSE
+PRELAUNCH_PROGRAM         = PLANNED, NOT IMPLEMENTED
+```
+
+**Terminal:** `INSITE_V1_ACCEPTED_RC_PRESERVED — PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE`
+
+The next authorized activity is `INSITE_V1_PRELAUNCH_EXPERT_EXPANSION —
+ARCHITECTURE_AND_MEASUREMENT_FIRST`. It must be **read/analysis/design-first**: it must not add an
+LLM or rewrite HazLenz as its opening move. Every phase of it begins from
+`a1515cbc828e15896e399c17f4c36003c210aca8`.
+
+The paid path remains the one outstanding launch evidence gap, unchanged and not addressed here:
+`DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`.
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`

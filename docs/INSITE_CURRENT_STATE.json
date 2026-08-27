@@ -1,7 +1,7 @@
 {
   "schemaVersion": "insite.current-state.v1",
   "generatedAt": "2026-08-27",
-  "generatedBy": "INSITE v1.0 FINAL LAUNCH HARDENING + RELEASE-CANDIDATE ACCEPTANCE -- executed. INSITE_V1_FINAL_RELEASE_CANDIDATE_READY -- COMMIT_PUSH_DEPLOY_REQUIRED. Four repairs exist locally and are UNRELEASED; production still runs e9355e911c221f94c96d2a1b241b4d938435fae2. LIVE_PAYMENT_PROOF remains FALSE. See blueprint section 82.",
+  "generatedBy": "INSITE v1.0 ACCEPTED RELEASE CANDIDATE PRESERVED BEFORE EXPERT-AI EXPANSION -- executed. INSITE_V1_ACCEPTED_RC_PRESERVED -- PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE. INSITE_V1_ACCEPTED_RC_SHA=a1515cbc828e15896e399c17f4c36003c210aca8, pushed to origin/main, tagged insite-v1-pre-expert-ai-baseline-2026-08-27. Production deployment INTENTIONALLY DEFERRED; production still runs e9355e911c221f94c96d2a1b241b4d938435fae2. LIVE_PAYMENT_PROOF remains FALSE. See blueprint section 83.",
   "documentContract": {
     "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
     "authoritativeFor": [
@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_FINAL_RELEASE_CANDIDATE_READY \u2014 COMMIT_PUSH_DEPLOY_REQUIRED",
-  "readiness": "No customer-facing blocker remains. The two documented section 13.1 HazLenz LOTO failures were BOTH real customer-facing defects and are FIXED (HazLenz Level-1 now 31/31 suites, was 28/30). V1-OFFLINE-ASSETCACHE-01 is FIXED and section 81.12.1's recorded cause is CORRECTED: the asset cache was absent because the worker registers on window load, after the first visit has already requested its assets from an uncontrolled client -- not because Vercel immutable headers bypass the fetch handler. All three previously unrun KG suites executed (42/42, 27/27, 48/48). One objective contrast defect fixed. React #418 not reproduced across a 68-step bounded matrix. Nothing is committed, pushed or deployed.",
-  "nextSlice": "Commit, push and deploy the four repairs. NO MIGRATION is required by this phase. Then the only remaining launch evidence gap is unchanged: prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION -- Stripe payment succeeds, the webhook reaches InSite, the subscription is persisted, the Pro entitlement activates, and it survives logout/login.",
+  "checkpoint": "INSITE_V1_ACCEPTED_RC_PRESERVED \u2014 PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE",
+  "readiness": "The accepted v1.0 release candidate is preserved as an exact recoverable checkpoint at a1515cbc828e15896e399c17f4c36003c210aca8 on origin/main, tagged insite-v1-pre-expert-ai-baseline-2026-08-27. BASELINE_PROTECTED = TRUE. The HazLenz Level-1 baseline of 31/31 suites was re-proven at that exact tree before committing. Deployment is intentionally deferred because the product owner authorized a further pre-launch development program (four workstreams, PLANNED and NOT implemented). No customer-facing blocker is known; the paid path remains the single outstanding launch evidence gap.",
+  "nextSlice": "INSITE_V1_PRELAUNCH_EXPERT_EXPANSION -- ARCHITECTURE_AND_MEASUREMENT_FIRST. It must be read/analysis/design-first and must NOT open by adding an LLM or rewriting HazLenz. Every phase begins from the protected baseline a1515cbc828e15896e399c17f4c36003c210aca8.",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -10605,10 +10605,10 @@
     "phase": "INSITE v1.0 FINAL LAUNCH HARDENING + RELEASE-CANDIDATE ACCEPTANCE (2026-08-27)",
     "blueprintSection": "82",
     "startingHead": "25f39bae9d5db87c9a825893f7e4404b024204ce",
-    "endingHead": "25f39bae9d5db87c9a825893f7e4404b024204ce",
+    "endingHead": "a1515cbc828e15896e399c17f4c36003c210aca8",
     "deployedProductionSha": "e9355e911c221f94c96d2a1b241b4d938435fae2",
-    "committed": false,
-    "pushed": false,
+    "committed": true,
+    "pushed": true,
     "deployed": false,
     "productionDatabaseModified": false,
     "productionSourceDeployed": false,
@@ -10738,6 +10738,192 @@
     },
     "livePaymentProof": false,
     "terminal": "INSITE_V1_FINAL_RELEASE_CANDIDATE_READY \u2014 COMMIT_PUSH_DEPLOY_REQUIRED",
-    "nextReleaseOperation": "Commit the four repairs, push, and deploy. No migration is required by this phase."
+    "nextReleaseOperation": "Commit the four repairs, push, and deploy. No migration is required by this phase.",
+    "acceptedRcSha": "a1515cbc828e15896e399c17f4c36003c210aca8",
+    "preservedBy": "blueprint section 83 (2026-08-27)",
+    "terminalSupersededBy": "INSITE_V1_ACCEPTED_RC_PRESERVED \u2014 PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE"
+  },
+  "v1AcceptedRcPreservation": {
+    "phase": "INSITE v1.0 ACCEPTED RELEASE CANDIDATE PRESERVED BEFORE EXPERT-AI EXPANSION (2026-08-27)",
+    "blueprintSection": "83",
+    "INSITE_V1_ACCEPTED_RC_SHA": "a1515cbc828e15896e399c17f4c36003c210aca8",
+    "parentSha": "25f39bae9d5db87c9a825893f7e4404b024204ce",
+    "treeSha": "4cb861aa7e03298f7a44d13dfbc67639e1f4aa2c",
+    "branch": "main",
+    "pushed": true,
+    "pushType": "fast-forward 25f39bae..a1515cbc, no force, one commit",
+    "originMainEqualsAcceptedRcSha": true,
+    "tag": "insite-v1-pre-expert-ai-baseline-2026-08-27",
+    "tagType": "annotated",
+    "tagTarget": "a1515cbc828e15896e399c17f4c36003c210aca8",
+    "tagPushed": true,
+    "tagConventionBasis": "The three closest-convention tags (insite-hazlenz-verified-baseline-2026-08-19, insite-inspection-ui-verified-2026-08-19, insite-visual-acceptance-verified-2026-08-19) are all annotated and identically named insite-<subject>-<date>.",
+    "filesCommitted": 16,
+    "bytesCommitted": 2720635,
+    "binaryContentCommitted": false,
+    "migrationsAddedByThisPhase": 0,
+    "deployed": false,
+    "deploymentDeferredDeliberately": true,
+    "productionRunningSha": "e9355e911c221f94c96d2a1b241b4d938435fae2",
+    "productionMutated": false,
+    "databaseMigrated": false,
+    "stripeMutated": false,
+    "paymentMade": false,
+    "providerCallsMade": 0,
+    "providerSpendUsd": 0.0,
+    "resetRestoreCleanStashRebaseForcePushUsed": false,
+    "preservedUntouched": {
+      "syncToolDuplicateFiles": 2122,
+      "screenshots": 261,
+      "screenshotBytesApprox": "88 MB",
+      "safetyInsiteLogosDirectory": true,
+      "stashes": 4,
+      "preExistingTags": 23
+    },
+    "secretScan": {
+      "result": "CLEAN",
+      "patternsChecked": "sk_live_, sk_test_, pk_live_, rk_live_, whsec_, sk-ant-, sk-proj-, AIza, ghp_, gho_, PRIVATE KEY headers, JWT (eyJhbGciOi), credentialed postgres URLs, bearer tokens, AWS_SECRET",
+      "envFilesCommitted": false,
+      "nodeModulesCommitted": false,
+      "buildOutputCommitted": false,
+      "browserOrPlaywrightStorageStateCommitted": false,
+      "productionDumpCommitted": false,
+      "rkLiveOccurrence": "Prose only -- \"Both rk_live restricted.\" -- in INSITE_CURRENT_STATE.json. No key material; the two Stripe keys are referenced by sha256 prefix. Pre-existing at HEAD, not introduced by this changeset.",
+      "emailDomainsInEvidence": "@insite-acceptance.test (RFC 2606 reserved) and @127.0.0.1 only"
+    },
+    "baselineReVerifiedAtThisTree": {
+      "hazlenzLevel1Suites": "31/31",
+      "newLotoDegradedGapSuite": "20/0",
+      "checkOfflineFieldCapture": "98/0",
+      "verifyOfflineShellColdStart": "16/0",
+      "auditTextContrast": "0 failures",
+      "auditBlueText": "0 failures",
+      "checkPrimaryButtonSweep": "pass",
+      "checkHydration": "0 mismatches across 20 routes x 2 themes at 390px",
+      "frontendNextBuild": "succeeded",
+      "backendTscAndBuild": "clean",
+      "frontendTscNote": "npx tsc --noEmit reports 5 errors, ALL in .next/types/cache-life.d 2.ts and .next/types/routes.d 2.ts -- sync-tool duplicates of GENERATED build output, untracked, gitignored, dated 2026-08-26 19:20 (predating this changeset). Re-running with only those two paths excluded gives 0 errors, and next build succeeds. Build-artifact hygiene, not a source defect; not repaired here because this operation authorizes no such remediation."
+    },
+    "changesetClassification": {
+      "ACCEPTED_RC_CODE": [
+        "backend/src/safescope-v2/safescope-v2.service.ts",
+        "backend/src/safescope-v2/taxonomy/hazard-taxonomy.ts",
+        "frontend-next/public/sw.js",
+        "frontend-next/components/ui/AppLinkButton.tsx"
+      ],
+      "ACCEPTED_RC_TEST": [
+        "backend/src/safescope-v2/tests/hazlenz-loto-degraded-gap-alignment-regression.ts",
+        "backend/src/safescope-v2/tests/hazlenz-core-regression.ts",
+        "frontend-next/scripts/verify-offline-shell-cold-start.mjs",
+        "frontend-next/scripts/verify-v1-customer-journeys.mjs",
+        "frontend-next/package.json"
+      ],
+      "ACCEPTED_RC_DOCUMENTATION": [
+        "docs/INSITE_ENGINEERING_BLUEPRINT.md",
+        "docs/INSITE_CURRENT_STATE.json"
+      ],
+      "ACCEPTED_RC_VERIFICATION": [
+        "verification/insite-v1-release-candidate-2026-08-27/ (5 text/JSON files, 116 KB)"
+      ],
+      "GENERATED_OR_SCRATCH": "2,122 \" 2\" sync-tool duplicates; 261 PNG screenshots (88 MB) in verification/insite-v1-mobile-ux-2026-08-26 and verification/insite-v1-final-local-ux-2026-08-26; stale .next build-output duplicates",
+      "UNRELATED_USER_WORK": "Safety InSite Logos/ (11 files) -- the owner's asset folder, referenced by no code in this release",
+      "UNCERTAIN": "none"
+    },
+    "forbiddenChangeClassesScan": {
+      "changedCodeLinesScanned": 164,
+      "pricingChange": false,
+      "tierChange": false,
+      "authenticationChange": false,
+      "schemaChange": false,
+      "databaseMigration": false,
+      "stripeChange": false,
+      "providerIntegrationChange": false,
+      "level3AuthorityChange": false,
+      "broadRefactor": false,
+      "unrelatedUserWork": false,
+      "dependencyChange": false
+    },
+    "BASELINE_PROTECTED": true,
+    "livePaymentProof": false,
+    "firstGenuinePaidTransactionProofOutstanding": true,
+    "terminal": "INSITE_V1_ACCEPTED_RC_PRESERVED \u2014 PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE",
+    "nextAuthorizedPhase": "INSITE_V1_PRELAUNCH_EXPERT_EXPANSION \u2014 ARCHITECTURE_AND_MEASUREMENT_FIRST"
+  },
+  "prelaunchExpertExpansionProgram": {
+    "status": "PLANNED",
+    "implemented": false,
+    "authorizedBy": "product owner, 2026-08-27",
+    "mustBeginFrom": "a1515cbc828e15896e399c17f4c36003c210aca8",
+    "firstPhaseDiscipline": "READ / ANALYSIS / DESIGN FIRST. Must NOT immediately add an LLM or rewrite HazLenz.",
+    "workstreams": {
+      "A_HAZLENZ_EXPERT_INTELLIGENCE": {
+        "status": "PLANNED",
+        "implemented": false,
+        "goals": [
+          "stronger contextual reasoning",
+          "multi-hazard reasoning",
+          "control-effectiveness reasoning",
+          "evidence-aware uncertainty",
+          "richer regulatory reasoning",
+          "more useful corrective-action guidance"
+        ],
+        "invariants": [
+          "preserve deterministic Level-1 safety authority",
+          "no unsupported claims of infallibility"
+        ]
+      },
+      "B_HAZLENZ_EXPERT_VALIDATION": {
+        "status": "PLANNED",
+        "implemented": false,
+        "goals": [
+          "expert-reviewed scenario corpus",
+          "hazard recall measurement",
+          "false-positive measurement",
+          "dangerous-omission measurement",
+          "citation accuracy",
+          "risk accuracy",
+          "unsupported-inference measurement",
+          "clarification quality",
+          "corrective-action usefulness",
+          "regression protection"
+        ]
+      },
+      "C_MULTI_USER_SCALE": {
+        "status": "PLANNED",
+        "implemented": false,
+        "goals": [
+          "identify hard-coded/artificial user limits",
+          "inspect statelessness and stateful bottlenecks",
+          "database connection architecture",
+          "object-storage scaling",
+          "concurrent HazLenz capacity",
+          "load testing",
+          "p50/p95/p99 latency",
+          "error-rate thresholds",
+          "scaling strategy"
+        ],
+        "invariants": [
+          "no marketing claim of literal infinite capacity"
+        ]
+      },
+      "D_REPORT_RECORDS_AND_OWNERSHIP": {
+        "status": "PLANNED",
+        "implemented": false,
+        "goals": [
+          "establish exact current persistence semantics FIRST",
+          "user report preferences",
+          "durable report storage",
+          "immutable finalized report snapshots",
+          "report versioning",
+          "retention preferences",
+          "ownership model",
+          "createdByUserId vs owningOrganizationId",
+          "future organization/RBAC compatibility"
+        ],
+        "invariants": [
+          "preserve account isolation"
+        ]
+      }
+    }
   }
 }
