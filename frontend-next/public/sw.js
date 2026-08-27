@@ -40,21 +40,91 @@ const OFFLINE_FALLBACK = "/offline.html";
 
 const PRECACHE_URLS = [OFFLINE_FALLBACK, "/field-capture", "/manifest.webmanifest", "/icon.svg"];
 
+/** The document whose build assets are precached. It is the shell offline capture reopens into. */
+const ASSET_MANIFEST_DOCUMENT = "/field-capture";
+
+/**
+ * An upper bound on how many build assets one install may fetch. The shell references ~13; the
+ * cap exists so a future build that inlines an unexpectedly large reference list cannot turn
+ * installation into an unbounded download on a metered field connection.
+ */
+const MAX_PRECACHED_ASSETS = 60;
+
+/**
+ * V1-OFFLINE-ASSETCACHE-01.
+ *
+ * The worker registers on `window.load`, which is AFTER the first visit's document has already
+ * requested every one of its build assets. Those requests are issued by an uncontrolled client, so
+ * they never reach the `fetch` handler below and `insite-shell-v1-assets` does not exist after a
+ * first visit. Only a SECOND online load populates it. A user who loads InSite once and then walks
+ * out of coverage therefore had an offline reopen carried by the browser's own HTTP cache, which
+ * is evictable independently of Cache Storage and is not a guarantee the product can make.
+ *
+ * The shell document is itself the authoritative manifest of what that shell needs -- it is the
+ * build's own output -- so the asset list is read from the document rather than from a separate
+ * build artifact that could drift out of step with it.
+ *
+ * Only content-hashed `/_next/static/**` build assets are admitted: identical for every account,
+ * carrying no customer data, and already the exact class `isCacheableAsset` allows at runtime.
+ */
+function extractBuildAssetUrls(html) {
+  const matches = String(html || "").match(/\/_next\/static\/[^"'`\s<>\\]+?\.(?:js|css)(?:\?[^"'`\s<>\\]*)?/g) || [];
+  const seen = new Set();
+  for (const raw of matches) {
+    // Next emits attribute values HTML-escaped, so a multi-parameter query arrives as `&amp;`.
+    const url = raw.replace(/&amp;/g, "&");
+    if (!url.startsWith("/_next/static/")) continue;
+    seen.add(url);
+    if (seen.size >= MAX_PRECACHED_ASSETS) break;
+  }
+  return Array.from(seen);
+}
+
+async function precacheShellDocumentAssets(html) {
+  const urls = extractBuildAssetUrls(html);
+  if (!urls.length) return;
+
+  const cache = await caches.open(ASSET_CACHE);
+  await Promise.all(
+    urls.map(async (url) => {
+      try {
+        if (await cache.match(url)) return;
+        const response = await fetch(url, { credentials: "same-origin" });
+        // `type === "basic"` keeps an opaque cross-origin response out of the cache, matching the
+        // rule cacheFirst() already enforces at runtime.
+        if (response.ok && response.type === "basic") await cache.put(url, response.clone());
+      } catch {
+        /* one unavailable chunk must not fail the install; runtime caching still fills it in */
+      }
+    }),
+  );
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(SHELL_CACHE);
+      let shellDocumentHtml = "";
       // Best effort: a URL that fails here must not block installation of the worker.
       await Promise.all(
         PRECACHE_URLS.map(async (url) => {
           try {
             const response = await fetch(url, { credentials: "same-origin" });
-            if (response.ok) await cache.put(url, response.clone());
+            if (!response.ok) return;
+            await cache.put(url, response.clone());
+            if (url === ASSET_MANIFEST_DOCUMENT) shellDocumentHtml = await response.text();
           } catch {
             /* offline at install time: runtime caching will fill this in later */
           }
         }),
       );
+
+      try {
+        await precacheShellDocumentAssets(shellDocumentHtml);
+      } catch {
+        /* the shell document alone is still worth installing */
+      }
+
       await self.skipWaiting();
     })(),
   );

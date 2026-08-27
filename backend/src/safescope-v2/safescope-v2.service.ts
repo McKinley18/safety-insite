@@ -1389,7 +1389,12 @@ export class SafescopeV2Service {
 
       const memorySnapshot = getMemorySnapshot;
 
-      const buildDegradedHazLenzIntelligence = (fallbackReason: string, classification?: string) => {
+      // Selects the degraded-mode evidence questions and reasoning line for a
+      // classification. Pure, so it can be applied twice: once when the degraded result is
+      // built (which only has the raw classifier output) and again once
+      // `effectiveClassification` is known, because that is the classification the customer
+      // is actually shown. V1-HAZLENZ-DEGRADEDGAP-01.
+      const selectDegradedEvidenceProfile = (classification?: string) => {
         const lowerClass = (classification || "").toLowerCase();
         let evidenceGaps = [
           "Confirm physical exposure condition, distance to hazard, and employee travelways.",
@@ -1398,20 +1403,24 @@ export class SafescopeV2Service {
         ];
         let classReason = "Core classification, risk, standards candidates, and corrective actions were still generated.";
 
-        if (lowerClass.includes("guarding") || lowerClass.includes("machine")) {
-          evidenceGaps = [
-            "Verify if the guard is securely fastened, requires a tool for removal, and completely prevents contact with moving parts.",
-            "Confirm standard guarding dimensions, distance from pinch points, and visibility requirements.",
-            "Attach photos and supervisor notes showing physical guard placement and pinch points.",
-          ];
-          classReason = "Assessed exposure risk to rotating parts, pulleys, or belts, prioritizing physical barrier guarding regulations.";
-        } else if (lowerClass.includes("loto") || lowerClass.includes("lockout") || lowerClass.includes("tagout")) {
+        // Hazardous energy is tested BEFORE guarding. The internal family key for this
+        // hazard is `machine_guarding_loto`, which contains both "machine" and "guarding",
+        // so a guarding-first cascade silently swallows every LOTO observation and answers
+        // a lockout finding with questions about guard fastening. V1-HAZLENZ-DEGRADEDGAP-01.
+        if (lowerClass.includes("loto") || lowerClass.includes("lockout") || lowerClass.includes("tagout") || lowerClass.includes("stored energy")) {
           evidenceGaps = [
             "Verify if a machine-specific LOTO procedure exists, is current, and is actively posted at the equipment location.",
             "Confirm that all energy sources (electrical, pneumatic, hydraulic, kinetic) are isolated and locked out.",
             "Check if workers have verified zero energy state before starting maintenance or service work.",
           ];
           classReason = "Assessed hazardous energy isolation requirements, prioritizing lockout/tagout procedures and zero-energy verification.";
+        } else if (lowerClass.includes("guarding") || lowerClass.includes("machine")) {
+          evidenceGaps = [
+            "Verify if the guard is securely fastened, requires a tool for removal, and completely prevents contact with moving parts.",
+            "Confirm standard guarding dimensions, distance from pinch points, and visibility requirements.",
+            "Attach photos and supervisor notes showing physical guard placement and pinch points.",
+          ];
+          classReason = "Assessed exposure risk to rotating parts, pulleys, or belts, prioritizing physical barrier guarding regulations.";
         } else if (lowerClass.includes("electrical")) {
           evidenceGaps = [
             "Confirm panel cover status, box integrity, cover screws, and presence of open breaker slots.",
@@ -1489,10 +1498,17 @@ export class SafescopeV2Service {
           classReason = "Assessed hydraulic and pneumatic energy release hazards, focusing on pressure isolation, mechanical blocks, and whip check restraints.";
         }
 
+        return { evidenceGaps, classReason };
+      };
+
+      const buildDegradedHazLenzIntelligence = (fallbackReason: string, classification?: string) => {
+        const { evidenceGaps, classReason } = selectDegradedEvidenceProfile(classification);
+
         return {
           degraded: true,
           fullIntelligenceAvailable: false,
           fallbackReason,
+          degradedClassificationUsed: classification || null,
           additionalHazards: [],
           evidenceGaps,
           reasoningSummary: [
@@ -2623,6 +2639,7 @@ export class SafescopeV2Service {
       })();
 
       promotedPrimary.classification = effectiveClassification;
+
       const decompositionHasConcreteEvidence = Array.isArray(intelligence.multiHazardDecomposition?.hazards) &&
         intelligence.multiHazardDecomposition.hazards.some((hazard: any) => {
           const domain = String(hazard?.domainId || hazard?.hazardFamily || '').toLowerCase();
@@ -4805,6 +4822,31 @@ export class SafescopeV2Service {
           ...(response.inspectionIntelligence || {}),
           evidenceGapQuestions: fallbackEvidenceQuestions,
         };
+      }
+
+      // Degraded mode: the evidence questions must describe the classification the customer
+      // is actually shown. `buildDegradedHazLenzIntelligence` runs ~3000 lines earlier, off
+      // the RAW classifier label, and the classification is promoted several times after
+      // that (`effectiveClassification`, then the controlled/uncontrolled hazardous-energy
+      // promotions above). A LOTO observation the classifier first read as "Machine
+      // Guarding" was therefore shipped as `classification: "Lockout / Stored Energy"`
+      // carrying guard-fastening questions, never asking whether locks and tags were applied
+      // or zero energy verified. Re-select here, where the classification is final.
+      // V1-HAZLENZ-DEGRADEDGAP-01.
+      if (response.degraded === true) {
+        const degradedClassificationUsed = (response as any).degradedClassificationUsed;
+        const finalClassification = String(response.classification || '');
+        if (String(degradedClassificationUsed || '') !== finalClassification) {
+          const previous = selectDegradedEvidenceProfile(degradedClassificationUsed);
+          const corrected = selectDegradedEvidenceProfile(finalClassification);
+          response.evidenceGaps = corrected.evidenceGaps;
+          (response as any).degradedClassificationUsed = finalClassification;
+          if (Array.isArray(response.reasoningSummary)) {
+            response.reasoningSummary = response.reasoningSummary.map((line: any) =>
+              line === previous.classReason ? corrected.classReason : line,
+            );
+          }
+        }
       }
 
       const clarifyingQuestions = this.buildStructuredClarifyingQuestions({

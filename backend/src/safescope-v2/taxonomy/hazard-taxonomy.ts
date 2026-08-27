@@ -469,7 +469,21 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "lockout not applied", weight: 10 },
       { term: "stored energy not released", weight: 10 },
       { term: "maintenance without lockout", weight: 10 },
-      { term: "equipment energized during maintenance", weight: 10 }
+      { term: "equipment energized during maintenance", weight: 10 },
+      // Tagout used where lockout is feasible -- 29 CFR 1910.147(c)(2)(iii)/(c)(3) and
+      // 30 CFR 56.12016. This is one of the most commonly written LOTO deficiencies and
+      // the profile previously had no vocabulary for it: "tagout" matches the control,
+      // never the tag-only *state*. Each phrase deliberately begins on the affirmative
+      // token ("tagged", "tagout") rather than on the negation, because scoreSignals()
+      // suppresses any term that sits inside a preceding negation window -- a term
+      // starting at "not locked" would be scored as an absence of the hazard.
+      { term: "tagged but not locked", weight: 10 },
+      { term: "tagged out but not locked out", weight: 10 },
+      { term: "tagout without lockout", weight: 10 },
+      { term: "tagged without lockout", weight: 10 },
+      { term: "tagout but no lockout", weight: 10 },
+      { term: "tagout only", weight: 9 },
+      { term: "tagged out only", weight: 9 }
     ],
     moderateSignals: [
       { term: "lockout", weight: 6 },

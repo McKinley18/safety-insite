@@ -1,0 +1,88 @@
+# database  test_v1_rc_offline_20260827
+# app       http://127.0.0.1:3300
+# api       http://127.0.0.1:4300
+
+PASS two disposable accounts registered and signed in
+PASS service worker registered
+PASS page is controlled by the service worker
+PASS the controlling worker is the InSite shell worker
+PASS IndexedDB and WebCrypto are available for the offline store
+PASS A. the page reports Offline while the network is unreachable
+PASS A. the app shell reloads offline and the draft list is restored
+PASS A. observation text survives an offline refresh
+PASS A. location survives an offline refresh
+PASS L. no horizontal overflow at 390px offline (measured 0px)
+PASS 5. a photo captured offline is stored on the device and reported as not uploaded
+PASS 5. the photo survives an offline refresh
+PASS 5. the stored photo bytes are intact and decodable offline (naturalWidth 640)
+PASS 8. the sync control states that a connection is required while offline
+PASS 8. the sync control is disabled while offline rather than failing silently
+PASS 8. the page states that HazLenz analysis and reports require a connection
+PASS B. field capture reopens after an application restart with no network
+PASS B. the draft survives closing and reopening the application
+PASS 3. an offline navigation to a route outside the shell allowlist serves the static offline fallback
+PASS 3. the offline fallback tells the user which workflow does still work
+PASS C. both offline drafts are listed independently
+PASS C. draft A1 reopens with its own observation
+PASS C. draft A2 reopens with its own observation and none of A1's
+PASS D. USER_B cannot see USER_A's on-device drafts
+PASS D. USER_A's observation text is not visible to USER_B
+PASS 12. no draft row holds customer observation text in cleartext
+PASS E. USER_B's own draft is the only one USER_B sees
+PASS E. USER_A signs back in and recovers only USER_A's drafts
+PASS E. USER_B's draft is invisible to USER_A
+PASS F. the draft reports SYNCED after synchronisation
+PASS F. exactly one server inspection was produced (0 -> 1)
+PASS F. the server inspection carries the draft's title
+PASS F. the offline observation text reached the server
+PASS F. the regulatory context chosen offline reached the server
+PASS 5. the offline photo is uploaded on sync and only THEN reported as uploaded
+PASS 5. exactly one evidence object reached server storage (1)
+PASS G. an interrupted sync reports SYNC_FAILED
+PASS G. the local observation is intact after a failed sync
+PASS G. the interrupted attempt did reach the server (1 -> 2) — the retry below is the real duplicate test
+PASS H. the retry succeeds
+PASS H. the retry produced NO duplicate inspection (1 record(s) titled "Offline draft A2")
+PASS H. the observation was not duplicated (1)
+PASS H. the recovered inspection carries the client-minted identity that recovered it
+PASS E. a lost observation response reports SYNC_FAILED
+PASS E. the observation is still on the device after its response was lost
+PASS E. the retry succeeds
+PASS E. exactly ONE server observation exists after the lost response and the retry (1)
+PASS F. the interrupted upload attempt was actually made
+PASS F. the interrupted upload did reach server storage (1) — the retry below is the real duplicate test
+PASS F. the device does NOT claim the photo was uploaded while its response was lost
+PASS F. the retry succeeds
+PASS F. exactly ONE evidence object exists after the lost response and the retry (1)
+PASS F. the single evidence object is READY and carries the client-minted identity
+PASS I. the interrupted create reached the server before the restart (2 -> 3)
+PASS I. the post-restart retry succeeds
+PASS I. the post-restart retry resolved to the SAME inspection, not a duplicate (1)
+PASS I. it is the exact inspection the pre-restart attempt created
+PASS I. its observation was written exactly once
+PASS K. the server record was advanced from another device
+PASS K. a stale local draft is put into CONFLICT, not merged
+PASS K. the newer server title was NOT overwritten
+PASS K. no local content was appended to the conflicting server record
+PASS K. the local work is still intact on the device during a conflict
+PASS K. resolving as "keep both" created a separate inspection (3 -> 4)
+PASS K. the server copy remains untouched after conflict resolution
+PASS I. Free HazLenz classification is still refused with 402 (got 402)
+PASS I. the offline capture page renders no HazLenz analysis of any kind
+PASS J. a Pro account synchronises an offline draft
+PASS J. the Pro account's synced inspection is on the server
+PASS J. the normal Level-1 HazLenz server path still works for Pro after sync (got 201)
+PASS 12. no access token is stored in the offline database
+PASS 12. no refresh token is stored in the offline database
+PASS 12. no password is stored in the offline database
+PASS 12. no billing or Stripe identifier is stored in the offline database
+PASS 12. no raw account email is stored in the offline database
+PASS 12. drafts from both accounts coexist under DISTINCT namespaces
+PASS 12. no API response was written into the shared HTTP cache
+PASS 12. only the versioned InSite shell caches exist
+PASS 9. removing offline data clears this account's drafts
+     (UI sign-in did not complete; waiting 62s for the auth window)
+PASS 9. removing USER_B's offline data left USER_A's drafts untouched
+PASS L. no horizontal overflow at 390px online (measured 0px)
+
+{"passed":true,"passes":81,"failures":0}

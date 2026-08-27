@@ -18,6 +18,8 @@
     "check:free-observation-restore": "node scripts/check-free-observation-restore.mjs",
     "check:offline-field-capture": "node scripts/check-offline-field-capture.mjs",
     "verify:offline-field-capture": "node scripts/verify-offline-field-capture.mjs",
+    "verify:offline-shell-cold-start": "node scripts/verify-offline-shell-cold-start.mjs",
+    "verify:v1-customer-journeys": "node scripts/verify-v1-customer-journeys.mjs",
     "audit:mobile-responsive": "node scripts/audit-mobile-responsive.mjs",
     "audit:text-contrast": "node scripts/audit-text-contrast.mjs",
     "check:hydration": "node scripts/check-hydration.mjs"

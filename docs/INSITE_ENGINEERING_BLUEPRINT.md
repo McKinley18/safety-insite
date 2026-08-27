@@ -13506,6 +13506,366 @@ payment, and this phase did not manufacture one.
 
 ---
 
+## 82 — INSITE v1.0 FINAL LAUNCH HARDENING + RELEASE-CANDIDATE ACCEPTANCE (2026-08-27) `IMPLEMENTED LOCALLY, NOT COMMITTED, NOT DEPLOYED, $0.00`
+
+Starting `HEAD` `25f39bae9d5db87c9a825893f7e4404b024204ce` (the §81 documentation checkpoint);
+deployed release `e9355e911c221f94c96d2a1b241b4d938435fae2`. Nothing here was committed, pushed or
+deployed. No provider call, no payment, no Stripe mutation, no production write.
+`LIVE_PAYMENT_PROOF` stays `FALSE`.
+
+Four repairs, each traced to a root cause established from repository evidence before any edit.
+**Two of them correct defects this programme had previously mis-attributed**, and those corrections
+are recorded here as new evidence rather than by editing §13 or §81.
+
+### 82.1 The two §13.1 HazLenz failures were BOTH real customer-facing defects `DIAGNOSIS`
+
+They were carried for the whole KG programme as "the documented pair", reproducing byte-identically
+at every slice boundary. Treating them as scenery was the mistake: both are LOTO cases, and both
+produced output a field inspector would act on.
+
+**`V1-HAZLENZ-DEGRADEDGAP-01` — *Golden Hardening 7, "LOTO energized maintenance"*.**
+Observation: *"Maintenance performed without lockout and stored energy not released … while
+mechanic clears a jam on the running conveyor tail pulley."*
+
+The classification returned was correct — **Lockout / Stored Energy**, risk band **High**, the right
+citation. The **evidence questions underneath it were about machine guards**: whether the guard was
+securely fastened, what the guarding dimensions were, and to photograph the guard placement. It
+never asked whether locks and tags had been applied or whether zero energy had been verified.
+
+Root cause, established by instrumenting the actual call rather than by reading: in degraded mode
+`buildDegradedHazLenzIntelligence()` chooses the evidence questions from
+`promotedPrimary.classification` **as it stands at that moment** — the RAW classifier output, which
+for this observation is `"Machine Guarding"`. The classification is then promoted several times
+downstream (`effectiveClassification`, then the uncontrolled-hazardous-energy promotion at
+`safescope-v2.service.ts`), and the response is assembled from `{...promotedPrimary, ...intelligence}`
+— so the customer receives the PROMOTED classification alongside the PRE-PROMOTION questions.
+Measured distance between the two decisions: ~3000 lines.
+
+The cascade had a second, independent trap: the guarding branch was tested **before** the LOTO
+branch, and the internal family key for this hazard is `machine_guarding_loto`, which contains both
+`"machine"` and `"guarding"`. Any family-keyed input would have been swallowed by guarding even
+after the ordering above was fixed.
+
+This is not a laboratory path. The suite forces `HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER=true`
+because that is a **shipped** Render configuration, and the same branch is entered whenever the
+pre-import heap guard fires — which it does, observably, inside the suite's own run.
+
+**`V1-HAZLENZ-TAGOUTSTATE-01` — *Production Path Regression, "FAIL tagged but not locked"*.**
+Observation: *"Equipment is tagged but not locked where locking is possible while maintenance
+continues."* — 29 CFR 1910.147(c)(2)(iii)/(c)(3), one of the most commonly written LOTO
+deficiencies there is.
+
+Measured classifier output: **`"Machine Guarding"`, score 1, confidence 0.25 (low)**. The single
+point came from the incidental word *"equipment"*.
+
+Root cause: the `loto_stored_energy` taxonomy profile had vocabulary for the lockout **control**
+(`"lockout"`, `"tagout"`) and none for the tag-only **state**. `"tagged"` is not `"tagout"`, so
+nothing matched. The one moderate signal that should have fired, `"maintenance"`, was additionally
+suppressed by `hasNonNegatedSubstring()`: the 45-character negation window preceding it begins at
+*"…**not** locked where locking is possible while "*, so a term whose only fault is standing after
+a negated clause is scored as an **absence** of the hazard.
+
+A first attempt to repair this in `standard-applicability.rules.ts` — adding the tagout state to
+`requiredEvidence` — was **implemented, measured, and reverted**. It did flip the evidence gate to
+sufficient, but it did not move the family (the classifier still decided that), and its measurable
+effect on customer output was to **remove** the four LOTO follow-up questions the insufficient rule
+had been contributing. Recorded because a change that makes a gate pass while making the answer
+worse is exactly the move this programme refuses.
+
+### 82.2 The repairs `IMPLEMENTED`
+
+| File | Change |
+|---|---|
+| `backend/src/safescope-v2/taxonomy/hazard-taxonomy.ts` | Seven tag-only-state phrases added to `loto_stored_energy.strongSignals`. Each deliberately **begins on the affirmative token** (`tagged`, `tagout`) rather than on the negation, because a term starting at `"not locked"` sits inside its own negation window and would be scored as the hazard's absence. |
+| `backend/src/safescope-v2/safescope-v2.service.ts` | The degraded gap chooser is extracted as a pure `selectDegradedEvidenceProfile()` and applied a **second** time at the end of the pipeline, keyed on the FINAL `response.classification`. The LOTO branch is moved ahead of the guarding branch. `degradedClassificationUsed` records which classification chose the questions, so the invariant is checkable rather than assumed. |
+| `frontend-next/public/sw.js` | Install-time precache of the shell document's own build assets (§82.4). |
+| `frontend-next/components/ui/AppLinkButton.tsx` | `accent` variant migrated to `.app-accent-strong-surface` (§82.5). |
+
+Measured after: `"tagged but not locked"` classifies as **Lockout / Stored Energy at 0.82 (high)**
+on the strength of the deficiency phrase alone, and the golden LOTO case receives LOTO evidence
+questions while the genuine conveyor-guarding case still receives guarding questions.
+
+New suite `hazlenz-loto-degraded-gap-alignment-regression.ts`, wired into `test:hazlenz-core`:
+**20 assertions, 0 failures.** It asserts the invariant itself (`degradedClassificationUsed ===
+response.classification` for every degraded response), carries a positive control so the branch
+reorder cannot over-correct a real guarding finding, and carries two negative controls so the new
+vocabulary cannot manufacture a LOTO finding from verified-safe language or from an
+out-of-service equipment tag.
+
+### 82.3 HazLenz Level-1 is now 31/31 `VERIFICATION`
+
+`test:hazlenz-core`: **31 suites, 31 pass, 0 fail.** The documented §13.1 pair is **closed**, no
+third failure appeared, and the new suite is the 31st.
+
+`HAZLENZ_V1_CUSTOMER_AUTHORITATIVE = TRUE`, on 31/31 rather than on 28/30 plus a note.
+
+> §13.1 said a third failure "must be investigated — do not absorb it into this note". The
+> symmetric obligation was never written down and is written down now: **a documented failure is
+> not a permitted failure.** Both of these reproduced identically for months precisely because
+> being on a list made them look handled.
+
+`test:safescope-standards` reports **12 passed, 3 failed** against the local `safescope` corpus
+(*"no matches"* for MSHA guarding, OSHA electrical and permit-space entry). Verified as
+**pre-existing at `HEAD`** by restoring the three changed files from `HEAD` and re-running: byte-identical
+12/3. It is a gap in the local development corpus, not a code defect, and not caused by this work.
+
+### 82.4 `V1-OFFLINE-ASSETCACHE-01` — the recorded cause was WRONG `CORRECTION` / `FIXED`
+
+§81.12.1 recorded the production asset cache as absent and attributed it to Vercel serving
+`/_next/static/**` as `immutable`, *"so those requests never reach the service worker's fetch
+handler"*. **Measured against live production on 2026-08-27, that attribution is incorrect.** The
+first controlled load reproduces the symptom exactly — `insite-shell-v1-assets` does not exist —
+but a **second** load populates it with all thirteen `?dpl=`-suffixed build assets. The fetch
+handler does intercept them.
+
+The real defect is an **ordering gap on the first visit**. `ServiceWorkerRegistrar` registers on the
+window `load` event, by which time the first document has already requested every one of its build
+assets. Those requests are issued by an **uncontrolled** client, so they never reach the handler.
+A user who opened InSite once and then walked out of coverage had an offline reopen carried by the
+browser's **HTTP cache**, which is evictable independently of Cache Storage.
+
+Repair: at install the worker parses the shell document it already precaches and precaches every
+`/_next/static/**` asset that document references. The document is the build's own manifest of what
+the shell needs, so it cannot drift from the build the way a separate artifact could. Only
+content-hashed, account-independent build assets are admitted — the same class the runtime handler
+already allows — capped at 60, best-effort per URL, and unable to fail installation.
+
+Proof, `verify:offline-shell-cold-start` (new), **16 assertions, 0 failures**, on a FIRST visit
+only:
+
+> ONLINE LOAD → SERVICE WORKER CONTROL → **all 13 referenced assets precached** → HTTP cache
+> **cleared and disabled through CDP** → OFFLINE → shell opens → shell **hydrates** → draft created
+> → observation recorded → survives a second offline reload → RECONNECT → **exactly one** server
+> inspection → re-sync produces **no duplicate**.
+
+"HTTP cache not relied upon" is not argued. `Network.clearBrowserCache` then
+`Network.setCacheDisabled` run before the network is severed, so anything the page still loads can
+only have come from Cache Storage.
+
+A **control leg** proves the gap was real and that the suite can see it: with the pre-repair worker
+deployed as the real `/sw.js`, a genuine first visit leaves the asset cache **absent** — the
+production symptom, reproduced locally. The control must swap the actual `/sw.js`; an earlier
+attempt that re-registered a different script programmatically **passed spuriously**, because that
+worker then claims the live client and populates the cache through the runtime path, hiding the
+very gap being measured. Recorded because it is the same class of error as a test asserting what
+the code does.
+
+No authenticated response, token or API origin is cached: asserted in both offline suites.
+`verify:offline-field-capture` **81/0** and `check:offline-field-capture` **98/0** are unchanged,
+account switching included.
+
+**The marketing claim does not need narrowing.** The only offline claim rendered anywhere is on
+`/inspections` and `/field-capture` — *"Record observations, locations and photos with no
+connection… HazLenz AI analysis and reports still need a connection"* — which the proof above
+supports, and now supports more strongly than before.
+
+### 82.5 The visual sweep found one objective defect `FIXED`
+
+`audit:text-contrast`: **2 pixel-confirmed failures**, *"Open Field Capture"* on `/inspections`,
+white on `rgb(255,105,0)` at **2.89:1** against a 4.5:1 minimum, failing in **both** themes.
+
+§72.4 had already decided this exact question: the brand orange measured 2.71–2.80:1 and was
+replaced by `--app-accent-strong` (`#BB5609`, 4.72:1) behind one semantic class, precisely so no
+call site could reintroduce it. `AppButton`'s `accent` variant was migrated then. **`AppLinkButton`'s
+was not**, and still resolved to `bg-orange-500 text-white` — carrying not only this button but the
+`/pricing` upgrade CTA and every `LockedFeatureCard` call to action.
+
+Fixed at the variant, for the reason §72.4 gave. Measured after: `rgb(187, 86, 9)` in both themes,
+`audit:text-contrast` **0 failures**.
+
+Everything else clean: `audit-blue-text` 86 sampled / **0** failures, `audit-primary-button-contexts`
+**0**, `check-primary-button-sweep` pass, `check-theme-flash` **0 routes flashing**,
+`check:hydration` **0 mismatches across 20 routes × 2 themes**, `audit:mobile-responsive`
+`HORIZONTAL_PAGE_OVERFLOW = 0`. A 60-cell screenshot sweep (15 routes × 2 viewports × 2 themes)
+found no clipping, overflow or page error. The seven routes that render light in dark mode are the
+`FIXED_LIGHT_THEME_ROUTES` pins, by design.
+
+### 82.6 `REACT_418_ACCOUNT_SWITCH` — not reproduced `CLOSED AS OBSERVED`
+
+Bounded deterministic matrix: mobile **and** desktop × light **and** dark × USER_A authenticated
+with real on-device draft state → sign out → USER_B → eight route transitions each with a refresh →
+back to USER_A. **68 steps, 0 hydration errors.** The only console errors were a 404 for an
+optional resource and 429s from the auth throttle the harness itself triggers — neither is a
+hydration mismatch. With `check:hydration` clean over 20 routes × 2 themes as well:
+
+`REACT_418_ACCOUNT_SWITCH = NOT_REPRODUCED_AFTER_BOUNDED_RETEST`. No cause is invented; it stays an
+observed, non-blocking incident.
+
+### 82.7 The three unrun §76.9 KG suites — all three now executed `CLOSED`
+
+They were never failures; they were unmet harness prerequisites. Each was given the environment it
+actually needs, on databases created for this phase and claimed under the KG-4C ownership guard.
+
+| Suite | Prerequisite supplied | Result |
+|---|---|---|
+| `test:regulatory-release-lifecycle` | `test_v1_rc_lifecycle_20260827`: 47 migrations, seeded corpus (manifest `14a34fea…`, matching KG-1) | **42 / 42** |
+| `test:knowledge-release-provenance` | `test_v1_rc_provenance_20260827` plus its own API instance on 4231 | **27 / 27** |
+| `test:kg4b-default-off` | `test_v1_rc_kg4b_20260827`, all 35 records reviewer-approved, release activated, and a server genuinely running `GOVERNED_CUTOVER_MODE=SHADOW` with exactly one allowlisted account | **48 / 48** |
+
+`test:kg4b-default-off` was the 30/31 of §76.9; its Phase 19 live leg is now proven rather than
+skipped, on the hard case — the mechanism switched ON, with a non-allowlisted customer completely
+untouched. Level-3 was not reopened.
+
+### 82.8 Customer journey acceptance `VERIFICATION`
+
+`verify:v1-customer-journeys` (new), **46 assertions, 0 failures**, disposable accounts only.
+No Stripe Checkout Session was created, no card charged, no Stripe object mutated, and Pro was
+granted only through the repository's own disposable tool.
+
+* **A — new customer:** Free at $0, entitled account reports Pro, no Expert anywhere; site →
+  inspection → observation → HazLenz analysis → applicable CFR standards → advisory-only guardrails
+  → saved history → reopen → the observation still present after logout and login.
+* **B — Free restrictions:** HazLenz analysis refused with a deliberate **402** carrying an
+  explanatory body and leaking no Pro content. Free still creates sites, inspections and
+  observations and reads its own saved history — the marketing claim holds — and cannot see the Pro
+  account's inspection.
+* **C — offline:** §82.4, plus `verify:offline-field-capture` 81/0.
+* **D — isolation:** cross-account read **404**, cross-account append **404**, unauthenticated list
+  **401**; `test:cross-user-isolation` **28/0** including "a guessed UUID returns the same 404 as a
+  real-but-unauthorised one".
+* **E — billing without purchase:** status answers, the Free account is not Pro,
+  `stripeSubscriptionId` is `null`, and checkout refuses a retired tier.
+* Browser leg: six routes for a Free customer at 390px — all render a real page, none scroll
+  horizontally, no uncaught page error.
+
+#### 82.8.1 `DEV_AUTH_BYPASS` in `backend/.env` — a measurement trap, not a defect `STATED_UNCERTAINTY`
+
+The first journey run reported `GET /inspections` unauthenticated as **200**. `backend/.env` sets
+`DEV_AUTH_BYPASS=true`, and `JwtGuard` honours it whenever `NODE_ENV !== 'production'`. Production
+runs `NODE_ENV=production` (`/health`, §81.11) and measured **401**, so the bypass is inert there by
+construction and `.env` is not deployed. Re-running with `DEV_AUTH_BYPASS=false` returns **401**,
+matching production. Recorded because a local verification stack that silently disables the guard
+can make an isolation suite pass for the wrong reason.
+
+### 82.9 Configuration `NOT_A_BLOCKER`
+
+**`BILLING_SUCCESS_URL` / `BILLING_CANCEL_URL` — `SAFE_POST_LAUNCH_CLEANUP`.** They appear in
+`backend/.env.example` and **nowhere in source**. `createCheckoutSession()` derives both from
+`frontendUrl()` with hard-coded paths. Nothing reads them, so no value they hold can change
+behaviour and there is no runtime ambiguity. They remain a documentation trap — an operator could
+set them and see no effect — so deleting the two template lines is worth doing after launch.
+
+**`STRIPE_SECRET_KEY` lacking Prices Read — NOT required by the implemented path.** The complete set
+of Stripe API calls in the backend is exactly four: `customers.create`,
+`checkout.sessions.create`, `billingPortal.sessions.create`, and `webhooks.constructEvent` (which is
+local signature verification, not an API call). There is **no** `prices.*` or `products.*` call
+anywhere; the Price is passed by id into `line_items`, and the webhook maps price id → tier from
+environment variables via `resolveTierForPriceId()`, never from Stripe. The decisive evidence is
+already recorded: §77.9's live Checkout Session `cs_live_a1Q9G3…` was created **by this key**
+against `price_1U8mok…` with the correct `$24.99` line item. Prices Read is needed only for operator
+introspection (`GET /v1/prices`). **Permissions were not broadened, and Stripe was not touched.**
+
+### 82.10 Acceptance accounts — `POST_LAUNCH_HYGIENE` `NOT_A_BLOCKER`
+
+The 17 disposable production accounts are **unambiguously distinguishable**: every one matches
+`v1-offline%@insite-acceptance.test`, and `.test` is an RFC 2606 reserved TLD that can never be
+registered, so no real customer can ever hold such an address. §81.13 measured 0 other accounts on
+that domain and 15 real accounts unaffected.
+
+They cannot affect entitlement, metrics, isolation or any customer-visible behaviour. Every read is
+per-user scoped (`test:cross-user-isolation` 28/0, plus §81.12's production checks) and there is no
+cross-tenant aggregate. They are Free **by construction**: the only entitlement-granting tool,
+`scripts/grant-test-entitlement.ts`, refuses anything that is not `NODE_ENV=test` on **localhost**
+with a `test*`/`phase*` database name, so it cannot have run against production's Neon instance.
+
+An explicit post-launch cleanup should remove them. Deleting production rows is itself a mutation
+this phase was not authorized to make, so they are left in place and disclosed, exactly as §81.13
+left them. **The 15 real accounts were not read, modified or touched.**
+
+### 82.11 Regression `VERIFICATION`
+
+| Check | Result |
+|---|---|
+| `test:hazlenz-core` | **31 / 31 suites** (was 28/30) |
+| new `hazlenz-loto-degraded-gap-alignment-regression` | **20 / 0** |
+| `test:regulatory-release-lifecycle` | **42 / 0** (first run) |
+| `test:knowledge-release-provenance` | **27 / 0** (first run) |
+| `test:kg4b-default-off` | **48 / 0** (first full run) |
+| `test:kg4a-default-off` | 51 / 0 |
+| `test:kg4b-shadow-contract` | 123 / 0 |
+| `test:kg4d-default-off` | 121 / 0 |
+| `test:kg5c-customer-path-equivalence` | 31 / 31, evidence artifact **byte-identical** on re-run |
+| `test:approval-contract` | 57 / 0 |
+| `test:standards-corpus-integrity` | all invariants pass |
+| `test:cross-user-isolation` | **28 / 0** |
+| `test:offline-sync-idempotency` | **23 / 0** |
+| `test:auth-flow` | PASS |
+| `test:authenticated-entitlement-path` | PASS — negative `402`, `bypass false` |
+| `billing:regression` | **27 / 0** |
+| `billing:migration-validation` | **6 / 0** |
+| `check:launch-pricing` | **39 / 0** |
+| `check:free-observation-restore` | **27 / 0** |
+| `check:closure-workflow` | PASS — `reloadPersistence`, `immutableReport`, 1 report |
+| `check:offline-field-capture` | **98 / 0** |
+| `verify:offline-field-capture` | **81 / 0** |
+| `verify:offline-shell-cold-start` (new) | **16 / 0** + control leg |
+| `verify:v1-customer-journeys` (new) | **46 / 0** |
+| `check:company-actions` / `check:action-workflow` | PASS |
+| `check:hydration` | 0 mismatches, 20 routes × 2 themes @390px |
+| `audit:mobile-responsive` | `HORIZONTAL_PAGE_OVERFLOW = 0` |
+| `audit:text-contrast` | **0** (was 2) |
+| `audit-blue-text` / `audit-primary-button-contexts` / `check-primary-button-sweep` / `check-theme-flash` | 0 failures |
+| frontend `tsc --noEmit` / `next build` | clean / succeeded |
+| backend `tsc` / `npm run build` | clean / succeeded |
+| migration rehearsal from scratch | **47** migrations applied to **four** fresh disposable databases, exit 0 each |
+
+`test:auth-flow` and `test:authenticated-entitlement-path` first reported **429**. That is the
+documented §13.3 throttle (5/60s per IP), which the preceding suites had consumed. Both were paced
+inside the window and pass. **The throttle was not weakened** — §13.3 exists for exactly this
+temptation.
+
+No external AI or provider spend. No live payment. No production database write; the only
+production contact was a **read-only** browser measurement of the deployed shell (§82.4).
+
+### 82.12 Worktree `PRESERVATION`
+
+Six tracked files modified, three added. Nothing committed, pushed, deployed, reset, restored,
+stashed or cleaned. The previously disclosed material is untouched: **2,122 `" 2"` duplicates**, the
+screenshot packages, `Safety InSite Logos/`, and all four stashes and 23 tags.
+
+| Path | sha256 |
+|---|---|
+| `backend/src/safescope-v2/safescope-v2.service.ts` | `7fef5221039e4188fe8304b665356c514f7b77cf085e3cc37fa5505804404227` |
+| `backend/src/safescope-v2/taxonomy/hazard-taxonomy.ts` | `be4ffc5dcea2859d959f3590a6d3aede8bf8c8fe2af917eef2fc5ef2c07f2d45` |
+| `frontend-next/components/ui/AppLinkButton.tsx` | `22c8288c878de1fd904e52f9d2772e6208d32e7d52424be161e230cd414b35cc` |
+| `frontend-next/public/sw.js` | `dd8f7a0540c7b1f8f0d262f122581056a8582a2c56d794bc434b38c70d21fb5c` |
+
+Also modified: `backend/src/safescope-v2/tests/hazlenz-core-regression.ts` (registers the new
+suite), `frontend-next/package.json` (two new verification scripts). Added:
+`hazlenz-loto-degraded-gap-alignment-regression.ts`, `verify-offline-shell-cold-start.mjs`,
+`verify-v1-customer-journeys.mjs`, and
+`verification/insite-v1-release-candidate-2026-08-27/`.
+
+### 82.13 Final state
+
+```
+HAZLENZ_V1_CUSTOMER_AUTHORITATIVE = TRUE   (31/31, the §13.1 pair CLOSED)
+V1-HAZLENZ-DEGRADEDGAP-01         = FIXED
+V1-HAZLENZ-TAGOUTSTATE-01         = FIXED
+V1-OFFLINE-ASSETCACHE-01          = FIXED  (§81.12.1 cause corrected)
+V1-CONTRAST-APPLINKBUTTON-01      = FIXED
+KG_SUITES_UNRUN                   = 0      (42/42, 27/27, 48/48)
+REACT_418_ACCOUNT_SWITCH          = NOT_REPRODUCED_AFTER_BOUNDED_RETEST
+OFFLINE_SHELL_COLD_START          = PASS   (HTTP cache cleared AND disabled)
+BILLING_URL_ENV_VARS              = SAFE_POST_LAUNCH_CLEANUP
+STRIPE_PRICES_READ                = NOT_REQUIRED_BY_IMPLEMENTED_PATH
+ACCEPTANCE_ACCOUNTS               = POST_LAUNCH_HYGIENE
+LIVE_PAYMENT_PROOF                = FALSE
+```
+
+**Terminal:** `INSITE_V1_FINAL_RELEASE_CANDIDATE_READY — COMMIT_PUSH_DEPLOY_REQUIRED`
+
+No customer-facing blocker remains. Four repairs exist locally and are unreleased, so a commit,
+push and deploy are required before production carries them. Deployment order is unchanged and
+carries **no migration**: this phase added none, so `push/deploy` alone is sufficient.
+
+The one remaining launch evidence gap is unchanged and is not paperwork: a real payment → Stripe
+webhook → subscription persisted → Pro entitlement activates → entitlement survives logout/login.
+It stays `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`. Production has still never processed a
+real payment, and this phase did not manufacture one.
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`

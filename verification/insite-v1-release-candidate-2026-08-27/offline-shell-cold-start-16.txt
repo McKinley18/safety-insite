@@ -1,0 +1,17 @@
+PASS the served shell document references build assets (13)
+PASS 1. a FIRST online visit creates the application-controlled asset cache
+PASS 1. a FIRST online visit precaches EVERY build asset the shell references (13 cached, 13 referenced)
+PASS 1. no API-origin response entered any shared cache during precaching
+PASS 2. the browser HTTP cache is CLEARED and DISABLED — anything served now comes from Cache Storage
+PASS 3. the shell opens OFFLINE with the HTTP cache cleared and disabled
+PASS 3. the shell HYDRATED offline — its JavaScript came from Cache Storage, not the HTTP cache
+PASS 3. the page reports Offline while the network is unreachable
+PASS 4. a draft is created offline from the cold-started shell
+PASS 4. an observation is recorded offline from the cold-started shell
+PASS 4. the draft survives a second offline reload with no HTTP cache at all
+PASS 5. the draft reports SYNCED after reconnecting
+PASS 5. exactly one server inspection was produced (0 -> 1)
+PASS 5. re-synchronising produced NO duplicate (1 -> 1)
+PASS 5. no authenticated API response was ever written into a shared cache
+PASS 5. only the versioned InSite shell caches exist
+{"passed":true,"passes":16,"failures":0}

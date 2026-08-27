@@ -112,6 +112,10 @@ const suites: Suite[] = [
     scriptPath: "src/safescope-v2/tests/hazlenz-handrail-guardrail-regression.ts"
   },
   {
+    name: "HazLenz LOTO Degraded-Gap Alignment Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-loto-degraded-gap-alignment-regression.ts"
+  },
+  {
     name: "HazLenz Energy-Isolation Negation Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-energy-isolation-negation-regression.ts"
   },

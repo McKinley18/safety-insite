@@ -1,7 +1,7 @@
 {
   "schemaVersion": "insite.current-state.v1",
-  "generatedAt": "2026-08-26",
-  "generatedBy": "INSITE v1.0 FINAL LOCAL MOBILE ACCEPTANCE CLEANUP -- executed. INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE -- PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED. Level-3 untouched, still DEFERRED and non-customer-authoritative.",
+  "generatedAt": "2026-08-27",
+  "generatedBy": "INSITE v1.0 FINAL LAUNCH HARDENING + RELEASE-CANDIDATE ACCEPTANCE -- executed. INSITE_V1_FINAL_RELEASE_CANDIDATE_READY -- COMMIT_PUSH_DEPLOY_REQUIRED. Four repairs exist locally and are UNRELEASED; production still runs e9355e911c221f94c96d2a1b241b4d938435fae2. LIVE_PAYMENT_PROOF remains FALSE. See blueprint section 82.",
   "documentContract": {
     "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
     "authoritativeFor": [
@@ -25,9 +25,9 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE — FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING",
-  "readiness": "NO LOCAL FUNCTIONAL OR RESPONSIVE BLOCKERS. The three gaps blueprint 73.11 recorded are closed: the hydration mismatch is NOT_REPRODUCIBLE and now has a permanent check; the phone inspection workflow was driven end to end at 390px (20/20); and the three routes previously measured empty were re-measured populated, which surfaced and fixed four real mobile defects. Everything remaining is a production commerce or release action.",
-  "nextSlice": "Prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION: Stripe payment succeeds -> webhook reaches InSite -> user_subscription persisted -> Pro entitlement activates -> entitlement survives logout/login. The owner declined to authorize a $24.99 self-purchase and prohibited manufacturing this evidence via manual subscription, manual Pro grant, charge or refund. Until a real customer pays, this chain is DEFERRED - not passed, not failed. Secondary, non-blocking: V1-OFFLINE-ASSETCACHE-01 (precache the build's chunks so the offline shell does not depend on the browser's HTTP cache for JavaScript).",
+  "checkpoint": "INSITE_V1_FINAL_RELEASE_CANDIDATE_READY \u2014 COMMIT_PUSH_DEPLOY_REQUIRED",
+  "readiness": "No customer-facing blocker remains. The two documented section 13.1 HazLenz LOTO failures were BOTH real customer-facing defects and are FIXED (HazLenz Level-1 now 31/31 suites, was 28/30). V1-OFFLINE-ASSETCACHE-01 is FIXED and section 81.12.1's recorded cause is CORRECTED: the asset cache was absent because the worker registers on window load, after the first visit has already requested its assets from an uncontrolled client -- not because Vercel immutable headers bypass the fetch handler. All three previously unrun KG suites executed (42/42, 27/27, 48/48). One objective contrast defect fixed. React #418 not reproduced across a 68-step bounded matrix. Nothing is committed, pushed or deployed.",
+  "nextSlice": "Commit, push and deploy the four repairs. NO MIGRATION is required by this phase. Then the only remaining launch evidence gap is unchanged: prove the paid path on the FIRST GENUINE CUSTOMER TRANSACTION -- Stripe payment succeeds, the webhook reaches InSite, the subscription is persisted, the Pro entitlement activates, and it survives logout/login.",
   "actionsPerformedByThisTask": {
     "committed": false,
     "pushed": false,
@@ -645,7 +645,7 @@
   "knownCaveats": [
     {
       "id": "CAVEAT-1",
-      "title": "HazLenz core — two pre-existing baseline failures",
+      "title": "HazLenz core \u2014 two pre-existing baseline failures",
       "detail": "Golden Hardening Scenarios Test ('7. LOTO energized maintenance (Not Guarding alone)') and HazLenz Production Path Regression ('FAIL tagged but not locked'). 28 of 30 suites pass. Byte-identical at every slice boundary; the only two.",
       "blocking": false
     },
@@ -789,7 +789,7 @@
     {
       "id": "KG5C-DISC-01",
       "title": "634 legacy plain_language_summary values are truncated mid-word",
-      "classification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+      "classification": "LEGACY_CORPUS_QUALITY \u2014 MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
       "detail": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows, and 634 of those cut mid-word (1910.219 ends \"...thirteen thirty-seconds () inch or less. 1/2 (2\"). That fragment is what a Path B customer reads TODAY under the \"HazLenz standard summary\" label. Pre-existing and unrelated to governance. Not a SHADOW blocker (SHADOW is customer-invisible). Not a cutover blocker: cutover REPAIRS it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract promise.",
       "evidence": "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-5c/STATUS.md section 8",
       "blocking": false
@@ -994,7 +994,7 @@
     "l3FinalAcceptance.holdoutProvenanceSplit (when the holdout is built, the by-provenance table is mandatory: the ~25 authored negative-control/corrected-state rows must be reported SEPARATELY from the independent strata, so the independent number stays readable on its own -- section 36.5. A single blended number would reintroduce exactly the weakness section 36.10 identified.)",
     "l3LocalRemediationPhase1.harnessFidelityBeforeAnyCounterfactual (the replay harness must reproduce the FROZEN Run-2 verdict BYTE-IDENTICALLY on all ten gates through the identity transform before any counterfactual it produces means anything. Re-run replay/prove-harness-fidelity.js and refuse to read a counterfactual if it is not 22/22.)",
     "l3LocalRemediationPhase1.checkModeIsInert (the condition-state resolution boundary is wired in CHECK mode, which records and changes nothing. The proof is that L3-2d still passes 71/71 and the full L3 suite set passes 1,035/1,035. If a future phase adopts RESOLVE, that inertness proof no longer holds and every downstream number must be re-measured.)",
-    "l3LocalRemediationPhase1.doNotPromoteTheBoundTier (SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE deleted a TRUTH-MATCHING state on 8 of 8 decidable fatal firings in Run 2. The bound tier’s G9 gain is SUPPRESSION, not correctness, and all four rows it converges are G9-S2 traceability-only. Do not promote it until binder state-rejection precision is repaired and measured.)",
+    "l3LocalRemediationPhase1.doNotPromoteTheBoundTier (SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE deleted a TRUTH-MATCHING state on 8 of 8 decidable fatal firings in Run 2. The bound tier\u2019s G9 gain is SUPPRESSION, not correctness, and all four rows it converges are G9-S2 traceability-only. Do not promote it until binder state-rejection precision is repaired and measured.)",
     "l3LocalRemediationPhase1.vetoesAreSubstantiveNotGateBased (G1 counts a high-consequence miss as \"no validated candidate at all\", so a change that keeps the candidate and strips its ACTIVE assertion is INVISIBLE to it. A scenario in this phase improved G4 and G9 while reducing high-consequence ACTIVE assertions 35->34 and 35->33. Never score a remediation on the gate table alone.)",
     "l3LocalRemediationPhase1.theRecordingHasNoEvidence (Run 2 persisted 63 structured fields per row and NONE is evidence. Before planning any Tier-2 replay, check whether the change under test depends on evidence spans, rationale, uncertainties or a clarification body -- if it does, the replay cannot be run and must not be approximated.)",
     "l3LocalRemediationPhase1.rc4IsAnRC3Facet (EVIDENCE_OUT_OF_BOUNDS is 3 / 5,263 = 0.057%, deterministic where a determinism control exists and non-reproducing where one does not. Section 69.6 pre-registered that as the signature of an RC-3 facet. Do not implement a separate grounding fix on this evidence.)"
@@ -1259,7 +1259,7 @@
   "releasePackaging": {
     "slice": "KG-5A (plan) / Operation 1 (local commit construction, 2026-08-21)",
     "performedAt": "2026-08-21",
-    "verdict": "KG_RELEASE_PACKAGE_COMMITTED_LOCALLY — PUSH_NOT_AUTHORIZED — PRODUCTION_UNCHANGED",
+    "verdict": "KG_RELEASE_PACKAGE_COMMITTED_LOCALLY \u2014 PUSH_NOT_AUTHORIZED \u2014 PRODUCTION_UNCHANGED",
     "committed": true,
     "pushed": false,
     "merged": false,
@@ -1334,7 +1334,7 @@
       },
       {
         "sequence": 6,
-        "sha": "(this commit — self-reference impossible; the five SHAs above are exact)",
+        "sha": "(this commit \u2014 self-reference impossible; the five SHAs above are exact)",
         "subject": "KG-1..KG-5D: operator commands, verification suites, evidence and documentation",
         "files": 538
       }
@@ -1659,14 +1659,14 @@
   "operationalReadinessNote": "Superseded the KG-5A value PRODUCTION_RELEASE_PACKAGE_NOT_READY. Both KG-5A blockers (KG5A-DISC-01 corpus mutation, KG5A-DISC-03 no operator CLI) were closed by KG-5B. The package is ready; the operations are NOT executed. See openIssues.STAGE1-OP-01 and productionShadowProtocol.precedingOperations.",
   "programStatus": {
     "currentStage": "KG_PROGRAM_CONVERGENCE_AND_PRODUCTION_SHADOW_READINESS",
-    "lastVerifiedStage": "KG-5C — CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED",
+    "lastVerifiedStage": "KG-5C \u2014 CUSTOMER_PATH_EQUIVALENCE_ESTABLISHED",
     "nextPermittedStage": "Production release operations 1-11 (each separately authorized), THEN a separately authorized Stage-1 controlled production SHADOW.",
     "nextPermittedStageIsNotAuthorizedByThisState": true,
     "productionAuthority": "LEGACY",
     "productionAuthorityMeaning": "Every production customer response is produced by the legacy path. Governed content reaches no customer. This is the current authority, not a default awaiting promotion.",
-    "shadowState": "OFF — never run in production",
+    "shadowState": "OFF \u2014 never run in production",
     "shadowStateEvidence": "Zero GOVERNED_CUTOVER_* variables set in the production environment; GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK has never been set anywhere.",
-    "cutoverState": "OFF — separate explicit authorization boundary; not authorized by SHADOW completing",
+    "cutoverState": "OFF \u2014 separate explicit authorization boundary; not authorized by SHADOW completing",
     "readyIsNotStarted": "READY_FOR_CONTROLLED_PRODUCTION_SHADOW is a statement about verified architecture. The governed subsystem is not deployed, the six migrations are not applied, and no governed release exists in production. See openIssues.STAGE1-OP-01.",
     "blueprintEntryPoint": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 0 (START HERE), then sections 21-27"
   },
@@ -1902,7 +1902,7 @@
     "purpose": "Prevent a future session from rediscovering old evidence and reopening a resolved architectural question. This is NOT a suppression mechanism: new contradictory evidence always wins over documentation. Each entry names the exact condition that would justify reopening it.",
     "entries": {
       "KG5B-DISC-01": {
-        "status": "PROTECTED — RESOLVED BY KG-5C",
+        "status": "PROTECTED \u2014 RESOLVED BY KG-5C",
         "originalObservation": "Legacy and governed representations differ for governed citations; 15 of 27 approved records measured CONTENT_DIFFERENCE / BLOCKING.",
         "originalInterpretation": "Potential content-difference blocker.",
         "correctedInterpretation": "The original pairing was valid, but the classification was too coarse. The count of 15 is confirmed by re-measurement through the real customer path on both body-text tiers. All 15 classify GOVERNED_REVIEWED_RENDERING. The customer receives exactly the reviewed governed artifact.",
@@ -1924,7 +1924,7 @@
         ]
       },
       "KG5A-DISC-01": {
-        "status": "PROTECTED — CLOSED BY KG-5B",
+        "status": "PROTECTED \u2014 CLOSED BY KG-5B",
         "originalObservation": "finalize-regulatory-release.ts selected FROM standards_master with no WHERE clause, so release membership was the whole table; building a release rewrote five live customer-facing rows, renamed a citation, hit a unique-index collision and left the corpus at 2,396 rows with a duplicate pair.",
         "supersededInterpretation": "The bug is the missing WHERE clause.",
         "correctedInterpretation": "The missing clause was a symptom. The cause was that there was no such thing as a governed candidate record: the only representation of a governed standard was a row in the live customer corpus, so building a release required mutating it.",
@@ -2000,7 +2000,7 @@
     "issues": {
       "KG5C-DISC-01": {
         "observation": "plain_language_summary is a hard 500-character cut of standard_text on 996 of 2,390 production rows; 634 cut mid-word. That fragment is what a Path B customer reads today under the 'HazLenz standard summary' label.",
-        "classification": "DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
+        "classification": "DEFECT_NONBLOCKING \u2014 CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
         "architecturalOwner": "SOURCE / legacy content-generation path",
         "customerImpact": "Real, pre-existing and unrelated to governance. Path B customers read truncated fragments today, in LEGACY. Newly proven 2026-08-22: the truncation also reaches the GENERATED INSPECTION REPORT surface.",
         "releaseGateImpact": "UNCHANGED by the reclassification. Does NOT block production SHADOW or governed CUTOVER for approved records. SHADOW remains customer-invisible - 'customer-invisible' was always a statement about SHADOW, never about the truncation. Cutover repairs it for the 15 approved reviewed renderings and leaves it unchanged for unapproved records, which is the fallback contract's promise.",
@@ -2011,7 +2011,7 @@
         ],
         "nextRequiredAction": "Adjudicate the legacy summary-generation strategy at SOURCE, now with report-surface priority rather than workspace-only. Deliberately NOT remediated in the 2026-08-22 closure operation - reclassification only.",
         "conditionForClosure": "Either the generation path is corrected at SOURCE and re-measured, or a recorded adjudication accepts the truncation with a stated rationale.",
-        "secondaryClassification": "LEGACY_CORPUS_QUALITY — MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
+        "secondaryClassification": "LEGACY_CORPUS_QUALITY \u2014 MUST_ADJUDICATE_BEFORE_WIDENING_LEGACY_DELIVERY",
         "doNotSilentlyClose": "Do not close this because governed CUTOVER masks it. Cutover repairs it for 15 of 2,390 rows.",
         "doNotBroadenCurrentPhase": true,
         "previousClassification": "DEFECT_NONBLOCKING",
@@ -2276,11 +2276,11 @@
       "The regulatory-context decision is HYBRID; the uncommitted 8-line worktree change implements REQUIRE_EXPLICIT and must not be packaged."
     ],
     "hazlenzLevel3Architecture2026_08_22": [
-      "RC-01/04/05/07/08 are ONE architectural cause with five surfaces, not five defects — confirmed from source.",
+      "RC-01/04/05/07/08 are ONE architectural cause with five surfaces, not five defects \u2014 confirmed from source.",
       "RC-02 and RC-03 are independent deterministic defects that survive Level 3 and are scheduled into L3-4.",
       "The Level-3 seam is intelligence-orchestrator.service.ts::evaluate(), one call site at safescope-v2.service.ts:1576.",
       "buildDegradedHazLenzIntelligence() at safescope-v2.service.ts:1392 already violates L3-INV-10 (silent Level-1 fallback presented as complete); it retires at L3-6.",
-      "HazLenz performs no image inference today — real-image-analysis operates on simulatedVisionFindings. Scope is TEXT_FIRST_LEVEL3.",
+      "HazLenz performs no image inference today \u2014 real-image-analysis operates on simulatedVisionFindings. Scope is TEXT_FIRST_LEVEL3.",
       "Checkpoint deployment of the Level-1 engine is refused: the checkpoint is already preserved by the verified remote commit and no evidence requires production.",
       "reasoningOrchestratorService.reason() is named 'advisory' but is customer-authoritative today; the name understates its role.",
       "No numerical confidence field is carried into the Level-3 schema until its meaning and calibration are defined."
@@ -2613,7 +2613,7 @@
     "date": "2026-08-22",
     "baselineHead": "e723b62d7c773f281600fcbd40082d9b8ad12683",
     "baselineIsolation": "clean git-archive checkout; backend/src byte-identical to worktree apart from .DS_Store",
-    "corpus": "test_hazlenz_capability_prodshape_20260822 — clone of the 2,390-row production-shaped corpus, 46 migrations",
+    "corpus": "test_hazlenz_capability_prodshape_20260822 \u2014 clone of the 2,390-row production-shaped corpus, 46 migrations",
     "matrixId": "hazlenz-capability-acceptance-2026-08-22",
     "expectationsFrozenBeforeExecution": true,
     "scenarios": 66,
@@ -2704,8 +2704,8 @@
       "safeScopeFeedback": "IMPLEMENTED_NOT_ACTIVE",
       "legacyFeedbackTables": "IMPLEMENTED_NOT_ACTIVE",
       "learningMemoryPayloadObject": "DOCUMENTED_ONLY",
-      "governedKnowledgeReviewQueue": "IMPLEMENTED_AND_ACTIVE — retrieval tier only, connected to no correction source",
-      "regressionCorpus": "IMPLEMENTED_AND_ACTIVE — code-change gate, not a learning loop"
+      "governedKnowledgeReviewQueue": "IMPLEMENTED_AND_ACTIVE \u2014 retrieval tier only, connected to no correction source",
+      "regressionCorpus": "IMPLEMENTED_AND_ACTIVE \u2014 code-change gate, not a learning loop"
     },
     "knowledgeFreshness": {
       "schedulerExists": false,
@@ -2744,13 +2744,13 @@
     "customerTruthfulness": {
       "overallAssessment": "restrained and well-disclaimed; no learning/currency/guarantee claims",
       "presentationOverclaims": [
-        "Settings: 'Let HazLenz AI Evaluate — HazLenz AI decides the likely agency context' (inference fires on 11 of 66)",
+        "Settings: 'Let HazLenz AI Evaluate \u2014 HazLenz AI decides the likely agency context' (inference fires on 11 of 66)",
         "/hazlenz: 'processes natural language safety observations' (outcome changes on back-up vs backup)"
       ]
     },
     "regressionBaseline": {
-      "hazlenzCore": "28 of 30 — the two documented pre-existing failures only, no third",
-      "kg3f5614132Predicate": "16/16 PASS while the customer path emits the refused (a) paragraph — see RC-03",
+      "hazlenzCore": "28 of 30 \u2014 the two documented pre-existing failures only, no third",
+      "kg3f5614132Predicate": "16/16 PASS while the customer path emits the refused (a) paragraph \u2014 see RC-03",
       "evidenceFoundation": "35 assertions PASS"
     },
     "implementationChanges": "NONE",
@@ -2772,7 +2772,7 @@
         "RC-03"
       ],
       "rc02Rc03FixedYet": false,
-      "rc03Note": "must NOT be closed by editing evidence-foundation.ts — that file is correct and its suite passes 16/16; the defect is the second path at msha-inspection-intelligence.service.ts:201",
+      "rc03Note": "must NOT be closed by editing evidence-foundation.ts \u2014 that file is correct and its suite passes 16/16; the defect is the second path at msha-inspection-intelligence.service.ts:201",
       "nextAuthorizedPhase": "LEVEL_3 reasoning-architecture / implementation planning",
       "nextPhaseStarted": false,
       "implementationStarted": false
@@ -2784,13 +2784,13 @@
         "test_hazlenz_capability_20260822",
         "test_hazlenz_capability_prodshape_20260822"
       ],
-      "templateSource": "test_kg5b_prodshape_20260821 — read-only template, unmodified at 2,390 rows"
+      "templateSource": "test_kg5b_prodshape_20260821 \u2014 read-only template, unmodified at 2,390 rows"
     },
     "kg5cDisc01Reclassification": {
       "previousClassification": "DEFECT_NONBLOCKING",
-      "newClassification": "DEFECT_NONBLOCKING — CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
+      "newClassification": "DEFECT_NONBLOCKING \u2014 CUSTOMER_VISIBLE_ON_GENERATED_REPORT",
       "basis": "mid-sentence truncation of 29 CFR 1926.501 printed in a real PDF from CanonicalReportsService.generate() under LEGACY",
-      "secondCustomerSurface": "generated inspection report — one of section 16's five surfaces that must remain truthful",
+      "secondCustomerSurface": "generated inspection report \u2014 one of section 16's five surfaces that must remain truthful",
       "releaseGateImpactChanged": false,
       "remediatedInThisOperation": false,
       "owner": "SOURCE",
@@ -2961,17 +2961,17 @@
     "learningRemainsLevel4": true,
     "knowledgeFreshnessRemainsGoverned": true,
     "openDecisions": [
-      "provider and pinned model id — decided at L3-2",
-      "cost/latency budget numbers — measured at L3-2",
-      "applicability as a second call or one combined call — decided at L3-4",
-      "sealed-holdout authorship — before the first L3-3 acceptance run",
-      "calibrated confidence field — post-L3-6, if ever"
+      "provider and pinned model id \u2014 decided at L3-2",
+      "cost/latency budget numbers \u2014 measured at L3-2",
+      "applicability as a second call or one combined call \u2014 decided at L3-4",
+      "sealed-holdout authorship \u2014 before the first L3-3 acceptance run",
+      "calibrated confidence field \u2014 post-L3-6, if ever"
     ],
-    "nextAuthorizedPhase": "L3-1 — Reasoning Contract + Provider Abstraction + Deterministic Validator Skeleton",
+    "nextAuthorizedPhase": "L3-1 \u2014 Reasoning Contract + Provider Abstraction + Deterministic Validator Skeleton",
     "nextPhaseStarted": false
   },
   "l31ReasoningContract": {
-    "verdict": "L3_1_COMPLETE — REASONING_CONTRACT_AND_VALIDATOR_ESTABLISHED — CUSTOMER_AUTHORITY_UNCHANGED",
+    "verdict": "L3_1_COMPLETE \u2014 REASONING_CONTRACT_AND_VALIDATOR_ESTABLISHED \u2014 CUSTOMER_AUTHORITY_UNCHANGED",
     "date": "2026-08-22",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3026,7 +3026,7 @@
       "kg4bShadowContract": "123/123",
       "kg3f5614132Predicate": "16/16",
       "evidenceFoundation": "35 assertions",
-      "hazlenzCore": "28/30 — the two documented failures only, no third",
+      "hazlenzCore": "28/30 \u2014 the two documented failures only, no third",
       "frontendTypecheck": "not required; no frontend file references reasoning-l3"
     },
     "providerIndependence": {
@@ -3066,13 +3066,13 @@
       "kgSourceModified": false,
       "capabilityDatabasesPreserved": true
     },
-    "nextAuthorizedPhase": "L3-2 — Semantic Observation Interpretation + Evidence Binding + Provider Selection + Non-Customer-Authoritative Dual Run",
+    "nextAuthorizedPhase": "L3-2 \u2014 Semantic Observation Interpretation + Evidence Binding + Provider Selection + Non-Customer-Authoritative Dual Run",
     "nextPhaseStarted": true,
     "evidenceDir": "verification/hazlenz-l3-1-reasoning-contract-2026-08-22/",
-    "supersededBy": "l32SemanticReasoning (§31) — L3-1 contracts unchanged and all seven module hashes preserved"
+    "supersededBy": "l32SemanticReasoning (\u00a731) \u2014 L3-1 contracts unchanged and all seven module hashes preserved"
   },
   "l32SemanticReasoning": {
-    "verdict": "L3_2_PARTIAL — SEMANTIC_REASONING_NOT_VALIDATED_FOR_ADVANCEMENT",
+    "verdict": "L3_2_PARTIAL \u2014 SEMANTIC_REASONING_NOT_VALIDATED_FOR_ADVANCEMENT",
     "date": "2026-08-22",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3137,7 +3137,7 @@
       "fabricatedActive": 0,
       "fabricatedEvidenceQuotes": 0,
       "quotationsEmitted": 153,
-      "clarificationsRaised": "0 of 66 — one decision-critical clarification missed (B10)"
+      "clarificationsRaised": "0 of 66 \u2014 one decision-critical clarification missed (B10)"
     },
     "operational": {
       "analyses": 162,
@@ -3151,7 +3151,7 @@
       "malformedRatePct": 0,
       "timeoutRatePct": 0,
       "validatorAcceptanceRatePct": 100,
-      "marginalCost": "$0 — local inference",
+      "marginalCost": "$0 \u2014 local inference",
       "reproducibility": "65 of 66 identical across two seeded runs at temperature 0; C11 differed",
       "budgetsAuthoritative": false,
       "proposedFutureBudgets": {
@@ -3185,7 +3185,7 @@
       "kg3f5614132Predicate": "16/16",
       "kg3fRetrievalDeterminism": "170/170",
       "evidenceFoundation": "35 assertions",
-      "hazlenzCore": "28/30 — the two documented failures only, no third",
+      "hazlenzCore": "28/30 \u2014 the two documented failures only, no third",
       "standardsBackingContract": "fails on a seed prerequisite; byte-identical failure from the pristine HEAD checkout",
       "kg4bDefaultOff": "needs a server on :4340; identical ECONNREFUSED from pristine HEAD",
       "customerAuthorityInvariance": "0 non-volatile differences over 66 scenarios",
@@ -3194,7 +3194,7 @@
     "dataBoundary": {
       "networkEgress": false,
       "thirdPartyProcessor": null,
-      "exclusionMechanism": "structural — ReasoningInputRequest has no field for the excluded categories; asserted from source",
+      "exclusionMechanism": "structural \u2014 ReasoningInputRequest has no field for the excluded categories; asserted from source",
       "redactionRules": [
         "email",
         "phone",
@@ -3222,13 +3222,13 @@
       "governedReleaseTouched": false,
       "safescopeDatabaseModified": false
     },
-    "nextAuthorizedPhase": "L3-2b — scoped remediation of the four semantic-binder defects, accepted against a NEWLY AUTHORED sealed holdout",
+    "nextAuthorizedPhase": "L3-2b \u2014 scoped remediation of the four semantic-binder defects, accepted against a NEWLY AUTHORED sealed holdout",
     "l33Eligible": "architecturally yes; blocked on quality until L3-2b closes with zero high-consequence misses",
     "evidenceDir": "verification/hazlenz-l3-2-semantic-reasoning-2026-08-22/",
-    "supersededBy": "l32bBinderPrecision (§32). The L3-2 PARTIAL result is the historical record and is NOT rewritten."
+    "supersededBy": "l32bBinderPrecision (\u00a732). The L3-2 PARTIAL result is the historical record and is NOT rewritten."
   },
   "l32bBinderPrecision": {
-    "verdict": "L3_2B_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
+    "verdict": "L3_2B_PARTIAL \u2014 SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
     "date": "2026-08-22",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3237,8 +3237,8 @@
     "level3CustomerOperational": false,
     "whyPartial": "Every L3-2 defect was root-caused and repaired and the repairs hold on a fresh sealed holdout (0 false ACTIVE on 19 non-active, 0 fabricated quotations in 75, 100% reproducibility). One high-consequence miss remains (H-AM-05) and clarification recall is 1 of 3. Both were diagnosed AFTER the holdout was opened and deliberately not fixed in this phase.",
     "rootCauses": {
-      "dominant": "clauseAround() treated only .;:!? as clause boundaries, so a negation anywhere in a field note governed every span in it — the cause of B08, C11 and A10",
-      "B08": "SEMANTIC_NEGATION_UNADDRESSED on a sibling clause across a bare \"while\" — NOT the selectivity check that L3-2 NEXT_ACTION.md had blamed; the mis-attribution is recorded, not silently corrected",
+      "dominant": "clauseAround() treated only .;:!? as clause boundaries, so a negation anywhere in a field note governed every span in it \u2014 the cause of B08, C11 and A10",
+      "B08": "SEMANTIC_NEGATION_UNADDRESSED on a sibling clause across a bare \"while\" \u2014 NOT the selectivity check that L3-2 NEXT_ACTION.md had blamed; the mis-attribution is recorded, not silently corrected",
       "C11": "the same rule across bare commas; commas cannot simply become boundaries because RC-08 is a negated list",
       "B10": "no stage tested whether evidence establishes a fact rather than an impression",
       "clarificationUnderProduction": "the prompt gave clarification a schema slot and no positive trigger, and a clarification can only ride on a candidate, so scenarios producing no candidate could not carry one",
@@ -3253,7 +3253,7 @@
       "R5 volatile analysis id removed from the prompt"
     ],
     "defectsFoundByThisWork": [
-      "regex alternation order let `no` shadow not/none/nor/neither — negation blindness reintroduced by a regex detail",
+      "regex alternation order let `no` shadow not/none/nor/neither \u2014 negation blindness reintroduced by a regex detail",
       "family-relevance rule as FATAL deleted 8 of 30 development candidates including a high-consequence one; demoted to advisory"
     ],
     "sealedHoldout": {
@@ -3262,7 +3262,7 @@
       "frozenBeforeFirstExecution": true,
       "scenarios": 81,
       "sharesNoScenarioWithL32Holdout": true,
-      "provenance": "40 deterministically sampled (every 5th) from safescope-field-validation-dataset.v1.json and 12 capability-acceptance diagnostics — both independent and never run against Level-3 — plus 29 authored by this phase, because neither independent source contains any negative control, corrected state, subjective wording or clarification case",
+      "provenance": "40 deterministically sampled (every 5th) from safescope-field-validation-dataset.v1.json and 12 capability-acceptance diagnostics \u2014 both independent and never run against Level-3 \u2014 plus 29 authored by this phase, because neither independent source contains any negative control, corrected state, subjective wording or clarification case",
       "limitation": "the 29-scenario complement was authored by the implementer; frozen before execution and written without inspecting model output, but a set authored by a non-implementer is still owed",
       "openedAndRetiredForGateUse": true
     },
@@ -3295,7 +3295,7 @@
       },
       "fabricatedQuotations": 0,
       "quotationsEmitted": 75,
-      "reproducibility": "81 of 81 (100%) — up from L3-2 65 of 66 (98.5%)",
+      "reproducibility": "81 of 81 (100%) \u2014 up from L3-2 65 of 66 (98.5%)",
       "binderNowNetPositive": "removed the model's only false ACTIVE (H-AM-02) taking negative controls to 0; still costs one correct high-consequence finding"
     },
     "remainingBlockers": [
@@ -3328,7 +3328,7 @@
       "kg3f5614132Predicate": "16/16",
       "kg3fRetrievalDeterminism": "170/170",
       "evidenceFoundation": "35 assertions",
-      "hazlenzCore": "28/30 — the two documented failures only, no third",
+      "hazlenzCore": "28/30 \u2014 the two documented failures only, no third",
       "prerequisiteDependentSuites": "standards-backing-contract and kg4b-default-off fail byte-identically from pristine HEAD",
       "customerAuthorityInvariance": "0 non-volatile differences over 66 scenarios",
       "newFailuresAttributableToL32b": 0
@@ -3344,7 +3344,7 @@
       "retryRatePct": 0,
       "malformedRatePct": 0,
       "timeoutRatePct": 0,
-      "marginalCost": "$0 — local inference"
+      "marginalCost": "$0 \u2014 local inference"
     },
     "providerUnchanged": {
       "provider": "ollama local",
@@ -3372,12 +3372,12 @@
       "dependenciesIdenticalToHead": true,
       "packageLockUnchanged": true
     },
-    "nextAuthorizedPhase": "L3-2c — impression-gate polarity, hasPredicate() at bare-conjunction boundaries, clarification recall; accepted against a NEWLY SEALED holdout",
+    "nextAuthorizedPhase": "L3-2c \u2014 impression-gate polarity, hasPredicate() at bare-conjunction boundaries, clarification recall; accepted against a NEWLY SEALED holdout",
     "l33Eligible": "architecturally yes; blocked on quality until L3-2c closes with 0 high-consequence misses and clarification recall >= 2/3",
     "evidenceDir": "verification/hazlenz-l3-2b-binder-precision-2026-08-22/"
   },
   "l32cGatePolarity": {
-    "verdict": "L3_2C_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
+    "verdict": "L3_2C_PARTIAL \u2014 SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
     "date": "2026-08-22",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3388,7 +3388,7 @@
     "rootCauses": {
       "R1_impressionGatePolarity": "checkSubjectiveImpression refused ACTIVE unless a word from the 30-entry FACTUAL_CONDITION_TOKENS appeared unhedged. 'sheared' is absent, so H-AM-05 was deleted. Proven with two isolating fixtures, one containing zero negations so the R2 change provably cannot reach it.",
       "R1_newEvidence_secondDeathPath": "H-AM-05 also dies through SEMANTIC_NEGATION_UNADDRESSED when the model picks a NARROW factual span, because 'not' scopes across the bare 'and'. L3-2b's NEXT_ACTION.md attributed it to the impression gate alone. This is the SECOND time a phase has found the prior phase's single attribution incomplete (see l32bBinderPrecision B08).",
-      "R1_newEvidence_entryConditionAlsoAList": "The gate only ran when a phrase from SUBJECTIVE_IMPRESSION_TOKENS appeared. 'struck me as' is absent, so H-AM-01 was ADMITTED as ACTIVE with no gate run at all — a latent false ACTIVE that L3-2b's pipeline result concealed because its model returned no candidate. Recorded as L3-2C-DISC-01.",
+      "R1_newEvidence_entryConditionAlsoAList": "The gate only ran when a phrase from SUBJECTIVE_IMPRESSION_TOKENS appeared. 'struck me as' is absent, so H-AM-01 was ADMITTED as ACTIVE with no gate run at all \u2014 a latent false ACTIVE that L3-2b's pipeline result concealed because its model returned no candidate. Recorded as L3-2C-DISC-01.",
       "R2_bareConjunctionScope": "negationScopes() applied hasPredicate() at commas and nowhere else; 'and' appeared in CLAUSE_STARTERS only as 'and separately'. Measured: 'no' governs 'no LOTO is applied and the guard is missing' in full. The proving fixture contains no subjective language, so the R1 change cannot reach it.",
       "R3_clarification": "Two different failures behind 'recall 1 of 3': H-AM-01 produced NO candidate at all so nothing could carry a question, and H-AM-02 produced ACTIVE with clarification null. On H-AM-02 the binder raised SEMANTIC_CLARIFICATION_EXPECTED_NOT_SUPPLIED and then deleted the candidate, destroying the only carrier the question could travel on."
     },
@@ -3396,9 +3396,9 @@
       "R1": "Gate POLARITY inverted. New impression-scope.ts classifies predication segments structurally as IMPRESSION / OBSERVER_ACTION / FACTUAL / NEITHER and refuses ACTIVE only when an impression is present and NO segment states a plain fact. NO condition vocabulary is consulted at any point.",
       "R2": "hasPredicate() applied at bare conjunctions, held to a STRICTER test than the comma: only a finite verb ends scope there, because a bare 'and' is the ordinary way to continue a negated list. 'or' and 'nor' never end scope.",
       "R3a": "The impression branch moved INTO the condition-state ladder as a required output shape, which is what lifted recall to 3/3.",
-      "R3b": "DEMOTION replaces deletion for SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE alone and only from ACTIVE: the candidate is kept at INSUFFICIENT_EVIDENCE carrying a clarification derived from its own cited evidence. Any other fatal code still deletes. This is NOT a redesign of clarification transport — a clarification remains a field on a hazard candidate."
+      "R3b": "DEMOTION replaces deletion for SEMANTIC_SUBJECTIVE_IMPRESSION_NOT_ACTIVE alone and only from ACTIVE: the candidate is kept at INSUFFICIENT_EVIDENCE carrying a clarification derived from its own cited evidence. Any other fatal code still deletes. This is NOT a redesign of clarification transport \u2014 a clarification remains a field on a hazard candidate."
     },
-    "whyPositiveVocabularyAdmissionWasReplaced": "English has an unbounded supply of ways to say a thing is broken, so every word missing from an admission list deletes a real hazard; the L3-2b holdout proved that costs a high-consequence finding. The remaining vocabularies sit on the IMPRESSION side, where a missing word costs precision — measurable against negative controls and recoverable — rather than a hazard. That asymmetry is the mechanism, not an implementation detail.",
+    "whyPositiveVocabularyAdmissionWasReplaced": "English has an unbounded supply of ways to say a thing is broken, so every word missing from an admission list deletes a real hazard; the L3-2b holdout proved that costs a high-consequence finding. The remaining vocabularies sit on the IMPRESSION side, where a missing word costs precision \u2014 measurable against negative controls and recoverable \u2014 rather than a hazard. That asymmetry is the mechanism, not an implementation detail.",
     "loadBearingImplementationRules": [
       "OBSERVER_ACTION must be distinct from IMPRESSION, or 'I saw the guard was missing' is deleted.",
       "The hedge test must run BEFORE the predication test: 'may be cut' carries no recognised finite verb, and a predication-first order let H-AM-02 through as ACTIVE.",
@@ -3417,7 +3417,7 @@
       "selection": "field dataset stride i % 5 === 2, provably disjoint from L3-2b's i % 5 === 0",
       "overlapVsPriorSets": "0 ids, 0 texts against holdout-l32, holdout-l32b and development-l32; enforced by a throw in the builder",
       "weakness": "The 32-scenario complement is authored by the implementer. Both independent sources remain entirely positive hazards, so EVERY precision number in L3-2b and L3-2c rests on scenarios the implementer wrote. Two phases have now carried this forward unclosed.",
-      "status": "OPENED — retired for gate use, valid as a development set"
+      "status": "OPENED \u2014 retired for gate use, valid as a development set"
     },
     "metrics": {
       "combined": {
@@ -3479,7 +3479,7 @@
       }
     },
     "regressionEvidenceRetiredL32bHoldout": {
-      "label": "REGRESSION_EVIDENCE ONLY — holdout-l32b e3a3c7ee... was opened by L3-2b and cannot establish L3-2c advancement",
+      "label": "REGRESSION_EVIDENCE ONLY \u2014 holdout-l32b e3a3c7ee... was opened by L3-2b and cannot establish L3-2c advancement",
       "hazardDetectionShipped": "60/62 (was 59/62)",
       "conditionStateAccuracyPct": 97.5,
       "clarificationRecall": "3/3 (was 1/3)",
@@ -3487,34 +3487,34 @@
       "candidatesRemovedByBinder": "0 (was 5)",
       "H_AM_05": "REPAIRED",
       "H_FLD_141": "REPAIRED",
-      "newRegression": "H-NG-02 — a high-consequence electrical hazard L3-2b classified correctly now returns NO_HAZARD_ESTABLISHED with zero candidates. Provider stage, attributable to the R3 prompt change. Reproducible across three runs."
+      "newRegression": "H-NG-02 \u2014 a high-consequence electrical hazard L3-2b classified correctly now returns NO_HAZARD_ESTABLISHED with zero candidates. Provider stage, attributable to the R3 prompt change. Reproducible across three runs."
     },
     "advancementGate": {
-      "highConsequenceMissesZero": "PASS — 0 at RAW, POST_VALIDATOR and SHIPPED",
-      "negativeControlFalseActiveZero": "PASS — 0 of 8",
-      "fabricatedQuotationsZero": "PASS — 0 of 69",
-      "clarificationRecallAtLeast2of3": "PASS — 3 of 3",
-      "noUnnecessaryClarification": "FAIL — 4 (C-FLD-138, C-CS-05, C-AM-04, C-AM-06)",
-      "reproducibility100": "PASS — 72 of 72",
-      "customerAuthoritativeNonVolatileDifferencesZero": "PASS — 0 over 66",
+      "highConsequenceMissesZero": "PASS \u2014 0 at RAW, POST_VALIDATOR and SHIPPED",
+      "negativeControlFalseActiveZero": "PASS \u2014 0 of 8",
+      "fabricatedQuotationsZero": "PASS \u2014 0 of 69",
+      "clarificationRecallAtLeast2of3": "PASS \u2014 3 of 3",
+      "noUnnecessaryClarification": "FAIL \u2014 4 (C-FLD-138, C-CS-05, C-AM-04, C-AM-06)",
+      "reproducibility100": "PASS \u2014 72 of 72",
+      "customerAuthoritativeNonVolatileDifferencesZero": "PASS \u2014 0 over 66",
       "B08": "PASS",
       "C11": "PASS",
       "B10": "PASS",
-      "RC08NegatedList": "PASS — across commas and across bare 'and'",
-      "H_AM_05_repairedByGeneralPolarityLogic": "PASS — by structure, no vocabulary consulted",
+      "RC08NegatedList": "PASS \u2014 across commas and across bare 'and'",
+      "H_AM_05_repairedByGeneralPolarityLogic": "PASS \u2014 by structure, no vocabulary consulted",
       "H_FLD_141_repairedByPredicateScopeLogic": "PASS",
-      "noNewHighConsequenceRegression": "FAIL — H-NG-02, provider stage, R3 prompt",
+      "noNewHighConsequenceRegression": "FAIL \u2014 H-NG-02, provider stage, R3 prompt",
       "thresholdsLoweredAfterResults": false,
       "holdoutModifiedAfterExecution": false,
       "replacementHoldoutBuiltAfterFailure": false
     },
     "unresolvedDefects": {
       "L3-2C-DISC-01": "Impression-gate ENTRY was a closed list; 'struck me as' admitted a false ACTIVE. CLOSED INCIDENTALLY by R1's structural test; recorded because it was a latent safety defect nobody had measured.",
-      "L3-2C-DISC-02": "No check owns 'ACTIVE contradicted by control-in-place evidence'. The retired gate refused it only by the accident of an absent factual word — the same accident that deleted H-AM-05. OPEN; a fourth remediation area, outside L3-2c scope.",
-      "L3-2C-DISC-03": "HAZARD_NEGATION_OBJECTS matches 'hazard' inside 'without hazard warning labels', where 'hazard' is a modifier and 'warning labels' is the head. The absence of a hazard warning label IS the HazCom hazard. Deleted 4 correct findings on the fresh holdout. OPEN — found after the holdout was opened, so patching it would be the post-hoc tuning L3-2b refused.",
+      "L3-2C-DISC-02": "No check owns 'ACTIVE contradicted by control-in-place evidence'. The retired gate refused it only by the accident of an absent factual word \u2014 the same accident that deleted H-AM-05. OPEN; a fourth remediation area, outside L3-2c scope.",
+      "L3-2C-DISC-03": "HAZARD_NEGATION_OBJECTS matches 'hazard' inside 'without hazard warning labels', where 'hazard' is a modifier and 'warning labels' is the head. The absence of a hazard warning label IS the HazCom hazard. Deleted 4 correct findings on the fresh holdout. OPEN \u2014 found after the holdout was opened, so patching it would be the post-hoc tuning L3-2b refused.",
       "L3-2C-DISC-04": "CORRECTION_TOKENS contains 'applied', so 'no LOTO is applied' reads as a correction and fails checkContradiction. OPEN.",
       "pattern": "DISC-03 and DISC-04 are the same architectural pattern one level deeper: a closed vocabulary consulted without regard to the SYNTACTIC ROLE of the match. R1 fixed the polarity of one gate; a future slice should give checkContradiction and checkStateSupported the same structural treatment rather than pruning three more word lists.",
-      "productionProviderSelection": "STILL OPEN — unchanged from L3-2 and L3-2b; needs a credential for at least two hosted candidates."
+      "productionProviderSelection": "STILL OPEN \u2014 unchanged from L3-2 and L3-2b; needs a credential for at least two hosted candidates."
     },
     "customerInvariance": {
       "verdict": "CUSTOMER_AUTHORITY_UNCHANGED",
@@ -3529,9 +3529,9 @@
       "test:l32-semantic-contract": "179 passed, 0 failed",
       "test:l31-reasoning-contract": "48 passed, 0 failed",
       "build": "exit 0",
-      "test:hazlenz-core": "28/30 — the two documented failures only, no third",
+      "test:hazlenz-core": "28/30 \u2014 the two documented failures only, no third",
       "kgContracts": "kg4a 146/146 + 51/51, kg4b-shadow 123/123, kg3f 16/16 + 170/170, evidence-foundation 35",
-      "prerequisiteDependentSuites": "test:standards-backing-contract and test:kg4b-default-off fail byte-identically from pristine HEAD, confirmed by executing BOTH checkouts — pre-existing, not L3-2c regressions"
+      "prerequisiteDependentSuites": "test:standards-backing-contract and test:kg4b-default-off fail byte-identically from pristine HEAD, confirmed by executing BOTH checkouts \u2014 pre-existing, not L3-2c regressions"
     },
     "l3Compare": {
       "L3_CORRECT_L1_INCORRECT": 39,
@@ -3562,7 +3562,7 @@
     "evidence": "verification/hazlenz-l3-2c-gate-polarity-2026-08-22/"
   },
   "l32dClarificationPrecision": {
-    "verdict": "L3_2D_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
+    "verdict": "L3_2D_PARTIAL \u2014 SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
     "date": "2026-08-22",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3605,7 +3605,7 @@
       "clarificationLabels": "6 require a question, 71 must withhold one; declared in the builder before execution and NOT redefined afterwards",
       "coverageLimitation": "The field dataset is periodic with period 5, so EVERY stride-of-5 selection yields exactly two hazard families. i%5===4 yields electrical (20) and slip_trip_fall (20). No single-stride rule over this source can do better. Strides 1 and 3 -- fall_protection and mobile_equipment -- remain entirely unused and have never appeared in any sealed set.",
       "weakness": "The 37-scenario complement is authored by the implementer, the THIRD phase running. Both independent sources are entirely positive hazards, so every precision and clarification number in L3-2b, L3-2c and L3-2d rests on scenarios the implementer wrote.",
-      "status": "OPENED — retired for gate use, valid as a development set"
+      "status": "OPENED \u2014 retired for gate use, valid as a development set"
     },
     "metrics": {
       "combined": {
@@ -3695,8 +3695,8 @@
         "clarificationGate": 0,
         "integration": 0,
         "detail": {
-          "D-FLD-175": "binder — SEMANTIC_EVIDENCE_CONTRADICTS_STATE, DISC-04, a high-consequence ELECTRICAL finding deleted because CORRECTION_TOKENS contains 'discarded' and the text says 'discarded conveyor rollers'",
-          "D-NG-04": "provider — the D2 class, not fully repaired on unseen text"
+          "D-FLD-175": "binder \u2014 SEMANTIC_EVIDENCE_CONTRADICTS_STATE, DISC-04, a high-consequence ELECTRICAL finding deleted because CORRECTION_TOKENS contains 'discarded' and the text says 'discarded conveyor rollers'",
+          "D-NG-04": "provider \u2014 the D2 class, not fully repaired on unseen text"
         }
       },
       "clarificationErrors": {
@@ -3710,7 +3710,7 @@
       }
     },
     "regressionEvidenceRetiredHoldouts": {
-      "label": "REGRESSION_EVIDENCE ONLY — these sets were opened by earlier phases and cannot establish L3-2d advancement",
+      "label": "REGRESSION_EVIDENCE ONLY \u2014 these sets were opened by earlier phases and cannot establish L3-2d advancement",
       "holdout_l32b": {
         "hazardDetectionShipped": "62/62 (was 59/62 at L3-2b, 60/62 at L3-2c)",
         "highConsequenceMisses": 0,
@@ -3723,7 +3723,7 @@
           "precisionPct": 100,
           "recallPct": 100
         },
-        "H_NG_02": "RECOVERED — VALIDATED, electrical/ACTIVE, evidence bound, no loss at any stage"
+        "H_NG_02": "RECOVERED \u2014 VALIDATED, electrical/ACTIVE, evidence bound, no loss at any stage"
       },
       "holdout_l32c": {
         "hazardDetectionShipped": "49/54 (was 47/54)",
@@ -3740,39 +3740,39 @@
       }
     },
     "advancementGate": {
-      "highConsequenceMissesZero": "FAIL — 2 (D-FLD-175 binder, D-NG-04 provider)",
-      "negativeControlFalseActiveZero": "PASS — 0 of 8",
-      "fabricatedQuotationsZero": "PASS — 0 of 75",
-      "clarificationRecall100": "FAIL — 5 of 6 (D-CR-04)",
-      "unnecessaryClarificationsZero": "FAIL — 2 (D-NG-04, D-NC-06)",
-      "clarificationPrecision100": "FAIL — 71.4%",
-      "reproducibility100": "PASS — 77 of 77",
-      "customerAuthoritativeNonVolatileDifferencesZero": "PASS — 0 over 66",
-      "hNg02ClassRepairedByGeneralLadderLogic": "PASS — no lexical or scenario-id special-casing; 5 of 6 on new text",
-      "allL32cRegressionFixturesPass": "PASS — 22 of 22 on the development set",
+      "highConsequenceMissesZero": "FAIL \u2014 2 (D-FLD-175 binder, D-NG-04 provider)",
+      "negativeControlFalseActiveZero": "PASS \u2014 0 of 8",
+      "fabricatedQuotationsZero": "PASS \u2014 0 of 75",
+      "clarificationRecall100": "FAIL \u2014 5 of 6 (D-CR-04)",
+      "unnecessaryClarificationsZero": "FAIL \u2014 2 (D-NG-04, D-NC-06)",
+      "clarificationPrecision100": "FAIL \u2014 71.4%",
+      "reproducibility100": "PASS \u2014 77 of 77",
+      "customerAuthoritativeNonVolatileDifferencesZero": "PASS \u2014 0 over 66",
+      "hNg02ClassRepairedByGeneralLadderLogic": "PASS \u2014 no lexical or scenario-id special-casing; 5 of 6 on new text",
+      "allL32cRegressionFixturesPass": "PASS \u2014 22 of 22 on the development set",
       "B08": "PASS",
       "C11": "PASS",
       "B10": "PASS",
       "RC08": "PASS",
       "H_AM_05": "PASS",
       "H_FLD_141": "PASS",
-      "noNewHighConsequenceRegression": "PASS — D-FLD-175 is a pre-existing DISC-04 defect newly exposed; D-NG-04 is an incompletely repaired pre-existing class",
+      "noNewHighConsequenceRegression": "PASS \u2014 D-FLD-175 is a pre-existing DISC-04 defect newly exposed; D-NG-04 is an incompletely repaired pre-existing class",
       "thresholdsLoweredAfterExecution": false,
       "clarificationLabelsRedefinedAfterExecution": false,
       "holdoutModifiedAfterExecution": false,
       "replacementHoldoutBuiltAfterFailure": false
     },
     "discStatus": {
-      "DISC-02": "OPEN — PRECISION RISK ONLY, UNPROVEN AS A MEASURED LOSS. No deterministic check owns 'ACTIVE contradicted by control-in-place evidence'. It can only let a provider error stand, never delete a hazard, and across four sealed holdouts the provider has not made that error. Recommended: leave open and keep measuring.",
+      "DISC-02": "OPEN \u2014 PRECISION RISK ONLY, UNPROVEN AS A MEASURED LOSS. No deterministic check owns 'ACTIVE contradicted by control-in-place evidence'. It can only let a provider error stand, never delete a hazard, and across four sealed holdouts the provider has not made that error. Recommended: leave open and keep measuring.",
       "DISC-03": "CAPABLE OF HIGH-CONSEQUENCE LOSS. 'hazard' matched as a modifier inside 'without hazard warning labels', where the head noun is 'warning labels' and their absence IS the hazard; and 'no damage ... although the earth conductor has been cut back' deletes an electrical finding.",
-      "DISC-04": "CAPABLE OF HIGH-CONSEQUENCE LOSS — MEASURED, NOT HYPOTHETICAL. CORRECTION_TOKENS contains 'discarded'; in 'blocked by a pile of discarded conveyor rollers and debris' it is an adjective on the debris, and checkContradiction deleted D-FLD-175, a correct evidence-bound high-consequence ELECTRICAL finding, on the L3-2d sealed holdout.",
-      "invariantAnalysis": "No mandatory Level-3 invariant is DEMONSTRATED violated. L3-INV-02 not engaged (findings were evidence-bound and deleted, not fabricated); L3-INV-04 not engaged (these defects DELETE ACTIVE, never create it); L3-INV-05 and L3-INV-10 hold. L3-INV-11 is ARGUABLY ENGAGED by DISC-04, which mis-reads a correction token inside a negation, but the deletion is made by checkContradiction rather than by the negation-scope engine that invariant governs — recorded as engaged-but-not-proven-violated.",
+      "DISC-04": "CAPABLE OF HIGH-CONSEQUENCE LOSS \u2014 MEASURED, NOT HYPOTHETICAL. CORRECTION_TOKENS contains 'discarded'; in 'blocked by a pile of discarded conveyor rollers and debris' it is an adjective on the debris, and checkContradiction deleted D-FLD-175, a correct evidence-bound high-consequence ELECTRICAL finding, on the L3-2d sealed holdout.",
+      "invariantAnalysis": "No mandatory Level-3 invariant is DEMONSTRATED violated. L3-INV-02 not engaged (findings were evidence-bound and deleted, not fabricated); L3-INV-04 not engaged (these defects DELETE ACTIVE, never create it); L3-INV-05 and L3-INV-10 hold. L3-INV-11 is ARGUABLY ENGAGED by DISC-04, which mis-reads a correction token inside a negation, but the deletion is made by checkContradiction rather than by the negation-scope engine that invariant governs \u2014 recorded as engaged-but-not-proven-violated.",
       "consequenceForL3_3": "An additional semantic precision slice (L3-2e) is MANDATORY before L3-3, independently of the D1/D2 gates, because the advancement gate requires zero high-consequence misses and DISC-04 has now produced one.",
-      "pattern": "The §32.5 closed-vocabulary pattern is now six instances deep and has TWO faces. L3-2c fixed the POLARITY of one gate. DISC-03 and DISC-04 are the same vocabularies consulted without regard to the SYNTACTIC ROLE of the match. The treatment is known and proven; checkContradiction and checkStateSupported are the two checks that still need it."
+      "pattern": "The \u00a732.5 closed-vocabulary pattern is now six instances deep and has TWO faces. L3-2c fixed the POLARITY of one gate. DISC-03 and DISC-04 are the same vocabularies consulted without regard to the SYNTACTIC ROLE of the match. The treatment is known and proven; checkContradiction and checkStateSupported are the two checks that still need it."
     },
     "priorPhaseAssertionChanges": {
-      "reversed": "test:l32c-gate-polarity asserted the required output shape sat INSIDE the ordered ladder — that placement was L3-2c's repair. The ablation measured what it cost, so the assertion is INVERTED, not deleted, with the evidence recorded beside it. L3-2c's verdict is not rewritten.",
-      "rebound": "Three assertions in test:l32b-binder-precision and test:l32c-gate-polarity checked literal prompt sentences L3-2d rewrote. Their guarantees survive and are now asserted more strongly — both the permission and the new prohibition."
+      "reversed": "test:l32c-gate-polarity asserted the required output shape sat INSIDE the ordered ladder \u2014 that placement was L3-2c's repair. The ablation measured what it cost, so the assertion is INVERTED, not deleted, with the evidence recorded beside it. L3-2c's verdict is not rewritten.",
+      "rebound": "Three assertions in test:l32b-binder-precision and test:l32c-gate-polarity checked literal prompt sentences L3-2d rewrote. Their guarantees survive and are now asserted more strongly \u2014 both the permission and the new prohibition."
     },
     "customerInvariance": {
       "verdict": "CUSTOMER_AUTHORITY_UNCHANGED",
@@ -3788,7 +3788,7 @@
       "test:l32-semantic-contract": "179 passed, 0 failed",
       "test:l31-reasoning-contract": "48 passed, 0 failed",
       "build": "exit 0",
-      "test:hazlenz-core": "28/30 — the two documented failures only, no third",
+      "test:hazlenz-core": "28/30 \u2014 the two documented failures only, no third",
       "kgContracts": "kg4a 146/146 + 51/51, kg4b-shadow 123/123, kg3f 16/16 + 170/170, evidence-foundation 35",
       "prerequisiteDependentSuites": "test:standards-backing-contract and test:kg4b-default-off fail byte-identically from pristine HEAD, confirmed by executing BOTH checkouts"
     },
@@ -3826,8 +3826,8 @@
     "evidence": "verification/hazlenz-l3-2d-clarification-precision-2026-08-22/"
   },
   "l32eSyntacticRole": {
-    "verdict": "L3_2E_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
-    "scopeContradiction": "L3_2E_SCOPE_CONTRADICTION — recorded, not acted on. See verification/hazlenz-l3-2e-syntactic-role-2026-08-23/rootcause/SCOPE_CONTRADICTION.txt",
+    "verdict": "L3_2E_PARTIAL \u2014 SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
+    "scopeContradiction": "L3_2E_SCOPE_CONTRADICTION \u2014 recorded, not acted on. See verification/hazlenz-l3-2e-syntactic-role-2026-08-23/rootcause/SCOPE_CONTRADICTION.txt",
     "date": "2026-08-23",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -3871,7 +3871,7 @@
       "overlapVsPriorSets": "0 ids, 0 texts, 0 internal duplicates against four prior sealed sets and both development sets; enforced by a throw",
       "whyTargetedComplement": "a coverage inventory across the four prior sealed sets found NINE of twenty-four taxonomy families had NEVER appeared in any sealed evaluation and two more had no high-consequence example. The field dataset carries six families in total, so no deterministic sampling rule could close the gap. Reported separately everywhere: coverage evidence, not generalization evidence.",
       "weakness": "the complement is authored by the implementer -- the FIFTH phase running, now with a targeted family complement on top. Every precision, clarification and family-coverage number in L3-2b through L3-2e rests on scenarios the implementer wrote.",
-      "status": "OPENED — retired for gate use, valid as a development set"
+      "status": "OPENED \u2014 retired for gate use, valid as a development set"
     },
     "metrics": {
       "combined": {
@@ -3965,16 +3965,16 @@
         "clarificationGate": 0,
         "integration": 0,
         "detail": {
-          "E-FLD-147": "provider — the model called warning tape a control and returned CONTROLLED; measured UNCHANGED_AND_CORRECT against the retired rule, so NOT an L3-2e regression",
-          "E-OA-07": "provider — the clause-position class on msha ground-control wording",
-          "E-FAM-04": "binder — L3-2E-DISC-06"
+          "E-FLD-147": "provider \u2014 the model called warning tape a control and returned CONTROLLED; measured UNCHANGED_AND_CORRECT against the retired rule, so NOT an L3-2e regression",
+          "E-OA-07": "provider \u2014 the clause-position class on msha ground-control wording",
+          "E-FAM-04": "binder \u2014 L3-2E-DISC-06"
         }
       },
       "observationAvailabilityCases": "8 of 9 correct; the single failure E-OA-07 carries no observation-availability wording at all",
       "syntacticRoleCases": "10 of 10 correct on the development set; all 12 sealed role fixtures behaved as declared"
     },
     "regressionEvidenceRetiredHoldouts": {
-      "label": "REGRESSION_EVIDENCE ONLY — opened by earlier phases; cannot establish L3-2e advancement",
+      "label": "REGRESSION_EVIDENCE ONLY \u2014 opened by earlier phases; cannot establish L3-2e advancement",
       "holdout_l32b": {
         "hazardDetectionShipped": "62/62",
         "highConsequenceMisses": 0,
@@ -3999,18 +3999,18 @@
       }
     },
     "advancementGate": {
-      "highConsequenceMissesZero": "FAIL — 2 (E-FLD-147, E-OA-07), both provider-stage",
-      "negativeControlFalseActiveZero": "PASS — 0 of 7",
-      "fabricatedQuotationsZero": "PASS — 0 of 83",
-      "clarificationRecall100": "PASS — 3 of 3",
-      "unnecessaryClarificationsZero": "PASS — 0",
+      "highConsequenceMissesZero": "FAIL \u2014 2 (E-FLD-147, E-OA-07), both provider-stage",
+      "negativeControlFalseActiveZero": "PASS \u2014 0 of 7",
+      "fabricatedQuotationsZero": "PASS \u2014 0 of 83",
+      "clarificationRecall100": "PASS \u2014 3 of 3",
+      "unnecessaryClarificationsZero": "PASS \u2014 0",
       "clarificationPrecision100": "PASS",
-      "reproducibility100": "PASS — 84 of 84",
-      "customerAuthoritativeNonVolatileDifferencesZero": "PASS — 0 over 66",
-      "D_FLD_175_classRepairedGenerally": "PASS — by role, no phrase exception; L3-2c set recovers 47->53 of 54",
-      "observationAvailabilityClassRepairedGenerally": "PARTIAL — 8 of 9; E-OA-07 remains",
-      "DISC_03_nonPredicateRole": "PARTIAL — label-NP and contrastive cases closed; the substring/post-modifier case survives as L3-2E-DISC-06",
-      "DISC_04_negatedNonPredicate": "PASS — all five closed, all four paired halves intact",
+      "reproducibility100": "PASS \u2014 84 of 84",
+      "customerAuthoritativeNonVolatileDifferencesZero": "PASS \u2014 0 over 66",
+      "D_FLD_175_classRepairedGenerally": "PASS \u2014 by role, no phrase exception; L3-2c set recovers 47->53 of 54",
+      "observationAvailabilityClassRepairedGenerally": "PARTIAL \u2014 8 of 9; E-OA-07 remains",
+      "DISC_03_nonPredicateRole": "PARTIAL \u2014 label-NP and contrastive cases closed; the substring/post-modifier case survives as L3-2E-DISC-06",
+      "DISC_04_negatedNonPredicate": "PASS \u2014 all five closed, all four paired halves intact",
       "H_AM_05": "PASS",
       "H_FLD_141": "PASS",
       "H_NG_02": "PASS",
@@ -4018,8 +4018,8 @@
       "C11": "PASS",
       "B10": "PASS",
       "RC08": "PASS",
-      "noNewHighConsequenceRegression": "PASS — neither miss is new; E-FLD-147 measured UNCHANGED_AND_CORRECT",
-      "noPreviouslyGreenContractRegression": "PASS — 575 offline assertions, 0 failed",
+      "noNewHighConsequenceRegression": "PASS \u2014 neither miss is new; E-FLD-147 measured UNCHANGED_AND_CORRECT",
+      "noPreviouslyGreenContractRegression": "PASS \u2014 575 offline assertions, 0 failed",
       "thresholdsLoweredAfterExecution": false,
       "labelsRedefinedAfterExecution": false,
       "holdoutModifiedAfterExecution": false,
@@ -4090,7 +4090,7 @@
       "test:l31-reasoning-contract": "48 passed, 0 failed",
       "totalOfflineAssertions": "575, 0 failed",
       "build": "exit 0",
-      "test:hazlenz-core": "28/30 — the two documented failures only, no third",
+      "test:hazlenz-core": "28/30 \u2014 the two documented failures only, no third",
       "kgContracts": "kg4a 146/146 + 51/51, kg4b-shadow 123/123, kg3f 16/16 + 170/170, evidence-foundation 35",
       "prerequisiteDependentSuites": "fail byte-identically from pristine HEAD, confirmed by executing BOTH checkouts"
     },
@@ -4127,8 +4127,8 @@
     "evidence": "verification/hazlenz-l3-2e-syntactic-role-2026-08-23/"
   },
   "l32fPredicateScope": {
-    "verdict": "L3_2F_PARTIAL — SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
-    "scopeContradiction": "L3_2E_SCOPE_CONTRADICTION — CLOSED. negation-scope.ts::hasPredicate() now decides finiteness structurally; D-NG-04 is recovered end to end and RC-08 still crosses its comma.",
+    "verdict": "L3_2F_PARTIAL \u2014 SEMANTIC_REASONING_QUALITY_GATE_NOT_YET_PASSED",
+    "scopeContradiction": "L3_2E_SCOPE_CONTRADICTION \u2014 CLOSED. negation-scope.ts::hasPredicate() now decides finiteness structurally; D-NG-04 is recovered end to end and RC-08 still crosses its comma.",
     "date": "2026-08-23",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -4138,10 +4138,10 @@
     "whyPartial": "All four authorized deterministic repairs (F1-F4) work and are closed on fresh sealed evidence: the four predicate-scope cohorts score 21 of 21 with ZERO binder-stage deletions. Family coverage is COMPLETE at 24 of 24 and noise_exposure is sealed-validated with its exact label. The clarification axis holds at 100% precision and 100% recall with zero unnecessary questions, false ACTIVE is 0 of 20, negative-control false ACTIVE 0 of 13, and reproducibility is 97 of 97. But the sealed set records FOUR high-consequence misses against a gate of zero, and section 36.7 measured why the last of them are hard: two prompt variants differing only in the POSITION of identical text trade high-consequence recall against clarification precision, and neither satisfies both gates.",
     "rootCauses": {
       "F1_predicateHoodIsNotListMembership": "PROVEN pre-patch. hasPredicate() recognised a predicate through 24 auxiliaries plus a participle regex. One sentence, one lexical verb apart, scoped two ways: \"the fitter WENT inside\" ran the negation to offset 147, \"the fitter WAS inside\" ended it at the comma at 50. The binder then deleted a high-consequence confined-space finding with SEMANTIC_NEGATION_UNADDRESSED. Lexical verbs are an OPEN class and cannot be enumerated; FINITENESS is decidable from regular morphology plus the CLOSED inventory of irregular past forms.",
-      "F2_isTheSameMechanismAsF1": "PROVEN. NP_TERMINATORS omitted `against`, `beyond` and `per` — three measured failures, not one word. Function words are a GENUINELY CLOSED class, so completing them is complete rather than incomplete. F1, F2 and F3 are ONE mechanism in three functions and are repaired once, in word-classes.ts.",
+      "F2_isTheSameMechanismAsF1": "PROVEN. NP_TERMINATORS omitted `against`, `beyond` and `per` \u2014 three measured failures, not one word. Function words are a GENUINELY CLOSED class, so completing them is complete rather than incomplete. F1, F2 and F3 are ONE mechanism in three functions and are repaired once, in word-classes.ts.",
       "F3_wasTwoFaultsComposing": "PROVEN. nounPhraseHead returned the trailing participle `issued`, and head.includes(o) then matched `issue` inside it. Either alone was survivable. Substring containment is an UNBOUNDED admission rule; the same shape was measured on harm/harmless, concern/concerning, access/accessory.",
       "F4_isTheMirrorImage": "PROVEN. L3-2e was right that CORRECTED must be ASSERTED not MENTIONED, and wrong to implement assertion as VERBHOOD. F1-F3 are membership standing in for structure; F4 is a structural test applied too narrowly. It is an L3-2e regression, not a surviving lexical gate.",
-      "F5_and_F6_areOneMechanism": "PROVEN BY ABLATION, and it SUPERSEDES section 35.5 twice. E-OA-07 is NOT msha ground-control wording — the identical text under osha-construction fails identically. It is NOT clause position alone — the same position with ordinary vocabulary succeeds. It is control adequacy: F5 UNDER-reads a control absence written morphologically (un-supported); F6 OVER-reads a merely administrative measure (tape, sign, toolbox talk) as an effective control. Both provider-stage, one axis, two ends.",
+      "F5_and_F6_areOneMechanism": "PROVEN BY ABLATION, and it SUPERSEDES section 35.5 twice. E-OA-07 is NOT msha ground-control wording \u2014 the identical text under osha-construction fails identically. It is NOT clause position alone \u2014 the same position with ordinary vocabulary succeeds. It is control adequacy: F5 UNDER-reads a control absence written morphologically (un-supported); F6 OVER-reads a merely administrative measure (tape, sign, toolbox talk) as an effective control. Both provider-stage, one axis, two ends.",
       "contractIsSufficient_notArchitecture": "L3_CONTROL_HIERARCHY_LEVELS has carried elimination/substitution/engineering/administrative/ppe since L3-1 and the CONTROLLED rung always said \"an EFFECTIVE control\". What was missing was the TEST for effective. Recorded as contract-sufficient, explicitly NOT as architecture evidence."
     },
     "repairs": {
@@ -4150,7 +4150,7 @@
       "predicate_role_ts": "NP_TERMINATORS derived from the complete function-word class, with a documented carve-out for participial-preposition homographs; nounPhraseHead now skips trailing post-modifying participles.",
       "semantic_evidence_binding_ts": "checkContradiction path A matches the head WHOLE-WORD with declared nominal inflection only; checkStateSupported CORRECTED accepts a correction NOUN governed by a completed action verb, keeping BOTH the negation guard and the mention guard. Binder version v6.",
       "control_adequacy_ts": "NEW, ADVISORY ONLY. Records CONTROL_EFFECTIVE / CONTROL_MENTION / CONTROL_EFFECTIVE_WITH_WARNING / CONTROL_ABSENT and decides nothing (L3-INV-12), the observation-availability restraint of 35.2. A control under a governing negation is recorded ABSENT, so it does not repeat DISC-04.",
-      "reasoning_prompt_ts": "Prompt v6 adds ABSENT CONTROLS (a one-word absence is still an absence; an UNCONFIRMED control is NOT an absent one) and the CONTROL ADEQUACY TEST (a warning is not a control; a permit IS the control for an authorisation hazard; effective-plus-warning stays CONTROLLED; talking about a fix is not a fix). Both sit BELOW the condition-state ladder — see promptRankingTrade."
+      "reasoning_prompt_ts": "Prompt v6 adds ABSENT CONTROLS (a one-word absence is still an absence; an UNCONFIRMED control is NOT an absent one) and the CONTROL ADEQUACY TEST (a warning is not a control; a permit IS the control for an authorisation hazard; effective-plus-warning stays CONTROLLED; talking about a fix is not a fix). Both sit BELOW the condition-state ladder \u2014 see promptRankingTrade."
     },
     "sealedHoldout": {
       "file": "backend/src/safescope-v2/reasoning-l3/eval/holdout-l32f.json",
@@ -4159,7 +4159,7 @@
       "independent": 40,
       "authoredComplement": 46,
       "targetedFamilyComplement": 11,
-      "selectionRule": "i % 5 === 3 over the id-sorted field dataset — THE LAST UNTOUCHED STRIDE",
+      "selectionRule": "i % 5 === 3 over the id-sorted field dataset \u2014 THE LAST UNTOUCHED STRIDE",
       "fieldCorpusSha256": "a66e680b79076c636e3d81c8f0776c207a0709e83b0faa2febfcae45ccdf2db2",
       "frozenBeforeRepairCode": true,
       "overlapAgainstAllPriorSets": "0 ids, 0 texts against five sealed sets and three development sets, enforced by a throw",
@@ -4192,7 +4192,7 @@
         "AUTHORED_COMPLEMENT": "23 of 26, 3 HC misses",
         "TARGETED_FAMILY_COMPLEMENT": "11 of 11, 0 HC misses"
       },
-      "clarificationMatrix": "TP 4, FP 0, FN 0, TN 93 at every tier — precision 100%, recall 100%, unnecessary clarifications 0",
+      "clarificationMatrix": "TP 4, FP 0, FN 0, TN 93 at every tier \u2014 precision 100%, recall 100%, unnecessary clarifications 0",
       "predicateScopeCohorts": "21 of 21 correct, ZERO binder-stage deletions",
       "observationAvailability": "5 of 5",
       "controlAdequacy": "53 of 56",
@@ -4200,27 +4200,27 @@
       "quotationFidelity": "100 quotations emitted, 1 not verbatim (99%); the validator rejected it with EVIDENCE_OUT_OF_BOUNDS so ZERO fabricated quotations shipped",
       "binderRejections": "semantic fatal 9, advisories 86; contradiction 1, state-support 7, negation-unaddressed 1",
       "familySealedCoverage": "24 of 24 SEALED_PASS cumulatively; 0 SEALED_FAIL; 0 NOT_REPRESENTED",
-      "noiseExposure": "CLOSED — 4 declared, 4 established, EXACT LABEL emitted on fresh sealed evidence. It was the family DISC-06 deleted.",
+      "noiseExposure": "CLOSED \u2014 4 declared, 4 established, EXACT LABEL emitted on fresh sealed evidence. It was the family DISC-06 deleted.",
       "l3Compare": "L3 correct / L1 incorrect 40; both correct 53; both incorrect 1; L1 correct / L3 incorrect 3. L3 attached a verified span to 78 findings, L1 to 0.",
-      "customerInvariance": "0 non-volatile differences over 66, the same 7 volatile paths every prior phase derived — CUSTOMER_AUTHORITY_UNCHANGED",
-      "offlineSuites": "L3-2f 77, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 187, L3-1 48 — 656 assertions, 0 failed",
+      "customerInvariance": "0 non-volatile differences over 66, the same 7 volatile paths every prior phase derived \u2014 CUSTOMER_AUTHORITY_UNCHANGED",
+      "offlineSuites": "L3-2f 77, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 187, L3-1 48 \u2014 656 assertions, 0 failed",
       "regression": "test:hazlenz-core 28/30 (the two documented 13.1 failures only); kg4a-cutover 146, kg4a-default-off 51, kg4b-shadow 123, kg3f-predicate 16, kg3f-determinism 170, evidence-foundation 35; both prerequisite suites fail identically from BOTH checkouts"
     },
     "remainingHighConsequenceMisses": {
       "F-FLD-159": "PROVIDER, INDEPENDENT. A non-verbatim quotation produced EVIDENCE_OUT_OF_BOUNDS and the whole proposal was rejected. Designed behaviour per 29.6, but the FIRST time it has cost a high-consequence finding.",
-      "F-WC-02": "BINDER. CORRECTION_TOKENS contains `fixed`, and \"the DANGER sign IS FIXED to the handrail post\" is an asserted unnegated predicate — of the SIGN, not of the hazard. The EIGHTH instance of 32.5, and 35.1 already states the rule it breaks: a vocabulary used to REJECT must be unambiguous. Same reason bare `removed` was excluded at L3-2e. Known treatment, deliberately not applied after the set was opened.",
+      "F-WC-02": "BINDER. CORRECTION_TOKENS contains `fixed`, and \"the DANGER sign IS FIXED to the handrail post\" is an asserted unnegated predicate \u2014 of the SIGN, not of the hazard. The EIGHTH instance of 32.5, and 35.1 already states the rule it breaks: a vocabulary used to REJECT must be unambiguous. Same reason bare `removed` was excluded at L3-2e. Known treatment, deliberately not applied after the set was opened.",
       "F-WC-03": "PROVIDER. A toolbox briefing read as an effective control. F6 residue.",
       "F-WC-09": "PROVIDER. PPE plus a defeated engineering control (\"the two-hand control has been strapped down with tape\") read as CONTROLLED. F6 residue."
     },
-    "promptRankingTrade": "NEW EVIDENCE, and it outranks the four misses. Two prompt variants, IDENTICAL text, only its POSITION changed, everything else held constant: (A) the absent-control material elaborated INSIDE the condition-state ladder gives 2 high-consequence misses and 88.9% clarification precision (C-CS-05 loses its HYPOTHETICAL rung); (B) the ladder kept terse with the material moved below gives 4 high-consequence misses and 100% clarification precision, and costs E-FLD-147 and E-OA-07 — the two misses this phase existed to close. NEITHER VARIANT SATISFIES BOTH GATES. Four phases have now moved this balance with prose and this is the first time both poles were measured against each other with everything else fixed. The shipped configuration is B, chosen before the sealed set was opened and not revisited after. The L3-2f suite now pins the ladder terseness so the C-CS-05 regression cannot recur silently.",
-    "architectureStopRule": "ASSESSED, NOT TRIGGERED. No genuinely new high-consequence SEMANTIC mechanism appeared: F-WC-02 is the documented 32.5 class, F-WC-03 and F-WC-09 are the F6 class this phase opened and partially closed, and F-FLD-159 is a quotation-fidelity failure in which the validator behaved exactly as 29.6 specifies. L3_2F_ARCHITECTURE_REASSESSMENT_REQUIRED is NOT declared. The honest counterweight is recorded rather than concealed: the promptRankingTrade above is architecture-relevant evidence of a different kind — it shows prompt-position tuning has reached a practical limit on two axes the current architecture cannot separate.",
+    "promptRankingTrade": "NEW EVIDENCE, and it outranks the four misses. Two prompt variants, IDENTICAL text, only its POSITION changed, everything else held constant: (A) the absent-control material elaborated INSIDE the condition-state ladder gives 2 high-consequence misses and 88.9% clarification precision (C-CS-05 loses its HYPOTHETICAL rung); (B) the ladder kept terse with the material moved below gives 4 high-consequence misses and 100% clarification precision, and costs E-FLD-147 and E-OA-07 \u2014 the two misses this phase existed to close. NEITHER VARIANT SATISFIES BOTH GATES. Four phases have now moved this balance with prose and this is the first time both poles were measured against each other with everything else fixed. The shipped configuration is B, chosen before the sealed set was opened and not revisited after. The L3-2f suite now pins the ladder terseness so the C-CS-05 regression cannot recur silently.",
+    "architectureStopRule": "ASSESSED, NOT TRIGGERED. No genuinely new high-consequence SEMANTIC mechanism appeared: F-WC-02 is the documented 32.5 class, F-WC-03 and F-WC-09 are the F6 class this phase opened and partially closed, and F-FLD-159 is a quotation-fidelity failure in which the validator behaved exactly as 29.6 specifies. L3_2F_ARCHITECTURE_REASSESSMENT_REQUIRED is NOT declared. The honest counterweight is recorded rather than concealed: the promptRankingTrade above is architecture-relevant evidence of a different kind \u2014 it shows prompt-position tuning has reached a practical limit on two axes the current architecture cannot separate.",
     "independentEvidenceExhaustion": "CURRENT_FIELD_CORPUS_EXHAUSTED_FOR_FRESH_EVALUATION. All five strides of safescope-field-validation-dataset.v1.json are now opened: i%5==0 L3-2b, 1 L3-2e, 2 L3-2c, 3 L3-2f, 4 L3-2d. No prior field scenario may be reused as fresh evidence. Any further semantic quality phase must identify a genuinely independent NEW source, and that source may not be authored solely to satisfy already-known failures.",
-    "preservation": "HEAD 1feda622 unchanged, branch and upstream identical, divergence 0/0, 4 stashes and 23 tags unchanged, 0 commits, 0 pushes, 0 merges, 0 rebases, 0 resets, 0 deployments. Tracked files modified: 10 at entry, 10 at exit — L3-2f touched exactly one (backend/package.json, two npm script entries); the other nine are pre-existing unrelated work preserved byte-for-byte. All five prior sealed holdout hashes unchanged; all five prior evidence directories unmodified. package-lock.json byte-identical to HEAD. One disposable database created (test_l32f_invariance_20260823); safescope, sentinel_dev and sentinel_safety were never a resolved target.",
+    "preservation": "HEAD 1feda622 unchanged, branch and upstream identical, divergence 0/0, 4 stashes and 23 tags unchanged, 0 commits, 0 pushes, 0 merges, 0 rebases, 0 resets, 0 deployments. Tracked files modified: 10 at entry, 10 at exit \u2014 L3-2f touched exactly one (backend/package.json, two npm script entries); the other nine are pre-existing unrelated work preserved byte-for-byte. All five prior sealed holdout hashes unchanged; all five prior evidence directories unmodified. package-lock.json byte-identical to HEAD. One disposable database created (test_l32f_invariance_20260823); safescope, sentinel_dev and sentinel_safety were never a resolved target.",
     "evidence": "verification/hazlenz-l3-2f-predicate-scope-2026-08-23/"
   },
   "l32gStateSeparation": {
-    "verdict": "L3_2G_PARTIAL — STRUCTURAL_STATE_DECISION_INCONCLUSIVE",
-    "binderResidual": "BINDER_RESIDUAL — CLOSED. The rejection half of CORRECTION_TOKENS is partitioned into UNAMBIGUOUS_CORRECTION; seven different-sense tokens removed, same-sense-different-object tokens retained.",
+    "verdict": "L3_2G_PARTIAL \u2014 STRUCTURAL_STATE_DECISION_INCONCLUSIVE",
+    "binderResidual": "BINDER_RESIDUAL \u2014 CLOSED. The rejection half of CORRECTION_TOKENS is partitioned into UNAMBIGUOUS_CORRECTION; seven different-sense tokens removed, same-sense-different-object tokens retained.",
     "date": "2026-08-23",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -4230,7 +4230,7 @@
     "freshSealedEvidenceConsumed": false,
     "whyPartial": "Structural state separation was built and measured rather than argued. It WORKS on the axis that blocks L3-3: F-WC-09 -- PPE against a defeated engineering control, which NO prompt ordering ever recovered -- is recovered via controlReading DEFEATED, and the high-consequence axis is 12/12 under every structural variant and every resolver ordering. Under the best resolver ordering both section 36.7 poles hold at once for the first time (HC 12/12, false ACTIVE 0/7, clarification precision 100%). But it does NOT remove prompt-order sensitivity: on a SIZE-MATCHED manipulation (one block moved, the same manipulation section 36.7 made) the ladder differs on 1 of 24 scenarios and the structural prompt on 3 of 24, against a measured noise floor of 0 of 24. All three differing scenarios are on the clarification axis. The section 36.7 trade was RELOCATED, not resolved: the high-consequence pole became robust and the uncertainty pole absorbed the whole of the instability.",
     "architectureDecision": {
-      "selected": "D — INCONCLUSIVE",
+      "selected": "D \u2014 INCONCLUSIVE",
       "optionA_structuralSeparationViable": "NOT MET. The success criterion requires the known clarification cases preserved WITHOUT relying on prompt block position. They still rely on it (3/24 above a 0/24 noise floor). Declaring A would authorise burning the new independent corpus on a configuration whose numbers do not reproduce under a different, equally arbitrary block ordering.",
       "optionB_providerCapabilityLimitProven": "INDICATED BUT NOT PROVEN. 4-12% of candidates carry an INTERNAL contradiction (framing CONDITIONAL together with hazardAsserted true about the same text) on separated, non-competing questions -- no ranking can explain an answer that contradicts itself. But the attribution rests on ONE model: section 31.1 still holds, no hosted-provider credential is resolvable on this machine and qwen3-coder:30b is the only model pulled. PROVEN would overstate a single-model result on 24 diagnostic scenarios.",
       "optionC_contractOrArchitectureLimit": "AFFIRMATIVELY RULED OUT. The provider answers section 36.4's control question correctly in isolation on 23 of 24 runs -- WARNS_ONLY for tape, a sign and a briefing; DEFEATED for the strapped-down two-hand control; ABSENT for 'unsupported roof'; PREVENTS_CONTACT for a fitted blanking plate. The contract can express the distinction.",
@@ -4274,7 +4274,7 @@
     "blueprintSection": "37"
   },
   "l32hCrossProvider": {
-    "verdict": "L3_2H_BLOCKED — SECOND_PROVIDER_CREDENTIAL_REQUIRED",
+    "verdict": "L3_2H_BLOCKED \u2014 SECOND_PROVIDER_CREDENTIAL_REQUIRED",
     "date": "2026-08-23",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -4283,7 +4283,7 @@
     "level3CustomerOperational": false,
     "productionCodeChanged": false,
     "freshSealedEvidenceConsumed": false,
-    "stashOperationsExecuted": "NONE — the entry contract prohibited all stash/reset/checkout/restore/clean operations and none was run.",
+    "stashOperationsExecuted": "NONE \u2014 the entry contract prohibited all stash/reset/checkout/restore/clean operations and none was run.",
     "whyBlocked": "The phase existed to run the locked L3-2g experiment against a second model. No authorized hosted-provider credential is reachable through any approved mechanism, checked by presence and length class only with no value read, printed, logged or persisted: ANTHROPIC_API_KEY unset; OPENAI_API_KEY present at length 11, the placeholder section 31.1 already documented; Gemini/Google/Mistral/Cohere/Azure and both gateway variables unset; ZERO hosted-provider key names across all eight repository .env files; no ~/.anthropic and no ~/.aws profile; Claude Code settings.json declares no env vars; reasoning-l3 declares only L3_OLLAMA_*. Section 31.1's finding is unchanged after two further phases. No substitute comparator exists either: ollama /api/tags lists exactly one model, qwen3-coder:30b at the pinned digest 06c1097efce0, and the entry contract forbids treating a second local model as a provider-independence test unless the blueprint establishes that it answers the question, which it does not.",
     "decisionClass": "NONE OF A/B/C/D. Each presupposes a second-provider measurement that could not be taken. The entry contract's own credential gate governs.",
     "baselineReproduction": {
@@ -4307,7 +4307,7 @@
     "regression": "L3-2g 57, L3-2f 77, L3-2e 82, L3-2d 71, L3-2c 86, L3-2b 105, L3-2 189, L3-1 48 = 715 assertions, 0 failed. test:hazlenz-core 206 pass / 2 fail -- the two documented 13.1 failures only, NOT reclassified. KG contracts unchanged: kg4a-cutover-contract 146/146, kg4a-default-off 51/51, kg4b-shadow 123/123, kg3f-predicate 16/16, kg3f-determinism 170/170, evidence-foundation 35.",
     "customerAuthority": "Preserved by construction -- zero production files changed -- and verified structurally: seam, call site and backend/src/standards/ byte-unmodified vs HEAD; zero importers of reasoning-l3 outside itself; zero importers of state-facts outside it; SHADOW and CUTOVER untouched. All six frozen holdouts, development-l32f.json, HEAD, branch, upstream, all 23 tags and the stash list (4 entries) re-verified unchanged.",
     "egress": "One destination: http://127.0.0.1:11434. 96 local inference calls, 0 hosted-provider calls. No credential material read or emitted. No production data sent anywhere.",
-    "productionProviderSelection": "OPEN — unchanged since section 31.1.",
+    "productionProviderSelection": "OPEN \u2014 unchanged since section 31.1.",
     "l33Eligible": false,
     "nextAction": "Obtain ONE authorized hosted-provider credential -- this is now a programme-level blocker rather than an engineering one, and has been open since section 31.1 recorded it two phases ago. Then run the locked experiment against the second model as THREE SEPARATE INVOCATIONS (V_S_STRUCT, V_S_STRUCT_MOVE1, V_S_STRUCT_REPEAT) = 72 calls, NOT the 48 section 37 estimated, because section 38.3 requires the noise-floor control to have its own process. Adapter work is confined to transport: same messages, same JSON-schema constraint, same temperature/seed/context. Do not touch the scenario set, variants, resolver orderings or scorers, and do not re-derive the A/B/C/D decision rules after seeing output. If a credential cannot be obtained, record Level-3 advancement as gated on provider availability and take that decision explicitly; do NOT substitute a second local model and report it as provider independence.",
     "evidence": "verification/hazlenz-l3-2h-cross-provider-2026-08-23/",
@@ -4371,8 +4371,8 @@
       "nextPhaseUnchanged": "Section 38.7 remains exactly correct. Obtain one authorized hosted-provider credential, then run the locked experiment as three separate invocations (V_S_STRUCT, V_S_STRUCT_MOVE1, V_S_STRUCT_REPEAT), 72 calls, each in its own process per the section 38.3 cache/slot-reuse control."
     },
     "final": {
-      "verdict": "L3_2H_COMPLETE — TERMINAL_A — CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT",
-      "separatelyPreservedFinding": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE — REPRESENTATION_BOUND. Recorded as its own label and deliberately NOT merged into the canonical terminal vocabulary above. See blueprint section 39.5 and section 39.7.",
+      "verdict": "L3_2H_COMPLETE \u2014 TERMINAL_A \u2014 CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT",
+      "separatelyPreservedFinding": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE \u2014 REPRESENTATION_BOUND. Recorded as its own label and deliberately NOT merged into the canonical terminal vocabulary above. See blueprint section 39.5 and section 39.7.",
       "date": "2026-08-24",
       "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
       "committed": false,
@@ -4383,9 +4383,9 @@
       "scriptOrScorerFilesChanged": false,
       "freshSealedEvidenceConsumed": false,
       "stashOperationsExecuted": "NONE",
-      "evidenceClass": "ARCHITECTURE_SELECTION_EVIDENCE_ONLY — 24 diagnostic scenarios. NOT advancement evidence and NOT a production provider recommendation.",
+      "evidenceClass": "ARCHITECTURE_SELECTION_EVIDENCE_ONLY \u2014 24 diagnostic scenarios. NOT advancement evidence and NOT a production provider recommendation.",
       "credentialGate": {
-        "result": "PASSED — first time since section 31.1",
+        "result": "PASSED \u2014 first time since section 31.1",
         "provider": "Google, generativelanguage.googleapis.com",
         "model": "gemini-3.1-pro-preview",
         "credentialVariable": "GEMINI_API_KEY",
@@ -4395,8 +4395,8 @@
         "openaiKeyNotReProbed": "section 38.8's HTTP 401 finding for OPENAI_API_KEY is settled and was deliberately not re-derived."
       },
       "method": {
-        "lockedHarness": "backend/scripts/ablate-l32g-state-separation.ts sha256 73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521 — byte-identical before and after.",
-        "scorers": "score-l32g-order-sensitivity.ts 7e3481f9, score-l32g-fact-coherence.ts 4ecaada4, rederive-l32g-resolution.ts 57064e2f — all byte-unmodified and run AS-IS on BOTH providers, which is what makes the two columns comparable rather than merely adjacent.",
+        "lockedHarness": "backend/scripts/ablate-l32g-state-separation.ts sha256 73f74131b4f8cbb31ad57ba972e1e0edbcaaa275d27558866d8bc2a4e71c6521 \u2014 byte-identical before and after.",
+        "scorers": "score-l32g-order-sensitivity.ts 7e3481f9, score-l32g-fact-coherence.ts 4ecaada4, rederive-l32g-resolution.ts 57064e2f \u2014 all byte-unmodified and run AS-IS on BOTH providers, which is what makes the two columns comparable rather than merely adjacent.",
         "adapterScope": "TRANSPORT ONLY. An Ollama-protocol translation shim (adapter/gemini-ollama-shim.js) was placed in front of the Gemini API and the harness's pre-existing L3_OLLAMA_ENDPOINT hook was pointed at it. Scenario texts, expected labels, variants, prompts, JSON schema, resolver orderings and scorers were never touched.",
         "processIsolation": "Section 38.3's trap honoured: three variants, THREE SEPARATE HARNESS PROCESSES, shim restarted between them. The noise-floor control never shared a process with the variant it controls.",
         "transport": "72 calls, 0 transport errors, every finishReason STOP, no truncation, no retries.",
@@ -4408,8 +4408,8 @@
           "gemini": "1/24 (F-CL-01)"
         },
         "orderSensitivityOneBlockMoved": {
-          "qwen": "3/24 — F-CL-01, F-CL-03, C-CS-05",
-          "gemini": "2/24 — F-CL-01, B10"
+          "qwen": "3/24 \u2014 F-CL-01, F-CL-03, C-CS-05",
+          "gemini": "2/24 \u2014 F-CL-01, B10"
         },
         "orderSensitivitySixBlocksReversed": "NOT RUN THIS PHASE, for either provider. Section 38.7 fixed the run at THREE variants, so the scorer's V_S_STRUCT vs V_S_STRUCT_INV row reports scenariosCompared:0 on BOTH providers. Its differing:0 is a NON-COMPARISON, NOT A ZERO - reading it as a result would be D-54's vacuity failure exactly. Section 37.3's qwen figure of 3/24 under a six-block reversal stands as SECTION 37's measurement and is not re-derived here.",
         "internalFactIncoherence": {
@@ -4418,11 +4418,11 @@
         },
         "conditionalAndAsserted_the_section_37_5_mechanism": {
           "qwen": "1 / 2 / 2",
-          "gemini": "0 / 0 / 0 — the class is EMPTY across 74 Gemini candidates"
+          "gemini": "0 / 0 / 0 \u2014 the class is EMPTY across 74 Gemini candidates"
         },
         "controlReadingCorrectness": {
-          "qwen": "5/6, 6/6 — miss F-WC-02",
-          "gemini": "5/6 all three — miss F-COR-01, identically each run"
+          "qwen": "5/6, 6/6 \u2014 miss F-WC-02",
+          "gemini": "5/6 all three \u2014 miss F-COR-01, identically each run"
         },
         "hcGateAllResolverOrderings": {
           "qwen": "12/12",
@@ -4444,20 +4444,20 @@
       },
       "terminalA": {
         "rule": "The L3-2h entry contract's decision class A: the second provider is materially better on the pre-registered axes, therefore CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT.",
-        "incoherenceAxis": "DECISIVE. Section 37.5 rested its provider reading on internal self-contradiction — framing CONDITIONAL asserted together with hazardAsserted true about the same text — because no ranking can explain an answer that contradicts itself. Across 74 Gemini candidates in three variants that class is EMPTY. C-CS-05, the case section 37.5 cited as flipping under block order, returns identical facts on all three Gemini runs: hazardAsserted=false, CONDITIONAL, no missing fact.",
+        "incoherenceAxis": "DECISIVE. Section 37.5 rested its provider reading on internal self-contradiction \u2014 framing CONDITIONAL asserted together with hazardAsserted true about the same text \u2014 because no ranking can explain an answer that contradicts itself. Across 74 Gemini candidates in three variants that class is EMPTY. C-CS-05, the case section 37.5 cited as flipping under block order, returns identical facts on all three Gemini runs: hazardAsserted=false, CONDITIONAL, no missing fact.",
         "orderSensitivityAxis": "IMPROVED BUT NARROW. See orderSensitivityQualification below. It must never be cited without its qualification.",
         "whatItEstablishes": "The section 37.5 structural-state incoherence mechanism is PROVIDER/MODEL CAPABILITY-BOUND at n = 2, and qwen3-coder:30b is not validated to carry Level-3 advancement.",
-        "whatItDoesNotEstablish": "It does NOT mean all residual instability is provider-bound — the clarification residual is representation-bound and no provider swap can move it. It does NOT select Gemini, or any model, as the production provider. CONTRACT_OR_ARCHITECTURE_LIMIT remains ruled out by section 37.5's own direct evidence.",
-        "deterministicControlReadingSignature": "Gemini's single incoherence is CORRECTED_AND_ABSENT_CONTROL on F-COR-01, identically in all three variants — one deterministic wrong reading of a fitted blanking plate, not instability. qwen answers F-COR-01 correctly and misses F-WC-02 instead. Both sit at 5/6. Each provider has exactly one deterministic control-reading error and they are DIFFERENT scenarios, which is a capability signature rather than noise."
+        "whatItDoesNotEstablish": "It does NOT mean all residual instability is provider-bound \u2014 the clarification residual is representation-bound and no provider swap can move it. It does NOT select Gemini, or any model, as the production provider. CONTRACT_OR_ARCHITECTURE_LIMIT remains ruled out by section 37.5's own direct evidence.",
+        "deterministicControlReadingSignature": "Gemini's single incoherence is CORRECTED_AND_ABSENT_CONTROL on F-COR-01, identically in all three variants \u2014 one deterministic wrong reading of a fitted blanking plate, not instability. qwen answers F-COR-01 correctly and misses F-WC-02 instead. Both sit at 5/6. Each provider has exactly one deterministic control-reading error and they are DIFFERENT scenarios, which is a capability signature rather than noise."
       },
       "representationBoundClarificationFinding": {
-        "label": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE — REPRESENTATION_BOUND",
+        "label": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE \u2014 REPRESENTATION_BOUND",
         "invariant": "A CLARIFICATION CAN ONLY BE CARRIED ON A hazardCandidate",
         "mechanism": "When the model correctly concludes the observation is underdetermined and returns INSUFFICIENT_EVIDENCE with an EMPTY hazardCandidates array, the contract gives the clarification nowhere to live. The pipeline loses the clarification in exactly the case that most needs one.",
-        "measured": "F-CL-01: 0 candidates under V_S_STRUCT, 1 candidate under V_S_STRUCT_MOVE1 and V_S_STRUCT_REPEAT. B10: 0 candidates under V_S_STRUCT and V_S_STRUCT_REPEAT, 1 candidate under V_S_STRUCT_MOVE1. Where Gemini emitted a candidate for those same scenarios it produced IDENTICAL facts — hazardAsserted=false, ACTUAL, decisionCriticalFactMissing=true, controlReading=NOT_STATED — and correctly owed a clarification. The reasoning did not change; only whether there was a carrier for it.",
+        "measured": "F-CL-01: 0 candidates under V_S_STRUCT, 1 candidate under V_S_STRUCT_MOVE1 and V_S_STRUCT_REPEAT. B10: 0 candidates under V_S_STRUCT and V_S_STRUCT_REPEAT, 1 candidate under V_S_STRUCT_MOVE1. Where Gemini emitted a candidate for those same scenarios it produced IDENTICAL facts \u2014 hazardAsserted=false, ACTUAL, decisionCriticalFactMissing=true, controlReading=NOT_STATED \u2014 and correctly owed a clarification. The reasoning did not change; only whether there was a carrier for it.",
         "scope": "This is the WHOLE of Gemini's measured instability. Both order-sensitivity scenarios and the single noise-floor scenario are this one mechanism.",
         "classification": "CONTRACT_REPRESENTATION_BOUND, with a structural cause a provider swap cannot fix. It is NOT the mechanism section 37.5 proposed, and it is preserved as its own label rather than folded into the terminal letter.",
-        "doNotMerge": "Do NOT restate this as a terminal letter. See letteringSystems below — the evidence package's STATUS.md section 4.2 calls it 'terminal B' using section 37's lettering, where that is correct; under the L3-2h entry contract's lettering B means something else entirely."
+        "doNotMerge": "Do NOT restate this as a terminal letter. See letteringSystems below \u2014 the evidence package's STATUS.md section 4.2 calls it 'terminal B' using section 37's lettering, where that is correct; under the L3-2h entry contract's lettering B means something else entirely."
       },
       "orderSensitivityQualification": {
         "measurement": "Gemini 2/24 against its own measured noise floor of 1/24; qwen 3/24 against a floor of 0/24. Read against each provider's own floor the excess attributable to block ordering falls from 3 to 1. Under the six-block reversal Gemini is 0/24 where qwen is 3/24.",
@@ -4468,8 +4468,8 @@
       },
       "scorerArtifact": {
         "invariant": "rederive-l32g-resolution.ts DROPS ZERO-CANDIDATE ROWS BEFORE SCORING",
-        "location": "backend/scripts/rederive-l32g-resolution.ts:94 — rows.filter((r: Row) => r.derived && r.derived.length)",
-        "consequence": "Clarification recall is computed on a REDUCED denominator, so a provider is never charged for a clarification it failed to raise by emitting nothing at all — the precise failure the representation-bound finding describes is the one the scorer cannot see.",
+        "location": "backend/scripts/rederive-l32g-resolution.ts:94 \u2014 rows.filter((r: Row) => r.derived && r.derived.length)",
+        "consequence": "Clarification recall is computed on a REDUCED denominator, so a provider is never charged for a clarification it failed to raise by emitting nothing at all \u2014 the precise failure the representation-bound finding describes is the one the scorer cannot see.",
         "scope": "PRE-EXISTING. Affects both providers and affects previously recorded numbers.",
         "correction": "qwen drops B10 in all three variants, so section 37's and section 38's recorded clarification recall of 75% is 3/4, a SCORER-FILTERED figure. The corrected scenario-level truth is 3/5 = 60%.",
         "fullCohortRecount": {
@@ -4488,7 +4488,7 @@
           },
           "note": "The relative conclusion is unchanged and in fact strengthens. What changes is that the absolute recorded figures in sections 37 and 38 are optimistic for both providers."
         },
-        "historicalPreservation": "Sections 37 and 38 are preserved EXACTLY as written per UPDATE POLICY item 4 — a section 37 number stays a section 37 number. 75% remains the correct record of what section 37 measured with the scorer it had; 60% is the corrected scenario-level truth and is the figure every future statement must use.",
+        "historicalPreservation": "Sections 37 and 38 are preserved EXACTLY as written per UPDATE POLICY item 4 \u2014 a section 37 number stays a section 37 number. 75% remains the correct record of what section 37 measured with the scorer it had; 60% is the corrected scenario-level truth and is the figure every future statement must use.",
         "notPatched": "The scorer is REPORTED, NOT PATCHED. This phase was authorized to change no scorer file. Patching it is the FIRST ordered step of L3-2i, taken BEFORE any contract change, so the corrected baseline exists before the thing that will move it.",
         "decisionLog": "D-56"
       },
@@ -4498,8 +4498,8 @@
         "system1_section37TerminalStates": {
           "A": "the residual is provider-capability-bound",
           "B": "the residual is representation-bound",
-          "C": "CONTRACT_OR_ARCHITECTURE_LIMIT — ruled out by section 37.5",
-          "D": "A and B cannot be separated without a second provider — section 37's actual terminal"
+          "C": "CONTRACT_OR_ARCHITECTURE_LIMIT \u2014 ruled out by section 37.5",
+          "D": "A and B cannot be separated without a second provider \u2014 section 37's actual terminal"
         },
         "system2_l32hEntryContractDecisionClasses": {
           "A": "second provider materially better on BOTH incoherence and order sensitivity -> CURRENT_EVALUATION_PROVIDER_NOT_VALIDATED_FOR_ADVANCEMENT",
@@ -4513,9 +4513,9 @@
         "notDecisionVocabularies": "Section 36.7's prompt variants A and B name two POSITIONS of the same prompt block, and section 37's Questions A/B/C name three research questions. Neither is a terminal."
       },
       "fidelityDeviations": {
-        "1_reasoningNotEqualised": "LARGEST CONFOUND, and it cuts in Gemini's favour. thinkingLevel low is the floor for Gemini 3 Pro; it still spent a mean of 527 THOUGHT TOKENS PER CALL — 37,444 thought tokens over the 71 of 72 calls that reported a count, one call reporting none, range 232-1023. qwen ran with no extended reasoning at all. The package's STATUS.md section 6.1 carries an earlier INTERIM figure of ~584; the transport log is the measurement and 527 is the figure to carry forward. The evidence file is left exactly as written — a verification artifact is not edited to suit a later recount.",
-        "2_numCtx": "num_ctx has no Gemini equivalent — 8192 locally against a fixed ~1M window. Silent truncation, which the local setting existed to prevent, is not possible in that direction. Prompt size was 1990-2013 tokens throughout, far inside both.",
-        "3_additionalProperties": "additionalProperties:false was dropped in schema conversion — unsupported by Gemini's OpenAPI-subset responseSchema. Field order was preserved explicitly via propertyOrdering.",
+        "1_reasoningNotEqualised": "LARGEST CONFOUND, and it cuts in Gemini's favour. thinkingLevel low is the floor for Gemini 3 Pro; it still spent a mean of 527 THOUGHT TOKENS PER CALL \u2014 37,444 thought tokens over the 71 of 72 calls that reported a count, one call reporting none, range 232-1023. qwen ran with no extended reasoning at all. The package's STATUS.md section 6.1 carries an earlier INTERIM figure of ~584; the transport log is the measurement and 527 is the figure to carry forward. The evidence file is left exactly as written \u2014 a verification artifact is not edited to suit a later recount.",
+        "2_numCtx": "num_ctx has no Gemini equivalent \u2014 8192 locally against a fixed ~1M window. Silent truncation, which the local setting existed to prevent, is not possible in that direction. Prompt size was 1990-2013 tokens throughout, far inside both.",
+        "3_additionalProperties": "additionalProperties:false was dropped in schema conversion \u2014 unsupported by Gemini's OpenAPI-subset responseSchema. Field order was preserved explicitly via propertyOrdering.",
         "4_seed": "seed is BEST-EFFORT on Gemini. Its 1/24 non-zero noise floor against qwen's 0/24 reflects that, and it is why the order-sensitivity margin is narrow and carries an explicit qualification.",
         "5_previewModelLabel": "A PREVIEW MODEL LABEL IS NOT A CONTENT DIGEST. qwen was pinned at 06c1097efce0; gemini-3.1-pro-preview can change under its label, so this run is LESS reproducible than the baseline it is compared against. MUST_REVERIFY."
       },
@@ -4528,13 +4528,13 @@
         "latency": "mean 8.6 s, p90 11.1 s, max 14.4 s",
         "tokens": "mean 2002 prompt / 381 output per call"
       },
-      "customerAuthority": "Preserved by construction — zero production files changed — and verified structurally: seam, call site, backend/src/standards/ and all of reasoning-l3/ byte-unmodified against HEAD.",
+      "customerAuthority": "Preserved by construction \u2014 zero production files changed \u2014 and verified structurally: seam, call site, backend/src/standards/ and all of reasoning-l3/ byte-unmodified against HEAD.",
       "preservation": "HEAD 1feda622, 0/0 upstream divergence; locked harness and all three scorers digest-verified; sealed corpus a95e5480 / 49aa40fd / 6f6897f1 hash-verified and NOT OPENED; 4 stash entries with no stash operation run; 23 tags, recorded as tag OBJECTS per section 38.8's lesson. Evidence: preservation-evidence.txt.",
       "regression": "INHERITED, NOT RE-MEASURED, and stated as such. No code changed and every input is hash-identical, so section 38.6 stands: 715 offline assertions 0 failed; test:hazlenz-core 206 pass / 2 fail, the two documented section 13.1 failures only and NOT reclassified; KG contracts unchanged.",
-      "productionProviderSelection": "OPEN — unchanged since section 31.1 and through sections 38.1, 38.8 and this phase. This run is architecture-selection evidence on 24 diagnostic scenarios and is explicitly NOT a production recommendation. Section 31.2's privacy boundary, which the local provider satisfied absolutely at 127.0.0.1, is a live consideration against any hosted provider carrying customer observation text and has not been adjudicated.",
+      "productionProviderSelection": "OPEN \u2014 unchanged since section 31.1 and through sections 38.1, 38.8 and this phase. This run is architecture-selection evidence on 24 diagnostic scenarios and is explicitly NOT a production recommendation. Section 31.2's privacy boundary, which the local provider satisfied absolutely at 127.0.0.1, is a live consideration against any hosted provider carrying customer observation text and has not been adjudicated.",
       "l33Eligible": false,
       "l33Blocker": "L3-3 must not start until the high-consequence gate reaches ZERO on FRESH SEALED evidence with the clarification axis still at 100/100. Unchanged. This phase opened no sealed evidence and does not advance that gate. Family coverage remains complete at 24 of 24.",
-      "nextSlice": "L3-2i — candidate-independent clarification contract + scorer correction + revalidation. Fixed order: (1) patch rederive-l32g-resolution.ts so zero-candidate clarification-required scenarios stay in the denominator; (2) re-score the existing frozen qwen and Gemini artifacts with ZERO new inference to establish the corrected baseline; (3) add a candidate-independent proposal-level carrier for decision-critical clarification / unresolved decisions; (4) prove it on the demonstrated cohort only, at minimum F-CL-01 and B10, running qwen and Gemini only as necessary; (5) preserve section 38.3 process isolation — each required variant/control in its own process; (6) full diagnostic re-run ONLY if the targeted proof causes or reveals behaviour outside the demonstrated cohort; (7) stop.",
+      "nextSlice": "L3-2i \u2014 candidate-independent clarification contract + scorer correction + revalidation. Fixed order: (1) patch rederive-l32g-resolution.ts so zero-candidate clarification-required scenarios stay in the denominator; (2) re-score the existing frozen qwen and Gemini artifacts with ZERO new inference to establish the corrected baseline; (3) add a candidate-independent proposal-level carrier for decision-critical clarification / unresolved decisions; (4) prove it on the demonstrated cohort only, at minimum F-CL-01 and B10, running qwen and Gemini only as necessary; (5) preserve section 38.3 process isolation \u2014 each required variant/control in its own process; (6) full diagnostic re-run ONLY if the targeted proof causes or reveals behaviour outside the demonstrated cohort; (7) stop.",
       "outOfScopeForNextSlice": "Do NOT consume the sealed acceptance corpus. Do NOT begin L3-3. Do NOT select a production provider. Do NOT promote R1_MISSING_FIRST. No prompt tuning. No broadening of the reasoning architecture. No change to Level-1 customer authority. No deploy, no commit, no push, no stash operation.",
       "decisionLog": [
         "D-55",
@@ -4545,7 +4545,7 @@
     }
   },
   "l32iClarificationCarrier": {
-    "verdict": "L3_2I_COMPLETE — CANDIDATE_INDEPENDENT_CLARIFICATION_ESTABLISHED — SCENARIO_LEVEL_CLARIFICATION_SCORER_CORRECTED — SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE",
+    "verdict": "L3_2I_COMPLETE \u2014 CANDIDATE_INDEPENDENT_CLARIFICATION_ESTABLISHED \u2014 SCENARIO_LEVEL_CLARIFICATION_SCORER_CORRECTED \u2014 SEALED_ACCEPTANCE_CORPUS_UNTOUCHED \u2014 CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE",
     "date": "2026-08-24",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -4650,7 +4650,7 @@
     "preservation": "HEAD 1feda622, 0/0 upstream divergence, 4 stash entries with NO stash operation run, 23 tags identical as tag OBJECTS, the locked harness (73f74131) and the two untouched scorers digest-verified, all 11 frozen holdouts and devsets identical, the L3-2h final evidence package identical across all 21 files, and the sealed corpus a95e5480 / 49aa40fd / 6f6897f1 hash-verified and NOT OPENED.",
     "l33Eligible": false,
     "l33Blocker": "L3-3 must not start until the high-consequence gate reaches ZERO on FRESH SEALED evidence with the clarification axis still at 100/100. Unchanged. This phase opened no sealed evidence and does not advance that gate. Family coverage remains complete at 24 of 24.",
-    "productionProviderSelection": "OPEN — unchanged since section 31.1. This phase did not reopen the qwen-versus-Gemini discrimination decision and did not select a provider.",
+    "productionProviderSelection": "OPEN \u2014 unchanged since section 31.1. This phase did not reopen the qwen-versus-Gemini discrimination decision and did not select a provider.",
     "decisionLog": [
       "D-57",
       "D-58"
@@ -4659,7 +4659,7 @@
     "blueprintSection": "40"
   },
   "l32jCarrierActivation": {
-    "verdict": "L3_2J_COMPLETE — SHIPPED_CARRIER_ACTIVATION_MEASURED_AND_REFUSED — SHIPPED_PROMPT_AND_SCHEMA_BYTE-RESTORED — LOCKED_L3-2h_COMPARISON_RE-DERIVED_AND_RESTORED — CROSS_PROVIDER_REVALIDATION_NOT_EXECUTED — SEALED_ACCEPTANCE_CORPUS_UNTOUCHED — CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE",
+    "verdict": "L3_2J_COMPLETE \u2014 SHIPPED_CARRIER_ACTIVATION_MEASURED_AND_REFUSED \u2014 SHIPPED_PROMPT_AND_SCHEMA_BYTE-RESTORED \u2014 LOCKED_L3-2h_COMPARISON_RE-DERIVED_AND_RESTORED \u2014 CROSS_PROVIDER_REVALIDATION_NOT_EXECUTED \u2014 SEALED_ACCEPTANCE_CORPUS_UNTOUCHED \u2014 CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE",
     "date": "2026-08-24",
     "baselineHead": "1feda622dbb93d7e05d156838ab37db3e21db507",
     "committed": false,
@@ -8966,7 +8966,7 @@
         ],
         "notEstablished": "the exact sub-form (negative sentinel vs a wrong-but-positive span) -- Run 2 persisted the issue CODE but not its DETAIL"
       },
-      "disposition": "DETERMINISTIC WHERE A DETERMINISM CONTROL EXISTS, NON-REPRODUCING WHERE ONE DOES NOT -- section 69.6’s own pre-registered signature of an RC-3 facet."
+      "disposition": "DETERMINISTIC WHERE A DETERMINISM CONTROL EXISTS, NON-REPRODUCING WHERE ONE DOES NOT -- section 69.6\u2019s own pre-registered signature of an RC-3 facet."
     },
     "remediationClassification": {
       "RC-1": "PARTIAL",
@@ -8975,7 +8975,7 @@
       "RC-4": "INSUFFICIENT_EVIDENCE"
     },
     "paidTier3CohortJustified": false,
-    "paidTier3CohortJustifiedRationale": "The RC-2 replay gates could not be RUN (the deciding inputs were never persisted), the RC-1 hard vetoes were FAILED by the only replayable clarification change, and G9’s safety-material half did not move.",
+    "paidTier3CohortJustifiedRationale": "The RC-2 replay gates could not be RUN (the deciding inputs were never persisted), the RC-1 hard vetoes were FAILED by the only replayable clarification change, and G9\u2019s safety-material half did not move.",
     "run3Justified": false,
     "run3Authorized": false,
     "exactNextPrerequisite": "A BOUNDED TIER-3 DEVELOPMENT COHORT (<= $3, AUTHORIZATION REQUIRED) WHOSE ONLY NEW REQUIREMENT IS THAT IT PERSISTS RAW PROPOSAL BODIES -- evidence spans, conditionRationale, uncertainties, and the PER-CANDIDATE clarification with its affectedDecision.",
@@ -8992,14 +8992,14 @@
       ],
       "rc4ScanHiddenByExclusion": 0,
       "egressScanHiddenByExclusion": 1,
-      "egressScanHiddenNote": "the replay harness’s own network SEAL, whose purpose is to PREVENT contact"
+      "egressScanHiddenNote": "the replay harness\u2019s own network SEAL, whose purpose is to PREVENT contact"
     },
     "regression": {
       "suites": 14,
       "assertions": 1035,
       "failures": 0,
       "tscClean": true,
-      "hazlenzCore": "FAILS on two sub-suites (Golden Hardening Scenarios; HazLenz Production Path Regression). PRE-EXISTING and STRUCTURALLY UNREACHABLE from this phase’s edits -- reasoning-l3 has ZERO importers anywhere in backend/src, both edited files are inside it, and both failing suites are src modules; Golden Hardening additionally requires a database this phase is forbidden to touch. Not silenced, not repaired."
+      "hazlenzCore": "FAILS on two sub-suites (Golden Hardening Scenarios; HazLenz Production Path Regression). PRE-EXISTING and STRUCTURALLY UNREACHABLE from this phase\u2019s edits -- reasoning-l3 has ZERO importers anywhere in backend/src, both edited files are inside it, and both failing suites are src modules; Golden Hardening additionally requires a database this phase is forbidden to touch. Not silenced, not repaired."
     },
     "preservation": {
       "checks": 36,
@@ -9020,7 +9020,7 @@
     "PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN": true
   },
   "v1LaunchAudit": {
-    "terminal": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE — PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
+    "terminal": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE \u2014 PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
     "method": "Disposable DB test_insite_v1_launch_20260826, API on :4010 with DEV_AUTH_BYPASS=false, frontend as a PRODUCTION build (next build + next start) on :3001 with NEXT_PUBLIC_DISABLE_AUTH=false.",
     "plans": {
       "structure": "FREE and PRO only; no other tier is offered",
@@ -9080,7 +9080,7 @@
       "contrastFailuresDesktop": 0,
       "contrastFailures390": 0,
       "consoleErrorsPopulated": 0,
-      "consoleErrorRowsRepoAudit": "15 -- the known §73.11 CORS artifact (that audit's origin is not in the :4000 allowlist); the same routes are 0 in the populated audit"
+      "consoleErrorRowsRepoAudit": "15 -- the known \u00a773.11 CORS artifact (that audit's origin is not in the :4000 allowlist); the same routes are 0 in the populated audit"
     },
     "openProductDecisions": [],
     "remainingProductionOnlyActions": [
@@ -9144,7 +9144,7 @@
       "/settings at 320px: site rows are grid items and lacked min-w-0, staying 341px wide in a 222px column and clipping every Edit/Delete control.",
       "/reports: AppButton size=\"sm\" rendered 32px tall against the 36px mobile floor; it escaped the prior sweep only because those pages were measured empty."
     ],
-    "humanReviewShortlist": "verification/insite-v1-final-local-ux-2026-08-26/INDEX.md -- 22 screenshots by reference, each marked EMPTY/POPULATED and §73/THIS PHASE; all 24 referenced paths verified to exist.",
+    "humanReviewShortlist": "verification/insite-v1-final-local-ux-2026-08-26/INDEX.md -- 22 screenshots by reference, each marked EMPTY/POPULATED and \u00a773/THIS PHASE; all 24 referenced paths verified to exist.",
     "remainingLocalBlockers": [],
     "remainingNonProductionItem": "Human visual acceptance of the 22-screenshot shortlist. A review, not engineering."
   },
@@ -9408,7 +9408,7 @@
     "nextPrerequisite": "HUMAN_VISUAL_ACCEPTANCE_REQUIRED on the captured phone screenshots, plus the still-open PRODUCTION_STRIPE_PRICE_UPDATE_REQUIRED from v1LaunchPricingContract (create the recurring monthly $24.99 USD price in Stripe and set STRIPE_PRO_PRICE_ID in the production environment)."
   },
   "v1ProductionCommerceConfiguration": {
-    "terminal": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
+    "terminal": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED \u2014 PRODUCTION_RELEASE_EXECUTION_REQUIRED",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 75",
     "supersedes": "PRODUCTION_STRIPE_PRICE_UPDATE_REQUIRED, open since blueprint 71.12 and restated in 72.3. Those sections record what was true when written and were NOT rewritten.",
@@ -9457,7 +9457,7 @@
       "preserved": true,
       "theDefectThisPhaseClosed": "Production STRIPE_PRO_PRICE_ID pointed at this USD 999/month price while every customer-facing surface advertised $24.99/month. Production was configured to charge $9.99 against an advertised $24.99. Exposure was bounded: the live Stripe account held 0 subscriptions, so no customer was ever billed at the wrong price.",
       "consequencesOfArchival": [
-        "An archived Price cannot back a NEW Checkout Session. The running service still holds this id until a deploy occurs, so checkout would fail in the interim. INFERRED from Stripe's documented behaviour, NOT MEASURED — creating a Checkout Session was not authorized. Practical exposure nil: 0 subscriptions, one lifetime production analysis.",
+        "An archived Price cannot back a NEW Checkout Session. The running service still holds this id until a deploy occurs, so checkout would fail in the interim. INFERRED from Stripe's documented behaviour, NOT MEASURED \u2014 creating a Checkout Session was not authorized. Practical exposure nil: 0 subscriptions, one lifetime production analysis.",
         "resolveTierForPriceId() would no longer match a subscriber still on this price. upsertSubscriptionFromStripeSubscription() already falls back to normalizeBillingTier(subscription.metadata.targetTier), which checkout stamps via subscription_data.metadata. Theoretical at 0 subscriptions, but it is why that metadata fallback must not be removed."
       ]
     },
@@ -9472,11 +9472,11 @@
     "renderEnvironmentUpdateSemantics": {
       "service": "safety-insite-backend",
       "serviceId": "srv-d7kl74jeo5us73deaor0",
-      "classification": "D — REQUIRES A SEPARATE EXPLICIT DEPLOY TO TAKE EFFECT. The write stores configuration and does not apply it.",
+      "classification": "D \u2014 REQUIRES A SEPARATE EXPLICIT DEPLOY TO TAKE EFFECT. The write stores configuration and does not apply it.",
       "vendorContract": "Render REST API reference, env-var endpoints: \"Changes will not be deployed automatically. Instead you must call the deploy API to have changes pushed out to your service, irrespective of the autoDeploy option set on the service.\"",
       "overridesAutoDeploy": "Service is autoDeploy: yes / autoDeployTrigger: commit. Those govern COMMIT-triggered deploys only and are explicitly overridden for env-var writes.",
       "dashboardDiffers": "The Dashboard offers Save-rebuild-and-deploy / Save-and-deploy / Save-only. The API path was chosen deliberately for this reason.",
-      "endpointUsed": "PUT /v1/services/{id}/env-vars/STRIPE_PRO_PRICE_ID — the SINGLE-variable endpoint, chosen over the whole-list PUT which replaces the collection and would risk the other 33 variables.",
+      "endpointUsed": "PUT /v1/services/{id}/env-vars/STRIPE_PRO_PRICE_ID \u2014 the SINGLE-variable endpoint, chosen over the whole-list PUT which replaces the collection and would risk the other 33 variables.",
       "confirmedEmpirically": "After the write the newest deploy is still dep-da1rvprncjis73f3q390, status live, trigger new_commit, commit 97941ca2, created 2026-08-18T02:13:59Z. No deploy and no restart was created by this phase.",
       "secondGuard": "origin/main is EXACTLY 97941ca2, the live commit; release/insite-rc-2026-08-18 is unmerged. Even an accidental deploy could only have rebuilt the identical pre-v1.0 commit. No v1.0 code could have shipped."
     },
@@ -9511,7 +9511,7 @@
     },
     "knownCheckerFalsePositive": {
       "id": "V1-PRICE-01",
-      "classification": "VERIFICATION_INFRASTRUCTURE — stale allowlist. NOT a production defect and NOT a pricing-contract defect.",
+      "classification": "VERIFICATION_INFRASTRUCTURE \u2014 stale allowlist. NOT a production defect and NOT a pricing-contract defect.",
       "assertion": "'Expert' appears only in allowlisted internal-legacy files",
       "file": "frontend-next/components/pricing/planData.ts",
       "onlyMatch": "Line 3, the canonical contract comment: // LAUNCH CONTRACT: FREE = $0, PRO = $24.99/month, EXPERT = NOT_A_V1_PLAN.",
@@ -9540,11 +9540,11 @@
       "PRODUCTION_DEPLOYED_AT_V1": false
     },
     "worktree": "Documentation changes left UNCOMMITTED. Only docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json modified. 21 pre-existing untracked paths preserved.",
-    "supersededCheckpoint": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE — PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
-    "nextPrerequisite": "PRODUCTION_RELEASE_EXECUTION_REQUIRED — separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes STRIPE_PRO_PRICE_ID effective. Live-payment proof is gated behind it."
+    "supersededCheckpoint": "INSITE_V1_FINAL_LOCAL_UX_ACCEPTANCE_COMPLETE \u2014 PRODUCTION_COMMERCE_AND_RELEASE_ACTIONS_REQUIRED",
+    "nextPrerequisite": "PRODUCTION_RELEASE_EXECUTION_REQUIRED \u2014 separately authorized: push and merge the release branch, apply the six governed-release migrations, and deploy. Only that deploy makes STRIPE_PRO_PRICE_ID effective. Live-payment proof is gated behind it."
   },
   "v1ProductionReleaseExecution": {
-    "terminal": "INSITE_V1_PRODUCTION_RELEASE_DEPLOYED — LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED",
+    "terminal": "INSITE_V1_PRODUCTION_RELEASE_DEPLOYED \u2014 LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 76",
     "closes": "PRODUCTION_RELEASE_EXECUTION_REQUIRED from section 75. Section 75 was not rewritten.",
@@ -9556,7 +9556,7 @@
       "V1_RELEASE_CANDIDATE_SHA": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
       "productionBranchSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
       "mergeStrategy": "FAST-FORWARD. main was an exact ancestor of the release branch, so no squash, no rebase, no rewritten history; all 15 commits preserved.",
-      "diffMagnitude": "15 commits, 3420 files, 1356252 insertions, 1552 deletions — predominantly verification evidence, not runtime code.",
+      "diffMagnitude": "15 commits, 3420 files, 1356252 insertions, 1552 deletions \u2014 predominantly verification evidence, not runtime code.",
       "forcePushUsed": false
     },
     "migrations": {
@@ -9574,12 +9574,12 @@
       "classification": "Every one is BOTH REQUIRED_BEFORE_NEW_CODE (v1 entities reference the columns) AND SAFE_BEFORE_NEW_CODE (the running pre-v1 process tolerates them). None REQUIRES_NEW_CODE_FIRST. None UNCERTAIN.",
       "destructiveOperations": "NONE. Zero DROP TABLE / DROP COLUMN / TRUNCATE / DELETE in any up(). The three DROP CONSTRAINT hits are each DROP CONSTRAINT IF EXISTS immediately followed by re-adding the same CHECK; two target a table the same migration just created.",
       "onlyConstraintThatCouldRejectData": "chk_regulatory_release_status. regulatory_releases held 0 rows and 0 distinct statuses, measured before applying, so the migration's own comment was confirmed rather than trusted.",
-      "rehearsal": "All 46 migrations applied from scratch to a fresh local disposable database test_v1_release_gate_20260826, exit 0, clean COMMIT, 46 rows, all three new tables, all sampled columns, all three CHECK constraints and uq_regulatory_release_active. Production is PostgreSQL 17.11; the rehearsal ran on 16.13 — a stated difference, not a matched control.",
+      "rehearsal": "All 46 migrations applied from scratch to a fresh local disposable database test_v1_release_gate_20260826, exit 0, clean COMMIT, 46 rows, all three new tables, all sampled columns, all three CHECK constraints and uq_regulatory_release_active. Production is PostgreSQL 17.11; the rehearsal ran on 16.13 \u2014 a stated difference, not a matched control.",
       "preflightDrift": "NONE. Applied history is an exact ordered prefix of the repo's 46: zero order drift, zero applied-but-not-in-repo entries.",
       "rowCountsPreserved": "IDENTICAL before and after: user 26, user_live 15, organization 8, user_subscription 9, entitlement_grants 1, standards 31, inspection 1, observations 1, hazlenz_analyses 1, inspection_findings 1, regulatory_releases 0."
     },
     "databaseMisTargetingHazard": {
-      "hazard": "data-source.ts opens with import 'dotenv/config', and backend/.env sets DATABASE_URL to postgres://...@127.0.0.1/safescope — the PROTECTED development database. A bare `npm run migration:run` from backend/ migrates the protected database.",
+      "hazard": "data-source.ts opens with import 'dotenv/config', and backend/.env sets DATABASE_URL to postgres://...@127.0.0.1/safescope \u2014 the PROTECTED development database. A bare `npm run migration:run` from backend/ migrates the protected database.",
       "closedBy": "dotenv does not override an already-populated process.env. Proven empirically before use, then re-proven against the production URL immediately before the production migration, printing host=ep-weathered-moon-a4egk93d-pooler...neon.tech db=neondb and failing closed on any protected or local name.",
       "secondaryGuard": "scripts/lib/test-database-ownership.ts refuses neondb outright (NAME_NOT_DISPOSABLE), so no mutating test suite can ever reach production. Deliberately a different mechanism from the migration path."
     },
@@ -9589,8 +9589,8 @@
       "reason": "Phase 9 is conditional and its condition is FALSE. All four cutover variables (GOVERNED_CUTOVER_MODE, GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST, GOVERNED_CUTOVER_ORG_ALLOWLIST, GOVERNED_CUTOVER_PRODUCTION_ACK) are ABSENT in production, so cutover-mode.ts resolves LEGACY / DEFAULT_NO_CONFIGURATION.",
       "provenByContract": "kg4a-default-off 51/0, kg4d-default-off 121/0, kg4c-disabled-deployment 80/0, and 30 of 31 kg4b-default-off assertions: no mode, empty mode, malformed mode, truthy mode, allowlist without mode, and SHADOW without production acknowledgement ALL resolve LEGACY and create no cutover context at all.",
       "effect": "The six migrations install the governed SUBSTRATE and activate NOTHING. No release record invented, no activation pointer set, regulatory_releases remains 0 rows.",
-      "level1": "CUSTOMER_AUTHORITATIVE — unchanged",
-      "level3": "NON_CUSTOMER_AUTHORITATIVE / DEFERRED — unchanged. No provider call, no authority promotion."
+      "level1": "CUSTOMER_AUTHORITATIVE \u2014 unchanged",
+      "level3": "NON_CUSTOMER_AUTHORITATIVE / DEFERRED \u2014 unchanged. No provider call, no authority promotion."
     },
     "preMutationGates": {
       "backendTsc": "clean",
@@ -9598,7 +9598,7 @@
       "frontendProductionBuild": "succeeded, all routes prerendered",
       "billingRegression": "27 / 0",
       "billingMigrationValidation": "6 / 0",
-      "checkLaunchPricing": "36 / 1 — V1-PRICE-01 only",
+      "checkLaunchPricing": "36 / 1 \u2014 V1-PRICE-01 only",
       "checkHydration": "3 / 0, 0 mismatches across 20 routes x 2 themes",
       "authFlow": "PASS",
       "entitlementBoundary": "PASS, 4 assertions",
@@ -9608,8 +9608,8 @@
       "kg4aDefaultOff": "51 / 0",
       "kg4cDisabledDeployment": "80 / 0",
       "kg4dDefaultOff": "121 / 0",
-      "hazlenzCoreLevel1": "28 / 30 — the two failures are EXACTLY the section 13.1 pair: Golden Hardening Scenarios Test and HazLenz Production Path Regression. NO THIRD FAILURE.",
-      "rateLimitArtifact": "test:authenticated-entitlement-path first returned 'login failed: 429' — the 60s RATE_LIMIT_WINDOW_MS consumed by test:auth-flow immediately before it. Passed clean after the window. Recorded because a bare 429 in a release log reads like an auth defect and is not one."
+      "hazlenzCoreLevel1": "28 / 30 \u2014 the two failures are EXACTLY the section 13.1 pair: Golden Hardening Scenarios Test and HazLenz Production Path Regression. NO THIRD FAILURE.",
+      "rateLimitArtifact": "test:authenticated-entitlement-path first returned 'login failed: 429' \u2014 the 60s RATE_LIMIT_WINDOW_MS consumed by test:auth-flow immediately before it. Passed clean after the window. Recorded because a bare 429 in a release log reads like an auth defect and is not one."
     },
     "suitesNotRun": {
       "classification": "Unmet harness prerequisites on a fresh disposable database. NOT failures, and NOT counted as passes.",
@@ -9618,7 +9618,7 @@
       "regulatoryReleaseLifecycle": "Needs a seeded standards corpus ('enough standards to slice (0)')."
     },
     "cutoverOrder": {
-      "mergeIsDeploy": "Service is autoDeploy: yes / autoDeployTrigger: commit tracking main. PUSHING MAIN IS THE BACKEND DEPLOY TRIGGER — the contract's steps 4 and 5 are ONE irreversible action, not two. Recorded because treating them as separable is how a deploy happens before its migrations.",
+      "mergeIsDeploy": "Service is autoDeploy: yes / autoDeployTrigger: commit tracking main. PUSHING MAIN IS THE BACKEND DEPLOY TRIGGER \u2014 the contract's steps 4 and 5 are ONE irreversible action, not two. Recorded because treating them as separable is how a deploy happens before its migrations.",
       "executed": "migrate -> verify schema -> (governed activation skipped, proven unnecessary) -> fast-forward main -> push (deploy fires) -> verify backend -> verify frontend -> smoke"
     },
     "backendDeployment": {
@@ -9634,7 +9634,7 @@
       "database": "up",
       "nodeEnv": "production",
       "versionSourceStatus": "RENDER_GIT_COMMIT",
-      "startupErrors": "NONE — 100 log lines contain zero error, missing-column or QueryFailed matches."
+      "startupErrors": "NONE \u2014 100 log lines contain zero error, missing-column or QueryFailed matches."
     },
     "frontendDeployment": {
       "platform": "Vercel",
@@ -9652,16 +9652,16 @@
       "configuredPriceId": "price_1U8mok1UCjdSbesgHqdXFFPN",
       "reResolved": "LIVE, active, usd 2499, recurring monthly, product prod_V5lrzAsNRjVjUJ (active)",
       "deployCreatedAfterEnvWrite": true,
-      "inferenceBoundary": "Render injects environment at process start and the deploy was created after the env write, so the running process holds the new value. THAT LAST LINK IS INFERENCE, NOT MEASUREMENT: no endpoint exposes the configured price id, and the only direct proof — opening a Checkout Session — is deferred to the live-payment phase by contract.",
+      "inferenceBoundary": "Render injects environment at process start and the deploy was created after the env write, so the running process holds the new value. THAT LAST LINK IS INFERENCE, NOT MEASUREMENT: no endpoint exposes the configured price id, and the only direct proof \u2014 opening a Checkout Session \u2014 is deferred to the live-payment phase by contract.",
       "archivedPriceWindowClosed": "The window in which the runtime held the ARCHIVED $9.99 price (section 75.4) ended when this deploy replaced the process."
     },
     "productionSmoke": {
       "routes200": "15 of 15: /, /pricing, /login, /register, /upgrade, /legal, /reset-password, /command-center, /inspections, /inspection-workspace, /reports, /safety-calendar, /settings, /profile, /unlock",
       "backendHealth": "200",
-      "billingEndpointsUnauthenticated": "401 — auth guard active",
+      "billingEndpointsUnauthenticated": "401 \u2014 auth guard active",
       "pricingSurface": "/pricing: $24.99 x3, $0 x2, Expert 0, retired prices 0. /register: $24.99 x1, $0 x1, Expert 0. / (landing): $24.99 x1, Expert 0.",
       "planNames": "/pricing renders exactly >Free< and >Pro<; no Expert/Plus/Company/Enterprise.",
-      "upgradeRoute": "200 but no price unauthenticated — it is the auth-gated conversion surface serving a Checking.../login shell until authenticated. Expected, not a defect.",
+      "upgradeRoute": "200 but no price unauthenticated \u2014 it is the auth-gated conversion surface serving a Checking.../login shell until authenticated. Expected, not a defect.",
       "notExercised": "No Checkout Session, no card charged, no production account created. Authenticated smoke (Level-1 classify, report generation) was therefore NOT exercised against production; only its gating was."
     },
     "openItems": {
@@ -9685,11 +9685,11 @@
       "PRODUCTION_STRIPE_RUNTIME_PRICE_ACTIVE": true,
       "LIVE_PAYMENT_PROOF": false
     },
-    "supersededCheckpoint": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED — PRODUCTION_RELEASE_EXECUTION_REQUIRED",
-    "nextPrerequisite": "LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED — separately authorized. Register a real account against production, exercise the authenticated Level-1 HazLenz path end to end, open a Checkout Session against price_1U8mok1UCjdSbesgHqdXFFPN, complete one live $24.99 payment, and confirm the webhook grants Pro. This is the first step that creates billable state and is the only remaining launch gate."
+    "supersededCheckpoint": "INSITE_V1_PRODUCTION_COMMERCE_CONFIGURED \u2014 PRODUCTION_RELEASE_EXECUTION_REQUIRED",
+    "nextPrerequisite": "LIVE_CUSTOMER_JOURNEY_AND_PAYMENT_PROOF_REQUIRED \u2014 separately authorized. Register a real account against production, exercise the authenticated Level-1 HazLenz path end to end, open a Checkout Session against price_1U8mok1UCjdSbesgHqdXFFPN, complete one live $24.99 payment, and confirm the webhook grants Pro. This is the first step that creates billable state and is the only remaining launch gate."
   },
   "v1LiveCustomerAcceptance": {
-    "terminal": "INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE — PAID_PATH_UNPROVEN",
+    "terminal": "INSITE_V1_ZERO_COST_ACCEPTANCE_COMPLETE \u2014 PAID_PATH_UNPROVEN",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 77",
     "launchReady": false,
@@ -9808,7 +9808,7 @@
     },
     "worktree": "Documentation updated uncommitted per instruction. No product code modified. No deploy. No commit, push, branch or tag operation performed.",
     "subscriptionLifecycle": {
-      "result": "PARTIAL — configuration VERIFIED read-only; behaviour DEFERRED (no subscription exists to exercise)",
+      "result": "PARTIAL \u2014 configuration VERIFIED read-only; behaviour DEFERRED (no subscription exists to exercise)",
       "customerCancellationMechanism": "Stripe Billing Portal, reached from Settings -> 'Manage Subscription' (POST /billing/portal -> createPortalSession)",
       "portalConfiguration": {
         "id": "bpc_1U5aKg1UCjdSbesgbbjE5ZW7",
@@ -9830,7 +9830,7 @@
     "livePaymentProofStillFalse": true
   },
   "v1FinalThreeIssueRemediation": {
-    "terminal": "INSITE_V1_REMEDIATION_PARTIAL — FREE_HISTORY_PRODUCT_SCOPE_REQUIRED",
+    "terminal": "INSITE_V1_REMEDIATION_PARTIAL \u2014 FREE_HISTORY_PRODUCT_SCOPE_REQUIRED",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 78",
     "preRemediationAcceptanceSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
@@ -9897,7 +9897,7 @@
       "regressions": "none in entitlement, authentication, inspection persistence, Pro restoration, navigation, pricing or mobile layout"
     },
     "v1Closurechk01": {
-      "classification": "VERIFICATION_TOOLING — pre-existing, NOT caused by this phase, NOT repaired (out of scope)",
+      "classification": "VERIFICATION_TOOLING \u2014 pre-existing, NOT caused by this phase, NOT repaired (out of scope)",
       "failure": "check:closure-workflow fails on entitlement_grants_tier_check",
       "cause": "Its fixture inserts tier 'expert' (line 28) while the schema constraint is CHECK (tier = 'pro'), set by migration 1800000005900-RetireExpertTier. Script untouched by this phase; broken since that migration shipped."
     },
@@ -9922,7 +9922,7 @@
     ]
   },
   "v1FreeHistoryAndStorageValidation": {
-    "terminal": "INSITE_V1_FREE_HISTORY_AND_STORAGE_VALIDATED — FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
+    "terminal": "INSITE_V1_FREE_HISTORY_AND_STORAGE_VALIDATED \u2014 FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 79",
     "startingSha": "5894507b9a8e5276c9844eb9cc5f64b4da943ba8",
@@ -9932,7 +9932,7 @@
     "ownershipPredicate": {
       "enforcedAt": "SERVICE layer (InspectionService.findAccessible), not controller, not client",
       "predicate": "inspection.organizationId ? inspection.organizationId === user.organizationId : inspection.ownerUserId === user.userId",
-      "refusalCode": "404 NotFound, deliberately not 403 — a 403 would confirm the row exists",
+      "refusalCode": "404 NotFound, deliberately not 403 \u2014 a 403 would confirm the row exists",
       "draftRule": "draft/in_review visible only to creator, organization manager, or active assignee",
       "inheritedBy": "observations via accessibleObservation -> parent inspection; sites via SitesService.findAccessible (same predicate); reports via inspections.findAccessible on read and org-or-owner scoping on list",
       "models": "OWNERSHIP_ISOLATION for individual accounts; AUTHORIZED_ORGANIZATION_SHARING for org accounts. Both intentional; neither changed."
@@ -9974,11 +9974,11 @@
     "localStorageIsolation": {
       "result": "PASS",
       "issueId": "V1-LOCALISO-01",
-      "inventory": "localStorage only — no IndexedDB, no Cache Storage, no service worker, no sessionStorage customer data",
+      "inventory": "localStorage only \u2014 no IndexedDB, no Cache Storage, no service worker, no sessionStorage customer data",
       "defectFound": "clearAuthSession() cleared a 35-key list that OMITTED raw customer content. Measured after a real UI sign-out, these survived into the next session on the same device: sentinel_inspection_autosave (observation text), auditally_personal_calendar_events, sentinel_encrypted_photo_* and safety_insite_custom_risk_matrix.",
       "sameClassAs": "the production leak observed in section 77, where a freshly registered acceptance account found a previous session's draft already in browser storage",
       "repair": "lib/auth.ts: three exact keys added, plus a prefix sweep for sentinel_encrypted_ and sentinel_secure_ (generated key names an exact-match list cannot cover). The sweep snapshots Object.keys() first because removeItem() during a live index walk skips entries.",
-      "deliberatelyNotSwept": "sentinel_device_encryption_key_v1, sentinel_pin_hash_v1, sentinel_pin_salt_v1 — device-unlock security setup, not customer content; destroying them on every sign-out would silently reset an operator-configured PIN. Recorded as a separate decision.",
+      "deliberatelyNotSwept": "sentinel_device_encryption_key_v1, sentinel_pin_hash_v1, sentinel_pin_salt_v1 \u2014 device-unlock security setup, not customer content; destroying them on every sign-out would silently reset an operator-configured PIN. Recorded as a separate decision.",
       "afterFix": {
         "survivingKeys": [
           "safety_insite_theme",
@@ -9994,7 +9994,7 @@
       "result": "VERIFIED_AS_IMPLEMENTED",
       "measured": "0 service worker registrations, 0 Cache Storage entries, 0 IndexedDB databases, no PWA manifest. ClientCacheCleanup.tsx actively unregisters every service worker and deletes every cache on load.",
       "consequence": "A reload or app restart while offline cannot load the app shell at all.",
-      "workspaceLocalPersistence": "NONE — app/inspection-workspace/page.tsx writes no localStorage/localVault/offlineQueue; an in-progress observation lives in React state alone.",
+      "workspaceLocalPersistence": "NONE \u2014 app/inspection-workspace/page.tsx writes no localStorage/localVault/offlineQueue; an in-progress observation lives in React state alone.",
       "classification": {
         "openingAppShell": "ONLINE_REQUIRED",
         "startingInspection": "ONLINE_REQUIRED",
@@ -10016,18 +10016,18 @@
         "connectivity restored, retry succeeds and the offline-typed text persists"
       ],
       "dataLossVerdict": "Ordinary connectivity loss does NOT destroy customer input; work survives in the page and syncs on retry. Loss requires reloading or closing while offline, in which case the app shell cannot reload anyway.",
-      "whyNoLocalDraftAdded": "A localStorage draft alone would not deliver offline resumption without also caching the app shell — the materially broader architecture this phase excludes.",
+      "whyNoLocalDraftAdded": "A localStorage draft alone would not deliver offline resumption without also caching the app shell \u2014 the materially broader architecture this phase excludes.",
       "followUpGap": "V1-OFFLINE-DRAFT-GAP"
     },
     "networkLossUx": {
       "issueId": "V1-OFFLINEUX-01",
-      "falseSaveRisk": "none — isEntitlementRefusal() matches only /paid subscription is required/i, so a network failure can never render the Free entitlement message. Verified: offline save shows 'Failed to fetch'.",
+      "falseSaveRisk": "none \u2014 isEntitlementRefusal() matches only /paid subscription is required/i, so a network failure can never render the Free entitlement message. Verified: offline save shows 'Failed to fetch'.",
       "defectFound": "The offline badge claimed 'changes you make are kept on this device until the connection returns'. False for the capture path, which persists nothing locally.",
       "repair": "Replaced with a truthful message: HazLenz analysis and saving are unavailable, and anything typed but not yet saved is not stored on the device and will be lost on reload. Wording only; no offline framework introduced."
     },
     "userControlledExport": {
       "result": "VERIFIED",
-      "capability": "/reports renders each immutable report version with a Download PDF control. downloadPersistedReport() fetches the authorised private-file route, refuses any non-application/pdf artifact, and saves via an object URL as inspection-<inspectionId>-v<version>.pdf — a normal browser download landing in Downloads/Files on phone, tablet or computer.",
+      "capability": "/reports renders each immutable report version with a Download PDF control. downloadPersistedReport() fetches the authorised private-file route, refuses any non-application/pdf artifact, and saves via an object URL as inspection-<inspectionId>-v<version>.pdf \u2014 a normal browser download landing in Downloads/Files on phone, tablet or computer.",
       "provenBy": "closure suite: immutableReport true, reports 1, artifact stored",
       "boundaries": [
         "Pro-gated (cloudReports)",
@@ -10042,8 +10042,8 @@
       "status": "FIXED",
       "knownDefect": "fixture inserted tier 'expert' against CHECK (tier = 'pro') from migration 1800000005900-RetireExpertTier",
       "alsoFound": "the verifier drove a pre-v1 UI; only 1 of its 6 UI assertions still matched shipped text",
-      "repair": "'pro' is the v1 equivalent of the paid access the fixture always intended; flow updated to Saved site -> Add new site -> regulatory context -> Full Inspection -> capture -> 'HazLenz assessment — review before finalizing' -> 'Continue to risk review' -> 'Confirm risk and finalize finding' -> 'Corrective action' -> 'Complete inspection and generate report' -> 'Report generated'",
-      "negativeControl": "Added and passing: inserting an 'expert' grant must still be rejected, and the script fails loudly if it is not — so repairing the fixture cannot become a way back in.",
+      "repair": "'pro' is the v1 equivalent of the paid access the fixture always intended; flow updated to Saved site -> Add new site -> regulatory context -> Full Inspection -> capture -> 'HazLenz assessment \u2014 review before finalizing' -> 'Continue to risk review' -> 'Confirm risk and finalize finding' -> 'Corrective action' -> 'Complete inspection and generate report' -> 'Report generated'",
+      "negativeControl": "Added and passing: inserting an 'expert' grant must still be rejected, and the script fails loudly if it is not \u2014 so repairing the fixture cannot become a way back in.",
       "result": "PASS: {\"passed\":true,\"realHazLenzEndpoint\":true,\"humanReview\":true,\"immutableReport\":true,\"reloadPersistence\":true,\"logoutProtection\":true,\"persisted\":{\"sites\":1,\"inspections\":1,\"observations\":1,\"analyses\":1,\"reviews\":1,\"findings\":1,\"actions\":1,\"tasks\":1,\"reports\":1}}",
       "doublesAsProRegression": true,
       "harnessPrereqs": "STORAGE_PROVIDER=local_test (not 'local') and STORAGE_LOCAL_ROOT"
@@ -10063,7 +10063,7 @@
       "testAuthFlow": "PASS",
       "testAuthenticatedEntitlementPath": "PASS, negative 402, bypass false (needed the auth rate-limit window to clear; two prior red results were 429 contention, not an authorisation defect)",
       "mobileOverflowAffectedRoutes": "0 at 390px",
-      "preExistingLintNotIntroduced": "lib/auth.ts saveWorkspaceReport(report: any) — present at HEAD line 358; this phase's hunks are at lines 46, 55 and 230",
+      "preExistingLintNotIntroduced": "lib/auth.ts saveWorkspaceReport(report: any) \u2014 present at HEAD line 358; this phase's hunks are at lines 46, 55 and 230",
       "contractPreserved": "Free $0, Pro $24.99/month, Expert NOT_A_V1_PLAN, Free classify 402, Level-1 CUSTOMER_AUTHORITATIVE, Level-3 DEFERRED"
     },
     "filesModified": [
@@ -10078,7 +10078,7 @@
     ]
   },
   "v1OfflineFieldCapture": {
-    "terminal": "INSITE_V1_OFFLINE_FIELD_CAPTURE_COMPLETE — FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
+    "terminal": "INSITE_V1_OFFLINE_FIELD_CAPTURE_COMPLETE \u2014 FINAL_REGRESSION_AND_DEPLOYMENT_REQUIRED",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 80",
     "evidenceRoot": "verification/insite-v1-offline-field-capture-2026-08-26/",
@@ -10091,8 +10091,8 @@
       "V1-OFFLINE-EXPORT-GAP (section 79.7)"
     ],
     "scopeDecision": {
-      "converted": "/field-capture — a NEW small route that is durable offline",
-      "notConverted": "/inspection-workspace — unchanged",
+      "converted": "/field-capture \u2014 a NEW small route that is durable offline",
+      "notConverted": "/inspection-workspace \u2014 unchanged",
       "why": "The workspace is the guided HazLenz flow (analysis, evidence, risk, findings, corrective actions, report). All of it is server-authoritative and entitlement-gated, and it creates the server record before the first step. Making it offline-tolerant would have required either copying governed analysis onto the device or letting a local substitute stand in for it. What a field inspector actually loses without signal is the ability to RECORD what they see, which is what this phase makes durable."
     },
     "architecture": {
@@ -10106,7 +10106,7 @@
           "any ?_rsc= payload",
           "any same-origin /api/ path"
         ],
-        "fallback": "public/offline.html — a PLAIN STATIC document, not a Next route (see offlineFallbackDefect)",
+        "fallback": "public/offline.html \u2014 a PLAIN STATIC document, not a Next route (see offlineFallbackDefect)",
         "registration": "components/system/ServiceWorkerRegistrar.tsx, from the root layout; disabled under next dev because a cached shell in front of a rebuilding dev server serves stale chunks",
         "cleanupAmendment": "ClientCacheCleanup unregistered EVERY service worker and deleted EVERY cache on load, which would have undone this on the visit that installed it. It now excludes /sw.js and insite-shell-* by name and keeps sweeping everything else.",
         "manifest": "app/manifest.webmanifest (App Router file convention); start_url /field-capture; display standalone"
@@ -10182,7 +10182,7 @@
       ],
       "encryptionAtRest": "AES-GCM under a per-account key held in the same database.",
       "encryptionThreatModelStatedHonestly": "The key is on the device, so this is NOT protection against an attacker who controls the device or can run the application's own code. It buys that payloads are not legible plaintext in a storage inspector, and that 'remove offline data from this device' destroys the key with the rows. The isolation guarantee the product depends on comes from the NAMESPACE, not from the encryption.",
-      "preExistingLeakClosed": "lib/inspection/offlineInspectionStore.ts (legacy /inspection route) writes insite_offline_inspections_v1, insite_offline_report_drafts_v1, insite_offline_inspection_sync_queue_v1 and insite_active_local_inspection_id to DEVICE-GLOBAL localStorage with no account namespace — raw observation text, local findings and report drafts, surviving sign-out. Same class as V1-LOCALISO-01. All four keys are now in clearAuthSession()'s sweep.",
+      "preExistingLeakClosed": "lib/inspection/offlineInspectionStore.ts (legacy /inspection route) writes insite_offline_inspections_v1, insite_offline_report_drafts_v1, insite_offline_inspection_sync_queue_v1 and insite_active_local_inspection_id to DEVICE-GLOBAL localStorage with no account namespace \u2014 raw observation text, local findings and report drafts, surviving sign-out. Same class as V1-LOCALISO-01. All four keys are now in clearAuthSession()'s sweep.",
       "logoutBehavior": "Ordinary sign-out makes the prior account's local content unreachable (no session -> no namespace -> no query). The data remains recoverable ONLY by the same authenticated account. An explicit 'remove this account's offline data from this device' control destroys that account's drafts, photos and key material and touches no other account."
     },
     "synchronization": {
@@ -10204,8 +10204,8 @@
       "structuralGuarantee": "Synchronisation issues no PATCH, no DELETE and no status transition against server-held records, so silent destructive overwrite is structurally impossible rather than merely unlikely.",
       "stalenessCheck": "A draft attached to a server inspection records the version it last reconciled against. If the server advanced past it, or the inspection was archived, the draft goes to CONFLICT BEFORE anything is appended.",
       "userChoice": [
-        "Keep both — detaches the draft so the next sync creates a SEPARATE inspection; the server copy is untouched",
-        "Keep the server copy — marks the local draft resolved so it can be removed"
+        "Keep both \u2014 detaches the draft so the next sync creates a SEPARATE inspection; the server copy is untouched",
+        "Keep the server copy \u2014 marks the local draft resolved so it can be removed"
       ],
       "whyPartial": "Detection and a user choice are implemented and proven. Automatic merging does not exist and was not built. PARTIAL is the honest label: what is proven is that newer server data is never silently overwritten and the user is given the decision."
     },
@@ -10215,15 +10215,15 @@
         "status": "FIXED",
         "defect": "apiFetch retries once when a request THROWS (timeout or lost connection). For a create carrying no idempotency key that is a duplicate factory: the server commits the row, the response is lost, and the automatic retry creates a second one before any client code can observe the failure.",
         "measured": "The browser suite lets POST /inspections reach the server and then destroys the response. Before the fix, ONE interrupted sync produced TWO server inspections, and the deliberately conservative adopt-only-when-unique rule then refused to adopt either, so the retry created a third.",
-        "fix": "lib/canonicalWorkflowApi.ts — createPersistedSite, createPersistedInspection, addPersistedObservation and uploadInspectionEvidence are marked NON_IDEMPOTENT (retries: 0).",
+        "fix": "lib/canonicalWorkflowApi.ts \u2014 createPersistedSite, createPersistedInspection, addPersistedObservation and uploadInspectionEvidence are marked NON_IDEMPOTENT (retries: 0).",
         "preExisting": "This was a latent defect on the ONLINE path too: the same double-create was reachable from /inspections 'Start inspection' on a flaky connection. Offline capture did not introduce it; it made it observable."
       },
       "offlineFallbackDefect": {
         "issueId": "V1-OFFLINE-FALLBACK-01",
         "status": "FIXED",
         "defect": "An /offline App Router page used as the service worker's navigation fallback looked correct and was not. A cached Next document is inert only until it hydrates; the App Router then reconciles against the CURRENT URL, and the offline message was replaced in the browser by that URL's client render or by Next's 404.",
-        "measured": "An offline navigation to an unknown path rendered '404 — This page could not be found'; one to /settings rendered Settings. Neither was the fallback that had actually been served.",
-        "fix": "public/offline.html — a plain static document, no hydration, no external stylesheet, script, font or image. app/offline/ was removed."
+        "measured": "An offline navigation to an unknown path rendered '404 \u2014 This page could not be found'; one to /settings rendered Settings. Neither was the fallback that had actually been served.",
+        "fix": "public/offline.html \u2014 a plain static document, no hydration, no external stylesheet, script, font or image. app/offline/ was removed."
       }
     },
     "capability": {
@@ -10253,7 +10253,7 @@
       "USER_CONTROLLED_EXPORT": "PDF unchanged (Pro, online) PLUS a JSON copy of a draft saved through the ordinary browser download. Photo bytes are not embedded and the export says so."
     },
     "verification": {
-      "tiers": "Two, answering different questions. verify:offline-field-capture measures BEHAVIOUR in a real Chromium PERSISTENT profile against a disposable stack — persistent on purpose, because a normal Playwright context is discarded on close and 'close the app and reopen it offline' could not otherwise be distinguished from 'reload'. check:offline-field-capture binds the SHIPPED SOURCE to the invariants that produced that behaviour, with no server, database or browser, because a behaviour measurement cannot stop the next edit from removing the property it measured.",
+      "tiers": "Two, answering different questions. verify:offline-field-capture measures BEHAVIOUR in a real Chromium PERSISTENT profile against a disposable stack \u2014 persistent on purpose, because a normal Playwright context is discarded on close and 'close the app and reopen it offline' could not otherwise be distinguished from 'reload'. check:offline-field-capture binds the SHIPPED SOURCE to the invariants that produced that behaviour, with no server, database or browser, because a behaviour measurement cannot stop the next edit from removing the property it measured.",
       "browserSuite": {
         "command": "npm run verify:offline-field-capture",
         "assertions": 65,
@@ -10267,12 +10267,12 @@
         "failures": 0,
         "requiresServer": false
       },
-      "regressionSuiteToRun": "check:offline-field-capture — it needs no stack and is the drift guard"
+      "regressionSuiteToRun": "check:offline-field-capture \u2014 it needs no stack and is the drift guard"
     },
     "harnessCorrections": {
-      "serviceWorkerOfflineEmulation": "context.setOffline(true) alone was NOT sufficient to prove offline reopening. It severs page-originated requests reliably, but after a persistent context is closed and reopened the SERVICE-WORKER target does not pick the emulation up, so the worker's own fetch() still reached the server. With setOffline() alone, a reopened session's navigation to an unknown path returned the live Next.js 404 FROM THE SERVER — an assertion that would have passed without the network ever being down. The suite now also aborts at the route layer, which does cover service-worker requests (verified: 14 intercepted requests on a reopened session), and asserts the offline fallback as its own check that the emulation is in force.",
+      "serviceWorkerOfflineEmulation": "context.setOffline(true) alone was NOT sufficient to prove offline reopening. It severs page-originated requests reliably, but after a persistent context is closed and reopened the SERVICE-WORKER target does not pick the emulation up, so the worker's own fetch() still reached the server. With setOffline() alone, a reopened session's navigation to an unknown path returned the live Next.js 404 FROM THE SERVER \u2014 an assertion that would have passed without the network ever being down. The suite now also aborts at the route layer, which does cover service-worker requests (verified: 14 intercepted requests on a reopened session), and asserts the offline fallback as its own check that the emulation is in force.",
       "devAuthBypass": "backend/.env sets DEV_AUTH_BYPASS=true. With the bypass on, an unauthenticated request is answered as a synthetic user, and the two 'unauthenticated must be 401' probes in test:cross-user-isolation fail. Run the disposable API with DEV_AUTH_BYPASS=false. Harness setting, not a product defect.",
-      "authRateLimit": "POST /auth/login is throttled to 5 per 60s per IP. The offline suite switches accounts repeatedly because that IS the isolation test, so it waits the window out rather than reporting a rate limit as an authorisation defect — the same effect section 79.10 recorded. Run the backend auth suites with a similar gap between them.",
+      "authRateLimit": "POST /auth/login is throttled to 5 per 60s per IP. The offline suite switches accounts repeatedly because that IS the isolation test, so it waits the window out rather than reporting a rate limit as an authorisation defect \u2014 the same effect section 79.10 recorded. Run the backend auth suites with a similar gap between them.",
       "serviceWorkerNotInDev": "The worker is deliberately not registered under next dev; a cached shell in front of a rebuilding dev server serves stale chunks. The offline suite therefore needs a production build."
     },
     "regression": {
@@ -10283,14 +10283,14 @@
       "verify:offline-field-capture": "65 / 0 (new, browser)",
       "check:launch-pricing": "39 / 0",
       "check:free-observation-restore": "27 / 0",
-      "check:closure-workflow": "PASS — reloadPersistence true, immutableReport true, 1 report",
+      "check:closure-workflow": "PASS \u2014 reloadPersistence true, immutableReport true, 1 report",
       "check:hydration": "3 / 0, 0 mismatches across 21 routes x 2 themes @390px",
       "check:company-actions": "PASS",
       "check:action-workflow": "PASS",
       "test:cross-user-isolation": "28 / 0",
       "test:entitlement-boundary": "PASS, 4 assertions",
       "test:auth-flow": "PASS",
-      "test:authenticated-entitlement-path": "PASS — negative 402, bypass false",
+      "test:authenticated-entitlement-path": "PASS \u2014 negative 402, bypass false",
       "audit:mobile-responsive": "HORIZONTAL_PAGE_OVERFLOW = 0 across all required phone widths, including /field-capture",
       "contractPreserved": "Free $0, Pro $24.99/month, Expert NOT_A_V1_PLAN, Free classify 402, Level-1 CUSTOMER_AUTHORITATIVE, Level-3 DEFERRED"
     },
@@ -10314,7 +10314,7 @@
       "frontend-next/components/layout/AppShell.tsx (route-aware, truthful offline badge; /field-capture under the Inspect nav root)",
       "frontend-next/components/system/ClientCacheCleanup.tsx (stop unregistering the shell worker and deleting its caches)",
       "frontend-next/lib/auth.ts (sweep the four legacy device-global offline localStorage keys)",
-      "frontend-next/lib/canonicalWorkflowApi.ts (NON_IDEMPOTENT on non-idempotent creates — V1-OFFLINE-RETRY-01)",
+      "frontend-next/lib/canonicalWorkflowApi.ts (NON_IDEMPOTENT on non-idempotent creates \u2014 V1-OFFLINE-RETRY-01)",
       "frontend-next/package.json (check:offline-field-capture, verify:offline-field-capture)",
       "frontend-next/scripts/audit-mobile-responsive.mjs (/field-capture added to the phone sweep)"
     ],
@@ -10332,10 +10332,10 @@
       "apiCostUsd": 0
     },
     "livePaymentProof": false,
-    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — production has still never processed a real payment, and sections 78, 79 and 80 are all undeployed."
+    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION \u2014 production has still never processed a real payment, and sections 78, 79 and 80 are all undeployed."
   },
   "v1OfflineSyncIdempotency": {
-    "terminal": "INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE — FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING",
+    "terminal": "INSITE_V1_FINAL_ZERO_COST_RELEASE_COMPLETE \u2014 FIRST_GENUINE_PAID_TRANSACTION_PROOF_REMAINING",
     "recordedAt": "2026-08-26",
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 81",
     "evidenceRoot": "verification/insite-v1-offline-sync-idempotency-2026-08-26/",
@@ -10344,14 +10344,14 @@
     "issueId": "V1-OFFLINE-IDENT-01",
     "whyTheSection80MechanismWasReplaced": {
       "previousMechanism": "Client-side claim-and-reconcile: a syncAttempt marker persisted before a create, and on retry a search for the record that attempt might already have made, matched on title + site + timestamp.",
-      "defect1": "It is a similarity judgement, not identity. Two legitimate inspections created minutes apart at the same site with the same title are indistinguishable to it. Section 80 handled that by adopting only on a UNIQUE match, which turns a repeat-visit site — the ordinary case in field safety work — into one where recovery deadlocks and retrying cannot fix a SYNC_FAILED draft.",
+      "defect1": "It is a similarity judgement, not identity. Two legitimate inspections created minutes apart at the same site with the same title are indistinguishable to it. Section 80 handled that by adopting only on a UNIQUE match, which turns a repeat-visit site \u2014 the ordinary case in field safety work \u2014 into one where recovery deadlocks and retrying cannot fix a SYNC_FAILED draft.",
       "defect2": "Even a single match is a guess. Nothing established that the candidate was the record the interrupted attempt created rather than a similar one that already existed."
     },
     "identityContract": {
       "mechanism": "The client mints a stable opaque clientRequestId, persists it with the local record, and replays it unchanged on every attempt. The DATABASE is the authority that one identifier means one row.",
-      "identityValue": "The offline store's existing localId — already stable across refresh, restart and sign-out — so no new concept was introduced on the device, only a new use for one that was already durable.",
+      "identityValue": "The offline store's existing localId \u2014 already stable across refresh, restart and sign-out \u2014 so no new concept was introduced on the device, only a new use for one that was already durable.",
       "format": "[A-Za-z0-9_.:-]{8,128}. Bounded and character-restricted so it can never carry structure the server might interpret. It is an identity, never an authorisation input.",
-      "scoping": "Per CREATING USER, never per organisation. Authorised organisation sharing governs who may READ an inspection; it does not govern whose WRITE a request is. Keying on createdByUserId means one member of an organisation can never resolve or adopt a colleague's record by presenting their identifier — deliberately stricter than the read model.",
+      "scoping": "Per CREATING USER, never per organisation. Authorised organisation sharing governs who may READ an inspection; it does not govern whose WRITE a request is. Keying on createdByUserId means one member of an organisation can never resolve or adopt a colleague's record by presenting their identifier \u2014 deliberately stricter than the read model.",
       "sitesExcluded": "Sites are resolved by NAME and were deliberately left alone. A site's name is already its user-facing identity (the existing Saved site picker selects by it) and the server holds a uniqueness constraint on it, so a create whose response was lost is recovered by the lookup the sync runs first anyway."
     },
     "migration": {
@@ -10370,14 +10370,14 @@
         "uq_storage_object_client_request": "UNIQUE ON \"storage_objects\" (\"createdByUserId\", \"clientRequestId\") WHERE \"clientRequestId\" IS NOT NULL"
       },
       "destructiveOperations": "NONE. No DROP TABLE, DROP COLUMN, TRUNCATE or DELETE in up(). Nothing is rewritten and no constraint can reject an existing row.",
-      "classification": "REQUIRED_BEFORE_NEW_CODE and SAFE_BEFORE_NEW_CODE — the same classification section 76 applied to its six migrations. The running pre-release code selects only the columns its entities declare and never sees the new one, so it tolerates the migration; the new code requires it.",
+      "classification": "REQUIRED_BEFORE_NEW_CODE and SAFE_BEFORE_NEW_CODE \u2014 the same classification section 76 applied to its six migrations. The running pre-release code selects only the columns its entities declare and never sees the new one, so it tolerates the migration; the new code requires it.",
       "order": "migration -> push/deploy. No ordering uncertainty.",
-      "rehearsal": "Applied to a fresh disposable database from zero: 47 migrations, exit 0, 47 rows in the migrations table, all three partial unique indexes present and confirmed via pg_indexes. Also applied to the already-migrated verification database. The down() statements were executed inside a rolled-back transaction to confirm they are valid SQL. Local rehearsal ran on PostgreSQL 16.13; production is 17.11 — a stated difference, not a matched control.",
+      "rehearsal": "Applied to a fresh disposable database from zero: 47 migrations, exit 0, 47 rows in the migrations table, all three partial unique indexes present and confirmed via pg_indexes. Also applied to the already-migrated verification database. The down() statements were executed inside a rolled-back transaction to confirm they are valid SQL. Local rehearsal ran on PostgreSQL 16.13; production is 17.11 \u2014 a stated difference, not a matched control.",
       "appliedToProduction": {
         "order": "migration applied BEFORE the push, as classified",
         "preflight": "read-only; 46 applied, an exact ordered prefix of the repo's 47, exactly one pending, zero drift",
         "after": "47 rows; all three columns varchar(128) NULL; all three partial unique indexes present",
-        "rowCountsIdentical": "user 27, inspection 2, observations 2, storage_objects 1, organization 8 — identical before and after",
+        "rowCountsIdentical": "user 27, inspection 2, observations 2, storage_objects 1, organization 8 \u2014 identical before and after",
         "existingRowsUntouched": "every pre-existing row carries NULL in the new column; nothing was rewritten"
       }
     },
@@ -10387,7 +10387,7 @@
       "measured": "Ten concurrent replays of one inspection identifier resolve to one row with no error surfaced to any caller; eight concurrent replays of an observation identifier likewise."
     },
     "evidenceUploads": {
-      "readyOnly": "Only a READY stored object satisfies a replay. An uploading or failed row is an attempt whose bytes may never have reached the provider, so it is RE-DRIVEN on the same row rather than duplicated — a half-written upload is never reported as stored.",
+      "readyOnly": "Only a READY stored object satisfies a replay. An uploading or failed row is an attempt whose bytes may never have reached the provider, so it is RE-DRIVEN on the same row rather than duplicated \u2014 a half-written upload is never reported as stored.",
       "selectFalseHazard": "objectKey is select:false, so a record re-read by identifier does not carry it. Finalisation reloads the key explicitly and updates status BY ID rather than save()-ing a partially-loaded entity. Recorded because it would otherwise have been a silent corruption."
     },
     "heuristicRemoved": {
@@ -10397,11 +10397,11 @@
       ],
       "localSchemaVersion": 2,
       "assertedAbsent": "check:offline-field-capture asserts that no candidate matching and no ambiguity resolution survives in the sync path, so it cannot return.",
-      "conflictDetachConsequence": "'Keep both' detaches a draft so the next sync creates a SEPARATE inspection — but clientRequestId is exactly what the server resolves to the inspection being left, so replaying it would return that same inspection. Detaching therefore re-mints EVERY server-facing identity the draft holds (the inspection's, every observation's and every photo's) and clears each acknowledgement with it."
+      "conflictDetachConsequence": "'Keep both' detaches a draft so the next sync creates a SEPARATE inspection \u2014 but clientRequestId is exactly what the server resolves to the inspection being left, so replaying it would return that same inspection. Detaching therefore re-mints EVERY server-facing identity the draft holds (the inspection's, every observation's and every photo's) and clears each acknowledgement with it."
     },
     "backwardCompatibility": {
       "oldClientNewServer": "No identifier is sent, no lookup runs, no index applies (all three are partial on IS NOT NULL). Asserted directly: two identifier-less creates produce two independent inspections, and an identifier-less evidence upload still works.",
-      "newClientOldServer": "The only caller that sends an identifier is offline sync — a feature nobody can be mid-flight on during the deploy, since /inspections 'Start inspection' sends none. In the parallel-deploy window the worst case is a first-minute offline sync answering 400 (the ValidationPipe runs forbidNonWhitelisted), surfacing as SYNC_FAILED with the draft intact and retryable. Stated rather than discovered."
+      "newClientOldServer": "The only caller that sends an identifier is offline sync \u2014 a feature nobody can be mid-flight on during the deploy, since /inspections 'Start inspection' sends none. In the parallel-deploy window the worst case is a first-minute offline sync answering 400 (the ValidationPipe runs forbidNonWhitelisted), surfacing as SYNC_FAILED with the draft intact and retryable. Stated rather than discovered."
     },
     "hardFailureTests": {
       "A_lostInspectionCreateResponse": "server row exists after the interruption; EXACTLY ONE after the retry",
@@ -10412,12 +10412,12 @@
       "F_lostEvidenceResponse": "EXACTLY ONE evidence object, status ready, carrying the client-minted identity",
       "G_multipleOfflineDrafts": "each synchronises independently",
       "H_syncFailure": "local content intact; the device never claims an unacknowledged upload",
-      "I_retryAfterApplicationRestart": "resolves to the EXACT inspection the pre-restart attempt created; its observation written once. The browser is closed entirely, so only what IndexedDB holds can drive the retry — which is what proves the identity is durable rather than in-memory."
+      "I_retryAfterApplicationRestart": "resolves to the EXACT inspection the pre-restart attempt created; its observation written once. The browser is closed entirely, so only what IndexedDB holds can drive the retry \u2014 which is what proves the identity is durable rather than in-memory."
     },
     "suites": {
-      "test:offline-sync-idempotency": "23 / 0 (new) — the HTTP contract, no browser",
-      "verify:offline-field-capture": "81 / 0 — end-to-end in a real persistent Chromium profile",
-      "check:offline-field-capture": "98 / 0 — the shipped source of BOTH packages bound to the contract, no stack at all; the one that belongs in every regression run"
+      "test:offline-sync-idempotency": "23 / 0 (new) \u2014 the HTTP contract, no browser",
+      "verify:offline-field-capture": "81 / 0 \u2014 end-to-end in a real persistent Chromium profile",
+      "check:offline-field-capture": "98 / 0 \u2014 the shipped source of BOTH packages bound to the contract, no stack at all; the one that belongs in every regression run"
     },
     "regression": {
       "frontendTsc": "clean",
@@ -10425,14 +10425,14 @@
       "backendBuild": "clean",
       "check:launch-pricing": "39 / 0",
       "check:free-observation-restore": "27 / 0",
-      "check:closure-workflow": "PASS — reloadPersistence true, immutableReport true, 1 report",
+      "check:closure-workflow": "PASS \u2014 reloadPersistence true, immutableReport true, 1 report",
       "check:hydration": "3 / 0, 0 mismatches across 21 routes x 2 themes @390px",
       "check:company-actions": "PASS",
       "check:action-workflow": "PASS",
       "test:cross-user-isolation": "28 / 0",
       "test:entitlement-boundary": "PASS, 4 assertions",
       "test:auth-flow": "PASS",
-      "test:authenticated-entitlement-path": "PASS — negative 402, bypass false",
+      "test:authenticated-entitlement-path": "PASS \u2014 negative 402, bypass false",
       "billing:regression": "27 / 0",
       "billing:migration-validation": "6 / 0",
       "test:hazlenz-core": "28 of 30 suites pass. EXACTLY the documented section 13.1 pair fails and no third appears: Golden Hardening Scenarios Test case '7. LOTO energized maintenance (Not Guarding alone)' and HazLenz Production Path Regression case 'FAIL tagged but not locked'. Both were failing at HEAD; neither is touched by this work.",
@@ -10457,7 +10457,7 @@
         "frontend-next/tsconfig.json"
       ],
       "INTENDED_SECURITY": [
-        "frontend-next/lib/auth.ts — sign-out sweep of the four device-global offline localStorage keys (V1-OFFLINE-ISO-01)"
+        "frontend-next/lib/auth.ts \u2014 sign-out sweep of the four device-global offline localStorage keys (V1-OFFLINE-ISO-01)"
       ],
       "INTENDED_OFFLINE": [
         "frontend-next/public/sw.js",
@@ -10485,15 +10485,15 @@
       ],
       "GENERATED_OR_SCRATCH_excluded": [
         "2,122 ' 2' duplicate files created by the owner's file-sync tool, present since before this programme (section 79.10)",
-        "261 screenshots totalling 88 MB across the section 73/74 UX packages — section 74.6 decided these stay on the working machine because Git history is permanent and cannot be pruned without a force push; that decision is unchanged"
+        "261 screenshots totalling 88 MB across the section 73/74 UX packages \u2014 section 74.6 decided these stay on the working machine because Git history is permanent and cannot be pruned without a force push; that decision is unchanged"
       ],
       "UNCERTAIN_excluded": [
-        "Safety InSite Logos/ (7.5 MB) — the owner's own asset folder, referenced by no code in this release; not this phase's to commit"
+        "Safety InSite Logos/ (7.5 MB) \u2014 the owner's own asset folder, referenced by no code in this release; not this phase's to commit"
       ],
       "secretScan": "Staged-content scan clean. No API key, token, private key, connection string or credential in the staged diff; the only credential-shaped strings are test fixtures with literal passwords in disposable verification scripts."
     },
     "livePaymentProof": false,
-    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION — unchanged. Nothing in this phase touches Stripe, performs a payment, or grants Pro.",
+    "paidPathDisposition": "DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION \u2014 unchanged. Nothing in this phase touches Stripe, performs a payment, or grants Pro.",
     "FINAL_V1_REMEDIATION_SHA": "e9355e911c221f94c96d2a1b241b4d938435fae2",
     "release": {
       "previousProductionSha": "1da529a0e9f78abd5cbbbc156a99016207695ef0",
@@ -10509,7 +10509,7 @@
       "whatHappened": "The FIRST production migration attempt failed with 'cannot execute ALTER TABLE in a read-only transaction'.",
       "cause": "The read-only preflight had run SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY through Neon's POOLER endpoint. In transaction pooling that setting persists on the pooled SERVER connection and is inherited by whichever client next reuses that backend. Established rather than guessed: pg_db_role_setting was empty and pg_settings.source read 'session', which is what distinguishes a leaked session default from a persistent configuration change.",
       "dataImpact": "NONE. The migration aborted before its first statement; migrations still read 46 and no clientRequestId column existed.",
-      "remediation": "Cleared deliberately rather than waited out — SET SESSION CHARACTERISTICS AS TRANSACTION READ WRITE across the pool, then twelve fresh pooled connections re-checked at 'off', plus a rolled-back write probe. This mattered because the running API connects through that same pooler and a poisoned backend would have failed real customer writes.",
+      "remediation": "Cleared deliberately rather than waited out \u2014 SET SESSION CHARACTERISTICS AS TRANSACTION READ WRITE across the pool, then twelve fresh pooled connections re-checked at 'off', plus a rolled-back write probe. This mattered because the running API connects through that same pooler and a poisoned backend would have failed real customer writes.",
       "thenApplied": "Over the DIRECT (non-pooled) endpoint, which is the correct channel for DDL regardless.",
       "lesson": "Do not run a read-only preflight through a connection pooler."
     },
@@ -10539,7 +10539,7 @@
         "P2 replaying P1's identifier gets a NEW inspection of their own, never P1's",
         "P2 cannot append to, or upload evidence against, P1's inspection either way (404)",
         "unauthenticated inspection list is 401",
-        "creates carrying no identifier remain unconstrained — the online path is unchanged",
+        "creates carrying no identifier remain unconstrained \u2014 the online path is unchanged",
         "service worker registered, controlling, and it is /sw.js",
         "with the network severed AT THE WORKER: the shell loads, an inspection is created, an observation recorded, and BOTH survive an offline refresh",
         "reconnect and sync produced EXACTLY ONE production inspection with the observation written EXACTLY ONCE; re-syncing produced NO duplicate",
@@ -10557,7 +10557,7 @@
       },
       "coldStartSyncFailure": {
         "observed": "An idle Render free-plan instance exceeded the client's 25-second timeout: the draft showed SYNC_FAILED while the server had already created the inspection.",
-        "recovery": "The retry settled SYNCED with EXACTLY ONE inspection and ONE observation — precisely the case the identity contract exists for, observed unplanned on production rather than injected by a test.",
+        "recovery": "The retry settled SYNCED with EXACTLY ONE inspection and ONE observation \u2014 precisely the case the identity contract exists for, observed unplanned on production rather than injected by a test.",
         "warmInstance": "With the instance warm the first sync settled SYNCED in 4 seconds."
       },
       "react418Observation": {
@@ -10573,7 +10573,7 @@
       "inspections": 9,
       "sites": 5,
       "separationMeasured": "0 other accounts on that domain; 15 real (non-acceptance, not soft-deleted) accounts, unchanged.",
-      "realDataTouched": "NONE — nothing belonging to a real account was read, modified or deleted.",
+      "realDataTouched": "NONE \u2014 nothing belonging to a real account was read, modified or deleted.",
       "disposition": "Left in place and disclosed rather than cleaned up, because deleting production rows is itself a mutation this phase was not asked to make."
     },
     "finalState": {
@@ -10600,5 +10600,144 @@
       "dead BILLING_SUCCESS_URL/BILLING_CANCEL_URL",
       "production's STRIPE_SECRET_KEY lacking Prices Read"
     ]
+  },
+  "v1FinalLaunchHardening": {
+    "phase": "INSITE v1.0 FINAL LAUNCH HARDENING + RELEASE-CANDIDATE ACCEPTANCE (2026-08-27)",
+    "blueprintSection": "82",
+    "startingHead": "25f39bae9d5db87c9a825893f7e4404b024204ce",
+    "endingHead": "25f39bae9d5db87c9a825893f7e4404b024204ce",
+    "deployedProductionSha": "e9355e911c221f94c96d2a1b241b4d938435fae2",
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "productionDatabaseModified": false,
+    "productionSourceDeployed": false,
+    "stripeModified": false,
+    "paymentMade": false,
+    "providerCallsMade": 0,
+    "providerSpendUsd": 0.0,
+    "safescopeDevDatabaseModified": false,
+    "stashesTouched": false,
+    "tagsTouched": false,
+    "priorKgEvidenceModified": false,
+    "migrationsAddedByThisPhase": 0,
+    "repairs": [
+      {
+        "id": "V1-HAZLENZ-DEGRADEDGAP-01",
+        "suite": "Golden Hardening Scenarios Test -- \"7. LOTO energized maintenance\"",
+        "classification": "A_CUSTOMER_SAFETY_RELEVANT_REASONING_FAILURE",
+        "rootCause": "In degraded mode the evidence questions were chosen from the RAW classifier label (~3000 lines before the classification is promoted), so a finding shown as \"Lockout / Stored Energy\" carried machine-guarding questions and never asked whether locks and tags were applied or zero energy verified. A second trap: the guarding branch was tested before the LOTO branch, and the internal family key machine_guarding_loto contains both \"machine\" and \"guarding\".",
+        "customerConsequence": "A field inspector recording a lockout deficiency was told to verify guard fastening and photograph pinch points instead of confirming energy isolation.",
+        "repair": "selectDegradedEvidenceProfile() extracted as a pure function and re-applied at the end of the pipeline against the FINAL response.classification; LOTO branch moved ahead of guarding; degradedClassificationUsed records which classification chose the questions.",
+        "file": "backend/src/safescope-v2/safescope-v2.service.ts",
+        "sha256": "7fef5221039e4188fe8304b665356c514f7b77cf085e3cc37fa5505804404227"
+      },
+      {
+        "id": "V1-HAZLENZ-TAGOUTSTATE-01",
+        "suite": "HazLenz Production Path Regression -- \"FAIL tagged but not locked\"",
+        "classification": "C_STATE_NEGATION_INTERPRETATION_FAILURE",
+        "rootCause": "The loto_stored_energy taxonomy profile had vocabulary for the lockout CONTROL (\"lockout\", \"tagout\") and none for the tag-only STATE. \"tagged\" is not \"tagout\". The one moderate signal that should have fired, \"maintenance\", was additionally suppressed because it sits inside the negation window opened by \"not locked\". Measured: classification \"Machine Guarding\", score 1, confidence 0.25.",
+        "customerConsequence": "The single most classic LOTO deficiency -- 29 CFR 1910.147(c)(2)(iii), tagout where lockout is feasible -- was filed as Machine Guarding at low confidence.",
+        "repair": "Seven tag-only-state phrases added to loto_stored_energy.strongSignals, each beginning on the affirmative token so it is not scored as an absence of the hazard. Measured after: Lockout / Stored Energy at 0.82 (high).",
+        "file": "backend/src/safescope-v2/taxonomy/hazard-taxonomy.ts",
+        "sha256": "be4ffc5dcea2859d959f3590a6d3aede8bf8c8fe2af917eef2fc5ef2c07f2d45",
+        "rejectedAlternative": "Adding the tagout state to standard-applicability.rules.ts requiredEvidence was implemented, measured and REVERTED: it flipped the gate but removed the four LOTO follow-up questions from customer output."
+      },
+      {
+        "id": "V1-OFFLINE-ASSETCACHE-01",
+        "classification": "FIRST_VISIT_SERVICE_WORKER_ORDERING_GAP",
+        "correctsPriorRecord": "Blueprint 81.12.1 attributed the empty asset cache to Vercel serving _next/static as immutable so requests never reach the fetch handler. Measured against live production 2026-08-27: that is WRONG. The second load populates the cache with all thirteen ?dpl= assets.",
+        "rootCause": "ServiceWorkerRegistrar registers on the window load event, after the first document has already requested every build asset from an UNCONTROLLED client. Those requests never reach the fetch handler, so a user who loaded InSite once and went offline relied on the browser HTTP cache, which is evictable independently of Cache Storage.",
+        "repair": "At install the worker parses the shell document it already precaches and precaches every /_next/static asset that document references. Only content-hashed account-independent build assets, capped at 60, best effort, cannot fail installation.",
+        "file": "frontend-next/public/sw.js",
+        "sha256": "dd8f7a0540c7b1f8f0d262f122581056a8582a2c56d794bc434b38c70d21fb5c",
+        "proof": "verify:offline-shell-cold-start 16/0 on a FIRST visit, with the browser HTTP cache CLEARED and DISABLED through CDP before the network is severed. Control leg with the pre-repair worker deployed as the real /sw.js leaves the asset cache ABSENT.",
+        "marketingClaimNarrowingRequired": false
+      },
+      {
+        "id": "V1-CONTRAST-APPLINKBUTTON-01",
+        "classification": "OBJECTIVE_VISUAL_DEFECT",
+        "rootCause": "Blueprint 72.4 replaced the brand orange with --app-accent-strong (#BB5609, 4.72:1) behind one semantic class. AppButton's accent variant was migrated then; AppLinkButton's was not and still resolved to bg-orange-500 text-white. Measured: \"Open Field Capture\" on /inspections, white on rgb(255,105,0), 2.89:1, failing in BOTH themes. The same variant carries the /pricing upgrade CTA and every LockedFeatureCard call to action.",
+        "repair": "accent variant migrated to .app-accent-strong-surface at the variant, not at the call sites.",
+        "file": "frontend-next/components/ui/AppLinkButton.tsx",
+        "sha256": "22c8288c878de1fd904e52f9d2772e6208d32e7d52424be161e230cd414b35cc",
+        "measuredAfter": "rgb(187, 86, 9) in both themes; audit:text-contrast 2 failures -> 0"
+      }
+    ],
+    "hazlenzLevel1": {
+      "suitesPassed": 31,
+      "suitesFailed": 0,
+      "previousBaseline": "28 of 30",
+      "documentedSection131PairStatus": "CLOSED",
+      "customerAuthoritative": true,
+      "newSuite": "backend/src/safescope-v2/tests/hazlenz-loto-degraded-gap-alignment-regression.ts (20/0)",
+      "preExistingUnrelated": "test:safescope-standards reports 12 passed / 3 failed against the local safescope corpus (\"no matches\"). Verified pre-existing at HEAD by restoring the changed files from HEAD and re-running: byte-identical 12/3. Local corpus gap, not a code defect."
+    },
+    "kgSuitesPreviouslyUnrun": {
+      "remaining": 0,
+      "regulatoryReleaseLifecycle": "42/42 on test_v1_rc_lifecycle_20260827 (47 migrations, seeded corpus, manifest 14a34fea...)",
+      "knowledgeReleaseProvenance": "27/27 on test_v1_rc_provenance_20260827 with its own API instance on 4231",
+      "kg4bDefaultOff": "48/48 on test_v1_rc_kg4b_20260827 with all 35 records reviewer-approved, the release activated, and a server genuinely running GOVERNED_CUTOVER_MODE=SHADOW with exactly one allowlisted account",
+      "level3Reopened": false
+    },
+    "react418AccountSwitch": {
+      "disposition": "NOT_REPRODUCED_AFTER_BOUNDED_RETEST",
+      "steps": 68,
+      "hydrationErrors": 0,
+      "matrix": "mobile and desktop x light and dark x USER_A with on-device draft state -> sign out -> USER_B -> eight route transitions each with a refresh -> back to USER_A",
+      "checkHydration": "0 mismatches across 20 routes x 2 themes at 390px",
+      "causeInvented": false
+    },
+    "visualSweep": {
+      "objectiveDefectsFound": 1,
+      "objectiveDefectsFixed": 1,
+      "textContrastFailuresBefore": 2,
+      "textContrastFailuresAfter": 0,
+      "blueTextFailures": 0,
+      "primaryButtonContextFailures": 0,
+      "themeFlashRoutes": 0,
+      "horizontalPageOverflow": 0,
+      "screenshotSweep": "15 routes x 2 viewports x 2 themes = 60 cells; no clipping, overflow or page error",
+      "fixedLightRoutesAreByDesign": true
+    },
+    "marketingReconciliation": {
+      "changesRequired": 0,
+      "renderedStaleTermFindings": 0,
+      "routesSwept": 15,
+      "contract": "Free $0, Pro $24.99/month, Expert absent",
+      "checkLaunchPricing": "39/0",
+      "offlineClaimSupportedByProof": true,
+      "engineeringJargonExposed": "none (no Level-1 / Level-3 terminology rendered)"
+    },
+    "customerJourneyAcceptance": {
+      "suite": "frontend-next/scripts/verify-v1-customer-journeys.mjs",
+      "assertions": 46,
+      "failures": 0,
+      "stripeCheckoutSessionCreated": false,
+      "cardCharged": false,
+      "proGrantedManually": false,
+      "note": "Pro was granted only through the repository disposable test-entitlement tool, which refuses any non-localhost, non-test database.",
+      "devAuthBypassTrap": "The first run reported an unauthenticated inspection list as 200 because backend/.env sets DEV_AUTH_BYPASS=true and JwtGuard honours it whenever NODE_ENV is not production. Production runs NODE_ENV=production and measured 401. Re-run with DEV_AUTH_BYPASS=false returns 401."
+    },
+    "configuration": {
+      "billingSuccessCancelUrlEnvVars": "SAFE_POST_LAUNCH_CLEANUP -- present only in backend/.env.example, read by no source file; createCheckoutSession derives both from frontendUrl(). No runtime ambiguity; a documentation trap worth deleting after launch.",
+      "stripePricesRead": "NOT_REQUIRED_BY_IMPLEMENTED_PATH -- the complete set of Stripe API calls is customers.create, checkout.sessions.create, billingPortal.sessions.create and webhooks.constructEvent (local). No prices.* or products.* call exists; the webhook maps price id to tier from environment variables. Section 77.9's live Checkout Session cs_live_a1Q9G3... was created BY THIS KEY.",
+      "stripePermissionsBroadened": false,
+      "stripeMutated": false,
+      "launchBlocker": false
+    },
+    "acceptanceAccounts": {
+      "countInProduction": 17,
+      "classification": "POST_LAUNCH_HYGIENE",
+      "blocker": false,
+      "distinguishable": "Unambiguously -- every one matches v1-offline%@insite-acceptance.test, and .test is an RFC 2606 reserved TLD that can never be registered.",
+      "affectsMetricsEntitlementOrIsolation": false,
+      "freeByConstruction": "scripts/grant-test-entitlement.ts refuses anything that is not NODE_ENV=test on localhost with a test*/phase* database name, so it cannot have run against production.",
+      "deletedByThisPhase": false,
+      "realAccountsTouched": 0
+    },
+    "livePaymentProof": false,
+    "terminal": "INSITE_V1_FINAL_RELEASE_CANDIDATE_READY \u2014 COMMIT_PUSH_DEPLOY_REQUIRED",
+    "nextReleaseOperation": "Commit the four repairs, push, and deploy. No migration is required by this phase."
   }
 }
