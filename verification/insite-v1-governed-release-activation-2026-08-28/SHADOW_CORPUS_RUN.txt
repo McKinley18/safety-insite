@@ -1,0 +1,165 @@
+
+> safety-insite-backend@1.0.0 run:kg4b-shadow-corpus
+> ts-node scripts/run-kg4b-shadow-corpus.ts
+
+
+--- Phase 4 — the isolated corpus
+ok    protected gold set loaded and hash-verified (31 cases, sha256 93184abc…)
+      corpus: 31 gold-set + 12 KG-4B fixtures = 43 cases
+ok    corpus covers OSHA GI, OSHA Construction and MSHA (osha_general_industry, msha, osha_construction, unknown)
+ok    corpus includes observations with an unestablished regime
+ok    corpus covers 10 distinct observation shapes: positive_hazard, negative_control, multi_hazard, controlled_state, ambiguous_unknown_jurisdiction, parent_child, alternative_compliance, evidence_unknown, overlapping_vocabulary, mixed_provenance
+ok    both accounts authenticate
+
+--- Phase 3 — customer-output invariance, measured per case
+ok    [GI-MG-01] SHADOW customer output identical to LEGACY
+ok    [GI-MG-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-MG-01] citation set and ORDER identical
+ok    [GI-MG-02-NEG] SHADOW customer output identical to LEGACY
+ok    [GI-MG-02-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-MG-02-NEG] citation set and ORDER identical
+ok    [GI-LOTO-01] SHADOW customer output identical to LEGACY
+ok    [GI-LOTO-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-LOTO-01] citation set and ORDER identical
+ok    [MSHA-LOTO-01] SHADOW customer output identical to LEGACY
+ok    [MSHA-LOTO-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-LOTO-01] citation set and ORDER identical
+ok    [GI-ELEC-01] SHADOW customer output identical to LEGACY
+ok    [GI-ELEC-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-ELEC-01] citation set and ORDER identical
+ok    [GI-PIT-01] SHADOW customer output identical to LEGACY
+ok    [GI-PIT-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-PIT-01] citation set and ORDER identical
+ok    [GI-WWS-01] SHADOW customer output identical to LEGACY
+ok    [GI-WWS-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-WWS-01] citation set and ORDER identical
+ok    [GI-EXIT-01] SHADOW customer output identical to LEGACY
+ok    [GI-EXIT-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-EXIT-01] citation set and ORDER identical
+ok    [GI-EXIT-02-NEG] SHADOW customer output identical to LEGACY
+ok    [GI-EXIT-02-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-EXIT-02-NEG] citation set and ORDER identical
+      pacing: 59s to stay inside the classify throttle
+ok    [CON-FALL-01] SHADOW customer output identical to LEGACY
+ok    [CON-FALL-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-FALL-01] citation set and ORDER identical
+ok    [CON-EXC-01] SHADOW customer output identical to LEGACY
+ok    [CON-EXC-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-EXC-01] citation set and ORDER identical
+ok    [CON-EXC-02-NEG] SHADOW customer output identical to LEGACY
+ok    [CON-EXC-02-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-EXC-02-NEG] citation set and ORDER identical
+ok    [CON-SILICA-01] SHADOW customer output identical to LEGACY
+ok    [CON-SILICA-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-SILICA-01] citation set and ORDER identical
+ok    [MSHA-GUARD-01] SHADOW customer output identical to LEGACY
+ok    [MSHA-GUARD-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-GUARD-01] citation set and ORDER identical
+      pacing: 1s to stay inside the classify throttle
+ok    [MSHA-GUARD-02-NEG] SHADOW customer output identical to LEGACY
+ok    [MSHA-GUARD-02-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-GUARD-02-NEG] citation set and ORDER identical
+ok    [MSHA-TRAFFIC-01] SHADOW customer output identical to LEGACY
+ok    [MSHA-TRAFFIC-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-TRAFFIC-01] citation set and ORDER identical
+ok    [GI-NOISE-01] SHADOW customer output identical to LEGACY
+ok    [GI-NOISE-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-NOISE-01] citation set and ORDER identical
+ok    [GI-HAZCOM-01] SHADOW customer output identical to LEGACY
+ok    [GI-HAZCOM-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [GI-HAZCOM-01] citation set and ORDER identical
+      pacing: 59s to stay inside the classify throttle
+ok    [CROSS-01] SHADOW customer output identical to LEGACY
+ok    [CROSS-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CROSS-01] citation set and ORDER identical
+ok    [CON-HAZCOM-01] SHADOW customer output identical to LEGACY
+ok    [CON-HAZCOM-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-HAZCOM-01] citation set and ORDER identical
+ok    [CON-NOISE-01] SHADOW customer output identical to LEGACY
+ok    [CON-NOISE-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-NOISE-01] citation set and ORDER identical
+ok    [CON-NOISE-02-NEG] SHADOW customer output identical to LEGACY
+ok    [CON-NOISE-02-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-NOISE-02-NEG] citation set and ORDER identical
+ok    [CON-ELEC-01] SHADOW customer output identical to LEGACY
+ok    [CON-ELEC-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-ELEC-01] citation set and ORDER identical
+ok    [CON-GUARD-01] SHADOW customer output identical to LEGACY
+ok    [CON-GUARD-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-GUARD-01] citation set and ORDER identical
+      pacing: 1s to stay inside the classify throttle
+ok    [CON-EGRESS-01] SHADOW customer output identical to LEGACY
+ok    [CON-EGRESS-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-EGRESS-01] citation set and ORDER identical
+ok    [MSHA-NOISE-01] SHADOW customer output identical to LEGACY
+ok    [MSHA-NOISE-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-NOISE-01] citation set and ORDER identical
+ok    [MSHA-NOISE-02] SHADOW customer output identical to LEGACY
+ok    [MSHA-NOISE-02] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-NOISE-02] citation set and ORDER identical
+ok    [MSHA-NOISE-03-NEG] SHADOW customer output identical to LEGACY
+ok    [MSHA-NOISE-03-NEG] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-NOISE-03-NEG] citation set and ORDER identical
+      pacing: 59s to stay inside the classify throttle
+ok    [MSHA-HAZCOM-01] SHADOW customer output identical to LEGACY
+ok    [MSHA-HAZCOM-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [MSHA-HAZCOM-01] citation set and ORDER identical
+ok    [CON-LOTO-01-GAP] SHADOW customer output identical to LEGACY
+ok    [CON-LOTO-01-GAP] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CON-LOTO-01-GAP] citation set and ORDER identical
+ok    [CROSS-02] SHADOW customer output identical to LEGACY
+ok    [CROSS-02] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [CROSS-02] citation set and ORDER identical
+ok    [KG4B-MULTI-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-MULTI-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-MULTI-01] citation set and ORDER identical
+ok    [KG4B-MULTI-02] SHADOW customer output identical to LEGACY
+ok    [KG4B-MULTI-02] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-MULTI-02] citation set and ORDER identical
+ok    [KG4B-CONTROLLED-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-CONTROLLED-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-CONTROLLED-01] citation set and ORDER identical
+ok    [KG4B-AMBIG-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-AMBIG-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-AMBIG-01] citation set and ORDER identical
+ok    [KG4B-AMBIG-02] SHADOW customer output identical to LEGACY
+ok    [KG4B-AMBIG-02] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-AMBIG-02] citation set and ORDER identical
+ok    [KG4B-PARENT-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-PARENT-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-PARENT-01] citation set and ORDER identical
+      pacing: 58s to stay inside the classify throttle
+ok    [KG4B-ALTCOMP-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-ALTCOMP-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-ALTCOMP-01] citation set and ORDER identical
+ok    [KG4B-ALTCOMP-02] SHADOW customer output identical to LEGACY
+ok    [KG4B-ALTCOMP-02] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-ALTCOMP-02] citation set and ORDER identical
+ok    [KG4B-MSHA-GUARD-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-MSHA-GUARD-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-MSHA-GUARD-01] citation set and ORDER identical
+ok    [KG4B-NEG-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-NEG-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-NEG-01] citation set and ORDER identical
+ok    [KG4B-OVERLAP-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-OVERLAP-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-OVERLAP-01] citation set and ORDER identical
+ok    [KG4B-MIXED-01] SHADOW customer output identical to LEGACY
+ok    [KG4B-MIXED-01] HARD: the SHADOW payload carries NO governed telemetry keys
+ok    [KG4B-MIXED-01] citation set and ORDER identical
+
+--- Phase 9 — the shadow mismatch corpus
+ok    HARD: the run is not vacuous — 37 of 43 cases produced citations (82 citation comparisons)
+ok    HARD: every compared case returned a real analysis, none throttled or errored
+ok    collected 93 shadow comparison records from the isolated run
+ok    HARD: every shadow record asserts the customer output was unchanged
+ok    every record is a SHADOW record
+ok    HARD: every record names the SAME release (federal-core-2026-08-28.1)
+ok    every record names the same manifest identity — the corpus is tied to one exact corpus state
+ok    correlation ids are per-analysis: 38 ids across 43 analyses (5 analyses emitted no comparison)
+ok    HARD: ids are not collapsing — 38 distinct ids, not one shared constant
+ok    HARD: every event key is unique — no analysis double-counts or merges with another (93 keys for 93 events)
+ok    HARD: cardinality is one event per (analysis x distinct citation) — memoisation holds
+      wrote shadow-events.jsonl (93) and case-results.json (43)
+
+145 passed, 0 failed

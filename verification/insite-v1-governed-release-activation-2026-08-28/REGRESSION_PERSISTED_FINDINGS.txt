@@ -1,0 +1,5 @@
+
+> safety-insite-backend@1.0.0 test:persisted-decomposition-findings
+> ts-node scripts/test-persisted-decomposition-findings.ts
+
+{"passed":true,"inspectionId":"5fd5b432-72e7-44bb-b7f5-45ed8103332e","observationId":"30d573fe-a505-4e7a-bdff-f1357bdc1588","analysisIds":["6f4f32b6-beae-4839-9ab2-26f6167edd32","35c942e2-03fc-4952-ae2c-bf83ef57fcf0"],"firstFindingKeys":["machine-guarding","hazardous-energy"],"activeFindingKeys":["machine-guarding","electrical"],"historicalFindingKeys":["hazardous-energy"],"staleStatus":409,"registrationUserId":null}

@@ -84,6 +84,26 @@ export class Inspection {
   @Column({ type: 'varchar', length: 128, nullable: true })
   clientRequestId: string | null;
 
+  /**
+   * The customer-facing record number for this inspection, e.g. "Inspection #7".
+   *
+   * Allocated once at creation and never recomputed. The sequence is PER OWNER (per organization
+   * for an organization-scoped inspection, per user otherwise) and starts at 1 in each scope, so it
+   * discloses only the account's own volume -- a global sequence would leak every other tenant's
+   * inspection count and let adjacent numbers be used for cross-account inference.
+   *
+   * DISPLAY ONLY. It is never an authorization input, never a route parameter, and never a lookup
+   * key across scopes; `id` remains the sole identity the server authorizes on. It is deliberately
+   * NOT derived from the uuid and NOT derived from any checksum -- a checksum is integrity metadata
+   * that changes whenever the report is regenerated, which is the opposite of what a record number
+   * must do.
+   *
+   * NULLABLE only so migration 1800000017000 can be applied before this code is deployed. Every row
+   * the allocator writes carries a value.
+   */
+  @Column({ type: 'integer', nullable: true })
+  displayNumber: number | null;
+
   @Column({ type: 'varchar', length: 24, default: 'draft' })
   status: 'draft' | 'in_review' | 'completed' | 'archived';
 
@@ -93,6 +113,24 @@ export class Inspection {
   /** See INSPECTION_REGULATORY_CONTEXTS. Persisted; inherited by every finding. */
   @Column({ type: 'varchar', length: 32, default: 'unknown' })
   regulatoryContext: InspectionRegulatoryContext;
+
+  /**
+   * The governed knowledge release that governs this inspection's regulatory authority.
+   *
+   * WRITE-ONCE. Acquired the first time an analysis runs under a governed cutover mode with a
+   * release active, and never replaced: reopening, re-analysing or regenerating the report
+   * reproduces the regulatory basis the customer was originally given, even after a newer release
+   * becomes active. Moving an inspection to a newer release is a migration decision a person makes
+   * deliberately -- no request path may make it implicitly, so nothing UPDATEs a non-NULL value
+   * (see `standards/releases/inspection-release-binding.ts`).
+   *
+   * NULL is the ordinary state and is honest: no governed release informed this inspection. It is
+   * never backfilled -- stamping an id onto an inspection whose retrieval was genuinely unscoped
+   * would be the false provenance KG-1 exists to prevent. Sibling of `regulatoryContext`: both are
+   * inspection-level regulatory facts every analysis in the workflow inherits.
+   */
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  knowledgeReleaseId: string | null;
 
   @Column({ type: 'timestamptz', nullable: true })
   completedAt: Date | null;

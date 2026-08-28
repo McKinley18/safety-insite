@@ -1,3 +1,5 @@
+import { RISK_BAND_CLASSES, riskBandForScore } from "@/lib/inspection/riskBands";
+
 type RiskScaleItem = {
   score: number;
   label: string;
@@ -20,14 +22,20 @@ type Props = {
   setLikelihood: (value: number) => void;
 };
 
+/**
+ * Cell banding comes from the ONE shared table in `lib/inspection/riskBands.ts`, which mirrors
+ * `backend/src/safescope-v2/risk/risk-profiles.ts` and is held to it by
+ * `npm run check:risk-band-parity`.
+ *
+ * This was previously a proportional rule (>=75% Critical, >=50% High, >=25% Medium), which
+ * disagrees with the engine at ordinary cells: on the 5x5 matrix severity 4 x likelihood 3 = 12 is
+ * 48% and was coloured "Medium", while the engine's band table -- the one that decides what is
+ * SAVED on the finding and printed in the report -- calls 12 "High". A matrix cell whose colour
+ * contradicts the risk recorded against it is a safety-relevant display defect.
+ */
 function scoreBand(score: number, maxScore: number) {
-  const max = maxScore * maxScore;
-  const ratio = score / max;
-
-  if (ratio >= 0.75) return { label: "Critical", cls: "bg-red-100 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-200 dark:border-red-800" };
-  if (ratio >= 0.5) return { label: "High", cls: "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:border-orange-800" };
-  if (ratio >= 0.25) return { label: "Medium", cls: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-800" };
-  return { label: "Low", cls: "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-800" };
+  const label = riskBandForScore(score, maxScore);
+  return { label, cls: RISK_BAND_CLASSES[label] };
 }
 
 export default function RiskReviewSection({

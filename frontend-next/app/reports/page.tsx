@@ -5,21 +5,48 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import {
-  archivePersistedReport,
   downloadPersistedReport,
   listPersistedReports,
   regulatoryContextLabel,
   type PersistedReport,
 } from "@/lib/canonicalWorkflowApi";
 import { FileText } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * THE REPORT LIBRARY.
+ *
+ * One card per inspection, because an inspection has ONE report. Finishing a reopened inspection
+ * replaces that report rather than adding a version beside it, so there is no version list here,
+ * nothing marked superseded, and no choice for the customer to make about which report is real.
+ *
+ * Each card is explicitly a report OF an inspection: it carries the inspection's record number,
+ * title and site, when the inspection was completed, how many findings it recorded, its
+ * jurisdiction, and when the report itself was last updated -- and it links back to the source
+ * inspection. Raw uuids and checksums are not customer identity and are not shown; the Inspections
+ * area, not this page, remains the inspection library.
+ *
+ * There is deliberately no delete action. The previous "Delete Report" button only set
+ * `archivedAt`, which hid the report permanently with no way for the customer to get it back --
+ * a destructive-sounding control with neither destructive nor reversible semantics. A report is an
+ * output of its inspection, not a disposable object to be removed from underneath it.
+ */
+function formatMoment(value: string | null | undefined) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })
+    + " · "
+    + date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+}
+
 export default function ReportsPage() {
+  const router = useRouter();
   const [reports, setReports] = useState<PersistedReport[]>([]);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [message, setMessage] = useState("");
   const [downloading, setDownloading] = useState("");
-  const [deleting, setDeleting] = useState("");
 
   const load = useCallback(async () => {
     setStatus("loading");
@@ -51,16 +78,18 @@ export default function ReportsPage() {
     };
   }, []);
 
-  async function download(report: PersistedReport, version: number) {
-    const key = `${report.id}:${version}`;
-    setDownloading(key);
+  async function download(report: PersistedReport) {
+    setDownloading(report.id);
     setMessage("");
     try {
-      const blob = await downloadPersistedReport(report.id, version);
+      const blob = await downloadPersistedReport(report.id);
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = `inspection-${report.inspectionId}-v${version}.pdf`;
+      // Named for the customer's record number, never for a uuid or a version counter.
+      anchor.download = report.inspection?.displayNumber
+        ? `inspection-${report.inspection.displayNumber}-report.pdf`
+        : "inspection-report.pdf";
       anchor.click();
       URL.revokeObjectURL(url);
     } catch (error) {
@@ -70,22 +99,26 @@ export default function ReportsPage() {
     }
   }
 
-  async function deleteReport(report: PersistedReport) {
-    const confirmed = window.confirm(
-      `Delete "${report.inspection?.title || "Inspection"}${report.inspection?.siteName ? ` · ${report.inspection.siteName}` : ""}" from your reports list? This removes it from view; it is not permanently erased.`,
+  /**
+   * Open the completed inspection this report was produced from.
+   *
+   * Writes the same selection context every other entry point into the inspection writes, so the
+   * completed-inspection page re-reads the record from the server. Nothing about access changes:
+   * this report already passed the server's owner/organization scope filter to appear here.
+   */
+  function viewInspection(report: PersistedReport) {
+    if (!report.inspection) return;
+    window.localStorage.setItem(
+      "sentinel_selected_inspection_context",
+      JSON.stringify({
+        persistedInspectionId: report.inspectionId,
+        persistenceState: "saved",
+        inspectionTitle: report.inspection.title,
+        regulatoryContext: report.inspection.regulatoryContext,
+        agency: regulatoryContextLabel(report.inspection.regulatoryContext),
+      }),
     );
-    if (!confirmed) return;
-
-    setDeleting(report.id);
-    setMessage("");
-    try {
-      await archivePersistedReport(report.id);
-      setReports((current) => current.filter((item) => item.id !== report.id));
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Report could not be deleted.");
-    } finally {
-      setDeleting("");
-    }
+    router.push("/inspection-complete");
   }
 
   return (
@@ -98,7 +131,8 @@ export default function ReportsPage() {
           Inspection Reports
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Generated reports are immutable, versioned, and retrieved through an authorized private-file route.
+          Every completed inspection has one report. Finishing an inspection again replaces its
+          report, so what you download here is always the current record.
         </p>
       </HeroPanel>
 
@@ -110,7 +144,7 @@ export default function ReportsPage() {
 
       {status === "loading" && (
         <AppPanel aria-live="polite" className="generated-report-card">
-          <p className="text-sm font-semibold text-app-text-muted">Loading persisted reports…</p>
+          <p className="text-sm font-semibold text-app-text-muted">Loading reports…</p>
         </AppPanel>
       )}
 
@@ -128,64 +162,69 @@ export default function ReportsPage() {
         <EmptyState
           className="generated-report-card"
           icon={FileText}
-          title="No generated reports"
-          description="Complete an inspection and generate a report to create the first durable version."
+          title="No reports yet"
+          description="Finish an inspection and its report appears here."
         />
       )}
 
       {status === "ready" && reports.length > 0 && (
         <div className="space-y-4">
           {reports.map((report) => (
-            <AppPanel key={report.id} as="article" className="generated-report-card space-y-4">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h2 className="text-base font-black text-app-text">
-                    {report.inspection?.title || "Inspection"}
-                    {report.inspection?.siteName ? ` · ${report.inspection.siteName}` : ""}
-                  </h2>
-                  <p className="mt-1 text-xs font-semibold text-app-text-muted">
-                    {report.inspection ? `${regulatoryContextLabel(report.inspection.regulatoryContext)} · ` : ""}
-                    created {new Date(report.createdAt).toLocaleString()}
+            <AppPanel key={report.id} as="article" className="generated-report-card space-y-4" data-testid="report-card">
+              <div>
+                <h2 className="text-base font-black text-app-text">
+                  {report.inspection?.title || "Inspection"}
+                  {report.inspection?.siteName ? ` · ${report.inspection.siteName}` : ""}
+                </h2>
+                {report.inspection?.displayNumber ? (
+                  <p className="mt-1 text-xs font-black uppercase tracking-wide text-app-text-muted">
+                    Inspection #{report.inspection.displayNumber}
                   </p>
-                  <details className="mt-1">
-                    <summary className="cursor-pointer text-[11px] font-semibold text-app-text-muted">Record IDs</summary>
-                    <p className="text-[11px] text-app-text-muted">Inspection {report.inspectionId} · Report {report.id}</p>
-                  </details>
-                </div>
+                ) : null}
+                <dl className="mt-2 grid gap-x-6 gap-y-1 text-xs font-semibold text-app-text-muted sm:grid-cols-2">
+                  {report.inspection?.completedAt && (
+                    <div className="flex gap-2">
+                      <dt className="font-black">Inspection completed</dt>
+                      <dd>{formatMoment(report.inspection.completedAt)}</dd>
+                    </div>
+                  )}
+                  {/* Distinct from the completion date on purpose: they differ whenever the
+                      inspection was reopened and finished again. */}
+                  {report.reportUpdatedAt && (
+                    <div className="flex gap-2">
+                      <dt className="font-black">Report updated</dt>
+                      <dd>{formatMoment(report.reportUpdatedAt)}</dd>
+                    </div>
+                  )}
+                  <div className="flex gap-2">
+                    <dt className="font-black">Findings</dt>
+                    <dd>{report.inspection?.findingCount ?? 0}</dd>
+                  </div>
+                  {report.inspection && (
+                    <div className="flex gap-2">
+                      <dt className="font-black">Jurisdiction</dt>
+                      <dd>{regulatoryContextLabel(report.inspection.regulatoryContext)}</dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
+              <div className="flex flex-wrap gap-3">
                 <AppButton
                   size="sm"
-                  variant="danger"
-                  disabled={deleting === report.id}
-                  onClick={() => void deleteReport(report)}
+                  disabled={report.status !== "generated" || downloading === report.id}
+                  onClick={() => void download(report)}
                 >
-                  {deleting === report.id ? "Deleting…" : "Delete Report"}
+                  {downloading === report.id ? "Downloading…" : "Download PDF"}
+                </AppButton>
+                <AppButton
+                  size="sm"
+                  variant="secondary"
+                  disabled={!report.inspection}
+                  onClick={() => viewInspection(report)}
+                >
+                  View inspection
                 </AppButton>
               </div>
-              <ul className="space-y-2">
-                {[...report.versions].sort((a, b) => b.version - a.version).map((version) => {
-                  const key = `${report.id}:${version.version}`;
-                  const available = version.status === "generated" || version.status === "superseded";
-                  return (
-                    <li key={version.version} className="flex flex-col gap-3 rounded-xl border border-app-border p-3 sm:flex-row sm:items-center sm:justify-between">
-                      <div>
-                        <p className="text-sm font-black text-app-text">Version {version.version}</p>
-                        <p className="text-xs font-semibold text-app-text-muted">
-                          {version.status}
-                          {version.generatedAt ? ` · ${new Date(version.generatedAt).toLocaleString()}` : ""}
-                          {version.sha256 ? ` · checksum ${version.sha256.slice(0, 12)}…` : ""}
-                        </p>
-                      </div>
-                      <AppButton
-                        size="sm"
-                        disabled={!available || downloading === key}
-                        onClick={() => void download(report, version.version)}
-                      >
-                        {downloading === key ? "Downloading…" : "Download PDF"}
-                      </AppButton>
-                    </li>
-                  );
-                })}
-              </ul>
             </AppPanel>
           ))}
         </div>

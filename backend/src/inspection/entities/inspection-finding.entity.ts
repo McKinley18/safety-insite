@@ -38,6 +38,20 @@ export class InspectionFinding {
   @Column({ type: 'varchar', length: 24 })
   status: 'pending_review' | 'finalized' | 'dismissed' | 'superseded';
 
+  /**
+   * Where this finding came from. Set once, at creation, and never rewritten.
+   *
+   * 'hazlenz_decomposition' — HazLenz proposed the hazard from the observation.
+   * 'user_authored'         — the inspector identified a hazard HazLenz did not propose.
+   *
+   * A user-authored finding must never acquire HazLenz-derived confidence or a citation the engine
+   * did not independently produce, and finalization must never convert it: `finalizeFinding`
+   * deliberately does not assign this field on the update path, so a human review recorded against
+   * a user-authored finding leaves its provenance intact.
+   */
+  @Column({ type: 'varchar', length: 32, default: 'hazlenz_decomposition' })
+  source: 'hazlenz_decomposition' | 'user_authored';
+
   @Column({ type: 'varchar', length: 160, nullable: true })
   hazardCategory: string | null;
 

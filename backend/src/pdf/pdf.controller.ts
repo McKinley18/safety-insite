@@ -23,6 +23,6 @@ export class PdfController {
     void id;
     void req;
     void res;
-    throw new GoneException('Legacy PDF generation is retired. Retrieve an immutable canonical report version.');
+    throw new GoneException('Legacy PDF generation is retired. Retrieve the inspection\'s current report.');
   }
 }

@@ -1,0 +1,1203 @@
+{
+  "phase": "REGULATORY_REVIEWER_GOVERNANCE_AND_IMMUTABLE_RELEASE_VERSIONING",
+  "date": "2026-08-28",
+  "reviewer": {
+    "reviewerId": "insite-product-owner-authorized-regulatory-content-review",
+    "reviewerRole": "regulatory-content-reviewer (non-attorney, non-agency)",
+    "authorizationBasis": "Product-owner authorization recorded in the 2026-08-28 phase directive. NOT an attorney, OSHA, MSHA, PE, CIH or CSP review, and no government approval is claimed or implied.",
+    "method": "Each record compared field by field against the authoritative eCFR text retrieved 2026-08-28 and preserved with SHA-256 checksums in verification/insite-v1-regulatory-source-acquisition-2026-08-28/source-evidence/."
+  },
+  "rubric": {
+    "A": "Regulatory identity — CFR title, part, section, paragraph/subparagraph, jurisdiction",
+    "B": "Source integrity — the source reference resolves to the captured authoritative provision; retrieval metadata present; source evidence checksummed",
+    "C": "Customer-facing summary fidelity — accurate to the cited provision; does not broaden or narrow it; does not convert a conditional requirement into an unconditional one; does not omit a qualification essential to applicability; introduces no obligation absent from the provision",
+    "D": "Applicability — hazard-family mapping defensible; regime correct; sibling-paragraph interaction represented; OSHA not treated as MSHA authority; construction and general-industry distinctions preserved",
+    "E": "Governance and schema — provenance populated, checksum valid, no duplicate regulatory identity, no conflicting record, schema valid"
+  },
+  "dispositionsAllowed": [
+    "APPROVE",
+    "REJECT_CORRECTION_REQUIRED",
+    "ESCALATE_INTERPRETATION_REQUIRED",
+    "OUT_OF_SCOPE"
+  ],
+  "totals": {
+    "reviewed": 72,
+    "APPROVE": 64,
+    "REJECT_CORRECTION_REQUIRED": 8,
+    "ESCALATE_INTERPRETATION_REQUIRED": 0,
+    "OUT_OF_SCOPE": 0
+  },
+  "candidateRelease": {
+    "releaseId": "federal-core-2026-08-28.1",
+    "releaseVersion": "2026-08-28.1",
+    "predecessor": "federal-core-2026-07-30.1",
+    "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "memberCount": 64
+  },
+  "records": [
+    {
+      "citationKey": "30cfr56.14107(a)",
+      "citation": "30 CFR 56.14107(a)",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Machine Guarding",
+        "Caught-In/Between",
+        "Entanglement"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-M/section-56.14107",
+      "retrievalDate": "2026-08-20",
+      "summary": "Moving machine parts must be guarded to protect persons from contacting gears, sprockets, chains, drive, head, tail and takeup pulleys, flywheels, couplings, shafts, fan blades, and similar moving parts that can cause injury (30 CFR 56.14107(a)). That duty is limited by the next paragraph: guards are not required where the exposed moving parts are at least seven feet away from walking or working s",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr57.14107(a)",
+      "citation": "30 CFR 57.14107(a)",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Machine Guarding",
+        "Caught-In/Between",
+        "Entanglement"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Underground metal/nonmetal moving machine parts must be guarded when contact exposure exists.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: omits a qualification essential to applicability. The summary states the guarding duty but not 57.14107(b), the seven-foot exemption — the very limit its sibling record for 56.14107(a) names explicitly. Same regulation structure, inconsistent treatment; a reader shown (a) alone concludes guarding is always required.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.14105",
+      "citation": "30 CFR 56.14105",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Lockout / Stored Energy",
+        "Machine Guarding",
+        "Maintenance Safety"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Machinery or equipment must be blocked against hazardous motion and power must be off when repairs or maintenance expose miners to hazardous motion.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: materially narrows the regulation. The rule requires repairs or maintenance to be performed only after power is off and the equipment blocked — unconditionally — with a narrow exception for adjustment or testing that cannot be done without motion, provided persons are effectively protected. The summary conditions the duty on miners being \"exposed to hazardous motion\" and omits the exception entirely.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.12016",
+      "citation": "30 CFR 56.12016",
+      "jurisdiction": "msha",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Electrical",
+        "Lockout / Stored Energy"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-M/section-56.12016",
+      "retrievalDate": "2026-08-20",
+      "summary": "Electrically powered equipment must be deenergized before mechanical work is done on it, and power switches must be locked out or other measures taken that will prevent the equipment from being energized without the knowledge of the individuals working on it. Suitable warning notices must be posted at the power switch and signed by the individuals who are to do the work, and such locks or preventi",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.212(a)(1)",
+      "citation": "1910.212(a)(1)",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Machine Guarding",
+        "Caught-In/Between"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-O/section-1910.212",
+      "retrievalDate": "2026-08-20",
+      "summary": "One or more methods of machine guarding must be provided to protect the operator and other employees in the machine area from hazards such as those created by point of operation, ingoing nip points, rotating parts, and flying chips and sparks; the rule gives barrier guards, two-hand tripping devices and electronic safety devices as examples of guarding methods (29 CFR 1910.212(a)(1)). Guards must ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.219",
+      "citation": "1910.219",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Machine Guarding",
+        "Power Transmission"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Mechanical power-transmission equipment such as belts, pulleys, shafts, gears, and sprockets must be guarded where employee exposure exists.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: materially broadens the regulation. A one-line summary (\"must be guarded where employee exposure exists\") omits the section's own scope exemptions at 1910.219(a)(1), which exclude enumerated small and slow-moving belts, and states no paragraph.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.147",
+      "citation": "29 CFR 1910.147",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Lockout / Stored Energy"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-J/section-1910.147",
+      "retrievalDate": "2026-08-20",
+      "summary": "Before any employee performs servicing or maintenance on a machine or equipment where unexpected energizing, start up, or release of stored energy could occur and cause injury, the employer must establish an energy control program consisting of energy control procedures, employee training and periodic inspections, and the machine or equipment must be isolated from its energy source and rendered in",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.501",
+      "citation": "29 CFR 1926.501",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Fall Protection",
+        "Walking/Working Surfaces"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-M/section-1926.501",
+      "retrievalDate": "2026-08-20",
+      "summary": "Construction employers must provide fall protection for employees exposed to falls, and all fall protection required by this section must conform to the criteria in 29 CFR 1926.502 (1926.501(a)(1)). The employer must first determine that the walking/working surfaces employees will work on have the strength and structural integrity to support them safely, and may allow work on those surfaces only w",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.59",
+      "citation": "29 CFR 1926.59",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Hazard Communication",
+        "Chemical Exposure"
+      ],
+      "authoritativeSource": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.59",
+      "retrievalDate": "2026-08-18",
+      "summary": "The hazard communication requirements applicable to construction work under 29 CFR 1926.59 are identical to those set forth at 29 CFR 1910.1200: containers of hazardous chemicals in the workplace must be labeled with the product identifier and hazard information, and employers must maintain the hazard communication program, safety data sheets, and training that 1910.1200 requires.",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.52",
+      "citation": "29 CFR 1926.52",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Noise Exposure",
+        "Occupational Health"
+      ],
+      "authoritativeSource": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.52",
+      "retrievalDate": "2026-08-18",
+      "summary": "In construction, protection against the effects of noise exposure must be provided when sound levels exceed those in Table D-2 of 29 CFR 1926.52 measured on the A-scale at slow response (90 dBA for an 8-hour duration); when employees are subjected to sound levels exceeding Table D-2, feasible administrative or engineering controls must be used, and where sound levels exceed the table values a cont",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.416(a)(1)",
+      "citation": "29 CFR 1926.416(a)(1)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Electrical",
+        "Electric Shock"
+      ],
+      "authoritativeSource": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.416",
+      "retrievalDate": "2026-08-18",
+      "summary": "No employer may permit an employee to work in such proximity to any part of an electric power circuit that the employee could contact the circuit in the course of work, unless the employee is protected against electric shock by deenergizing the circuit and grounding it, or by guarding it effectively by insulation or other means (29 CFR 1926.416(a)(1)).",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.303",
+      "citation": "29 CFR 1910.303",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Electrical",
+        "Electric Shock"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-S/section-1910.303",
+      "retrievalDate": "2026-08-19",
+      "summary": "Section 1910.303 sets OSHA's general requirements for electric equipment and installations in general industry. Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees (29 CFR 1910.303(b)(1)), and listed or labeled equipment must be installed and used in accordance with any instructions included in the listing or labeling (1910.3",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.300(b)(2)",
+      "citation": "29 CFR 1926.300(b)(2)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Machine Guarding",
+        "Caught-In/Between"
+      ],
+      "authoritativeSource": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.300",
+      "retrievalDate": "2026-08-18",
+      "summary": "Belts, gears, shafts, pulleys, sprockets, spindles, drums, fly wheels, chains, or other reciprocating, rotating or moving parts of equipment must be guarded if such parts are exposed to contact by employees or otherwise create a hazard (29 CFR 1926.300(b)(2)); power operated tools designed to accommodate guards must be equipped with such guards when in use ((b)(1)).",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.34(a)",
+      "citation": "29 CFR 1926.34(a)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Emergency Egress",
+        "Fire Protection"
+      ],
+      "authoritativeSource": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.34",
+      "retrievalDate": "2026-08-18",
+      "summary": "In every building or structure on a construction site, exits must be so arranged and maintained as to provide free and unobstructed egress from all parts of the building or structure at all times when it is occupied (29 CFR 1926.34(a)); means of egress must be continually maintained free of all obstructions or impediments to full instant use in case of fire or other emergency (1926.34(c)).",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.36",
+      "citation": "29 CFR 1910.36",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Emergency Egress",
+        "Fire Protection"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-E/section-1910.36",
+      "retrievalDate": "2026-08-19",
+      "summary": "Exit routes in general industry must meet OSHA's design and construction requirements: each exit route must be a permanent part of the workplace (29 CFR 1910.36(a)(1)); at least two exit routes must normally be available and located as far apart as practical, with more required where the number of employees, size, occupancy or arrangement of the workplace demands it, and a single exit route permit",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr62.120",
+      "citation": "30 CFR 62.120",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Noise Exposure",
+        "Occupational Health"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-62/subpart-B/section-62.120",
+      "retrievalDate": "2026-08-20",
+      "summary": "If during any work shift a miner's noise exposure equals or exceeds the action level (an 8-hour time-weighted average sound level of 85 dBA, or equivalently a dose of 50 percent, per 30 CFR 62.101), the mine operator must enroll the miner in a hearing conservation program that complies with 30 CFR 62.150.",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr62.130",
+      "citation": "30 CFR 62.130",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Noise Exposure",
+        "Occupational Health"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-62/subpart-B/section-62.130",
+      "retrievalDate": "2026-08-20",
+      "summary": "The mine operator must assure that no miner is exposed during any work shift to noise that exceeds the permissible exposure level (a TWA8 of 90 dBA, or equivalently a dose of 100 percent, per 30 CFR 62.101). If a miner's exposure exceeds the permissible exposure level, the operator must use all feasible engineering and administrative controls to reduce the exposure to the permissible exposure leve",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr47.41(a)",
+      "citation": "30 CFR 47.41(a)",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Hazard Communication",
+        "Chemical Exposure"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-G/part-47/subpart-D/section-47.41",
+      "retrievalDate": "2026-08-20",
+      "summary": "The mine operator must ensure that each container of a hazardous chemical has a label (30 CFR 47.41(a)); missing or unreadable labels must be replaced immediately and existing container labels must not be removed or defaced.",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.132(a)",
+      "citation": "29 CFR 1910.132(a)",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Personal Protective Equipment",
+        "PPE"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "General personal protective equipment (PPE) criteria and provision standards may be relevant when an active operational hazard is present, requiring qualified review of body part exposure, specific task context, and whether proper protective gear was worn or observed missing.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: the summary is not a statement of the provision at all. It reads \"PPE criteria and provision standards may be relevant when an active operational hazard is present, requiring qualified review of body part exposure…\" — that is HazLenz's own selection heuristic, not what 1910.132(a) requires. Because the projection derives standards_master.standardText from this field, it is what a customer would be shown as the standard's content.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.95(a)",
+      "citation": "29 CFR 1926.95(a)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Personal Protective Equipment",
+        "PPE"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Construction personal protective equipment (PPE) criteria and provision standards may be relevant when an active construction-phase operational hazard is present, requiring qualified review of body part exposure, specific construction task context, and whether proper protective gear was worn or observed missing.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: same defect as 1910.132(a) — engine heuristic prose in place of the regulation.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.15006",
+      "citation": "30 CFR 56.15006",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Personal Protective Equipment",
+        "PPE"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "MSHA surface mining special protective equipment and clothing standards may be relevant when an active mining operational hazard is present, requiring qualified review of body part exposure, specific mining task context, and whether proper protective gear was worn or observed missing.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: same defect — engine heuristic prose in place of the regulation.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.178(p)(1)",
+      "citation": "29 CFR 1910.178(p)(1)",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Powered Industrial Trucks",
+        "PIT",
+        "Mobile Equipment"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-N/section-1910.178",
+      "retrievalDate": "2026-08-20",
+      "summary": "If at any time a powered industrial truck is found to be in need of repair, defective, or in any way unsafe, the truck must be taken out of service until it has been restored to safe operating condition (29 CFR 1910.178(p)(1)). The remaining paragraphs of 1910.178(p) address fuelling and fuel-system hazards: fuel tanks must not be filled while the engine is running and spillage must be avoided ((p",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.602(a)(9)(ii)",
+      "citation": "29 CFR 1926.602(a)(9)(ii)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Earthmoving Equipment",
+        "Mobile Equipment",
+        "Material Handling"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Construction mechanized earthmoving equipment standards may be relevant when a loader or backhoe with an obstructed rear view is operated in reverse, requiring qualified review of backup alarm functionality or spotter presence.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: same defect — engine heuristic prose in place of the regulation.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.9100(a)",
+      "citation": "30 CFR 56.9100(a)",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Traffic Control",
+        "Rules of the Road",
+        "Powered Haulage",
+        "Mobile Equipment"
+      ],
+      "authoritativeSource": null,
+      "retrievalDate": null,
+      "summary": "Surface mining traffic safety and right-of-way rules may be relevant on active haulage roads and mine properties, requiring qualified review of speed limits, signs, and vehicle traffic coordination.",
+      "disposition": "REJECT_CORRECTION_REQUIRED",
+      "rationale": "Rubric C: same defect — engine heuristic prose in place of the regulation.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.451(g)(1)",
+      "citation": "29 CFR 1926.451(g)(1)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Fall Protection",
+        "Scaffolds"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-L/section-1926.451",
+      "retrievalDate": "2026-08-20",
+      "summary": "Each employee on a scaffold more than 10 feet (3.1 m) above a lower level must be protected from falling to that lower level (29 CFR 1926.451(g)(1)). The type of protection required depends on the type of scaffold: 1926.451(g)(1)(i)-(vii) prescribe personal fall arrest systems, guardrail systems, or a combination, for each scaffold type, and fall protection for scaffold erectors and dismantlers is",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.652(a)(1)",
+      "citation": "29 CFR 1926.652(a)(1)",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Excavation / Trenching",
+        "Caught-In/Between"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-P/section-1926.652",
+      "retrievalDate": "2026-08-20",
+      "summary": "Each employee in an excavation must be protected from cave-ins by an adequate protective system designed in accordance with 29 CFR 1926.652(b) or (c), except in two cases: where the excavation is made entirely in stable rock, or where the excavation is less than 5 feet (1.52 m) deep and examination of the ground by a competent person provides no indication of a potential cave-in (1926.652(a)(1)(i)",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.28",
+      "citation": "29 CFR 1910.28",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Fall Protection",
+        "Walking/Working Surfaces"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-D/section-1910.28",
+      "retrievalDate": "2026-08-20",
+      "summary": "Section 1910.28 requires general-industry employers to protect each employee exposed to fall and falling-object hazards on walking-working surfaces, and 1910.28(b) sets the protection required for each situation. For stairways, 1910.28(b)(11) requires that each employee exposed to an unprotected side or edge of a stairway landing 4 feet (1.2 m) or more above a lower level be protected by a guardra",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.95",
+      "citation": "29 CFR 1910.95",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Noise Exposure",
+        "Occupational Health"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-G/section-1910.95",
+      "retrievalDate": "2026-08-20",
+      "summary": "Protection against the effects of noise exposure must be provided when sound levels exceed those in Table G-16 of 29 CFR 1910.95, measured on the A scale at slow response — Table G-16 permits 90 dBA for 8 hours, 92 dBA for 6 hours, 95 dBA for 4 hours, and so on (1910.95(a)). Where employees are subjected to sound exceeding those levels, feasible administrative or engineering controls must be used ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.1200",
+      "citation": "29 CFR 1910.1200",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Hazard Communication",
+        "Chemical Exposure"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-Z/section-1910.1200",
+      "retrievalDate": "2026-08-20",
+      "summary": "Employers must ensure that each container of hazardous chemicals in the workplace is labeled, tagged or marked with either the full shipped-container information required by 29 CFR 1910.1200(f)(1)(i)-(v), or with the product identifier plus words, pictures or symbols giving at least general information about the chemical's hazards which, together with the other information available under the empl",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.1153",
+      "citation": "29 CFR 1926.1153",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Respirable Crystalline Silica",
+        "Chemical Exposure",
+        "Occupational Health"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-Z/section-1926.1153",
+      "retrievalDate": "2026-08-20",
+      "summary": "For each employee engaged in a task identified on Table 1 of 29 CFR 1926.1153, the employer must fully and properly implement the engineering controls, work practices and respiratory protection that Table 1 specifies for that task, unless the employer instead assesses and limits exposure under 1926.1153(d) (1926.1153(c)(1)). For stationary masonry saws (Table 1 entry (i)) and for handheld power sa",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.14132",
+      "citation": "30 CFR 56.14132",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Mobile Equipment",
+        "Powered Haulage",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-M/section-56.14132",
+      "retrievalDate": "2026-08-20",
+      "summary": "Manually-operated horns or other audible warning devices provided on self-propelled mobile equipment as a safety feature must be maintained in functional condition (30 CFR 56.14132(a)). Separately, when the operator has an obstructed view to the rear, self-propelled mobile equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm sounding at ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.14132(b)(1)",
+      "citation": "30 CFR 56.14132(b)(1)",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Mobile Equipment",
+        "Powered Haulage",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-M/section-56.14132",
+      "retrievalDate": "2026-08-20",
+      "summary": "When the operator of self-propelled mobile equipment has an obstructed view to the rear, the equipment must have one of the following: an automatic reverse-activated signal alarm; a wheel-mounted bell alarm which sounds at least once for each three feet of reverse movement; a discriminating backup alarm that covers the area of obstructed view; or an observer to signal when it is safe to back up (3",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.22(a)",
+      "citation": "29 CFR 1910.22(a)",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Walking/Working Surfaces",
+        "Slips, Trips and Falls"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-D/section-1910.22",
+      "retrievalDate": "2026-08-20",
+      "summary": "Employers must ensure that all places of employment, passageways, storerooms, service rooms and walking-working surfaces are kept in a clean, orderly and sanitary condition (29 CFR 1910.22(a)(1)); that the floor of each workroom is maintained in a clean and, to the extent feasible, dry condition, with drainage maintained and, to the extent feasible, dry standing places such as false floors, platfo",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.303(b)(1)",
+      "citation": "29 CFR 1910.303(b)(1)",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Electrical"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-S/section-1910.303",
+      "retrievalDate": "2026-08-20",
+      "summary": "Electric equipment must be free from recognized hazards that are likely to cause death or serious physical harm to employees, and the safety of equipment is determined using the considerations listed in 29 CFR 1910.303(b)(1)(i)-(viii): suitability for installation and use in conformity with subpart S; mechanical strength and durability, including the adequacy of protection provided by parts design",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.146",
+      "citation": "29 CFR 1910.146",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Confined Space",
+        "Atmospheric Hazards"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-J/section-1910.146",
+      "retrievalDate": "2026-08-20",
+      "summary": "Employers must evaluate the workplace to determine whether any spaces are permit-required confined spaces (29 CFR 1910.146(c)(1)). If the workplace contains permit spaces, the employer must inform exposed employees of their existence, location and danger by posting danger signs or other equally effective means (1910.146(c)(2)). If the employer decides employees will not enter permit spaces, it mus",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.252",
+      "citation": "29 CFR 1910.252",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Welding/HotWork",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-Q/section-1910.252",
+      "retrievalDate": "2026-08-28",
+      "summary": "Before welding or cutting begins the area must be inspected and the object moved to a safe location, or, where it cannot be moved, movable fire hazards must be removed and immovable ones shielded (29 CFR 1910.252(a)(2)(i)-(ii)). A fire watch is REQUIRED whenever welding or cutting is performed where other than a minor fire might develop, including where appreciable combustibles are within 35 feet ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.352",
+      "citation": "29 CFR 1926.352",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Welding/HotWork",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-J/section-1926.352",
+      "retrievalDate": "2026-08-28",
+      "summary": "On construction work the object to be welded, cut or heated must be moved to a designated safe location where practical; where it cannot be moved, movable fire hazards must be taken to a safe place or otherwise protected, and where neither is possible positive means must confine the heat, sparks and slag (29 CFR 1926.352(a)-(b)). Suitable fire extinguishing equipment must be immediately available ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.4100",
+      "citation": "30 CFR 56.4100",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Fire",
+        "Welding/HotWork"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-C/section-56.4100",
+      "retrievalDate": "2026-08-28",
+      "summary": "At surface metal and nonmetal mines no person may smoke or use an open flame where flammable or combustible liquids (including greases) or flammable gases are used or transported in a manner that could create a fire hazard, or are stored or handled (30 CFR 56.4100(a)-(b)). This is MSHA's ignition-source control for hot work near flammables; it is a prohibition on the ignition source rather than a ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.157",
+      "citation": "29 CFR 1910.157",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "FireProtection",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-L/section-1910.157",
+      "retrievalDate": "2026-08-28",
+      "summary": "Where the employer provides portable fire extinguishers for employee use, they must be mounted, located and identified so that they are readily accessible without subjecting employees to injury (29 CFR 1910.157(c)(1)), selected and distributed by hazard class and travel distance (paragraph (d)), and inspected, maintained and annually tested (paragraph (e)). The section's own scope paragraph (a) ma",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.150",
+      "citation": "29 CFR 1926.150",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "FireProtection",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-F/section-1926.150",
+      "retrievalDate": "2026-08-28",
+      "summary": "The employer must develop a fire protection programme followed throughout all phases of construction, with firefighting equipment provided, conspicuously located and available at all times (29 CFR 1926.150(a)). A fire extinguisher rated at least 2A must be provided for each 3,000 square feet of protected building area, with travel distance from any point not exceeding 100 feet (29 CFR 1926.150(c)(",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.253",
+      "citation": "29 CFR 1910.253",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "CompressedGasCylinders",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-Q/section-1910.253",
+      "retrievalDate": "2026-08-28",
+      "summary": "Cylinders must be kept away from radiators and other heat sources, stored in well-protected, well-ventilated, dry locations, and valve protection caps must be in place where the cylinder is designed to accept one (29 CFR 1910.253(b)(2)). Oxygen cylinders in storage must be separated from fuel-gas cylinders and from combustible materials — especially oil or grease — by a minimum of 20 feet, or by a",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.101",
+      "citation": "29 CFR 1910.101",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "CompressedGasCylinders"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-H/section-1910.101",
+      "retrievalDate": "2026-08-28",
+      "summary": "The employer must determine that compressed gas cylinders under its control are in a safe condition to the extent visual inspection can establish it (29 CFR 1910.101(a)), and in-plant handling, storage and utilisation of all compressed gases must follow Compressed Gas Association Pamphlet P-1-1965, incorporated by reference (29 CFR 1910.101(b)). Because the operative handling rules are incorporate",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.350",
+      "citation": "29 CFR 1926.350",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "CompressedGasCylinders",
+        "Welding/HotWork"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-J/section-1926.350",
+      "retrievalDate": "2026-08-28",
+      "summary": "On construction work valve protection caps must be in place and secured when cylinders are transported, moved or stored (29 CFR 1926.350(a)(1)), and compressed gas cylinders must be secured in an upright position at all times except, if necessary, for short periods while actually being hoisted or carried (29 CFR 1926.350(a)(9)). Cylinders must be kept far enough from welding or cutting operations ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.16005",
+      "citation": "30 CFR 56.16005",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "CompressedGasCylinders"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-O/section-56.16005",
+      "retrievalDate": "2026-08-28",
+      "summary": "Compressed and liquid gas cylinders must be secured in a safe manner (30 CFR 56.16005). MSHA states the companion valve-protection duty separately: valves must be protected by covers when cylinders are transported or stored, and by a safe location when the cylinders are in use (30 CFR 56.16006). An unrestrained cylinder is a violation of this section on its own, independent of whether the valve is",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.16006",
+      "citation": "30 CFR 56.16006",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "CompressedGasCylinders"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-O/section-56.16006",
+      "retrievalDate": "2026-08-28",
+      "summary": "Valves on compressed gas cylinders must be protected by covers when the cylinders are being transported or stored, and by a safe location when the cylinders are in use (30 CFR 56.16006). A cylinder with its valve protection cap removed while standing in storage violates this section even if the cylinder itself is restrained; restraint is required separately by 30 CFR 56.16005.",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.134",
+      "citation": "29 CFR 1910.134",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "RespiratoryProtection",
+        "OccupationalHealth"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-I/section-1910.134",
+      "retrievalDate": "2026-08-28",
+      "summary": "Where engineering controls are not feasible, or while they are being instituted, appropriate respirators must be provided by the employer and used by employees (29 CFR 1910.134(a)(1)-(2)). The employer must establish and maintain a written respiratory protection programme with worksite-specific procedures, covering selection, medical evaluation, fit testing, proper use, maintenance and training, w",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.103",
+      "citation": "29 CFR 1926.103",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "RespiratoryProtection",
+        "OccupationalHealth"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-E/section-1926.103",
+      "retrievalDate": "2026-08-28",
+      "summary": "The requirements applicable to construction work under this section are identical to those set forth at 29 CFR 1910.134 (29 CFR 1926.103). The section is a cross-reference and carries no independent text, so the operative duties — programme, selection, medical evaluation, fit testing, use and maintenance — are those of 1910.134 applied to construction work. Citing this section rather than 1910.134",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.94",
+      "citation": "29 CFR 1910.94",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Ventilation",
+        "OccupationalHealth"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-G/section-1910.94",
+      "retrievalDate": "2026-08-28",
+      "summary": "This section states local exhaust ventilation duties for specific operations — abrasive blasting (paragraph (a)), grinding, polishing and buffing (paragraph (b)), spray finishing (paragraph (c)) and open-surface tanks (paragraph (d)). It is operation-specific rather than a general duty to ventilate: a ventilation deficiency for an operation NOT listed here is not covered by this section, and weldi",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.353",
+      "citation": "29 CFR 1926.353",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Ventilation",
+        "Welding/HotWork",
+        "RespiratoryProtection"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-J/section-1926.353",
+      "retrievalDate": "2026-08-28",
+      "summary": "Welding, cutting or heating in a confined space must be adequately ventilated by mechanical means to prevent accumulation of toxic materials or possible oxygen deficiency (29 CFR 1926.353(b)(1)); where that is not feasible, airline respirators must be used and an attendant with a pre-planned rescue capability must be stationed outside (29 CFR 1926.353(b)(2)). General mechanical or local exhaust ve",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.5005",
+      "citation": "30 CFR 56.5005",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "RespiratoryProtection",
+        "Ventilation",
+        "OccupationalHealth"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-D/section-56.5005",
+      "retrievalDate": "2026-08-28",
+      "summary": "Control of employee exposure to harmful airborne contaminants must be, insofar as feasible, by prevention of contamination, removal by exhaust ventilation, or dilution with uncontaminated air (30 CFR 56.5005). Respirators are permitted only where engineering controls have not been developed or where the nature of the work requires it, and then only for reasonable periods; where respirators are per",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.14213",
+      "citation": "30 CFR 56.14213",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Ventilation",
+        "Welding/HotWork"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-M/section-56.14213",
+      "retrievalDate": "2026-08-28",
+      "summary": "Welding operations must be shielded when performed at locations where arc flash could be hazardous to persons, and all welding operations must be well-ventilated (30 CFR 56.14213(a)-(b)). This is MSHA's welding ventilation and arc-flash shielding duty; it is stated in Subpart M with machinery and equipment rather than with fire prevention, and it is distinct from the ignition-source prohibition at",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.133",
+      "citation": "29 CFR 1910.133",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "PPE",
+        "PersonalProtectiveEquipment"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-I/section-1910.133",
+      "retrievalDate": "2026-08-28",
+      "summary": "The employer must ensure that each affected employee uses appropriate eye or face protection when exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapours, or potentially injurious light radiation (29 CFR 1910.133(a)(1)). Side protection is required where there is a hazard from flying objects (paragraph (a)(2)), and p",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.102",
+      "citation": "29 CFR 1926.102",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "PPE",
+        "PersonalProtectiveEquipment"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-E/section-1926.102",
+      "retrievalDate": "2026-08-28",
+      "summary": "The employer must ensure that each affected employee uses appropriate eye or face protection when exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapours, or potentially injurious light radiation (29 CFR 1926.102(a)(1)). Side protection is required where there is a hazard from flying objects, and filter lenses of the",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.15004",
+      "citation": "30 CFR 56.15004",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "PPE",
+        "PersonalProtectiveEquipment"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-N/section-56.15004",
+      "retrievalDate": "2026-08-28",
+      "summary": "All persons must wear safety glasses, goggles, face shields or other suitable protective devices when in or around an area of a mine or plant where a hazard exists which could cause injury to unprotected eyes (30 CFR 56.15004). The duty attaches to the area, not only to the task, so a person merely present in the hazard area is covered. MSHA states welding-specific protective equipment separately ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.176",
+      "citation": "29 CFR 1910.176",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "MaterialHandling",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-N/section-1910.176",
+      "retrievalDate": "2026-08-28",
+      "summary": "Storage of material must not create a hazard: bags, containers and bundles stored in tiers must be stacked, blocked, interlocked and limited in height so they are stable and secure against sliding or collapse (29 CFR 1910.176(b)). Aisles and passageways where mechanical handling equipment is used must be kept clear, in good repair and appropriately marked, with sufficient safe clearances (paragrap",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.250",
+      "citation": "29 CFR 1926.250",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "MaterialHandling",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-H/section-1926.250",
+      "retrievalDate": "2026-08-28",
+      "summary": "All materials stored in tiers must be stacked, racked, blocked, interlocked or otherwise secured to prevent sliding, falling or collapse (29 CFR 1926.250(a)(1)). Stored material must not exceed maximum safe floor load limits, which must be conspicuously posted in storage areas (paragraph (a)(2)), and aisles and passageways must be kept clear and in good repair for the free and safe movement of mat",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.16001",
+      "citation": "30 CFR 56.16001",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "MaterialHandling",
+        "Struck-By",
+        "TripsandFalls"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-O/section-56.16001",
+      "retrievalDate": "2026-08-28",
+      "summary": "Supplies must not be stacked or stored in a manner which creates tripping or fall-of-material hazards (30 CFR 56.16001). MSHA states the duty by outcome rather than by stacking method: the question is whether the stack as found creates a tripping or falling-material hazard, not whether a particular blocking or interlocking technique was used. Storage of hazardous materials is addressed separately ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.184",
+      "citation": "29 CFR 1910.184",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Lifting & Rigging",
+        "SuspendedLoads",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-N/section-1910.184",
+      "retrievalDate": "2026-08-28",
+      "summary": "Employees must be kept clear of loads about to be lifted and of suspended loads (29 CFR 1910.184(c)(9)). Slings must be inspected each day before use and removed from service if damaged or defective (paragraphs (d) and (e)(3)), and a sling must not be loaded beyond its rated capacity (paragraph (c)(1)). A cut, torn or otherwise damaged synthetic web sling must be removed from service immediately; ",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.179",
+      "citation": "29 CFR 1910.179",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Cranes/Hoisting",
+        "SuspendedLoads",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-N/section-1910.179",
+      "retrievalDate": "2026-08-28",
+      "summary": "The operator must not carry loads over people, and must not leave the controls while a load is suspended (29 CFR 1910.179(n)(3)(vi) and (n)(3)(v)). The section also states running-rope inspection, hoist-limit testing and periodic inspection duties (paragraphs (j) and (m)). Sling condition and keeping employees clear of loads are stated separately at 29 CFR 1910.184; a suspended-load exposure often",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.251",
+      "citation": "29 CFR 1926.251",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Lifting & Rigging",
+        "SuspendedLoads"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-H/section-1926.251",
+      "retrievalDate": "2026-08-28",
+      "summary": "Rigging equipment must be inspected before use on each shift and as necessary during use, and defective rigging equipment must be removed from service (29 CFR 1926.251(a)(1) and (a)(6)). Rigging equipment must not be loaded beyond its recommended safe working load (paragraph (a)(2)), and synthetic web slings must be immediately removed from service where the section's damage criteria are met, incl",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.1425",
+      "citation": "29 CFR 1926.1425",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "SuspendedLoads",
+        "Cranes/Hoisting",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-CC/section-1926.1425",
+      "retrievalDate": "2026-08-28",
+      "summary": "While the operator is not moving a suspended load, no employee may be within the fall zone except employees engaged in hooking, unhooking or guiding the load, in the initial attachment of the load, or operating a concrete hopper or bucket (29 CFR 1926.1425(b)). Where employees are in the fall zone for those permitted reasons, the materials must be rigged to prevent unintentional displacement, hook",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.16009",
+      "citation": "30 CFR 56.16009",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "SuspendedLoads",
+        "Struck-By"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-O/section-56.16009",
+      "retrievalDate": "2026-08-28",
+      "summary": "Persons must stay clear of suspended loads (30 CFR 56.16009). MSHA states the duty absolutely and without the fall-zone exceptions OSHA construction allows at 29 CFR 1926.1425(b) — there is no listed exception for guiding or hooking the load — so a person guiding a suspended load at a mine is exposed under this section. Taglines are the stated means of steadying or guiding a suspended load at 30 C",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.16007",
+      "citation": "30 CFR 56.16007",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "Lifting & Rigging",
+        "SuspendedLoads"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-O/section-56.16007",
+      "retrievalDate": "2026-08-28",
+      "summary": "Taglines must be attached to loads that may require steadying or guidance while suspended, and hitches and slings used to hoist materials must be suitable for the particular material handled (30 CFR 56.16007(a)-(b)). The tagline duty is what permits a load to be guided without a person entering the suspended-load zone that 30 CFR 56.16009 requires them to stay clear of.",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.1204",
+      "citation": "29 CFR 1926.1204",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Confined Space",
+        "Atmospheric Hazards"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-AA/section-1926.1204",
+      "retrievalDate": "2026-08-28",
+      "summary": "Each entry employer must implement measures to prevent unauthorised entry, identify and evaluate permit-space hazards before employees enter, and develop the procedures for safe entry — including specifying acceptable entry conditions, isolating the space and its physical hazards, purging or ventilating to control atmospheric hazards, and verifying acceptable conditions for the duration of the ent",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.417",
+      "citation": "29 CFR 1926.417",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Lockout/StoredEnergy",
+        "Electrical"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-K/section-1926.417",
+      "retrievalDate": "2026-08-28",
+      "summary": "Controls that are to be deactivated during work on energized or deenergized equipment or circuits must be tagged; deenergized equipment or circuits must be rendered inoperative and have tags attached at all points where they can be energized; and tags must plainly identify the equipment or circuits being worked on (29 CFR 1926.417(a)-(c)). This is construction's electrical lockout and tagging duty",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.15005",
+      "citation": "30 CFR 56.15005",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "FallProtection",
+        "Confined Space"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-N/section-56.15005",
+      "retrievalDate": "2026-08-28",
+      "summary": "Safety belts and lines must be worn when persons work where there is danger of falling, and a second person must tend the lifeline when bins, tanks or other dangerous areas are entered (30 CFR 56.15005). MSHA states the fall duty as personal fall protection worn by the person rather than as a hierarchy of guardrails, nets and arrest systems, so this section carries BOTH the fall-protection duty an",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.3200",
+      "citation": "30 CFR 56.3200",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "GroundControl",
+        "Caught-In/Between"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-B/section-56.3200",
+      "retrievalDate": "2026-08-28",
+      "summary": "Ground conditions that create a hazard to persons must be taken down or supported before other work or travel is permitted in the affected area; until corrective work is completed the area must be posted with a warning against entry, and when left unattended a barrier must be installed to impede unauthorised entry (30 CFR 56.3200). This is MSHA's ground-control duty for highwalls, banks and unstab",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.1053",
+      "citation": "29 CFR 1910.1053",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "Industrial Hygiene",
+        "RespiratoryProtection",
+        "OccupationalHealth"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-Z/section-1910.1053",
+      "retrievalDate": "2026-08-28",
+      "summary": "The employer must ensure no employee is exposed to respirable crystalline silica above the permissible exposure limit of 50 micrograms per cubic metre as an 8-hour time-weighted average (29 CFR 1910.1053(c)), must assess exposures (paragraph (d)), and must use engineering and work practice controls to reduce exposure to or below the PEL, supplementing with respiratory protection only where those c",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1910.120",
+      "citation": "29 CFR 1910.120",
+      "jurisdiction": "osha-general-industry",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "ChemicalExposure",
+        "Emergency Response"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-H/section-1910.120",
+      "retrievalDate": "2026-08-28",
+      "summary": "Paragraph (q) governs emergency response to releases of hazardous substances without regard to location: the employer must have an emergency response plan, responders must be trained to the level of their duties, and employees must not engage in emergency response beyond that training (29 CFR 1910.120(q)(1)-(6)). Employees engaged in an incidental spill cleanup that can be safely handled by worker",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.65",
+      "citation": "29 CFR 1926.65",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "ChemicalExposure",
+        "Emergency Response"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-D/section-1926.65",
+      "retrievalDate": "2026-08-28",
+      "summary": "The construction analogue of 29 CFR 1910.120, with the same structure: paragraph (q) governs emergency response to releases of hazardous substances, requires an emergency response plan and training matched to assigned duties, and excludes incidental releases that can be safely handled by employees in the immediate release area (29 CFR 1926.65(q)). Citing this section rather than 1910.120 is what k",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "29cfr1926.201",
+      "citation": "29 CFR 1926.201",
+      "jurisdiction": "osha-construction",
+      "agency": "OSHA",
+      "hazardFamilies": [
+        "TrafficControl",
+        "MobileEquipment"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1926/subpart-G/section-1926.201",
+      "retrievalDate": "2026-08-28",
+      "summary": "Signalling by flaggers and the use of flaggers, including the warning garments flaggers wear, must conform to Part 6 of the Manual on Uniform Traffic Control Devices, incorporated by reference (29 CFR 1926.201(a)). Crane and hoist signalling is governed by the applicable ANSI standards rather than by this section (paragraph (b)). Because the operative requirements are incorporated by reference, th",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    },
+    {
+      "citationKey": "30cfr56.4530",
+      "citation": "30 CFR 56.4530",
+      "jurisdiction": "mining",
+      "agency": "MSHA",
+      "hazardFamilies": [
+        "EmergencyEgress",
+        "Fire"
+      ],
+      "authoritativeSource": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-56/subpart-C/section-56.4530",
+      "retrievalDate": "2026-08-28",
+      "summary": "Buildings or structures in which persons work must have a sufficient number of exits to permit prompt escape in case of fire (30 CFR 56.4530). This is the surface metal and nonmetal egress duty, and it is materially narrower than the OSHA exit-route standard at 29 CFR 1910.36: it addresses the number of exits from occupied buildings for fire escape, not exit-route design, marking, maintenance or c",
+      "disposition": "APPROVE",
+      "rationale": "Rubric A-E passed: regulatory identity (title, part, section, paragraph, jurisdiction) matches the retrieved authority; source reference resolves to the captured provision; the summary states the cited paragraph accurately without broadening, narrowing, or converting a conditional duty into an unconditional one; hazard-family and regime mapping are defensible; provenance, checksum and schema are valid with no duplicate or conflicting identity.",
+      "origin": "governed-source-set"
+    }
+  ]
+}

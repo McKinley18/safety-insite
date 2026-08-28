@@ -168,6 +168,44 @@ export class StorageService {
     return { object, body };
   }
 
+  /**
+   * Permanently retire a REPORT artifact that a successful replacement has superseded.
+   *
+   * Distinct from `tombstone` on purpose. `tombstone` is a customer deleting their own file, so it
+   * insists the caller is the object's creator. That rule is wrong here: under the
+   * one-report-per-inspection contract the superseded PDF is retired by whoever regenerated the
+   * report, and in an organization that is routinely a different person from whoever generated the
+   * original. Requiring creator identity would leave one obsolete PDF per colleague behind forever.
+   *
+   * Authorization is not relaxed, it is relocated. The caller has already proven it may regenerate
+   * this inspection's report; this method independently re-checks that the object is a `report`
+   * artifact in the SAME owner/organization scope as the acting user, so it can never be pointed at
+   * evidence, at branding, or at another tenant's file. It is not reachable from any route.
+   *
+   * Retirement is deliberately idempotent and non-throwing on an already-retired object, because it
+   * runs after the replacement has committed: at that point the customer's current report is
+   * correct, and a failure to clean up an obsolete file must never be reported as a failed
+   * replacement.
+   */
+  async retireReportArtifact(rawUser: unknown, id: string) {
+    const user = requireAuthenticatedUser(rawUser);
+    // objectKey is `select: false` on the entity, so the provider delete below needs it added back
+    // explicitly -- exactly as findAuthorized does.
+    const object = await this.objects.createQueryBuilder('object').addSelect('object.objectKey')
+      .where('object.id = :id', { id }).getOne();
+    if (!object || object.status === 'deleted' || object.deletedAt) return false;
+    if (object.category !== 'report') throw new BadRequestException('Only a report artifact may be retired this way.');
+    const inScope = user.organizationId
+      ? object.organizationId === user.organizationId
+      : object.ownerUserId === user.userId;
+    if (!inScope) throw new NotFoundException('File not found.');
+    object.status = 'deleted'; object.deletedAt = new Date(); object.deletedByUserId = user.userId;
+    await this.objects.save(object);
+    await this.provider().delete(object.objectKey);
+    await this.audit(user, 'report_artifact_retired', object);
+    return true;
+  }
+
   async tombstone(rawUser: unknown, id: string) {
     const user = requireAuthenticatedUser(rawUser);
     const object = await this.findAuthorized(user, id);

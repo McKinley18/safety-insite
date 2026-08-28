@@ -1,0 +1,143 @@
+{
+  "checks": 43,
+  "failures": [],
+  "evidence": {
+    "pointerBefore": null,
+    "before": {
+      "manifests": {
+        "federal-core-2026-07-30.1": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+        "federal-core-2026-08-28.1": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb"
+      },
+      "counts": {
+        "federal-core-2026-07-30.1": 35,
+        "federal-core-2026-08-28.1": 64
+      },
+      "recordRows": 99,
+      "reviewRows": 64
+    },
+    "negativeControls": {
+      "nonExistent": [
+        "releaseExists"
+      ],
+      "noApprovedMember": [
+        "governedRecordsPresent"
+      ],
+      "manifestMismatch": [
+        "manifestChecksumVerifies"
+      ],
+      "refusalThrown": true
+    },
+    "rejectedUnderActiveRelease": {
+      "30 CFR 57.14107(a)": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "30 CFR 56.14105": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "1910.219": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "29 CFR 1910.132(a)": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "29 CFR 1926.95(a)": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "30 CFR 56.15006": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "29 CFR 1926.602(a)(9)(ii)": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      },
+      "30 CFR 56.9100(a)": {
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "member": false,
+        "reviewer": null,
+        "checksum": null,
+        "corpusBacked": false
+      }
+    },
+    "activationEvents": [
+      {
+        "event": "activation",
+        "outcome": "refused",
+        "fromReleaseId": null,
+        "toReleaseId": "federal-core-2026-07-30.1",
+        "actor": "activation-acceptance-gate"
+      },
+      {
+        "event": "activation",
+        "outcome": "succeeded",
+        "fromReleaseId": null,
+        "toReleaseId": "activation-fixture.R1",
+        "actor": "activation-acceptance-gate"
+      },
+      {
+        "event": "activation",
+        "outcome": "succeeded",
+        "fromReleaseId": "activation-fixture.R1",
+        "toReleaseId": "federal-core-2026-08-28.1",
+        "actor": "activation-acceptance-gate"
+      }
+    ],
+    "after": {
+      "pointer": "federal-core-2026-08-28.1",
+      "parentReleaseId": "activation-fixture.R1",
+      "manifests": {
+        "activation-fixture.R1": "79e190f98d3a5d227cdfca04a8671612fedf7fd83405ae0a79297f78cc1789a7",
+        "activation-fixture.TAMPERED": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "federal-core-2026-07-30.1": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+        "federal-core-2026-08-28.1": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb"
+      },
+      "counts": {
+        "activation-fixture.R1": 1,
+        "activation-fixture.TAMPERED": 1,
+        "federal-core-2026-07-30.1": 35,
+        "federal-core-2026-08-28.1": 64
+      },
+      "recordRows": 101,
+      "reviewRows": 66
+    },
+    "immutability": {
+      "measuredAcross": "immediately before -> immediately after the candidate activation",
+      "releasesDigestBefore": "ec17f3f1ebd2fc18b325d61f21c8e7b119377e67ebced451422b589ace55cde1",
+      "releasesDigestAfter": "ec17f3f1ebd2fc18b325d61f21c8e7b119377e67ebced451422b589ace55cde1",
+      "recordsDigestBefore": "a4ddba2aceb151ede4884724eb2f24d1be2816100ac2f809b8468db221e61c4b",
+      "recordsDigestAfter": "a4ddba2aceb151ede4884724eb2f24d1be2816100ac2f809b8468db221e61c4b",
+      "reviewsDigestBefore": "a66b929217d191585fe4194600610a3675990f89c31359f7855c7a33ec7a5f82",
+      "reviewsDigestAfter": "a66b929217d191585fe4194600610a3675990f89c31359f7855c7a33ec7a5f82",
+      "candidateManifestAtSuiteStart": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "candidateManifestAfterActivation": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "candidateMembersAtSuiteStart": 64,
+      "candidateMembersAfterActivation": 64
+    }
+  }
+}

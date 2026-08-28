@@ -6,6 +6,7 @@ import {
   CreateHumanReviewDto,
   CreateInspectionDto,
   CreateObservationDto,
+  CreateUserAuthoredFindingDto,
   UpdateObservationDto,
   FinalizeFindingDto,
   TransitionInspectionDto,
@@ -43,6 +44,15 @@ export class InspectionController {
     return this.inspections.assign(req.user, id, dto);
   }
 
+  /**
+   * What the completion contract says right now. Read-only, and evaluated by the SAME method the
+   * transition enforces, so the Finish screen cannot show a readiness the server disagrees with.
+   */
+  @Get(':id/completion-readiness')
+  completionReadiness(@Req() req: any, @Param('id') id: string) {
+    return this.inspections.completionReadiness(req.user, id);
+  }
+
   @Post(':id/transition')
   transition(@Req() req: any, @Param('id') id: string, @Body() dto: TransitionInspectionDto) {
     return this.inspections.transition(req.user, id, dto);
@@ -71,5 +81,19 @@ export class InspectionController {
   @Post('observations/:id/findings')
   finalizeFinding(@Req() req: any, @Param('id') id: string, @Body() dto: FinalizeFindingDto) {
     return this.inspections.finalizeFinding(req.user, id, dto);
+  }
+
+  /**
+   * A hazard the inspector identified that HazLenz did not propose. Separate route rather than a
+   * flag on the finalize route, because it is a different act: this CREATES a pending finding for
+   * the normal review workflow, it does not finalize one.
+   */
+  @Post('observations/:id/user-findings')
+  createUserAuthoredFinding(
+    @Req() req: any,
+    @Param('id') id: string,
+    @Body() dto: CreateUserAuthoredFindingDto,
+  ) {
+    return this.inspections.createUserAuthoredFinding(req.user, id, dto);
   }
 }

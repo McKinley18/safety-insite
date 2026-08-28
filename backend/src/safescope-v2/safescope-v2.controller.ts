@@ -3,6 +3,8 @@ import { Body, Controller, Optional, Post, Req, UnauthorizedException, UseGuards
 import { DataSource } from 'typeorm';
 import { GovernedCutoverContext } from '../standards/cutover/governed-cutover-context';
 import { orchestrateShadowRequest } from '../standards/cutover/shadow-request-orchestration';
+import { resolveCutoverEnablement } from '../standards/cutover/cutover-mode';
+import { resolveInspectionReleaseBinding } from '../standards/releases/inspection-release-binding';
 import { Throttle } from '@nestjs/throttler';
 import { Request } from 'express';
 import { SafescopeV2Service } from './safescope-v2.service';
@@ -309,6 +311,28 @@ export class SafescopeV2Controller {
     const context = this.getGovernanceContext(req);
     await this.applyInspectionRegulatoryContext(body, req.user);
 
+    // RELEASE BINDING, resolved BEFORE the analysis and exactly once.
+    //
+    // This is the sibling of `applyInspectionRegulatoryContext` above and follows the same rule:
+    // the INSPECTION is the authority for a regulatory fact every one of its findings inherits.
+    // Jurisdiction was already such a fact; the governing knowledge release is the other one.
+    //
+    // Resolved here, at the controller, because this is the only place that holds all three inputs
+    // at once -- the authenticated principal (which decides the mode), the persisted inspection
+    // (which may already carry a binding), and the data source. `body.inspectionId` was already
+    // authorization-checked by `applyInspectionRegulatoryContext`, so no unauthorized inspection
+    // can be read or bound here.
+    //
+    // In LEGACY -- every customer today -- the resolver returns before touching the database, so
+    // this line performs no query and the binding stays null.
+    const releaseBinding = await resolveInspectionReleaseBinding({
+      dataSource: this.dataSource ?? null,
+      inspectionId: body.inspectionId ?? null,
+      mode: resolveCutoverEnablement({
+        userId: req.user?.userId ?? null, organizationId: req.user?.organizationId ?? null,
+      }).effectiveMode,
+    });
+
     try {
       const result = await this.service.classify(
         normalizeHazardObservationText(body.text),
@@ -382,6 +406,9 @@ export class SafescopeV2Controller {
         dataSource: this.dataSource ?? null,
         principal: { userId: req.user?.userId ?? null, organizationId: req.user?.organizationId ?? null },
         analysisTraceId: (result as any)?.traceId ?? null,
+        // Server-resolved above. Retrieval is scoped to this release; it is never a release id the
+        // request supplied, and it is never re-derived from the active pointer per finding.
+        boundReleaseId: releaseBinding.releaseId,
         jurisdiction: (result as any)?.regulatoryContext?.value ?? null,
         runPipeline: runStandardsPipeline,
       });

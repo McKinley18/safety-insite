@@ -9,6 +9,12 @@
     "target": "es2021",
     "sourceMap": true,
     "outDir": "./dist",
+    // Pins the emit layout. Without it, `tsc` infers the common root of every file in the program,
+    // so a single import from `src/` into a sibling directory (a verification helper under
+    // `scripts/`, say) silently moves the whole build from `dist/main.js` to `dist/src/main.js` --
+    // and `npm start`, which runs `node dist/main.js`, then fails on an artifact that compiled
+    // cleanly. Declaring the root turns that into a compile error naming the offending file.
+    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
     "strict": true,

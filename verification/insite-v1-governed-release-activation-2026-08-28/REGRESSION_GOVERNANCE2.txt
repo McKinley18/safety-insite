@@ -1,0 +1,40 @@
+########## test:knowledge-release-provenance
+  ok  Legacy (unversioned) findings load successfully with knowledgeReleaseId = NULL.
+  ok  Legacy (unversioned) analyses load successfully with knowledgeReleaseId = NULL.
+  ok  Report remains valid with partially unversioned findings and reports them as unversioned.
+  ok  Cleared provenance is reported as unknown rather than back-filled from another release.
+########## test:release-integrity-and-approval
+
+  REFUSED BEFORE MUTATION [UNCLAIMED_DATABASE] database=test_v1_release_score_20260828: This database carries no ownership marker, so it may be an existing evidence corpus. Create your own database and set KG_TEST_DB_INITIALIZE_OWNERSHIP=test_v1_release_score_20260828 (naming it exactly) to claim it.
+  No mutation was attempted.
+
+########## test:standards-backing-contract
+
+  REFUSED BEFORE MUTATION [UNCLAIMED_DATABASE] database=test_v1_release_score_20260828: This database carries no ownership marker, so it may be an existing evidence corpus. Create your own database and set KG_TEST_DB_INITIALIZE_OWNERSHIP=test_v1_release_score_20260828 (naming it exactly) to claim it.
+  No mutation was attempted.
+
+########## test:reviewer-approval
+
+  REFUSED BEFORE MUTATION [UNCLAIMED_DATABASE] database=test_v1_release_score_20260828: This database carries no ownership marker, so it may be an existing evidence corpus. Create your own database and set KG_TEST_DB_INITIALIZE_OWNERSHIP=test_v1_release_score_20260828 (naming it exactly) to claim it.
+  No mutation was attempted.
+
+########## test:governed-corpus-matrix
+
+  REFUSED BEFORE MUTATION [UNCLAIMED_DATABASE] database=test_v1_release_score_20260828: This database carries no ownership marker, so it may be an existing evidence corpus. Create your own database and set KG_TEST_DB_INITIALIZE_OWNERSHIP=test_v1_release_score_20260828 (naming it exactly) to claim it.
+  No mutation was attempted.
+
+########## test:approval-contract
+  pid: 3558,
+  stdout: <Buffer >,
+  stderr: <Buffer 5b 6c 65 67 61 63 79 2d 63 6f 72 70 75 73 2d 67 75 61 72 64 5d 20 72 6f 77 73 3d 33 34 20 67 6f 76 65 72 6e 65 64 3d 33 34 20 66 6f 72 65 69 67 6e 3d ... 314 more bytes>
+}
+########## test:kg4c-production-shadow-contract
+    64  15-metrics
+    46  16-alerts
+
+kg4c-production-shadow-contract: 438 passed, 0 failed
+########## test:kg4e-report-provenance
+  FAIL  HARD: 0 of 126 persisted findings carry a governed release id
+  FAIL  HARD: no finding or analysis inside any frozen report snapshot names a governed release (5)
+  FAIL  HARD: no report's knowledgeProvenance names a knowledge release (1 of 2)
+  FAIL  TELEMETRY file not found: 

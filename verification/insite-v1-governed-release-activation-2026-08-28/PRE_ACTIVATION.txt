@@ -1,0 +1,22 @@
+         releaseId         |   status    | recordCount |                         manifestChecksum                         | parentReleaseId | activatedAt 
+---------------------------+-------------+-------------+------------------------------------------------------------------+-----------------+-------------
+ federal-core-2026-07-30.1 | provisional |          35 | 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b |                 | 
+ federal-core-2026-08-28.1 | provisional |          64 | 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb |                 | 
+(2 rows)
+
+ active_pointer_rows 
+---------------------
+                   0
+(1 row)
+
+         releaseId         | members 
+---------------------------+---------
+ federal-core-2026-07-30.1 |      35
+ federal-core-2026-08-28.1 |      64
+(2 rows)
+
+         releaseId         | decision | count 
+---------------------------+----------+-------
+ federal-core-2026-08-28.1 | approved |    64
+(1 row)
+

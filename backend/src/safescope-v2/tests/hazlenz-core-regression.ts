@@ -130,6 +130,30 @@ const suites: Suite[] = [
   {
     name: "HazLenz Inspection-Context / Autonomy Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression.ts"
+  },
+  {
+    name: "HazLenz Decomposition Precision / Recall Gate",
+    scriptPath: "src/safescope-v2/tests/hazlenz-decomposition-precision-regression.ts"
+  },
+  {
+    name: "HazLenz Level-1 Recall Gate",
+    scriptPath: "src/safescope-v2/tests/hazlenz-level1-recall-regression.ts"
+  },
+  {
+    name: "HazLenz Actionable Coverage Gate",
+    scriptPath: "src/safescope-v2/tests/hazlenz-actionable-coverage-regression.ts"
+  },
+  {
+    name: "HazLenz Standards Jurisdiction Gate",
+    scriptPath: "src/safescope-v2/tests/hazlenz-standards-jurisdiction-gate.ts"
+  },
+  {
+    name: "HazLenz Source Authority Gate",
+    scriptPath: "src/safescope-v2/tests/hazlenz-source-authority-gate.ts"
+  },
+  {
+    name: "Release Identity Immutability Gate",
+    scriptPath: "src/standards/tests/release-identity-immutability.ts"
   }
 ];
 

@@ -1,0 +1,16 @@
+
+> safety-insite-backend@1.0.0 test:kg4e-report-provenance
+> ts-node scripts/test-kg4e-report-provenance.ts
+
+
+kg4e-report-provenance: 9 passed, 1 failed
+  ok  exactly one governed release is ACTIVE (federal-core-2026-08-28.1) -- NULL provenance below is a decision, not an absence
+  ok  approved governed content exists (64 approvals)
+  ok  HARD: 0 of 14 persisted analyses carry a governed release id
+  ok  HARD: 0 of 19 persisted findings carry a governed release id
+  ok  generated report versions exist (2)
+  ok  every frozen report snapshot CARRIES the provenance column (2/2) -- the field is present and NULL, not missing
+  ok  every frozen report snapshot carries a knowledgeProvenance block (2/2)
+  ok  HARD: no finding or analysis inside any frozen report snapshot names a governed release (0)
+  ok  HARD: no report's knowledgeProvenance names a knowledge release (0 of 2)
+  FAIL  TELEMETRY file not found: 

@@ -1,0 +1,757 @@
+{
+  "label": "candidate",
+  "corpus": {
+    "populationASize": 34,
+    "populationBSize": 22,
+    "populationBRequiredGroups": 43,
+    "populationBLifeCriticalGroups": 35
+  },
+  "populationA": {
+    "forbiddenFamilyCount": 0,
+    "rowsWithForbidden": 0,
+    "falseSecondaryPromotionRate": 0,
+    "unexpectedFamilyCount": 5,
+    "caseLevelPrecision": 1,
+    "requiredOmissionCount": 1,
+    "rows": [
+      {
+        "id": "A-01",
+        "category": "preserved-failure/material-feed incidental to guarding",
+        "emitted": [
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-02",
+        "category": "preserved-failure/PPE shield is not an excavation shield",
+        "emitted": [
+          "hot_work"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [
+          "hot_work"
+        ],
+        "missingRequired": [
+          "personal_protective_equipment"
+        ],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-03",
+        "category": "preserved-failure/welding shield is not an excavation shield",
+        "emitted": [
+          "hot_work"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-04",
+        "category": "preserved-failure/splash shield is not an excavation shield",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-05",
+        "category": "material-feed incidental to machine operation",
+        "emitted": [
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-06",
+        "category": "material-feed incidental to machine operation",
+        "emitted": [
+          "machine_guarding",
+          "powered_haulage"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [
+          "powered_haulage"
+        ],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-07",
+        "category": "material-feed incidental to energy control",
+        "emitted": [
+          "lockout_tagout"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-08",
+        "category": "material-in-motion incidental to guarding",
+        "emitted": [
+          "conveyors",
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-09",
+        "category": "shield vocabulary/electrical arc-flash shield",
+        "emitted": [
+          "electrical"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-10",
+        "category": "shield vocabulary/thermal heat shield",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-11",
+        "category": "shield vocabulary/verb form, no hazard",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-12",
+        "category": "barrier vocabulary/descriptive site feature",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-13",
+        "category": "vehicle vocabulary/location descriptor only",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-14",
+        "category": "vehicle and pressure vocabulary/location descriptor only",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-15",
+        "category": "vehicle vocabulary/possessive descriptor only",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-16",
+        "category": "vehicle vocabulary/verified-safe administrative record",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-17",
+        "category": "hose vocabulary/no pressure hazard",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-18",
+        "category": "line vocabulary/unrelated sense of the word",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-19",
+        "category": "hydraulic and excavator vocabulary/verified intact",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-20",
+        "category": "pneumatic vocabulary/energy verified at zero",
+        "emitted": [
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [
+          "machine_guarding"
+        ],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-21",
+        "category": "hot-work vocabulary/historical and closed out",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-22",
+        "category": "hot-work vocabulary/explicitly negated",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-23",
+        "category": "cutting vocabulary/unrelated sense of the word",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-24",
+        "category": "grinding vocabulary/verified compliant condition",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-25",
+        "category": "hot vocabulary/unrelated equipment with current inspection",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-26",
+        "category": "trench vocabulary/completed and backfilled",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-27",
+        "category": "opening vocabulary/effectively covered",
+        "emitted": [
+          "hazard_communication"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [
+          "hazard_communication"
+        ],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-28",
+        "category": "fall vocabulary/unrelated sense of the word",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [
+          "slips_trips_falls_housekeeping"
+        ],
+        "clean": true
+      },
+      {
+        "id": "A-29",
+        "category": "handrail vocabulary/verified sound",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-30",
+        "category": "proximity clause supporting a guarding hazard",
+        "emitted": [
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-31",
+        "category": "proximity clause supporting an electrical hazard",
+        "emitted": [
+          "electrical"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-32",
+        "category": "energy-state clause supporting a guarding hazard",
+        "emitted": [
+          "machine_guarding"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-33",
+        "category": "observer-position clause, no hazard stated",
+        "emitted": [
+          "conveyors"
+        ],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [
+          "conveyors"
+        ],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      },
+      {
+        "id": "A-34",
+        "category": "storage vocabulary/verified compliant condition",
+        "emitted": [],
+        "forbiddenEmitted": [],
+        "unexpectedEmitted": [],
+        "missingRequired": [],
+        "aliasConflicts": [],
+        "clean": true
+      }
+    ]
+  },
+  "populationB": {
+    "requiredGroupsSatisfied": 32,
+    "requiredSecondaryHazardRecall": 0.7441860465116279,
+    "dangerousOmissionCount": 11,
+    "dangerousOmissionRate": 0.2558139534883721,
+    "lifeCriticalOmissionCount": 7,
+    "caseLevelFullHazardRecall": 0.5909090909090909,
+    "rows": [
+      {
+        "id": "B-01",
+        "category": "machine guarding + LOTO",
+        "emitted": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "satisfiedGroups": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-02",
+        "category": "electrical + machine guarding",
+        "emitted": [
+          "electrical",
+          "machine_guarding"
+        ],
+        "satisfiedGroups": [
+          "electrical",
+          "machine_guarding"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-03",
+        "category": "excavation + fall protection",
+        "emitted": [
+          "excavation_trenching",
+          "fall_protection"
+        ],
+        "satisfiedGroups": [
+          "excavation_trenching",
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-04",
+        "category": "hot work + fire/explosion",
+        "emitted": [
+          "fall_protection",
+          "fire_explosion",
+          "hot_work"
+        ],
+        "satisfiedGroups": [
+          "hot_work|welding_cutting",
+          "fire_explosion|fire_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-05",
+        "category": "compressed gas / unsecured cylinder + hot work",
+        "emitted": [
+          "hot_work"
+        ],
+        "satisfiedGroups": [
+          "hot_work|welding_cutting"
+        ],
+        "missedGroups": [
+          "compressed_gas"
+        ],
+        "missedLifeCriticalGroups": [
+          "compressed_gas"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-06",
+        "category": "mobile equipment + traffic control",
+        "emitted": [
+          "powered_industrial_trucks",
+          "traffic_control"
+        ],
+        "satisfiedGroups": [
+          "mobile_equipment|powered_industrial_trucks|forklifts",
+          "traffic_control"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-07",
+        "category": "confined space + atmospheric hazard",
+        "emitted": [
+          "confined_space"
+        ],
+        "satisfiedGroups": [
+          "confined_space"
+        ],
+        "missedGroups": [
+          "atmospheric_hazard|ventilation_air_quality|respiratory_protection"
+        ],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": false
+      },
+      {
+        "id": "B-08",
+        "category": "chemical exposure + PPE",
+        "emitted": [
+          "hazard_communication",
+          "personal_protective_equipment"
+        ],
+        "satisfiedGroups": [
+          "hazcom|chemical_exposure|sds_labeling",
+          "ppe"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-09",
+        "category": "suspended load + rigging",
+        "emitted": [
+          "cranes_rigging_hoisting",
+          "suspended_loads"
+        ],
+        "satisfiedGroups": [
+          "suspended_loads|cranes_hoists",
+          "rigging_lifting"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-10",
+        "category": "stored energy + machine guarding",
+        "emitted": [
+          "compressed_gas",
+          "machine_guarding"
+        ],
+        "satisfiedGroups": [
+          "machine_guarding|guarding_interlocks"
+        ],
+        "missedGroups": [
+          "hydraulic_pneumatic_energy|lockout_tagout"
+        ],
+        "missedLifeCriticalGroups": [
+          "hydraulic_pneumatic_energy|lockout_tagout"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-11",
+        "category": "fall protection + obstructed access",
+        "emitted": [
+          "fall_protection"
+        ],
+        "satisfiedGroups": [
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-12",
+        "category": "electrical + fall protection",
+        "emitted": [
+          "electrical",
+          "fall_protection"
+        ],
+        "satisfiedGroups": [
+          "electrical",
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-13",
+        "category": "respirable silica + respiratory protection",
+        "emitted": [
+          "silica_respirable_dust"
+        ],
+        "satisfiedGroups": [
+          "silica_respirable_dust|combustible_dust"
+        ],
+        "missedGroups": [
+          "respiratory_protection|ppe|ventilation_air_quality"
+        ],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": false
+      },
+      {
+        "id": "B-14",
+        "category": "excavation + electrical",
+        "emitted": [
+          "electrical",
+          "excavation_trenching",
+          "ground_control"
+        ],
+        "satisfiedGroups": [
+          "excavation_trenching",
+          "electrical"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-15",
+        "category": "LOTO + electrical",
+        "emitted": [],
+        "satisfiedGroups": [],
+        "missedGroups": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "missedLifeCriticalGroups": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-16",
+        "category": "machine guarding + PPE",
+        "emitted": [],
+        "satisfiedGroups": [],
+        "missedGroups": [
+          "machine_guarding",
+          "ppe"
+        ],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": false
+      },
+      {
+        "id": "B-17",
+        "category": "powered industrial truck + material storage",
+        "emitted": [
+          "material_handling_storage",
+          "mobile_equipment",
+          "powered_industrial_trucks"
+        ],
+        "satisfiedGroups": [
+          "powered_industrial_trucks|forklifts|mobile_equipment",
+          "material_handling_storage|material_handling"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-18",
+        "category": "confined space + LOTO",
+        "emitted": [
+          "confined_space"
+        ],
+        "satisfiedGroups": [
+          "confined_space"
+        ],
+        "missedGroups": [
+          "lockout_tagout"
+        ],
+        "missedLifeCriticalGroups": [
+          "lockout_tagout"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-19",
+        "category": "hot work + confined space",
+        "emitted": [
+          "confined_space",
+          "fire_explosion"
+        ],
+        "satisfiedGroups": [
+          "confined_space"
+        ],
+        "missedGroups": [
+          "hot_work|welding_cutting"
+        ],
+        "missedLifeCriticalGroups": [
+          "hot_work|welding_cutting"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-20",
+        "category": "fall protection + suspended load",
+        "emitted": [
+          "fall_protection"
+        ],
+        "satisfiedGroups": [
+          "fall_protection"
+        ],
+        "missedGroups": [
+          "suspended_loads|cranes_hoists|rigging_lifting"
+        ],
+        "missedLifeCriticalGroups": [
+          "suspended_loads|cranes_hoists|rigging_lifting"
+        ],
+        "fullRecall": false
+      },
+      {
+        "id": "B-21",
+        "category": "chemical release + PPE",
+        "emitted": [
+          "environmental_release",
+          "respiratory_protection"
+        ],
+        "satisfiedGroups": [
+          "environmental_spill|chemical_release|hazcom",
+          "ppe|respiratory_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-22",
+        "category": "machine guarding + mobile equipment",
+        "emitted": [
+          "machine_guarding",
+          "mobile_equipment"
+        ],
+        "satisfiedGroups": [
+          "machine_guarding|conveyors",
+          "mobile_equipment|powered_industrial_trucks|forklifts"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "fullRecall": true
+      }
+    ]
+  },
+  "combined": {
+    "totalDangerousOmissions": 12,
+    "totalLifeCriticalOmissions": 7
+  }
+}

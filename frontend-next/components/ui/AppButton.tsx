@@ -41,7 +41,7 @@ const variantClasses: Record<AppButtonVariant, string> = {
 const sizeClasses: Record<AppButtonSize, string> = {
   // `min-h-9` (36px) is the mobile touch-target floor from §73.3. `px-3 py-2 text-xs`
   // computes to 32px, which only escaped the §73 sweep because every page that renders a
-  // size="sm" action button -- /reports "Download PDF" and "Delete Report" -- was measured
+  // size="sm" action button -- /reports "Download PDF" and "View inspection" -- was measured
   // in its EMPTY state, so the buttons did not exist to be measured.
   sm: "min-h-9 px-3 py-2 text-xs",
   md: "px-4 py-2.5 text-sm",

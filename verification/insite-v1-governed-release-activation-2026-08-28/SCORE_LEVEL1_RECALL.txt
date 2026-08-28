@@ -1,0 +1,606 @@
+
+> safety-insite-backend@1.0.0 score:hazlenz-level1-recall
+> ts-node src/safescope-v2/tests/hazlenz-level1-recall-scorer.ts
+
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 232,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 645, heapUsedMb: 454, heapTotalMb: 504, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 647, heapUsedMb: 451, heapTotalMb: 506, externalMb: 31 }
+}
+  scored B-01
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 200,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 649, heapUsedMb: 456, heapTotalMb: 508, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 650, heapUsedMb: 461, heapTotalMb: 509, externalMb: 31 }
+}
+  scored B-02
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 162,
+  standards: 4,
+  actions: 1,
+  memory: { rssMb: 651, heapUsedMb: 459, heapTotalMb: 510, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 651, heapUsedMb: 463, heapTotalMb: 510, externalMb: 30 }
+}
+  scored B-03
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 175,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 651, heapUsedMb: 457, heapTotalMb: 510, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 651, heapUsedMb: 461, heapTotalMb: 511, externalMb: 31 }
+}
+  scored B-04
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 211,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 651, heapUsedMb: 465, heapTotalMb: 511, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 651, heapUsedMb: 454, heapTotalMb: 511, externalMb: 31 }
+}
+  scored B-05
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 190,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 652, heapUsedMb: 459, heapTotalMb: 511, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 652, heapUsedMb: 463, heapTotalMb: 511, externalMb: 31 }
+}
+  scored B-06
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 194,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 652, heapUsedMb: 464, heapTotalMb: 511, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 652, heapUsedMb: 468, heapTotalMb: 511, externalMb: 31 }
+}
+  scored B-07
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 193,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 652, heapUsedMb: 467, heapTotalMb: 512, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 652, heapUsedMb: 455, heapTotalMb: 512, externalMb: 31 }
+}
+  scored B-08
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 175,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 652, heapUsedMb: 469, heapTotalMb: 512, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 652, heapUsedMb: 457, heapTotalMb: 512, externalMb: 31 }
+}
+  scored B-09
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 212,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 458, heapTotalMb: 512, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 462, heapTotalMb: 512, externalMb: 31 }
+}
+  scored B-10
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 206,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 471, heapTotalMb: 513, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 459, heapTotalMb: 513, externalMb: 31 }
+}
+  scored B-11
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 177,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 459, heapTotalMb: 513, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 463, heapTotalMb: 513, externalMb: 31 }
+}
+  scored B-12
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 191,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 468, heapTotalMb: 513, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 472, heapTotalMb: 513, externalMb: 31 }
+}
+  scored B-13
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 185,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 463, heapTotalMb: 513, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 466, heapTotalMb: 513, externalMb: 31 }
+}
+  scored B-14
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 195,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 461, heapTotalMb: 513, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 465, heapTotalMb: 513, externalMb: 31 }
+}
+  scored B-15
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 151,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 473, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 461, heapTotalMb: 514, externalMb: 31 }
+}
+  scored B-16
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 183,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 472, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 460, heapTotalMb: 514, externalMb: 31 }
+}
+  scored B-17
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 204,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 475, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 463, heapTotalMb: 514, externalMb: 31 }
+}
+  scored B-18
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 163,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 466, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 469, heapTotalMb: 514, externalMb: 31 }
+}
+  scored B-19
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 151,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 464, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 467, heapTotalMb: 515, externalMb: 31 }
+}
+  scored B-20
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 193,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 472, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 476, heapTotalMb: 515, externalMb: 31 }
+}
+  scored B-21
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 160,
+  standards: 4,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 471, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 475, heapTotalMb: 515, externalMb: 31 }
+}
+  scored B-22
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 292,
+  standards: 5,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 466, heapTotalMb: 516, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 656, heapUsedMb: 470, heapTotalMb: 516, externalMb: 31 }
+}
+  scored A-01
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 77,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 470, heapTotalMb: 516, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 656, heapUsedMb: 473, heapTotalMb: 516, externalMb: 31 }
+}
+  scored A-02
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 42,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 470, heapTotalMb: 516, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 656, heapUsedMb: 473, heapTotalMb: 517, externalMb: 31 }
+}
+  scored A-03
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 50,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 478, heapTotalMb: 517, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 465, heapTotalMb: 517, externalMb: 31 }
+}
+  scored A-04
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 133,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 470, heapTotalMb: 517, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 473, heapTotalMb: 517, externalMb: 31 }
+}
+  scored A-05
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 163,
+  standards: 5,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 474, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 478, heapTotalMb: 518, externalMb: 31 }
+}
+  scored A-06
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 164,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 477, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 481, heapTotalMb: 518, externalMb: 31 }
+}
+  scored A-07
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 111,
+  standards: 5,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 469, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 472, heapTotalMb: 518, externalMb: 31 }
+}
+  scored A-08
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 93,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 659, heapUsedMb: 478, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 659, heapUsedMb: 481, heapTotalMb: 518, externalMb: 31 }
+}
+  scored A-09
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 79,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 659, heapUsedMb: 472, heapTotalMb: 519, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 659, heapUsedMb: 475, heapTotalMb: 519, externalMb: 31 }
+}
+  scored A-10
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 79,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 659, heapUsedMb: 478, heapTotalMb: 520, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 659, heapUsedMb: 481, heapTotalMb: 520, externalMb: 31 }
+}
+  scored A-11
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 85,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 660, heapUsedMb: 471, heapTotalMb: 520, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 660, heapUsedMb: 474, heapTotalMb: 520, externalMb: 31 }
+}
+  scored A-12
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 70,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 660, heapUsedMb: 475, heapTotalMb: 520, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 660, heapUsedMb: 478, heapTotalMb: 520, externalMb: 31 }
+}
+  scored A-13
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 74,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 660, heapUsedMb: 478, heapTotalMb: 520, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 660, heapUsedMb: 481, heapTotalMb: 520, externalMb: 31 }
+}
+  scored A-14
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 69,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 661, heapUsedMb: 474, heapTotalMb: 521, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 661, heapUsedMb: 477, heapTotalMb: 521, externalMb: 31 }
+}
+  scored A-15
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 113,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 661, heapUsedMb: 473, heapTotalMb: 521, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 661, heapUsedMb: 476, heapTotalMb: 521, externalMb: 31 }
+}
+  scored A-16
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 100,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 662, heapUsedMb: 473, heapTotalMb: 522, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 662, heapUsedMb: 476, heapTotalMb: 522, externalMb: 31 }
+}
+  scored A-17
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 76,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 662, heapUsedMb: 473, heapTotalMb: 522, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 662, heapUsedMb: 476, heapTotalMb: 522, externalMb: 31 }
+}
+  scored A-18
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 102,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 662, heapUsedMb: 479, heapTotalMb: 523, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 662, heapUsedMb: 483, heapTotalMb: 523, externalMb: 31 }
+}
+  scored A-19
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 106,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 663, heapUsedMb: 480, heapTotalMb: 523, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 663, heapUsedMb: 483, heapTotalMb: 523, externalMb: 31 }
+}
+  scored A-20
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 112,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 663, heapUsedMb: 479, heapTotalMb: 523, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 663, heapUsedMb: 482, heapTotalMb: 523, externalMb: 31 }
+}
+  scored A-21
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 104,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 664, heapUsedMb: 486, heapTotalMb: 524, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 664, heapUsedMb: 474, heapTotalMb: 524, externalMb: 31 }
+}
+  scored A-22
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 83,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 664, heapUsedMb: 476, heapTotalMb: 524, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 664, heapUsedMb: 479, heapTotalMb: 524, externalMb: 31 }
+}
+  scored A-23
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 121,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 664, heapUsedMb: 476, heapTotalMb: 525, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 664, heapUsedMb: 479, heapTotalMb: 525, externalMb: 31 }
+}
+  scored A-24
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 99,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 665, heapUsedMb: 477, heapTotalMb: 525, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 665, heapUsedMb: 480, heapTotalMb: 525, externalMb: 31 }
+}
+  scored A-25
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 94,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 665, heapUsedMb: 488, heapTotalMb: 525, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 665, heapUsedMb: 476, heapTotalMb: 525, externalMb: 31 }
+}
+  scored A-26
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 104,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 666, heapUsedMb: 484, heapTotalMb: 526, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 666, heapUsedMb: 487, heapTotalMb: 526, externalMb: 31 }
+}
+  scored A-27
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 94,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 666, heapUsedMb: 487, heapTotalMb: 526, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 666, heapUsedMb: 490, heapTotalMb: 526, externalMb: 31 }
+}
+  scored A-28
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 80,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 667, heapUsedMb: 482, heapTotalMb: 527, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 667, heapUsedMb: 485, heapTotalMb: 527, externalMb: 31 }
+}
+  scored A-29
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 121,
+  standards: 4,
+  actions: 1,
+  memory: { rssMb: 667, heapUsedMb: 482, heapTotalMb: 527, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 667, heapUsedMb: 485, heapTotalMb: 527, externalMb: 31 }
+}
+  scored A-30
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 110,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 668, heapUsedMb: 485, heapTotalMb: 528, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 668, heapUsedMb: 488, heapTotalMb: 528, externalMb: 31 }
+}
+  scored A-31
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 92,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 668, heapUsedMb: 480, heapTotalMb: 528, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 668, heapUsedMb: 483, heapTotalMb: 528, externalMb: 31 }
+}
+  scored A-32
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 83,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 668, heapUsedMb: 490, heapTotalMb: 529, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 668, heapUsedMb: 493, heapTotalMb: 529, externalMb: 31 }
+}
+  scored A-33
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 116,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 669, heapUsedMb: 488, heapTotalMb: 529, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 669, heapUsedMb: 492, heapTotalMb: 529, externalMb: 31 }
+}
+  scored A-34
+==================================================
+HazLenz WHOLE-LEVEL-1 recall — unlabelled
+==================================================
+Corpus: Population B = 22 rows / 43 required groups (35 life-critical)
+
+  required-group recall (Level-1) : 100.0% (43/43)
+  life-critical recall            : 35/35 (omissions: 0)
+  case-level full recall          : 100.0%
+  missed groups with a citation-only signal: 0
+  Population A required omissions  : 0
+
+  [ ok ] B-01 represented=[lockout_tagout, machine_guarding]
+  [ ok ] B-02 represented=[electrical, machine_guarding]
+  [ ok ] B-03 represented=[excavation, excavation_trenching, fall_protection]
+  [ ok ] B-04 represented=[fall_protection, fire_explosion, hot_work]
+  [ ok ] B-05 represented=[compressed_gas, hot_work]
+  [ ok ] B-06 represented=[mobile_equipment, powered_industrial_trucks, traffic_control]
+  [ ok ] B-07 represented=[compressed_gas, confined_space, ventilation_air_quality]
+  [ ok ] B-08 represented=[hazard_communication, hazardous_materials, personal_protective_equipment]
+  [ ok ] B-09 represented=[cranes, cranes_rigging_hoisting, rigging, suspended_loads]
+  [ ok ] B-10 represented=[compressed_gas, hydraulic_pneumatic_energy, machine_guarding]
+  [ ok ] B-11 represented=[fall_protection, slip_trip_fall, walking_working_surfaces]
+  [ ok ] B-12 represented=[electrical, fall_protection]
+  [ ok ] B-13 represented=[industrial_hygiene, respiratory_protection, silica, silica_respirable_dust]
+  [ ok ] B-14 represented=[electrical, excavation, excavation_trenching, ground_control]
+  [ ok ] B-15 represented=[electrical, lockout_tagout, machine_guarding]
+  [ ok ] B-16 represented=[machine_guarding, noise_exposure, personal_protective_equipment]
+  [ ok ] B-17 represented=[material_handling_storage, mobile_equipment, powered_industrial_trucks, suspended_loads]
+  [ ok ] B-18 represented=[confined_space, lockout_tagout, ventilation_air_quality]
+  [ ok ] B-19 represented=[confined_space, fire_explosion, hot_work]
+  [ ok ] B-20 represented=[cranes_rigging_hoisting, fall_protection, machine_guarding, suspended_loads]
+  [ ok ] B-21 represented=[environmental, environmental_release, respiratory_protection, slip_trip_fall, walking_working_surfaces]
+  [ ok ] B-22 represented=[machine_guarding, mobile_equipment]
+
+-- Population A required-hazard omissions --
+==================================================
+

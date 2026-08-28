@@ -70,6 +70,7 @@ const navItems = [
       "/inspections",
       "/inspection",
       "/inspection-cover",
+      "/inspection-complete",
       "/field-capture",
     ],
   },

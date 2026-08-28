@@ -1,0 +1,25 @@
+########## test:safescope-standards
+✅ Evidence fit A: walkway is context for an unsecured oxygen cylinder
+✅ Evidence fit B: unlabeled generic container does not activate unrelated families
+✅ Evidence fit C: oil spill does not activate compressed gas
+✅ Evidence fit D: exposed energized panel does not activate HazCom or walking surfaces
+
+SafeScope standards tests: 15 passed, 0 failed
+########## test:release-identity-immutability
+  [PASS] a REGISTERED id with a different manifest stays refused EVEN in an owned disposable database
+  [PASS] the reviewed corpus has its OWN release identity, distinct from the 35-record one
+
+PASS release identity immutability (8 checks)
+########## test:finding-governed-authority
+  [PASS] LAUNDERING: a candidate that bypasses governed resolution carries no governed authority — state=LEGACY_CODE_RESIDENT_CONTENT
+
+PASS finding-level governed authority (17 checks)
+########## test:finding-governed-integration
+  [PASS] the authority state is reconstructable later from releaseId + recordChecksum — federal-core-2026-08-28.1 / ae911dfb0463…
+
+PASS finding-level governed integration (19 checks)
+########## test:kg5b-release-construction
+-------------------------------------------------------------------
+
+============================================================
+KG-5B release construction: 102/102 checks passed

@@ -1,0 +1,26 @@
+=== PHASE 5: first run of test:release-binding-acceptance, BEFORE any implementation ===
+
+> safety-insite-backend@1.0.0 test:release-binding-acceptance
+> ts-node src/standards/tests/release-binding-acceptance.ts
+
+/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+src/standards/tests/release-binding-acceptance.ts(31,8): error TS2307: Cannot find module '../releases/inspection-release-binding' or its corresponding type declarations.
+src/standards/tests/release-binding-acceptance.ts(114,77): error TS2554: Expected 2 arguments, but got 3.
+src/standards/tests/release-binding-acceptance.ts(115,49): error TS2367: This comparison appears to be unintentional because the types '"PINNED_ACTIVE_RELEASE" | "NO_ACTIVE_RELEASE" | "MODE_IS_LEGACY" | "PIN_LOOKUP_FAILED"' and '"PINNED_BOUND_RELEASE"' have no overlap.
+src/standards/tests/release-binding-acceptance.ts(152,77): error TS2554: Expected 2 arguments, but got 3.
+src/standards/tests/release-binding-acceptance.ts(188,77): error TS2554: Expected 2 arguments, but got 3.
+src/standards/tests/release-binding-acceptance.ts(222,77): error TS2554: Expected 2 arguments, but got 3.
+
+    at createTSError (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12) {

@@ -22,6 +22,7 @@ import {
   FinalizeFindingDto,
   TransitionInspectionDto,
   UpdateInspectionDto,
+  CreateUserAuthoredFindingDto,
 } from './dto/inspection.dto';
 import { HazLenzAnalysis } from './entities/hazlenz-analysis.entity';
 import { HumanReview } from './entities/human-review.entity';
@@ -31,6 +32,8 @@ import { Observation } from './entities/observation.entity';
 import { Inspection } from './inspection.entity';
 import { materialRiskChanged, urgencyForRisk } from './risk-policy';
 import { resolveKnowledgeReleaseProvenance } from './knowledge-release-provenance';
+import { annotateFindingStandardsAuthority } from './finding-standards-authority-annotation';
+import { readInspectionReleaseBinding } from '../standards/releases/inspection-release-binding';
 import {
   resolveCutoverEnablement, modeInfluencesCustomerOutput,
 } from '../standards/cutover/cutover-mode';
@@ -177,20 +180,42 @@ export class InspectionService {
 
     let saved: Inspection;
     try {
-      saved = await this.inspections.save(this.inspections.create({
-        title: dto.title.trim(),
-        siteId: site.id,
-        organizationId: site.organizationId,
-        ownerUserId: site.ownerUserId,
-        createdByUserId: user.userId,
-        clientRequestId: dto.clientRequestId || null,
-        status: 'draft',
-        version: 1,
-        regulatoryContext: dto.regulatoryContext || 'unknown',
-        completedAt: null,
-        completedByUserId: null,
-        archivedAt: null,
-      }));
+      saved = await this.dataSource.transaction(async manager => {
+        const repo = manager.getRepository(Inspection);
+        // Allocate the customer-facing record number for THIS owner's sequence. The advisory lock
+        // is per scope, so two accounts creating inspections at the same instant never wait on each
+        // other, and two concurrent creates in the SAME scope are serialized rather than both
+        // reading the same MAX. The lock is transaction-scoped: it is released by the same commit
+        // that makes the number visible, so no window exists in which the MAX is stale.
+        //
+        // MAX+1 rather than a Postgres sequence because the sequence is per owner, not global --
+        // one shared sequence would leak cross-tenant volume, and a sequence per owner would mean
+        // creating a database object per customer. Numbers are display identity, so a gap left by a
+        // rolled-back transaction is harmless; MAX+1 does not reuse a committed number.
+        const scopeId = site.organizationId || site.ownerUserId;
+        await manager.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [
+          `inspection-display-number:${site.organizationId ? 'org' : 'user'}:${scopeId}`,
+        ]);
+        const allocated = await repo.createQueryBuilder('inspection')
+          .select('COALESCE(MAX(inspection."displayNumber"), 0)', 'highest')
+          .where(site.organizationId ? 'inspection."organizationId" = :scopeId' : 'inspection."ownerUserId" = :scopeId', { scopeId })
+          .getRawOne<{ highest: string }>();
+        return repo.save(repo.create({
+          title: dto.title.trim(),
+          siteId: site.id,
+          organizationId: site.organizationId,
+          ownerUserId: site.ownerUserId,
+          createdByUserId: user.userId,
+          clientRequestId: dto.clientRequestId || null,
+          displayNumber: Number(allocated?.highest || 0) + 1,
+          status: 'draft',
+          version: 1,
+          regulatoryContext: dto.regulatoryContext || 'unknown',
+          completedAt: null,
+          completedByUserId: null,
+          archivedAt: null,
+        }));
+      });
     } catch (error) {
       // The check above is not a lock. Two concurrent replays of the same identifier both miss it
       // and both insert; the partial unique index rejects the loser. The DATABASE is the authority
@@ -287,6 +312,71 @@ export class InspectionService {
     return this.assignments.save(assignment);
   }
 
+  /**
+   * THE completion contract, evaluated once and consumed by two callers: `transition` (which
+   * enforces it) and `completionReadiness` (which shows it).
+   *
+   * It reports the SAME facts to both, so the Finish screen can only ever say what the server would
+   * actually do. It deliberately introduces NO new requirement: the rules are exactly those the
+   * transition already enforced -- at least one observation, at least one current finding, and
+   * every current finding carrying a completed and still-current human review. A missing corrective
+   * action, an unassigned responsible person, an absent standard citation and an unanswered
+   * clarification question are all permitted, and making any of them mandatory would be a policy
+   * change, not a display change.
+   */
+  private async evaluateCompletionReadiness(inspectionId: string) {
+    const observations = await this.observations.find({ where: { inspectionId }, select: ['id'] });
+    const findings = observations.length
+      ? await this.findings.find({
+        where: observations.map(item => ({ inspectionId, observationId: item.id })),
+      })
+      : [];
+    const active = findings.filter(finding => finding.status !== 'superseded');
+
+    // A review that has been invalidated by re-analysis no longer completes its finding, so the
+    // review's own status is checked rather than the mere presence of an id.
+    const reviewIds = [...new Set(active.map(f => f.finalReviewId).filter((v): v is string => !!v))];
+    const currentReviews = reviewIds.length
+      ? await this.reviews.find({
+        where: reviewIds.map(id => ({ id, status: 'current' as const })),
+        select: ['id'],
+      })
+      : [];
+    const currentReviewIds = new Set(currentReviews.map(review => review.id));
+
+    const blocking = active.filter(finding =>
+      !['finalized', 'dismissed'].includes(finding.status)
+      || !finding.finalReviewId
+      || !currentReviewIds.has(finding.finalReviewId));
+
+    const reasons: string[] = [];
+    if (!observations.length) reasons.push('NO_OBSERVATION');
+    if (active.length === 0) reasons.push('NO_CURRENT_FINDING');
+    if (blocking.length > 0) reasons.push('FINDING_NEEDS_REVIEW');
+
+    return {
+      ready: reasons.length === 0,
+      reasons,
+      message: !observations.length
+        ? 'At least one observation is required.'
+        : 'Every current finding requires a completed human review before finalization.',
+      // What the Finish screen needs to render an actionable state, and nothing more.
+      findingCount: active.length,
+      reviewedCount: active.length - blocking.length,
+      // The CUSTOMER-FACING count. A dismissed candidate satisfies the completion contract but is
+      // not a finding of the inspection, so it must never be counted in "N findings reviewed" --
+      // the readiness banner would otherwise report more findings than the report will contain.
+      reportableCount: active.filter(finding => finding.status === 'finalized').length,
+      blockingFindingIds: blocking.map(finding => finding.id),
+    };
+  }
+
+  /** Read-only view of the completion contract, for the Finish screen. Authorization as for read. */
+  async completionReadiness(rawUser: unknown, id: string) {
+    await this.findAccessible(rawUser, id);
+    return this.evaluateCompletionReadiness(id);
+  }
+
   async transition(rawUser: unknown, id: string, dto: TransitionInspectionDto) {
     const user = requireAuthenticatedUser(rawUser);
     const inspection = await this.findAccessible(user, id);
@@ -309,22 +399,12 @@ export class InspectionService {
       if (!count) throw new BadRequestException('At least one observation is required.');
     }
     if (dto.status === 'completed') {
-      const observations = await this.observations.find({ where: { inspectionId: id }, select: ['id'] });
-      if (!observations.length) throw new BadRequestException('At least one observation is required.');
-      const required = observations.map(item => item.id);
-      const currentFindings = await this.findings.find({
-        where: required.map(observationId => ({ inspectionId: id, observationId })),
-      });
-      const active = currentFindings.filter(finding => finding.status !== 'superseded');
-      const reviewIds = active.map(finding => finding.finalReviewId).filter((value): value is string => !!value);
-      const distinctReviewIds = [...new Set(reviewIds)];
-      const validReviews = distinctReviewIds.length
-        ? await this.reviews.count({ where: distinctReviewIds.map(reviewId => ({ id: reviewId, status: 'current' as const })) })
-        : 0;
-      if (active.length === 0 || validReviews !== distinctReviewIds.length || active.some(finding =>
-        !['finalized', 'dismissed'].includes(finding.status) || !finding.finalReviewId)) {
-        throw new BadRequestException('Every current finding requires a completed human review before finalization.');
-      }
+      // ONE evaluation of the completion contract, shared with the read-only readiness endpoint the
+      // Finish screen uses. The UI must be able to show exactly what would block completion, and a
+      // second implementation of "is this finishable" in the frontend would drift from this one --
+      // the customer would then press Finish and meet a server error the screen never showed them.
+      const readiness = await this.evaluateCompletionReadiness(id);
+      if (!readiness.ready) throw new BadRequestException(readiness.message);
       inspection.completedAt = new Date();
       inspection.completedByUserId = user.userId;
     }
@@ -429,6 +509,17 @@ export class InspectionService {
   protected async resolveKnowledgeReleaseId(
     snapshot?: unknown,
     principal?: { userId?: string | null; organizationId?: string | null } | null,
+    /**
+     * The inspection this analysis belongs to, when there is one.
+     *
+     * Supplied so the claim is verified against the release the SERVER bound this inspection to,
+     * rather than against whatever the active pointer happens to say when the analysis is
+     * persisted. Those are different releases the moment a newer one is activated, and verifying
+     * against the pointer would reject a perfectly truthful claim from a re-analysis of an older
+     * inspection -- or, worse, accept a claim naming a release that inspection was never governed
+     * by.
+     */
+    inspectionId?: string | null,
   ): Promise<string | null> {
     // KG-4A SECURITY GATE, and the reason this method takes a principal.
     //
@@ -489,30 +580,47 @@ export class InspectionService {
       } : undefined).knowledgeReleaseId;
     }
 
-    // The server's own active-release pointer is the authority on which release exists.
-    let activeReleaseId: string | null = null;
-    try {
-      const rows = await this.dataSource.query(
-        `SELECT "releaseId" FROM regulatory_releases WHERE status = 'active' LIMIT 1`,
-      );
-      activeReleaseId = rows?.[0]?.releaseId ? String(rows[0].releaseId) : null;
-    } catch {
-      activeReleaseId = null;
+    // WHAT THE SERVER CHECKS THE CLAIM AGAINST.
+    //
+    // The inspection's own BINDING when it has one, and only otherwise the active pointer. The
+    // binding is what actually governed retrieval for this analysis
+    // (`standards/releases/inspection-release-binding.ts` resolved it before the pipeline ran), and
+    // it is equally server-side, so nothing about the anti-spoofing property changes. Checking the
+    // pointer instead would be wrong in both directions once a newer release is activated: a
+    // truthful re-analysis of an inspection bound to R1 would be rejected because the pointer says
+    // R2, and a claim naming R2 would be accepted for an inspection R2 never governed.
+    let expectedReleaseId: string | null = null;
+    let expectationSource = 'active-release pointer';
+    const bound = await readInspectionReleaseBinding(this.dataSource, inspectionId ?? null);
+    if (bound) {
+      expectedReleaseId = bound;
+      expectationSource = 'release bound to this inspection';
+    } else {
+      try {
+        const rows = await this.dataSource.query(
+          `SELECT "releaseId" FROM regulatory_releases WHERE status = 'active' LIMIT 1`,
+        );
+        expectedReleaseId = rows?.[0]?.releaseId ? String(rows[0].releaseId) : null;
+      } catch {
+        expectedReleaseId = null;
+      }
     }
-    if (!activeReleaseId || activeReleaseId !== claimed[0]) {
+    if (!expectedReleaseId || expectedReleaseId !== claimed[0]) {
       return resolveKnowledgeReleaseProvenance({
         mode: 'unscoped_corpus',
         reason:
-          `The snapshot claimed governed release '${claimed[0]}' but the server's active release is ` +
-          `'${activeReleaseId ?? 'none'}'. An unverifiable provenance claim is recorded as unknown.`,
+          `The snapshot claimed governed release '${claimed[0]}' but the ${expectationSource} is ` +
+          `'${expectedReleaseId ?? 'none'}'. An unverifiable provenance claim is recorded as unknown.`,
       }).knowledgeReleaseId;
     }
 
-    return this.resolveVerifiedKnowledgeReleaseId(snapshot, activeReleaseId);
+    return this.resolveVerifiedKnowledgeReleaseId(snapshot, expectedReleaseId, expectationSource);
   }
 
   /** The truthful-claim path, reached only after the server has verified mode and release. */
-  private resolveVerifiedKnowledgeReleaseId(snapshot: unknown, activeReleaseId: string): string | null {
+  private resolveVerifiedKnowledgeReleaseId(
+    snapshot: unknown, verifiedReleaseId: string, expectationSource: string,
+  ): string | null {
     // KG-4A. The evidence that governed data was actually consumed is IN the snapshot: the two
     // customer paths stamp a finding-level `knowledgeReleaseId` on a standard decision only when
     // `decideFallback()` returned `governedProvenanceEligible`, i.e. only when governed content
@@ -520,16 +628,17 @@ export class InspectionService {
     // is still decided ONCE, at this layer, from the server's own measurement rather than from
     // client input -- while giving that measurement something truthful to measure.
     //
-    // Deliberately NOT the active-release pointer. "A release is active" and "this analysis used
-    // it" remain different claims, and consulting the pointer here would resurrect exactly the
-    // false provenance KG-1 exists to prevent.
+    // Deliberately NOT derived from a pointer read here. "A release is active" and "this analysis
+    // used it" remain different claims, and deriving provenance from the pointer would resurrect
+    // exactly the false provenance KG-1 exists to prevent. The id below is the one the server
+    // itself scoped retrieval to, re-checked above against the server's own record of it.
     return resolveKnowledgeReleaseProvenance({
       mode: 'single_release',
-      releaseId: activeReleaseId,
+      releaseId: verifiedReleaseId,
       reason:
         `Customer-visible standard content in this analysis was supplied by governed release ` +
-        `${activeReleaseId}, verified against the server's active-release pointer and pinned once ` +
-        'for the whole analysis.',
+        `${verifiedReleaseId}, verified against the ${expectationSource} and pinned once for the ` +
+        'whole analysis.',
     }).knowledgeReleaseId;
   }
 
@@ -569,7 +678,9 @@ export class InspectionService {
           resultSnapshot: dto.resultSnapshot,
           advisoryStatus: 'advisory',
           requestedByUserId: user.userId,
-          knowledgeReleaseId: await this.resolveKnowledgeReleaseId(dto.resultSnapshot, user),
+          knowledgeReleaseId: await this.resolveKnowledgeReleaseId(
+            dto.resultSnapshot, user, observation.inspectionId,
+          ),
         }));
         await this.reconcileDecompositionFindings(manager, observation, saved);
         return saved;
@@ -809,6 +920,14 @@ export class InspectionService {
       // own hazard order, so re-analysing the same observation reproduces the same keys.
       const hazardKey = this.uniqueHazardKey(this.stableHazardKey(hazard, index), incomingKeys);
       incomingKeys.add(hazardKey);
+      // Finding-level governed authority. Annotated HERE because this is the only point that holds
+      // both the hazard's code-resident standard candidates and `analysis.knowledgeReleaseId` --
+      // the release that governed the analysis they came from. Authority is granted by release
+      // membership and effective review state, never by citation-string equality, and when no
+      // release governs the analysis every candidate is labelled LEGACY_CODE_RESIDENT_CONTENT.
+      // This never suppresses a hazard: a finding with no governed match keeps its hazard, risk
+      // and corrective action and simply says so about its standards.
+      await annotateFindingStandardsAuthority(manager, hazard, analysis.knowledgeReleaseId ?? null);
       const existing = current
         .filter(item => item.hazardKey === hazardKey && item.status !== 'superseded')
         .sort((a, b) => b.revision - a.revision)[0];
@@ -895,6 +1014,13 @@ export class InspectionService {
       }
     }
     for (const item of current) {
+      // A user-authored finding is NOT part of the decomposition and must never be superseded by
+      // it. Reconciliation retires findings whose hazard the latest analysis no longer emits --
+      // correct for engine-derived rows, and destructive for one the inspector added precisely
+      // BECAUSE the engine does not emit it. Without this guard, re-running HazLenz (a clarification
+      // answer, a fact correction, a revised observation) would silently delete the inspector's own
+      // finding, which is the single worst thing this feature could do.
+      if (item.source === 'user_authored') continue;
       if (item.status !== 'superseded' && !incomingKeys.has(item.hazardKey)) {
         item.status = 'superseded';
         item.selectedAnalysisId = analysis.id;
@@ -907,6 +1033,102 @@ export class InspectionService {
         }));
       }
     }
+  }
+
+  /**
+   * Record a hazard the INSPECTOR identified that HazLenz did not propose.
+   *
+   * Creates a real, persisted `pending_review` finding against the existing observation, so it is
+   * a first-class finding from the moment it is declared -- it survives a reload, counts in the
+   * completion gate, supports a corrective action, and reaches the report -- rather than living in
+   * browser state until someone saves it.
+   *
+   * What it deliberately does NOT do:
+   *
+   *   - no `riskSnapshot`. HazLenz did not assess this hazard, so there is no computed risk to
+   *     inherit. The reviewer sets it on the risk matrix like any other finding.
+   *   - no `standardCandidates`, no citation. A finding does not acquire regulatory support
+   *     because a customer named a hazard. If a standard is ever attached it must come from the
+   *     engine independently evaluating this hazard, not from this call.
+   *   - no `selectedAnalysisId` / `originatingAnalysisId` / `knowledgeReleaseId`. Pointing at the
+   *     observation's HazLenz analysis would claim that analysis produced this finding. It did not.
+   *
+   * It then enters the SAME downstream workflow as any other finding: risk, review, save.
+   */
+  async createUserAuthoredFinding(
+    rawUser: unknown,
+    observationId: string,
+    dto: CreateUserAuthoredFindingDto,
+  ) {
+    const user = requireAuthenticatedUser(rawUser);
+    const { observation, inspection } = await this.accessibleObservation(user, observationId);
+    if (inspection.status === 'completed') {
+      throw new ConflictException('Completed inspections must be reopened before editing.');
+    }
+    if (inspection.status === 'archived') {
+      throw new ConflictException('Archived inspections cannot be edited.');
+    }
+
+    const hazardTitle = dto.hazardTitle.trim();
+    const detail = (dto.detail || '').trim();
+    // Namespaced so a user-authored key can never collide with -- or be mistaken for -- a
+    // decomposition hazard key, which is what reconciliation matches on.
+    const baseKey = `user-${hazardTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 100)}`
+      .replace(/-$/, '') || 'user-finding';
+    const taken = new Set(
+      (await this.findings.find({ where: { observationId }, select: ['hazardKey'] }))
+        .map(finding => finding.hazardKey),
+    );
+    const hazardKey = this.uniqueHazardKey(baseKey, taken);
+
+    const saved = await this.findings.save(this.findings.create({
+      inspectionId: inspection.id,
+      observationId: observation.id,
+      selectedAnalysisId: null,
+      originatingAnalysisId: null,
+      knowledgeReleaseId: null,
+      finalReviewId: null,
+      status: 'pending_review',
+      source: 'user_authored',
+      hazardCategory: hazardTitle,
+      segmentKey: hazardKey,
+      hazardKey,
+      // The evidence is what the inspector wrote. `standardCandidates` is present and EMPTY on
+      // purpose: the shape every reader expects, carrying no regulatory claim.
+      sourceCandidate: {
+        observationFragment: detail || observation.rawText,
+        standardCandidates: [],
+        provenance: 'user_authored',
+        hazardTitle,
+      },
+      riskSnapshot: null,
+      reviewerDisposition: 'single',
+      conclusion: detail || hazardTitle,
+      revision: 1,
+      finalizedByUserId: null,
+    }));
+
+    // The other half of the evaluation signal. "HazLenz proposed X, the inspector rejected it" is
+    // already recorded as a dismissed review; this is "HazLenz did not propose X, the inspector
+    // added it". Neither is ground truth for changing the engine -- both are measurable evidence.
+    await this.audits.save(this.audits.create({
+      actorUserId: user.userId,
+      organizationId: inspection.organizationId,
+      action: 'finding_user_authored',
+      resourceType: 'inspection_finding',
+      resourceId: saved.id,
+      metadata: {
+        inspectionId: inspection.id,
+        observationId: observation.id,
+        findingId: saved.id,
+        hazardKey,
+        hazardTitle,
+        hazlenzProposed: false,
+        signal: 'candidate_false_negative',
+      },
+    }));
+
+    return saved;
   }
 
   async addReview(rawUser: unknown, observationId: string, dto: CreateHumanReviewDto) {

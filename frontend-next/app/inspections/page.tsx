@@ -221,18 +221,25 @@ export default function InspectionsPage() {
     }
   }
 
-  // V1-FREEHIST-01 (history half): reopen an already-persisted inspection.
+  // V1-FREEHIST-01 (history half): open an already-persisted inspection.
   //
   // This is the ONLY other writer of `sentinel_selected_inspection_context` besides
-  // startInspection() above, and it writes the same shape on purpose -- the workspace reads
+  // startInspection() above, and it writes the same shape on purpose -- the destination reads
   // `persistedInspectionId` from it and re-fetches everything else from the server, so the
-  // record a user reopens is always the server's copy, scoped by the same ownerUserId /
+  // record a user opens is always the server's copy, scoped by the same ownerUserId /
   // organizationId predicate that produced this list. Nothing here widens access: the list is
   // whatever GET /inspections already returned for THIS account.
   //
   // Before this existed, starting a second Quick Capture overwrote the selection context and
   // the earlier inspection became unreachable in the UI even though it was intact on the server.
-  function resumeInspection(inspection: PersistedInspection) {
+  //
+  // THE DESTINATION IS STATE-AWARE. A completed inspection opens its completed-inspection detail
+  // page; only a draft or in-review inspection opens the editing workspace. Sending a completed
+  // inspection to the workspace was the navigation dead end: the customer could reach a completed
+  // record only in the moments after finishing it, and afterwards had to go through /reports to
+  // find the inspection at all. Nothing about the lifecycle changes here -- editing a completed
+  // inspection still requires the explicit Reopen transition on the completed page.
+  function openInspection(inspection: PersistedInspection) {
     const context = regulatoryContextFromPersisted(inspection);
     window.localStorage.setItem(
       "sentinel_selected_inspection_context",
@@ -250,7 +257,7 @@ export default function InspectionsPage() {
     // Drop any report draft belonging to the previously selected inspection, exactly as
     // startInspection() does, so one inspection's cover page cannot bleed onto another.
     void clearActiveInspectionDraft();
-    router.push("/inspection-workspace");
+    router.push(inspection.status === "completed" ? "/inspection-complete" : "/inspection-workspace");
   }
 
   async function addSite() {
@@ -545,7 +552,7 @@ export default function InspectionsPage() {
           <SectionHeader
             eyebrow="Saved history"
             title="Your saved inspections"
-            description="Reopen any inspection you have already saved. Starting a new one never replaces these."
+            description="Open any inspection you have already saved — completed ones open their finished record and report. Starting a new one never replaces these."
           />
           {persistedInspections.length === 0 ? (
             <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
@@ -571,18 +578,25 @@ export default function InspectionsPage() {
                         {inspection.title}
                       </p>
                       <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        {/* The customer-facing record number, ahead of the status. Short, stable
+                            and readable aloud; the uuid never appears. */}
+                        {inspection.displayNumber ? `Inspection #${inspection.displayNumber} · ` : ""}
                         {PERSISTED_STATUS_LABELS[inspection.status] || inspection.status}
                         {site ? ` · ${site.name}` : ""}
                         {` · ${regulatoryContextLabel(regulatoryContextFromPersisted(inspection))}`}
                         {savedAt ? ` · ${savedAt}` : ""}
                       </p>
                     </div>
+                    {/* State-aware language. "Resume" is untrue for a finished inspection, and
+                        "Reopen" is the name of a real lifecycle transition that this action does
+                        not perform -- it only opens the record for viewing. */}
                     <button
                       type="button"
-                      onClick={() => resumeInspection(inspection)}
+                      onClick={() => openInspection(inspection)}
+                      data-testid="open-inspection"
                       className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full bg-[#1D72B8] px-5 py-2 text-sm font-black text-white transition hover:bg-[#155A92] active:scale-95"
                     >
-                      Reopen
+                      {inspection.status === "completed" ? "View inspection" : "Continue inspection"}
                     </button>
                   </li>
                 );

@@ -1,0 +1,45 @@
+{
+  "checks": 25,
+  "failures": [],
+  "evidence": {
+    "scenario1": {
+      "binding": {
+        "releaseId": "federal-core-2026-08-28.1",
+        "reason": "BOUND_TO_ACTIVE_RELEASE",
+        "newlyBound": true,
+        "inspectionId": "1f259c7c-76e5-4805-b41b-f3235e986318"
+      },
+      "pin": "PINNED_BOUND_RELEASE",
+      "backing": "APPROVED_EXACT",
+      "authority": "APPROVED_GOVERNED_CONTENT"
+    },
+    "scenario2": {
+      "binding": {
+        "releaseId": "federal-core-2026-07-30.1",
+        "reason": "BOUND_RELEASE_REUSED",
+        "newlyBound": false,
+        "inspectionId": "29d19584-ee55-42e1-af26-58bd36221926"
+      },
+      "underBound": "UNAPPROVED_GOVERNED_CONTENT",
+      "underActive": "REJECTED_GOVERNED_CONTENT"
+    },
+    "scenario3": {
+      "binding": {
+        "releaseId": null,
+        "reason": "NO_ACTIVE_RELEASE",
+        "newlyBound": false,
+        "inspectionId": "897ef979-442e-432c-bda6-2d2dcbe7c2fc"
+      },
+      "authority": "LEGACY_CODE_RESIDENT_CONTENT"
+    },
+    "scenario4": {
+      "backing": "NOT_IN_RELEASE",
+      "authority": "REJECTED_GOVERNED_CONTENT"
+    },
+    "scenario5": {
+      "launderedByString": "LEGACY_CODE_RESIDENT_CONTENT",
+      "launderedBySkip": "LEGACY_CODE_RESIDENT_CONTENT",
+      "genuine": "APPROVED_GOVERNED_CONTENT"
+    }
+  }
+}

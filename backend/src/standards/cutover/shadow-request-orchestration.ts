@@ -143,6 +143,16 @@ export interface ShadowOrchestrationInput<T> {
   dataSource: DataSource | null | undefined;
   principal: CutoverPrincipal | null | undefined;
   analysisTraceId?: string | null;
+  /**
+   * The release this analysis's INSPECTION is bound to, resolved once by
+   * `standards/releases/inspection-release-binding.ts` before this call. Passed straight through to
+   * the context so both the governed branch and the shadow branch pin the SAME release the
+   * inspection was governed by, rather than whatever the pointer says at request time.
+   *
+   * Absent preserves the KG-4A/KG-4B behaviour exactly. It is server-resolved: the orchestrator
+   * never accepts a release id that came from a request body.
+   */
+  boundReleaseId?: string | null;
   env?: Record<string, string | undefined>;
   /** Categorical hazard family / jurisdiction for aggregation. Never customer prose. */
   hazardFamily?: string | null;
@@ -256,7 +266,8 @@ export async function orchestrateShadowRequest<T>(
   if (enablement.effectiveMode !== 'SHADOW') {
     const context = await GovernedCutoverContext.create({
       dataSource: input.dataSource, principal: input.principal,
-      analysisTraceId: input.analysisTraceId ?? null, env,
+      analysisTraceId: input.analysisTraceId ?? null,
+      boundReleaseId: input.boundReleaseId ?? null, env,
     });
     shadowMetrics.increment('shadow_executed');
     return base<T>({
@@ -323,7 +334,8 @@ async function runShadowBranch<T>(
 
     const context = await GovernedCutoverContext.create({
       dataSource: input.dataSource, principal: input.principal,
-      analysisTraceId: input.analysisTraceId ?? null, env,
+      analysisTraceId: input.analysisTraceId ?? null,
+      boundReleaseId: input.boundReleaseId ?? null, env,
     });
 
     const shadowPayload = await input.runPipeline(context, { pristine: false });

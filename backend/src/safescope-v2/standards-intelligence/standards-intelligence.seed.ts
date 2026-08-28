@@ -1,5 +1,6 @@
 import { StandardsIntelligenceRecord } from "./standards-intelligence.types";
 import { buildSourceRegistryMetadata } from "../../safescope-knowledge/sources/source-registry-metadata";
+import { V1_STANDARDS_EXPANSION } from "./standards-intelligence.v1-expansion";
 
 const MSHA_STANDARDS_SOURCE_METADATA = buildSourceRegistryMetadata(
   "msha-30-cfr-standards",
@@ -1990,5 +1991,15 @@ const RAW_STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
   },
 ];
 
-export const STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] =
-  RAW_STANDARDS_INTELLIGENCE_SEED.map(withSourceRegistryMetadata);
+/**
+ * InSite v1.0 governed source expansion, 2026-08-28. Appended rather than merged into
+ * `RAW_STANDARDS_INTELLIGENCE_SEED` so that no historical governed record is edited, moved or
+ * re-ordered by the addition: the 35 records KG-3D/3E/4A adjudicated keep their exact positions
+ * and their exact content, and the new records are additive and separately reviewable.
+ * Both sets pass through the SAME `withSourceRegistryMetadata` projection, so a new record is
+ * indistinguishable in shape from an original one downstream.
+ */
+export const STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
+  ...RAW_STANDARDS_INTELLIGENCE_SEED,
+  ...V1_STANDARDS_EXPANSION,
+].map(withSourceRegistryMetadata);

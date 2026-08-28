@@ -4783,7 +4783,25 @@ export class SafescopeV2Service {
         };
       }
 
-      if (isVague && !(response.evidenceGapQuestions || []).length) {
+      // An administrative or records statement ("the fall safety meeting is
+      // scheduled for Monday and the training record is current") is not a
+      // vague hazard awaiting clarification -- it is not a hazard at all, and
+      // asking what equipment is involved or whether workers are exposed
+      // manufactures a hazard prompt from a compliance note. This reuses the
+      // exact predicate `buildAdditionalInformationNeeded` already applies to
+      // `additionalInformationNeeded` for the same text, so both
+      // clarification surfaces answer the same way for the same input.
+      //
+      // Previously this case was masked: the decomposition layer promoted the
+      // bare word "fall" in "fall safety meeting" into a fall_protection
+      // finding, and `hasSpecificActiveFinding` below then suppressed the
+      // generic questions as a side effect. With that false promotion removed,
+      // the non-hazard has to be recognised here on its own terms.
+      const administrativeOnlyObservation =
+        /\b(meeting|scheduled|schedule|training record|record is current|binder|calendar|account|login|log in)\b/i.test(String(fusedText || '')) &&
+        !/\b(open|missing|damaged|exposed|leaking|spill|unguarded|blocked|unsecured|no label|unlabeled|unknown liquid|energized|live parts|pedestrian exposure)\b/i.test(String(fusedText || ''));
+
+      if (isVague && !administrativeOnlyObservation && !(response.evidenceGapQuestions || []).length) {
         const vagueEvidenceQuestions = [
           'What exact equipment, opening, edge, container, or travel path is involved?',
           'Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?',
@@ -4810,7 +4828,8 @@ export class SafescopeV2Service {
       if (
         !(response.evidenceGapQuestions || []).length &&
         !((response.suggestedStandards || []).length || (response.primaryStandards || []).length) &&
-        !hasSpecificActiveFinding
+        !hasSpecificActiveFinding &&
+        !administrativeOnlyObservation
       ) {
         const fallbackEvidenceQuestions = [
           'What exact equipment, opening, edge, container, or travel path is involved?',

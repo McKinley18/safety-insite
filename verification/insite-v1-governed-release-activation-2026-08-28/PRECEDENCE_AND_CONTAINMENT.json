@@ -1,0 +1,93 @@
+{
+  "checks": 42,
+  "failures": [],
+  "evidence": {
+    "precedence": {
+      "APPROVED_GOVERNED_CONTENT": {
+        "citation": "29 CFR 1910.147",
+        "state": "APPROVED_GOVERNED_CONTENT",
+        "corpusBacked": true,
+        "contentDisclosure": "GOVERNED_APPROVED",
+        "reviewerId": "insite-product-owner-authorized-regulatory-content-review",
+        "recordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10",
+        "releaseMember": true
+      },
+      "UNAPPROVED_GOVERNED_CONTENT": {
+        "citation": "1910.219",
+        "state": "UNAPPROVED_GOVERNED_CONTENT",
+        "corpusBacked": false,
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "reviewerId": null,
+        "recordChecksum": "d90f12ba713a5ef19c73ec34629f7b356e0e4fdf95b13af8a73297666c018c34",
+        "releaseMember": true
+      },
+      "REJECTED_GOVERNED_CONTENT": {
+        "citation": "30 CFR 56.14105",
+        "state": "REJECTED_GOVERNED_CONTENT",
+        "corpusBacked": false,
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "reviewerId": null,
+        "recordChecksum": null,
+        "releaseMember": false
+      },
+      "LEGACY_CODE_RESIDENT_CONTENT": {
+        "citation": "29 CFR 1910.147",
+        "state": "LEGACY_CODE_RESIDENT_CONTENT",
+        "corpusBacked": false,
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "reviewerId": null,
+        "recordChecksum": null,
+        "releaseMember": false
+      },
+      "NO_GOVERNED_MATCH": {
+        "citation": "29 CFR 1910.99999",
+        "state": "NO_GOVERNED_MATCH",
+        "corpusBacked": false,
+        "contentDisclosure": "HAZLENZ_AUTHORED",
+        "reviewerId": null,
+        "recordChecksum": null,
+        "releaseMember": false
+      }
+    },
+    "hazardIndependence": {
+      "beforeShape": {
+        "mechanism": "Unexpected energization during servicing",
+        "lifeCritical": true,
+        "severity": "catastrophic",
+        "candidates": 4,
+        "citations": [
+          "29 CFR 1910.147",
+          "1910.219",
+          "30 CFR 56.14105",
+          "29 CFR 1910.99999"
+        ]
+      },
+      "afterShape": {
+        "mechanism": "Unexpected energization during servicing",
+        "lifeCritical": true,
+        "severity": "catastrophic",
+        "candidates": 4,
+        "citations": [
+          "29 CFR 1910.147",
+          "1910.219",
+          "30 CFR 56.14105",
+          "29 CFR 1910.99999"
+        ]
+      },
+      "states": [
+        "APPROVED_GOVERNED_CONTENT",
+        "REJECTED_GOVERNED_CONTENT",
+        "REJECTED_GOVERNED_CONTENT",
+        "NO_GOVERNED_MATCH"
+      ]
+    },
+    "containment": {
+      "outageAnnotated": 0,
+      "pinFailure": "PIN_LOOKUP_FAILED",
+      "resolverBackingUnderFailure": "RESOLVER_UNAVAILABLE",
+      "fallbackReason": "GOVERNED_RESOLVER_UNAVAILABLE",
+      "governedProvenanceEligible": false,
+      "bindingFailure": "BINDING_LOOKUP_FAILED"
+    }
+  }
+}

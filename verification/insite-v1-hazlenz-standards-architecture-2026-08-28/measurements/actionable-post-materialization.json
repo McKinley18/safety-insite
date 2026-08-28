@@ -1,0 +1,1594 @@
+{
+  "label": "post-materialization",
+  "apiBase": "http://127.0.0.1:4231",
+  "corpus": {
+    "populationBRows": 22,
+    "requiredGroups": 43,
+    "lifeCriticalGroups": 35
+  },
+  "recognition": {
+    "satisfied": 43,
+    "recall": 1,
+    "lifeCriticalSatisfied": 35
+  },
+  "actionable": {
+    "satisfied": 43,
+    "coverage": 1,
+    "lifeCriticalSatisfied": 35,
+    "lifeCriticalCoverage": 1,
+    "recognizedButNotActionable": []
+  },
+  "standards": {
+    "applicableAndMatched": 16,
+    "noStandardApplicable": 1,
+    "expectedButMissing": 26,
+    "missingDetail": [
+      "B-04:hot_work|welding_cutting",
+      "B-04:fire_explosion|fire_protection",
+      "B-05:compressed_gas",
+      "B-05:hot_work|welding_cutting",
+      "B-06:mobile_equipment|powered_industrial_trucks|forklifts",
+      "B-07:confined_space",
+      "B-07:atmospheric_hazard|ventilation_air_quality|respiratory_protection",
+      "B-08:ppe",
+      "B-09:suspended_loads|cranes_hoists",
+      "B-09:rigging_lifting",
+      "B-10:hydraulic_pneumatic_energy|lockout_tagout",
+      "B-12:fall_protection",
+      "B-13:respiratory_protection|ppe|ventilation_air_quality",
+      "B-14:electrical",
+      "B-15:electrical",
+      "B-16:machine_guarding",
+      "B-16:ppe",
+      "B-17:powered_industrial_trucks|forklifts|mobile_equipment",
+      "B-17:material_handling_storage|material_handling",
+      "B-18:confined_space",
+      "B-19:hot_work|welding_cutting",
+      "B-19:confined_space",
+      "B-20:suspended_loads|cranes_hoists|rigging_lifting",
+      "B-21:environmental_spill|chemical_release|hazcom",
+      "B-21:ppe|respiratory_protection",
+      "B-22:mobile_equipment|powered_industrial_trucks|forklifts"
+    ]
+  },
+  "rows": [
+    {
+      "id": "B-01",
+      "category": "machine guarding + LOTO",
+      "observationId": "1b799a01-d032-49f8-8013-549e5d852f05",
+      "analysisId": "cfcc7f85-9438-4284-9968-381240154daa",
+      "recognizedDomains": [
+        "lockout_tagout",
+        "machine_guarding"
+      ],
+      "findings": [
+        {
+          "id": "bd221463-888f-4673-a257-60d055a70faa",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "machine-guarding",
+          "domains": [
+            "machine_guarding"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1926.300(b)(2)",
+            "30 CFR 56.14107(a)"
+          ],
+          "conclusion": "guard"
+        },
+        {
+          "id": "86fd9bc1-b981-463b-83b1-66ceae23ee38",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "lockout-tagout",
+          "domains": [
+            "lockout_tagout"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.147",
+            "30 CFR 56.12016"
+          ],
+          "conclusion": "hazardous energy control failure"
+        }
+      ],
+      "groups": [
+        {
+          "key": "lockout_tagout",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "86fd9bc1-b981-463b-83b1-66ceae23ee38",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "machine_guarding",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "bd221463-888f-4673-a257-60d055a70faa",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-02",
+      "category": "electrical + machine guarding",
+      "observationId": "fb3c3957-f6f2-4f31-b8d5-ca1b9fc0cfbb",
+      "analysisId": "4f7b3170-39ef-4e66-ad1d-c97c41a11224",
+      "recognizedDomains": [
+        "electrical",
+        "machine_guarding"
+      ],
+      "findings": [
+        {
+          "id": "6f6731ce-4ba5-4df9-a20a-a32cfc15a24e",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "machine-guarding",
+          "domains": [
+            "machine_guarding"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1926.300(b)(2)",
+            "30 CFR 56.14107(a)"
+          ],
+          "conclusion": "guard"
+        },
+        {
+          "id": "70353202-5307-4328-908c-c9cf8d1b04e4",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "electrical",
+          "domains": [
+            "electrical"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.303",
+            "29 CFR 1926.416(a)(1)",
+            "30 CFR 56.12025"
+          ],
+          "conclusion": "energized accessible electrical parts"
+        }
+      ],
+      "groups": [
+        {
+          "key": "electrical",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "70353202-5307-4328-908c-c9cf8d1b04e4",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "machine_guarding",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "6f6731ce-4ba5-4df9-a20a-a32cfc15a24e",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-03",
+      "category": "excavation + fall protection",
+      "observationId": "4737ad1b-7d3a-495b-8f74-7118a94cedb8",
+      "analysisId": "8bf38f9f-ba75-4ce0-81c6-c7e4a8dcbb39",
+      "recognizedDomains": [
+        "excavation_trenching",
+        "fall_protection"
+      ],
+      "findings": [
+        {
+          "id": "110dd6f5-c101-43cf-8caa-a565f1930855",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "excavation-trenching",
+          "domains": [
+            "excavation",
+            "excavation_trenching"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "conclusion": "trench"
+        },
+        {
+          "id": "2e2ee82f-c052-4bd1-8ef5-e33e0886ebbe",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fall-protection",
+          "domains": [
+            "fall_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.28",
+            "29 CFR 1926.501",
+            "30 CFR 56.15005"
+          ],
+          "conclusion": "platform"
+        }
+      ],
+      "groups": [
+        {
+          "key": "excavation_trenching",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "110dd6f5-c101-43cf-8caa-a565f1930855",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "fall_protection",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "2e2ee82f-c052-4bd1-8ef5-e33e0886ebbe",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-04",
+      "category": "hot work + fire/explosion",
+      "observationId": "1d235ca5-fc81-4ba6-b7a6-5235dd3410df",
+      "analysisId": "23e47ae3-6bae-4a21-8e9b-8468e326b5ff",
+      "recognizedDomains": [
+        "fall_protection",
+        "fire_explosion",
+        "hot_work"
+      ],
+      "findings": [
+        {
+          "id": "aafb4954-e14c-4e46-bdee-99a02b11b472",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "hot-work",
+          "domains": [
+            "hot_work"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "welder"
+        },
+        {
+          "id": "49c38026-eed7-4215-8304-6cdffe7a001d",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fall-protection",
+          "domains": [
+            "fall_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "fall"
+        },
+        {
+          "id": "f82fa1f4-f6b4-4c6b-a38a-2f5e885ecfbf",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fire-explosion",
+          "domains": [
+            "fire_explosion"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "flammable/combustible material with ignition source"
+        }
+      ],
+      "groups": [
+        {
+          "key": "hot_work|welding_cutting",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "aafb4954-e14c-4e46-bdee-99a02b11b472",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "fire_explosion|fire_protection",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "f82fa1f4-f6b4-4c6b-a38a-2f5e885ecfbf",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-05",
+      "category": "compressed gas / unsecured cylinder + hot work",
+      "observationId": "2551f47e-0676-4762-9390-d85ae387ec26",
+      "analysisId": "a5d1bbba-5dfe-4f24-a624-c9de2a850af5",
+      "recognizedDomains": [
+        "compressed_gas",
+        "hot_work"
+      ],
+      "findings": [
+        {
+          "id": "9c2c67d9-1f1c-43f9-abd5-c4269249b0cb",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "hot-work",
+          "domains": [
+            "hot_work"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "hot work"
+        },
+        {
+          "id": "7a0a1c23-52cd-42b1-9992-05f642df6ccf",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "compressed-gas",
+          "domains": [
+            "compressed_gas"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "compressed-gas cylinder restraint, valve-cap or segregation deficiency"
+        }
+      ],
+      "groups": [
+        {
+          "key": "compressed_gas",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "7a0a1c23-52cd-42b1-9992-05f642df6ccf",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "hot_work|welding_cutting",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "9c2c67d9-1f1c-43f9-abd5-c4269249b0cb",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-06",
+      "category": "mobile equipment + traffic control",
+      "observationId": "52f7b322-c18d-4598-9630-bf80de8e9ab7",
+      "analysisId": "f2019c84-2654-4242-9deb-0bf49717695c",
+      "recognizedDomains": [
+        "mobile_equipment",
+        "powered_industrial_trucks",
+        "traffic_control"
+      ],
+      "findings": [
+        {
+          "id": "a8b4a655-b988-4e2b-a1f9-cbb3e7bcf777",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "powered-industrial-trucks",
+          "domains": [
+            "powered_industrial_trucks"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "truck"
+        },
+        {
+          "id": "151b16a1-0b00-460d-9f14-e600a7c3dfa8",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "traffic-control",
+          "domains": [
+            "traffic_control"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "traffic interaction control deficiency"
+        }
+      ],
+      "groups": [
+        {
+          "key": "mobile_equipment|powered_industrial_trucks|forklifts",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "a8b4a655-b988-4e2b-a1f9-cbb3e7bcf777",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "traffic_control",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "151b16a1-0b00-460d-9f14-e600a7c3dfa8",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_NO_STANDARD_APPLICABLE"
+        }
+      ]
+    },
+    {
+      "id": "B-07",
+      "category": "confined space + atmospheric hazard",
+      "observationId": "aea1516a-b1ad-4950-b704-a5bb69374c61",
+      "analysisId": "749a6f63-8c62-4235-ac8f-560288ef8dbe",
+      "recognizedDomains": [
+        "compressed_gas",
+        "confined_space",
+        "ventilation_air_quality"
+      ],
+      "findings": [
+        {
+          "id": "02fe9a68-bb8a-43a2-84e9-1f322eb69ee0",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "confined-space",
+          "domains": [
+            "confined_space"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "tank"
+        },
+        {
+          "id": "74dc8b96-8de9-4436-a3a1-683e36bc1ad8",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "atmospheric-hazard",
+          "domains": [
+            "ventilation_air_quality"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "required atmospheric evaluation not performed for a named atmospheric hazard"
+        }
+      ],
+      "groups": [
+        {
+          "key": "confined_space",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "02fe9a68-bb8a-43a2-84e9-1f322eb69ee0",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "atmospheric_hazard|ventilation_air_quality|respiratory_protection",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "74dc8b96-8de9-4436-a3a1-683e36bc1ad8",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-08",
+      "category": "chemical exposure + PPE",
+      "observationId": "556c89c7-b74c-41a7-b03a-858eecc7325e",
+      "analysisId": "c6afa54a-c8e1-4898-86cb-b4c4d41b38be",
+      "recognizedDomains": [
+        "hazard_communication",
+        "personal_protective_equipment"
+      ],
+      "findings": [
+        {
+          "id": "c21f0cd5-407a-47a1-a23c-017383784c8e",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "hazcom",
+          "domains": [
+            "hazard_communication"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.1200",
+            "29 CFR 1926.59",
+            "30 CFR 47.41(a)"
+          ],
+          "conclusion": "label"
+        },
+        {
+          "id": "2683e6a2-3c02-43b2-9bf7-0f18783cec82",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "personal-protective-equipment",
+          "domains": [
+            "personal_protective_equipment"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.1200",
+            "29 CFR 1926.59",
+            "30 CFR 47.41(a)"
+          ],
+          "conclusion": "required task-specific PPE absent, damaged, or not used"
+        }
+      ],
+      "groups": [
+        {
+          "key": "hazcom|chemical_exposure|sds_labeling",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "c21f0cd5-407a-47a1-a23c-017383784c8e",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "ppe",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "2683e6a2-3c02-43b2-9bf7-0f18783cec82",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-09",
+      "category": "suspended load + rigging",
+      "observationId": "7e9f470a-51c0-4550-8f9e-28afde1d46f4",
+      "analysisId": "34b180a4-65e1-4e45-b501-ff2cc5dbb482",
+      "recognizedDomains": [
+        "cranes_rigging_hoisting",
+        "suspended_loads"
+      ],
+      "findings": [
+        {
+          "id": "e02c0357-83b3-4399-a7e8-8c59b2b54e3d",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "cranes-hoists",
+          "domains": [
+            "cranes",
+            "cranes_rigging_hoisting"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.1425"
+          ],
+          "conclusion": "crane"
+        },
+        {
+          "id": "ca5ffeec-126d-47e0-8041-430c32a8ee6e",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "rigging-lifting",
+          "domains": [
+            "rigging",
+            "cranes_rigging_hoisting"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "sling"
+        },
+        {
+          "id": "be84d007-9c4e-4642-b9da-4c2f3180bf3b",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "suspended-loads",
+          "domains": [
+            "suspended_loads"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.1425"
+          ],
+          "conclusion": "suspended load drop/crush exposure"
+        }
+      ],
+      "groups": [
+        {
+          "key": "suspended_loads|cranes_hoists",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "ca5ffeec-126d-47e0-8041-430c32a8ee6e",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "rigging_lifting",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "e02c0357-83b3-4399-a7e8-8c59b2b54e3d",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-10",
+      "category": "stored energy + machine guarding",
+      "observationId": "3b314382-3b3f-4dd6-ae92-8c7592ee3bc2",
+      "analysisId": "3f436e61-5bff-46be-856a-7bd50745c739",
+      "recognizedDomains": [
+        "compressed_gas",
+        "hydraulic_pneumatic_energy",
+        "machine_guarding"
+      ],
+      "findings": [
+        {
+          "id": "aaa0d450-c5d9-4796-a3b1-9469d8f5f890",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "compressed-gas",
+          "domains": [
+            "compressed_gas"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "cylinder"
+        },
+        {
+          "id": "838c0e41-f99e-47e1-ba28-6f646dc2ada9",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "machine-guarding",
+          "domains": [
+            "machine_guarding"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1926.300(b)(2)",
+            "30 CFR 56.14107(a)"
+          ],
+          "conclusion": "guard"
+        },
+        {
+          "id": "3e86c92a-6b7f-4157-8203-b885f6d54393",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "hydraulic-pneumatic-energy",
+          "domains": [
+            "hydraulic_pneumatic_energy"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "hazardous hydraulic/pneumatic stored energy"
+        }
+      ],
+      "groups": [
+        {
+          "key": "hydraulic_pneumatic_energy|lockout_tagout",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "3e86c92a-6b7f-4157-8203-b885f6d54393",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "machine_guarding|guarding_interlocks",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "838c0e41-f99e-47e1-ba28-6f646dc2ada9",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-11",
+      "category": "fall protection + obstructed access",
+      "observationId": "5eb51d0c-a5a7-4a2b-80b2-e69a982f3f55",
+      "analysisId": "2ee86639-268b-4caa-bcab-a8c2bb337119",
+      "recognizedDomains": [
+        "fall_protection",
+        "walking_working_surfaces"
+      ],
+      "findings": [
+        {
+          "id": "54244d70-74e6-4e8e-8efd-de3b2ac2814c",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fall-protection",
+          "domains": [
+            "fall_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.28",
+            "29 CFR 1926.501",
+            "30 CFR 56.15005"
+          ],
+          "conclusion": "edge"
+        }
+      ],
+      "groups": [
+        {
+          "key": "fall_protection",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "54244d70-74e6-4e8e-8efd-de3b2ac2814c",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-12",
+      "category": "electrical + fall protection",
+      "observationId": "b017a7f8-4092-493b-a6ab-7ec2bed02c38",
+      "analysisId": "3b7b2072-117e-4516-9b1e-c82c687e7de3",
+      "recognizedDomains": [
+        "electrical",
+        "fall_protection"
+      ],
+      "findings": [
+        {
+          "id": "9a5fc578-9e2a-4cd9-a853-b6d18b051c71",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "electrical",
+          "domains": [
+            "electrical"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.303",
+            "29 CFR 1926.416(a)(1)"
+          ],
+          "conclusion": "cord"
+        },
+        {
+          "id": "01632dde-613e-46fc-9bf6-acb0ad58591b",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fall-protection",
+          "domains": [
+            "fall_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "ladder"
+        }
+      ],
+      "groups": [
+        {
+          "key": "electrical",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "9a5fc578-9e2a-4cd9-a853-b6d18b051c71",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "fall_protection",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "01632dde-613e-46fc-9bf6-acb0ad58591b",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-13",
+      "category": "respirable silica + respiratory protection",
+      "observationId": "59630500-056e-4a16-bf8f-cb6ad9d2bae1",
+      "analysisId": "631d98b5-76fe-44e8-8a0a-1de64782331a",
+      "recognizedDomains": [
+        "industrial_hygiene",
+        "respiratory_protection",
+        "silica_respirable_dust"
+      ],
+      "findings": [
+        {
+          "id": "5bffe1e9-a872-470c-881e-40cb036fd1f7",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "silica-respirable-dust",
+          "domains": [
+            "silica",
+            "silica_respirable_dust"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.1153"
+          ],
+          "conclusion": "dry cutting/grinding of silica-bearing material"
+        },
+        {
+          "id": "91681ba2-c0ac-4e31-8aed-6b33c55c65a0",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "respiratory-protection",
+          "domains": [
+            "respiratory_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.1153"
+          ],
+          "conclusion": "required respiratory protection absent, damaged, or not used"
+        }
+      ],
+      "groups": [
+        {
+          "key": "silica_respirable_dust|combustible_dust",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "5bffe1e9-a872-470c-881e-40cb036fd1f7",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "respiratory_protection|ppe|ventilation_air_quality",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "91681ba2-c0ac-4e31-8aed-6b33c55c65a0",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-14",
+      "category": "excavation + electrical",
+      "observationId": "790eccf5-1c08-438d-ad3e-634e38855919",
+      "analysisId": "39a3e683-5957-40fa-a27e-90f5e1e30468",
+      "recognizedDomains": [
+        "electrical",
+        "excavation_trenching",
+        "ground_control"
+      ],
+      "findings": [
+        {
+          "id": "94509450-1278-42a7-9c16-3e6f08507533",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "excavation-trenching",
+          "domains": [
+            "excavation",
+            "excavation_trenching"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "conclusion": "trench"
+        },
+        {
+          "id": "cf046b00-8943-42cc-9100-71a9bafa5e75",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "ground-control",
+          "domains": [
+            "ground_control"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "wall"
+        },
+        {
+          "id": "08c4eb6d-767c-41fa-bc84-452bdd92999c",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "electrical",
+          "domains": [
+            "electrical"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "energized accessible electrical parts"
+        },
+        {
+          "id": "ded34439-0b64-413a-a6ce-3605d40ac8ac",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "excavation-trenching-2",
+          "domains": [
+            "excavation_trenching",
+            "excavation_trenching_2"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "conclusion": "excavation/trench condition"
+        }
+      ],
+      "groups": [
+        {
+          "key": "excavation_trenching",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "94509450-1278-42a7-9c16-3e6f08507533",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "electrical",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "08c4eb6d-767c-41fa-bc84-452bdd92999c",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-15",
+      "category": "LOTO + electrical",
+      "observationId": "45e2d66b-767a-4cfa-ba14-07f5ea3150c3",
+      "analysisId": "1d7efd19-a3a0-4e57-8796-64bf4a75b86f",
+      "recognizedDomains": [
+        "electrical",
+        "lockout_tagout",
+        "machine_guarding"
+      ],
+      "findings": [
+        {
+          "id": "d1dda1ae-aced-4534-af22-3d84c31f7e6d",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "lockout-tagout",
+          "domains": [
+            "lockout_tagout"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.147",
+            "30 CFR 56.12016"
+          ],
+          "conclusion": "hazardous energy control failure"
+        },
+        {
+          "id": "b2bd023e-4930-4c25-9bbb-40e03c3bda21",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "electrical",
+          "domains": [
+            "electrical"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "energized accessible electrical parts"
+        }
+      ],
+      "groups": [
+        {
+          "key": "lockout_tagout",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "d1dda1ae-aced-4534-af22-3d84c31f7e6d",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "electrical",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "b2bd023e-4930-4c25-9bbb-40e03c3bda21",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-16",
+      "category": "machine guarding + PPE",
+      "observationId": "787483c1-2891-4a47-8ace-8598a0cf3d9a",
+      "analysisId": "95297e03-69a8-4ccb-a916-47b3fedf7253",
+      "recognizedDomains": [
+        "machine_guarding",
+        "noise_exposure",
+        "personal_protective_equipment"
+      ],
+      "findings": [
+        {
+          "id": "cfd74de6-b0c0-40a0-bdb3-c6c9896dafbd",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "machine-guarding",
+          "domains": [
+            "machine_guarding"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "required machine-guarding component missing, defeated or out of adjustment"
+        },
+        {
+          "id": "45019a83-3358-4240-834f-e3894d62b1a4",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "personal-protective-equipment",
+          "domains": [
+            "personal_protective_equipment"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "required task-specific PPE absent, damaged, or not used"
+        }
+      ],
+      "groups": [
+        {
+          "key": "machine_guarding",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "cfd74de6-b0c0-40a0-bdb3-c6c9896dafbd",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "ppe",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "45019a83-3358-4240-834f-e3894d62b1a4",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-17",
+      "category": "powered industrial truck + material storage",
+      "observationId": "1bd6cdb0-27ca-4262-9b28-e5b3f88a38d6",
+      "analysisId": "b266c96a-612a-472a-819c-5a90763a3571",
+      "recognizedDomains": [
+        "material_handling_storage",
+        "mobile_equipment",
+        "powered_industrial_trucks",
+        "suspended_loads"
+      ],
+      "findings": [
+        {
+          "id": "bdec6c86-2475-4b49-b8ff-7cb59ac52a7f",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "suspended-loads",
+          "domains": [
+            "suspended_loads"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1926.1425"
+          ],
+          "conclusion": "suspended load drop/crush exposure"
+        },
+        {
+          "id": "8f6422b6-64fe-44ee-a719-15a709ba6126",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "mobile-equipment",
+          "domains": [
+            "mobile_equipment"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "forklift"
+        },
+        {
+          "id": "f032f623-addd-4fbd-b446-d9f852f83da8",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "material-handling",
+          "domains": [
+            "material_handling_storage"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "pallet"
+        },
+        {
+          "id": "0d0764d1-4639-4a4b-8db8-42a33abf05c7",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "material-handling-storage",
+          "domains": [
+            "material_handling_storage"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "unstable stored or stacked material"
+        },
+        {
+          "id": "2cabf5b1-cbec-4011-93ee-bca2470a475a",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "powered-industrial-trucks",
+          "domains": [
+            "powered_industrial_trucks"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "struck_by"
+        }
+      ],
+      "groups": [
+        {
+          "key": "powered_industrial_trucks|forklifts|mobile_equipment",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "8f6422b6-64fe-44ee-a719-15a709ba6126",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "material_handling_storage|material_handling",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "f032f623-addd-4fbd-b446-d9f852f83da8",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-18",
+      "category": "confined space + LOTO",
+      "observationId": "dd60c029-49aa-4434-bb23-8b4c3ab5dd7d",
+      "analysisId": "2cb1c9a7-f41c-4596-ac2c-55f4a4adc5a6",
+      "recognizedDomains": [
+        "confined_space",
+        "lockout_tagout",
+        "ventilation_air_quality"
+      ],
+      "findings": [
+        {
+          "id": "4a78cf03-ce41-4e3c-a968-d4309301c7e9",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "confined-space",
+          "domains": [
+            "confined_space"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.147",
+            "30 CFR 56.12016"
+          ],
+          "conclusion": "vessel"
+        },
+        {
+          "id": "57d9a146-0d71-47ca-82ae-b33aa740578d",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "lockout-tagout",
+          "domains": [
+            "lockout_tagout"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.147",
+            "30 CFR 56.12016"
+          ],
+          "conclusion": "hazardous energy control failure"
+        },
+        {
+          "id": "556d8dbd-0213-4103-8fbf-1d14530ec110",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "atmospheric-hazard",
+          "domains": [
+            "ventilation_air_quality"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.147",
+            "30 CFR 56.12016"
+          ],
+          "conclusion": "required atmospheric evaluation not performed for a named atmospheric hazard"
+        }
+      ],
+      "groups": [
+        {
+          "key": "confined_space",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "4a78cf03-ce41-4e3c-a968-d4309301c7e9",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "lockout_tagout",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "57d9a146-0d71-47ca-82ae-b33aa740578d",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        }
+      ]
+    },
+    {
+      "id": "B-19",
+      "category": "hot work + confined space",
+      "observationId": "c7197a39-698c-4f3e-8c84-9634ac13fd65",
+      "analysisId": "d5136aef-68e3-401e-9306-afa156a85b69",
+      "recognizedDomains": [
+        "confined_space",
+        "fire_explosion",
+        "hot_work"
+      ],
+      "findings": [
+        {
+          "id": "1ed31e33-c2f2-4465-ad6d-f7f878a0226f",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "hot-work",
+          "domains": [
+            "hot_work"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "hot_work"
+        },
+        {
+          "id": "976fe847-a9b3-4b87-9eed-d4f9ecc533d8",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "confined-space",
+          "domains": [
+            "confined_space"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "tank"
+        },
+        {
+          "id": "61332a31-9085-41cc-abb3-2a5c4b59ae5d",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fire-explosion",
+          "domains": [
+            "fire_explosion"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "flammable/combustible material with ignition source"
+        }
+      ],
+      "groups": [
+        {
+          "key": "hot_work|welding_cutting",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "1ed31e33-c2f2-4465-ad6d-f7f878a0226f",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "confined_space",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "976fe847-a9b3-4b87-9eed-d4f9ecc533d8",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-20",
+      "category": "fall protection + suspended load",
+      "observationId": "0c983a6c-0c78-401a-afb7-1993084efb93",
+      "analysisId": "981d584e-5ca1-459c-ab63-a3a9912ba07b",
+      "recognizedDomains": [
+        "cranes_rigging_hoisting",
+        "fall_protection",
+        "machine_guarding",
+        "suspended_loads"
+      ],
+      "findings": [
+        {
+          "id": "6d9c27f4-9df0-4f96-9322-b90937c675dd",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "fall-protection",
+          "domains": [
+            "fall_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.28",
+            "29 CFR 1926.501",
+            "30 CFR 56.15005"
+          ],
+          "conclusion": "platform"
+        },
+        {
+          "id": "27f86d13-bab2-4e0d-8963-7d135799352e",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "suspended-loads",
+          "domains": [
+            "suspended_loads"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.28",
+            "29 CFR 1926.1425",
+            "29 CFR 1926.501",
+            "30 CFR 56.15005"
+          ],
+          "conclusion": "suspended load drop/crush exposure"
+        }
+      ],
+      "groups": [
+        {
+          "key": "fall_protection",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "6d9c27f4-9df0-4f96-9322-b90937c675dd",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "suspended_loads|cranes_hoists|rigging_lifting",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "27f86d13-bab2-4e0d-8963-7d135799352e",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-21",
+      "category": "chemical release + PPE",
+      "observationId": "f8861749-2327-4e45-937f-a54057547742",
+      "analysisId": "5dae6bee-5f74-47df-940f-327e20e4ea0b",
+      "recognizedDomains": [
+        "environmental_release",
+        "respiratory_protection",
+        "walking_working_surfaces"
+      ],
+      "findings": [
+        {
+          "id": "90fe54b6-57f2-4855-90a3-2c80483d613c",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "environmental-spill",
+          "domains": [
+            "environmental",
+            "environmental_release"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "spill"
+        },
+        {
+          "id": "392273e7-5080-4543-811d-2f9cc7b77b28",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "respiratory-protection",
+          "domains": [
+            "respiratory_protection"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "required respiratory protection absent, damaged, or not used"
+        }
+      ],
+      "groups": [
+        {
+          "key": "environmental_spill|chemical_release|hazcom",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "90fe54b6-57f2-4855-90a3-2c80483d613c",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        },
+        {
+          "key": "ppe|respiratory_protection",
+          "lifeCritical": false,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "392273e7-5080-4543-811d-2f9cc7b77b28",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    },
+    {
+      "id": "B-22",
+      "category": "machine guarding + mobile equipment",
+      "observationId": "781c9f1c-3090-4238-b4a1-ff37efe02ad2",
+      "analysisId": "7b95a4f9-11ea-493d-9bdc-e3ec4b710cc9",
+      "recognizedDomains": [
+        "machine_guarding",
+        "mobile_equipment"
+      ],
+      "findings": [
+        {
+          "id": "272e40d4-4a5f-41cd-9aed-8144e37d0668",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "machine-guarding",
+          "domains": [
+            "machine_guarding"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1926.300(b)(2)",
+            "30 CFR 56.14107(a)"
+          ],
+          "conclusion": "conveyor"
+        },
+        {
+          "id": "eb4080b2-fc0c-41d0-bc57-482508be75e7",
+          "status": "pending_review",
+          "source": "hazlenz_decomposition",
+          "hazardKey": "mobile-equipment",
+          "domains": [
+            "mobile_equipment"
+          ],
+          "hasEvidence": true,
+          "hasRisk": true,
+          "hasCorrectiveActionPath": true,
+          "citations": [],
+          "conclusion": "loader"
+        }
+      ],
+      "groups": [
+        {
+          "key": "machine_guarding|conveyors",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "272e40d4-4a5f-41cd-9aed-8144e37d0668",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED"
+        },
+        {
+          "key": "mobile_equipment|powered_industrial_trucks|forklifts",
+          "lifeCritical": true,
+          "recognized": true,
+          "actionable": true,
+          "findingId": "eb4080b2-fc0c-41d0-bc57-482508be75e7",
+          "missingActionabilityElements": [],
+          "standardsState": "HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING"
+        }
+      ]
+    }
+  ]
+}

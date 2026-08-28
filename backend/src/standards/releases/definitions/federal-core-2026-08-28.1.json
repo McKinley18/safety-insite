@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "insite.governed-release-definition.v1",
+  "releaseId": "federal-core-2026-08-28.1",
+  "releaseVersion": "2026-08-28.1",
+  "parserVersion": "standards-release-normalizer-v1",
+  "applicabilitySchemaVersion": "hazlenz-applicability-v1",
+  "description": "InSite v1.0 reviewed governed standards release. The 72-record source-verified corpus minus the 8 records the 2026-08-28 reviewer ledger disposed REJECT_CORRECTION_REQUIRED. Supersedes federal-core-2026-07-30.1, which remains immutable at its own 35-record manifest and is not rewritten.",
+  "predecessorReleaseId": "federal-core-2026-07-30.1",
+  "reviewerLedger": "verification/insite-v1-reviewer-governance-2026-08-28/REVIEWER_LEDGER.json",
+  "expectedRecordCount": 64,
+  "expectedManifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "members": [
+    {
+      "citationKey": "29cfr1910.101",
+      "citation": "29 CFR 1910.101"
+    },
+    {
+      "citationKey": "29cfr1910.1053",
+      "citation": "29 CFR 1910.1053"
+    },
+    {
+      "citationKey": "29cfr1910.120",
+      "citation": "29 CFR 1910.120"
+    },
+    {
+      "citationKey": "29cfr1910.1200",
+      "citation": "29 CFR 1910.1200"
+    },
+    {
+      "citationKey": "29cfr1910.133",
+      "citation": "29 CFR 1910.133"
+    },
+    {
+      "citationKey": "29cfr1910.134",
+      "citation": "29 CFR 1910.134"
+    },
+    {
+      "citationKey": "29cfr1910.146",
+      "citation": "29 CFR 1910.146"
+    },
+    {
+      "citationKey": "29cfr1910.147",
+      "citation": "29 CFR 1910.147"
+    },
+    {
+      "citationKey": "29cfr1910.157",
+      "citation": "29 CFR 1910.157"
+    },
+    {
+      "citationKey": "29cfr1910.176",
+      "citation": "29 CFR 1910.176"
+    },
+    {
+      "citationKey": "29cfr1910.178(p)(1)",
+      "citation": "29 CFR 1910.178(p)(1)"
+    },
+    {
+      "citationKey": "29cfr1910.179",
+      "citation": "29 CFR 1910.179"
+    },
+    {
+      "citationKey": "29cfr1910.184",
+      "citation": "29 CFR 1910.184"
+    },
+    {
+      "citationKey": "29cfr1910.212(a)(1)",
+      "citation": "1910.212(a)(1)"
+    },
+    {
+      "citationKey": "29cfr1910.22(a)",
+      "citation": "29 CFR 1910.22(a)"
+    },
+    {
+      "citationKey": "29cfr1910.252",
+      "citation": "29 CFR 1910.252"
+    },
+    {
+      "citationKey": "29cfr1910.253",
+      "citation": "29 CFR 1910.253"
+    },
+    {
+      "citationKey": "29cfr1910.28",
+      "citation": "29 CFR 1910.28"
+    },
+    {
+      "citationKey": "29cfr1910.303",
+      "citation": "29 CFR 1910.303"
+    },
+    {
+      "citationKey": "29cfr1910.303(b)(1)",
+      "citation": "29 CFR 1910.303(b)(1)"
+    },
+    {
+      "citationKey": "29cfr1910.36",
+      "citation": "29 CFR 1910.36"
+    },
+    {
+      "citationKey": "29cfr1910.94",
+      "citation": "29 CFR 1910.94"
+    },
+    {
+      "citationKey": "29cfr1910.95",
+      "citation": "29 CFR 1910.95"
+    },
+    {
+      "citationKey": "29cfr1926.102",
+      "citation": "29 CFR 1926.102"
+    },
+    {
+      "citationKey": "29cfr1926.103",
+      "citation": "29 CFR 1926.103"
+    },
+    {
+      "citationKey": "29cfr1926.1153",
+      "citation": "29 CFR 1926.1153"
+    },
+    {
+      "citationKey": "29cfr1926.1204",
+      "citation": "29 CFR 1926.1204"
+    },
+    {
+      "citationKey": "29cfr1926.1425",
+      "citation": "29 CFR 1926.1425"
+    },
+    {
+      "citationKey": "29cfr1926.150",
+      "citation": "29 CFR 1926.150"
+    },
+    {
+      "citationKey": "29cfr1926.201",
+      "citation": "29 CFR 1926.201"
+    },
+    {
+      "citationKey": "29cfr1926.250",
+      "citation": "29 CFR 1926.250"
+    },
+    {
+      "citationKey": "29cfr1926.251",
+      "citation": "29 CFR 1926.251"
+    },
+    {
+      "citationKey": "29cfr1926.300(b)(2)",
+      "citation": "29 CFR 1926.300(b)(2)"
+    },
+    {
+      "citationKey": "29cfr1926.34(a)",
+      "citation": "29 CFR 1926.34(a)"
+    },
+    {
+      "citationKey": "29cfr1926.350",
+      "citation": "29 CFR 1926.350"
+    },
+    {
+      "citationKey": "29cfr1926.352",
+      "citation": "29 CFR 1926.352"
+    },
+    {
+      "citationKey": "29cfr1926.353",
+      "citation": "29 CFR 1926.353"
+    },
+    {
+      "citationKey": "29cfr1926.416(a)(1)",
+      "citation": "29 CFR 1926.416(a)(1)"
+    },
+    {
+      "citationKey": "29cfr1926.417",
+      "citation": "29 CFR 1926.417"
+    },
+    {
+      "citationKey": "29cfr1926.451(g)(1)",
+      "citation": "29 CFR 1926.451(g)(1)"
+    },
+    {
+      "citationKey": "29cfr1926.501",
+      "citation": "29 CFR 1926.501"
+    },
+    {
+      "citationKey": "29cfr1926.52",
+      "citation": "29 CFR 1926.52"
+    },
+    {
+      "citationKey": "29cfr1926.59",
+      "citation": "29 CFR 1926.59"
+    },
+    {
+      "citationKey": "29cfr1926.65",
+      "citation": "29 CFR 1926.65"
+    },
+    {
+      "citationKey": "29cfr1926.652(a)(1)",
+      "citation": "29 CFR 1926.652(a)(1)"
+    },
+    {
+      "citationKey": "30cfr47.41(a)",
+      "citation": "30 CFR 47.41(a)"
+    },
+    {
+      "citationKey": "30cfr56.12016",
+      "citation": "30 CFR 56.12016"
+    },
+    {
+      "citationKey": "30cfr56.14107(a)",
+      "citation": "30 CFR 56.14107(a)"
+    },
+    {
+      "citationKey": "30cfr56.14132",
+      "citation": "30 CFR 56.14132"
+    },
+    {
+      "citationKey": "30cfr56.14132(b)(1)",
+      "citation": "30 CFR 56.14132(b)(1)"
+    },
+    {
+      "citationKey": "30cfr56.14213",
+      "citation": "30 CFR 56.14213"
+    },
+    {
+      "citationKey": "30cfr56.15004",
+      "citation": "30 CFR 56.15004"
+    },
+    {
+      "citationKey": "30cfr56.15005",
+      "citation": "30 CFR 56.15005"
+    },
+    {
+      "citationKey": "30cfr56.16001",
+      "citation": "30 CFR 56.16001"
+    },
+    {
+      "citationKey": "30cfr56.16005",
+      "citation": "30 CFR 56.16005"
+    },
+    {
+      "citationKey": "30cfr56.16006",
+      "citation": "30 CFR 56.16006"
+    },
+    {
+      "citationKey": "30cfr56.16007",
+      "citation": "30 CFR 56.16007"
+    },
+    {
+      "citationKey": "30cfr56.16009",
+      "citation": "30 CFR 56.16009"
+    },
+    {
+      "citationKey": "30cfr56.3200",
+      "citation": "30 CFR 56.3200"
+    },
+    {
+      "citationKey": "30cfr56.4100",
+      "citation": "30 CFR 56.4100"
+    },
+    {
+      "citationKey": "30cfr56.4530",
+      "citation": "30 CFR 56.4530"
+    },
+    {
+      "citationKey": "30cfr56.5005",
+      "citation": "30 CFR 56.5005"
+    },
+    {
+      "citationKey": "30cfr62.120",
+      "citation": "30 CFR 62.120"
+    },
+    {
+      "citationKey": "30cfr62.130",
+      "citation": "30 CFR 62.130"
+    }
+  ]
+}

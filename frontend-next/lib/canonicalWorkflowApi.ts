@@ -41,13 +41,29 @@ export type PersistedInspection = {
   id: string;
   siteId: string;
   title: string;
+  /**
+   * The customer-facing record number, rendered as "Inspection #7". Per-account and allocated at
+   * creation; it is not derived from `id`, it is not a checksum, and nothing authorizes on it.
+   * Null only for a record created before the number existed and never backfilled.
+   */
+  displayNumber?: number | null;
   status: "draft" | "in_review" | "completed" | "archived";
+  /**
+   * Optimistic-locking counter for the inspection record. INTERNAL: it is passed back on writes to
+   * detect a concurrent edit and is never shown to the customer as a version of anything.
+   */
   version: number;
   regulatoryContext?: RegulatoryContext;
+  completedAt?: string | null;
   updatedAt: string;
   observations?: PersistedObservation[];
   findings?: PersistedFinding[];
 };
+
+/** "Inspection #7", or an empty string when the record predates record numbers. */
+export function inspectionRecordLabel(inspection: { displayNumber?: number | null } | null | undefined) {
+  return inspection?.displayNumber ? `Inspection #${inspection.displayNumber}` : "";
+}
 
 export type PersistedFinding = {
   id: string;
@@ -60,6 +76,12 @@ export type PersistedFinding = {
   hazardCategory: string | null;
   conclusion: string;
   status: "pending_review" | "finalized" | "dismissed" | "superseded";
+  /**
+   * Where the finding came from. 'user_authored' means the INSPECTOR identified this hazard and
+   * HazLenz did not propose it -- such a finding carries no HazLenz confidence and no citation the
+   * engine did not independently produce, so anything presenting regulatory support must check it.
+   */
+  source?: "hazlenz_decomposition" | "user_authored";
   finalReviewId?: string | null;
   revision: number;
   sourceCandidate: Record<string, unknown> | null;
@@ -76,25 +98,32 @@ export type PersistedObservation = {
   reviews?: Array<{ id: string; decision: string; rationale: string }>;
 };
 
+/**
+ * One card in the report library. An inspection has ONE report, so there is no version array:
+ * finishing a reopened inspection replaces the report rather than adding a version beside it.
+ */
 export type PersistedReport = {
   id: string;
   inspectionId: string;
   createdAt: string;
-  /** Human-readable inspection context for the report list (title/site/regulatory context). */
+  /** When the downloadable artifact was last produced. Distinct from the inspection's completion. */
+  reportUpdatedAt: string | null;
+  status: string;
+  /** Integrity metadata for technical details only. Never the record's identity. */
+  checksum: string | null;
+  sizeBytes: string | null;
+  /** Human-readable inspection context for the report list. */
   inspection?: {
     id: string;
+    /** The customer-facing record number, e.g. 7 renders as "Inspection #7". */
+    displayNumber: number | null;
     title: string;
     status: string;
     regulatoryContext: RegulatoryContext;
     completedAt: string | null;
     siteName: string | null;
+    findingCount: number;
   } | null;
-  versions: Array<{
-    version: number;
-    status: "generating" | "generated" | "failed" | "superseded" | "quarantined";
-    generatedAt: string | null;
-    sha256: string | null;
-  }>;
 };
 
 export type HazLenzEvidenceFact = {
@@ -440,6 +469,25 @@ export async function finalizePersistedFinding(
   });
 }
 
+/**
+ * Record a hazard the INSPECTOR identified that HazLenz did not propose.
+ *
+ * Creates a real `pending_review` finding against the existing observation, which then goes through
+ * the same risk / review / save path as any other finding. Deliberately carries no citation,
+ * confidence or risk: a finding does not acquire regulatory support because a customer named a
+ * hazard, and the server does not accept any such field here.
+ */
+export async function createUserAuthoredFinding(
+  observationId: string,
+  input: { hazardTitle: string; detail?: string },
+) {
+  return apiJson<PersistedFinding>(
+    `/inspections/observations/${encodeURIComponent(observationId)}/user-findings`,
+    { method: "POST", body: JSON.stringify(input) },
+    NON_IDEMPOTENT,
+  );
+}
+
 export async function transitionPersistedInspection(
   inspectionId: string,
   status: "draft" | "in_review" | "completed" | "archived",
@@ -451,12 +499,42 @@ export async function transitionPersistedInspection(
   });
 }
 
+/**
+ * The server's own answer to "can this inspection be finished?".
+ *
+ * Evaluated by the SAME method `transition` enforces, so the Finish screen shows exactly what the
+ * server would do rather than a frontend approximation that can drift from it. Frontend readiness
+ * is UX only -- the server still enforces the contract independently on the transition itself.
+ */
+export type CompletionReadiness = {
+  ready: boolean;
+  reasons: string[];
+  message: string;
+  findingCount: number;
+  reviewedCount: number;
+  /** Customer-facing count: finalized findings only, excluding dismissed candidates. */
+  reportableCount: number;
+  blockingFindingIds: string[];
+};
+
+export async function getCompletionReadiness(inspectionId: string) {
+  return apiJson<CompletionReadiness>(
+    `/inspections/${encodeURIComponent(inspectionId)}/completion-readiness`,
+  );
+}
+
 export async function createPersistedCorrectiveAction(input: {
   inspectionId: string;
   findingId: string;
   title: string;
   description: string;
   priorityCode: "low" | "medium" | "high" | "urgent";
+  /**
+   * Descriptive responsible party, as the customer typed it. OMITTED means unassigned -- the
+   * server does not substitute the caller, and the report renders a missing owner as "Unassigned"
+   * rather than naming the inspector. This is report metadata, not an account assignment.
+   */
+  assignedToName?: string;
 }) {
   return apiJson<Record<string, unknown>>("/actions", {
     method: "POST",
@@ -478,35 +556,59 @@ export async function createPersistedTask(input: {
   });
 }
 
+/**
+ * Finish an inspection's report. Generating again after a reopen REPLACES the current report; the
+ * customer is never presented with a version history and never chooses between report versions.
+ */
 export async function generatePersistedReport(inspectionId: string) {
-  return apiJson<{
-    reportId: string;
-    inspectionId: string;
-    version: number;
-    status: string;
-    checksum: string;
-  }>(`/inspections/${encodeURIComponent(inspectionId)}/reports`, {
-    method: "POST",
-  });
+  return apiJson<InspectionReportSummary>(
+    `/inspections/${encodeURIComponent(inspectionId)}/reports`,
+    { method: "POST" },
+  );
+}
+
+/**
+ * The one current report for an inspection.
+ *
+ * `versionId`/`version` are the server's INTERNAL snapshot identity, carried here only so
+ * diagnostics can quote them. No product surface renders them: the customer's identity for this
+ * record is the inspection's number, and the checksum is integrity metadata under technical details.
+ */
+export type InspectionReportSummary = {
+  reportId: string;
+  inspectionId: string;
+  versionId: string;
+  version: number;
+  status: string;
+  /** When the downloadable artifact was last produced. */
+  reportUpdatedAt: string | null;
+  generatedAt: string | null;
+  /** The inspection's customer-facing record number, and when the inspection itself was completed. */
+  inspectionNumber: number | null;
+  inspectionCompletedAt: string | null;
+  checksum: string | null;
+  sizeBytes: string | null;
+  generatorVersion: string | null;
+  failureReason: string | null;
+};
+
+export async function getReportForInspection(inspectionId: string) {
+  return apiJson<InspectionReportSummary | null>(
+    `/inspections/${encodeURIComponent(inspectionId)}/report`,
+  );
 }
 
 export async function listPersistedReports() {
   return apiJson<PersistedReport[]>("/inspection-reports");
 }
 
-export function persistedReportDownloadUrl(reportId: string, version: number) {
-  return `${API_BASE_URL}/inspection-reports/${encodeURIComponent(reportId)}/versions/${version}/download`;
+/** No version segment: an inspection has one report, so there is nothing to choose between. */
+export function persistedReportDownloadUrl(reportId: string) {
+  return `${API_BASE_URL}/inspection-reports/${encodeURIComponent(reportId)}/download`;
 }
 
-export async function archivePersistedReport(reportId: string) {
-  return apiJson<{ reportId: string; archivedAt: string }>(
-    `/inspection-reports/${encodeURIComponent(reportId)}/archive`,
-    { method: "PATCH" },
-  );
-}
-
-export async function downloadPersistedReport(reportId: string, version: number) {
-  const response = await apiFetch(persistedReportDownloadUrl(reportId, version), {
+export async function downloadPersistedReport(reportId: string) {
+  const response = await apiFetch(persistedReportDownloadUrl(reportId), {
     headers: authHeaders(),
   });
   if (response.status === 401) throw new Error("AUTH_REQUIRED");

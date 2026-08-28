@@ -1,7 +1,7 @@
 {
   "schemaVersion": "insite.current-state.v1",
-  "generatedAt": "2026-08-27",
-  "generatedBy": "INSITE v1.0 ACCEPTED RELEASE CANDIDATE PRESERVED BEFORE EXPERT-AI EXPANSION -- executed. INSITE_V1_ACCEPTED_RC_PRESERVED -- PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE. INSITE_V1_ACCEPTED_RC_SHA=a1515cbc828e15896e399c17f4c36003c210aca8, pushed to origin/main, tagged insite-v1-pre-expert-ai-baseline-2026-08-27. Production deployment INTENTIONALLY DEFERRED; production still runs e9355e911c221f94c96d2a1b241b4d938435fae2. LIVE_PAYMENT_PROOF remains FALSE. See blueprint section 83.",
+  "generatedAt": "2026-08-28",
+  "generatedBy": "INSITE v1.0 ACCEPTED RELEASE CANDIDATE PRESERVED BEFORE EXPERT-AI EXPANSION -- executed. INSITE_V1_ACCEPTED_RC_PRESERVED -- PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE. INSITE_V1_ACCEPTED_RC_SHA=a1515cbc828e15896e399c17f4c36003c210aca8, pushed to origin/main, tagged insite-v1-pre-expert-ai-baseline-2026-08-27. Production deployment INTENTIONALLY DEFERRED; production still runs e9355e911c221f94c96d2a1b241b4d938435fae2. LIVE_PAYMENT_PROOF remains FALSE. See blueprint section 83. | INSITE_V1_PRELAUNCH_ARCHITECTURE_AND_MEASUREMENT 2026-08-27: architecture/measurement only, nothing implemented, 0 provider calls, $0.00. | HAZLENZ_DETERMINISTIC_LEVEL1_RECALL_CLOSURE 2026-08-28: whole-Level-1 recall measured through the real classify path, eight surviving required-hazard omissions (five life-critical, including B-15) repaired deterministically, Level-1 recall 81.4% -> 100.0% and life-critical 30/35 -> 35/35 with Population A precision held at 100.0%; 0 provider calls, $0.00, not committed, not deployed. | HAZLENZ_DETERMINISTIC_ACTIONABLE_COVERAGE_CLOSURE 2026-08-28: recognition and materialisation separated and both closed on the bounded corpus -- actionable finding coverage 93.0% -> 100.0% (43/43) and life-critical 33/35 -> 35/35, verified by driving every row through the real classify/analysis/reconciliation/finding/report workflow on a disposable stack; Population A precision held at 100.0%; 0 provider calls, $0.00, not committed, not deployed. | HAZLENZ_STANDARDS_ARCHITECTURE_AND_COVERAGE 2026-08-28: three standards mechanisms identified and the customer-facing finding-citation authority isolated to evidence-foundation.ts; governed corpus materialized (35 records, manifest 14a34fea) and proved NOT to be the cause of the missing standards; jurisdiction safety measured at 0 wrong-standard and 0 wrong-jurisdiction; nine hazard families have no applicable rule and most require authoritative source material absent from the repository; no production source changed, 0 provider calls, $0.00, not committed, not deployed. | AUTHORITATIVE_REGULATORY_SOURCE_ACQUISITION 2026-08-28: 37 provisions retrieved from the official eCFR versioner API and governed; corpus 35 -> 72 records with 0 duplicates and deterministic materialization (manifest 702339e5); coverage-matrix SOURCE_AUTHORITY_MISSING 36 -> 0; 0 of 72 reviewer-approved so the release remains provisional; hazard floor re-measured intact at 43/43 and 100% Population-A precision; 0 provider calls, $0.00, not committed, not deployed. | REGULATORY_REVIEWER_GOVERNANCE 2026-08-28: all 72 governed records reviewed record by record against authoritative eCFR text -- 64 approved individually through the checksum-protected mechanism, 8 pre-existing records rejected for summary-fidelity defects and excluded rather than edited; release-identity immutability repaired using the existing KG-5B pin (SAME_RELEASE_ID_SAME_MANIFEST=TRUE, DIFFERENT_MANIFEST_SAME_RELEASE_ID=REJECTED, RELEASE_REPRODUCIBLE=TRUE); candidate release federal-core-2026-08-28.1 (64 members, manifest 680540d9) built and validated locally and NOT activated; hazard floor re-measured intact; 0 provider calls, $0.00, not committed, not deployed. | FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATION 2026-08-28: the contract's first assertion written as a failing test before any integration code and now 17/17; every persisted finding citation carries an explicit release-scoped authority state; all 8 rejected records proven unable to reach governed authority with a positive control in the same suite; a persisted finding stays bound to its own release when another appears; protected floor re-measured intact; candidate release NOT activated, production NOT mutated, 0 provider calls, $0.00, not committed, not deployed. | HAZLENZ_GOVERNED_RELEASE_ACTIVATION 2026-08-28: federal-core-2026-08-28.1 activated in a DISPOSABLE database only, retrieval scoped to it, inspection release binding added (migration 1800000018000, write-once). LOCAL_CANDIDATE_ACTIVATION=TRUE, PRODUCTION_CANDIDATE_ACTIVATION=FALSE, PRODUCTION_MUTATED=FALSE, PROVIDER_CALLS=0, $0.00. Protected floor re-measured intact with the release ACTIVE. See blueprint 'Governed release activation + release-scoped retrieval'.",
   "documentContract": {
     "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
     "authoritativeFor": [
@@ -25,105 +25,37 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "INSITE_V1_ACCEPTED_RC_PRESERVED \u2014 PRELAUNCH_EXPERT_EXPANSION_READY_FOR_ARCHITECTURE",
-  "readiness": "The accepted v1.0 release candidate is preserved as an exact recoverable checkpoint at a1515cbc828e15896e399c17f4c36003c210aca8 on origin/main, tagged insite-v1-pre-expert-ai-baseline-2026-08-27. BASELINE_PROTECTED = TRUE. The HazLenz Level-1 baseline of 31/31 suites was re-proven at that exact tree before committing. Deployment is intentionally deferred because the product owner authorized a further pre-launch development program (four workstreams, PLANNED and NOT implemented). No customer-facing blocker is known; the paid path remains the single outstanding launch evidence gap.",
-  "nextSlice": "INSITE_V1_PRELAUNCH_EXPERT_EXPANSION -- ARCHITECTURE_AND_MEASUREMENT_FIRST. It must be read/analysis/design-first and must NOT open by adding an LLM or rewriting HazLenz. Every phase begins from the protected baseline a1515cbc828e15896e399c17f4c36003c210aca8.",
+  "checkpoint": "HAZLENZ_GOVERNED_RELEASE_ACTIVATION_ACCEPTED \u2014 PRESERVATION_CHECKPOINT_AND_PRODUCTION_CUTOVER_PLANNING_REQUIRED",
+  "readiness": "Hazard-recognition authority and regulatory-content authority are now separate all the way to the customer record, and the separation is enforced rather than documented. An inspection acquires its governing knowledge release ONCE and keeps it: reopening, re-analysing and regenerating the report reproduce the regulatory basis the customer was originally given, even after a newer release is activated. Measured through the real HTTP customer path against a disposable stack: the inspection bound to federal-core-2026-08-28.1, its analyses recorded that release, and every persisted standard candidate resolved APPROVED_GOVERNED_CONTENT with a reviewer, an effective review state and a record checksum reconstructable from the immutable snapshot; every displayed regulatory string came from the governed record. All 64 approved members are governance-reachable and all 8 rejected records are refused by membership, review state, reviewer inheritance, checksum inheritance and citation-string laundering. Activation alone changes nothing for a customer: with the release ACTIVE and the server in its shipped LEGACY posture the accepted workflow still passes 66/66, every candidate is still LEGACY_CODE_RESIDENT_CONTENT and every knowledgeReleaseId is still NULL. The protected HazLenz floor was re-measured intact with the release active. NOT committed, NOT deployed, production NOT activated and NOT mutated. The paid path remains unproven (LIVE_PAYMENT_PROOF = FALSE), the decomposition ranking defect is preserved unrepaired, and InSite v1.0 as a whole is NOT launch-ready.",
+  "nextSlice": "PRODUCTION CUTOVER PLANNING. The mechanism is proven in a disposable environment: activation selects an immutable release without rewriting it, an inspection binds write-once to the release that governs it and never silently switches, retrieval is scoped to that release, and a finding can reach APPROVED_GOVERNED_CONTENT traceable to an exact record checksum. NOTHING about production is proven. A production cutover needs, as separate decisions: activating the release on production, setting GOVERNED_CUTOVER_MODE plus a named account allowlist, and a rollback rehearsal against production data. Still open and unchanged: corrected summaries for the 8 rejected records, which must arrive as a NEW release identity rather than an edit to records the pinned 35-record release reproduces from; the unresolved-jurisdiction ranking defect; test:approval-contract's pre-existing refusal under the release-identity guard; and the unenumerated 'four known failures'. Expert HazLenz remains unauthorised and must never be the regulatory source of truth.",
   "actionsPerformedByThisTask": {
+    "phase": "HAZLENZ_GOVERNED_RELEASE_ACTIVATION_AND_RELEASE_SCOPED_RETRIEVAL",
     "committed": false,
     "pushed": false,
+    "tagged": false,
     "deploymentPerformed": false,
     "productionModified": false,
-    "productionConfigurationModified": false,
     "productionDatabaseModified": false,
+    "productionReleaseActivated": false,
     "safescopeDevDatabaseModified": false,
-    "migrationsApplied": false,
-    "stashesTouched": false,
-    "tagsTouched": false,
-    "productionSourceCodeModified": true,
-    "productionSourceCodeModifiedRationale": "FIVE frontend files, all one root cause plus one touch-target floor. components/ui/SummaryRow.tsx, components/ui/AppPanel.tsx and components/ui/SectionHeader.tsx gained min-w-0 (and break-words where a long value or title is rendered): each is routinely a grid or flex item, which defaults to min-width:auto and so refuses to shrink below its content's intrinsic minimum -- an account email is a single unbreakable token, which made the /profile panel 410px wide in a 390px viewport and clipped Sign Out and Delete Account past the edge. app/settings/page.tsx site rows gained min-w-0 for the same reason at 320px. components/ui/AppButton.tsx size=\"sm\" gained min-h-9 to meet the 36px mobile floor. No backend file, no reasoning, scorer, threshold, prompt or Level-3 file was touched.",
-    "filesAdded": [
-      "backend/src/safescope-v2/reasoning-l3/condition-state-resolution.ts",
-      "backend/scripts/test-l3-condition-state-resolution.ts",
-      "verification/hazlenz-l3-local-remediation-phase1-2026-08-26/ (full package)"
+    "safescopeDevDatabaseNote": "Never written to and never migrated. DATABASE_URL was overridden explicitly for every command and the resolved target was printed and checked before each mutable operation. All runtime work used disposable databases created for this workflow: test_v1_release_activation_20260828 (activation acceptance), test_v1_activation_gate_20260828, test_v1_release_binding_20260828, test_v1_release_workflow_20260828, test_v1_kg4e_legacy_20260828, test_v1_release_score_20260828, test_v1_shadow_corpus_20260828 and per-suite clones, each cloned from the disposable test_v1_reviewed_release or from the activation database. Every mutating suite claimed its database through the KG-4C ownership guard before its first write.",
+    "migrationsAdded": 1,
+    "migrationsAddedNote": "1800000018000 InspectionKnowledgeReleaseBinding: adds inspection.knowledgeReleaseId varchar(120) NULL with a partial index on IS NOT NULL. Additive and SAFE_BEFORE_NEW_CODE; never back-filled. Applied to disposable databases only.",
+    "providerCalls": 0,
+    "spend": "$0.00",
+    "newGates": [
+      "test:release-activation-acceptance",
+      "test:release-binding-acceptance",
+      "test:governed-release-reachability",
+      "test:governed-authority-precedence",
+      "verify:release-scoped-customer-workflow",
+      "diagnose:knowledge-release-null-path"
     ],
-    "filesModified": [
-      "backend/src/safescope-v2/reasoning-l3/reasoning-runner.ts",
-      "backend/package.json (one test script registered)",
-      "docs/INSITE_ENGINEERING_BLUEPRINT.md",
-      "docs/INSITE_CURRENT_STATE.json"
-    ],
-    "releaseCreated": false,
-    "releaseActivated": false,
-    "rollbackPerformed": false,
-    "merged": false,
-    "priorKgEvidenceModified": false,
-    "goldArtifactsModified": false,
-    "phase": "INSITE v1.0 FINAL LOCAL MOBILE ACCEPTANCE CLEANUP (2026-08-26)",
-    "inferenceCallsPerformed": 0,
-    "apiCostUsd": 0,
-    "protectedExcludedWorkTouched": false,
-    "documentationFetches": 0,
-    "providerRequirementsModified": false,
-    "providerRequirementsRationale": "PROVIDER_REQUIREMENTS.md was NOT modified. This phase measured credential presence and re-verified frozen identities; it adjudicated no provider requirement. A phase that changes no requirement must not edit the requirements file.",
-    "apiRequests": 0,
-    "sealedCorpusOpened": false,
-    "sealedStrideConsumed": "NONE. Gauntlet offsets 2 and 3 and realism offsets 1 and 2 remain RESERVED; gauntlet.seed remains UNOPENED, PROVEN by enumerating the analysis files read targets.",
-    "holdoutConstructed": "PRE-EXISTING -- constructed and frozen by D-96 and NOT REBUILT by this phase. Only its SHA-256, its row count and the NAMES of its keys were read. No observation, expect or sourceId value was opened.",
-    "holdoutSpent": false,
-    "attempt1EvidenceModified": false,
-    "priorReadinessAttemptEvidenceModified": false,
-    "frozenProbeModified": false,
-    "run2HoldoutSpent": true,
-    "providerCapacityDetermined": "PASS -- $40.00 available against $18.038745 required; headroom +$21.961255 (+121.745%), capacity multiple 2.217x",
-    "priorPhaseEvidenceModified": false,
-    "run1EvidenceModified": false,
-    "run1EvidenceReadOnly": "Run-1 was read for TRANSPORT AND ERROR METADATA ONLY. Its package verifies 31/31 byte-identical to its own manifest and its runner remains 8d8a6479..., unmodified.",
-    "dkAbortWired": "WIRED_AND_VERIFIED -- the frozen D-K.2 predicate, unchanged. 92 synthetic assertions / 92 PASS / 0 FAIL, tsc 0 errors.",
-    "frozenArtifactMutated": false,
-    "credentialAccessed": false,
-    "providerCallsPerformed": 0,
-    "readinessProbesPerformed": 0,
-    "run2ExecutionGuardIdentity": "eee8e587cd19183024d9a00b0ace5efbdcc73d587dddf801c51aaa0beab303c1",
-    "run2AcceptanceArtifactIdentity": "9c74ffd46e0993e097c393c5e26594501716b68078599e678ef2f4052f36acdc (UNCHANGED -- recomputed from the actual files, 15/15)",
-    "dkAbortFired": false,
-    "dkAbortFiredNote": "D-K was ARMED and stayed DORMANT. That is the correct outcome, not a failure of the guard: it aborts at the first required row the provider does not evaluate, and the provider evaluated all 186.",
-    "tuningPerformed": false,
-    "remediationPerformed": true,
-    "semanticRetryPerformed": false,
-    "thresholdsChanged": false,
-    "denominatorsChanged": false,
-    "scorerModified": false,
-    "promptSchemaValidatorBinderInputBuilderShimModified": false,
-    "structuralRehearsalBeforeSpend": "DISCLOSED: the exact run driver was executed end-to-end against a LOCAL 127.0.0.1 fixture before spend -- no provider contact, no credential use, $0.00 -- because its record-building hook had been type-checked but never executed and a crash mid-run would have destroyed paid single-use evidence. It completed 93/93 in both processes with all ten scorer fields present, then was DESTROYED; nothing from it entered the evidence package. Disclosed because it DID open Run-2 observation values locally ahead of Phase 5, though it transmitted nothing to any provider and did not touch the spend predicate.",
-    "productionProviderSelected": false,
-    "customerAuthorityChanged": false,
-    "run2CorpusReExecuted": false,
-    "newHoldoutOpened": false,
-    "run3Constructed": false,
-    "defectMarkedRepaired": false,
-    "gatesReclassified": false,
-    "acceptanceResultModified": false,
-    "acceptanceResultModifiedNote": "THE FROZEN RUN-2 TERMINAL, scorable, pass, modelAcceptanceResult AND failedGates WERE ASSERTED UNCHANGED BY THE PRESERVATION INSTRUMENT (23/23). THE COUNTERFACTUAL REPLAY IS LABELLED RUN2_RECORDED_OUTPUT_COUNTERFACTUAL_REPLAY AND IS DIAGNOSTIC ONLY.",
-    "g9Amended": false,
-    "gatesAmended": false,
-    "implementationPerformed": true,
-    "safescopeDevDatabaseNote": "NOT MUTATED. Measured before and after: 35 migrations, 46 tables -- unchanged. OPERATIONAL FINDING: the backend already running on :4000 resolves to safescope, so the phone flow was driven against a disposable API on :4031 bound to test_insite_v1_launch_20260826 with a dev frontend on :3041 in its CORS allowlist. The user's own :3000/:4000 pair was left running and untouched. Every record this phase created is in the disposable database.",
-    "disposableDatabasesCreated": [
-      "test_insite_v1_launch_20260826 (migrated 46/46; carried the API journey and UI audit)",
-      "test_insite_v1_backing_20260826 (created for test:standards-backing-contract; that suite needs a seeded governed corpus and was NOT RUN)"
-    ],
-    "verificationInstrumentsBuilt": [
-      "API journey harness -- 52 assertions, 52 PASS (auth, Free/Pro boundaries, Stripe webhook lifecycle, inspection->report journey, cross-account isolation)",
-      "Playwright UI audit -- 40 route/theme combinations; HTTP status, redirects, console errors, horizontal overflow, placeholders, computed WCAG contrast"
-    ],
-    "instrumentSelfCorrection": "The contrast probe initially reported 131 failures. 113 were instrument error: getComputedStyle reports rgba(0,0,0,0) for gradient-painted elements, so white hero text was scored against the page colour behind it. The probe now refuses to score text whose nearest painted ancestor uses a background-image. Recorded rather than re-baselined.",
-    "worktreeFileDamagedAndRestored": "backend/tsconfig.json -- 'next dev' was started once with cwd=backend/ and Next.js auto-patched it (jsx, noEmit:true, isolatedModules, next plugin), which would have made 'npm run build' emit nothing. Restored from HEAD and hash-verified identical (27d9e3942e8ce71268cc5a5224ca965c2dd5d085d71c487a6c4890e599652e64). Stray backend/.next/ and backend/next-env.d.ts removed.",
-    "liveStripeCallsPerformed": false,
-    "preExistingWorkPreserved": "frontend-next/scripts/check-launch-pricing.mjs, backend/.env.example, frontend-next/README.md, package.json, package-lock.json and tsconfig.json arrived between phase 1 and phase 2 and were NOT authored by this phase. They were preserved and used: check:launch-pricing is now part of the regression set and its independently-authored $24.99 contract agrees with the user's decision.",
-    "verificationInstrumentsAdded": [
-      "frontend-next/scripts/check-hydration.mjs (npm run check:hydration) -- asserts the app emits no caret-color AND 0 hydration mismatches across 20 routes x 2 themes; must run against a dev server"
-    ],
-    "instrumentCorrections": "Two, both NARROWING what counts as a failure and both marked in output rather than dropped: inline prose links are exempt from the touch-target floor (WCAG 2.5.8 excludes a target in a sentence), and inactive controls are exempt (WCAG 1.4.3)."
+    "gatesWeakened": 0,
+    "thresholdsRelaxed": 0,
+    "evidenceFoundationModified": false,
+    "unrelatedWorktreeChangesPreserved": true,
+    "evidencePackage": "verification/insite-v1-governed-release-activation-2026-08-28/"
   },
   "productionPosture": {
     "productionShadowEnabled": false,
@@ -802,7 +734,7 @@
     "Confirm the platform log pipeline collects and retains kg4c.shadow-comparison.v2 events",
     "Name the single internal Stage-1 account and set the four locks (operational decision)",
     "Operator-triggered instant kill switch (control-plane feature)",
-    "KG4E-DISC-03: GET /inspection-reports returns every version's full frozen sourceSnapshot",
+    "KG4E-DISC-03: GET /inspection-reports returns every version's full frozen sourceSnapshot [PRELAUNCH-ARCH 2026-08-27: QUANTIFIED -- measured 196,016 bytes returned for a single one-version report, 71% of the frozen snapshot being raw analysis, against a 12,915-byte PDF. Fix is W-3.]",
     "Close GOVERNED_MISSING - 137 declared-but-unemitted citations",
     "Resolve 39 parent/child ambiguities",
     "Resolve 42 duplicate multi-surface declarations",
@@ -822,7 +754,18 @@
     "L3-LR1-OPEN-1: RC-2 RESOLVE mode is implemented and tested but NOT ADOPTED. Adoption requires a development cohort that persists the PER-CANDIDATE clarification with its affectedDecision, because the Run-2 recording does not say which candidate carried the question. Until then RC-2 stays PARTIAL.",
     "L3-LR1-OPEN-2: BINDER_STATE_REJECTION_PRECISION_DEFECT -- SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE deleted a TRUTH-MATCHING state on 8 of 8 decidable fatal firings in Run 2 (3/3 process A, 5/5 process B). Until this is repaired the BOUND tier MUST NOT be promoted to authoritative. Repair needs evidence text the recording does not hold.",
     "L3-LR1-OPEN-3: RC-3 remains UNRESOLVED. The safety-material half of G9 (G9-S1 = 7) did not move under ANY downstream architecture the Run-2 recording can discriminate. RUN 3 remains blocked on this and this alone.",
-    "L3-LR1-OPEN-4: the G9 PRODUCT SPECIFICATION handed to the product owner at section 69.4 -- what the customer actually sees -- still does not exist."
+    "L3-LR1-OPEN-4: the G9 PRODUCT SPECIFICATION handed to the product owner at section 69.4 -- what the customer actually sees -- still does not exist.",
+    "PRELAUNCH-ARCH W-1: '+ Add finding' is absent from the corrective-action step, which has no back navigation at all; and the add-finding path does not reopen a completed inspection although the server permits it and saveObservationRevision() already does. Frontend only, no schema/API/migration.",
+    "PRELAUNCH-ARCH W-2: 'shield' in the excavation regex matches 'face shield'/'welding shield'/'splash shield' at confidence 0.85, above a genuine trench at 0.60, and the spurious finding reaches the frozen customer report. ROOT-CAUSED, NOT REPAIRED.",
+    "PRELAUNCH-ARCH W-4: decide the disposition of the unreachable legacy report implementation (/inspection, /inspection-quick, /inspection-cover, /inspection-review, legacy/reports) before v1.0 -- an unreachable second writer of report data is a latent contradictory source of truth.",
+    "PRELAUNCH-ARCH W-7: finding conclusions persisted and carried into reports are engine tokens ('guard', 'panel', 'hot_work') rather than customer-readable sentences.",
+    "PRELAUNCH-ARCH W-5: capacity tests C-1..C-8 are specified and NONE has been run. No operating limit or user count may be published before they are.",
+    "INSPECTION-WF: inspection SETUP (inspection name, inspector(s), confidential flag) is TARGET_DEFINED but NOT implemented; inspector(s) and confidential are new data on the canonical path.",
+    "INSPECTION-WF: an organization-scoped inspection still prints 'Inspector: Not recorded' because preparedBy resolves from inspection.ownerUserId, which is NULL when organizationId is set.",
+    "EXPERT_ASSIST_USER_AUTHORED_FINDING: deferred Expert HazLenz capability, recorded and not implemented.",
+    "ORGANIZATION_BACKED_ACTION_ASSIGNMENT: real account-backed action assignment (member selection, RBAC, notification, acceptance, reassignment, escalation, My Actions) is a future item; v1.0 ships descriptive report metadata only.",
+    "INSPECTION-WF DECISION REQUIRED: 'Delete Report' calls archive(), which sets archivedAt and deletes nothing - not the report row, versions, frozen snapshots, PDFs or inspection. But list() hides archived reports and NO UNARCHIVE ROUTE EXISTS, so it is irreversible from the customer's side. It is neither a delete nor a reversible archive. Deliberately left unchanged; semantics need an owner decision.",
+    "INSPECTION-WF: the generic /reports library still presents report cards as the only representation of a finished inspection, with no navigation from a report back to its source inspection. Bounded W-3 work, not done."
   ],
   "evidenceIndex": {
     "root": "verification/hazlenz-governed-knowledge-growth-2026-08-19",
@@ -10924,6 +10867,2575 @@
           "preserve account isolation"
         ]
       }
+    },
+    "architectureAndMeasurementPhase": {
+      "status": "COMPLETE",
+      "implemented": false,
+      "date": "2026-08-27",
+      "evidence": "verification/insite-v1-prelaunch-architecture-2026-08-27/",
+      "blueprintSection": "84",
+      "decisions": [
+        "D-104",
+        "D-105",
+        "D-106",
+        "D-107",
+        "D-108"
+      ],
+      "findingLifecycle": "Inspection -> Observation -> HazLenzAnalysis -> InspectionFinding xN (MATERIALIZED BY THE SERVER from analysis.multiHazardDecomposition.hazards) -> HumanReview -> CorrectiveAction -> transition(completed) -> InspectionReport -> immutable version",
+      "findingIsDerivedNotAuthored": true,
+      "addFindingButtonActuallyAddsAnObservation": true,
+      "measured": {
+        "totalServerCallsForJourney": 38,
+        "serverCallsForSecondFinding": 7,
+        "findingsMaterializedFromOneSentence": 3,
+        "activeFindingsFromTwoSentences": 4,
+        "minimumInteractionsPerAdditionalFinding": 5,
+        "screensPerAdditionalFinding": 3,
+        "postReportAddObservationStatus": 409,
+        "postReportAddObservationMessage": "Completed inspections must be reopened before editing.",
+        "serverPermitsReopen": true,
+        "uiExposesReopenControl": false,
+        "reportGenerateWhileDraftStatus": 400,
+        "actionStepHasBackNavigation": false,
+        "reportSourceSnapshotBytes": 202789,
+        "reportSourceSnapshotAnalysisBytes": 144043,
+        "reportPdfBytes": 12915,
+        "reportListPayloadBytesForOneReport": 196016,
+        "classifyLatencyIndicativeOnly": "n=12 single client warm process on a local disposable DB: p50 56ms, p95 81ms. NOT a capacity measurement."
+      },
+      "decompositionShieldDefect": {
+        "status": "ROOT_CAUSED_NOT_REPAIRED",
+        "location": "backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts:1267",
+        "cause": "The excavation fragment regex alternative 'shield(?:ing)?', intended as a trench shield, matches any noun phrase containing the word and pushes excavation_trenching at a hard-coded confidence of 0.85.",
+        "probes": [
+          "face shield -> excavation_trenching 0.85",
+          "welding shield -> excavation_trenching 0.85",
+          "splash shield on a parts washer -> excavation_trenching 0.85",
+          "eye protection (no 'shield') -> no excavation hazard",
+          "unshored trench with a spoil pile -> excavation_trenching 0.60"
+        ],
+        "falsePositiveOutscoresGenuineTrench": true,
+        "reachesCustomerReport": true,
+        "hotWorkOnSameSentence": "NOT a defect -- grindCutActivity deliberately treats 'portable grinder' as hot-work evidence and documents it. A conservative over-trigger by design that doubles reviewer work identically.",
+        "repairWorkstream": "W-2",
+        "repairConstraint": "Narrowest correction only. The four probes become regressions. HazLenz Level-1 31/31 must pass UNRELAXED. No scorer, threshold or gold-set expectation may be modified to accommodate it."
+      },
+      "reportArchitectureDecision": {
+        "model": "VERSIONED_IMMUTABLE_SNAPSHOTS -- kept, already implemented",
+        "addFindingMeaning": "OPTION_B -- add the finding to the underlying inspection and let the report reflect it, plus a first-class customer-authored finding carrying source:'user_authored'",
+        "rejected": [
+          "edit the report directly",
+          "durable report-owned findings"
+        ],
+        "missing": [
+          "a name column",
+          "a visible regeneration lifecycle",
+          "an unarchive route (or honest 'Delete Report' copy)",
+          "a list() projection that omits sourceSnapshot"
+        ],
+        "quantifiesOpenItem": "KG4E-DISC-03",
+        "legacyIsland": "/inspection (952 lines), /inspection-quick (570), /inspection-cover (232), /inspection-review (327) and @Controller('legacy/reports') are an unreachable SECOND report implementation, linked only to each other. Disposition is W-4."
+      },
+      "capacity": {
+        "limitsMeasured": false,
+        "userCountClaimed": false,
+        "pgPoolMax": "DEFAULT 10 -- TypeOrmModule.forRootAsync sets no extra.max",
+        "statementTimeout": null,
+        "connectionTimeout": null,
+        "acquireTimeout": null,
+        "globalThrottle": "100 requests / 60s; POST /auth/* is 5 / 60s per IP",
+        "classificationIsInProcessCpuBound": true,
+        "requiredTests": [
+          "C-1 connection-pool saturation",
+          "C-2 concurrent HazLenz classification",
+          "C-3 report generation under the advisory lock",
+          "C-4 report list payload before and after the projection fix",
+          "C-5 storage growth",
+          "C-6 offline sync burst",
+          "C-7 cross-account isolation under load",
+          "C-8 throttle intent"
+        ],
+        "testsRun": 0
+      },
+      "workstreams": [
+        "W-1 core finding UX",
+        "W-2 shield decomposition defect",
+        "W-3 report records and ownership",
+        "W-4 legacy-island disposition",
+        "W-5 capacity C-1..C-8",
+        "W-6 Expert HazLenz (blocked on the unbuilt hosted adapter and on W-2)",
+        "W-7 final polish and acceptance"
+      ],
+      "nothingImplemented": true
+    }
+  },
+  "inspectionWorkflowV1": {
+    "status": "INSPECTION_LIFECYCLE_ACCEPTED",
+    "accepted": true,
+    "deployed": false,
+    "contract": "verification/insite-v1-inspection-workflow-2026-08-27/contracts/INSPECTION_WORKFLOW_V1.md",
+    "blueprintSection": "85",
+    "loop": "Record it -> HazLenz -> Risk & fix -> Review -> Save -> back to Record it",
+    "measuredInteractionsPerFinding": 7,
+    "interstitialsBetweenFindings": 0,
+    "savedFindingCountBasis": "status = 'finalized' only; dismissed and pending excluded",
+    "candidateConfirmation": {
+      "shownWhen": "more than one candidate proposed",
+      "skippedWhen": "exactly one candidate",
+      "preselectRule": "primary hazard OR direct standard OR risk band High/Critical",
+      "rejectionPersistence": "human_reviews(decision='dismissed') -> finding.status='dismissed'",
+      "rejectionRequiresExplanation": false,
+      "rejectedInReport": false,
+      "rejectedBlocksCompletion": false,
+      "zeroCandidateStateHonest": true
+    },
+    "userAuthoredFindings": {
+      "column": "inspection_findings.source",
+      "values": [
+        "hazlenz_decomposition",
+        "user_authored"
+      ],
+      "route": "POST /inspections/observations/:id/user-findings",
+      "fabricatedCitationOrConfidence": false,
+      "convertedByFinalization": false,
+      "supersededByReanalysis": false,
+      "evaluationSignal": "audit action finding_user_authored, signal candidate_false_negative"
+    },
+    "completionContract": {
+      "sharedEvaluator": "InspectionService.evaluateCompletionReadiness",
+      "readEndpoint": "GET /inspections/:id/completion-readiness",
+      "enforcedBy": "transition(status='completed')",
+      "frontendIsAuthorization": false,
+      "newRequirementsAdded": false,
+      "customerFacingCount": "reportableCount = finalized only"
+    },
+    "responsibleParty": {
+      "field": "corrective_actions.assignedToName",
+      "schemaChangeRequired": false,
+      "blankMeans": "Unassigned",
+      "inspectorSubstituted": false,
+      "isAssignmentSystem": false
+    },
+    "governedDueDays": {
+      "Critical": 1,
+      "High": 3,
+      "Moderate": 7,
+      "Low": 14
+    },
+    "riskBandAuthority": "lib/inspection/riskBands.ts, held to risk-profiles.ts and risk-policy.ts by npm run check:risk-band-parity",
+    "notDesigned": [
+      "generic Reports library architecture (W-3)",
+      "report naming",
+      "report archive management (Delete Report removed from the customer workflow; see inspectionReportContractV1)"
+    ],
+    "completedInspection": {
+      "route": "/inspection-complete",
+      "isPostFinishDestination": true,
+      "secondAuthoritativeRecordCreated": false,
+      "showsFindingsWithoutOpeningPdf": true,
+      "dismissedCandidatesShown": false,
+      "rawUuidsInPrimaryUi": false,
+      "reportNamingImplemented": false,
+      "reportLookupEndpoint": "GET /inspections/:inspectionId/report (light version metadata)",
+      "supersededBy": "inspectionReportContractV1"
+    },
+    "reopenLifecycle": {
+      "action": "Reopen inspection, with consequence copy, on the completed page",
+      "mechanism": "existing authoritative transition -> draft",
+      "frontendOnlyEditMode": false,
+      "returnsTo": "/inspection-workspace with the capture loop and running summary restored",
+      "previous409Resolved": true,
+      "recompletionCreatesNewVersion": false,
+      "measured": {
+        "v1BytesBefore": 26476,
+        "v1Sha256Before": "357c48148513da47a1b0fc5b10e83444fa15eda074b3de8b1f7aa75df7e5b50c",
+        "v1BytesAfter": 26476,
+        "v1Sha256After": "357c48148513da47a1b0fc5b10e83444fa15eda074b3de8b1f7aa75df7e5b50c",
+        "v1FrozenFindings": 12,
+        "v2FrozenFindings": 13,
+        "newFindingInV1": 0,
+        "newFindingInV2": 1,
+        "dismissedInEitherVersion": 0,
+        "v1StillDownloadable": true,
+        "strangerAccountResponses": "404 on inspection, report, readiness, download and reopen"
+      },
+      "recompletionReplacesCurrentReport": true,
+      "supersededBy": "inspectionReportContractV1",
+      "measuredUnderSupersededVersionHistoryContract": true
+    },
+    "inspectionVersionExposedToCustomer": false,
+    "acceptedBy": "inspectionLifecycleAcceptanceV1"
+  },
+  "inspectionReportContractV1": {
+    "status": "ONE_CURRENT_REPORT_PER_INSPECTION_ACCEPTED",
+    "decidedBy": "product owner, 2026-08-27",
+    "supersedes": [
+      "inspectionWorkflowV1.reopenLifecycle.recompletionCreatesNewVersion",
+      "INSPECTION_WORKFLOW_V1.md sections 5.3, 5.4, 5.5, 5.8",
+      "INSITE_ENGINEERING_BLUEPRINT.md sections 85.8, 85.9"
+    ],
+    "accepted": true,
+    "deployed": false,
+    "contract": "verification/insite-v1-inspection-workflow-2026-08-27/contracts/INSPECTION_WORKFLOW_V1.md#6",
+    "blueprintSection": "85.10",
+    "model": "Inspection -> one current report. Reopen, edit, finish again -> that report is REPLACED.",
+    "customerVisibleReportVersionHistory": false,
+    "customerVisibleSupersededReports": false,
+    "internalSnapshotStore": {
+      "table": "inspection_report_versions",
+      "retainedRowsPerReport": 1,
+      "versionColumnIsCustomerFacing": false,
+      "versionColumnPurpose": "internal sequence: table uniqueness, audit addressability, KG-4E frozen-snapshot suites"
+    },
+    "replacementSafety": {
+      "orderedSequence": [
+        "existing snapshot and PDF left untouched",
+        "replacement rendered and its bytes stored",
+        "replacement marked generated only after its artifact exists and verifies",
+        "superseded snapshot rows deleted in the SAME transaction as the switch",
+        "superseded PDFs destroyed only AFTER that transaction commits"
+      ],
+      "serializedBy": "pg_advisory_xact_lock('inspection-report:<inspectionId>')",
+      "preCommitFailurePreservesPreviousReport": true,
+      "failureAuditAction": "report_generation_failed",
+      "reopenAloneMutatesReport": false,
+      "crashWindowResidual": "a crash between commit and cleanup can leak an unreferenced PDF, never a missing one; swept by orphanedReportArtifactIds() on the next generation"
+    },
+    "customerFacingIdentifier": {
+      "field": "inspection.displayNumber",
+      "migration": "1800000017000-InspectionDisplayNumber",
+      "rendered": "Inspection #7",
+      "scope": "per organization when organization-scoped, else per owning user; starts at 1 in each scope",
+      "allocation": "MAX+1 under a per-scope pg_advisory_xact_lock at creation",
+      "backfill": "ROW_NUMBER() OVER (PARTITION BY COALESCE(organizationId, ownerUserId) ORDER BY createdAt, id)",
+      "derivedFromUuid": false,
+      "derivedFromChecksum": false,
+      "usedForAuthorization": false,
+      "appearsInAnyRoute": false,
+      "globalSequenceRejectedBecause": "a global sequence would disclose cross-tenant inspection volume and permit cross-account inference from adjacent numbers",
+      "separateReportNumberMinted": false,
+      "separateReportNumberRationale": "one report per inspection means the inspection number identifies the report"
+    },
+    "checksumPresentation": {
+      "labelledAsRecordIdentity": false,
+      "locationInUi": "Technical details only, labelled \"Checksum (SHA-256)\"",
+      "purpose": "integrity validation, diagnostics, deterministic verification"
+    },
+    "customerSurfaces": {
+      "completedInspectionReportSection": "Report ready / Report updated <date> / Download PDF",
+      "timestampsShown": [
+        "Inspection completed",
+        "Report updated"
+      ],
+      "timestampRationale": "a bare \"Created\" reads as the inspection date; the two genuinely differ after a reopen",
+      "reopenConsequenceCopy": "This makes the inspection editable again. Your current report stays available while you edit. When you finish again, it is replaced by a report of the updated inspection.",
+      "reportsLibraryCard": [
+        "inspection title",
+        "site",
+        "Inspection #N",
+        "inspection completed",
+        "report updated",
+        "finding count (finalized only)",
+        "jurisdiction",
+        "Download PDF",
+        "View inspection"
+      ],
+      "reportsLibraryShowsRecordIdsOrChecksums": false,
+      "downloadRoute": "GET /inspection-reports/:reportId/download (no version segment)",
+      "internalVersionedDownloadRouteRetainedFor": "verification suites only; a replaced sequence answers 404",
+      "inspectionsListActionLabels": {
+        "completed": "View inspection -> /inspection-complete",
+        "draft_or_in_review": "Continue inspection -> /inspection-workspace"
+      }
+    },
+    "deleteReport": {
+      "customerControlPresent": false,
+      "removedBecause": "it said \"Delete Report\", only set archivedAt, hid the report permanently and had no unarchive: neither a delete nor a reversible archive",
+      "destructiveDeletionAdded": false,
+      "backendArchiveRouteChanged": false,
+      "backendArchiveRouteReachableFromProduct": false,
+      "decision": "DEFERRED \u2014 report/archive management is a separate product decision"
+    },
+    "existingDataMigration": {
+      "script": "backend/scripts/retire-superseded-report-snapshots.ts",
+      "npmScript": "retire:superseded-report-snapshots",
+      "retentionRule": "highest version whose status is generated \u2014 the row the product already served as current",
+      "reportsWithNoGeneratedSnapshotAreSkipped": true,
+      "bytesDestroyedOnlyAfterRowChangeCommitted": true,
+      "defaultsToReadOnlyInventory": true,
+      "refusesProtectedDatabases": [
+        "safescope",
+        "sentinel_dev",
+        "sentinel_safety",
+        "postgres"
+      ],
+      "notPartOfSqlMigrationBecause": "the obsolete artifacts are storage-provider objects a SQL migration could only have orphaned",
+      "productionMutation": "NONE \u2014 disposable verification database only"
+    },
+    "measured": {
+      "database": "test_insite_onereport_20260827 (clone of test_insite_wfdesign2_20260827)",
+      "legacySnapshotsBefore": 9,
+      "legacySnapshotsAfter": 8,
+      "legacyReports": 8,
+      "reportsWithMoreThanOneSnapshotAfter": 0,
+      "recordNumberBackfillNulls": 0,
+      "browserWalk": {
+        "firstReportSha256": "98a563edc47ff93d405f4712937689f788eb9b272b175fafaa82541bf602d65e",
+        "firstReportBytes": 8685,
+        "snapshotsAfterReopenBeforeRefinish": 1,
+        "reportUnchangedByReopenAlone": true,
+        "replacementSha256": "3f87ccf1736efcf138c233d70023f076e12b6b3c83f0698eba7dbfd745c6ad5c",
+        "replacementBytes": 10361,
+        "snapshotsAfterReplacement": 1,
+        "predecessorSnapshotRowDeleted": true,
+        "predecessorStorageObjectStatus": "deleted",
+        "predecessorPdfPresentOnDisk": false,
+        "orphanedReportArtifactsWholeDatabase": 0,
+        "replacedPdfContainsBothFindings": true,
+        "dismissedCandidateOccurrencesInPdf": 0,
+        "versionWordsOnCompletedPage": 0,
+        "versionWordsInReportLibrary": 0,
+        "reportCardsForTheInspection": 1,
+        "supersededSequenceDownload": 404
+      },
+      "concurrentRegenerations": {
+        "requests": 10,
+        "allAccepted": true,
+        "distinctSnapshotIdentities": 1,
+        "retainedSnapshots": 1,
+        "orphans": 0
+      },
+      "failedReplacementSafety": {
+        "suite": "npm run test:report-replacement-failure-safety",
+        "faultInjection": "the private storage root is made unwritable for one regeneration attempt \u2014 a real failure, no production test hook, flag or mock",
+        "checksPassed": 16,
+        "checksFailed": 0,
+        "failureHttpStatus": 500,
+        "survivingSnapshotIsTheOriginal": true,
+        "originalArtifactStillReady": true,
+        "downloadByteIdenticalAfterFailure": true,
+        "halfMadeReplacementRowSurvived": false,
+        "orphansAfterFailure": 0,
+        "failureRecordedAs": "report_generation_failed",
+        "replacementSucceededAfterRecovery": true
+      },
+      "rewrittenSuite": {
+        "file": "backend/scripts/test-private-storage-reports.ts",
+        "previousExpectation": "versions === 2 and the older row status === 'superseded'",
+        "classification": "STALE_EXPECTATION \u2014 the product owner changed the contract; the expectation was not weakened to obtain a pass",
+        "newAssertionsStricterInReplacementDirection": true,
+        "scenarios": 14,
+        "passed": true
+      },
+      "crossAccountReportAccess": 404
+    },
+    "environmentCaveats": [
+      "test-kg4e-report-provenance reported 3 failures on this database: no active governed release, 0 approvals, and a missing telemetry file. The disposable clone contains 0 rows in regulatory_releases, so these are fixture preconditions, not report regressions. Every report-scoped assertion in that suite passed (12/12 frozen snapshots).",
+      "test-cross-user-isolation reported 2 failures, both on UNAUTHENTICATED requests returning 404/200 instead of 401. JwtGuard applies a development bypass whenever NODE_ENV !== production, so those two assertions can only pass against a production-mode backend. All 26 other checks passed, including every report-scoped one."
+    ],
+    "productionMutation": "NONE",
+    "committed": false,
+    "deployedToProduction": false,
+    "acceptedBy": "inspectionLifecycleAcceptanceV1"
+  },
+  "inspectionLifecycleAcceptanceV1": {
+    "terminal": "INSITE_V1_INSPECTION_LIFECYCLE_ACCEPTED \u2014 FINAL_APPLICATION_POLISH_AND_COMMERCE_ACCEPTANCE_REQUIRED",
+    "date": "2026-08-27",
+    "blueprintSection": "85.11",
+    "contract": "verification/insite-v1-inspection-workflow-2026-08-27/contracts/INSPECTION_WORKFLOW_V1.md#7",
+    "scope": [
+      "inspection workflow",
+      "report replacement lifecycle",
+      "reopen lifecycle"
+    ],
+    "doesNotMean": "InSite v1.0 is launch-ready",
+    "accepted": {
+      "inspectionWorkflow": true,
+      "reportReplacementLifecycle": true,
+      "reopenLifecycle": true
+    },
+    "browserJourney": {
+      "freshInspection": true,
+      "reliedOnPreviousLongLivedInspection": false,
+      "stepsSpecified": 33,
+      "stepsPassed": 33,
+      "stepsFailed": 0,
+      "recordNumberOnSecondInspection": "Inspection #2 \u2014 per-account sequence, not global",
+      "singleCandidateSkippedConfirmation": true,
+      "multiHazardCandidates": 4,
+      "preselected": "both High; neither Moderate",
+      "dismissedCandidates": 2,
+      "zeroCandidateCopy": "HazLenz did not identify a hazard in this observation.",
+      "userAuthoredNulls": [
+        "selectedAnalysisId",
+        "originatingAnalysisId",
+        "knowledgeReleaseId",
+        "riskSnapshot"
+      ],
+      "userAuthoredStandardCandidates": "empty array",
+      "riskMatrixRefusedToContinueUntilPersonSetRisk": true,
+      "riskBandParityLive": "5x5 score 12 rendered High (12), \"Based on High risk \u2014 3 days\"",
+      "responsibleNamed": 1,
+      "responsibleUnassigned": 5,
+      "inspectorSubstituted": false,
+      "saveInterstitialsObserved": 0,
+      "pendingFindingDisabledFinish": true,
+      "serverIndependentlyRejectedDirectCompletion": "HTTP 400 \u2014 Every current finding requires a completed human review before finalization.",
+      "continueReviewReachedCorrectFinding": true,
+      "readinessAfterReview": "Ready to finish \u2014 6 findings reviewed",
+      "completedPageVersionWords": 0,
+      "dismissedOnCompletedPage": 0,
+      "reportsForInspection": 1,
+      "downloadedPdfShaMatchedStoredChecksum": true
+    },
+    "replacementMeasured": {
+      "beforeReopen": {
+        "snapshots": 1,
+        "sha256": "68dba0d2ff9a674cf23751aaea4f4e69fa12d44345646dc9b503ab34b57c90dc",
+        "pdfOnDisk": true
+      },
+      "duringReopenInspectionEditable": {
+        "snapshots": 1,
+        "sha256Unchanged": true,
+        "download": 200,
+        "byteIdentical": true
+      },
+      "afterFinishingAgain": {
+        "snapshots": 1,
+        "sha256": "0f20c76ef22fb263d6c09ff59ffaab10e374d1e13ee17613fee1be820e8b2c2d",
+        "predecessorSnapshotRowDeleted": true,
+        "predecessorStorageObjectStatus": "deleted",
+        "predecessorPdfOnDisk": false,
+        "replacedSequenceDownload": 404
+      },
+      "newFindingMarker": "toeboard: report1=0, replacement=4",
+      "earlierFindingsSurvived": 6,
+      "dismissedInReplacement": 0
+    },
+    "wholeDatabaseInvariants": {
+      "inspections": 37,
+      "inspectionsWithoutRecordNumber": 0,
+      "reports": 20,
+      "snapshots": 20,
+      "reportsWithMoreThanOneSnapshot": 0,
+      "readyReportPdfs": 20,
+      "retiredReportPdfs": 10,
+      "orphanedReportArtifacts": 0,
+      "perScopeRecordNumberCollisions": 0
+    },
+    "suites": {
+      "test:report-replacement-failure-safety": "16 passed / 0 failed (run twice, incl. with DEV_AUTH_BYPASS=false)",
+      "test:private-storage-reports": "14 scenarios passed; reports=1 versions=1 objects=1 orphans=0; predecessor deleted; crossUserDownload=404",
+      "test:user-authored-findings": "47 passed / 0 failed",
+      "test:canonical-workflow": "25 scenarios passed; 4 cross-user denials; mass assignment rejected",
+      "test-cross-user-isolation": "28 passed / 0 failed",
+      "test-kg4e-report-field-exclusion": "9 passed / 0 failed; 20/20 reports byte-identical after poisoning with 38 fields",
+      "check:risk-band-parity": "PASS \u2014 3 matrix profiles, 16 values"
+    },
+    "builds": {
+      "backendTscNoEmit": "exit 0",
+      "backendBuild": "exit 0",
+      "frontendTscNoEmit": "exit 0, 0 errors",
+      "frontendNextBuild": "exit 0; /inspection-complete present in the route manifest"
+    },
+    "level1BaselineImpact": {
+      "method": "mechanical, not asserted: enumerate the change set against the reasoning/scoring surfaces",
+      "filesChangedUnderReasoningOrScoringSurfaces": 0,
+      "surfacesChecked": [
+        "safescope-v2/",
+        "safescope-knowledge/",
+        "standards/",
+        "classifications/",
+        "taxonomy/",
+        "intelligence/"
+      ],
+      "riskAuthoritiesUnchangedAtHead": [
+        "backend/src/safescope-v2/risk/risk-profiles.ts",
+        "backend/src/inspection/risk-policy.ts"
+      ],
+      "decompositionScorerThresholdOrGoldArtifactTouched": false
+    },
+    "generatedArtifactHygiene": {
+      "finding": "the frontend production build was FAILING: Failed to type check on .next-wfdesign/types/cache-life.d 2.ts",
+      "rootCause": "an untracked sync-tool duplicate of generated output, inside a gitignored disposable build directory (/.next-*/), referenced by no application source, reachable only via include globs Next.js injects from distDir in writeConfigurationDefaults",
+      "architecturalOwner": "build configuration / generated artifacts \u2014 NOT application source",
+      "classification": "GENERATED_RUNTIME_ARTIFACT causing an INSTRUMENTATION-class build failure",
+      "remediation": "frontend-next/tsconfig.json include array restored to its committed state",
+      "globsRemoved": [
+        ".next-onereport/types/**/*.ts",
+        ".next-onereport/dev/types/**/*.ts",
+        ".next-wfdesign/types/**/*.ts",
+        ".next-wfdesign/dev/types/**/*.ts",
+        ".next-accept/types/**/*.ts",
+        ".next-accept/dev/types/**/*.ts"
+      ],
+      "tsconfigDiffAgainstHead": "empty",
+      "buildAfterRemediation": "exit 0",
+      "precedent": "Section 83 recorded this same class at the accepted RC as \"Build-artifact hygiene, not a source defect; not repaired here because this operation authorizes no such remediation.\" That phase declined it; this phase was authorized for it.",
+      "preExistingXmlDeletionTouched": false
+    },
+    "nonBlockingLimitations": {
+      "kg4eReportProvenance": {
+        "classification": "ENVIRONMENT_FIXTURE_PRECONDITION_NOT_MET",
+        "result": "7 passed / 3 failed",
+        "causes": [
+          "no ACTIVE governed release",
+          "0 approvals",
+          "telemetry file not found"
+        ],
+        "directMeasurement": "regulatory_releases has 0 rows in the disposable clone",
+        "reportScopedAssertions": "all pass; 17/17 frozen snapshots carry the provenance column and a knowledgeProvenance block; 0 name a governed release",
+        "kgArchitectureModified": false
+      },
+      "nonProductionAuthMode": {
+        "classification": "DOES_NOT_APPLY \u2014 eliminated by configuration, not recorded as a limitation",
+        "previousSymptom": "2 unauthenticated isolation assertions returned 404/200 instead of 401",
+        "rootCause": "JwtGuard bypasses only when DEV_AUTH_BYPASS === \"true\" AND NODE_ENV !== \"production\"; DEV_AUTH_BYPASS=true is set in the local backend/.env",
+        "resolution": "disposable backend re-run with DEV_AUTH_BYPASS=false",
+        "productionCodeChanged": false,
+        "result": "test-cross-user-isolation 28 passed / 0 failed"
+      },
+      "decompositionPrecision": {
+        "classification": "DEFECT_NONBLOCKING",
+        "owner": "HazLenz decomposition \u2014 NOT the inspection lifecycle",
+        "observed": "a guardrail observation (missing mid-rail, displaced toe board, two people walking the route) produced zero candidates",
+        "registeredAs": "blueprint 84.7 W-2; PRECISION_DEFECT_MATERIAL_HANDLING.md",
+        "changedByThisPhase": false,
+        "lifecycleBehaviour": "correct \u2014 stated the zero-candidate result honestly and offered the user-authored path, which recorded the hazard with truthful provenance"
+      }
+    },
+    "remainingInspectionLifecycleDefects": "NONE FOUND",
+    "remainingV1LaunchGates": [
+      "full visual/colour sweep",
+      "every-tab polish",
+      "marketing/pricing reconciliation",
+      "account creation and login acceptance",
+      "Free vs Pro access-control acceptance",
+      "payment/subscription acceptance",
+      "final whole-application regression",
+      "final production-readiness review",
+      "first genuine paid transaction proof (DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION)"
+    ],
+    "productionMutation": "NONE",
+    "deployed": false,
+    "committed": false,
+    "pushed": false,
+    "resetRestoreCleanStashRebaseForcePushUsed": false,
+    "insiteV1LaunchReady": false
+  },
+  "hazlenzDeterministicPrecision2026_08_27": {
+    "phase": "HAZLENZ_DETERMINISTIC_PRECISION_MEASUREMENT_AND_BOUNDED_REMEDIATION",
+    "date": "2026-08-27",
+    "terminal": "HAZLENZ_DETERMINISTIC_PRECISION_HARDENED -- EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED",
+    "evidencePackage": "verification/insite-v1-hazlenz-precision-2026-08-27/",
+    "defectSource": "verification/insite-v1-inspection-workflow-2026-08-27/PRECISION_DEFECT_MATERIAL_HANDLING.md",
+    "expertHazLenzImplemented": false,
+    "providerCallsMade": 0,
+    "corpus": {
+      "frozen": true,
+      "authoredBeforeEngineOutputInspected": true,
+      "file": "backend/src/safescope-v2/tests/hazlenz-decomposition-precision-corpus.ts",
+      "sha256": "1e61840ad534d75d68e38abf5877975fa660620549e6927899ce6e9e0f3ef77e",
+      "populationARows": 34,
+      "populationBRows": 22,
+      "populationBRequiredGroups": 43,
+      "populationBLifeCriticalGroups": 35
+    },
+    "baseline": {
+      "file": "verification/insite-v1-hazlenz-precision-2026-08-27/measurements/baseline.json",
+      "engineSha256": "f94ebe07420926bd7bd57b64126a16b285e24121b0981067a963b0d481f6f79e",
+      "populationAForbiddenFamilyCount": 24,
+      "populationARowsWithForbidden": 21,
+      "populationAFalseSecondaryPromotionRate": 0.618,
+      "populationACaseLevelPrecision": 0.382,
+      "populationARequiredOmissions": 1,
+      "populationBRequiredHazardRecall": 0.744,
+      "populationBDangerousOmissionRate": 0.256,
+      "populationBLifeCriticalOmissions": 7,
+      "populationBCaseLevelFullRecall": 0.591
+    },
+    "candidate": {
+      "file": "verification/insite-v1-hazlenz-precision-2026-08-27/measurements/candidate.json",
+      "populationAForbiddenFamilyCount": 0,
+      "populationARowsWithForbidden": 0,
+      "populationAFalseSecondaryPromotionRate": 0.0,
+      "populationACaseLevelPrecision": 1.0,
+      "populationARequiredOmissions": 1,
+      "populationBRequiredHazardRecall": 0.744,
+      "populationBDangerousOmissionRate": 0.256,
+      "populationBLifeCriticalOmissions": 7,
+      "populationBCaseLevelFullRecall": 0.591,
+      "casesRepaired": 21,
+      "newFalsePromotions": 0,
+      "newDangerousOmissions": 0,
+      "newLifeCriticalOmissions": 0
+    },
+    "recallVetoSatisfied": true,
+    "recallVetoBasis": "Population B output is byte-identical to baseline; every required group satisfied at baseline is still satisfied.",
+    "rootCauseSummary": "Routes resting on a single bare taxonomy entity-word substring (confidence 0.2-0.4) were promoted to findings with no family evidence predicate, plus an invalid excavation lexical alias shield(?:ing)? emitting at 0.85, a powered-truck gate firing on a location word, a hot-work verb form matching idiomatic English, and a too-narrow fall/opening covered exclusion.",
+    "productionFilesChanged": [
+      {
+        "path": "backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts",
+        "sha256Before": "f94ebe07420926bd7bd57b64126a16b285e24121b0981067a963b0d481f6f79e",
+        "sha256After": "e15cfc95de0302eed1cf7b30dac34eeb8aad27cd941b28ace774c8308e844186"
+      },
+      {
+        "path": "backend/src/safescope-v2/safescope-v2.service.ts",
+        "sha256Before": "7fef5221039e4188fe8304b665356c514f7b77cf085e3cc37fa5505804404227",
+        "sha256After": "1121b36d3284fcd748cb68d85b1a6e48afc8c034b47255e65e9acfc954f7217a"
+      }
+    ],
+    "protectedRegression": {
+      "hazlenzCoreSuites": "31/31 PASS, unrelaxed",
+      "newGateRegistered": "HazLenz Decomposition Precision / Recall Gate (32nd suite)",
+      "typecheck": "npx tsc --noEmit clean",
+      "regressionsFoundAndRepaired": [
+        "validate-safescope-multi-hazard-decomposition-v1: first hot-work fix suppressed a genuine hot_work emission on 'grinding nearby'; replaced with a narrower idiomatic-object exclusion",
+        "hazlenz-generalization-regression 'Lookalike non-hazard phrase': had been passing because of the defect; repaired at source by reusing the file's own administrativeOnlyText predicate, contract not weakened"
+      ],
+      "preExistingFailuresConfirmedAgainstPristineHead": [
+        "domain-association-regression",
+        "golden-hazard-tests (1/12)",
+        "hazlenz-vague-candidate-promotion-regression (2)",
+        "hazlenz-standard-return-contract-regression (9)"
+      ],
+      "notExecutedEnvironmental": [
+        "golden-standards-tests (refuses to read the protected safescope database)",
+        "hazlenz-field-gauntlet (HTTP 402, needs running server with fullSafeScope)",
+        "hazlenz-clarification-gauntlet (HTTP 402, needs running server with fullSafeScope)"
+      ]
+    },
+    "knownRemainingRecallGaps": {
+      "classification": "PRE_EXISTING_BASELINE_GAP_NOT_CAUSED_BY_THIS_CHANGE",
+      "surface": "decomposition layer measured in isolation; not a measurement of whole-product recall",
+      "missedRequiredGroups": 11,
+      "missedLifeCriticalGroups": 7,
+      "mostSerious": "B-15 emits nothing for an MCC bucket opened with the disconnect closed and no lock applied",
+      "cases": [
+        "B-05 compressed_gas",
+        "B-07 atmospheric group",
+        "B-10 stored-energy group",
+        "B-13 respiratory group",
+        "B-15 lockout_tagout and electrical",
+        "B-16 machine_guarding and ppe",
+        "B-18 lockout_tagout",
+        "B-19 hot_work",
+        "B-20 suspended-load/rigging group",
+        "A-02 ppe"
+      ],
+      "closedByThisPhase": false
+    },
+    "customerLabelledSignals": {
+      "class": "EVALUATION_SIGNAL",
+      "isGroundTruth": false,
+      "engineTunedFromSignals": false,
+      "customerFindingsAltered": false,
+      "contract": "verification/insite-v1-hazlenz-precision-2026-08-27/EVALUATION_SIGNAL_CONTRACT.md"
+    },
+    "expertHazLenzReadiness": {
+      "contract": "verification/insite-v1-hazlenz-precision-2026-08-27/EXPERT_HAZLENZ_READINESS_CONTRACT.md",
+      "level1RemainsSafetyFloor": true,
+      "providerFailureFallsBackToLevel1": true,
+      "blockers": [
+        "provider authority governance rule",
+        "Expert attribution schema and migration",
+        "provider-failure fallback proof",
+        "Level-1 invariance harness over the 56 corpus rows",
+        "offline behaviour and cost ceiling decision",
+        "provider selection and credentials",
+        "decision on whether the 11 deterministic recall gaps are closed first"
+      ]
+    },
+    "inspectionLifecycleTerminalPreserved": "INSITE_V1_INSPECTION_LIFECYCLE_ACCEPTED",
+    "gitActions": "none -- no commit, push, branch, tag, stash, reset, restore or clean"
+  },
+  "hazlenzDeterministicLevel1Recall2026_08_28": {
+    "phase": "HAZLENZ_DETERMINISTIC_LEVEL1_RECALL_CLOSURE_BEFORE_EXPERT_HAZLENZ",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_DETERMINISTIC_SAFETY_FLOOR_HARDENED -- EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED",
+    "evidencePackage": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/",
+    "predecessorPhase": "hazlenzDeterministicPrecision2026_08_27",
+    "expertHazLenzImplemented": false,
+    "providerCallImplemented": false,
+    "providerCallsMade": 0,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashed": false,
+      "reset": false,
+      "restored": false,
+      "cleaned": false,
+      "rebased": false,
+      "preExistingUncommittedWorkPreserved": true,
+      "stashCount": 4
+    },
+    "frozenSurfacesUnchanged": {
+      "backend/src/safescope-v2/tests/hazlenz-decomposition-precision-corpus.ts": "1e61840ad534d75d68e38abf5877975fa660620549e6927899ce6e9e0f3ef77e",
+      "backend/src/safescope-v2/tests/hazlenz-decomposition-precision-scorer.ts": "df6fd22f62dcf00a270e8b252ffe0eb4f1ef7dcb9e924e24bb08e50543863a57",
+      "backend/src/safescope-v2/safescope-v2.service.ts": "1121b36d3284fcd748cb68d85b1a6e48afc8c034b47255e65e9acfc954f7217a"
+    },
+    "measurementInstrument": {
+      "file": "backend/src/safescope-v2/tests/hazlenz-level1-recall-scorer.ts",
+      "sha256": "6585e4d10d054416c465f1719cd07084d6fad8c5e1de66b2bfeed82aefddfe71",
+      "runsCompleteProductionClassifyPath": true,
+      "standardsCorpusAccess": "read-only SELECT against the development safescope database; synchronize disabled; no migration, seed or mutation executed",
+      "scoringSurfaceDeclaredBeforeOutputInspected": true,
+      "countedSurfaces": [
+        "multiHazardDecomposition.hazards",
+        "family/classification/hazardCategory/primaryHazard",
+        "additionalHazards"
+      ],
+      "recordedButNotCountedSurfaces": [
+        "primaryStandards/suggestedStandards/supportingStandards citations mapped to families"
+      ],
+      "whyCitationsNotCounted": "A citation answers which rule governs a hazard the engine already named; counting it as representation would inflate recall. B-10 carried 29 CFR 1910.147 while representing no hazardous-energy hazard at all."
+    },
+    "probeFamily": {
+      "file": "backend/src/safescope-v2/tests/hazlenz-level1-recall-probe-corpus.ts",
+      "sha256": "808b4c6613624819d91c25282c4e29fd7e30157ccd7d50aa11aac3a6ed16cb56",
+      "rows": 8,
+      "authoredBeforeEngineOutputInspected": true,
+      "tunedAfterInspectingOutput": false,
+      "newPrecisionDefectsExposed": [
+        "HE-07 administrative training/audit records emitted electrical and lockout_tagout",
+        "HE-08 a spare MCC bucket stored on a shelf emitted electrical"
+      ],
+      "newPrecisionDefectsRepairedAtSource": true
+    },
+    "levelOneBefore": {
+      "file": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/measurements/level1-before.json",
+      "populationBRequiredGroupRecall": 0.814,
+      "populationBRequiredGroupsSatisfied": 35,
+      "populationBRequiredGroups": 43,
+      "lifeCriticalSatisfied": 30,
+      "lifeCriticalGroups": 35,
+      "lifeCriticalOmissions": 5,
+      "caseLevelFullRecall": 0.682,
+      "populationARequiredOmissions": 1
+    },
+    "levelOneAfter": {
+      "file": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/measurements/level1-after.json",
+      "populationBRequiredGroupRecall": 1.0,
+      "populationBRequiredGroupsSatisfied": 43,
+      "populationBRequiredGroups": 43,
+      "lifeCriticalSatisfied": 35,
+      "lifeCriticalGroups": 35,
+      "lifeCriticalOmissions": 0,
+      "caseLevelFullRecall": 1.0,
+      "populationARequiredOmissions": 0
+    },
+    "decompositionBefore": {
+      "file": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/measurements/decomposition-before.json",
+      "populationACaseLevelPrecision": 1.0,
+      "populationAForbiddenFamilyCount": 0,
+      "populationARequiredOmissions": 1,
+      "populationBRequiredHazardRecall": 0.744,
+      "populationBDangerousOmissionCount": 11,
+      "populationBLifeCriticalOmissions": 7,
+      "populationBCaseLevelFullRecall": 0.591
+    },
+    "decompositionAfter": {
+      "file": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/measurements/decomposition-after.json",
+      "populationACaseLevelPrecision": 1.0,
+      "populationAForbiddenFamilyCount": 0,
+      "populationARequiredOmissions": 0,
+      "populationBRequiredHazardRecall": 0.93,
+      "populationBDangerousOmissionCount": 3,
+      "populationBLifeCriticalOmissions": 2,
+      "populationBCaseLevelFullRecall": 0.864,
+      "previouslyDetectedGroupsLost": 0,
+      "newForbiddenEmissions": 0
+    },
+    "elevenDecompositionOmissionDeterminations": [
+      {
+        "row": "B-05",
+        "group": "compressed_gas",
+        "lifeCritical": true,
+        "determination": "DECOMPOSITION_MISSED_BUT_LEVEL1_RECOVERED",
+        "recoveredBy": "primary classification compressed_gas"
+      },
+      {
+        "row": "B-07",
+        "group": "atmospheric_hazard|ventilation_air_quality|respiratory_protection",
+        "lifeCritical": false,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-10",
+        "group": "hydraulic_pneumatic_energy|lockout_tagout",
+        "lifeCritical": true,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "note": "only a 1910.147 citation was present, not a hazard",
+        "repaired": true
+      },
+      {
+        "row": "B-13",
+        "group": "respiratory_protection|ppe|ventilation_air_quality",
+        "lifeCritical": false,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-15",
+        "group": "lockout_tagout",
+        "lifeCritical": true,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-15",
+        "group": "electrical",
+        "lifeCritical": true,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "note": "the analysis header instead read Machine Guarding",
+        "repaired": true
+      },
+      {
+        "row": "B-16",
+        "group": "machine_guarding",
+        "lifeCritical": false,
+        "determination": "DECOMPOSITION_MISSED_BUT_LEVEL1_RECOVERED",
+        "recoveredBy": "primary classification machine_guarding",
+        "decompositionStillMisses": true
+      },
+      {
+        "row": "B-16",
+        "group": "ppe",
+        "lifeCritical": false,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-18",
+        "group": "lockout_tagout",
+        "lifeCritical": true,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-19",
+        "group": "hot_work|welding_cutting",
+        "lifeCritical": true,
+        "determination": "LEVEL1_REQUIRED_HAZARD_OMISSION",
+        "repaired": true
+      },
+      {
+        "row": "B-20",
+        "group": "suspended_loads|cranes_hoists|rigging_lifting",
+        "lifeCritical": true,
+        "determination": "DECOMPOSITION_MISSED_BUT_LEVEL1_RECOVERED",
+        "recoveredBy": "Lifting & Rigging classification",
+        "decompositionStillMisses": true
+      }
+    ],
+    "b15Result": "Before repair the complete deterministic Level-1 authority produced no hazard at all for the MCC bucket opened with the disconnect closed and no lock applied; every split fragment routed to unknown and the analysis header read Machine Guarding. After repair it emits both lockout_tagout and electrical, and the finding-local electrical-exposure clause is preserved.",
+    "productionFilesChanged": [
+      {
+        "path": "backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts",
+        "sha256Before": "e15cfc95de0302eed1cf7b30dac34eeb8aad27cd941b28ace774c8308e844186",
+        "sha256After": "463342909c715d9ca774b7578b5f47c7757685bec883b86e9196711006962422",
+        "insertions": 230,
+        "deletions": 14
+      }
+    ],
+    "evaluationFilesAdded": [
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-level1-recall-scorer.ts",
+        "sha256": "6585e4d10d054416c465f1719cd07084d6fad8c5e1de66b2bfeed82aefddfe71"
+      },
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-level1-recall-probe-corpus.ts",
+        "sha256": "808b4c6613624819d91c25282c4e29fd7e30157ccd7d50aa11aac3a6ed16cb56"
+      },
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-level1-recall-regression.ts",
+        "sha256": "86911ab3a290324f32a992356ea3dab92ef20b8b65a3c57363aacbdaff073e9c"
+      }
+    ],
+    "evaluationFilesModified": [
+      "backend/src/safescope-v2/tests/hazlenz-core-regression.ts (one suite appended)",
+      "backend/package.json (two scripts appended)"
+    ],
+    "repairs": [
+      "Evidence-independence guards extended to electrical and lockout_tagout at route.confidence <= 0.4 (the precision phase's own pattern, two more families)",
+      "Electrical-exposure source vocabulary: terminal -> terminals?",
+      "Cross-clause servicing vocabulary: added replac*, install* and 'began work'",
+      "Cross-clause uncontrolled-energy evidence: added 'absence of voltage was not verified'",
+      "LOTO control-absence vocabulary: added the adjectival unlocked / un-locked",
+      "Hydraulic/pneumatic hazardous-energy evidence: added the inverted 'pressure retained'",
+      "Active hot-work exclusion scoped from any 'permit' to 'hot work permit' (a confined-space entry permit was suppressing a live weld inside a fuel tank)",
+      "PPE and respirator deficiency predicates: added the negative-possession forms (wore no X, was not wearing X, neither was wearing X); PPE item vocabulary widened to coordinated 'eye or face protection'; task context recognises a machine being operated",
+      "New atmospheric-evaluation preservation block: a named atmospheric hazard plus an explicitly omitted atmospheric test"
+    ],
+    "explicitlyNotDone": [
+      "no remote provider fallback and no LLM inference",
+      "no global confidence threshold lowered",
+      "no blanket promotion of decomposition candidates",
+      "no weakening of negation, safe-state detection, or any precision predicate from the 2026-08-27 phase",
+      "no scorer, threshold, expectation or corpus row modified",
+      "no corpus row id or exact test sentence special-cased"
+    ],
+    "protectedRegression": {
+      "hazlenzCoreSuites": "33/33 PASS, unrelaxed",
+      "newGateRegistered": "HazLenz Level-1 Recall Gate (33rd suite); npm run test:hazlenz-level1-recall; 17 checks",
+      "typecheck": "npx tsc --noEmit clean",
+      "failingGateBeforeRepair": "13 failures across 17 checks, demonstrated on the protected engine before any source change",
+      "additionalSuitesPassed": [
+        "scripts/validate-safescope-multi-hazard-decomposition-v1.ts",
+        "scripts/validate-safescope-generalization-intelligence-v1.ts",
+        "hazlenz-generalization-regression",
+        "hazlenz-energy-isolation-negation-regression",
+        "hazlenz-condition-state-invariants-regression",
+        "hazlenz-vague-candidate-retention-regression",
+        "hazlenz-primary-citation-visible-contract-regression",
+        "standard-applicability-regression",
+        "narrative-quality-regression",
+        "hazard-understanding-coverage-benchmark",
+        "golden-domain-intelligence-tests",
+        "golden-operational-reasoning-tests"
+      ],
+      "newRegressions": [],
+      "preExistingFailuresAdjudicatedByMeasurement": {
+        "method": "The pre-change engine was reconstructed in place, the four suites re-run against it, and the repaired file restored and verified byte-identical by SHA-256 463342909c715d9ca774b7578b5f47c7757685bec883b86e9196711006962422. The reconstruction was validated by reproducing the phase-entry decomposition metrics exactly (32/43, 11 omissions, 7 life-critical).",
+        "suites": [
+          {
+            "suite": "domain-association-regression",
+            "before": "FAIL",
+            "after": "FAIL",
+            "logDiff": "identical output"
+          },
+          {
+            "suite": "golden-hazard-tests",
+            "before": "FAIL 1/12",
+            "after": "FAIL 1/12",
+            "logDiff": "identical output"
+          },
+          {
+            "suite": "hazlenz-vague-candidate-promotion-regression",
+            "before": "FAIL (2)",
+            "after": "FAIL (2)",
+            "logDiff": "identical but for the dotenv banner"
+          },
+          {
+            "suite": "hazlenz-standard-return-contract-regression",
+            "before": "FAIL (9)",
+            "after": "FAIL (9)",
+            "logDiff": "identical but for the dotenv banner"
+          }
+        ]
+      },
+      "unverified": [
+        {
+          "suite": "golden-standards-tests",
+          "reason": "refuses to run without a deliberate override because it would read the protected safescope corpus; the override was NOT set",
+          "status": "UNVERIFIED"
+        },
+        {
+          "suite": "hazlenz-field-gauntlet",
+          "reason": "requires a running server with a paid fullSafeScope entitlement; HTTP 402",
+          "status": "UNVERIFIED"
+        },
+        {
+          "suite": "hazlenz-clarification-gauntlet",
+          "reason": "requires a running server with a paid fullSafeScope entitlement; HTTP 402",
+          "status": "UNVERIFIED"
+        },
+        {
+          "suite": "hazlenz-authentic-capability-gauntlet",
+          "reason": "requires a running server with a paid fullSafeScope entitlement; HTTP 402 on all 91 scenarios",
+          "status": "UNVERIFIED"
+        }
+      ]
+    },
+    "architecturalFactsEstablished": [
+      "Customer inspection_findings are materialised ONLY from multiHazardDecomposition.hazards; no code path in classify() ever adds to that array, it is only filtered. A hazard recovered by the primary classifier appears in the analysis header but never becomes its own finding with its own standard, risk and corrective action.",
+      "HazardTaxonomyCoverageService.route() is single-winner: one fragment yields at most one domain, so a clause carrying two hazards loses one unless a family-specific preservation block rescues it.",
+      "The router applies hazard-negation semantics to control nouns, so 'no respirator', 'no fire watch' and 'no eye protection' are discarded as negated signal when for a control-absence family the missing control IS the hazard.",
+      "Coverage-map mechanism tokens are snake_case identifiers (electrical_shock, unexpected_startup, eye_injury) that can never match prose and contribute nothing to routing."
+    ],
+    "remainingWeaknesses": [
+      "Decomposition still misses three required groups recovered only by the primary classifier: B-05 compressed_gas, B-16 machine_guarding, B-20 suspended_loads. Those hazards do not become findings of their own.",
+      "Single-winner routing and control-noun negation are compensated only where demonstrated, family by family; the router itself is unchanged.",
+      "Evidence is bounded by a 56-row corpus and an 8-row probe family, both authored by this process rather than drawn from field data."
+    ],
+    "expertReadiness": {
+      "document": "verification/insite-v1-hazlenz-level1-recall-2026-08-28/EXPERT_HAZLENZ_READINESS_REASSESSMENT.md",
+      "blocker7": "RESOLVED_BY_MEASUREMENT",
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "newRequirementsAdded": [
+        "the hazardous-energy probe family joins the Expert invariance harness: with Expert enabled, HE-02, HE-04, HE-06, HE-07 and HE-08 must still produce no electrical or hazardous-energy finding",
+        "Expert HazLenz must never satisfy a required hazard group on its own in any recall measurement; Expert contributions are scored on their own axis"
+      ]
+    }
+  },
+  "hazlenzActionableCoverage2026_08_28": {
+    "phase": "HAZLENZ_DETERMINISTIC_ACTIONABLE_FINDING_COVERAGE_CLOSURE",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_DETERMINISTIC_ACTIONABLE_COVERAGE_HARDENED -- EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED",
+    "evidencePackage": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/",
+    "predecessorPhase": "hazlenzDeterministicLevel1Recall2026_08_28",
+    "expertHazLenzImplemented": false,
+    "providerCallImplemented": false,
+    "providerCallsMade": 0,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashed": false,
+      "reset": false,
+      "restored": false,
+      "cleaned": false,
+      "rebased": false,
+      "preExistingUncommittedWorkPreserved": true,
+      "stashCount": 4,
+      "tagCount": 24,
+      "inspectionLifecycleReopened": false
+    },
+    "frozenSurfacesUnchanged": {
+      "backend/src/safescope-v2/tests/hazlenz-decomposition-precision-corpus.ts": "1e61840ad534d75d68e38abf5877975fa660620549e6927899ce6e9e0f3ef77e",
+      "backend/src/safescope-v2/tests/hazlenz-decomposition-precision-scorer.ts": "df6fd22f62dcf00a270e8b252ffe0eb4f1ef7dcb9e924e24bb08e50543863a57",
+      "backend/src/safescope-v2/tests/hazlenz-level1-recall-probe-corpus.ts": "808b4c6613624819d91c25282c4e29fd7e30157ccd7d50aa11aac3a6ed16cb56",
+      "backend/src/safescope-v2/safescope-v2.service.ts": "1121b36d3284fcd748cb68d85b1a6e48afc8c034b47255e65e9acfc954f7217a"
+    },
+    "disposableDatabase": {
+      "name": "test_v1_actionable_coverage_20260828",
+      "host": "127.0.0.1",
+      "provenTargetBeforeMigration": true,
+      "allowlistPattern": "^(phase[0-9]+|test)[a-z0-9_-]*$",
+      "protectedSafescopeDatabaseMigrated": false,
+      "protectedSafescopeDatabaseSeeded": false,
+      "protectedSafescopeDatabaseMutated": false,
+      "entitlementGrantedVia": "scripts/grant-test-entitlement.ts (refuses unless NODE_ENV=test and database on the disposable allowlist)",
+      "stripeObjectsTouched": 0
+    },
+    "actionableCoverageDefinition": {
+      "document": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/ACTIONABLE_COVERAGE_DEFINITION.md",
+      "declaredBeforeOutputInspected": true,
+      "requiredElements": [
+        "identity",
+        "evidence (conclusion + observationFragment)",
+        "risk snapshot",
+        "corrective-action path"
+      ],
+      "doesNotCount": [
+        "family named only in the analysis header",
+        "classifier metadata",
+        "a standards citation whose family matches"
+      ],
+      "oneHazardOneRecordRuleImposed": false,
+      "oneFindingSatisfiesAtMostOneGroup": true
+    },
+    "before": {
+      "file": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/measurements/actionable-before.json",
+      "level1RecognitionRecall": 1.0,
+      "recognitionLifeCriticalSatisfied": 35,
+      "actionableFindingCoverage": 0.93,
+      "actionableGroupsSatisfied": 40,
+      "lifeCriticalActionableCoverage": 0.943,
+      "lifeCriticalActionableSatisfied": 33,
+      "recognizedButNotActionable": [
+        {
+          "row": "B-05",
+          "group": "compressed_gas",
+          "lifeCritical": true,
+          "reason": "no finding materialised",
+          "classifierRecovery": "primary classification Compressed Gas Cylinders @0.93"
+        },
+        {
+          "row": "B-16",
+          "group": "machine_guarding",
+          "lifeCritical": false,
+          "reason": "no finding materialised",
+          "classifierRecovery": "primary classification machine_guarding"
+        },
+        {
+          "row": "B-20",
+          "group": "suspended_loads|cranes_hoists|rigging_lifting",
+          "lifeCritical": true,
+          "reason": "no finding materialised",
+          "classifierRecovery": "primary classification Lifting & Rigging @0.93"
+        }
+      ]
+    },
+    "after": {
+      "file": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/measurements/actionable-after.json",
+      "level1RecognitionRecall": 1.0,
+      "recognitionLifeCriticalSatisfied": 35,
+      "actionableFindingCoverage": 1.0,
+      "actionableGroupsSatisfied": 43,
+      "lifeCriticalActionableCoverage": 1.0,
+      "lifeCriticalActionableSatisfied": 35,
+      "recognizedButNotActionable": []
+    },
+    "decompositionAfter": {
+      "file": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/measurements/decomposition-after.json",
+      "populationACaseLevelPrecision": 1.0,
+      "populationAForbiddenFamilyCount": 0,
+      "populationARequiredOmissions": 0,
+      "populationBRequiredHazardRecall": 1.0,
+      "populationBDangerousOmissionCount": 0,
+      "populationBLifeCriticalOmissions": 0,
+      "populationBCaseLevelFullRecall": 1.0
+    },
+    "generalPromotionRuleRejected": {
+      "considered": "promote the primary classification into multiHazardDecomposition.hazards",
+      "rejected": true,
+      "measuredCost": "14 forbidden families across 12 of the 34 Population A rows",
+      "classifierConfidenceCannotGateIt": true,
+      "evidence": [
+        "B-05 Compressed Gas Cylinders score 46 confidence 0.93 band high \u2014 legitimate",
+        "B-20 Lifting & Rigging score 65 confidence 0.93 band high \u2014 legitimate",
+        "A-13 Mobile Equipment / Traffic score 40 confidence 0.93 band high \u2014 FORBIDDEN (the forklift charging room)",
+        "A-24 Machine Guarding score 52 confidence 0.93 band high \u2014 FORBIDDEN (the guard was correctly fitted)",
+        "A-27 Fall Protection score 46 confidence 0.93 band high \u2014 FORBIDDEN (the opening was fitted with a closed hinged cover)"
+      ],
+      "conclusion": "Recall gaps are closed in the decomposition layer under the precision gate, or not at all."
+    },
+    "productionFilesChanged": [
+      {
+        "path": "backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts",
+        "sha256Before": "463342909c715d9ca774b7578b5f47c7757685bec883b86e9196711006962422",
+        "sha256After": "efd27758e699573843a70e066a6179a5b9fb4f4dc30d9b6cc6053a69ab305a81",
+        "insertions": 103,
+        "deletions": 4
+      }
+    ],
+    "evaluationFilesAdded": [
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-actionable-coverage-scorer.ts",
+        "sha256": "a7ee253e7fa3defc0273fd0a5d31cb9f125ceb1968399a41ac15b7f88033b05e"
+      },
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-actionable-coverage-regression.ts",
+        "sha256": "25ae3eec12e7c8b0e50618e0a190f0a927a6c10d42389313b4e921cc0744b1c1"
+      },
+      {
+        "path": "backend/src/safescope-v2/tests/hazlenz-actionable-workflow-verification.ts",
+        "sha256": "d659d0662740e66ce0dad1465c29e8c72d47bf7bdee1d5d8971b8d25b780b193"
+      }
+    ],
+    "evaluationFilesModified": [
+      "backend/src/safescope-v2/tests/hazlenz-core-regression.ts (one suite appended)",
+      "backend/package.json (three scripts appended)"
+    ],
+    "repairs": [
+      "Suspended-load exposure vocabulary extended to the trades (rigger, millwright, fitter, technician, welder, electrician, mason, contractor, banksman, signaller, operator, crew)",
+      "Suspended-load load/exposure predicates de-duplicated: the detector and the output filter each carried a private copy and had drifted; both now read one shared definition",
+      "New compressed-gas cylinder detector: named cylinder plus a restraint, valve-cap or oxidiser-segregation deficiency, excluding secured/capped/negated/uncertain",
+      "New machine-guarding component detector: named guarding component plus an explicit deficiency, excluding correctly-fitted components and correctly-set clearances"
+    ],
+    "explicitlyNotDone": [
+      "no primary classification blindly appended to decomposition",
+      "no Expert or provider inference",
+      "no weakening of Population A precision, negation or safe-state handling",
+      "no legitimate multi-hazard finding collapsed",
+      "no duplicate or phantom finding introduced",
+      "no standard fabricated",
+      "no corpus row id or exact evaluation sentence special-cased",
+      "the accepted inspection lifecycle was not reopened"
+    ],
+    "boundedStandardsCheck": {
+      "hazardPresentStandardApplicableAndMatched": 16,
+      "hazardPresentNoStandardApplicable": 1,
+      "hazardPresentStandardExpectedButMissing": 26,
+      "cause": "finding-scoped applicability rule set in src/safescope-v2/evidence/evidence-foundation.ts emits 30 citations across about twelve families and has no rule for hot work, fire/explosion, compressed gas, confined space, PPE, respiratory protection, material handling, environmental release or ventilation",
+      "notAMatchingDefect": true,
+      "dbBackedStandardsPath": "UNVERIFIED -- standards_master holds 0 rows in both the development and the disposable database, so analysis-level primaryStandards/suggestedStandards were empty for all 22 rows",
+      "provesCompleteRegulatoryCoverage": false
+    },
+    "workflowVerification": {
+      "script": "npm run verify:hazlenz-actionable-workflow",
+      "checks": 66,
+      "failures": 0,
+      "lifecycleWalked": "draft -> in_review -> completed, with a human review and finalisation per finding",
+      "cases": [
+        {
+          "id": "W-01",
+          "intent": "genuine multi-hazard observation (B-01)",
+          "result": "both hazards seen, explained, risk-scored, corrective-actioned, finalized"
+        },
+        {
+          "id": "W-02",
+          "intent": "classifier-only residual now actionable (B-05)",
+          "result": "compressed_gas and hot_work both actionable"
+        },
+        {
+          "id": "W-03",
+          "intent": "MCC bucket opened live, no lock (B-15)",
+          "result": "lockout_tagout and electrical both actionable"
+        },
+        {
+          "id": "W-04",
+          "intent": "two materially distinct corrective actions (B-12)",
+          "result": "two distinct actions on two distinct findings"
+        },
+        {
+          "id": "W-05",
+          "intent": "negated/safe control (A-22)",
+          "result": "no engine finding materialised"
+        },
+        {
+          "id": "W-06",
+          "intent": "MCC safe-isolation control (probe HE-02)",
+          "result": "no engine finding materialised"
+        }
+      ],
+      "reportVerified": "report PDF downloaded and its text decoded; all eight findings appear as their own numbered entries with executive summary, risk distribution and corrective-action table",
+      "correctiveActionsRetrievable": "8/8"
+    },
+    "protectedRegression": {
+      "hazlenzCoreSuites": "34/34 PASS, unrelaxed",
+      "newGateRegistered": "HazLenz Actionable Coverage Gate (34th suite); npm run test:hazlenz-actionable-coverage; 17 checks",
+      "typecheck": "npx tsc --noEmit clean",
+      "failingGateBeforeRepair": "3 failures across 17 checks, demonstrated on the protected engine before any source change",
+      "newRegressions": [],
+      "preExistingFailuresAdjudicatedByMeasurement": [
+        {
+          "suite": "domain-association-regression",
+          "before": "FAIL",
+          "after": "FAIL",
+          "logDiff": "identical"
+        },
+        {
+          "suite": "golden-hazard-tests",
+          "before": "FAIL 1/12",
+          "after": "FAIL 1/12",
+          "logDiff": "identical"
+        },
+        {
+          "suite": "hazlenz-vague-candidate-promotion-regression",
+          "before": "FAIL (2)",
+          "after": "FAIL (2)",
+          "logDiff": "identical"
+        },
+        {
+          "suite": "hazlenz-standard-return-contract-regression",
+          "before": "FAIL (9)",
+          "after": "FAIL (9)",
+          "logDiff": "identical"
+        }
+      ],
+      "previouslyUnverifiedSuitesNowExecuted": [
+        {
+          "suite": "hazlenz-field-gauntlet",
+          "before": "98.5% average, 8 scenario failures",
+          "after": "98.5% average, 8 scenario failures",
+          "verdict": "identical failure set - PRE_EXISTING"
+        },
+        {
+          "suite": "hazlenz-authentic-capability-gauntlet",
+          "before": "98.5% average, 8 scenario failures",
+          "after": "98.5% average, 8 scenario failures",
+          "verdict": "identical failure set - PRE_EXISTING"
+        },
+        {
+          "suite": "hazlenz-clarification-gauntlet",
+          "before": "fails on first assertion",
+          "after": "identical output",
+          "verdict": "PRE_EXISTING"
+        }
+      ],
+      "stillUnverified": [
+        {
+          "suite": "golden-standards-tests",
+          "reason": "refuses to run without a deliberate override that would read the protected safescope corpus; the override was NOT set",
+          "status": "UNVERIFIED"
+        },
+        {
+          "surface": "DB-backed standards suggestion",
+          "reason": "standards_master holds 0 rows in both databases",
+          "status": "UNVERIFIED"
+        }
+      ]
+    },
+    "architecturalFactsEstablished": [
+      "RECOGNIZED and ACTIONABLE are separate measurements; a hazard named only in the analysis header has no finding and therefore no standard, risk, corrective action, review or report line.",
+      "reconcileDecompositionFindings() is the only engine writer of inspection_findings and reads only snapshot.multiHazardDecomposition.hazards; createUserAuthoredFinding() is the inspector's own act.",
+      "Promoting the primary classification into the finding collection is prohibited by measurement: 14 forbidden families across 12 Population A rows, and classifier confidence does not separate legitimate from illegitimate cases.",
+      "Duplicated hazard predicates are a defect class in the decomposition service; shared predicates are now declared once."
+    ],
+    "remainingLimitations": [
+      "26 of 43 actionable groups carry no standard on their finding; the finding-scoped applicability rule set covers about twelve families.",
+      "The DB-backed standards corpus is empty in both the development and the disposable database, so the analysis-level standards path is unproven.",
+      "Single-winner routing and control-noun negation persist in HazardTaxonomyCoverageService.route(); each new family costs another preservation block.",
+      "Evidence is bounded by 56 corpus rows, an 8-row probe family and 6 workflow cases, all authored by this process rather than drawn from field data."
+    ],
+    "expertReadiness": {
+      "document": "verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/EXPERT_HAZLENZ_READINESS_REASSESSMENT.md",
+      "deterministicPreconditionsMet": true,
+      "blocker7": "RESOLVED_AND_EXTENDED_TO_MATERIALIZATION",
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "newRequirementsAdded": [
+        "the Expert invariance harness must assert actionable coverage, not only recognition: 43/43 must still materialise as deterministic findings and W-05/W-06 must still materialise none",
+        "Expert output must never be a finding's only route to existence; if Expert contributions enter multiHazardDecomposition.hazards they must be separately attributed and removable without reducing deterministic coverage below 43/43",
+        "Expert must not be positioned as the answer to the 26-group finding-level standards gap; that is deterministic work"
+      ]
+    }
+  },
+  "hazlenzStandardsArchitecture2026_08_28": {
+    "phase": "HAZLENZ_DETERMINISTIC_STANDARDS_ARCHITECTURE_AND_COVERAGE_CLOSURE",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_STANDARDS_COVERAGE_BLOCKED -- AUTHORITATIVE_SOURCE_MATERIAL_REQUIRED",
+    "evidencePackage": "verification/insite-v1-hazlenz-standards-architecture-2026-08-28/",
+    "predecessorPhase": "hazlenzActionableCoverage2026_08_28",
+    "productionSourceChanged": false,
+    "providerCallsMade": 0,
+    "productionMutated": false,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashed": false,
+      "reset": false,
+      "restored": false,
+      "cleaned": false,
+      "rebased": false,
+      "stashCount": 4,
+      "tagCount": 24
+    },
+    "authoritativeArchitecture": {
+      "mechanismCount": 3,
+      "governedSourceSet": {
+        "file": "backend/src/standards/releases/governed-source-set.ts",
+        "inputs": [
+          "SAFESCOPE_CURATED_STANDARDS (8 records)",
+          "STANDARDS_INTELLIGENCE_SEED (35 unique citations)"
+        ],
+        "recordCount": 35,
+        "databaseAccess": "none",
+        "role": "AUTHORITATIVE_GOVERNED_SOURCE"
+      },
+      "standardsMaster": {
+        "role": "legacy retrieval corpus feeding analysis-level suggestedStandards",
+        "rowsWhenSeeded": 35,
+        "productionRowsDocumented": 2390,
+        "productionSourceKey": "NULL on all rows (documented)"
+      },
+      "evidenceFoundation": {
+        "file": "backend/src/safescope-v2/evidence/evidence-foundation.ts",
+        "citationCount": 30,
+        "familyCount": 12,
+        "databaseAccess": "none",
+        "documentedRole": "evidence/applicability helper",
+        "actualRole": "DE_FACTO_AUTHORITY_FOR_CUSTOMER_FINDING_CITATIONS"
+      },
+      "cutoverDefault": "LEGACY",
+      "customerFacingFindingCitationSource": "evidence-foundation.ts only -- proved by measurement"
+    },
+    "whyStandardsMasterWasEmpty": "Nothing had ever seeded the local development database or the disposable databases. Zero rows is expected in an unseeded disposable environment and is not evidence of a broken runtime; npm run seed:safescope-standards materializes it deterministically. It does mean every local standards measurement before this phase ran against an empty corpus.",
+    "runtimeMaterialization": {
+      "database": "test_v1_standards_architecture_20260828",
+      "mechanism": "npm run seed:safescope-standards",
+      "manualRowInsertion": false,
+      "recordsMaterialized": 35,
+      "releaseId": "federal-core-2026-07-30.1",
+      "releaseStatus": "provisional",
+      "manifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+      "reviewState": {
+        "mechanically_validated": 35,
+        "reviewer_approved": 0,
+        "unreviewed": 0
+      },
+      "protectedSafescopeDatabaseMutated": false
+    },
+    "coverageManifest": {
+      "file": "backend/src/safescope-v2/tests/hazlenz-standards-coverage-manifest.ts",
+      "sha256": "87f111013e8684b64ed068d6d36388fc3e20c7809c880c6b37cae47fcdf12ddd",
+      "declaredJurisdictions": [
+        "osha-general-industry",
+        "osha-construction",
+        "msha"
+      ],
+      "unknownContext": "legacy and incomplete records only; new inspections require an explicit context",
+      "jurisdictionStatus": {
+        "osha-general-industry": "SUPPORTED_WITH_FALLBACK",
+        "osha-construction": "SUPPORTED_WITH_FALLBACK",
+        "msha": "SUPPORTED_WITH_FALLBACK",
+        "unknown": "KNOWN_GAP"
+      },
+      "governedRecordsByScope": {
+        "general_industry": 13,
+        "construction": 11,
+        "mining": 11
+      },
+      "notableExclusions": [
+        "MSHA coal (30 CFR 75 and 77) carries no governed record",
+        "no subpart-complete coverage of any part"
+      ]
+    },
+    "corpusInventory": {
+      "uniqueGovernedStandards": 35,
+      "byAgency": {
+        "OSHA": 24,
+        "MSHA": 11
+      },
+      "byScope": {
+        "general_industry": 13,
+        "construction": 11,
+        "mining": 11
+      },
+      "placeholderProvenanceRecords": 0,
+      "citationsEmittedByRulesWithNoCorpusRecord": [
+        "29 CFR 1926.1425",
+        "30 CFR 56.12025",
+        "30 CFR 56.15005"
+      ]
+    },
+    "standardsCoverageByJurisdiction": [
+      {
+        "context": "unknown",
+        "actionable": "43/43",
+        "lifeCritical": "35/35",
+        "matched": 16,
+        "noStandardApplicable": 1,
+        "expectedButMissing": 26
+      },
+      {
+        "context": "osha-general-industry",
+        "actionable": "43/43",
+        "lifeCritical": "35/35",
+        "matched": 13,
+        "noStandardApplicable": 1,
+        "expectedButMissing": 29
+      },
+      {
+        "context": "osha-construction",
+        "actionable": "43/43",
+        "lifeCritical": "35/35",
+        "matched": 13,
+        "noStandardApplicable": 1,
+        "expectedButMissing": 29
+      },
+      {
+        "context": "msha",
+        "actionable": "43/43",
+        "lifeCritical": "35/35",
+        "matched": 7,
+        "noStandardApplicable": 1,
+        "expectedButMissing": 35
+      }
+    ],
+    "originalResultReproduced": "16 matched / 1 no-standard-applicable / 26 expected-but-missing reproduced IDENTICALLY with the full governed corpus materialized; the gap was never an empty-corpus artefact",
+    "wrongStandardCount": 0,
+    "wrongJurisdictionCount": 0,
+    "jurisdictionSafety": {
+      "gate": "npm run test:hazlenz-standards-jurisdiction",
+      "sha256": "450fe95b9ad7504e92291732642b87bbae75b28cce708ba3c60d9c87f075427a",
+      "checks": 16,
+      "failures": 0,
+      "wrongJurisdictionCitations": 0,
+      "citationsByContext": {
+        "osha-general-industry": {
+          "total": 5,
+          "1910": 5,
+          "1926": 0,
+          "30CFR": 0
+        },
+        "osha-construction": {
+          "total": 7,
+          "1910": 0,
+          "1926": 7,
+          "30CFR": 0
+        },
+        "msha": {
+          "total": 5,
+          "1910": 0,
+          "1926": 0,
+          "30CFR": 5
+        },
+        "unknown": {
+          "total": 17,
+          "1910": 5,
+          "1926": 7,
+          "30CFR": 5
+        }
+      },
+      "negativeControlsHeld": [
+        "verified lockout",
+        "correctly fitted guard",
+        "explicitly negated hot work",
+        "covered floor opening",
+        "administrative training record",
+        "secured cylinder",
+        "walkway as location only",
+        "filed noise survey"
+      ]
+    },
+    "measuredDefects": [
+      {
+        "id": "STD-01",
+        "summary": "The finding-level standards authority does not consult the governed corpus; nine recognised hazard families have no applicable rule at all.",
+        "families": [
+          "hot_work",
+          "fire_explosion",
+          "compressed_gas",
+          "confined_space",
+          "personal_protective_equipment",
+          "respiratory_protection",
+          "material_handling_storage",
+          "environmental_release",
+          "ventilation_air_quality"
+        ],
+        "repaired": false,
+        "reason": "the correct fix is architectural (route finding citations through the governed corpus); adding hand-written rules would deepen the parallel library this phase exists to diagnose"
+      },
+      {
+        "id": "STD-02",
+        "summary": "ApplicableStandardsService returns nothing when no jurisdiction is resolved.",
+        "rootCause": "the only jurisdiction-dependent scoring contribution is score += 15 for an in-scope row, and the admission threshold is score >= 10, so the scope bonus alone admits candidates; measured 12 candidates retrieved and 0 returned for textbook LOTO text with 1910.147 present",
+        "repaired": false,
+        "reason": "the fix changes which standards every customer sees on a 2,390-row production corpus that this authorization cannot reach; changing a relevance threshold without that evidence is prohibited by the phase contract",
+        "mitigation": "the accepted product contract requires new inspections to carry an explicit regulatory context"
+      }
+    ],
+    "repairClassification": {
+      "repairableFromExistingCorpus": [
+        "confined_space",
+        "personal_protective_equipment",
+        "powered_industrial_trucks"
+      ],
+      "authoritativeSourceRequired": [
+        "hot_work",
+        "fire_explosion",
+        "compressed_gas",
+        "respiratory_protection",
+        "ventilation_air_quality",
+        "cranes_rigging_hoisting",
+        "suspended_loads",
+        "material_handling_storage",
+        "environmental_release"
+      ],
+      "repairsPerformed": 0,
+      "regulatoryTextFabricated": false,
+      "citationsGuessed": false
+    },
+    "protectedRegression": {
+      "hazlenzCoreSuites": "35/35 PASS, unrelaxed",
+      "newGateRegistered": "HazLenz Standards Jurisdiction Gate (35th suite)",
+      "typecheck": "npx tsc --noEmit clean",
+      "goldenStandardsTests": "EXECUTED FOR THE FIRST TIME -- 15 passed, 0 failed, against the corpus-loaded disposable database; the protected-corpus guard permits a test_* database and was NOT bypassed",
+      "newRegressions": [],
+      "preExistingFailuresIdenticalToPriorState": [
+        "domain-association-regression",
+        "golden-hazard-tests (1/12)",
+        "hazlenz-vague-candidate-promotion-regression (2)",
+        "hazlenz-standard-return-contract-regression (9)"
+      ],
+      "stillUnverified": [
+        {
+          "surface": "production legacy corpus behaviour",
+          "reason": "documented at 2,390 eCFR rows with NULL source_key; not reachable from this authorization"
+        },
+        {
+          "surface": "safescope_knowledge_chunks retrieval path",
+          "reason": "0 rows in both the development and the disposable database"
+        },
+        {
+          "surface": "reviewer-approved governed content",
+          "reason": "0 of 35 records approved"
+        },
+        {
+          "surface": "governed cutover modes above LEGACY",
+          "reason": "not enabled; out of scope"
+        }
+      ]
+    },
+    "marketingClaimReconciliation": {
+      "wordingChanged": false,
+      "productScopeAltered": false,
+      "claims": [
+        {
+          "claim": "the applicable MSHA and OSHA standards suggested",
+          "verdict": "NEEDS_QUALIFICATION",
+          "note": "true in kind, overstated in extent: 35 governed records across three regimes and nine hazard families with no standard at all"
+        },
+        {
+          "claim": "let HazLenz AI organize the hazard review and the standards behind it",
+          "verdict": "SUPPORTED"
+        },
+        {
+          "claim": "the standards, the corrective actions and the reports for the monthly price",
+          "verdict": "NEEDS_QUALIFICATION"
+        }
+      ],
+      "deferredTo": "v1.0 application polish phase"
+    },
+    "expertReadiness": {
+      "document": "verification/insite-v1-hazlenz-standards-architecture-2026-08-28/EXPERT_HAZLENZ_READINESS_REASSESSMENT.md",
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "newConstraints": [
+        "Expert HazLenz must never be the regulatory source of truth",
+        "every Expert-proposed standard must be validated against the governed deterministic authority before display",
+        "the standards gap must not be closed by pointing Expert at it; it is deterministic work",
+        "with Expert enabled the measured result must remain 0 wrong-jurisdiction citations"
+      ]
+    }
+  },
+  "hazlenzRegulatorySourceAcquisition2026_08_28": {
+    "phase": "AUTHORITATIVE_REGULATORY_SOURCE_ACQUISITION_AND_GOVERNED_CORPUS_EXPANSION",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_AUTHORITATIVE_STANDARDS_CORPUS_STAGED -- REVIEWER_GOVERNANCE_ACTION_REQUIRED",
+    "evidencePackage": "verification/insite-v1-regulatory-source-acquisition-2026-08-28/",
+    "predecessorPhase": "hazlenzStandardsArchitecture2026_08_28",
+    "providerCallsMade": 0,
+    "productionMutated": false,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashed": false,
+      "reset": false,
+      "restored": false,
+      "cleaned": false,
+      "rebased": false,
+      "stashCount": 4,
+      "tagCount": 24
+    },
+    "protectedHazardBaselineReMeasured": {
+      "level1RecognitionRecall": "43/43",
+      "actionableCoverage": "43/43",
+      "lifeCriticalRecognition": "35/35",
+      "lifeCriticalActionable": "35/35",
+      "populationAPrecision": 1.0,
+      "populationAForbiddenEmissions": 0,
+      "newRegressions": 0
+    },
+    "sourceAuthorityPolicy": {
+      "permitted": [
+        "eCFR versioner API (official codified CFR)",
+        "osha.gov regulation pages",
+        "Federal Register for provenance/history"
+      ],
+      "prohibited": [
+        "blogs",
+        "training websites",
+        "law-firm summaries",
+        "vendor pages",
+        "search-engine snippets",
+        "secondary compliance summaries",
+        "AI-generated regulatory text"
+      ],
+      "editions": {
+        "title29": {
+          "latestAmended": "2026-08-04",
+          "upToDateAsOf": "2026-08-26"
+        },
+        "title30": {
+          "latestAmended": "2026-08-25",
+          "upToDateAsOf": "2026-08-26"
+        }
+      },
+      "retrievalDate": "2026-08-28",
+      "sectionsRetrieved": 37,
+      "allHttp200": true,
+      "evidenceStored": "verification/insite-v1-regulatory-source-acquisition-2026-08-28/source-evidence/ with SHA-256 in SOURCE_CHECKSUMS.txt",
+      "verbatimTextStoredInCorpus": false,
+      "verbatimTextNote": "the corpus contract derives standards_master.standardText FROM plainLanguageSummary; no field expects verbatim regulatory text, so the KG-3D/3E paragraph-accurate summary style was followed and provenance carried in sourceUrl/retrievalDate"
+    },
+    "v1JurisdictionScope": [
+      "osha-general-industry (29 CFR 1910)",
+      "osha-construction (29 CFR 1926)",
+      "msha (30 CFR, metal/nonmetal surface)"
+    ],
+    "governedCorpus": {
+      "recordsBefore": 35,
+      "recordsAfter": 72,
+      "byScopeBefore": {
+        "general_industry": 13,
+        "construction": 11,
+        "mining": 11
+      },
+      "byScopeAfter": {
+        "general_industry": 25,
+        "construction": 24,
+        "mining": 23
+      },
+      "distinctCitations": 72,
+      "duplicates": 0,
+      "conflicts": 0,
+      "invalidRecords": 0,
+      "placeholderProvenanceRecords": 0,
+      "historicalGovernedRecordsMutated": 0,
+      "provenanceOnNewRecords": "37/37",
+      "provenanceAcrossCorpus": "64/72",
+      "newArtifact": "backend/src/safescope-v2/standards-intelligence/standards-intelligence.v1-expansion.ts",
+      "newArtifactSha256": "168498edfa9aaca3d432d40d57326a0da8486cd1d6f8d3bdf74dfd875e691667",
+      "appendedNotMerged": true
+    },
+    "deterministicMaterialization": {
+      "MATERIALIZATION_DETERMINISTIC": true,
+      "runs": [
+        "test_v1_corpus_final_run1",
+        "test_v1_corpus_final_run2"
+      ],
+      "manifestChecksum": "702339e5f7b486a1fdc270abd0c006f25dc0cac4483bcc31dfbcb32bd14f121b",
+      "previousManifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+      "recordCount": 72,
+      "foreignRows": 0,
+      "manuallyInsertedRows": 0,
+      "governanceHazard": "the finalizer reuses release identifier federal-core-2026-07-30.1 for materially different content; only the manifest checksum moved. Two artifacts named the same release are not the same release. Versioning the release id belongs with the reviewer-governance action."
+    },
+    "coverageMatrix": {
+      "file": "backend/src/safescope-v2/tests/hazlenz-regulatory-coverage-matrix.ts",
+      "sha256": "7e8af4a2d50f21e91c0da3056c28d38baf25c3fb01a646e1aa25c3c2007630a6",
+      "families": 24,
+      "cells": 72,
+      "sourceAuthorityPresent": 67,
+      "noStandardApplicable": 5,
+      "sourceAuthorityMissing": 0,
+      "outOfScope": 0,
+      "familiesWithFindingLevelRuleToday": 11,
+      "noStandardApplicableCells": [
+        "confined_space/msha",
+        "environmental_release/msha",
+        "traffic_control/osha-general-industry",
+        "ground_control/osha-general-industry",
+        "excavation_trenching/osha-general-industry"
+      ],
+      "gateCaughtOverClaim": "five cells named provisions (1926.417, 56.15005, 56.3200) the governed set did not hold; acquired rather than de-scoped"
+    },
+    "reviewerGovernance": {
+      "approvalRequiredForCustomerAuthority": true,
+      "approvalMechanism": "npm run review:release-record -- approve (admin CLI only; no HTTP endpoint by design)",
+      "expectedChecksumMandatory": true,
+      "isHumanGovernanceAct": true,
+      "selfApproved": false,
+      "reviewState": {
+        "unreviewed": 0,
+        "mechanically_validated": 72,
+        "reviewer_approved": 0
+      },
+      "reviewerDecisionsRecorded": 0,
+      "releaseStatus": "provisional",
+      "standingDebtNote": "the 35 pre-existing records are equally unapproved; this is not introduced by this phase"
+    },
+    "unresolvedJurisdictionMeasurement": {
+      "corpusSize": 72,
+      "unresolvedRecallOnObviousCases": "4/5",
+      "wrongJurisdictionCandidatesAcrossPinnedRuns": 0,
+      "falsePositivesOnInapplicableControl": 1,
+      "repairPerformed": false,
+      "conclusion": "the defect largely dissolves as the corpus grows; the remaining miss is a RANKING defect (1910.252 outranked 1910.147 for textbook LOTO under an unresolved regime, correct once general industry is pinned), not an admission-threshold defect. Lowering the threshold would not fix a mis-ranking and would worsen the measured false positive."
+    },
+    "newGate": {
+      "script": "npm run test:hazlenz-source-authority",
+      "file": "backend/src/safescope-v2/tests/hazlenz-source-authority-gate.ts",
+      "sha256": "abdc29273ac22ab67224450d4ea79db28ccba171294c9a4a332c672b09389ac2",
+      "registeredAs": "36th suite of npm run test:hazlenz-core",
+      "databaseFree": true
+    },
+    "regression": {
+      "hazlenzCoreSuites": "36/36 PASS, unrelaxed",
+      "typecheck": "npx tsc --noEmit clean",
+      "goldenStandardsAgainstExpandedCorpus": "15 passed, 0 failed",
+      "newRegressions": [],
+      "preExistingFailuresIdentical": [
+        "domain-association-regression",
+        "golden-hazard-tests (1/12)",
+        "hazlenz-vague-candidate-promotion-regression (2)",
+        "hazlenz-standard-return-contract-regression (9)"
+      ],
+      "stillUnverified": [
+        {
+          "surface": "production legacy corpus behaviour",
+          "reason": "approximately 2,390 eCFR rows; not reachable from this authorization"
+        },
+        {
+          "surface": "safescope_knowledge_chunks retrieval path",
+          "reason": "0 rows in every available database"
+        },
+        {
+          "surface": "reviewer-approved governed content",
+          "reason": "0 of 72 approved"
+        },
+        {
+          "surface": "governed cutover modes above LEGACY",
+          "reason": "not enabled; out of scope"
+        }
+      ]
+    },
+    "findingLevelArchitectureProposal": {
+      "document": "verification/insite-v1-regulatory-source-acquisition-2026-08-28/FINDING_LEVEL_ARCHITECTURE_PROPOSAL.md",
+      "implemented": false,
+      "evidenceFoundationModified": false,
+      "secondMiniLibraryCreated": false,
+      "disposition": {
+        "applicabilityPredicates": "RETAIN as applicability evidence",
+        "hardCodedCitationLiterals": "CONVERT to governed mapping metadata keyed by (hazard family, jurisdiction)",
+        "decisionStatusModel": "RETAIN and reuse verbatim",
+        "moduleAsFallback": "RETAIN until a measured parity run justifies retirement",
+        "explanationText": "RETAIN"
+      },
+      "successCriterion": "not a coverage percentage: every citation a customer sees must be one the governed authority holds, for the jurisdiction their inspection declared, with checkable provenance, and wrong-jurisdiction and wrong-standard must both stay at zero"
+    },
+    "expertReadiness": {
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "constraint": "Expert HazLenz must never become the regulatory source of truth; any Expert-proposed standard must be validated against the governed deterministic authority before display"
+    }
+  },
+  "hazlenzReviewerGovernance2026_08_28": {
+    "phase": "REGULATORY_REVIEWER_GOVERNANCE_AND_IMMUTABLE_KNOWLEDGE_RELEASE_VERSIONING",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_GOVERNED_STANDARDS_RELEASE_READY -- FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATION_REQUIRED",
+    "evidencePackage": "verification/insite-v1-reviewer-governance-2026-08-28/",
+    "predecessorPhase": "hazlenzRegulatorySourceAcquisition2026_08_28",
+    "providerCallsMade": 0,
+    "productionMutated": false,
+    "productionReleaseActivated": false,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashed": false,
+      "reset": false,
+      "restored": false,
+      "cleaned": false,
+      "rebased": false,
+      "stashCount": 4,
+      "tagCount": 24
+    },
+    "protectedBaselinesReMeasured": {
+      "recognition": "43/43",
+      "actionableCoverage": "43/43",
+      "lifeCriticalActionable": "35/35",
+      "populationAPrecision": 1.0,
+      "forbiddenEmissions": 0,
+      "governedSourceRecords": 72,
+      "sourceAuthorityMissing": 0
+    },
+    "releaseIdentityDefect": {
+      "correctedDiagnosis": "The finalizer's immutability guard exists and is correct, but its scope is ONE DATABASE: it reads regulatory_releases.manifestChecksum from the connection, so in a fresh database priorRecordCount is 0 and the guard does not engage. The previous phase's framing implied a missing guard; that was imprecise.",
+      "observedSymptom": "federal-core-2026-07-30.1 named 35 records (14a34fea), 64 (156a6c87) and 72 (702339e5) across three disposable databases",
+      "repairModule": "backend/src/standards/releases/release-identity.ts",
+      "repairModuleSha256": "19e6f682bf47fa3c39e8749d6fa24c2c9f29cd73bdc03a6893be29cf3e0779d7",
+      "mechanismUsed": "the existing KG-5B release-definition expectedManifestChecksum pin, which prepareGovernedRelease already honoured and the seed finalizer did not",
+      "newMechanismInvented": false,
+      "gate": "npm run test:release-identity-immutability",
+      "gateSha256": "cb7f71f2f177536928a73860b9fd1ecdf1d75f5b355c09e1648d8712df9f95c9",
+      "gateChecks": 8,
+      "registeredAs": "37th suite of npm run test:hazlenz-core",
+      "ownershipExemption": "an UNREGISTERED release id is permitted ONLY in a KG-4C-owned disposable database (a marker written INTO the database by a suite that claimed it; production can never carry one), because governance suites legitimately finalize synthetic fixtures such as kg3a-release.A. A REGISTERED id with a different manifest is refused everywhere, ownership or not. Both branches are asserted by the gate.",
+      "SAME_RELEASE_ID_SAME_MANIFEST": true,
+      "DIFFERENT_MANIFEST_SAME_RELEASE_ID": "REJECTED (exit code 1, nothing written)",
+      "RELEASE_REPRODUCIBLE": true,
+      "historicalReleaseRewritten": false
+    },
+    "reviewRubric": {
+      "A": "Regulatory identity -- CFR title, part, section, paragraph/subparagraph, jurisdiction",
+      "B": "Source integrity -- source reference resolves to the captured authoritative provision; retrieval metadata present; source evidence checksummed",
+      "C": "Summary fidelity -- accurate to the cited provision; does not broaden or narrow it; does not convert a conditional requirement into an unconditional one; does not omit a qualification essential to applicability; introduces no obligation absent from the provision",
+      "D": "Applicability -- hazard-family mapping defensible; regime correct; sibling-paragraph interaction represented; OSHA not treated as MSHA authority; construction and general-industry distinctions preserved",
+      "E": "Governance and schema -- provenance populated, checksum valid, no duplicate regulatory identity, no conflicting record, schema valid",
+      "blanketDispositionUsed": false
+    },
+    "reviewOutcome": {
+      "ledger": "verification/insite-v1-reviewer-governance-2026-08-28/REVIEWER_LEDGER.json",
+      "reviewed": 72,
+      "approved": 64,
+      "rejectCorrectionRequired": 8,
+      "escalateInterpretationRequired": 0,
+      "outOfScope": 0,
+      "sourceEvidenceSectionsHeld": 70,
+      "additionalSectionsRetrievedForPreExistingRecords": 33,
+      "allRejectionsInPreExistingRecords": true,
+      "rejections": [
+        {
+          "citation": "30 CFR 57.14107(a)",
+          "rubric": "C",
+          "defect": "omits 57.14107(b), the seven-foot exemption its sibling record for 56.14107(a) names explicitly"
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "rubric": "C",
+          "defect": "materially narrows the rule: conditions an unconditional duty on exposure and drops the adjustment/testing exception"
+        },
+        {
+          "citation": "1910.219",
+          "rubric": "C",
+          "defect": "materially broadens the rule: omits the section's own scope exemptions at (a)(1)"
+        },
+        {
+          "citation": "29 CFR 1910.132(a)",
+          "rubric": "C",
+          "defect": "summary is HazLenz selection heuristic prose, not the provision"
+        },
+        {
+          "citation": "29 CFR 1926.95(a)",
+          "rubric": "C",
+          "defect": "summary is HazLenz selection heuristic prose, not the provision"
+        },
+        {
+          "citation": "30 CFR 56.15006",
+          "rubric": "C",
+          "defect": "summary is HazLenz selection heuristic prose, not the provision"
+        },
+        {
+          "citation": "29 CFR 1926.602(a)(9)(ii)",
+          "rubric": "C",
+          "defect": "summary is HazLenz selection heuristic prose, not the provision"
+        },
+        {
+          "citation": "30 CFR 56.9100(a)",
+          "rubric": "C",
+          "defect": "summary is HazLenz selection heuristic prose, not the provision"
+        }
+      ],
+      "corroboration": "the 8 rejected records are exactly the 8 corpus records lacking sourceUrl/retrievalDate provenance; two independent rubric axes selected the same set",
+      "whyHeuristicProseMatters": "the projection derives standards_master.standardText FROM plainLanguageSummary, so those five records would have shown a customer engine prose where the regulation's content belongs"
+    },
+    "correctionStrategy": {
+      "inPlaceEditProhibited": true,
+      "verifiedNotAssumed": "prepare for federal-core-2026-07-30.1 still computes 14a34fea from the current source arrays because membership is explicit; editing any of those 35 records would break the pin",
+      "mechanism": "supersession -- the 8 stay in the source set (which keeps the historical release reproducible) and are simply not members of the new release",
+      "recordsSilentlyModifiedDuringReview": 0
+    },
+    "approval": {
+      "mechanism": "npm run review:release-record -- approve, one record at a time",
+      "expectedChecksumUsedForEveryApproval": true,
+      "bulkOrAlternatePathUsed": false,
+      "httpEndpointAdded": false,
+      "decisionsRecorded": 64,
+      "distinctRecordChecksums": 64,
+      "effectiveReviewState": "reviewer_approved on 64/64",
+      "decisionsWithTimestamp": "64/64",
+      "log": "verification/insite-v1-reviewer-governance-2026-08-28/APPROVAL_DECISIONS.json"
+    },
+    "reviewerIdentity": {
+      "reviewerId": "insite-product-owner-authorized-regulatory-content-review",
+      "reviewerRole": "regulatory-content-reviewer (non-attorney, non-agency)",
+      "authorizationBasis": "product-owner directive for this phase",
+      "attorneyReviewClaimed": false,
+      "oshaOrMshaReviewClaimed": false,
+      "governmentApprovalClaimed": false,
+      "peCihCspReviewClaimed": false,
+      "credentialFabricated": false
+    },
+    "candidateRelease": {
+      "releaseId": "federal-core-2026-08-28.1",
+      "releaseVersion": "2026-08-28.1",
+      "predecessorReleaseId": "federal-core-2026-07-30.1",
+      "definitionFile": "backend/src/standards/releases/definitions/federal-core-2026-08-28.1.json",
+      "definitionSha256": "64192865209068e4956ab4ae8c7d7ec6260742cdc6479bc36f615b432cb49da1",
+      "memberCount": 64,
+      "approvedRecordCount": 64,
+      "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "status": "provisional",
+      "activatedAnywhere": false,
+      "reviewerLedgerReference": "verification/insite-v1-reviewer-governance-2026-08-28/REVIEWER_LEDGER.json"
+    },
+    "candidateValidation": {
+      "checks": 11,
+      "failures": 0,
+      "assertions": [
+        "release materializes with 64 records",
+        "manifest reproduces the pinned value",
+        "approved status persists across reconnect",
+        "source identity persists on every release record",
+        "approval-contract sourceIdentityDigest persists",
+        "jurisdiction metadata persists",
+        "retrievable source_url on every approved corpus row",
+        "release holds exactly the 64 approved records",
+        "no rejected record resolves APPROVED_GOVERNED_CONTENT",
+        "an approved record CAN resolve APPROVED_GOVERNED_CONTENT (positive control)",
+        "standards_master retains all 72 source records unmutated"
+      ]
+    },
+    "unresolvedJurisdictionCarryForward": {
+      "repaired": false,
+      "state": {
+        "unresolvedRecallOnObviousCases": "4/5",
+        "wrongJurisdictionCandidatesInPinnedRuns": 0,
+        "remainingMissCause": "ranking, not admission",
+        "administrativeFalsePositives": 1
+      },
+      "evaluateDuring": "finding-level governed standards integration"
+    },
+    "regression": {
+      "hazlenzCoreSuites": "37/37 PASS, unrelaxed",
+      "typecheck": "npx tsc --noEmit clean",
+      "kg5bReleaseConstruction": "102/102",
+      "regulatoryReleaseLifecycle": "PASS",
+      "releaseIntegrityAndApproval": "PASS",
+      "goldenStandards": "15/15 against the reviewed release database",
+      "newRegressions": [],
+      "staleAssertionCorrected": "test:kg5b-release-construction pinned 'a corpus of exactly the governed records is seedable' to governedRows === 35; the property is foreignRows === 0, which passed throughout. Now compares against the source set's own size -- true at any size, a strengthening not a relaxation.",
+      "prerequisiteFailuresNotDefects": "test:regulatory-release-lifecycle and test:release-integrity-and-approval initially refused an unclaimed database (the KG-4C guard working) and needed a seeded corpus; both PASS once given a claimed, seeded disposable database",
+      "preExistingFailuresIdentical": [
+        "domain-association-regression",
+        "golden-hazard-tests (1/12)",
+        "hazlenz-vague-candidate-promotion-regression (2)",
+        "hazlenz-standard-return-contract-regression (9)"
+      ],
+      "stillUnverified": [
+        {
+          "surface": "production legacy corpus behaviour",
+          "reason": "not reachable from this authorization"
+        },
+        {
+          "surface": "safescope_knowledge_chunks retrieval path",
+          "reason": "0 rows in every available database"
+        },
+        {
+          "surface": "governed cutover modes above LEGACY",
+          "reason": "not enabled; out of scope"
+        }
+      ]
+    },
+    "findingLevelIntegrationContract": {
+      "document": "verification/insite-v1-reviewer-governance-2026-08-28/FINDING_LEVEL_INTEGRATION_CONTRACT.md",
+      "implemented": false,
+      "evidenceFoundationModified": false,
+      "findingMustCarry": [
+        "citationKey",
+        "citation",
+        "releaseId",
+        "recordChecksum",
+        "jurisdiction",
+        "backingStatus",
+        "applicability/missingPredicates/explanation"
+      ],
+      "fallbackStates": [
+        "approved governed record -> APPROVED_GOVERNED_CONTENT",
+        "unapproved or non-member record -> UNAPPROVED_CONTENT",
+        "nothing resolved but predicates support it -> CITATION_ONLY"
+      ],
+      "hardRule": "no silent fallback may present an unapproved code-resident citation as approved governed content; this assertion must be written before the integration code"
+    },
+    "expertReadiness": {
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "constraint": "Expert HazLenz must never become the regulatory source of truth"
+    }
+  },
+  "hazlenzFindingLevelGovernedIntegration2026_08_28": {
+    "phase": "FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATION",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATED -- CANDIDATE_RELEASE_ACTIVATION_ACCEPTANCE_REQUIRED",
+    "evidencePackage": "verification/insite-v1-finding-level-governed-integration-2026-08-28/",
+    "predecessorPhase": "hazlenzReviewerGovernance2026_08_28",
+    "CANDIDATE_RELEASE_ACTIVATED": false,
+    "PRODUCTION_MUTATED": false,
+    "PROVIDER_CALLS": 0,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashCount": 4,
+      "tagCount": 24,
+      "evidenceFoundationModified": false
+    },
+    "changedFiles": [
+      {
+        "path": "backend/src/standards/releases/finding-standards-authority.ts",
+        "change": "new",
+        "sha256": "b19f7d9558a15aa51eaa55b5b147a42fb8787cf95d5fda54b87bb31038107deb"
+      },
+      {
+        "path": "backend/src/inspection/finding-standards-authority-annotation.ts",
+        "change": "new",
+        "sha256": "dc5515c37d4809fa8d1f2353f493f8164aba3f0ce888ba500004e1c9511b864f"
+      },
+      {
+        "path": "backend/src/inspection/inspection.service.ts",
+        "change": "one call in reconcileDecompositionFindings plus its import"
+      },
+      {
+        "path": "backend/src/standards/tests/finding-governed-authority.ts",
+        "change": "new",
+        "sha256": "77ef217a20ea459c7d2d05b0b0cbf1edb26be219b0d5c4f9bcb813fc27bea18f"
+      },
+      {
+        "path": "backend/src/standards/tests/finding-governed-integration.ts",
+        "change": "new",
+        "sha256": "d9f9a0e7b908aff1ea4d9b50625ab67f6a6e2c0e09d7cc54e030ac94e2b3476f"
+      },
+      {
+        "path": "backend/package.json",
+        "change": "two scripts appended"
+      },
+      {
+        "path": "docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json",
+        "change": "additive"
+      }
+    ],
+    "authorityModelBeforeIntegration": {
+      "hazardRecognition": "deterministic decomposition; no standards involvement",
+      "findingCitations": "evidence-foundation.ts -- code-resident rules, no database, no release, no review state",
+      "findingTextHydration": "standards_master via hydrateFindingScopedStandards -- legacy corpus, no release scope, no review condition",
+      "findingKnowledgeReleaseId": "NULL whenever retrieval is unscoped, which is always on the live path (KG-1)",
+      "governedResolution": "governed-corpus-lookup.ts -- a SHADOW evaluator wired into no customer path",
+      "lossPoint": "nothing recorded which release governed a finding or whether the record was a member of it, so any future citation-text match would have conferred a reviewer's approval on a code-resident rule"
+    },
+    "authorityStates": [
+      "APPROVED_GOVERNED_CONTENT",
+      "UNAPPROVED_GOVERNED_CONTENT",
+      "REJECTED_GOVERNED_CONTENT",
+      "LEGACY_CODE_RESIDENT_CONTENT",
+      "NO_GOVERNED_MATCH"
+    ],
+    "authorityRule": "a citation earns governed authority ONLY when a governed record with that citation IDENTITY is a MEMBER of the release governing the finding, that member's EFFECTIVE review state is reviewer_approved IN THAT RELEASE, and it carries usable content. Citation-string equality confers nothing.",
+    "firstFailingAssertion": {
+      "assertion": "No silent fallback may present an unapproved code-resident citation as approved governed content.",
+      "test": "npm run test:finding-governed-authority",
+      "writtenBeforeIntegrationCode": true,
+      "resultBefore": "Cannot find module '../releases/finding-standards-authority' -- TSError diagnosticCodes [2307]",
+      "resultAfter": "17/17 PASS",
+      "assertionWeakened": false,
+      "controls": {
+        "positive": [
+          "29 CFR 1910.252",
+          "29 CFR 1910.147",
+          "30 CFR 56.16009",
+          "29 CFR 1926.1425"
+        ],
+        "negative1": "code-resident citation with no approved member -> NO_GOVERNED_MATCH",
+        "negative2": "all 8 rejected historical records -> REJECTED_GOVERNED_CONTENT",
+        "negative3": "1910.219 under federal-core-2026-07-30.1 -> UNAPPROVED_GOVERNED_CONTENT",
+        "negative4": "approval scoped to its own release; no cross-release approval exists to leak",
+        "laundering": "identical citation string with resolution bypassed -> LEGACY_CODE_RESIDENT_CONTENT"
+      }
+    },
+    "findingProvenanceContract": {
+      "fields": [
+        "authorityState",
+        "governedReleaseId",
+        "governedReleaseMember",
+        "governedRecordChecksum",
+        "effectiveReviewState",
+        "reviewerId",
+        "reviewerRole",
+        "reviewedAt",
+        "corpusBacked",
+        "contentDisclosure",
+        "authorityReason"
+      ],
+      "regulatoryRecordDuplicatedIntoFinding": false,
+      "reconstructableFrom": "governedReleaseId + governedRecordChecksum",
+      "reviewerAttributionOnlyWhenApproved": true
+    },
+    "rejectedRecordAdversarialGate": {
+      "test": "npm run test:finding-governed-integration",
+      "checks": 19,
+      "failures": 0,
+      "recordsProven": 8,
+      "everyRejectedRecordState": "REJECTED_GOVERNED_CONTENT with releaseMember false, no reviewer, no checksum, corpusBacked false",
+      "positiveControlInSameSuite": true,
+      "rejectedRecordsModified": false
+    },
+    "inspectionReleaseBinding": {
+      "bothReleasesCoexistUnactivated": true,
+      "findingRecordsItsOwnGoverningRelease": true,
+      "sameCitationDifferentReleaseDifferentAuthority": "1910.219 is UNAPPROVED_GOVERNED_CONTENT under federal-core-2026-07-30.1 and REJECTED_GOVERNED_CONTENT under federal-core-2026-08-28.1",
+      "historicalFindingRewrittenWhenNewReleaseAppeared": false,
+      "resolutionUsesStoredReleaseNotActivePointer": true
+    },
+    "customerSurfaces": {
+      "acceptedWorkflowChecks": 66,
+      "acceptedWorkflowFailures": 0,
+      "persistedStandardCandidates": 9,
+      "persistedAuthorityStates": {
+        "LEGACY_CODE_RESIDENT_CONTENT": 9
+      },
+      "persistedCorpusBackedTrue": 0,
+      "persistedReviewerIdPresent": 0,
+      "persistedGovernedApprovedDisclosure": 0,
+      "persistedRecordChecksumPresent": 0,
+      "whyAllLegacy": "knowledgeReleaseId is NULL because retrieval is unscoped (KG-1's honest answer) and the candidate release is not activated, so nothing may claim governed authority; the change is that findings now say so explicitly",
+      "reportClaimsApprovalOrGovernedAuthority": false,
+      "reportApprovedOccurrences": "only inside the quoted regulatory text of 1910.303(g)(2)",
+      "customerWordingChanged": false,
+      "evidenceFile": "verification/insite-v1-finding-level-governed-integration-2026-08-28/PERSISTED_FINDING_AUTHORITY.json"
+    },
+    "determinismAndImmutability": {
+      "identicalResolutionAcrossThreeRuns": true,
+      "resolverDeterministic": true,
+      "SAME_RELEASE_ID_SAME_MANIFEST": true,
+      "DIFFERENT_MANIFEST_SAME_RELEASE_ID": "REJECTED",
+      "historicalReleaseReproducible": "14a34fea, reproducedPinnedManifest true",
+      "candidateReleaseReproducible": "680540d9, reproducedPinnedManifest true",
+      "releaseIdentityGate": "PASS, 8 checks"
+    },
+    "protectedFloor": {
+      "recognition": "43/43",
+      "actionableCoverage": "43/43",
+      "lifeCriticalRecognition": "35/35",
+      "lifeCriticalActionable": "35/35",
+      "populationAPrecision": 1.0,
+      "forbiddenEmissions": 0,
+      "hazlenzCore": "37/37",
+      "kg5b": "102/102",
+      "goldenStandards": "15/15",
+      "persistedDecompositionFindings": "PASS",
+      "typescript": "clean",
+      "newRegressions": [],
+      "preExistingFailuresIdentical": [
+        "domain-association-regression",
+        "golden-hazard-tests (1/12)",
+        "hazlenz-vague-candidate-promotion-regression (2)",
+        "hazlenz-standard-return-contract-regression (9)"
+      ],
+      "stillUnverified": [
+        {
+          "surface": "production legacy corpus behaviour",
+          "reason": "not reachable from this authorization"
+        },
+        {
+          "surface": "safescope_knowledge_chunks retrieval path",
+          "reason": "0 rows in every available database"
+        },
+        {
+          "surface": "governed cutover modes above LEGACY",
+          "reason": "not enabled; out of scope"
+        }
+      ]
+    },
+    "unresolvedJurisdictionRankingDefect": {
+      "carriedForward": true,
+      "repaired": false,
+      "madeWorse": false,
+      "state": {
+        "unresolvedRecallOnObviousCases": "4/5",
+        "wrongJurisdictionCandidatesInPinnedRuns": 0,
+        "remainingMissCause": "ranking, not admission",
+        "administrativeFalsePositives": 1
+      }
+    },
+    "whatActivationWouldChange": [
+      "activate federal-core-2026-08-28.1 (deliberately not done in this phase)",
+      "scope retrieval to that release so KG-1 can truthfully record a knowledgeReleaseId instead of NULL",
+      "until retrieval is release-scoped, NULL remains the honest answer and no finding may claim governed authority"
+    ],
+    "expertReadiness": {
+      "blockersOpen": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "implementationAuthorised": false,
+      "constraint": "Expert HazLenz must never become the regulatory source of truth; an Expert-proposed citation would resolve NO_GOVERNED_MATCH unless a governed, approved release member backs it"
+    }
+  },
+  "hazlenzGovernedReleaseActivation2026_08_28": {
+    "phase": "GOVERNED_RELEASE_ACTIVATION_AND_RELEASE_SCOPED_RETRIEVAL",
+    "date": "2026-08-28",
+    "terminal": "HAZLENZ_GOVERNED_RELEASE_ACTIVATION_ACCEPTED -- PRESERVATION_CHECKPOINT_AND_PRODUCTION_CUTOVER_PLANNING_REQUIRED",
+    "evidencePackage": "verification/insite-v1-governed-release-activation-2026-08-28/",
+    "predecessorPhase": "hazlenzFindingLevelGovernedIntegration2026_08_28",
+    "LOCAL_CANDIDATE_ACTIVATION": true,
+    "PRODUCTION_CANDIDATE_ACTIVATION": false,
+    "PRODUCTION_MUTATED": false,
+    "PROVIDER_CALLS": 0,
+    "repository": {
+      "branch": "main",
+      "head": "d67d645608f13f7b0fc40e64b40f117d40c2ef71",
+      "upstream": "origin/main",
+      "committed": false,
+      "pushed": false,
+      "tagged": false,
+      "deployed": false,
+      "stashCount": 4,
+      "tagCount": 24,
+      "evidenceFoundationModified": false
+    },
+    "changedFiles": [
+      {
+        "path": "backend/src/standards/releases/inspection-release-binding.ts",
+        "change": "new -- resolves and write-once establishes the release governing an inspection",
+        "sha256": "c8e7e2c4a58e45b690a271b1f12a813345a3342db6bb35df0130d7c622db8e55"
+      },
+      {
+        "path": "backend/src/database/migrations/1800000018000-InspectionKnowledgeReleaseBinding.ts",
+        "change": "new -- inspection.knowledgeReleaseId, nullable, partial index",
+        "sha256": "1b17a2a4374d94258aa718e8b752a4e5d38cd8ea298c625db6482a948e1fd97d"
+      },
+      {
+        "path": "backend/src/inspection/inspection.entity.ts",
+        "change": "the knowledgeReleaseId column, documented write-once and never back-filled"
+      },
+      {
+        "path": "backend/src/inspection/inspection.service.ts",
+        "change": "a provenance claim is verified against the inspection's binding, falling back to the active pointer only when unbound"
+      },
+      {
+        "path": "backend/src/standards/cutover/governed-resolution.ts",
+        "change": "pinGovernedRelease takes an optional boundReleaseId; new PINNED_BOUND_RELEASE reason"
+      },
+      {
+        "path": "backend/src/standards/cutover/governed-cutover-context.ts",
+        "change": "create({ boundReleaseId }) passed to the pin"
+      },
+      {
+        "path": "backend/src/standards/cutover/shadow-request-orchestration.ts",
+        "change": "boundReleaseId threaded to both context constructions"
+      },
+      {
+        "path": "backend/src/safescope-v2/safescope-v2.controller.ts",
+        "change": "resolves the release binding once per classify, beside the existing inspection-jurisdiction resolution"
+      },
+      {
+        "path": "backend/tsconfig.json",
+        "change": "rootDir pinned to ./src -- see buildLayoutInvariant"
+      },
+      {
+        "path": "backend/scripts/test-release-activation-acceptance.ts",
+        "change": "new gate",
+        "sha256": "7786cb6addb4990834684ea0f697812fa8318ca4536074842d1928ddf1320e43"
+      },
+      {
+        "path": "backend/scripts/test-release-binding-acceptance.ts",
+        "change": "new gate",
+        "sha256": "276b32aff55a9f9f2af13457412abd43d6a6e5dcccd451d502ad52dcdd91b952"
+      },
+      {
+        "path": "backend/src/standards/tests/governed-release-reachability.ts",
+        "change": "new gate",
+        "sha256": "db128f2f96e1c06ed478447fdef1749199b2adc74de99a0189481a8c96540d22"
+      },
+      {
+        "path": "backend/src/standards/tests/governed-authority-precedence.ts",
+        "change": "new gate",
+        "sha256": "931a34490783beb26eeb8bd951fa95c13735ff0e096acf5059be178630dfbaf7"
+      },
+      {
+        "path": "backend/scripts/verify-release-scoped-customer-workflow.ts",
+        "change": "new gate (HTTP, ownership-guarded)",
+        "sha256": "a7d1af7fec0d53e99f4ca370336afd92d19e78fafa347138a6630c6b9d8a690c"
+      },
+      {
+        "path": "backend/scripts/diagnose-knowledge-release-null-path.ts",
+        "change": "new read-only diagnostic",
+        "sha256": "778c88044dd7a5dbdf815f7589405a736c88e4a501a853b1a7c6c4068cff4031"
+      },
+      {
+        "path": "backend/scripts/report-finding-authority-distribution.ts",
+        "change": "new read-only report",
+        "sha256": "455095b164a0720b29943bf46f4ff77982125ae22e767f6170e15772ce47079d"
+      },
+      {
+        "path": "backend/package.json",
+        "change": "six script entries appended"
+      },
+      {
+        "path": "docs/INSITE_ENGINEERING_BLUEPRINT.md and docs/INSITE_CURRENT_STATE.json",
+        "change": "additive"
+      }
+    ],
+    "activationSemantics": {
+      "mutates": "regulatory_releases (status, activatedAt, deactivatedAt, parentReleaseId) plus an append-only INSERT into knowledge_release_events -- nothing else",
+      "canAlterMembership": false,
+      "canAlterNormalizedRecords": false,
+      "canAlterReviewLedger": false,
+      "canAlterManifestChecksum": false,
+      "activeReleaseSelection": "WHERE status = 'active', with partial unique index uq_regulatory_release_active",
+      "gates": [
+        "releaseExists",
+        "statusEligible",
+        "manifestChecksumWellFormed",
+        "recordCountPositive",
+        "releaseRecordsPresent",
+        "recordCountMatches",
+        "manifestChecksumVerifies",
+        "governedRecordsPresent"
+      ],
+      "idempotent": "yes -- outcome already_active, and it writes nothing at all",
+      "transition": "one transaction under pg_advisory_xact_lock: prior release -> superseded (retained in full), target -> active with parentReleaseId = prior",
+      "historicalInspectionBindingSurvives": true,
+      "rejectedRecordCanBecomeAuthoritativeByActivation": false
+    },
+    "localActivation": {
+      "database": "test_v1_release_activation_20260828 (disposable, cloned from the disposable reviewer-governance database)",
+      "driver": "npm run release -- activate (the reviewed operator command), dry run first, zero writes",
+      "pointerBefore": null,
+      "pointerAfter": "federal-core-2026-08-28.1",
+      "manifestBefore": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "manifestAfter": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "membersBefore": 64,
+      "membersAfter": 64,
+      "approvedReviewDecisionsBefore": 64,
+      "approvedReviewDecisionsAfter": 64,
+      "rejectedRecordsInsideActiveRelease": 0,
+      "parentReleaseId": null,
+      "parentReleaseIdNote": "NULL is correct: activation records what it actually replaced, and it replaced nothing. The definition's predecessorReleaseId (federal-core-2026-07-30.1) is a separate version-controlled fact and is unchanged."
+    },
+    "releaseBindingArchitecture": {
+      "column": "inspection.knowledgeReleaseId, varchar(120) NULL, migration 1800000018000, partial index on IS NOT NULL",
+      "writeOnce": true,
+      "neverBackFilled": true,
+      "rules": [
+        "the inspection already carries a release -> use it unchanged; the active pointer is NOT read, not even for comparison",
+        "it carries none and a release is active -> that release becomes the binding, written once with WHERE knowledgeReleaseId IS NULL",
+        "nothing active -> no release governs the analysis; no id is invented and nothing is written"
+      ],
+      "rebindParameterExists": false,
+      "rebindNote": "Moving an inspection to a newer release is a migration decision a person makes deliberately. An operation reachable by accident is not a decision.",
+      "legacyAndShadowTouchTheDatabase": false,
+      "pinReason": "PINNED_BOUND_RELEASE when bound; PINNED_ACTIVE_RELEASE / NO_ACTIVE_RELEASE / PIN_LOOKUP_FAILED / MODE_IS_LEGACY otherwise",
+      "defectClosed": "pinGovernedRelease() read the ACTIVE POINTER on every analysis, so activating a newer release would silently have re-governed every inspection already resolved under an older one"
+    },
+    "knowledgeReleaseIdNullDiagnosis": {
+      "reason1": "GOVERNED_CUTOVER_MODE unset -> LEGACY / DEFAULT_NO_CONFIGURATION -> the context is null and no cutover code runs",
+      "reason2": "governed mode set but no allowlist -> NO_ALLOWLIST_CONFIGURED -> effective mode LEGACY",
+      "reason3": "both set but no release active -> NO_ACTIVE_RELEASE -> releaseId null",
+      "eachSufficientAlone": true,
+      "reMeasurableBy": "npm run diagnose:knowledge-release-null-path"
+    },
+    "measuredCustomerDistribution": {
+      "legacyBaselineWithReleaseActive": {
+        "persistedFindings": 19,
+        "persistedStandardCandidates": 18,
+        "authorityStates": {
+          "LEGACY_CODE_RESIDENT_CONTENT": 18
+        },
+        "inspectionBinding": null,
+        "analysisKnowledgeReleaseId": null,
+        "corpusBacked": 0,
+        "reviewerPresent": 0,
+        "checksumPresent": 0
+      },
+      "releaseScoped": {
+        "persistedFindings": 3,
+        "persistedStandardCandidates": 3,
+        "authorityStates": {
+          "APPROVED_GOVERNED_CONTENT": 3
+        },
+        "inspectionBinding": "federal-core-2026-08-28.1",
+        "analysisKnowledgeReleaseId": "federal-core-2026-08-28.1",
+        "corpusBacked": 3,
+        "reviewerPresent": 3,
+        "checksumPresent": 3
+      },
+      "comparabilityNote": "The two runs use DIFFERENT observation sets and are not a like-for-like count comparison. No governed count was prescribed; the gate is semantic correctness, and the legacy column's purpose is to show that activation alone changes nothing."
+    },
+    "gates": {
+      "test:release-activation-acceptance": "43/43",
+      "test:release-binding-acceptance": "25/25",
+      "test:governed-release-reachability": "514/514 -- 64/64 approved members reachable, 0/8 rejected records reaching approval",
+      "test:governed-authority-precedence": "42/42",
+      "verify:release-scoped-customer-workflow": "35/35"
+    },
+    "protectedFloorWithReleaseActive": {
+      "level1RecognitionRecall": "100.0% (43/43)",
+      "recognitionLifeCritical": "35/35",
+      "actionableFindingCoverage": "100.0% (43/43)",
+      "lifeCriticalActionableCoverage": "100.0% (35/35)",
+      "populationAPrecision": "100.0%",
+      "forbiddenEmissions": 0,
+      "populationBRequiredSecondaryHazardRecall": "100.0% (43/43)",
+      "test:hazlenz-core": "37/37 suites, 0 failing across 276 assertions",
+      "test:kg5b-release-construction": "102/102",
+      "goldenStandards": "15/15",
+      "releaseIdentity": "8/8",
+      "findingGovernedAuthority": "17/17",
+      "findingGovernedIntegration": "19/19",
+      "acceptedWorkflow": "66/66",
+      "persistedDecompositionFindings": "PASS",
+      "typescript": "clean (backend and frontend-next)",
+      "thresholdsRelaxed": 0
+    },
+    "activationAloneChangesNothingForACustomer": {
+      "acceptedWorkflowWithReleaseActive": "66/66",
+      "legacyCandidatesStillLegacy": 18,
+      "kg4eReportProvenance": "0 of 19 findings and 0 of 14 analyses carry a governed release id; no frozen report snapshot names one",
+      "governedRetrievalRequires": "a governed cutover mode AND a server-side account allowlist, neither set by default"
+    },
+    "buildLayoutInvariant": {
+      "change": "backend/tsconfig.json now pins rootDir to ./src",
+      "defectItPrevents": "one import from src/ into scripts/ changed the common source root tsc infers and silently moved the build from dist/main.js to dist/src/main.js; npm start runs node dist/main.js, so the artifact compiled cleanly and would not have started",
+      "introducedAndRepairedInThisPhase": true
+    },
+    "carriedForwardUnrepaired": [
+      "the unresolved-jurisdiction RANKING defect -- untouched by this phase",
+      "test:approval-contract refuses under the PRECEDING phase's release-identity guard because it creates its work database without an ownership marker (ownedDisposable=false). Pre-existing; outside this phase's authorization to repair.",
+      "one check of test:kg4e-report-provenance requires a TELEMETRY input path this run did not supply; every HARD invariant in it passed",
+      "'the four known failures', asserted by the two preceding phases, is not enumerated anywhere reachable -- the blueprint documents two. Enumerate before another phase relies on the phrase.",
+      "frontend-next/tsconfig.json carries .next-onereport include globs -- generated build contamination from an earlier session, preserved untouched here",
+      "OPEN-4 PRE_PRODUCTION_GOVERNANCE_RECONCILIATION_REQUIRED: four tracked frontend check scripts fail against the committed source and were NOT repaired (repairing them is new frontend work, unauthorized here). check:free-observation-restore (23 pass/4 fail), check:closure-workflow and check:canonical-persistence pin pre-redesign literals -- a renamed resume function, the label 'What did you observe?' now 'What did you see?', and a site selector step added before 'New site name'. check:phase5-report-release inserts the retired 'expert' entitlement tier and was already failing at HEAD. The underlying properties were verified to hold; see verification/insite-v1-governed-release-activation-2026-08-28/COMBINED_APPLICATION_ACCEPTANCE.md."
+    ],
+    "notProven": "Production. This phase proves the mechanism in a disposable environment only. Nothing here authorises an activation, a mode change or an allowlist entry on a production server.",
+    "shadowInvarianceThroughModifiedOrchestration": {
+      "run:kg4b-shadow-corpus": "145 passed, 0 failed across 43 cases; 93 shadow events written",
+      "test:kg4b-privacy-review": "26 passed, 0 failed against that corpus",
+      "property": "SHADOW customer output identical to LEGACY, no governed telemetry keys in the payload, citation set and order identical; every text digest a 32-hex hash, never an excerpt"
+    },
+    "combinedApplicationAcceptance": {
+      "COMBINED_BACKEND_FRONTEND_CHECKPOINT_COHERENT": true,
+      "CONTAMINATED_TSCONFIG_REQUIRED_FOR_ACCEPTED_FRONTEND": false,
+      "scopeDecision": "Product owner widened the preservation scope to the coherent accepted application state: the governed backend could not be separated from the other accepted uncommitted backend phases without manufacturing a source state that never existed on disk and would break test:hazlenz-core.",
+      "stagedPaths": 177,
+      "frontendPathsIncluded": 11,
+      "frontendPathExcluded": "frontend-next/tsconfig.json -- generated .next-onereport include-glob contamination; .next-onereport is a gitignored build-output directory and no source references it",
+      "browserJourney": "6 passed, 0 failed, zero page errors: sign in -> command center -> site -> full inspection -> workspace -> observation ('What did you see?') -> HazLenz analysis -> persisted observation -> materialised finding; displayNumber=1, knowledgeReleaseId=null",
+      "canonicalReportContract": "verify:canonical-report-frontend-contract 15/15 -- regeneration REPLACES the same report record, library still lists exactly one, no per-version download surface",
+      "defaultPostureStaysLegacy": "0 of 25 analyses, 0 of 35 findings, 0 of 17 inspections carry a governed release id, with the reviewed release ACTIVE",
+      "frontendBuild": "next build compiled successfully, 29 static pages, /inspection-complete present; typecheck clean against HEAD tsconfig; working-copy tsconfig sha256 unchanged throughout (73990cd1...)"
     }
   }
 }

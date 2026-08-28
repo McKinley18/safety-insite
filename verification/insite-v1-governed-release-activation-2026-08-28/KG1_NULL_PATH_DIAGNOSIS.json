@@ -1,0 +1,33 @@
+{
+  "reason1_modeUnset": {
+    "mode": "LEGACY",
+    "reason": "DEFAULT_NO_CONFIGURATION"
+  },
+  "reason2_allowlistUnset": {
+    "effectiveMode": "LEGACY",
+    "reason": "NO_ALLOWLIST_CONFIGURED"
+  },
+  "shippedEnablement": {
+    "effectiveMode": "LEGACY",
+    "reason": "MODE_IS_LEGACY"
+  },
+  "activeReleaseInThisDatabase": "federal-core-2026-08-28.1",
+  "pinUnderLegacy": {
+    "releaseId": null,
+    "pinnedAt": "2026-08-28T17:00:40.662Z",
+    "mode": "LEGACY",
+    "reason": "MODE_IS_LEGACY"
+  },
+  "pinUnderGovernedMode": {
+    "releaseId": "federal-core-2026-08-28.1",
+    "reason": "PINNED_ACTIVE_RELEASE"
+  },
+  "kg1LiveScoping": {
+    "mode": "unscoped_corpus",
+    "reason": "Standards retrieval is not scoped to a knowledge release: standards_master is filtered only by is_active and jurisdiction, and candidates are also drawn from knowledge chunks and in-code shards. A KG-2 active-release pointer may exist, but the retrieval path does not consume it, so no single release governed this analysis."
+  },
+  "kg1PersistedValue": {
+    "knowledgeReleaseId": null,
+    "reason": "Standards retrieval is not scoped to a knowledge release: standards_master is filtered only by is_active and jurisdiction, and candidates are also drawn from knowledge chunks and in-code shards. A KG-2 active-release pointer may exist, but the retrieval path does not consume it, so no single release governed this analysis."
+  }
+}

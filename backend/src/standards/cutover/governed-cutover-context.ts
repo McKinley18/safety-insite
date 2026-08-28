@@ -114,6 +114,15 @@ export class GovernedCutoverContext {
     dataSource: DataSource | null | undefined;
     principal: CutoverPrincipal | null | undefined;
     analysisTraceId?: string | null;
+    /**
+     * The release this analysis's INSPECTION is bound to, resolved once by
+     * `standards/releases/inspection-release-binding.ts` before the pipeline runs.
+     *
+     * Absent (the default) preserves the KG-4A behaviour exactly: the active pointer is read once.
+     * Present means this inspection already has a regulatory basis, and the pin honours it rather
+     * than re-reading a pointer that may have moved since the inspection was created.
+     */
+    boundReleaseId?: string | null;
     env?: Record<string, string | undefined>;
   }): Promise<GovernedCutoverContext | null> {
     const env = input.env ?? process.env;
@@ -124,7 +133,9 @@ export class GovernedCutoverContext {
     // LEGACY context means the call sites cannot accidentally route through governed code at all.
     if (enablement.effectiveMode === 'LEGACY') return null;
 
-    const pin = await pinGovernedRelease(input.dataSource ?? null, enablement.effectiveMode);
+    const pin = await pinGovernedRelease(
+      input.dataSource ?? null, enablement.effectiveMode, input.boundReleaseId ?? null,
+    );
     return new GovernedCutoverContext(
       enablement.effectiveMode, enablement, pin,
       input.dataSource ?? null, input.analysisTraceId ?? null, env,

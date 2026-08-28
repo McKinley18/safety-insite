@@ -174,26 +174,51 @@ export class CorrectiveActionsService {
         throw new NotFoundException('Site not found.');
       }
     }
-    const assigneeId = dto.assignedToUserId || String(auth.userId);
-    if (auth.organizationId) {
-      const membership = await this.membershipRepo.findOne({
-        where: {
-          userId: assigneeId,
-          organizationId: auth.organizationId,
-          status: 'active',
-        },
-      });
-      if (!membership) throw new NotFoundException('Assignee not found.');
-      if (assigneeId !== String(auth.userId) && !isOrganizationManager(auth)) {
-        throw new ForbiddenException('Manager access is required to assign another member.');
+    /**
+     * ACCOUNT assignment is only ever what the caller explicitly asked for.
+     *
+     * This previously defaulted to `auth.userId`, so every corrective action was assigned to the
+     * person who ran the inspection -- and the report then printed that person in its "Assigned To"
+     * line and Owner column. Inspecting a hazard and being accountable for fixing it are different
+     * roles, and asserting the first implies the second is a false record: nobody chose that
+     * assignment, and on the first report shown to a client it names the wrong person.
+     *
+     * Unassigned is now representable and truthful. `assignedToUserId` is nullable (and has been
+     * since the canonical foundation migration), the report already renders a missing owner as
+     * "Unassigned", and the descriptive `assignedToName` carries a responsible party the customer
+     * typed. Completion is not blocked by leaving it empty.
+     *
+     * Authorization is unchanged for a real assignment: an explicit `assignedToUserId` still has to
+     * be an active member of the caller's organization, and still requires manager access to point
+     * at anyone other than the caller.
+     */
+    const assigneeId = dto.assignedToUserId ? String(dto.assignedToUserId) : null;
+    if (assigneeId) {
+      if (auth.organizationId) {
+        const membership = await this.membershipRepo.findOne({
+          where: {
+            userId: assigneeId,
+            organizationId: auth.organizationId,
+            status: 'active',
+          },
+        });
+        if (!membership) throw new NotFoundException('Assignee not found.');
+        if (assigneeId !== String(auth.userId) && !isOrganizationManager(auth)) {
+          throw new ForbiddenException('Manager access is required to assign another member.');
+        }
+      } else if (assigneeId !== String(auth.userId)) {
+        throw new NotFoundException('Assignee not found.');
       }
-    } else if (assigneeId !== String(auth.userId)) {
-      throw new NotFoundException('Assignee not found.');
     }
     const action = this.actionRepo.create({
       ...(dto as any),
       inspectionId: inspection?.id || dto.inspectionId || null,
       assignedToUserId: assigneeId,
+      // The responsible party the customer named, trimmed. Blank stays NULL rather than an empty
+      // string, so "unassigned" is one value everywhere rather than two that render differently.
+      assignedToName: typeof dto.assignedToName === 'string' && dto.assignedToName.trim()
+        ? dto.assignedToName.trim()
+        : null,
       priorityCode: this.normalizePriority(dto.priorityCode),
       statusCode: this.normalizeStatus((dto as any).statusCode),
       dueDate: dto.dueDate ? new Date(dto.dueDate) : undefined,
@@ -223,6 +248,10 @@ export class CorrectiveActionsService {
           existing.description = action.description;
           existing.priorityCode = action.priorityCode;
           existing.assignedToUserId = action.assignedToUserId;
+          // The responsible party the reviewer named is the more authoritative value, exactly as
+          // their action text is. Carried across on the upsert so re-saving a finding does not drop
+          // the owner they entered.
+          existing.assignedToName = action.assignedToName;
           if (action.dueDate) existing.dueDate = action.dueDate;
           // The finalize-time system record carries no ownership scope (it is written inside the
           // inspection transaction); adopt the reviewer's scope so it is visible/queryable exactly

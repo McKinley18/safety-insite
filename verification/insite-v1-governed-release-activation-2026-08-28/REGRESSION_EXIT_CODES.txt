@@ -1,0 +1,52 @@
+Consolidated regression, InSite v1.0 governed release activation — 2026-08-28.
+Every suite below was EXECUTED. Each mutating suite ran against its own disposable, claimed
+database; read-only suites ran against the activated acceptance database
+(test_v1_release_activation_20260828). No suite ran against `safescope`.
+
+suite                                        result
+-------------------------------------------- ------------------------------------------
+test:release-activation-acceptance (new)     43/43        PASS
+test:release-binding-acceptance (new)        25/25        PASS
+test:governed-release-reachability (new)     514/514      PASS   (64/64 approved, 0/8 rejected)
+test:governed-authority-precedence (new)     42/42        PASS
+verify:release-scoped-customer-workflow (new)35/35        PASS
+test:finding-governed-authority              17/17        PASS
+test:finding-governed-integration            19/19        PASS
+test:release-identity-immutability           8/8          PASS
+test:release-integrity-and-approval          44/44        PASS
+test:regulatory-release-lifecycle            42/42        PASS
+test:standards-backing-contract              35/35        PASS
+test:reviewer-approval                       62/62        PASS
+test:governed-corpus-matrix                  60/60        PASS
+test:kg5b-release-construction               102/102      PASS
+test:safescope-standards (golden standards)  15/15        PASS
+test:knowledge-release-provenance            PASS
+test:kg4a-cutover-contract                   146 passed, 0 failed
+test:kg4a-governed-resolution                99 passed, 0 failed
+test:kg4a-provenance-pinning                 53 passed, 0 failed
+test:kg4a-default-off                        51 passed, 0 failed
+test:kg4b-shadow-contract                    123 passed, 0 failed
+test:kg4b-shadow-adversarial                 84 passed, 0 failed
+test:kg4c-production-shadow-contract         438 passed, 0 failed
+test:kg4c-disabled-deployment                80 passed, 0 failed
+test:kg4d-orchestration                      151 passed, 0 failed
+test:kg4d-default-off                        121 passed, 0 failed
+test:kg4e-report-field-exclusion             9 passed, 0 failed
+test:kg4e-report-provenance                  9 passed, 1 failed  (the 1 = TELEMETRY input absent;
+                                             every HARD invariant passed — see STATUS §13)
+test:hazlenz-core                            37/37 suites PASS
+test:hazlenz-precision                       PASS
+test:hazlenz-level1-recall                   17 checks    PASS
+test:hazlenz-actionable-coverage             17 checks    PASS
+test:hazlenz-standards-jurisdiction          16 checks    PASS
+test:hazlenz-source-authority                PASS
+test:persisted-decomposition-findings        PASS
+verify:hazlenz-actionable-workflow           66 checks    PASS
+npx tsc --noEmit (backend)                   clean
+npx tsc --noEmit (frontend-next)             clean
+
+run:kg4b-shadow-corpus                       145 passed, 0 failed  (43 cases, 93 shadow events)
+test:kg4b-privacy-review                     26 passed, 0 failed   (against that corpus)
+
+NOT EXECUTED — missing environment input, not a result:
+test:approval-contract                       refused: see STATUS §13 (carried-forward defect)

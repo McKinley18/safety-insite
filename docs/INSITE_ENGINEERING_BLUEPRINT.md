@@ -2088,6 +2088,11 @@ describes the customer's actual result.
 | D-101 | L3-R2DIAG | **EVERY ONE OF THE 30 FAILING RUN-2 ROWS IS PROVIDER-ORIGIN; NONE IS PIPELINE-ORIGIN — AND THE ATTRIBUTION IS STRUCTURAL, NOT JUDGEMENTAL.** Root cause established for every failed gate at **ZERO provider calls and `$0.00`**, with the frozen result **UNCHANGED AND UNCONTRADICTED**. Layers: `C. PROVIDER_CLARIFICATION_DECISION` **14** · `A. PROVIDER_REASONING` **11** · `B. PROVIDER_STATE_RESOLUTION` **4** · `D. PROVIDER_EVIDENCE_SELECTION` **1** · pipeline layers `E`–`I` **0** · `J. INDETERMINATE` **0**. **TWO MEASURED FACTS MAKE THIS MECHANICAL:** the scored tier equals the VALIDATED tier on **93/93** rows but the BOUND tier on only **86/93**, and the binder acted on 4 rows without the scored fields moving — so **THE BINDER CANNOT REACH THE SCORER** (`D-58` by design); and the validator is byte-frozen and deterministic, so **ANY A/B DISAGREEMENT PROVES THE PROPOSAL DIFFERED**. The ledger **REPRODUCES THE FROZEN SCORER EXACTLY ON EVERY GATE AND FAILS CLOSED**, refusing to emit on any mismatch. **`RC-1` CLARIFICATION CALIBRATION IS WRONG IN BOTH DIRECTIONS** — 13 of 30 missed, 4 of 21 spurious, **13/13 misses reproduce in process B**, and on every miss the model expressed **NO clarification in EITHER carrier**, so **NOTHING WAS DROPPED DOWNSTREAM** and `D-56`'s carrier coupling cannot explain it (only 1 of 13 had zero candidates); `D-57`'s carrier was available and used **0 of 21 times**, matching `D-62`. **THIS IS NOT A REGRESSION:** `D-62`'s 5/5 recall came from a 24-scenario cohort with **only 5 clarification rows**, and Run 2 is the **FIRST ADEQUATELY POWERED MEASUREMENT** (30 `DEN_A`, 24 independent) at **56.67%**; `D-59` is **NOT overturned** because the misses had no question to carry. **`RC-2` `ACTIVE` ON UNDECIDED TRUTH** — all 4 `G4` rows are `INSUFFICIENT_EVIDENCE` + `activeProhibited`, **`F6` 3 of 4**, validator `VALID` and **the binder BOUND the `ACTIVE` on all four**, identical in B; on the three `F6` rows one behaviour trips **both `G4` and `G3`**. **`RC-3` CROSS-PROCESS NON-DETERMINISM** — 14 divergent, **9 validated `VALID` on both sides and still differed**, 5 rejected on one side only; **THE FROZEN SHIM ITSELF RECORDS THAT `temperature` IS NOT FORWARDABLE AND `seed` HAS NO EQUIVALENT ON THIS PROVIDER (`D4`/`D5`) — NO DETERMINISM CONTROL EXISTS**, yet `G9` demands 100%. **`RC-4` GROUNDING INSTABILITY** — **THREE OF THE SEVEN FAILED GATES COLLAPSE TO ONE ROW**: `H2B-004`'s out-of-bounds evidence span in process A produced `G1`+`G5`+`G6`, and `G9` because **B validated the same row `VALID`** — A and B did **NOT** fail for the same reason, only A failed. **SEVERAL DEFECTS, NOT ONE:** family 1 (`RC-1`,`RC-2`) is **deterministic** and family 2 (`RC-3`,`RC-4`) exists **only because outputs do not reproduce**, so they cannot be the same defect; **11 of the 14 `G9` rows fail `G9` ONLY**, so repairing either family leaves the other's gates where they are. **REMEDIATION CLASSIFICATION: `RC-1`/`RC-2`/`RC-3` `PROVIDER_CAPABILITY_LIMIT`, `RC-4` `INSUFFICIENT_EVIDENCE`. NO root cause is `LOCAL_REMEDIATION_CANDIDATE` AND NONE IS `EVALUATION_CONTRACT_DEFECT`** — the `G9` candidate-versus-null observation (**8 of 14 divergences see neither process assert `ACTIVE`**) and the `UNGROUNDED_CORRECTIVE_ACTION` coverage observation (fatal to a proposal, **invisible to `G6`** because it sits in none of the three frozen reason sets) are recorded **AS OBSERVATIONS**; both gates counted correctly under definitions frozen and hashed before the corpus was opened, and **reclassifying either after seeing the result is precisely what the pre-registered contract exists to prevent**. **ANOTHER PAID RUN IS NOT JUSTIFIED ON THIS EVIDENCE: `G9` IS THE DECISIVE CONSTRAINT** — a hard 100% cross-process gate with no determinism control available means **a Run 3 would fail `G9` however well every other gate were repaired**, so spending a reserved tranche now would burn a single-use corpus to re-measure an unreachable gate. **EVIDENCE LIMIT, STATED:** raw model prose was **NOT persisted**, which suffices to establish WHICH LAYER each failure originates in but **NOT WHY** the model declines to ask — future remediation should persist raw proposal bodies **on development cohorts**. **NO PROVIDER CALL WAS NECESSARY TO ANSWER ANY DIAGNOSTIC QUESTION AND NONE WAS MADE.** Preservation **34/34**: all frozen evidence byte-identical, `SCORE_BODY_DIGEST` `435f8314…` unchanged, nothing tuned, remediated or marked repaired, reserves untouched. | **`L3_RUN2_FAILURE_DIAGNOSIS_COMPLETE — REMEDIATION_DECISION_REQUIRED`. Frozen result UNCHANGED: `L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9` · `SCORABLE = TRUE` · `MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL` · `RUN2_HOLDOUT_SPENT = TRUE` · `GAUNTLET_OFFSET_1 = RETIRED` · `REALISM_OFFSET_0 = RETIRED` · `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE` · `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN` · L3-3 unauthorized.** | **ACTIVE — PROTECTED** | §68; `hazlenz-l3-run2-failure-diagnosis-2026-08-26/` |
 | D-102 | L3-G9GOV | **G9 IS NOT TOO STRICT, AND THE PREMISE THAT IT MIGHT BE IS REFUTED BY MEASUREMENT — SO G9 STANDS UNAMENDED.** G9 compares `{assertedState, raisedClarification, hasCandidate}` and **NO REPRESENTATIONAL FIELD** — not evidence spans, corrective-action text, rationale, wording, candidate keys, family, count, binder outcomes or validator codes — so **`G9-S3` NON-MATERIAL REPRESENTATIONAL DIVERGENCE IS STRUCTURALLY EMPTY BY CONSTRUCTION**, and G9 **cannot** be failed by wording or span variation. **IT ALSO CARRIES NO REDUNDANT STRICTNESS:** `hasCandidate` was MEASURED to be fully determined by `assertedState` across all 186 records and removing it changes **ZERO ROWS** (counterfactual D = 14, identical to the frozen 14). Of the four candidate properties G9 measures **B, decision reproducibility**. **MATERIALITY OF THE 14: `G9-S1` 7 · `G9-S2` 7 · `G9-S3` 0** — half are outright safety-decision divergences that every candidate requirement would count. **DIAGNOSTIC COUNTERFACTUALS: A 84.95% · B 92.47% · C 95.70% · D 84.95%** — **NO CHOICE OF G9 DEFINITION TURNS RUN 2 INTO A PASS**: even the most permissive leaves 4 rows divergent, and `G1`,`G2`,`G3`,`G4`,`G5`,`G6` failed INDEPENDENTLY of G9, so the frozen terminal was never in play. **RECOVERED INTENT:** §38.3's two-isolated-process rule is a **MEASUREMENT CONTROL** against a same-process cache confound that manufactured 3/24 false variance — it says nothing about product tolerance — and the **100% threshold was CALIBRATED AGAINST PROVIDERS THAT HAD DETERMINISM CONTROLS** (0/24 measured on the local path at temperature 0 with a fixed seed, 0-2/24 for Gemini), so 100% was an **ACHIEVED** property when `D-84` pre-registered it, then applied to a provider with no such control. **THE DECIDING TEST — would the recommendation have been chosen BEFORE seeing Run 2? — ANSWERS NO OR UNCERTAIN FOR ANY WEAKENING**, because the sole debatable element (`G9-S2`: surfacing a non-active candidate versus nothing) is a genuine traceability property and the only reason it is under discussion is that a run failed. **PER THE PHASE'S OWN RULE G9 IS NOT WEAKENED AND IS NOT AMENDED.** The narrow question is handed to the product owner and must be answered against **a specification of what the customer actually sees — WHICH DOES NOT EXIST IN THIS BLUEPRINT, AND THAT ABSENCE IS ITSELF THE FINDING.** **PROVIDER: `ANTHROPIC_CURRENT_PATH_REQUIRES_ARCHITECTURAL_CONTROL`** — the current architecture lets a SINGLE GENERATIVE CALL DECIDE THE CONDITION STATE, so sampling variance lands on the safety decision and `D4`/`D5` leave no knob; the fault is architectural, not absolute. **SMALLEST ARCHITECTURE: option 7 NOW** (Level 1 authoritative, Level 3 advisory — **already in force, `$0`, not a compromise**), and **option 2 FIRST if promotion is pursued** (deterministic state resolver after generative extraction, targeting `assertedState` which differs on **12 of 14** divergences, at no extra cost or latency, **fully testable by Tier-2 replay at `$0`**). **CONSENSUS/MULTI-CALL EXPLICITLY NOT RECOMMENDED**: 2-3x cost, cannot reach 100%, hardest to defend in a safety product. **REMEDIATION DESIGNED, NOT IMPLEMENTED:** `RC-1` a development corpus with negative controls and **HARD VETOES on any high-consequence or false-ACTIVE regression** (the `D-59` failure mode, already measured once); `RC-2` the general invariant **ACTIVE REQUIRES AFFIRMATIVE DECISION-SUFFICIENT EVIDENCE** in three arms, most likely homed in the binder — **with the named caveat that a BINDER-ONLY FIX IS INVISIBLE TO `G1`-`G4`** (scored tier = validated tier, 93/93 vs 86/93), making the tier question a governance decision left open; `RC-4` stays `INSUFFICIENT_EVIDENCE` and **NO BINDER REDESIGN FROM ONE UNSTABLE SPAN**. **TESTING ECONOMY: TIER 2 IS THE UNDER-USED ASSET** — Run 2's 186 recorded evaluations make every downstream change replayable at **`$0`**, and **ANOTHER SEALED RUN MERELY TO SEE WHETHER THE RESULT CHANGES IS PROHIBITED**; Run 3 needs four simultaneous conditions and **condition 2, the `RC-3` resolution, is UNMET and BINDING**. **LEVEL 3 DOES NOT BLOCK APP COMPLETION AND NEVER HAS** — `customerDefaultMode = LEGACY`, production shadow off, **no customer has ever received Level-3 output**, so Run 2 is a research result about a candidate provider, not a product defect; the shortest path to production testing runs `KG5C-DISC-01` -> `KG4E-DISC-03` -> log pipeline -> Stage-1 account and locks -> the six governed migrations -> production shadow on `LEGACY`, and **LEVEL 3 APPEARS NOWHERE IN IT**. **A FIFTH INSTRUMENT SELF-REFERENCE DEFECT FIRED IN THIS PHASE, MINUTES AFTER THE RULE PROHIBITING IT WAS DRAFTED** (the reserved-corpus check matched the corpus name in its own regex literal), fixed by self-exclusion **plus an explicit soundness proof** so the exclusion cannot hide a finding — **five occurrences across four phases is a systemic pattern, and `INSTRUMENT_SELF_REFERENCE_PROHIBITED` is recommended with five mechanical tests**. Preservation **28/28**; provider calls 0; `$0.00`; no corpus opened; **`gauntlet.seed` proven UNOPENED by enumerating the analysis files' read targets**. | **`L3_G9_GOVERNANCE_AND_REMEDIATION_PLAN_COMPLETE — IMPLEMENTATION_AUTHORIZATION_REQUIRED`. `G9_GOVERNANCE_D — INSUFFICIENT_EVIDENCE_TO_CHANGE_REQUIREMENT` · G9 NOT AMENDED · `ANTHROPIC_CURRENT_PATH_REQUIRES_ARCHITECTURAL_CONTROL` · Run-2 result preserved VERBATIM: `L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9` · `MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL` · `RC-1`-`RC-4` NOT marked repaired · `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE` · `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN` · L3-3 unauthorized.** | **ACTIVE — PROTECTED** | §69; `hazlenz-l3-g9-governance-2026-08-26/` |
 | D-103 | L3-LR1 | **THE RUN-2 RECORDING CANNOT CARRY THE REMEDIATION, AND THAT IS A PROPERTY OF THE RECORDING RATHER THAN A LIMIT OF THE ARCHITECTURE — SO `RC-2` IS IMPLEMENTED FROM THE SHIPPED SOURCE AND MEASURED WHERE IT CAN BE, NOT WHERE IT CANNOT.** Enumerating every field of all 186 rows makes `D-101`'s stated evidence limit exact: Run 2 persisted **63 STRUCTURED FIELDS PER ROW AND NOT ONE OF THEM IS EVIDENCE** — no spans, no `conditionRationale`, no `uncertainties`, no clarification body, no `affectedDecision`, no corrective action, no `riskFactors`, no observation text. **THREE OF THE FOUR `G4` FALSE-`ACTIVE` ROWS ARE, IN EVERY RECORDED FIELD, INDISTINGUISHABLE FROM A CORRECT `ACTIVE` ROW** (`H2B-086`/`087`/`088`: one `ACTIVE` candidate, no clarification, validator `VALID`, binder bound, no fatal code), and **ALL 13 `G3` MISSES CARRY `candidateBorneClarification = false` AND `proposalLevelClarificationCount = 0` IN BOTH PROCESSES** — no question existed anywhere, so nothing downstream can retain one. **THE ZERO-COST REPLAY HARNESS WAS BUILT AND PROVEN BEFORE ANY COUNTERFACTUAL WAS BELIEVED**: it *requires and calls* the frozen scorer, reproduces the frozen Run-2 verdict **BYTE-IDENTICALLY ON ALL TEN GATES**, moves under a deliberately wrong transform, **REFUSES ANY TRANSFORM THAT TOUCHES TRUTH**, and **SEALS THE NETWORK** — 22/22. **IMPLEMENTED: A DETERMINISTIC CONDITION-STATE RESOLUTION BOUNDARY** (`condition-state-resolution.ts`) between the validator and the binder, placement chosen **MECHANICALLY** as the earliest layer where the inputs exist with offsets already proven — `A` rejected (unverified spans), `D` rejected (§29 C-1, and accept/reject is the wrong verb for an undecided proposal), `C` remains the right owner of evidence-TEXT judgements but is a separate tier by design and therefore invisible (**93/93 vs 86/93**). It enforces `ACTIVE REQUIRES AFFIRMATIVE DECISION-SUFFICIENT EVIDENCE` as **a self-contradiction the proposal states about itself** — a candidate may not carry a DECIDED state while its own clarification declares `affectedDecision: 'condition_state'` — reading **TWO FROZEN CONTRACT FIELDS AND NOTHING ELSE**: no truth label, no gate membership, no provenance, no row id, no family, no lexical rule, and `F6` is not named. **IT EXPOSED A DETERMINISTIC PIPELINE DEFECT PROVABLE WITH NO CORPUS AT ALL, NOW PINNED AS A MEASURED FIXTURE: THE SHIPPED BINDER RESOLVES THAT COLLISION IN FAVOUR OF THE STATE — IT DROPS THE QUESTION AND KEEPS `ACTIVE` — SO WHEN THE MODEL SAYS "THIS IS ACTIVE" AND "I CANNOT DECIDE WHETHER IT IS ACTIVE" IN ONE OBJECT, THE PIPELINE DISCARDS THE DOUBT AND KEEPS THE ASSERTION.** `L3-2d` is **NOT** overturned — it never looked at `affectedDecision`, continues to govern the other four values unchanged, and **its 71 assertions still pass**. **THE DEFAULT MODE IS `CHECK`, WHICH RECORDS AND CHANGES NOTHING**, because `RESOLVE` moves a state away from a decided claim — the direction §35.2 measured costing a correct hazard — and the fact that would settle it, WHICH candidate carried the question, was never persisted. **COUNTERFACTUAL REPLAY, DIAGNOSTIC ONLY: NO SCENARIO TURNS ANY FAILED GATE INTO A PASS**; `G1` 1/36, `G5` 1/93, `G6` 1/93, `G7` 0/11, `G8` 0/93 and `G10` 100% are unmoved throughout. **TWO SCENARIOS IMPROVE THE GATE TABLE AND ARE REJECTED BY THE SUBSTANTIVE VETOES**: synthesizing a carrier question buys `G3` ONE row and costs precision **81.0% → 72.0%** (A) and **78.9% → 64.0%** (B), `G2` 4 → 7, and **BREAKS `G7`, A CURRENTLY-PASSING HARD GATE, 0 → 3** — **`D-59`'s FAILURE MODE MEASURED A SECOND TIME**; and the `RC-2` proposal-level approximation improves `G4` 4 → 3 and `G9` 14 → 13 while **REDUCING HIGH-CONSEQUENCE `ACTIVE` ASSERTIONS 35 → 34 (A) AND 35 → 33 (B)**, which **`G1` CANNOT SEE** because the candidate survives. **THE GATE ARITHMETIC WOULD HAVE REWARDED A CHANGE THAT DEGRADES SAFETY, WHICH IS WHY THE VETOES ARE MEASURED SUBSTANTIVELY AND NOT THROUGH THE GATES.** **`RC-3` IS NOT CONTAINED: THE SAFETY-MATERIAL HALF IS IMMOVABLE — `G9-S1` STAYS AT 7 UNDER EVERY DOWNSTREAM ARCHITECTURE THE RECORDING CAN DISCRIMINATE**, and the only scenario that moves it moves it to 11; reading the BOUND tier lifts reproducibility 84.95% → 89.25% and **ALL FOUR ROWS IT CONVERGES ARE `G9-S2` TRACEABILITY-ONLY**. **RESULT-TIER GOVERNANCE, ANSWERED BY MEASUREMENT: THE BOUND TIER MUST NOT BE PROMOTED — ON EVERY DECIDABLE ROW WHERE THE BINDER DELETED ALL CANDIDATES IT DELETED A STATE THAT *MATCHES* THE FROZEN TRUTH, 3/3 IN A AND 5/5 IN B, 8/8, so `SEMANTIC_STATE_UNSUPPORTED_BY_EVIDENCE` WAS WRONG ON EVERY FATAL FIRING IN RUN 2**, deleting correct `NEGATED` and `CORRECTED` answers; **the tier's reproducibility gain is bought by SUPPRESSION, NOT CORRECTNESS**. The authoritative candidate is therefore the output of the RESOLUTION BOUNDARY, upstream of the binder — which is why it was placed there — and **`BINDER_STATE_REJECTION_PRECISION_DEFECT` (0/8) IS A NEW ESTABLISHED DEFECT** whose repair needs evidence the recording does not hold. **`RC-4` STAYS `INSUFFICIENT_EVIDENCE` AND NO BINDER CHANGE WAS MADE**: §69.6's ≥500-call bar is met and exceeded at **`EVIDENCE_OUT_OF_BOUNDS` = 3 / 5,263 = 0.057%** across 20 packages; two are the SAME scenario on a provider WITH determinism controls, reproduced identically, detail persisted as **span `[-1,-1)` — the not-found sentinel of a failed string search, i.e. PROVIDER-EMITTED OFFSETS** — while the third, `H2B-004`, sits on the path with NO determinism control and **did not reproduce**. For `H2B-004` the observation is **82 chars, pure ASCII, NFC-stable**, `redactionCount = 0`, `promptTokens` identical at 6013, `binding.unbound` 1 in A and 0 in B: **UNICODE, REDACTION, THE INPUT BUILDER AND OBSERVATION SLICING ARE RULED OUT, AND THE BINDER IS RULED OUT BECAUSE THE FAILURE IS UPSTREAM OF IT IN THE VALIDATOR**; the exact sub-form cannot be established because Run 2 persisted the CODE and not the DETAIL. **DETERMINISTIC WHERE A CONTROL EXISTS, NON-REPRODUCING WHERE ONE DOES NOT — §69.6's OWN PRE-REGISTERED SIGNATURE OF AN `RC-3` FACET.** **NO SIXTH INSTRUMENT SELF-REFERENCE DEFECT FIRED**: every instrument enumerates and prints its targets, fails closed on an empty set and carries positive and negative controls, and each text scanner strips comments and string/regex literals, excludes its own source, then RE-SCANS the exclusion and prints the delta — the `RC-4` scan hides **0** records and the egress scan hides exactly **1**, the harness's own network SEAL. Regression **14 suites, 1,035 assertions, 0 failures**, `tsc` clean; `hazlenz-core`'s two failures are **PRE-EXISTING LEVEL-1 SUITES STRUCTURALLY UNREACHABLE FROM THESE EDITS — `reasoning-l3` HAS ZERO IMPORTERS ANYWHERE IN `backend/src`**, which is also the mechanical proof that Level 3 cannot block Level 1. Preservation **36/36**: five frozen identities byte-identical, frozen terminal/`scorable`/`pass`/`modelAcceptanceResult`/`failedGates` unchanged, `git diff HEAD -- safescope-data` **0 lines**, no eval corpus modified, reserves untouched, **NINE OF THE ELEVEN pre-existing modified files byte-identical to phase start** — the two that moved are the master documents Phase 16 requires extending, and the extension is **ADDITIVE**: the blueprint is **+3,815 / −0** lines against `HEAD` and the current-state document **LOST NO TOP-LEVEL KEY**. **PROVIDER CALLS 0 · INFERENCE 0 · `$0.00` · NO CORPUS OPENED. A PAID TIER-3 COHORT IS NOT YET JUSTIFIED** — the `RC-2` replay gates could not be RUN, the `RC-1` vetoes were FAILED by the only replayable clarification change, and `G9`'s safety-material half did not move. **THE EXACT NEXT PREREQUISITE IS NOT ANOTHER ARCHITECTURE: IT IS A DEVELOPMENT-COHORT RUN THAT PERSISTS RAW PROPOSAL BODIES** — spans, rationale, uncertainties and the per-candidate `clarification` with its `affectedDecision`. Without that field the boundary cannot be measured in `RESOLVE`, `RC-2` cannot leave `PARTIAL`, and no Tier-3 spend can be defended. | **`L3_LOCAL_REMEDIATION_PHASE1_PARTIAL — ADDITIONAL_LOCAL_REMEDIATION_REQUIRED`. `RC-1` PARTIAL · `RC-2` PARTIAL · `RC-3` UNRESOLVED · `RC-4` `INSUFFICIENT_EVIDENCE`. Frozen result UNCHANGED: `L3_ACCEPTANCE_FAILED — G1,G2,G3,G4,G5,G6,G9` · `MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL` · G9 NOT amended · no gate, threshold or denominator changed · `RESULT_TIER_BOUND_PROMOTION_REFUSED` · `BINDER_STATE_REJECTION_PRECISION_DEFECT` OPEN · `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE` · `PRODUCTION_PROVIDER_SELECTION_REMAINS_OPEN` · Run 3 NOT justified, NOT authorized, NOT constructed.** | **ACTIVE — PROTECTED** | §70; `hazlenz-l3-local-remediation-phase1-2026-08-26/` |
+| D-104 | PRELAUNCH-ARCH | **A FINDING IS DERIVED, NOT AUTHORED — AND THAT, NOT THE CLICK COUNT, IS WHY ADDING ONE FEELS COMPLICATED.** No API accepts a customer-written finding. `reconcileDecompositionFindings()` materializes one finding per member of `analysis.multiHazardDecomposition.hazards`, so the control labelled **"+ Add finding"** actually adds an **observation** and the engine decides how many findings that becomes. Measured: one ordinary sentence about a grinder guard and a missing face shield produced **three** findings, each needing its own select / risk-review / finalize cycle; two sentences produced four. **Decision: "adding a report finding" means option B — add it to the underlying inspection and let the report reflect it — plus a first-class customer-authored finding carrying `source: 'user_authored'`.** Editing the report in place and report-owned findings are both REJECTED: the frozen checksummed snapshot is what makes a report usable as evidence, and a report-only finding could carry no corrective action and could not be tracked to closure. **PROPOSED, NOT IMPLEMENTED.** | §84.1, §84.7 |
+| D-105 | PRELAUNCH-ARCH | **THE WORKSPACE HAS TWO STRUCTURAL DEAD ENDS, BOTH MEASURED, BOTH CLOSABLE WITHOUT A SCHEMA OR API CHANGE.** (1) `+ Add finding` renders ONLY in the `step === "review"` branch; `acceptReview()` moves the last reviewed finding to `step = "followup"`, which has no back navigation at all — a page reload is the only escape. (2) After a report exists, `POST /inspections/:id/observations` returns **HTTP 409 "Completed inspections must be reopened before editing."** because `addObservation()` passes `requireEdit = true`. The server ALLOWS the reopen — the same run got **201** from `transition {status:'draft'}` and the observation then succeeded — and `saveObservationRevision()` in the very same file already reopens a completed inspection before writing. `analyze()` never does, and no reopen control exists, so the customer is shown an instruction the product gives them no way to follow. **W-1 closes both. Frontend only: no schema, no API, no migration, revert-by-file.** | §84.3 |
+| D-106 | PRELAUNCH-ARCH | **`shield` IN THE EXCAVATION REGEX MATCHES "FACE SHIELD", AND THE FALSE POSITIVE OUTSCORES A REAL TRENCH. ROOT-CAUSED, DELIBERATELY NOT REPAIRED.** `multi-hazard-decomposition.service.ts:1267` includes `shield(?:ing)?`, intended as a **trench shield**, and pushes `excavation_trenching` at a hard-coded **0.85**. Single-sentence probes: *face shield* **0.85**, *welding shield* **0.85**, *splash shield on a parts washer* **0.85**, *eye protection* (no `shield`) **none**, and a genuine *unshored trench with a spoil pile* **0.60**. In the measured journey the spurious finding carried the fragment *"the operator was not wearing a face shield"* into the frozen report snapshot under `Finding 3 — Excavation Trenching`. `hot_work` on the same sentence is **NOT** a defect — `grindCutActivity` deliberately treats `portable grinder` as hot-work evidence and documents it — but it doubles reviewer work identically. **Repair is W-2 and must land with the four probes as regressions, Level-1 31/31 unrelaxed, and NO scorer, threshold or gold-set expectation modified.** | §84.4 |
+| D-107 | PRELAUNCH-ARCH | **REPORTS STAY VERSIONED IMMUTABLE SNAPSHOTS; WHAT IS MISSING IS A NAME, A VISIBLE REGENERATION LIFECYCLE, AN UNARCHIVE ROUTE AND A LIST PROJECTION.** The existing model is right and is KEPT: one report per inspection, append-only versions each freezing a `sourceSnapshot` and the PDF with sha256, fingerprint dedupe, prior versions retained and downloadable, `organizationId` XOR `ownerUserId` by CHECK. A live-projection report is REJECTED — a document shown to regulators must not change after it was sent. **Measured gaps:** no `name` column (the list derives `inspection.title · siteName`); no unarchive route although the UI button says "Delete Report"; generation requires `completed`, so reopening to add a finding makes regeneration impossible until re-completed, with no UI for either transition; and `list()` returns every version's full `sourceSnapshot` — **196,016 bytes for ONE one-version report**, of which 71% is raw analysis, against a 12,915-byte PDF. **This quantifies open item `KG4E-DISC-03`.** Separately, `/inspection`, `/inspection-quick`, `/inspection-cover`, `/inspection-review` and `legacy/reports` are an unreachable SECOND report implementation — the concrete contradictory-source-of-truth risk (W-4). **PROPOSED, NOT IMPLEMENTED.** | §84.5, §84.7 |
+| D-108 | PRELAUNCH-ARCH | **NO OPERATING LIMIT IS CLAIMED, AND THE CONFIGURATION FACTS THAT WOULD DETERMINE ONE ARE NOW RECORDED.** `TypeOrmModule.forRootAsync` sets **no `extra.max`**, so the `pg` pool runs at its **default of 10 connections**, with no statement, connection or acquire timeout; global throttle is 100 req/60 s; HazLenz Level-1 classification is **in-process and CPU-bound**, so concurrent classification competes for the same event loop as every other route. A single-client warm-process probe measured `classify` at **p50 56 ms / p95 81 ms** (n=12) and is recorded as **INDICATIVE ONLY — NOT a capacity measurement**. **`CAPACITY_LIMITS = NOT_MEASURED`.** Eight tests (C-1 pool saturation, C-2 concurrent classify, C-3 report generation under the advisory lock, C-4 list payload before and after the projection fix, C-5 storage growth, C-6 offline sync burst, C-7 isolation under load, C-8 throttle intent) are specified and **none has been run**. No number may be published before they are. | §84.6 |
 
 ---
 
@@ -13996,9 +14001,571 @@ The paid path remains the one outstanding launch evidence gap, unchanged and not
 
 ---
 
+## 84 — INSITE v1.0 PRELAUNCH ARCHITECTURE AND MEASUREMENT (2026-08-27) `MEASURED AND DESIGNED, NOT IMPLEMENTED, NOT DEPLOYED, $0.00`
+
+The product owner reported that adding an additional report finding felt unnecessarily
+complicated. This section records what the workflow actually costs today, what causes it,
+and the proposed architecture. **Nothing here is implemented.** Production continues to run
+`e9355e911c221f94c96d2a1b241b4d938435fae2`; the accepted RC `a1515cbc…` is unmoved and the
+preservation tag still resolves to it. 0 provider calls, no Stripe activity, no commit.
+
+Evidence: `verification/insite-v1-prelaunch-architecture-2026-08-27/` — `STATUS.md`,
+`REPRODUCTION_COMMANDS.md`, `measurement/measure-add-finding.ts`,
+`contracts/TARGET_ARCHITECTURE.md`.
+
+### 84.1 The finding lifecycle, established from code and runtime `CURRENT`
+
+```
+Inspection -> Observation -> HazLenzAnalysis -> InspectionFinding x N -> HumanReview
+           -> CorrectiveAction -> transition(completed) -> InspectionReport -> Version(frozen)
+```
+
+**A finding is derived, not authored.** No API accepts a customer-written finding.
+`InspectionService.reconcileDecompositionFindings()` materializes one finding per member of
+`analysis.multiHazardDecomposition.hazards`; `finalizeFinding()` can materialize one as a
+fallback when a review names a segment key no reconciliation produced. The customer's only
+authoring surface is the observation text.
+
+The control labelled **"+ Add finding"** therefore does not add a finding. It calls
+`beginAdditionalObservation()`, returning the page to the capture step to collect another
+**observation**; how many findings that becomes is the engine's decision, not the user's.
+
+### 84.2 Measured cost of the journey `OBSERVED_UX_PROBLEM`
+
+Measured against a disposable database (47 migrations) and a disposable API on :4310, by
+replaying the exact call sequence `app/inspection-workspace/page.tsx` issues.
+
+| segment | server calls |
+|---|---|
+| start inspection | 2 |
+| first finding — capture + analyze | 4 |
+| first finding — review + finalize + transition | 8 |
+| **second finding — capture + analyze** | **5** |
+| **second finding — review + finalize** | **2** |
+| complete + actions + tasks + report | 11 |
+| post-report add-finding attempt | 4 |
+| **total** | **38** |
+
+**One ordinary sentence produced three findings.** The first observation (a portable
+grinder with its lower wheel guard removed, operator without a face shield) materialized
+`machine-guarding`, `hot-work` and `excavation-trenching` — each requiring its own
+select / risk-review / finalize cycle. Two sentences produced **four** active findings.
+
+Derived from the workspace source, an additional observation that decomposes to one hazard
+costs **5 interactions across 3 screens**; every extra hazard the engine emits adds another
+three-interaction cycle.
+
+### 84.3 Two structural dead ends `OBSERVED_UX_PROBLEM`
+
+**The Action step has no way back.** `+ Add finding` renders only inside the
+`step === "review"` branch. When the last finding is reviewed, `acceptReview()` sets
+`step = "followup"`, and that section has no back navigation at all. Returning to add a
+finding requires a page reload.
+
+**After a report exists, adding a finding fails.** Measured:
+`POST /inspections/:id/observations -> HTTP 409 "Completed inspections must be reopened
+before editing."` `addObservation()` passes `requireEdit = true`, which `findAccessible`
+refuses on a completed inspection. The server **does** allow the reopen — the same run got
+`201` from `transition {status:'draft'}` and the observation then succeeded — and
+`saveObservationRevision()` in the very same file already reopens a completed inspection
+before writing. `analyze()` simply never does, and no reopen control exists. The customer
+is shown an instruction the product gives them no way to follow.
+
+`POST /inspections/:id/reports` while `draft` returns `400 "Reports may only be generated
+from completed inspections."`, so the true sequence is reopen -> add -> analyze -> review ->
+finalize -> re-complete -> regenerate, of which only the middle four steps have any UI.
+
+### 84.4 Root cause: `shield` matches "face shield" `OBSERVED — ROOT CAUSE ESTABLISHED, NOT REPAIRED`
+
+`multi-hazard-decomposition.service.ts:1267` includes `shield(?:ing)?` in the excavation
+fragment regex. The intended sense is a **trench shield**; the alternative matches any noun
+phrase containing the word, and the branch pushes `excavation_trenching` at a hard-coded
+confidence of **0.85**.
+
+| single-sentence probe | emitted | confidence |
+|---|---|---|
+| "not wearing a **face shield** while using a bench grinder" | `excavation_trenching` | **0.85** |
+| "the welder was not using a **welding shield**" | `excavation_trenching` | **0.85** |
+| "a **splash shield** was missing from the parts washer" | `excavation_trenching` | **0.85** |
+| "had no eye protection while using a bench grinder" | none | — |
+| "an unshored **trench** three metres deep had a spoil pile at the edge" | `excavation_trenching` | **0.60** |
+
+**A genuine trench scores lower than three false positives.** In the measured journey the
+spurious finding carried the fragment *"the operator was not wearing a face shield"* into
+the frozen report snapshot under the heading `Finding 3 — Excavation Trenching`.
+
+`hot_work` firing on the same sentence is **not** a defect: `grindCutActivity` deliberately
+treats `portable grinder` as hot-work evidence and documents that it does. It is a
+conservative over-trigger by design, and it doubles reviewer work identically.
+
+**Not repaired here.** This phase is analysis-only. The proposed narrow correction, and the
+requirement that Level-1 31/31 pass unrelaxed with no scorer or gold-set change, are in
+`contracts/TARGET_ARCHITECTURE.md` W-2.
+
+### 84.5 Report architecture as it actually is `CURRENT`
+
+One `inspection_reports` row per inspection (unique index); append-only versions each
+freezing a full `sourceSnapshot` and the rendered PDF with sha256; identical
+`sourceFingerprint` replays rather than duplicating; prior `generated` becomes `superseded`
+and stays downloadable; `organizationId` XOR `ownerUserId` enforced by CHECK.
+**No name column. No preferences. No unarchive route** — archive is the only deletion and
+the UI calls it "Delete Report". Generation requires `status = completed`.
+
+**Measured size.** One report, one version, four findings: `sourceSnapshot` **202,789
+bytes**, of which **144,043 (71%)** are raw analysis snapshots; PDF **12,915 bytes**.
+`GET /inspection-reports` returned **196,016 bytes for one report record**, because
+`list()` selects every version's full `sourceSnapshot`. This quantifies open item
+`KG4E-DISC-03`.
+
+**A second report implementation is still in the tree.** `/inspection` (952 lines),
+`/inspection-quick` (570), `/inspection-cover` (232) and `/inspection-review` (327) write
+through `lib/cloudReports.ts` to `@Controller('legacy/reports')` and the legacy
+`Report`/`Finding` entities. Every navigation entry point resolves to
+`/inspection-workspace`; the legacy routes link only to each other, forming an island
+reachable by direct URL only. It is the concrete contradictory-source-of-truth risk.
+
+### 84.6 Ownership, isolation and capacity inputs `CURRENT` / `NOT_MEASURED`
+
+Reads are scoped by `organizationId` when present, otherwise `ownerUserId`; `clientRequestId`
+idempotency is keyed on `createdByUserId`, deliberately narrower than the read model.
+Nothing here was changed or weakened.
+
+Established by configuration reading: **no `extra.max`**, so the `pg` pool runs at its
+default **10 connections**; no statement, connection or acquire timeout; global throttle
+100 req/60 s; classification is in-process and CPU-bound; storage defaults to `s3`.
+
+Indicative only, single client, warm process, local disposable database — **not a capacity
+measurement**: `POST /safescope-v2/classify` n=12, p50 **56 ms**, p95 **81 ms**.
+**No maximum supported user count is claimed. None has been measured.** The eight required
+capacity tests (C-1…C-8) are specified in `contracts/TARGET_ARCHITECTURE.md` §5 and are all
+`NOT_MEASURED`.
+
+### 84.7 The proposed program `PROPOSED — NOT IMPLEMENTED`
+
+`"Adding a report finding"` should mean **option B**: add the finding to the underlying
+inspection and let the report reflect it — with the addition that the customer must be able
+to author a finding directly, carrying `source: 'user_authored'` so provenance stays honest.
+Editing the report in place and report-owned findings are both rejected: the frozen,
+checksummed snapshot is what makes a report usable as evidence, and a report-only finding
+could carry no corrective action and could not be tracked to closure.
+
+Reports stay **versioned immutable snapshots**. What is missing is a name, a visible
+regeneration lifecycle, an unarchive route (or honest copy), and the `list()` projection.
+
+Seven bounded workstreams, each independently landable and revertible, are specified in
+`contracts/TARGET_ARCHITECTURE.md` §6: **W-1** core finding UX (no schema, no API, no
+migration), **W-2** the `shield` decomposition defect, **W-3** report records and ownership
+(one additive nullable column), **W-4** legacy-island disposition, **W-5** capacity C-1…C-8,
+**W-6** Expert HazLenz (blocked on the unbuilt hosted adapter and on W-2), **W-7** final
+polish and acceptance.
+
+### 84.8 Final state
+
+```
+INSITE_V1_ACCEPTED_RC_SHA   = a1515cbc828e15896e399c17f4c36003c210aca8
+BASELINE_PROTECTED          = TRUE
+HAZLENZ_LEVEL1_BASELINE     = 31/31   (unchanged, unrelaxed, not re-run this phase)
+PRODUCTION_DEPLOYED         = FALSE
+PRODUCTION_RUNNING_SHA      = e9355e911c221f94c96d2a1b241b4d938435fae2
+LIVE_PAYMENT_PROOF          = FALSE
+PRELAUNCH_ARCHITECTURE      = COMPLETE
+PRELAUNCH_IMPLEMENTATION    = NOT STARTED, NOT AUTHORIZED
+DECOMPOSITION_SHIELD_DEFECT = ROOT_CAUSED, NOT REPAIRED
+CAPACITY_LIMITS             = NOT_MEASURED
+```
+
+**Terminal:**
+`INSITE_V1_PRELAUNCH_ARCHITECTURE_COMPLETE — BOUNDED_IMPLEMENTATION_AUTHORIZATION_REQUIRED`
+
+The paid path remains unchanged and not addressed here:
+`DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`.
+
+---
+
+## 85 — INSITE v1.0 INTERACTIVE INSPECTION WORKFLOW: FIELD LOOP AND FINISH (2026-08-27) `IMPLEMENTED LOCALLY, NOT COMMITTED, NOT DEPLOYED, $0.00`
+
+Designed interactively with the product owner against a disposable stack, implementing each
+decision as it was made and verifying it in the browser. Production still runs
+`e9355e911c221f94c96d2a1b241b4d938435fae2`. Nothing is committed, pushed or deployed.
+
+Contract: `verification/insite-v1-inspection-workflow-2026-08-27/contracts/INSPECTION_WORKFLOW_V1.md`
+
+### 85.1 The field loop `IMPLEMENTED`
+
+`Record it → HazLenz → Risk & fix → Review → Save → back to Record it`, with no interstitial
+between findings and a brief non-blocking save confirmation. **Measured through the real controls
+over findings 3–10: 7 interactions per finding** (8–9 where a candidate confirmation appeared).
+
+A persistent bar carries a collapsed `Findings (N)` list, `+ Record another condition` and
+`Finish inspection`, and appears only once a finding is saved. **The customer-facing count is
+`status = 'finalized'` only** — a dismissed candidate is not a finding, and a pending candidate is
+not yet one.
+
+### 85.2 Candidate confirmation `IMPLEMENTED`
+
+Where more than one candidate is proposed, the customer confirms which apply **before** any of them
+costs a review cycle; a single candidate skips the step entirely. Rejections are recorded through
+the existing architecture — `human_reviews(decision='dismissed')` → `finding.status='dismissed'` —
+so they are auditable, carry no corrective-action obligation, do not block completion and do not
+reach the report, while remaining visible and restorable. No rejection explanation is ever asked for.
+
+`canonical-reports.service.ts` previously filtered only `superseded`, so a rejected candidate would
+have printed in the customer report. It now excludes `dismissed`.
+
+### 85.3 User-authored findings `IMPLEMENTED — one additive migration`
+
+Migration `1800000016000` adds `inspection_findings.source`
+(`'hazlenz_decomposition' | 'user_authored'`, NOT NULL DEFAULT, additive, `SAFE_BEFORE_NEW_CODE`);
+**migrations 47 → 48**. `POST /inspections/observations/:id/user-findings` records a hazard the
+inspector identified that HazLenz did not propose, as a real `pending_review` finding with **no
+citation, no confidence, no risk and no analysis claimed as its origin**, which then enters the
+normal Risk & fix → Review → Save flow. Finalization never converts provenance, and reconciliation
+never supersedes it.
+
+`test:user-authored-findings` — **47/47**, covering the eight required properties plus account
+isolation and the two regressions this could have caused.
+
+### 85.4 Risk-band and due-day authority `IMPLEMENTED`
+
+Both the workspace and the matrix component previously used an independent proportional rule, so a
+5×5 score of 12 displayed as **Moderate** while the engine, the saved finding and the report all
+said **High**. `lib/inspection/riskBands.ts` is now the single frontend representation of
+`risk-profiles.ts` and `risk-policy.ts`, and `npm run check:risk-band-parity` parses both server
+files and fails on any divergence — **16 values compared, PASS**, with an injected drift proven to
+fail it.
+
+### 85.5 Responsible party `IMPLEMENTED — no schema change`
+
+`corrective-actions.service.ts` defaulted `assignedToUserId` to the caller, so **every corrective
+action was assigned to the inspector** and the report resolved that id to their name. Account
+assignment is now only ever explicit. The optional `Responsible person` writes the existing
+`assignedToName`; **blank means Unassigned and the inspector is never substituted**. The governed
+due-date policy (Critical 1 / High 3 / Moderate 7 / Low 14) is unchanged and now shown with its
+reason. Assignment remains descriptive report metadata — no member selection, RBAC, notification or
+escalation was added.
+
+### 85.6 Finish `IMPLEMENTED`
+
+`GET /inspections/:id/completion-readiness` exposes the completion contract, evaluated by the
+**same** `evaluateCompletionReadiness()` the transition enforces, so the Finish screen cannot drift
+from the server. Blocking findings are shown as **Needs review** with a direct **Continue review**;
+the primary action is disabled while blocked. Each finalized card shows the remediation plan,
+responsible party or **Unassigned**, and the governed due date. The primary action is
+**Finish inspection**, not "Create the report".
+
+**No new completion requirement was introduced.** Corrective action, responsible person, rationale,
+standard citation and clarification answers all remain optional exactly as before.
+
+Verified in the browser: a genuine pending finding blocked completion, the server independently
+rejected a direct transition with `400`, `Continue review` reached the finding, and readiness
+updated to `Ready to finish — 12 findings reviewed` **without a reload**.
+
+### 85.7 Defects found and fixed during the walkthrough `MEASURED`
+
+The 5–10 finding run existed to surface what a two-finding test cannot, and it did:
+
+* **Zero-candidate fallback.** `analyze()` fell back to the inspection's whole finding list when an
+  observation produced no candidates, offering the inspector **their own saved findings back as
+  candidates to confirm** — measured live, announcing "9 possible findings" and rendering none.
+* Risk band computed proportionally, disagreeing with the engine at ordinary cells (§85.4).
+* Location and task silently lost on reload, though persisted in the analysis snapshot.
+* A saved finding had no route back to capture after a reload.
+* The running summary collapsed each finding to a ~60px column at 390px.
+* `"HazLenz proposed N hazards"` counted user-authored findings; `"N of M saved"` counted dismissed
+  candidates; a user-authored finding was routed to a HazLenz step headed "HazLenz assessment".
+* Corrective-action labels doubled (`"Immediate: Immediate protective action: …"`).
+
+### 85.8 Completed inspection, report artefact and reopen `SUPERSEDED BY 85.10`
+
+> **This section describes the report VERSION-HISTORY contract, which the product owner
+> replaced on 2026-08-27.** It is retained as history. Where it disagrees with §85.10 —
+> `Version N · Current` / `Version N · Previous`, the reopen copy, and the
+> report-immutability-across-reopen table — §85.10 governs.
+
+
+Finishing previously redirected to the generic `/reports` library, where the inspection itself
+disappeared and the report became the only object the customer could see. That is conceptually
+backwards: the inspection is the operational record and a report is an immutable, versioned
+**artefact of it**. Finishing now routes to `/inspection-complete`, a completed-inspection detail
+built entirely from the canonical inspection — no second authoritative record.
+
+It shows completion status and time, jurisdiction, finding count and risk distribution; every
+finalized finding with its standard, remediation plan, responsible party or **Unassigned**, and
+governed due date; and a separate **Report** section listing versions as `Current` / `Previous`.
+Raw identifiers, internal lifecycle words and checksums are demoted to Technical details.
+Report naming was NOT built — the report displays the inspection title and site, and independent
+durable naming stays a W-3 item.
+
+**Reopen** performs the existing authoritative `transition → draft` behind explicit consequence
+copy, and returns the customer to the workspace with the capture loop restored. Viewing is allowed
+while completed; editing requires reopening. One bounded addition supports the page:
+`GET /inspections/:inspectionId/report`, light version metadata, because `list()` returns every
+version's full frozen snapshot (196 KB measured) and is the wrong call for a per-inspection lookup.
+
+**Report immutability across reopen, measured in the browser and the database:**
+
+| | before reopen | after reopen + recompletion |
+|---|---|---|
+| v1 bytes | 26,476 | **26,476** |
+| v1 sha256 | `357c4814…b50c` | **`357c4814…b50c`** |
+| v1 frozen findings | 12 | **12** |
+
+v2 froze 13 findings and is the only version containing the newly added one; **0 dismissed
+candidates appear in either version**; v1 remains downloadable. `superseded` is a pointer change on
+the version row, not a content change. A second account received **404** on the completed
+inspection, its report, its readiness, its download and an attempted reopen.
+
+**`inspection.version` is never exposed as a customer version.** It is an optimistic-locking
+counter; only report version numbering is shown, because only that is the customer's artefact
+sequence.
+
+### 85.9 Delete Report — inspected, unchanged, not executed `SUPERSEDED BY 85.10`
+
+> The control was removed from the customer product in §85.10. The backend behaviour
+> described below is unchanged and remains unreached.
+
+
+`archive()` sets `archivedAt` and audits `report_archived`. It deletes **nothing** — not the report
+row, the versions, the frozen snapshots, the PDFs, or the inspection. But `list()` filters archived
+reports out and **no unarchive route exists**, so from the customer's side the report vanishes
+permanently while every artefact survives. The button says **"Delete Report"**. That is neither a
+delete nor a reversible archive, and it was deliberately left alone pending a separate decision.
+
+
+### 85.10 One current report per inspection `IMPLEMENTED` — **supersedes 85.8 and 85.9**
+
+The product owner replaced the customer-facing report version-history contract on 2026-08-27, after
+85.8 had been implemented and measured. The target model is one sentence:
+
+```
+Inspection ──▶ one current report.   Reopen, edit, finish again ──▶ that report is REPLACED.
+```
+
+The customer never reasons about Report v1 vs v2, a superseded version, a checksum, or which of
+several artefacts is real. `inspection_report_versions` survives as the INTERNAL snapshot store and
+retains exactly one row per report; its `version` column is now an internal sequence that keeps the
+uniqueness constraint meaningful, keeps audit events addressable and gives the KG-4E frozen-snapshot
+suites a handle. No product surface renders it.
+
+**Replacement safety is an ordering, and the ordering is the contract.** `generate()` leaves the
+existing snapshot and PDF completely untouched; renders and stores the replacement; marks it
+`generated` only once its artefact exists and verifies; deletes the superseded snapshot rows **in the
+same transaction**, so the report points at exactly one snapshot the instant the switch is visible;
+and destroys the superseded PDFs **only after that transaction has committed**. The whole sequence
+holds `pg_advisory_xact_lock('inspection-report:<id>')`. A pre-commit failure rolls back and the
+customer still has the report they had — the only artefact destroyed on that path is the half-made
+replacement, which nothing references. A crash between the commit and the cleanup can leak an
+unreferenced PDF but never a missing one, and `orphanedReportArtifactIds()` sweeps it on the next
+generation. Reopening ALONE changes nothing: replacement happens on finishing again.
+
+**Customer-facing identity is `inspection.displayNumber`** (migration `1800000017000`), rendered
+`Inspection #7`. A checksum is integrity metadata — it proves bytes were not altered and it changes
+whenever the report is regenerated — so `357c4814…` is gone from every customer surface and survives
+only under Technical details, labelled as a checksum. The number is allocated once at creation under
+a per-scope advisory lock (`MAX+1`), is **per owner** (per organization, else per user) starting at 1
+in each scope so it discloses only the account's own volume, is backfilled deterministically by
+`(createdAt, id)`, and is **display only** — never an authorization input, never a route parameter,
+never a cross-scope lookup key. A global sequence was rejected for leaking cross-tenant volume. No
+separate report number was minted: one report per inspection means the inspection's number
+identifies it.
+
+The completed page shows one **Inspection report** section (`Report ready` · `Report updated …` ·
+`Download PDF`) and two deliberately distinct timestamps — `Inspection completed` and
+`Report updated` — because a bare `Created` reads as the inspection date and the two genuinely
+differ after a reopen. The reports library shows one card per inspection with the record number,
+both timestamps, finding count, jurisdiction, `Download PDF` and **`View inspection`**. Download is
+`GET /inspection-reports/:reportId/download` with no version segment; the internal
+`/versions/:n/download` route is retained for the verification suites and answers 404 for a replaced
+sequence. The inspections list is now state-aware — `View inspection` for completed,
+`Continue inspection` for draft/in-review — closing the dead end where a completed inspection was
+reachable only immediately after finishing it or by going through `/reports`.
+
+**Delete Report was removed from the customer product.** It said "Delete Report", it only set
+`archivedAt`, it hid the report permanently and there was no unarchive. Nothing destructive replaced
+it; `archive()` and its route survive unreached and unchanged. Report/archive management is a
+deferred decision.
+
+**Existing data was migrated by a script, not by the migration.**
+`retire-superseded-report-snapshots.ts` retains the highest `generated` snapshot per report — the row
+the product already served, so no report changes content — and retires the rest, row first and bytes
+only after the row change committed. It prints its resolved database, refuses `safescope`, and is a
+read-only inventory without `--apply`. It is deliberately outside `1800000017000` because the
+obsolete artefacts are storage-provider objects a SQL migration could only have orphaned.
+
+**Measured on the disposable stack** (`test_insite_onereport_20260827`, cloned so the legacy
+two-snapshot report was genuinely migrated; backend `:4106`, frontend `:3010`):
+
+| | before | after |
+|---|---|---|
+| legacy snapshots | 9 across 8 reports | **8 across 8 reports**, 0 with >1 |
+| browser walk: snapshots for the inspection | 1 (`98a563ed…`, 8,685 B) | **1** (`3f87ccf1…`, 10,361 B) |
+| predecessor snapshot row / storage row / PDF on disk | present / `ready` / present | **deleted / `deleted` / gone** |
+| orphaned report artefacts, whole database | — | **0** |
+| customer-visible version words on the completed page | — | **0** |
+
+Reopening before finishing again left the snapshot, its checksum and its PDF **unchanged**. The
+replaced PDF contains both findings and zero occurrences of the dismissed `conveyors` candidate. Ten
+concurrent regenerations returned one snapshot identity, one retained snapshot and zero orphans. A
+second account received 404 on report download and on generation.
+
+**Failed replacement was proven with a REAL fault**, not an instrumented one:
+`npm run test:report-replacement-failure-safety` makes the private storage root unwritable for one
+regeneration attempt, so the failure lands where a disk or bucket failure would; no test hook, flag
+or mock exists in production code. 16/16 — HTTP 500, one snapshot survives and it is the original,
+its artefact still `ready`, the download still byte-identical, no half-made row, 0 orphans, the
+failure recorded as `report_generation_failed`, and after recovery the replacement succeeded and the
+predecessor was then retired.
+
+`test-private-storage-reports.ts` was rewritten to this contract. It previously asserted
+`versions === 2` and `status === 'superseded'` — a **stale expectation** under an owner decision that
+changed the product, not a weakened one. Its replacements are stricter in the replacement direction.
+
+```
+ONE_REPORT_PER_INSPECTION   = IMPLEMENTED, VERIFIED IN BROWSER AND DATABASE
+REPLACEMENT_SAFETY          = PROVEN WITH A REAL INJECTED STORAGE FAILURE
+CUSTOMER_FACING_IDENTIFIER  = inspection.displayNumber, per-owner sequence
+REPORT_VERSION_HISTORY      = REMOVED FROM THE CUSTOMER PRODUCT
+DELETE_REPORT               = REMOVED FROM THE CUSTOMER PRODUCT, BACKEND UNCHANGED
+REPORT_ARCHIVE_MANAGEMENT   = DEFERRED DECISION
+MIGRATIONS                  = 49 (one additive column + deterministic backfill)
+WORKFLOW_ACCEPTED           = FALSE
+DEPLOYED                    = FALSE
+```
+
+### 85.11 Final inspection-lifecycle acceptance `ACCEPTED` (2026-08-27)
+
+`INSITE_V1_INSPECTION_LIFECYCLE_ACCEPTED — FINAL_APPLICATION_POLISH_AND_COMMERCE_ACCEPTANCE_REQUIRED`
+
+This terminal accepts **exactly three things** — the inspection workflow, the report replacement
+lifecycle, and the reopen lifecycle. **It does not mean InSite v1.0 is launch-ready**, and §85.12
+below is unchanged by it.
+
+A **fresh** inspection was walked start to finish through the real browser controls, not a
+re-inspection of the previously walked record. All 33 acceptance steps passed. The new inspection in
+an account that already had one was numbered **`Inspection #2`**, proving the sequence is per-account
+rather than global. A single-candidate observation skipped the confirmation step; a four-candidate
+one preselected both High candidates and neither Moderate one; two were dismissed and the screen said
+so honestly; a zero-candidate observation said *"HazLenz did not identify a hazard in this
+observation."* A user-authored finding was recorded with `selectedAnalysisId`, `originatingAnalysisId`,
+`knowledgeReleaseId` and `riskSnapshot` all NULL and an **empty** `standardCandidates` — and the risk
+matrix **refused to continue until a person set a risk**, which is the strongest available evidence
+that none was fabricated. A 5×5 score of **12 rendered `High (12)`** with *"Based on High risk — 3
+days"*, closing §85.4 at the UI. Consecutive saves produced **0 modals**. A genuine pending finding
+disabled Finish, and a direct `POST /transition {completed}` bypassing the UI was **independently
+rejected 400** by the server — frontend readiness is UX, not authorization.
+
+**Replacement, measured at three points.** Before reopen: 1 snapshot, `68dba0d2…`, PDF on disk.
+*During* reopen, with the inspection editable: **1 snapshot, same checksum, still 200 and
+byte-identical** — reopening alone mutates nothing. After finishing again: 1 snapshot `0f20c76e…`,
+predecessor row **deleted**, predecessor storage object **`status='deleted'`**, predecessor PDF **gone
+from disk**, and the replaced sequence's internal URL **404**. The new finding is in the replacement
+only (`toeboard`: 0 → 4); all six earlier findings survive; dismissed candidates stay 0.
+Whole-database afterwards: 20 reports / **20 snapshots**, **0** reports with more than one snapshot,
+**0 orphaned artefacts**, **0** per-scope record-number collisions, 0 unnumbered inspections.
+
+**Failure safety re-proven twice, 16/16**, with a real fault — the private storage root made
+unwritable for one regeneration attempt. No test hook, flag or mock exists in production code.
+
+**Isolation 28/28.** Nine authenticated cross-account operations — read inspection, read its report,
+readiness, read report by id, download current, download by snapshot sequence, generate/replace,
+reopen, archive — **all 404**, with the stranger deliberately Pro-entitled so a 402 could not be
+mistaken for isolation.
+
+**Suites and builds:** failure-safety 16/0 · private-storage-reports 14 scenarios passed (1 report, 1
+snapshot, 0 orphans, predecessor `deleted`) · user-authored-findings 47/0 · canonical-workflow 25
+scenarios passed · cross-user-isolation 28/0 · kg4e-report-field-exclusion 9/0 (20/20 byte-identical
+under poisoning) · risk-band-parity PASS (16 values) · backend `tsc` and `build` exit 0 · frontend
+`tsc` **0 errors** · frontend `next build` exit 0 with `/inspection-complete` in the route manifest.
+
+**Protected Level-1 behaviour cannot have regressed, mechanically rather than by assertion:** the
+change set contains **no file** under `safescope-v2/`, `safescope-knowledge/`, `standards/`,
+`classifications/`, `taxonomy/` or `intelligence/`, and both risk authorities
+(`safescope-v2/risk/risk-profiles.ts`, `inspection/risk-policy.ts`) are **unchanged at HEAD**.
+
+**Generated-artifact hygiene, and a real defect it exposed.** The frontend production build was
+**failing** — `Failed to type check` on `.next-wfdesign/types/cache-life.d 2.ts`. Root cause, per §22:
+the failing file is **untracked**, sits inside a **gitignored** disposable build directory
+(`.gitignore` `/.next-*/`), is a sync-tool duplicate of generated output, and is referenced by **no
+application source**. It reached the type-checker only through `include` globs that Next.js itself
+injects as a function of `distDir` (`writeConfigurationDefaults` pushes them and logs *"include was
+updated to add …"*). The owner is therefore build configuration, not application source, and the
+smallest correct remediation was to restore `frontend-next/tsconfig.json`'s `include` array to its
+committed state — removing four uncommitted injected globs (`.next-wfdesign` ×2 from the previous
+session, `.next-accept` ×2 injected by the verification build itself; `.next-onereport` ×2 had already
+been removed). The build then passes. **This is the same class §83 recorded at the accepted RC** as
+*"Build-artifact hygiene, not a source defect; not repaired here because this operation authorizes no
+such remediation"* — that phase declined it, this one is authorized for it. `tsconfig.json` now has a
+**zero diff** against HEAD.
+
+**Non-blocking limitations.** `ENVIRONMENT_FIXTURE_PRECONDITION_NOT_MET`: `test-kg4e-report-provenance`
+is 7/3, all three failures corpus preconditions of the disposable clone (`regulatory_releases` has
+**0 rows**); every report-scoped assertion passes, 17/17 frozen snapshots. `NON_PRODUCTION_AUTH_MODE_LIMITATION`
+**does not apply** — the two unauthenticated assertions failed because `DEV_AUTH_BYPASS=true` is set
+in the local `backend/.env`, not because of `JwtGuard`; running the disposable backend with
+`DEV_AUTH_BYPASS=false` makes both pass with **no production code change**. `DEFECT_NONBLOCKING`
+(owner: HazLenz decomposition, not the lifecycle): a guardrail observation produced **zero**
+candidates — the known §84.7 W-2 precision gap, which this phase may not change. The lifecycle
+handled it correctly, stating the zero-candidate result honestly and offering the user-authored path.
+
+```
+INSPECTION_WORKFLOW           = ACCEPTED
+REPORT_REPLACEMENT_LIFECYCLE  = ACCEPTED
+REOPEN_LIFECYCLE              = ACCEPTED
+BROWSER_JOURNEY               = 33/33 STEPS, FRESH INSPECTION
+ACCOUNT_ISOLATION             = 28/28
+LEVEL1_BASELINE               = UNTOUCHED BY CONSTRUCTION
+MIGRATIONS                    = 49
+DECOMPOSITION_PRECISION       = UNCHANGED, DEFECT PRESERVED
+PRODUCTION_MUTATED            = FALSE
+DEPLOYED                      = FALSE
+COMMITTED                     = FALSE
+INSITE_V1_LAUNCH_READY        = FALSE
+```
+
+Still required before v1.0 can launch, none of it covered by this terminal: the full visual/colour
+sweep; every-tab polish; marketing/pricing reconciliation; account creation and login acceptance;
+Free vs Pro access-control acceptance; payment/subscription acceptance; final whole-application
+regression; final production-readiness review; and the first genuine paid transaction proof, which
+remains `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`.
+
+### 85.12 What this section's acceptance does NOT cover `SUPERSEDED IN PART BY 85.11`
+
+> The historical state of this block — *"the post-completion destination, report lifecycle, reopen
+> and regeneration are **as found**"* and `WORKFLOW_ACCEPTED = FALSE` — was true when §85.1–85.7 were
+> written and is retained for continuity. **§85.10 designed and §85.11 accepted** exactly those
+> things. Where they disagree, §85.11 governs.
+
+What remains genuinely out of scope and unaccepted is unchanged: the decomposition precision defect
+(`PRECISION_DEFECT_MATERIAL_HANDLING.md`) is **untouched**, `EXPERT_ASSIST_USER_AUTHORED_FINDING`
+remains a deferred capability, report archive/delete management remains a deferred product decision,
+and **InSite v1.0 as a whole is not launch-ready** — see the gate list at the end of §85.11.
+
+```
+FIELD_LOOP                = IMPLEMENTED, VERIFIED IN BROWSER
+FINISH_SEMANTICS          = IMPLEMENTED, VERIFIED IN BROWSER
+POST_COMPLETION_LIFECYCLE = DESIGNED (85.10) AND ACCEPTED (85.11)
+WORKFLOW_ACCEPTED         = TRUE   (inspection + report replacement + reopen ONLY)
+MIGRATIONS                = 49 (two additive columns)
+DECOMPOSITION_PRECISION   = UNCHANGED, DEFECT PRESERVED
+EXPERT_ASSIST             = DEFERRED
+REPORT_ARCHIVE_MANAGEMENT = DEFERRED
+INSITE_V1_LAUNCH_READY    = FALSE
+DEPLOYED                  = FALSE
+COMMITTED                 = FALSE
+```
+
+---
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`
+
+Prelaunch architecture evidence lives outside that root:
+
+| Phase | Path | Key artifacts |
+|---|---|---|
+| PRELAUNCH-ARCH | `verification/insite-v1-prelaunch-architecture-2026-08-27/` | `STATUS.md` (preservation, the measured 38-call journey, the three-findings-from-one-sentence measurement, the two dead ends with their HTTP codes, the `shield` root cause with five single-sentence probes, the 202,789-byte snapshot / 196,016-byte list payload, the pool and throttle facts), `REPRODUCTION_COMMANDS.md` (disposable DB, disposable API on :4310, the instrument invocation, the probe, teardown), `measurement/measure-add-finding.ts` (replays the exact workspace call sequence; **refuses to run unless `DATABASE_URL` names a `test_*` database**), `contracts/TARGET_ARCHITECTURE.md` (domain model, target loop, report recommendation, Expert responsibility split and its five failure states, C-1…C-8, and the seven bounded workstreams). **MEASUREMENT AND DESIGN ONLY. Nothing implemented. 0 provider calls. Disposable database and storage destroyed after the run; `safescope` read once for its migration count and never written.** |
+
 
 | Phase | Path | Key artifacts |
 |---|---|---|
@@ -14088,6 +14655,633 @@ protected invariants, known blockers, or verified current state MUST update this
 * `INSITE_CURRENT_STATE.json` must validate as **strict JSON** after every edit, and the blueprint
   diff must be inspected for accidental deletion or contradiction.
 * **If implementation behaviour and documentation disagree, the phase is NOT complete.**
+
+### HazLenz deterministic decomposition precision (`STABLE_INVARIANT`, 2026-08-27)
+
+**Terminal:** `HAZLENZ_DETERMINISTIC_PRECISION_HARDENED — EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED`
+**Evidence:** `verification/insite-v1-hazlenz-precision-2026-08-27/`
+
+The defect recorded in `PRECISION_DEFECT_MATERIAL_HANDLING.md` — contextual clauses becoming
+independent hazards — was measured against a frozen 56-row corpus (34 Population A precision rows,
+22 Population B multi-hazard recall rows carrying 43 required hazard groups, 35 of them
+life-critical), authored in full before any engine output for those rows was inspected.
+
+| | baseline | after |
+|---|---|---|
+| Population A case-level precision | 38.2 % | **100.0 %** |
+| Population A forbidden-family emissions | 24 | **0** |
+| Population B required-hazard recall | 74.4 % (32/43) | **74.4 % (32/43)** |
+| Population B dangerous-omission rate | 25.6 % (11) | **25.6 % (11)** |
+| Population B life-critical omissions | 7 | **7** |
+
+Twenty-one Population A cases repaired; Population B output unchanged, group for group. The recall
+veto is satisfied by identity, not by margin.
+
+**Binding invariants established by this phase.**
+
+1. **A secondary hazard may be emitted only when it possesses evidence independently sufficient for
+   that hazard family.** A clause supplying energy state, material state, exposure, proximity,
+   access or location *for another hazard* is a predicate of that hazard, not a hazard.
+2. **Precision may improve; dangerous hazard recall may not regress.** The gate
+   (`npm run test:hazlenz-precision`, registered as the 32nd suite in `test:hazlenz-core`) fails on
+   any rise in the dangerous-omission rate, any new life-critical omission, any fall in Population B
+   recall, or any rise in Population A required-hazard omissions. Its thresholds are recorded
+   measurements and must never be relaxed to obtain a pass.
+3. **The remediation pattern is family-keyed evidence-independence predicates at
+   `route.confidence <= 0.4`**, matching the false-current guards the decomposition service already
+   applied to about a dozen families. A **global confidence threshold is prohibited** as a means of
+   suppressing output.
+4. **`shield` is not an excavation trigger.** Only `trench shield` / `excavation shield` /
+   `shield box` are. The bare alias emitted `excavation_trenching` at 0.85 for face shields, welding
+   shields, splash shields, arc-flash shields, heat shields and the verb "shielding" — scoring
+   *higher* than a genuine unshored trench at 0.60.
+5. **Customer confirmation behaviour is not a substitute for engine correctness.** Dismissals and
+   `finding_user_authored` audit rows are `EVALUATION_SIGNAL`, never `GROUND_TRUTH`; nothing is
+   trained or tuned from them, and no customer finding is altered by them. See
+   `EVALUATION_SIGNAL_CONTRACT.md`.
+6. **Expert HazLenz remains additive and unimplemented.** Level-1 deterministic authority is the
+   safety floor; provider failure falls back to Level-1; Expert output may not silently remove a
+   Level-1 hazard, citation or risk outcome without a separately governed authority rule. See
+   `EXPERT_HAZLENZ_READINESS_CONTRACT.md`.
+
+**Known remaining defect, recorded not resolved.** Measured on the decomposition layer in isolation,
+11 required hazard groups — 7 of them life-critical — are still missed on Population B, most
+seriously B-15, which emits nothing at all for an MCC bucket opened with the disconnect closed and
+no lock applied. These gaps existed before this work and were not caused by it; the production
+classify path layers further detection above decomposition, so these are not whole-product recall
+figures. They are nonetheless real, and closing them is recall work this precision-scoped phase
+deliberately did not attempt. **Expert HazLenz must not be positioned as the fix for them: a safety
+floor that depends on a remote provider is not a floor.**
+
+The accepted inspection lifecycle (`INSITE_V1_INSPECTION_LIFECYCLE_ACCEPTED`) was not reopened.
+
+### HazLenz deterministic Level-1 recall closure (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_DETERMINISTIC_SAFETY_FLOOR_HARDENED — EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED`
+**Evidence:** `verification/insite-v1-hazlenz-level1-recall-2026-08-28/`
+
+The preceding phase left 11 required hazard groups — 7 life-critical — missed by the decomposition
+layer, and recorded that "the production classify path layers further detection above decomposition,
+so these are not whole-product recall figures." **That hypothesis was tested and is only partly
+true.** The complete deterministic Level-1 authority was run over the same frozen 56 rows through the
+real `SafescopeV2Service.classify()` — full intelligence orchestrator, real classifier, real
+knowledge router, real standards service bound read-only to the development corpus — and scored
+against the same frozen expectations.
+
+| | decomposition only | complete Level-1 (before) | complete Level-1 (after) |
+|---|---|---|---|
+| Population B required-group recall | 74.4 % (32/43) | 81.4 % (35/43) | **100.0 % (43/43)** |
+| life-critical recall | 28/35 | 30/35 | **35/35** |
+| life-critical omissions | 7 | 5 | **0** |
+| Population A required-hazard omissions | 1 | 1 | **0** |
+| Population A case-level precision | 100.0 % | — | **100.0 %** |
+
+Only three of the eleven were recovered downstream (B-05, B-16 `machine_guarding`, B-20). **Eight
+survived the whole engine, five of them life-critical**, so the deterministic floor was repaired
+before Expert HazLenz, exactly as the product owner directed. Decomposition itself moved
+32/43 → 40/43 with life-critical omissions 7 → 2, with **zero** forbidden emissions and **zero**
+previously detected groups lost.
+
+**Binding facts and invariants established by this phase.**
+
+1. **Customer findings are materialised ONLY from `multiHazardDecomposition.hazards`.**
+   `InspectionService.reconcileDecompositionFindings()` reads that array and nothing else, and no
+   code path in `classify()` ever adds to it — the pipeline only filters it. A hazard recovered by
+   the primary classifier appears in the analysis header but **never becomes its own finding** with
+   its own standard, risk and corrective action. Decomposition recall and finding-level completeness
+   are therefore the same measurement, and the earlier framing of decomposition as a layer beneath a
+   richer detector is wrong in the direction that matters.
+2. **A standards citation is not hazard representation.** The Level-1 scorer records citation
+   families and deliberately does not count them: a citation answers "which rule governs the hazard
+   the engine already named". B-10 carried `29 CFR 1910.147` while representing no hazardous-energy
+   hazard at all — a citation-only signal, which is not a safety floor.
+3. **B-15 (`STABLE_INVARIANT`).** An MCC bucket opened with the upstream disconnect closed, no lock
+   applied and live 480 V terminals exposed **must** produce both `lockout_tagout` and `electrical`.
+   Before this phase the complete engine produced no hazard at all and labelled the analysis
+   *Machine Guarding*. Protected by `npm run test:hazlenz-level1-recall`.
+4. **The router is single-winner and negation-blind to controls.** `HazardTaxonomyCoverageService.route()`
+   returns at most one domain per fragment, so a clause carrying two hazards loses one; and it
+   discards "no respirator", "no fire watch", "no eye protection" as negated signal when, for a
+   control-absence family, the missing control **is** the hazard. Both are compensated at the
+   family-specific preservation layer, which is where the 2026-08-27 phase proved false positives are
+   generated. **The router itself is not to be widened without re-running both gates.**
+5. **Two protected gates now run inside `npm run test:hazlenz-core` (33 suites).**
+   `test:hazlenz-precision` protects precision and vetoes recall regression;
+   `test:hazlenz-level1-recall` protects recall — every measured Level-1 omission plus an 8-row
+   hazardous-energy / MCC probe family in which each exposure case is paired with its safe
+   counterpart. Neither may be relaxed to obtain a pass.
+6. **Blocker 7 of the Expert HazLenz readiness contract is resolved by measurement; six remain
+   open.** Expert HazLenz implementation is still not authorised, and no provider call has been
+   implemented or made.
+
+**Known remaining weaknesses, recorded not resolved.** Decomposition still misses three required
+groups that only the primary classifier recovers (B-05 `compressed_gas`, B-16 `machine_guarding`,
+B-20 `suspended_loads`), so those hazards do not become findings of their own. Single-winner routing
+and control-noun negation are repaired only where they were demonstrated, family by family. The
+coverage map's snake_case mechanism tokens (`electrical_shock`, `unexpected_startup`, `eye_injury`)
+can never match prose and contribute nothing to routing. The evidence is bounded by a 56-row corpus
+and an 8-row probe family; new wording will find new gaps.
+
+### HazLenz deterministic actionable-finding coverage (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_DETERMINISTIC_ACTIONABLE_COVERAGE_HARDENED — EXPERT_HAZLENZ_IMPLEMENTATION_AUTHORIZATION_REQUIRED`
+**Evidence:** `verification/insite-v1-hazlenz-actionable-coverage-2026-08-28/`
+
+The recognition phase closed Level-1 recognition at 43/43 but left three required hazard groups
+reaching the customer only through the primary classifier. This phase established, by executing the
+real customer workflow rather than reading the source, that **recognition is not coverage**.
+
+| metric | before | after |
+|---|---|---|
+| `LEVEL1_RECOGNITION_RECALL` | 100.0 % (43/43) | **100.0 % (43/43)** |
+| recognition, life-critical | 35/35 | **35/35** |
+| `ACTIONABLE_FINDING_COVERAGE` | 93.0 % (40/43) | **100.0 % (43/43)** |
+| `LIFE_CRITICAL_ACTIONABLE_COVERAGE` | 94.3 % (33/35) | **100.0 % (35/35)** |
+| decomposition required-group recall | 93.0 % (40/43) | **100.0 % (43/43)** |
+| Population A case-level precision | 100.0 % | **100.0 %** |
+
+Every Population-B row was driven through `register → classify → analyses → reconciliation →
+findings → review → corrective action → completion → report`, against a disposable API instance and
+a disposable database (`test_v1_actionable_coverage_20260828`, target proved against the
+repository's own allowlist before migration; the protected `safescope` database was never migrated,
+seeded or mutated).
+
+**Binding facts and invariants established by this phase.**
+
+1. **`RECOGNIZED` and `ACTIONABLE` are separate measurements and must both be reported.** A hazard
+   named only in the analysis header has no finding, and therefore no standard evaluation, no risk
+   snapshot, no corrective action, no review and no line in the report. Before this phase two
+   LIFE-CRITICAL groups (B-05 `compressed_gas`, B-20 `suspended_loads`) were in exactly that state.
+2. **A standards citation is never hazard coverage, and a classifier label is never actionable
+   coverage.** Both are recorded and neither is counted. See
+   `ACTIONABLE_COVERAGE_DEFINITION.md`.
+3. **Promoting the primary classification into the finding collection is PROHIBITED, and the
+   prohibition is measured, not stylistic.** Promoting every primary classification would introduce
+   **14 forbidden families across 12 of the 34 Population A rows**, and classifier confidence cannot
+   gate it: `A-13` ("the forklift charging room") scores 40 @0.93 *high* and `A-24` ("the guard was
+   correctly fitted") scores 52 @0.93 *high* — the same band as the legitimate `B-05` at 46 @0.93
+   and `B-20` at 65 @0.93. Recall gaps are closed in the decomposition layer, under the precision
+   gate, or not at all.
+4. **Duplicated predicates are a defect class in this file.** The suspended-load exposure test
+   existed twice — once in the finding-local detector, once in the output filter — and widening only
+   the detector created the finding which the filter then silently deleted. Shared predicates are
+   now declared once (`SUSPENDED_LOAD_EVIDENCE`, `SUSPENDED_LOAD_EXPOSURE`). **Do not re-introduce a
+   second copy of a hazard predicate.**
+5. **Four protected gates now guard the deterministic floor**, three of them inside
+   `npm run test:hazlenz-core` (34 suites): `test:hazlenz-precision` (precision + recall veto),
+   `test:hazlenz-level1-recall` (recognition), `test:hazlenz-actionable-coverage` (materialisation,
+   including the fourteen classifier-named forbidden families), plus
+   `verify:hazlenz-actionable-workflow` (66 checks through the accepted lifecycle, disposable stack
+   required). None may be relaxed to obtain a pass.
+6. **The accepted inspection lifecycle was not reopened.** `inspection.service.ts` is unchanged;
+   this phase verified HazLenz output *through* the lifecycle, including the generated report PDF,
+   in which all eight workflow findings appear as their own numbered entries.
+
+**Known remaining limitations, recorded not resolved.** **26 of 43 actionable groups carry no
+standard on their finding**: the finding-scoped applicability rule set in
+`evidence-foundation.ts` emits thirty citations across about twelve families and has no rule for hot
+work, fire/explosion, compressed gas, confined space, PPE, respiratory protection, material
+handling, environmental release or ventilation. `standards_master` holds **0 rows** in both the
+development and the disposable database, so the DB-backed analysis-level standards path is
+**UNVERIFIED**. Single-winner routing and control-noun negation persist in the taxonomy router, so
+coverage remains uneven by construction and each new family costs another preservation block. The
+evidence is bounded by 56 corpus rows, an 8-row probe family and 6 workflow cases.
+
+**Three previously unverifiable suites are now executed.** The disposable stack supplied the running
+server and paid entitlement they always needed: `hazlenz-field-gauntlet` and
+`hazlenz-authentic-capability-gauntlet` both score **98.5 %** with an **identical 8-scenario failure
+set before and after** the change, and `hazlenz-clarification-gauntlet` fails identically on its
+first assertion — all three PRE_EXISTING by measurement. `golden-standards-tests` remains
+**UNVERIFIED**; its protected-corpus override was not set.
+
+### HazLenz deterministic standards architecture and coverage (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_STANDARDS_COVERAGE_BLOCKED — AUTHORITATIVE_SOURCE_MATERIAL_REQUIRED`
+**Evidence:** `verification/insite-v1-hazlenz-standards-architecture-2026-08-28/`
+**No production source file was changed by this phase.**
+
+The actionable-coverage phase left 26 of 43 required hazard groups with no standard on their
+finding. This phase determined the intended standards architecture before touching it, and found
+that the gap has nothing to do with the empty corpus everyone assumed.
+
+**There are THREE standards mechanisms, and they are not layers of one system.**
+
+| # | mechanism | feeds | size |
+|---|---|---|---|
+| 1 | **governed source set** (`standards/releases/governed-source-set.ts`), DB-free, version-controlled | `standards_master` and governed releases | **35 records** (OSHA 24 / MSHA 11; GI 13, construction 11, mining 11) |
+| 2 | **`standards_master`** | analysis-level `suggestedStandards` | 35 when seeded; **documented at 2,390 legacy eCFR rows in production** |
+| 3 | **`evidence-foundation.ts`**, code-resident | **customer FINDING citations and the report PDF** | **30 citations, ~12 families** |
+
+**Binding facts established by this phase.**
+
+1. **Customer finding citations come from #3 and only #3.** Measured decisively: materializing the
+   full governed corpus (35 records, manifest `14a34fea…` reproduced exactly) changed the
+   finding-level result by **exactly zero citations**. `evidence-foundation.ts` is documented as an
+   evidence helper but is the de-facto regulatory authority for everything a customer sees.
+2. **`standards_master` was empty because nothing had ever seeded a local database.** Zero rows is
+   expected in an unseeded disposable environment; it is NOT a broken runtime. `npm run
+   seed:safescope-standards` materializes it correctly and deterministically. It does mean every
+   local standards measurement before this phase ran against an empty corpus.
+3. **Jurisdiction safety is sound: 0 wrong-jurisdiction and 0 wrong-standard citations**, measured
+   over the whole 43-group corpus in all three regimes — general industry emitted only 1910,
+   construction only 1926, MSHA only 30 CFR — plus a 16-check gate with eight negative controls.
+   **Pinning a jurisdiction correctly REDUCES matches** (16 → 13 → 13 → 7); that is the contract
+   working, not a regression.
+4. **The hazard floor is jurisdiction-invariant**: actionable coverage stayed **43/43** and
+   life-critical **35/35** under `unknown`, general industry, construction and MSHA.
+5. **Nine hazard families that InSite finds, risk-scores and prints have no applicable rule at
+   all**: hot work, fire/explosion, compressed gas, confined space, PPE, respiratory protection,
+   material handling, environmental release, ventilation. Three of them (confined space, PPE,
+   powered industrial trucks) have governed records already — repairable only by routing the
+   finding path through the corpus, which is an architectural change, not a rule addition. **Adding
+   hand-written rules is prohibited: it deepens the parallel library this phase exists to retire.**
+6. **`ApplicableStandardsService` returns NOTHING when no jurisdiction is resolved.** Root-caused to
+   one line: the only jurisdiction-dependent scoring contribution is `score += 15` for an in-scope
+   row, and the admission threshold is `score >= 10`, so the scope bonus alone is what admits
+   candidates. Measured: 12 candidates retrieved, 0 returned, for textbook LOTO text with
+   `1910.147` present. **Not repaired** — the fix changes what every customer sees on a
+   2,390-row production corpus this authorization cannot reach. The accepted product contract
+   requires an explicit context for new inspections, so the state is reachable through legacy
+   records and the raw classify API rather than the shipping flow.
+7. **0 of 35 governed records are `reviewer_approved`**, so no record can present as
+   `APPROVED_GOVERNED_CONTENT`. The release is `provisional` and `DEFAULT_CUTOVER_MODE = LEGACY`.
+8. **`golden-standards-tests` executed for the first time — 15 passed, 0 failed.** Its
+   protected-corpus guard permits a `test_*` database; it had simply never had a corpus-loaded
+   disposable one. No guard was bypassed.
+
+**Marketing reconciliation (recorded, nothing changed).** "the applicable MSHA and OSHA standards
+suggested" is **NEEDS_QUALIFICATION**: true in kind, overstated in extent at 35 governed records
+with nine uncovered families. Wording work belongs to the v1.0 polish phase; product scope was not
+silently altered to preserve the copy.
+
+**What would close the gap**, in order: route finding citations through the governed corpus; add the
+nine families' source material through `npm run release -- prepare` with provenance and reviewer
+approval; obtain reviewer approval for the existing 35; then decide the unknown-jurisdiction
+contract with production-corpus evidence. **Expert HazLenz must never be the regulatory source of
+truth, and must not be pointed at this gap.**
+
+### Authoritative regulatory source acquisition and governed corpus expansion (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_AUTHORITATIVE_STANDARDS_CORPUS_STAGED — REVIEWER_GOVERNANCE_ACTION_REQUIRED`
+**Evidence:** `verification/insite-v1-regulatory-source-acquisition-2026-08-28/`
+
+The previous phase terminated `AUTHORITATIVE_SOURCE_MATERIAL_REQUIRED` rather than inventing nine
+families' worth of missing regulation. This phase acquired it.
+
+| metric | before | after |
+|---|---|---|
+| governed records | **35** | **72** |
+| OSHA general industry / construction / MSHA | 13 / 11 / 11 | **25 / 24 / 23** |
+| coverage-matrix cells with source authority | 31 / 72 | **67 / 72** |
+| **`SOURCE_AUTHORITY_MISSING`** | **36** | **0** |
+| duplicates / conflicts / invalid records | — | **0 / 0 / 0** |
+| manifest reproducibility | — | **identical across two clean materializations** |
+
+**Binding facts and invariants established by this phase.**
+
+1. **The source authority is the eCFR versioner API and nothing else.** 37 sections retrieved
+   2026-08-28 from Title 29 (amended 2026-08-04) and Title 30 (amended 2026-08-25), all HTTP 200,
+   with verbatim XML and SHA-256 checksums preserved in the evidence package. **Blogs, training
+   sites, law-firm summaries, vendor pages, search snippets, secondary compliance summaries and
+   AI-generated regulatory text are prohibited as governed authority and must stay prohibited.**
+2. **The corpus contract stores an authored, paragraph-accurate summary, not verbatim text.**
+   `standards-intelligence-projection.ts` derives `standards_master.standardText` FROM
+   `plainLanguageSummary`; the KG-3D/3E house style — state what the cited paragraph requires and
+   NAME the sibling paragraph that limits it — is what new records must follow, with `sourceUrl`
+   and `retrievalDate` carrying provenance.
+3. **OSHA citations are never reused for MSHA.** Where the regimes differ structurally the
+   difference is recorded: MSHA regulates hot work through an ignition-source prohibition
+   (`56.4100`) and welding shielding (`56.14213`) rather than a fire watch; `56.16009` states the
+   suspended-load duty absolutely with **no** fall-zone exception, unlike `1926.1425(b)`; `56.3200`
+   is a take-down-or-support duty, **not** a trench protective-systems specification; `56.4530`
+   requires a sufficient number of exits for fire escape and is far narrower than `1910.36`.
+4. **`MATERIALIZATION_DETERMINISTIC = TRUE`** — two clean disposable databases produced the identical
+   manifest `702339e5…` at 72 records, 0 foreign rows, 0 placeholder provenance, **no hand-inserted
+   rows**. The version-controlled governed source set remains the source of truth.
+5. **Reviewer approval is a HUMAN governance act and must not be self-approved.**
+   `npm run review:release-record -- approve` is the only mechanism, deliberately with no HTTP
+   endpoint, and `--expected-checksum` is mandatory so a reviewer must name the version they read.
+   **0 of 72 records are `reviewer_approved`**, so no record can present as
+   `APPROVED_GOVERNED_CONTENT`. This is a standing governance debt — the 35 pre-existing records
+   were equally unapproved — and it is the only remaining blocker to an authoritative release.
+6. **The unresolved-jurisdiction defect was re-characterised, not repaired, and the threshold is
+   NOT the thing that is wrong.** Against 72 records, unresolved-jurisdiction recall is 4/5 with
+   **0 wrong-jurisdiction candidates in every pinned run**; at 35 records it was 0. The remaining
+   miss is a RANKING defect (`1910.252` outranked `1910.147` for a textbook LOTO observation under
+   an unresolved regime, and `1910.147` returns correctly once general industry is pinned).
+   Lowering the admission threshold would not fix a mis-ranking and would worsen the measured
+   false positive. **Do not re-open the threshold without that evidence.**
+7. **A coverage-matrix cell may not name a provision the governed source set does not hold.** The
+   new source-authority gate (`npm run test:hazlenz-source-authority`, 36th suite of
+   `test:hazlenz-core`) caught five cells doing exactly that; the provisions were acquired rather
+   than the cells de-scoped.
+8. **The protected hazard floor is unchanged and was re-measured**: recognition 43/43, actionable
+   coverage 43/43, life-critical 35/35, Population A precision 100.0 % with 0 forbidden emissions.
+   `golden-standards-tests` passes 15/15 against the EXPANDED corpus, and no standards-dependent
+   suite changed result — evidence the expansion is additive rather than disruptive.
+
+**Governance hazard recorded, not repaired.** The finalizer reuses the release identifier
+`federal-core-2026-07-30.1` for materially different content; only the manifest checksum moved
+(`14a34fea…` → `702339e5…`). Two artifacts named the same release are not the same release.
+Versioning the release identifier belongs with the reviewer-governance action.
+
+**Next phase is the finding-level integration**, and `evidence-foundation.ts` must be migrated, not
+replaced: its applicability predicates and its `SUPPORTED`/`UNKNOWN`/`CONTRADICTED` decision model
+are retained, its hard-coded citation literals become governed lookups keyed by (hazard family,
+jurisdiction), and it stays as a deterministic fallback until a measured parity run justifies
+retiring it. **Do not build a second mini-library beside it.** See
+`FINDING_LEVEL_ARCHITECTURE_PROPOSAL.md`.
+
+### Regulatory reviewer governance and immutable release versioning (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_GOVERNED_STANDARDS_RELEASE_READY — FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATION_REQUIRED`
+**Evidence:** `verification/insite-v1-reviewer-governance-2026-08-28/`
+
+| | before | after |
+|---|---|---|
+| governed source records | 72 | 72 (corpus unchanged) |
+| records reviewed record by record | 0 | **72** |
+| `reviewer_approved` | **0** | **64** |
+| `REJECT_CORRECTION_REQUIRED` | — | **8** |
+| escalated / out-of-scope | — | 0 / 0 |
+| candidate release identity | `federal-core-2026-07-30.1` (naming 3 different artifacts) | **`federal-core-2026-08-28.1`**, 64 members, manifest `680540d9…` |
+
+**Binding facts and invariants established by this phase.**
+
+1. **The release-identity diagnosis in the previous section was imprecise; this is the corrected
+   one.** The finalizer's immutability guard exists and is correct — idempotent no-op on an
+   identical manifest, explicit refusal otherwise — but **its scope is one database**, because it
+   reads `regulatory_releases.manifestChecksum` from the connection. In a fresh database the guard
+   does not engage. Nothing was bypassed and nothing was rewritten; the identifier was simply not
+   bound to a manifest anywhere that survives a database.
+2. **The repair is the existing mechanism, not a new one.** KG-5B release definitions already pin
+   `expectedManifestChecksum` as "a VERIFICATION, never an input"; `prepareGovernedRelease` honoured
+   it and the seed finalizer did not. `standards/releases/release-identity.ts` is the missing half
+   of that contract. Measured: `SAME_RELEASE_ID_SAME_MANIFEST = TRUE`,
+   `DIFFERENT_MANIFEST_SAME_RELEASE_ID = REJECTED` (exit 1, nothing written),
+   `RELEASE_REPRODUCIBLE = TRUE` across two clean databases.
+3. **The one exemption composes with KG-4C and is itself gated.** An UNREGISTERED release id is
+   permitted only in a database carrying an ownership marker written INTO it by a suite that
+   claimed it — which production can never carry — because governance suites legitimately finalize
+   synthetic fixtures such as `kg3a-release.A`. A **REGISTERED** id with a different manifest is
+   refused **everywhere, ownership or not**. Both branches are asserted by
+   `npm run test:release-identity-immutability` (37th suite of `test:hazlenz-core`).
+4. **Never assume pre-existing governed records are correct.** All 8 rejections are in the
+   PRE-EXISTING 35, none in the 37 acquired the same week. Five had a `plainLanguageSummary` that
+   was **HazLenz's own selection heuristic rather than the regulation** ("may be relevant when an
+   active operational hazard is present, requiring qualified review…") — and because the projection
+   derives `standards_master.standardText` FROM that field, those five would have shown a customer
+   engine prose where the regulation belongs. The other three materially narrowed
+   (`56.14105` made an unconditional duty conditional), materially broadened (`1910.219` dropped the
+   section's own scope exemptions) or omitted an essential qualification (`57.14107(a)` dropped the
+   seven-foot exemption its sibling record names).
+5. **Two independent rubric axes selected the same 8 records** — the fidelity review and the
+   provenance check (`sourceUrl`/`retrievalDate` absent) — which is corroboration, not coincidence.
+6. **Rejected records are EXCLUDED, never edited.** Verified, not assumed: `prepare` for
+   `federal-core-2026-07-30.1` still computes `14a34fea…` from the current source arrays because
+   membership is explicit, so editing any of those 35 records would break the pin that makes the
+   historical release self-checking. **Correcting a governed record is supersession by a new
+   release, never in-place mutation.**
+7. **Approval is per record, per checksum, and the command is not the evidence.** 64 approvals,
+   64 distinct `--expected-checksum` values, `effectiveReviewState: reviewer_approved` on 64/64, no
+   bulk path and no HTTP endpoint. The substantive evidence is `REVIEWER_LEDGER.json`; the
+   8 rejections are what show the review was real.
+8. **Reviewer identity is stated honestly and must stay so.**
+   `insite-product-owner-authorized-regulatory-content-review`, role
+   `regulatory-content-reviewer (non-attorney, non-agency)`. **No attorney, OSHA, MSHA, PE, CIH or
+   CSP review is claimed, and no government approval — because none occurred.**
+9. **No rejected record can masquerade as approved.** Candidate validation (11 checks, 0 failures)
+   asserts it directly, and asserts the positive control too so the check is not vacuous.
+10. **Production was not activated, migrated or pointed at anything.** The release is
+    `provisional` and local.
+
+**Corrected, not relaxed:** `test:kg5b-release-construction` pinned "a corpus of exactly the
+governed records is seedable" to the literal `governedRows === 35`. The property is
+`foreignRows === 0`, which passed throughout; the literal failed on authorized growth. It now
+compares against the source set's own size — true at any size.
+
+**Carried forward unrepaired, by instruction:** the unresolved-jurisdiction RANKING defect — 4/5
+obvious cases recovered, 0 wrong-jurisdiction candidates in pinned runs, the LOTO miss caused by
+ranking rather than admission, one administrative false positive. Evaluate it against the reviewed
+corpus during finding-level integration.
+
+**Next phase is bound by `FINDING_LEVEL_INTEGRATION_CONTRACT.md`**, whose first assertion must be
+written before the integration code: a finding cites `releaseId` + `recordChecksum` alongside the
+citation, and **no silent fallback may present an unapproved code-resident citation as approved
+governed content**.
+
+### Finding-level governed standards integration (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_FINDING_LEVEL_GOVERNED_STANDARDS_INTEGRATED — CANDIDATE_RELEASE_ACTIVATION_ACCEPTANCE_REQUIRED`
+**Evidence:** `verification/insite-v1-finding-level-governed-integration-2026-08-28/`
+
+```
+CANDIDATE_RELEASE_ACTIVATED = FALSE   PRODUCTION_MUTATED = FALSE   PROVIDER_CALLS = 0
+```
+
+Every customer finding now carries an explicit, release-scoped statement of the regulatory
+authority behind each citation. `evidence-foundation.ts` was NOT modified.
+
+**Binding facts and invariants established by this phase.**
+
+1. **THE AUTHORITY RULE. A citation earns governed authority only when a governed record with that
+   citation IDENTITY is a MEMBER of the release governing the finding, that member's EFFECTIVE
+   review state is `reviewer_approved` IN THAT RELEASE, and it carries usable content.**
+   Citation-string equality confers nothing, ever. The code-resident rules emit strings the
+   governed release also holds; deriving authority from the string would hand a reviewer's
+   approval to a rule that fired on evidence the reviewer never saw. One module,
+   `standards/releases/finding-standards-authority.ts`, grants or refuses the label so there is one
+   rule rather than one per call site.
+2. **Five authority states, and only one may be presented as reviewed regulation**:
+   `APPROVED_GOVERNED_CONTENT`, `UNAPPROVED_GOVERNED_CONTENT`, `REJECTED_GOVERNED_CONTENT`
+   (a governed record excluded from the governing release — what a `REJECT_CORRECTION_REQUIRED`
+   disposition produces), `LEGACY_CODE_RESIDENT_CONTENT`, `NO_GOVERNED_MATCH`. KG-3C's
+   `backingStatus` / `contentDisclosure` / `corpusBacked` keep their meanings alongside.
+3. **Regulatory authority and hazard recognition are separate concerns, enforced.** The annotation
+   never removes, suppresses or downgrades a hazard, and a failure inside it leaves the candidate
+   unannotated — which reads as un-governed, the safe direction. `NO_APPROVED_GOVERNED_MATCH` never
+   becomes `NO_HAZARD`.
+4. **Annotation happens at finding materialisation**, in `reconcileDecompositionFindings()`, because
+   that is the only point holding both the code-resident candidates and `analysis.knowledgeReleaseId`
+   — the release that governed the analysis they came from.
+5. **A persisted finding is bound to its own release.** Re-resolution uses the finding's stored
+   `governedReleaseId`, never an active pointer, so a later release becoming available cannot
+   silently rewrite an existing finding's authority. Measured with both releases coexisting: under
+   R1 `1910.219` is an UNAPPROVED member; under R2 the SAME citation is REJECTED; the R1 finding was
+   not rewritten.
+6. **Reviewer attribution and the record checksum appear ONLY on an approved member of that
+   release.** An unapproved or revoked record never carries a reviewer's name.
+7. **All 8 rejected records are permanent adversarial fixtures** and each is proven unable to reach
+   governed authority, with a positive control in the same suite so the result cannot come from
+   governed resolution being switched off. **None was modified to satisfy a test.**
+8. **Today every persisted candidate is `LEGACY_CODE_RESIDENT_CONTENT` with a null release — and
+   that is correct, not a shortfall.** `knowledgeReleaseId` is NULL because retrieval is unscoped
+   (KG-1's honest answer) and the candidate release is not activated. The change is that findings
+   now SAY so explicitly instead of leaving a reader to infer it.
+9. **The report claims nothing it should not.** Its only occurrences of "approved" are inside the
+   quoted text of `1910.303(g)(2)`. No customer wording was changed; the distinction lives in the
+   data.
+
+**Two new gates**: `npm run test:finding-governed-authority` (17 checks — the contract's first
+assertion, written as a failing test before any integration code) and
+`npm run test:finding-governed-integration` (19 checks — rejected-record adversarial fixtures,
+release binding, determinism).
+
+**Protected floor re-measured intact**: recognition 43/43, actionable 43/43, life-critical 35/35,
+Population A precision 100.0 %, forbidden emissions 0, `test:hazlenz-core` 37/37, KG-5B 102/102,
+golden standards 15/15, release identity 8/8, `tsc` clean, `test:persisted-decomposition-findings`
+PASS. No new regressions.
+
+**Unresolved-jurisdiction ranking defect: carried forward unchanged.**
+
+**What activation would change.** The machinery to claim governed authority is in place and proven,
+but two product-owner decisions gate it: activating `federal-core-2026-08-28.1`, and scoping
+retrieval to that release so KG-1 can truthfully record a `knowledgeReleaseId`. **Until retrieval is
+release-scoped, NULL remains the honest answer and no finding may claim governed authority.**
+
+---
+
+### Governed release activation + release-scoped retrieval (`STABLE_INVARIANT`, 2026-08-28)
+
+**Terminal:** `HAZLENZ_GOVERNED_RELEASE_ACTIVATION_ACCEPTED — PRESERVATION_CHECKPOINT_AND_PRODUCTION_CUTOVER_PLANNING_REQUIRED`
+**Evidence:** `verification/insite-v1-governed-release-activation-2026-08-28/`
+
+```
+LOCAL_CANDIDATE_ACTIVATION = TRUE    PRODUCTION_CANDIDATE_ACTIVATION = FALSE
+PRODUCTION_MUTATED         = FALSE   PROVIDER_CALLS                  = 0
+```
+
+The two decisions named above were both taken, **locally and disposably**.
+`federal-core-2026-08-28.1` was activated, retrieval was scoped to it, and a finding produced
+through the real HTTP customer path now carries reviewer-approved governed authority traceable to
+an exact release record.
+
+**The architecture, in one line.**
+
+```
+inspection (write-once knowledgeReleaseId)
+  -> resolveInspectionReleaseBinding()  -> pinGovernedRelease(ds, mode, boundReleaseId)
+  -> resolveGoverned() scoped to that release -> resolveFindingStandardAuthority()
+  -> persisted finding + report provenance
+```
+
+**Binding facts and invariants established by this phase.**
+
+1. **ACTIVATION SELECTS; IT DOES NOT REWRITE.** Activation mutates exactly two tables in one
+   transaction — `regulatory_releases` (`status`, `activatedAt`, `deactivatedAt`, `parentReleaseId`)
+   and an append-only INSERT into `knowledge_release_events`. It cannot alter membership, normalized
+   records, the review ledger or a manifest checksum. Measured by digesting all three tables
+   immediately before and after: manifest `680540d9…` unchanged, 64 members unchanged, 64 approvals
+   unchanged, and re-activating the active release writes **nothing at all**.
+2. **RELEASE IDENTITY IS SELECTED ONCE PER INSPECTION, NOT ONCE PER ANALYSIS.** This is the defect
+   this phase found and closed. `pinGovernedRelease()` read the ACTIVE POINTER on every analysis, so
+   activating a newer release would have silently re-governed every inspection already resolved
+   under an older one, and the customer's report would have changed its regulatory basis with nobody
+   deciding it should. `inspection.knowledgeReleaseId` (migration `1800000018000`) is **write-once**:
+   an inspection acquires a release the first time an analysis runs under a governed mode with a
+   release active, and keeps it. When bound, **the active pointer is not read — not even for
+   comparison**, because there is no reconciliation to make and a comparison would invite one. There
+   is deliberately no `rebind`/`force` parameter: re-binding is a migration decision a person makes.
+3. **NULL is never back-filled.** The column is never populated for historical inspections whose
+   retrieval was genuinely unscoped — that would be exactly the false provenance KG-1 exists to
+   prevent, and it cannot be undone once a report cites it.
+4. **A provenance CLAIM is verified against the inspection's BINDING**, and only against the active
+   pointer when the inspection has none. Checking the pointer instead is wrong in both directions
+   once a newer release is activated: it would reject a truthful re-analysis of an R1-bound
+   inspection, and accept a claim naming a release that inspection was never governed by.
+5. **ACTIVATION ALONE CHANGES NOTHING FOR A CUSTOMER.** With the reviewed release ACTIVE and the
+   server in its shipped LEGACY posture: the accepted workflow passes 66/66, every persisted
+   candidate is still `LEGACY_CODE_RESIDENT_CONTENT`, and `test:kg4e-report-provenance` measures
+   **0 of 19 findings and 0 of 14 analyses carrying a governed release id**. Governed retrieval
+   reaches a customer only when a governed mode AND a server-side account allowlist are both set.
+6. **SHADOW stays structurally invisible through the modified orchestration.** A full SHADOW corpus
+   was run against a disposable server — `run:kg4b-shadow-corpus`, **145 passed, 0 failed** across 43
+   cases — and every case shows customer output identical to LEGACY, carrying no governed telemetry
+   keys, with citation set and order identical. The 93 resulting events pass `test:kg4b-privacy-review`
+   **26/26**: every text digest is a 32-hex hash, never an excerpt.
+7. **All 64 approved members are governance-REACHABLE and all 8 rejected records are refused.**
+   `test:governed-release-reachability` (514 checks) proves, per member: membership, effective state
+   `reviewer_approved`, correct release, checksum reconstructable from the immutable snapshot,
+   usable content, `APPROVED_GOVERNED_CONTENT` reachable, retrieval `APPROVED_EXACT`. And per
+   rejected record: not a member, no approval reachable, no reviewer identity, no checksum, never
+   `corpusBacked`, and **no approved reviewer decision names it in any release**. This measures
+   governance reachability, NOT hazard coverage — no hazard was fabricated to force a regulation
+   through the 43-case corpus.
+8. **Exactly one of the five authority states may be presented as reviewed regulation**, asserted
+   state by state, together with hazard-recognition independence: a life-critical hazard whose
+   citations span three authority states is byte-identical as a hazard before and after annotation.
+9. **A governance failure costs a CLAIM, never a HAZARD.** Under a simulated outage the hazard, its
+   severity and its citations survive; every candidate is left UNANNOTATED rather than partially
+   trusted, carrying no governance field at all, so absence reads as non-governed everywhere; a
+   partial failure leaves each candidate either fully annotated or untouched; an unreadable pointer
+   reports "unknown", never "there is none", and can never confer governed provenance.
+10. **Customer-visible approved text comes from the governed record.** For every
+   `APPROVED_GOVERNED_CONTENT` candidate the claimed checksum names a real record in the release and
+   every displayed body string is one that record supplies. The report makes no claim of reviewer
+   approval, review or governed authority. No frontend file references `authorityState`,
+   `corpusBacked`, `backingStatus` or reviewer identity at all.
+11. **Reopen and re-analysis preserve the original release**, proven with a live R1→R2 transition:
+    the reopened inspection keeps `federal-core-2026-08-28.1`, re-analysis records it, no persisted
+    finding is rewritten — and the **positive control** in the same run shows a NEW inspection binds
+    to the newly active release, so the preservation is not a dead code path.
+
+**Five new gates**: `test:release-activation-acceptance` (43), `test:release-binding-acceptance`
+(25), `test:governed-release-reachability` (514), `test:governed-authority-precedence` (42),
+`verify:release-scoped-customer-workflow` (35). Plus the read-only diagnostic
+`diagnose:knowledge-release-null-path`, which re-measures in any environment why provenance is NULL.
+
+**Protected floor re-measured intact WITH THE RELEASE ACTIVE**: recognition 43/43, actionable 43/43,
+life-critical 35/35, Population A precision 100.0 %, forbidden emissions 0, `test:hazlenz-core`
+37/37, KG-5B 102/102, golden standards 15/15, release identity 8/8, finding authority 17/17, finding
+integration 19/19, accepted workflow 66/66, `test:persisted-decomposition-findings` PASS, `tsc` clean
+(backend and frontend). No threshold relaxed.
+
+**Build-layout invariant added.** `backend/tsconfig.json` now pins `"rootDir": "./src"`. Without it,
+one import from `src/` into `scripts/` changes the common source root `tsc` infers and silently
+moves the whole build from `dist/main.js` to `dist/src/main.js` — `npm start` runs `node dist/main.js`,
+so the artifact compiles cleanly and does not start. This phase caused that and repaired it; the
+pin turns the same mistake into a compile error naming the offending file.
+
+**Unresolved-jurisdiction ranking defect: carried forward unchanged.**
+
+**Open, and named rather than absorbed:** `test:approval-contract` refuses under the PRECEDING
+phase's release-identity guard because it creates its work database without an ownership marker
+(`ownedDisposable=false`) — pre-existing, outside this phase's authorization to repair.
+One check of `test:kg4e-report-provenance` needs a `TELEMETRY` input path this run did not supply;
+every HARD invariant in it passed. The phrase "the four known failures", asserted by the two
+preceding phases, is **not enumerated anywhere reachable** — the blueprint documents two — and
+should be enumerated before another phase relies on it.
+
+**Not proven: production.** This phase proves the mechanism in a disposable environment. Nothing
+here authorises an activation, a mode change or an allowlist entry on a production server.
+
+**PRESERVATION SCOPE, decided by the product owner.** The governed backend could not be separated
+from the other accepted uncommitted backend phases: `inspection.service.ts` carries release binding
+alongside `displayNumber`/`clientRequestId`, and `hazlenz-core-regression.ts` registers
+`release-identity-immutability` beside five precision/recall suites that were still untracked — so a
+governed-only commit would have broken the 37/37 gate the checkpoint exists to preserve. The
+checkpoint therefore preserves the coherent accepted APPLICATION state, including the 11
+inspection-workflow frontend paths, and was proven front-to-back before staging: a real browser
+journey (sign in → site → full inspection → workspace → HazLenz → persisted finding) **6/6 with zero
+page errors**, the canonical one-report-per-inspection contract **15/15** against the exact four
+endpoints the frontend client calls, and the default posture confirmed legacy — **0 of 25 analyses,
+0 of 35 findings and 0 of 17 inspections** carrying a governed release id with the release ACTIVE.
+
+`frontend-next/tsconfig.json` is deliberately EXCLUDED: it carries generated `.next-onereport`
+include globs, `.next-onereport` is a gitignored build-output directory, no source references it,
+and both the typecheck and the production build succeed without it —
+`CONTAMINATED_TSCONFIG_REQUIRED_FOR_ACCEPTED_FRONTEND = FALSE`.
+
+**OPEN-4 `PRE_PRODUCTION_GOVERNANCE_RECONCILIATION_REQUIRED`.** Four tracked frontend check scripts
+now fail against the committed source, and are NOT repaired here — repairing them is new frontend
+work. Three pin pre-redesign literals (a renamed resume function; the observation label
+`"What did you observe?"`, now `"What did you see?"`; a site selector step added before
+`"New site name"`), and `check:phase5-report-release` inserts the retired `'expert'` entitlement tier
+and was already failing at HEAD. Each protected property was verified to still hold — see
+`COMBINED_APPLICATION_ACCEPTANCE.md`. **These instruments must be updated to the accepted redesign,
+or retired, before a production cutover.**
+
+---
 
 ## FUTURE-SESSION BOOTSTRAP
 

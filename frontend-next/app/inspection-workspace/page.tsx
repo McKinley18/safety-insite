@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   addPersistedObservation,
   analyzeObservation,
   createPersistedCorrectiveAction,
   createPersistedTask,
+  createUserAuthoredFinding,
+  getCompletionReadiness,
   finalizePersistedFinding,
   generatePersistedReport,
   getPersistedInspection,
@@ -19,26 +21,53 @@ import {
   REGULATORY_CONTEXT_OPTIONS,
   regulatoryContextLabel,
   type PersistedInspection,
+  type PersistedFinding,
   type HazLenzAnalysisResult,
   type HazLenzEvidenceFact,
   type RegulatoryContext,
+  type CompletionReadiness,
+  type InspectionReportSummary,
 } from "@/lib/canonicalWorkflowApi";
 import { StandardCitationHeading } from "@/components/inspection/SafeScopeStandardsSection";
+import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import { getStandardBackingPresentation } from "@/lib/inspection/standardDisplay";
+import { getInspectionRiskScale } from "@/lib/inspection/inspectionPageHelpers";
+import { RISK_BAND_DUE_DAYS, governedDueDate, riskBandForScore, type RiskBandLabel } from "@/lib/inspection/riskBands";
+import { likelihoodScale, severityScale } from "@/lib/inspection/inspectionConstants";
+import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { getStoredPlanCode, getVerifiedPlanCode, hasPlanEntitlement, type BillingTier } from "@/lib/planEntitlements";
 
-type Step = "capture" | "review" | "risk" | "followup" | "complete";
+/**
+ * The five customer-facing steps of one finding, plus the inspection-level finalize page.
+ *
+ *   capture  — photo, location, task, description
+ *   hazlenz  — applicable standards, confidence (expandable into the questions that raise it),
+ *              and the option to revise the observation and reanalyze
+ *   risk     — risk matrix, and the HazLenz-suggested corrective actions, which the reviewer may
+ *              extend or replace with their own
+ *   review   — read back the finding that has been assembled, then save it
+ *   finalize — every finding in the inspection as a card: edit, remove, review, generate report
+ *
+ * Saving a finding returns straight to `capture` for the next one -- there is no interstitial
+ * between findings, because the real job is walking a site recording several in a row.
+ */
+type Step = "capture" | "candidates" | "hazlenz" | "risk" | "review" | "finalize";
 
-const STEP_ORDER: Step[] = ["capture", "review", "risk", "followup", "complete"];
+const STEP_ORDER: Step[] = ["capture", "hazlenz", "risk", "review", "finalize"];
 
-// Short forms, sized for a five-across progress bar on a 320px screen.
+// Short forms, sized for a five-across progress bar on a 320px screen. Named for the customer's
+// task rather than for the internal state machine.
 const STEP_LABELS: Record<Step, string> = {
-  capture: "Capture",
+  // "What you saw" truncated to "What You S..." at a 390px viewport; these all survive ~70px.
+  capture: "Record it",
+  // The candidate confirmation is part of reading HazLenz's result, not a sixth stage of the
+  // inspection, so it shares the HazLenz position in the bar rather than lengthening it.
+  candidates: "HazLenz",
+  hazlenz: "HazLenz",
+  risk: "Risk & fix",
   review: "Review",
-  risk: "Risk",
-  followup: "Action",
-  complete: "Done",
+  finalize: "Finish",
 };
 
 /**
@@ -361,6 +390,146 @@ function safeActionDraftForFinding(finding: { hazardCategory: string | null; haz
   return findingScopedActionDraft(finding) || fallback;
 }
 
+/**
+ * EVERY standard candidate the engine attached to this finding, not only the strongest one.
+ *
+ * `resolveSelectedFindingStandard` above answers "which single standard heads this finding" and is
+ * kept unchanged, because the finalization path and the Standard Detail panel both depend on its
+ * exact selection rules. The HazLenz step needs the whole list: where several standards genuinely
+ * apply, all of them are shown, ordered direct-before-candidate and then by descending confidence.
+ * Excluded candidates are dropped -- the engine has already decided they do not apply.
+ */
+function resolveFindingStandards(
+  finding: { sourceCandidate?: Record<string, unknown> | null } | null | undefined,
+): PersistedStandardCandidate[] {
+  const raw = finding?.sourceCandidate?.standardCandidates;
+  if (!Array.isArray(raw)) return [];
+  return (raw as PersistedStandardCandidate[])
+    .filter((candidate) => candidate && candidate.citation && candidate.applicability !== "excluded")
+    .sort((a, b) => {
+      if (a.applicability !== b.applicability) return a.applicability === "direct" ? -1 : 1;
+      return (b.confidence || 0) - (a.confidence || 0);
+    });
+}
+
+/** A corrective action the reviewer has accepted for the finding, whatever its origin. */
+type ReviewerAction = {
+  id: string;
+  title: string;
+  detail: string;
+  origin: "hazlenz" | "user";
+  /** HazLenz's own bucket, kept so the saved action can say which part of the fix it is. */
+  kind: "immediate" | "prevention" | "verification";
+  selected: boolean;
+};
+
+const ACTION_KIND_LABELS: Record<ReviewerAction["kind"], string> = {
+  immediate: "Immediate protective action",
+  prevention: "Permanent correction",
+  verification: "Verification step",
+};
+
+/**
+ * Neutral guidance for the manual corrective-action editor. Prompts about the SHAPE of the answer,
+ * never a suggested answer: pre-filling substantive text would be pseudo-HazLenz content attached
+ * to a hazard HazLenz never assessed.
+ */
+const ACTION_KIND_PLACEHOLDERS: Record<ReviewerAction["kind"], string> = {
+  immediate: "What was done, or must be done now, to control the exposure",
+  prevention: "What will stop this recurring",
+  verification: "How completion will be confirmed, and by whom",
+};
+
+const ACTION_KIND_ORDER: ReviewerAction["kind"][] = ["immediate", "prevention", "verification"];
+
+/**
+ * Three empty, editable slots -- one per domain field of the existing action model.
+ *
+ * Used when there is nothing to suggest, so the inspector meets a usable editor rather than an
+ * empty panel explaining what HazLenz did not do. Unselected until something is typed, so a slot
+ * left blank is never saved as an action.
+ */
+function blankManualActions(): ReviewerAction[] {
+  return ACTION_KIND_ORDER.map((kind) => ({
+    id: `manual-${kind}`,
+    title: ACTION_KIND_LABELS[kind],
+    detail: "",
+    origin: "user",
+    kind,
+    selected: false,
+  }));
+}
+
+/**
+ * The finding's own HazLenz corrective-action intelligence, flattened into selectable items.
+ * Reads `riskSnapshot.correctiveActionIntelligence`, which the backend computes per finding from
+ * that finding's own evidence, risk and standards -- so a guarding finding never inherits an
+ * electrical finding's action text.
+ */
+function suggestedActionsForFinding(
+  finding: { riskSnapshot?: Record<string, unknown> | null } | null | undefined,
+): ReviewerAction[] {
+  const intelligence = (finding?.riskSnapshot as { correctiveActionIntelligence?: Record<string, unknown> } | null | undefined)
+    ?.correctiveActionIntelligence;
+  if (!intelligence || typeof intelligence !== "object") return [];
+  const buckets: Array<{ key: string; kind: ReviewerAction["kind"] }> = [
+    { key: "immediateActions", kind: "immediate" },
+    { key: "preventionActions", kind: "prevention" },
+    { key: "verificationActions", kind: "verification" },
+  ];
+  const actions: ReviewerAction[] = [];
+  for (const bucket of buckets) {
+    const list = (intelligence as Record<string, unknown>)[bucket.key];
+    if (!Array.isArray(list)) continue;
+    list.forEach((item, index) => {
+      const entry = item as { title?: string; rationale?: string; description?: string; verificationRequired?: string };
+      const title = String(entry?.title || "").trim();
+      const detail = String(entry?.rationale || entry?.description || "").trim();
+      if (!title && !detail) return;
+      actions.push({
+        id: `${bucket.key}-${index}`,
+        title: title || ACTION_KIND_LABELS[bucket.kind],
+        detail,
+        origin: "hazlenz",
+        kind: bucket.kind,
+        // The immediate action is pre-selected because it is the one the risk band demands; the
+        // rest are offered. Nothing is saved until the reviewer confirms on the review step.
+        selected: bucket.kind === "immediate",
+      });
+    });
+  }
+  return actions;
+}
+
+/**
+ * Collapses the reviewer's accepted actions into the three fields the save path already persists.
+ *
+ * A manual slot's `title` IS its kind label, so prefixing it produced "Immediate protective action:
+ * Immediate protective action: ..." once the Finish screen added its own "Immediate:" label. Only a
+ * HazLenz action carries a title that says something the kind label does not, so only that is kept.
+ */
+function actionDraftFromReviewerActions(actions: ReviewerAction[]) {
+  const pick = (kind: ReviewerAction["kind"]) =>
+    actions
+      .filter((action) => action.selected && action.kind === kind)
+      .map((action) => {
+        const titleAddsMeaning = action.title && action.title !== ACTION_KIND_LABELS[action.kind];
+        if (!action.detail) return action.title;
+        return titleAddsMeaning ? `${action.title}: ${action.detail}` : action.detail;
+      })
+      .join(" ");
+  return {
+    immediateAction: pick("immediate"),
+    permanentCorrection: pick("prevention"),
+    verificationStep: pick("verification"),
+  };
+}
+
+// The band shown here and the band saved on the finding must be the same number. Both come from
+// the ONE shared table in lib/inspection/riskBands.ts, which mirrors risk-profiles.ts and is held
+// to it by `npm run check:risk-band-parity`. See that module for the defect this replaced.
+const RISK_BAND_FOR_SCORE = (score: number, maxScore: number) => riskBandForScore(score, maxScore);
+
 export default function InspectionWorkspacePage() {
   const router = useRouter();
   const [inspection, setInspection] = useState<PersistedInspection | null>(null);
@@ -406,7 +575,7 @@ export default function InspectionWorkspacePage() {
   const [staleAnalysis, setStaleAnalysis] = useState(false);
   const [editingObservation, setEditingObservation] = useState(false);
   const [revisionText, setRevisionText] = useState("");
-  const [report, setReport] = useState<{ reportId: string; version: number; checksum: string } | null>(null);
+  const [report, setReport] = useState<InspectionReportSummary | null>(null);
   const [reviewerRisk, setReviewerRisk] = useState({
     severity: "Not established",
     likelihood: "Not established",
@@ -433,6 +602,88 @@ export default function InspectionWorkspacePage() {
     verificationStep: "",
   });
 
+  // --- Risk matrix (step 3). The reviewer picks ONE cell; severity x likelihood is the score,
+  // and the band derived from it drives the reviewer-confirmed risk saved on the finding.
+  const riskScale = getInspectionRiskScale({ riskProfileId: "standard_5x5", severityScale, likelihoodScale });
+  const [severity, setSeverity] = useState<number | null>(null);
+  const [likelihood, setLikelihood] = useState<number | null>(null);
+
+  // --- Corrective actions (step 3). HazLenz's own per-finding suggestions, plus anything the
+  // reviewer adds. Nothing here is persisted until the finding is saved on the review step.
+  const [reviewerActions, setReviewerActions] = useState<ReviewerAction[]>([]);
+  const [newActionTitle, setNewActionTitle] = useState("");
+  const [newActionDetail, setNewActionDetail] = useState("");
+  const [newActionKind, setNewActionKind] = useState<ReviewerAction["kind"]>("immediate");
+
+  /**
+   * The person accountable for completing the corrective action, as the customer typed it.
+   *
+   * Descriptive report metadata, not an assignment system: it does not select an account, grant
+   * anything, or notify anyone. Blank means UNASSIGNED and stays that way -- the inspector is never
+   * silently written in, because inspecting a hazard and being responsible for fixing it are
+   * different roles. Persisted as `corrective_actions.assignedToName`, which already exists.
+   */
+  const [responsiblePerson, setResponsiblePerson] = useState("");
+
+  /**
+   * Brief non-blocking confirmation that a finding was saved. Deliberately not a modal and not a
+   * screen: it acknowledges the save and gets out of the way so the next condition can be recorded.
+   */
+  /**
+   * The server's completion contract, refreshed whenever the Finish screen is shown or the finding
+   * set changes. It is the ONLY basis for enabling the Finish action -- there is no second frontend
+   * rule about what counts as finishable.
+   */
+  const [readiness, setReadiness] = useState<CompletionReadiness | null>(null);
+
+  const [savedFlash, setSavedFlash] = useState("");
+  const savedFlashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /**
+   * Refresh the server's completion answer. Called on entering Finish and after any change that
+   * could alter it, so readiness updates in place without a reload.
+   */
+  const refreshReadiness = useCallback(async (inspectionId: string) => {
+    try {
+      setReadiness(await getCompletionReadiness(inspectionId));
+    } catch {
+      // A readiness lookup that fails must not present the inspection as finishable.
+      setReadiness(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (step === "finalize" && inspection?.id) void refreshReadiness(inspection.id);
+  }, [step, inspection?.id, inspection?.findings, refreshReadiness]);
+
+  function flashSaved(message = "Finding saved") {
+    if (savedFlashTimer.current) clearTimeout(savedFlashTimer.current);
+    setSavedFlash(message);
+    savedFlashTimer.current = setTimeout(() => setSavedFlash(""), 4000);
+  }
+
+  useEffect(() => () => {
+    if (savedFlashTimer.current) clearTimeout(savedFlashTimer.current);
+  }, []);
+
+  // --- Standards presentation (step 2). Citations are collapsed to number + title; expanding one
+  // fetches its regulatory text on demand. `getRegulatorySection` fails soft to null, so a citation
+  // whose text has not been ingested shows an honest notice rather than an error.
+  // --- Candidate confirmation. HazLenz proposes; the customer confirms which actually apply
+  // BEFORE any of them costs a review cycle. Keyed by finding id; true means confirmed.
+  const [candidateSelection, setCandidateSelection] = useState<Record<string, boolean>>({});
+
+  // --- "Add a finding HazLenz missed". Distinct from revising the observation: the observation is
+  // valid, HazLenz simply did not identify a hazard the inspector believes is present.
+  const [missedFormOpen, setMissedFormOpen] = useState(false);
+  const [missedHazardTitle, setMissedHazardTitle] = useState("");
+  const [missedHazardDetail, setMissedHazardDetail] = useState("");
+
+  const [expandedCitation, setExpandedCitation] = useState("");
+  const [standardTexts, setStandardTexts] = useState<Record<string, RegulatorySectionRecord | null>>({});
+  const [standardTextLoading, setStandardTextLoading] = useState("");
+  const [confidenceOpenFor, setConfidenceOpenFor] = useState("");
+
   useEffect(() => {
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
   }, []);
@@ -447,8 +698,13 @@ export default function InspectionWorkspacePage() {
   // Findings still in play across EVERY observation on this inspection (superseded revisions are
   // history, not findings the reviewer has to act on).
   const activeFindings = (inspection?.findings || []).filter((finding) => finding.status !== "superseded");
-  const activeFindingCount = activeFindings.length;
-  const reviewedFindingCount = activeFindings.filter((finding) => finding.finalReviewId).length;
+  // The counters the customer reads must describe FINDINGS, and a candidate they declined to
+  // confirm is not one. `dismissed` rows carry a finalReviewId (the rejection is itself a recorded
+  // review), so counting "has a review" reported "2 of 3 saved" immediately after the customer had
+  // confirmed exactly one finding and rejected two suggestions.
+  const countableFindings = activeFindings.filter((finding) => finding.status !== "dismissed");
+  const activeFindingCount = countableFindings.length;
+  const reviewedFindingCount = countableFindings.filter((finding) => finding.status === "finalized").length;
 
   // The selected finding's own persisted record, and the two customer-facing values drawn from
   // it for the assessment lead-in. observationFragment is the sentence the engine attributed to
@@ -539,6 +795,17 @@ export default function InspectionWorkspacePage() {
           analysisRequestVersion.current = currentAnalysis.requestVersion || 0;
           const restoredAnalysis = currentAnalysis.resultSnapshot as HazLenzAnalysisResult;
           setAnalysis(restoredAnalysis);
+          // Location and task survive a reload. They are not columns on the observation, but they
+          // ARE persisted inside the analysis snapshot's structuredObservation, so they can be
+          // restored rather than silently blanked -- the finding builder read "Where: Not recorded"
+          // for a location the inspector had typed, and it is wanted on the report.
+          const restoredContext = (restoredAnalysis as { structuredObservation?: { workArea?: string; taskBeingPerformed?: string } })
+            .structuredObservation;
+          if (restoredContext?.workArea) setWorkArea(restoredContext.workArea);
+          if (restoredContext?.taskBeingPerformed) setWorkActivity(restoredContext.taskBeingPerformed);
+          // Seed the matrix cell and this finding's own corrective actions, exactly as the live
+          // analysis path does, so a reload does not drop back to "Risk: Not set".
+          prepareFindingWorkingState(restoreTarget);
           if (restoredAnalysis.guidedFinding) {
             const restoredRisk = restoredAnalysis.guidedFinding.riskAssessment;
             setReviewerRisk({
@@ -560,7 +827,7 @@ export default function InspectionWorkspacePage() {
               verificationStep: restoredAnalysis.guidedFinding.correctiveAction.verificationStep,
             });
           }
-          setStep("review");
+          setStep("hazlenz");
         }
         setStatus("Saved to Safety InSite");
       })
@@ -597,6 +864,12 @@ export default function InspectionWorkspacePage() {
     analysisRequestVersion.current = current.requestVersion || 0;
     const restored = current.resultSnapshot as HazLenzAnalysisResult;
     setAnalysis(restored);
+    // Switching to a finding from a DIFFERENT observation must also bring that observation's own
+    // location and task, or the finding builder shows the previous observation's context.
+    const restoredContext = (restored as { structuredObservation?: { workArea?: string; taskBeingPerformed?: string } })
+      .structuredObservation;
+    setWorkArea(restoredContext?.workArea || "");
+    setWorkActivity(restoredContext?.taskBeingPerformed || "");
     const candidates = restored.guidedFinding?.findingCandidates || [];
     setSelectedSegmentKeys(
       candidates.filter((candidate) => candidate.applicability === "direct").map(candidateKey).slice(0, 6),
@@ -621,6 +894,237 @@ export default function InspectionWorkspacePage() {
     setReviewerRisk(findingRisk);
     setProposedRisk(findingRisk);
     setReviewerRiskReason("");
+    prepareFindingWorkingState(finding);
+  }
+
+  /**
+   * Loads the per-finding working state for steps 3 and 4: the matrix cell seeded from the
+   * finding's OWN computed risk, and that finding's OWN suggested corrective actions.
+   *
+   * Seeding rather than leaving blank matters -- the reviewer is confirming or changing HazLenz's
+   * assessment, not producing one from nothing. Everything remains editable, and nothing is
+   * persisted until the finding is saved.
+   */
+  function prepareFindingWorkingState(finding: { riskSnapshot?: Record<string, unknown> | null } | null | undefined) {
+    const operational = (finding?.riskSnapshot as { operationalRisk?: Record<string, unknown> } | null | undefined)?.operationalRisk;
+    const seedSeverity = Number(operational?.severity);
+    const seedLikelihood = Number(operational?.likelihood);
+    setSeverity(Number.isFinite(seedSeverity) && seedSeverity > 0 ? Math.min(seedSeverity, riskScale.maxScore) : null);
+    setLikelihood(Number.isFinite(seedLikelihood) && seedLikelihood > 0 ? Math.min(seedLikelihood, riskScale.maxScore) : null);
+    // When HazLenz has nothing to suggest -- always the case for a hazard the inspector identified
+    // themselves -- open the manual editor rather than an empty panel.
+    const suggested = suggestedActionsForFinding(finding);
+    setReviewerActions(suggested.length > 0 ? suggested : blankManualActions());
+    // Responsible party is per finding, exactly like the action text. Reset on every switch so one
+    // finding's owner can never carry silently onto the next.
+    setResponsiblePerson("");
+    setNewActionTitle("");
+    setNewActionDetail("");
+    setExpandedCitation("");
+    setConfidenceOpenFor("");
+  }
+
+  /**
+   * Whether a proposed candidate is pre-ticked on the confirmation step.
+   *
+   * Pre-ticking is a convenience, never a judgement the customer cannot see: every candidate is
+   * listed with its evidence whether ticked or not, and one tap changes either way. The rule is
+   * deliberately biased toward INCLUSION for anything that could matter --
+   *
+   *   - it is the hazard the decomposition called primary; or
+   *   - a standard applies to it directly; or
+   *   - its own computed risk is High or Critical.
+   *
+   * A serious hazard is therefore pre-ticked even when no standard was matched, so the bias only
+   * ever runs against low-risk candidates that carry no direct standard -- which is exactly the
+   * class that was generating review work for incidental phrases.
+   */
+  function candidatePreselected(finding: PersistedFinding, analysisSnapshot: HazLenzAnalysisResult | null) {
+    const decomposition = analysisSnapshot?.multiHazardDecomposition as
+      { primaryHazard?: { domainId?: string; hazardFamily?: string } } | undefined;
+    const primaryKey = decomposition?.primaryHazard?.domainId || decomposition?.primaryHazard?.hazardFamily || "";
+    if (primaryKey && familySlug(primaryKey) === finding.hazardKey) return true;
+    if (resolveFindingStandards(finding).some((candidate) => candidate.applicability === "direct")) return true;
+    const snapshot = finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
+    const band = String(snapshot?.riskBand || snapshot?.overallRisk || "");
+    return band === "High" || band === "Critical";
+  }
+
+  /**
+   * Records that HazLenz proposed a candidate and the customer did not confirm it.
+   *
+   * Uses the EXISTING architecture rather than a new concept: a human review with decision
+   * `dismissed`, which finalization turns into `status = 'dismissed'` on the finding row. That
+   * keeps the whole proposal auditable and measurable -- the finding row, its evidence fragment,
+   * its standard candidates and the rejecting review all survive -- while the row is excluded from
+   * corrective actions (upsert runs only for 'finalized'), excluded from the report snapshot, and
+   * accepted by the completion gate. Nothing is silently discarded.
+   *
+   * The rationale is supplied by the system. The customer is never asked to justify a rejection.
+   */
+  async function recordCandidateRejection(finding: PersistedFinding, rationale: string) {
+    const owningObservation = (inspection?.observations || [])
+      .find((item) => item.id === finding.observationId);
+    const currentAnalysis = owningObservation?.analyses
+      ?.filter((item) => item.status !== "superseded")
+      .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+    const review = await saveHumanReview(finding.observationId, {
+      findingId: finding.id,
+      idempotencyKey: `reject:${finding.id}:${finding.revision}`,
+      analysisId: currentAnalysis?.id || finding.selectedAnalysisId || "",
+      decision: "dismissed",
+      rationale,
+    });
+    await finalizePersistedFinding(finding.observationId, {
+      reviewId: review.id,
+      hazardCategory: finding.hazardCategory || undefined,
+      conclusion: finding.conclusion,
+      segmentKey: finding.hazardKey,
+      sourceCandidate: (finding.sourceCandidate || {}) as Record<string, unknown>,
+    });
+  }
+
+  /**
+   * Apply the confirmation: rejected candidates are recorded as not confirmed, and only the
+   * confirmed ones go on to Risk & fix.
+   */
+  async function confirmCandidates() {
+    if (!inspection) return;
+    const proposed = (inspection.findings || [])
+      .filter((finding) => finding.observationId === observationId && finding.status === "pending_review");
+    const confirmed = proposed.filter((finding) => candidateSelection[finding.id]);
+    const rejected = proposed.filter((finding) => !candidateSelection[finding.id]);
+    if (confirmed.length === 0) {
+      setStatus("Confirm at least one finding, or go back and revise what you wrote.");
+      return;
+    }
+    setBusy(true);
+    setStatus("Applying your confirmation…");
+    try {
+      for (const finding of rejected) {
+        await recordCandidateRejection(
+          finding,
+          "HazLenz proposed this hazard from the observation; the inspector did not confirm it as a finding.",
+        );
+      }
+      const refreshed = await getPersistedInspection(inspection.id);
+      setInspection(refreshed);
+      const stillOpen = (refreshed.findings || [])
+        .filter((finding) => finding.status === "pending_review");
+      setFindingIds(stillOpen.map((finding) => finding.id));
+      const next = stillOpen.find((finding) => finding.observationId === observationId) || stillOpen[0];
+      setSelectedFindingId(next?.id || "");
+      prepareFindingWorkingState(next);
+      setStep("hazlenz");
+      setStatus(
+        rejected.length > 0
+          ? `${confirmed.length} finding${confirmed.length === 1 ? "" : "s"} confirmed. ${rejected.length} suggestion${rejected.length === 1 ? " was" : "s were"} not confirmed and will not appear in the report.`
+          : `${confirmed.length} finding${confirmed.length === 1 ? "" : "s"} confirmed.`,
+      );
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Your confirmation was not saved.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  /**
+   * Record a hazard the inspector identified that HazLenz did not propose, then take them straight
+   * into the normal Risk & fix step for it.
+   *
+   * The observation already on screen is the evidence, so nothing is re-collected; `detail` exists
+   * only for the case where that observation genuinely does not contain the missed hazard's
+   * evidence. The finding is created server-side as a real `pending_review` row with
+   * `source = 'user_authored'`, no citation, no confidence and no risk -- the reviewer sets risk on
+   * the matrix like any other finding. It skips the HazLenz step because HazLenz has nothing to
+   * show for a hazard it did not identify; it does NOT skip risk or review.
+   */
+  async function addMissedFinding() {
+    if (!inspection || !observationId) return;
+    const hazardTitle = missedHazardTitle.trim();
+    if (hazardTitle.length < 3) {
+      setStatus("Name the hazard HazLenz missed before adding it.");
+      return;
+    }
+    setBusy(true);
+    setStatus("Adding the finding you identified…");
+    try {
+      const created = await createUserAuthoredFinding(observationId, {
+        hazardTitle,
+        detail: missedHazardDetail.trim() || undefined,
+      });
+      const refreshed = await getPersistedInspection(inspection.id);
+      setInspection(refreshed);
+      const persisted = (refreshed.findings || []).find((finding) => finding.id === created.id) || created;
+      setSelectedFindingId(persisted.id);
+      // No HazLenz risk or action exists for this hazard, so the working state is deliberately
+      // empty rather than seeded from a sibling finding's assessment.
+      prepareFindingWorkingState(persisted);
+      setMissedFormOpen(false);
+      setMissedHazardTitle("");
+      setMissedHazardDetail("");
+      setStep("risk");
+      setStatus("You identified this finding. HazLenz did not propose it — set its risk and corrective action.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "The finding was not added.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  /** On-demand regulatory text for one citation, cached per citation for this page's lifetime. */
+  async function toggleStandardText(citation: string) {
+    if (expandedCitation === citation) {
+      setExpandedCitation("");
+      return;
+    }
+    setExpandedCitation(citation);
+    if (citation in standardTexts) return;
+    setStandardTextLoading(citation);
+    try {
+      const record = await getRegulatorySection(citation);
+      setStandardTexts((current) => ({ ...current, [citation]: record }));
+    } finally {
+      setStandardTextLoading("");
+    }
+  }
+
+  function toggleReviewerAction(id: string) {
+    setReviewerActions((current) =>
+      current.map((action) => (action.id === id ? { ...action, selected: !action.selected } : action)),
+    );
+  }
+
+  /**
+   * Typing into an action selects it; clearing it deselects. In the manual editor there is no
+   * separate tick to remember, so a filled field is by definition an action the inspector wants and
+   * an empty one is never saved.
+   */
+  function editReviewerAction(id: string, detail: string) {
+    setReviewerActions((current) =>
+      current.map((action) => (action.id === id
+        ? { ...action, detail, selected: action.origin === "user" ? detail.trim().length > 0 : action.selected }
+        : action)),
+    );
+  }
+
+  function addReviewerAction() {
+    const title = newActionTitle.trim();
+    const detail = newActionDetail.trim();
+    if (!title && !detail) return;
+    setReviewerActions((current) => [
+      ...current,
+      {
+        id: `user-${current.length}-${title.slice(0, 12)}`,
+        title: title || ACTION_KIND_LABELS[newActionKind],
+        detail,
+        origin: "user",
+        kind: newActionKind,
+        selected: true,
+      },
+    ]);
+    setNewActionTitle("");
+    setNewActionDetail("");
   }
 
   // Return to the capture form to record a hazard noticed after the first analysis. Clears only
@@ -636,12 +1140,12 @@ export default function InspectionWorkspacePage() {
     setRevisionText("");
     setCaptureMode("additional");
     setStep("capture");
-    setStatus("Describe the additional hazard. Your existing findings are saved and unaffected.");
+    setStatus("Ready for the next condition.");
   }
 
   function cancelAdditionalObservation() {
     setCaptureMode("initial");
-    setStep("review");
+    setStep("hazlenz");
     setStatus("Returned to review — no new observation was recorded.");
   }
 
@@ -689,7 +1193,11 @@ export default function InspectionWorkspacePage() {
       // the inspection-wide list still starts with the EARLIER observation's findings, so taking
       // [0] would drop the reviewer back onto a finding they already reviewed.
       const ownFindings = currentFindings.filter((finding) => finding.observationId === savedObservation.id);
-      setSelectedFindingId((ownFindings[0] || currentFindings[0])?.id || "");
+      const firstFinding = ownFindings[0] || currentFindings[0];
+      setSelectedFindingId(firstFinding?.id || "");
+      // Seed the matrix cell and the corrective-action list from THIS finding's own computed
+      // risk and action intelligence, so steps 3 and 4 open pre-filled rather than blank.
+      prepareFindingWorkingState(firstFinding);
       setReviewFacts(result.evidenceSnapshot?.facts || []);
       if (result.guidedFinding) {
         const proposal = {
@@ -720,12 +1228,40 @@ export default function InspectionWorkspacePage() {
         );
       }
       setInspection(nextInspection);
-      setStep("review");
-      setStatus(
-        captureMode === "additional"
-          ? "Additional hazard analysed and added to this inspection — earlier findings are unchanged."
-          : "HazLenz assessment saved — review before finalizing.",
-      );
+      // CANDIDATE CONFIRMATION.
+      //
+      // HazLenz regularly decomposes one recorded condition into several hazards, and some of them
+      // come from clauses the inspector wrote as CONTEXT for the hazard they meant to report. Sending
+      // every one of those straight into the per-finding review loop is what made adding a finding
+      // expensive: a spurious candidate had to be fully reviewed before it could be removed.
+      //
+      // So when more than one candidate is proposed, the customer confirms which ones actually apply
+      // first. With exactly one candidate there is nothing to choose between, and the step is skipped
+      // entirely -- an ordinary single-hazard finding gains no extra interaction.
+      // ONLY what this observation produced. There was previously a fallback to the inspection's
+      // whole finding list when the new observation produced nothing, which offered the inspector
+      // their own already-saved findings back as candidates to confirm -- measured live on an
+      // observation HazLenz could not decompose, where the confirmation screen announced "9
+      // possible findings" and listed none of them. An observation that yields no candidate must
+      // say so.
+      const proposed = ownFindings;
+      if (proposed.length === 0) {
+        setStep("candidates");
+        setStatus("HazLenz did not identify a hazard in this observation.");
+      } else if (proposed.length > 1) {
+        setCandidateSelection(Object.fromEntries(
+          proposed.map((finding) => [finding.id, candidatePreselected(finding, result)]),
+        ));
+        setStep("candidates");
+        setStatus(`HazLenz found ${proposed.length} possible findings. Confirm which ones apply.`);
+      } else {
+        setStep("hazlenz");
+        setStatus(
+          captureMode === "additional"
+            ? "Additional hazard analysed and added to this inspection — earlier findings are unchanged."
+            : "HazLenz assessment saved — review before finalizing.",
+        );
+      }
       setCaptureMode("initial");
     } catch (error) {
       // The backend refuses HazLenz analysis for a Free account with
@@ -920,7 +1456,7 @@ export default function InspectionWorkspacePage() {
       setFindingIds((refreshed.findings || []).filter(finding => finding.status !== "superseded").map(finding => finding.id));
       setSelectedFindingId((refreshed.findings || []).find(finding => finding.status !== "superseded")?.id || "");
       setReviewFacts(result.evidenceSnapshot?.facts || []);
-      setStep("review");
+      setStep("hazlenz");
       setStatus("New HazLenz analysis saved; current findings were reconciled and may require review.");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Reanalysis was not saved.");
@@ -956,14 +1492,57 @@ export default function InspectionWorkspacePage() {
     }
   }
 
+  /**
+   * The reviewer-confirmed risk, taken from the matrix cell selected on step 3.
+   *
+   * `reviewerRisk` remains the shape the review/finalize API already accepts (label strings), so
+   * nothing downstream changes; what changed is where the labels come from. The matrix is the only
+   * risk control the customer now sees, and severity x likelihood is the score behind the band.
+   */
+  const matrixRisk = (() => {
+    if (!severity || !likelihood) return null;
+    const score = severity * likelihood;
+    return {
+      severity: severityScale.find((item) => item.score === severity)?.label || "Not established",
+      likelihood: likelihoodScale.find((item) => item.score === likelihood)?.label || "Not established",
+      exposure: "Potential",
+      overallRisk: RISK_BAND_FOR_SCORE(score, riskScale.maxScore),
+      rationale: `Reviewer-confirmed on the ${riskScale.label} matrix: severity ${severity} x likelihood ${likelihood} = ${score}.`,
+      score,
+    };
+  })();
+
   async function acceptReview() {
     if (!inspection || !analysis || !observationId || !analysisId) return;
-    const riskChanged = (["severity", "likelihood", "exposure", "overallRisk"] as const)
-      .some(field => reviewerRisk[field] !== proposedRisk[field]);
-    if (riskChanged && !reviewerRiskReason.trim()) {
-      setStatus("Explain the risk adjustment before finalizing the finding.");
+    if (!matrixRisk) {
+      setStatus("Select a cell on the risk matrix before saving this finding.");
+      setStep("risk");
       return;
     }
+    // The reviewer's matrix selection IS the confirmed risk from here on.
+    const reviewerRisk = {
+      severity: matrixRisk.severity,
+      likelihood: matrixRisk.likelihood,
+      exposure: matrixRisk.exposure,
+      overallRisk: matrixRisk.overallRisk,
+      rationale: matrixRisk.rationale,
+    };
+    // A user-authored finding has no HazLenz proposal, so its review is not an EDIT of one. Without
+    // this, the "Not established" placeholder risk would always differ from the reviewer's matrix
+    // selection and every inspector-identified finding would be recorded as having overridden an
+    // assessment that never existed.
+    const isUserAuthoredFinding =
+      (inspection.findings || []).find((finding) => finding.id === selectedFindingId)?.source === "user_authored";
+    const riskChanged = !isUserAuthoredFinding
+      && (["severity", "likelihood", "exposure", "overallRisk"] as const)
+        .some(field => reviewerRisk[field] !== proposedRisk[field]);
+    // The server independently enforces a rationale on a MATERIAL override (addReview ->
+    // materialRiskChanged), so the matrix's own explanation is sent when the reviewer has not
+    // typed one. It is a true description of what they did, not a fabricated justification.
+    const overrideRationale = reviewerRiskReason.trim() || matrixRisk.rationale;
+    // Corrective actions the reviewer accepted on step 3, in the three fields the save path and
+    // the report already understand.
+    const confirmedAction = actionDraftFromReviewerActions(reviewerActions);
     setBusy(true);
     setStatus("Saving qualified human review…");
     try {
@@ -1012,18 +1591,30 @@ export default function InspectionWorkspacePage() {
           findingId: durableFinding?.id,
           idempotencyKey: `review:${analysisId}:${stableKey}`,
           analysisId,
-          decision: reviewerRiskReason.trim() ? "edited" : "accepted",
-          rationale: reviewerRiskReason.trim() ||
-            "Reviewed against the observed facts; accepted as an advisory conclusion.",
+          decision: riskChanged ? "edited" : "accepted",
+          rationale: overrideRationale,
           reviewedConclusion: {
             guidedFinding: analysis.guidedFinding,
             reviewerRisk: { ...reviewerRisk, reviewerConfirmed: true },
-            // Corrective actions are reviewed on the Action step, AFTER every finding is
-            // finalized; the shared draft here is the whole-observation proposal and has not been
-            // reviewed for THIS finding. Attaching it made every finding's finalize-time action
-            // record carry the same (e.g. electrical) text -- the fall-protection finding's report
-            // action read "Isolate the affected extension cord". Leaving it out lets the backend
-            // use each finding's own finding-scoped corrective-action intelligence.
+            // Corrective actions are now reviewed on step 3 FOR THIS FINDING, from that finding's
+            // own `riskSnapshot.correctiveActionIntelligence` plus anything the reviewer added,
+            // so attaching them here is safe and is the more authoritative value: the backend's
+            // buildCorrectiveActionPayload prefers reviewedConclusion.correctiveAction over the
+            // system-computed intelligence. The earlier hazard of every finding inheriting one
+            // shared whole-observation draft is gone, because this state is rebuilt per finding by
+            // prepareFindingWorkingState. Only attached when this call targets ONE finding.
+            ...(candidatesToPersist.length === 1
+              ? {
+                correctiveAction: {
+                  ...confirmedAction,
+                  urgency: matrixRisk.overallRisk,
+                  rationale: `Confirmed by the reviewer for this finding at ${matrixRisk.overallRisk} risk.`,
+                  // Descriptive responsible party, per finding. Absent when the customer left it
+                  // blank -- which is recorded as unassigned, never as the inspector.
+                  ...(responsiblePerson.trim() ? { responsiblePerson: responsiblePerson.trim() } : {}),
+                },
+              }
+              : {}),
             segmentationDecision: {
               selectedSegmentKeys,
               rejectedSegmentKeys: (analysis.guidedFinding?.findingCandidates || [])
@@ -1079,11 +1670,22 @@ export default function InspectionWorkspacePage() {
         setReviewerRisk(nextFindingRisk);
         setProposedRisk(nextFindingRisk);
         setReviewerRiskReason("");
-        setStep("review");
-        setStatus(`Review saved for ${selectedFinding?.hazardCategory || selectedFinding?.hazardKey || "finding"}. ${remaining.length} current finding${remaining.length === 1 ? " remains" : "s remain"} unreviewed.`);
+        // The same reset applies to the matrix cell and the corrective-action list, which are the
+        // controls the reviewer now actually uses.
+        prepareFindingWorkingState(remaining[0]);
+        // A user-authored finding has no HazLenz assessment to read, so sending the reviewer to the
+        // HazLenz step for it would present an empty analysis screen headed "HazLenz assessment"
+        // for a hazard HazLenz never identified. Risk & fix is the first step that has anything to
+        // do.
+        setStep(remaining[0].source === "user_authored" ? "risk" : "hazlenz");
+        setStatus(`Finding saved. ${remaining.length} more hazard${remaining.length === 1 ? "" : "s"} from this observation still need${remaining.length === 1 ? "s" : ""} your review.`);
       } else {
-        setStep("followup");
-        setStatus("All current findings have a separate completed human review.");
+        // Nothing left to review from this observation, so go straight back to recording the next
+        // condition. An inspector walking a site records several findings in a row, and a screen
+        // between each one is friction that compounds -- by the seventh finding it is the dominant
+        // cost of the workflow. Confirmation is a brief non-blocking flash, not a page.
+        flashSaved();
+        beginAdditionalObservation();
       }
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Review was not saved.");
@@ -1093,28 +1695,56 @@ export default function InspectionWorkspacePage() {
   }
 
   async function complete() {
-    if (!inspection || findingIds.length === 0) return;
+    if (!inspection) return;
+    // Corrective actions and calendar tasks are created only for findings the reviewer KEPT.
+    // A dismissed finding still satisfies the server's completion gate, but it is not a hazard
+    // anyone has to act on, so it must not generate an action or a due task.
+    const reportableFindingIds = (inspection.findings || [])
+      .filter((finding) => finding.status === "finalized")
+      .map((finding) => finding.id);
+    if (reportableFindingIds.length === 0) {
+      setStatus("Save at least one finding before generating the report.");
+      return;
+    }
     setBusy(true);
-    setStatus("Saving corrective action, calendar task, and report…");
+    setStatus("Saving corrective actions, calendar tasks, and the report…");
     try {
       if (!riskPolicy) {
         throw new Error("The governed risk urgency policy was not returned by the server.");
       }
       const dueDays = riskPolicy.dueDays;
       const dueDate = new Date(Date.now() + dueDays * 86400000).toISOString();
-      for (const [index, findingId] of findingIds.entries()) {
+      for (const [index, findingId] of reportableFindingIds.entries()) {
         const finding = (inspection.findings || []).find(item => item.id === findingId);
-        // With a single finding the Action step's draft IS that finding's reviewed action (the
-        // user just edited it). With several findings the one shared draft cannot be assumed to
-        // describe each of them, so each finding gets the action matched to its own family (the
-        // shared draft only as a fallback for a family with no mapping).
-        const findingAction = finding && findingIds.length > 1
-          ? safeActionDraftForFinding(finding, actionDraft)
-          : actionDraft;
+        // Each finding now carries its OWN reviewer-confirmed corrective action, persisted on its
+        // own human review when the reviewer saved it on step 3. That is the authoritative text
+        // and is preferred here, so this call adopts the reviewer's own words and the ownership
+        // scope onto the canonical corrective_actions row rather than overwriting every finding's
+        // action with one shared draft. The family mapping remains only as a fallback for a
+        // finding whose review recorded no action at all.
+        const reviewedAction = (() => {
+          if (!finding?.finalReviewId) return null;
+          const owningObservation = (inspection.observations || [])
+            .find((item) => item.id === finding.observationId);
+          const review = (owningObservation?.reviews || [])
+            .find((item) => item.id === finding.finalReviewId) as
+              | { reviewedConclusion?: { correctiveAction?: Record<string, unknown> } }
+              | undefined;
+          const action = review?.reviewedConclusion?.correctiveAction;
+          if (!action) return null;
+          const immediateAction = String(action.immediateAction || "").trim();
+          const permanentCorrection = String(action.permanentCorrection || "").trim();
+          const verificationStep = String(action.verificationStep || "").trim();
+          const responsible = String(action.responsiblePerson || "").trim();
+          if (!immediateAction && !permanentCorrection && !verificationStep && !responsible) return null;
+          return { immediateAction, permanentCorrection, verificationStep, responsible };
+        })();
+        const findingAction = reviewedAction
+          || (finding ? safeActionDraftForFinding(finding, actionDraft) : actionDraft);
         const action = await createPersistedCorrectiveAction({
           inspectionId: inspection.id,
           findingId,
-          title: findingIds.length > 1
+          title: reportableFindingIds.length > 1
             ? `Verify and correct reviewed condition ${index + 1}`
             : "Verify and correct reviewed condition",
           description: [
@@ -1123,11 +1753,15 @@ export default function InspectionWorkspacePage() {
             `Verification: ${findingAction.verificationStep}`,
           ].join("\n"),
           priorityCode: riskPolicy.priority,
+          // The responsible party the customer named for THIS finding, or omitted entirely.
+          // Omitted means unassigned: the server no longer substitutes the inspector, and the
+          // report renders a missing owner as "Unassigned" rather than naming them.
+          ...(reviewedAction?.responsible ? { assignedToName: reviewedAction.responsible } : {}),
         });
         await createPersistedTask({
           inspectionId: inspection.id,
           correctiveActionId: typeof action.id === "string" ? action.id : undefined,
-          title: findingIds.length > 1
+          title: reportableFindingIds.length > 1
             ? `Follow up reviewed finding ${index + 1}`
             : "Follow up reviewed finding",
           description: findingAction.verificationStep || "Confirm corrective action completion.",
@@ -1141,15 +1775,102 @@ export default function InspectionWorkspacePage() {
         inspection.version,
       );
       const generated = await generatePersistedReport(inspection.id);
-      setInspection(completed);
+      const refreshed = await getPersistedInspection(inspection.id);
+      setInspection(refreshed);
       setReport(generated);
-      setStep("complete");
-      setStatus("Inspection, follow-up records, and immutable report saved.");
+      setStep("finalize");
+      // The inspection has ONE report. Finishing a reopened inspection replaces it, so the
+      // confirmation says what happened without inventing a version the customer must track.
+      setStatus("Inspection finished. Your report is ready.");
+      // The inspection is complete, so the customer's place is the completed-inspection/report
+      // experience rather than a finishing screen for something already finished. The banner stays
+      // rendered until the route changes, so the confirmation is seen either way.
+      // The completed INSPECTION, not the generic report library: the inspection is the record
+      // the customer just committed, and the report is one of its artefacts.
+      router.push("/inspection-complete");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Finalization did not complete.");
     } finally {
       setBusy(false);
     }
+  }
+
+  /**
+   * Remove a finding from the inspection.
+   *
+   * There is no delete endpoint and there should not be one: a finding that HazLenz raised and a
+   * person then rejected is part of the inspection's history. `dismissed` is the existing status
+   * for exactly this, it satisfies the completion gate (which accepts finalized OR dismissed), and
+   * it keeps the rejection auditable. Dismissed findings are excluded from the report snapshot.
+   */
+  async function dismissFinding(finding: PersistedFinding) {
+    if (!inspection) return;
+    setBusy(true);
+    setStatus("Removing finding…");
+    try {
+      const owningObservation = (inspection.observations || [])
+        .find((item) => item.id === finding.observationId);
+      const currentAnalysis = owningObservation?.analyses
+        ?.filter((item) => item.status !== "superseded")
+        .sort((a, b) => (b.requestVersion || 0) - (a.requestVersion || 0))[0];
+      const review = await saveHumanReview(finding.observationId, {
+        findingId: finding.id,
+        idempotencyKey: `dismiss:${finding.id}:${finding.revision}`,
+        analysisId: currentAnalysis?.id || finding.selectedAnalysisId || "",
+        decision: "dismissed",
+        rationale: "Reviewed and removed by the inspector; not carried into the report.",
+      });
+      await finalizePersistedFinding(finding.observationId, {
+        reviewId: review.id,
+        hazardCategory: finding.hazardCategory || undefined,
+        conclusion: finding.conclusion,
+        segmentKey: finding.hazardKey,
+        sourceCandidate: (finding.sourceCandidate || {}) as Record<string, unknown>,
+      });
+      const refreshed = await getPersistedInspection(inspection.id);
+      setInspection(refreshed);
+      setFindingIds((refreshed.findings || [])
+        .filter((item) => item.status === "finalized")
+        .map((item) => item.id));
+      setStatus("Finding removed from this inspection.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "The finding was not removed.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  /**
+   * Bring back a candidate the customer chose not to confirm.
+   *
+   * There is no "un-dismiss" endpoint and none is needed: the customer is put back into the normal
+   * review flow for that hazard, and saving it posts a fresh `accepted` review, which supersedes
+   * the rejection and moves the finding from `dismissed` to `finalized`. Until they save, the
+   * rejection stands. This keeps one path for "this becomes a finding" instead of inventing a
+   * second way for a finding to come into existence.
+   */
+  function restoreCandidate(finding: PersistedFinding) {
+    selectFinding(finding);
+    setStep("hazlenz");
+    setStatus("Reviewing a suggestion you had not confirmed. Saving it makes it a finding.");
+  }
+
+  /** Reopen a saved finding for editing: load its context and drop back to the HazLenz step. */
+  function reviewFindingAgain(finding: PersistedFinding) {
+    loadObservationContextFor(finding.id);
+    setSelectedFindingId(finding.id);
+    const findingRisk = riskSnapshotToReviewerRisk(finding.riskSnapshot);
+    setReviewerRisk(findingRisk);
+    setProposedRisk(findingRisk);
+    setReviewerRiskReason("");
+    prepareFindingWorkingState(finding);
+    setStep("hazlenz");
+    setStatus("Reviewing a saved finding. Saving again records a new review.");
+  }
+
+  /** Begin another finding: the capture form, with the inspection's own context carried over. */
+  function startAnotherFinding() {
+    beginAdditionalObservation();
   }
 
   const selectedFindingStandard = resolveSelectedFindingStandard(
@@ -1158,6 +1879,217 @@ export default function InspectionWorkspacePage() {
     selectedFindingId,
   );
   const selectedFindingStandardBacking = getStandardBackingPresentation(selectedFindingStandard);
+  // Standards for the SELECTED finding: all of them, ordered strongest first. Where several
+  // standards genuinely apply, all are shown -- the objection was accuracy, not multiplicity.
+  const findingStandards = resolveFindingStandards(selectedFindingDetail);
+
+  // Clarification questions, presented as the way to RAISE a standard's confidence rather than as
+  // a queue of things to answer before proceeding. None of them blocks saving a finding.
+  const clarificationQuestions = (analysis?.guidedFinding?.clarificationQuestions
+    || analysis?.clarificationQuestions
+    || []) as Array<{ id: string; question: string; reason?: string; options?: string[]; decisionCritical?: boolean }>;
+
+  // "candidates" is part of reading the HazLenz result, so it shares the HazLenz position rather
+  // than adding a stage to the five-step bar.
+  const barStep: Step = step === "candidates" ? "hazlenz" : step;
+  const activeStepIndex = Math.max(0, STEP_ORDER.indexOf(barStep));
+
+  // The candidates HazLenz proposed from the observation now on screen, still awaiting the
+  // customer's confirmation.
+  const proposedCandidates = (inspection?.findings || [])
+    .filter((finding) => finding.observationId === observationId
+      && finding.status === "pending_review"
+      && finding.source !== "user_authored");
+  const confirmedCount = proposedCandidates.filter((finding) => candidateSelection[finding.id]).length;
+
+  const selectedIsUserAuthored = selectedFindingDetail?.source === "user_authored";
+
+  /**
+   * True when the action list holds only the blank manual slots -- nothing HazLenz suggested. The
+   * editor is chosen by what there is to show, not by provenance, so a HazLenz-derived finding for
+   * which the engine produced no action gets the same usable editor rather than an empty panel.
+   */
+  const hasOnlyManualActions = reviewerActions.length > 0
+    && reviewerActions.every((action) => action.origin === "user" && action.id.startsWith("manual-"));
+
+  /** Only the hazards HazLenz actually proposed from the observation on screen. */
+  const hazlenzProposedForObservation = activeFindings
+    .filter((finding) => finding.observationId === observationId && finding.source !== "user_authored");
+
+  /**
+   * Whether the reviewer has moved off the risk HazLenz computed FOR THIS FINDING.
+   *
+   * Compared against the finding's own `riskSnapshot.operationalRisk` -- the same values that seed
+   * the matrix -- not against the observation-level guided assessment, which for a multi-hazard
+   * observation describes whichever hazard happened to be primary. Always false for a user-authored
+   * finding: HazLenz proposed nothing, so there is nothing to differ from.
+   */
+  const riskDiffersFromHazLenz = (() => {
+    if (selectedIsUserAuthored) return false;
+    const operational = (selectedFindingDetail?.riskSnapshot as { operationalRisk?: Record<string, unknown> } | null)
+      ?.operationalRisk;
+    const proposedSeverity = Number(operational?.severity);
+    const proposedLikelihood = Number(operational?.likelihood);
+    if (!Number.isFinite(proposedSeverity) || !Number.isFinite(proposedLikelihood)) return false;
+    if (severity === null || likelihood === null) return false;
+    return severity !== proposedSeverity || likelihood !== proposedLikelihood;
+  })();
+
+  /**
+   * "Add a finding HazLenz missed". Rendered wherever the inspector is reading a HazLenz result,
+   * because that is where they discover the omission.
+   *
+   * Deliberately a DIFFERENT action from "revise what I wrote": revising means the observation was
+   * incomplete and HazLenz should re-analyse better evidence; this means the observation is fine
+   * and HazLenz failed to spot something in it.
+   */
+  const missedFindingBlock = (
+    <details
+      className="guided-subcard"
+      open={missedFormOpen}
+      onToggle={(event) => setMissedFormOpen((event.currentTarget as HTMLDetailsElement).open)}
+      data-testid="missed-finding"
+    >
+      <summary className="cursor-pointer font-bold">Add a finding HazLenz missed</summary>
+      <p className="guided-muted mt-1 text-sm">
+        For a hazard you can see in what you recorded but HazLenz did not identify. It becomes a
+        normal finding: you set its risk and corrective action, and it goes in the report. It will
+        be recorded as identified by you, with no standard attached unless HazLenz later finds one.
+      </p>
+      <div className="mt-3 space-y-2">
+        <label className="block text-sm font-bold">
+          What did HazLenz miss?
+          <input
+            value={missedHazardTitle}
+            onChange={(event) => setMissedHazardTitle(event.target.value)}
+            maxLength={160}
+            placeholder="e.g. No lockout applied before guard removal"
+            className="guided-input mt-1"
+          />
+        </label>
+        <details>
+          <summary className="cursor-pointer text-sm font-semibold">
+            Add detail (only if what you wrote does not already describe it)
+          </summary>
+          <textarea
+            aria-label="Additional detail for the missed hazard"
+            value={missedHazardDetail}
+            onChange={(event) => setMissedHazardDetail(event.target.value)}
+            className="guided-input mt-2 min-h-20"
+          />
+        </details>
+        <button
+          type="button"
+          disabled={busy || missedHazardTitle.trim().length < 3}
+          onClick={() => void addMissedFinding()}
+          className="guided-primary-button"
+          data-testid="add-missed-finding"
+        >
+          {busy ? "Adding…" : "Add this finding"}
+        </button>
+      </div>
+    </details>
+  );
+
+  /**
+   * Responsible party and the governed deadline, shown together because they are the two facts
+   * about WHO and WHEN.
+   *
+   * The due date is displayed, never entered: the risk the customer just confirmed establishes it,
+   * and showing the reason ("Based on High risk — 3 days") is what makes that legible rather than
+   * arbitrary. The server's own policy value is what gets persisted; this renders the same rule so
+   * the date can be shown before the save round-trip, and `check:risk-band-parity` holds the two in
+   * agreement.
+   */
+  const responsibleAndDueBlock = (
+    <div className="space-y-3 border-t border-slate-200 pt-3 dark:border-white/15">
+      <label className="block font-bold">
+        Responsible person <span className="font-normal text-slate-500">(optional)</span>
+        <input
+          value={responsiblePerson}
+          onChange={(event) => setResponsiblePerson(event.target.value)}
+          maxLength={160}
+          placeholder="Name or role"
+          className="guided-input mt-1"
+          data-testid="responsible-person"
+        />
+        <span className="mt-1 block text-xs font-normal text-slate-600 dark:text-slate-300">
+          Who is responsible for completing the corrective action? Leave blank if it is not yet
+          decided — it will show as Unassigned.
+        </span>
+      </label>
+
+      <div>
+        <p className="font-bold">Due date</p>
+        {matrixRisk ? (
+          <>
+            <p className="text-sm">
+              {governedDueDate(matrixRisk.overallRisk as RiskBandLabel, new Date())
+                .toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+            </p>
+            <p className="guided-muted text-xs">
+              Based on {matrixRisk.overallRisk} risk — {RISK_BAND_DUE_DAYS[matrixRisk.overallRisk as RiskBandLabel]}{" "}
+              {RISK_BAND_DUE_DAYS[matrixRisk.overallRisk as RiskBandLabel] === 1 ? "day" : "days"}
+            </p>
+          </>
+        ) : (
+          <p className="guided-muted text-sm">Set once you confirm the risk above.</p>
+        )}
+      </div>
+    </div>
+  );
+
+  /** Honest provenance line. Never shown for a HazLenz-derived finding, and never inverted. */
+  const userAuthoredNotice = (
+    <p className="rounded-lg border border-slate-400 bg-slate-50 p-2 text-sm font-semibold text-slate-800 dark:bg-slate-900 dark:text-slate-200">
+      You identified this finding. HazLenz did not propose it, so there is no HazLenz confidence or
+      standard for it unless one is established separately.
+    </p>
+  );
+  const savedFindings = activeFindings.filter((finding) => finding.status === "finalized");
+
+  /**
+   * Findings that would stop the server completing the inspection.
+   *
+   * Driven by `readiness.blockingFindingIds` -- the server's own list -- so the Finish screen can
+   * never omit something that would then be rejected. Falls back to the local "not finalized and
+   * not dismissed" reading only until the first readiness response arrives.
+   */
+  const unresolvedFindings = readiness
+    ? activeFindings.filter((finding) => readiness.blockingFindingIds.includes(finding.id))
+    : activeFindings.filter((finding) => finding.status !== "finalized" && finding.status !== "dismissed");
+
+  /**
+   * The reviewer-confirmed remediation plan for a finding, read back from the human review that
+   * finalized it. One plan per finding, matching the domain model -- the three fields are parts of
+   * a single remediation plan, not three action records.
+   */
+  function reviewedPlanFor(finding: PersistedFinding): { lines: string[]; responsible: string } {
+    const owningObservation = (inspection?.observations || [])
+      .find((item) => item.id === finding.observationId);
+    const review = (owningObservation?.reviews || [])
+      .find((item) => item.id === finding.finalReviewId) as
+        | { reviewedConclusion?: { correctiveAction?: Record<string, unknown> } }
+        | undefined;
+    const action = review?.reviewedConclusion?.correctiveAction || {};
+    // Records written before the label fix carry their kind label inside the stored value, which
+    // read as "Immediate: Immediate protective action: ...". Stripped here rather than rewritten in
+    // the database: the stored review is a signed record of what the reviewer confirmed, and a
+    // cosmetic prefix is not worth mutating history for.
+    const stripKindPrefix = (text: string, kind: ReviewerAction["kind"]) =>
+      text.replace(new RegExp(`^${ACTION_KIND_LABELS[kind]}:\\s*`, "i"), "");
+    const lines = ([
+      ["Immediate", action.immediateAction, "immediate"],
+      ["Permanent", action.permanentCorrection, "prevention"],
+      ["Verify", action.verificationStep, "verification"],
+    ] as const)
+      .map(([label, value, kind]) => {
+        const text = stripKindPrefix(String(value || "").trim(), kind as ReviewerAction["kind"]);
+        return text ? `${label}: ${text}` : "";
+      })
+      .filter(Boolean);
+    return { lines, responsible: String(action.responsiblePerson || "").trim() };
+  }
 
   return (
     <main className="guided-page mx-auto max-w-4xl space-y-5 px-4 py-8">
@@ -1165,7 +2097,6 @@ export default function InspectionWorkspacePage() {
         {/* sky-600 measured 3.57:1 on this panel, under the 4.5 normal-text requirement.
             sky-700 is the same hue family and measures 5.26:1. */}
         <p className="text-xs font-bold uppercase tracking-widest text-sky-700 dark:text-sky-300">Safety InSite</p>
-        {/* "Server-saved inspection" described our persistence model, not the customer's task. */}
         <h1 className="mt-2 text-3xl font-black">{inspection?.title || "Inspection"}</h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
           HazLenz AI is advisory. Applicability depends on facts and jurisdiction; a qualified
@@ -1173,13 +2104,12 @@ export default function InspectionWorkspacePage() {
         </p>
       </header>
 
-      {/* Five steps share the width of a phone screen, so every label has to survive
-          being about 70px wide. "Complete" did not: it wrapped to a second line and left
-          that step taller than the other four. The labels below are the short forms. */}
+      {/* Five steps share the width of a phone screen, so every label has to survive being about
+          70px wide. Labels name the customer's task, not the internal state machine. */}
       <nav aria-label="Inspection progress" className="guided-progress">
         {STEP_ORDER.map((item, index) => (
-          <span key={item} aria-current={step === item ? "step" : undefined}
-            className={step === item ? "guided-progress-step is-current" : "guided-progress-step"}>
+          <span key={item} aria-current={index === activeStepIndex ? "step" : undefined}
+            className={index === activeStepIndex ? "guided-progress-step is-current" : "guided-progress-step"}>
             {index + 1}. {STEP_LABELS[item]}
           </span>
         ))}
@@ -1189,24 +2119,150 @@ export default function InspectionWorkspacePage() {
         {status}
       </div>
 
-      {inspection && (
-        <section className="guided-card">
-          <p className="text-xs font-bold uppercase tracking-wider">This inspection</p>
-          <p className="mt-1 text-sm">Status: {humanizeInspectionStatus(inspection.status)} · revision {inspection.version}</p>
-          {activeFindingCount > 0 && (
-            <p className="mt-1 text-sm" data-testid="inspection-finding-progress">
-              Findings: <strong>{activeFindingCount}</strong> captured · {reviewedFindingCount} reviewed
-              {reviewedFindingCount < activeFindingCount
-                ? ` · ${activeFindingCount - reviewedFindingCount} still need your review`
-                : " · all reviewed"}
+      {/* Non-blocking save confirmation. Announced to assistive technology, dismissed on its own,
+          and never in the way of recording the next condition. */}
+      {savedFlash && (
+        <p
+          role="status"
+          aria-live="polite"
+          className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-900"
+          data-testid="saved-flash"
+        >
+          ✓ {savedFlash}
+        </p>
+      )}
+
+      {/*
+        RUNNING INSPECTION SUMMARY.
+
+        Compact and collapsed by default so the capture screen stays a capture screen. It exists so
+        the inspector can recognise what they have already recorded and reopen any of it, without a
+        separate page in the loop.
+
+        The count is `savedFindings` -- findings that completed Review and are `finalized`. A
+        dismissed candidate is not a finding and is excluded; a candidate still pending review is
+        not yet a saved finding and is excluded; a user-authored finding that went through the
+        normal Review -> Save flow is a genuine finding and counts exactly like any other.
+
+        "Finish inspection" lives here, so it is persistently reachable from every step once there
+        is something to finish, without competing with the primary capture action lower down the
+        page. It is absent entirely until the first finding is saved.
+      */}
+      {inspection && savedFindings.length > 0 && step !== "finalize" && (
+        <section className="guided-card" data-testid="running-summary">
+          {/* The list is full width and BELOW the action row. Nesting it inside a side-by-side flex
+              child collapsed each finding to a ~60px column at a 390px viewport, breaking every
+              title onto four lines. */}
+          <details data-testid="running-summary-details">
+            <summary className="cursor-pointer font-black">
+              Findings ({savedFindings.length})
+            </summary>
+            <ul className="mt-2 space-y-1">
+              {savedFindings.map((finding) => {
+                const band = finding.riskSnapshot as { overallRisk?: string; riskBand?: string } | null;
+                return (
+                  <li key={finding.id}>
+                    <button
+                      type="button"
+                      disabled={busy}
+                      onClick={() => reviewFindingAgain(finding)}
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2 text-left text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900"
+                    >
+                      {findingDisplayTitle(finding)}
+                      <span className="guided-muted"> — {band?.overallRisk || band?.riskBand || "Risk not set"}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </details>
+
+          <div className="mt-3">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Recording the next condition is the primary thing an inspector does mid-walk, so it
+                  is reachable from every step -- not only from the moment just after a save. On the
+                  capture step it is omitted, because that IS this action. */}
+              {step !== "capture" && (
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={startAnotherFinding}
+                  className="min-h-10 rounded-lg bg-sky-700 px-4 font-bold text-white"
+                  data-testid="add-finding"
+                >
+                  + Record another condition
+                </button>
+              )}
+              {/* Secondary by design: while findings are still being collected, finishing must not
+                  compete with collecting. */}
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => setStep("finalize")}
+                className="min-h-10 rounded-lg border border-slate-700 px-4 font-bold"
+                data-testid="finish-inspection"
+              >
+                Finish inspection
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/*
+        THE FINDING BUILDER.
+
+        Pinned directly under the progress bar and rendered in the SAME position on every step of a
+        finding, so the customer can always see the finding they are assembling and what is still
+        blank. It fills in as they progress: the hazard and standard arrive from HazLenz on step 2,
+        the risk on step 3, the corrective action on step 3, and step 4 is a read-back of the whole
+        thing. It is deliberately absent on the capture step (nothing exists to summarise yet) and
+        on the finalize page (which is inspection-level, not finding-level).
+      */}
+      {inspection && selectedFindingDetail && step !== "capture" && step !== "candidates" && step !== "finalize" && (
+        <section className="guided-card space-y-2" aria-label="Finding builder" data-testid="finding-builder">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <p className="guided-eyebrow">Finding you are building</p>
+            {activeFindingCount > 1 && (
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                {reviewedFindingCount} of {activeFindingCount} saved in this inspection
+              </p>
+            )}
+          </div>
+          <h2 className="text-lg font-black">{findingDisplayTitle(selectedFindingDetail)}</h2>
+          {selectedIsUserAuthored && (
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
+              Identified by you · not proposed by HazLenz
             </p>
           )}
-          <p className="mt-1 text-sm" data-testid="inspection-regulatory-context">
-            Regulatory context: <strong>{regulatoryContextLabel(jurisdiction)}</strong>
-            {jurisdiction === "unknown"
-              ? " — HazLenz keeps standards conditional and will ask once if the agency matters."
-              : " — set for this inspection; every finding inherits it."}
-          </p>
+          <dl className="grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2">
+            <div>
+              <dt className="font-bold">Where</dt>
+              <dd className="text-slate-700 dark:text-slate-300">{workArea || "Not recorded"}</dd>
+            </div>
+            <div>
+              <dt className="font-bold">Standard</dt>
+              <dd className="text-slate-700 dark:text-slate-300">
+                {findingStandards.length
+                  ? `${findingStandards[0].citation}${findingStandards.length > 1 ? ` +${findingStandards.length - 1} more` : ""}`
+                  : "Not established"}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-bold">Risk</dt>
+              <dd className="text-slate-700 dark:text-slate-300">
+                {matrixRisk ? `${matrixRisk.overallRisk} (${matrixRisk.score})` : "Not set"}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-bold">Corrective action</dt>
+              <dd className="text-slate-700 dark:text-slate-300">
+                {reviewerActions.filter((action) => action.selected).length
+                  ? `${reviewerActions.filter((action) => action.selected).length} selected`
+                  : "None selected"}
+              </dd>
+            </div>
+          </dl>
         </section>
       )}
 
@@ -1236,36 +2292,53 @@ export default function InspectionWorkspacePage() {
         </section>
       )}
 
+      {/* ---------------------------------------------------------------- STEP 1 — WHAT YOU SAW */}
       {step === "capture" && inspection && !analysisLocked && (
         <section className="guided-card space-y-3">
           {captureMode === "additional" && (
             <div className="guided-subcard space-y-2" data-testid="additional-observation-banner">
-              <h2 className="font-black">Add another finding</h2>
+              {/* Kept short. The running summary above already shows what has been recorded, so
+                  this only needs to say what this screen is for. */}
+              <h2 className="font-black">Next condition</h2>
               <p className="guided-muted text-sm">
-                Describe the additional hazard you observed. It is added to this same inspection and
-                keeps the regulatory context already set — {regulatoryContextLabel(jurisdiction)}.
-                The {activeFindingCount} finding{activeFindingCount === 1 ? "" : "s"} you have
-                already captured stay exactly as they are.
+                Added to this same inspection, under {regulatoryContextLabel(jurisdiction)}.
               </p>
               <button type="button" disabled={busy} onClick={cancelAdditionalObservation} className="guided-secondary-button">
-                Cancel and go back to review
+                Cancel
               </button>
             </div>
           )}
+
+          {/* Photo leads: the customer is standing in front of the hazard with a phone.
+              `capture="environment"` opens the rear camera directly on a mobile browser and is
+              ignored on desktop, where this stays an ordinary file picker. */}
           <label htmlFor="evidence" className="block font-bold">
-            Photo evidence <span className="font-normal text-slate-500">(optional)</span>
+            Photo <span className="font-normal text-slate-500">(optional)</span>
           </label>
           <input
             id="evidence"
             type="file"
             accept="image/jpeg,image/png,image/webp"
+            capture="environment"
             onChange={(event) => setEvidenceFile(event.target.files?.[0] || null)}
             className="block min-h-11 w-full rounded-xl border border-slate-300 bg-white p-2 text-slate-950"
           />
           {evidenceFile && <p className="text-sm">Selected: {evidenceFile.name}</p>}
+
+          <label htmlFor="observation" className="block font-bold">What did you see?</label>
+          <textarea
+            id="observation"
+            value={observation}
+            onChange={(event) => setObservation(event.target.value)}
+            rows={7}
+            maxLength={20000}
+            className="w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-950 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            placeholder="What was wrong, what was running, and who could be exposed."
+          />
+
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block font-bold">
-              Location or area
+              Where <span className="font-normal text-slate-500">(optional)</span>
               <input
                 value={workArea}
                 onChange={(event) => setWorkArea(event.target.value)}
@@ -1274,7 +2347,7 @@ export default function InspectionWorkspacePage() {
               />
             </label>
             <label className="block font-bold">
-              Work activity <span className="font-normal text-slate-500">(optional)</span>
+              Task being done <span className="font-normal text-slate-500">(optional)</span>
               <input
                 value={workActivity}
                 onChange={(event) => setWorkActivity(event.target.value)}
@@ -1283,8 +2356,11 @@ export default function InspectionWorkspacePage() {
               />
             </label>
           </div>
+
+          {/* Already set for the inspection and inherited by every finding. Kept here as a
+              correction affordance, pre-filled, not as a question asked a second time. */}
           <label className="block font-bold">
-            Regulatory context <span className="font-normal text-slate-500">(saved on this inspection)</span>
+            Regulatory context <span className="font-normal text-slate-500">(set for this inspection)</span>
             <select
               aria-label="Regulatory context"
               value={jurisdiction}
@@ -1298,23 +2374,114 @@ export default function InspectionWorkspacePage() {
               ))}
             </select>
           </label>
-          <label htmlFor="observation" className="block font-bold">What did you observe?</label>
-          <textarea
-            id="observation"
-            value={observation}
-            onChange={(event) => setObservation(event.target.value)}
-            rows={7}
-            maxLength={20000}
-            className="w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-950 focus:outline-none focus:ring-2 focus:ring-sky-500"
-            placeholder="Describe only what was directly observed, including controls and uncertainty."
-          />
-          <button disabled={busy || observation.trim().length < 3} onClick={analyze} className="min-h-11 rounded-xl bg-sky-700 px-5 font-bold text-white disabled:opacity-50">
-            {captureMode === "additional" ? "Analyze and add this finding" : "Save and review with HazLenz AI"}
+
+          <button disabled={busy || observation.trim().length < 3} onClick={analyze} className="guided-primary-button">
+            {busy ? "Working…" : "Review with HazLenz AI"}
           </button>
         </section>
       )}
 
-      {step === "review" && analysis && inspection && (
+      {/* -------------------------------------------------- CANDIDATE CONFIRMATION (multi only) */}
+      {step === "candidates" && inspection && (
+        <section className="guided-card space-y-4" data-testid="candidate-confirmation">
+          {/* Two states share this screen: candidates to confirm, and the honest "nothing found"
+              case. The second is not an error -- HazLenz simply could not identify a hazard in what
+              was written -- and it must not be dressed up as a list of zero candidates. */}
+          {proposedCandidates.length === 0 ? (
+            <div>
+              <h2 className="text-xl font-black">HazLenz did not identify a hazard here</h2>
+              <p className="guided-muted mt-1 text-sm">
+                Nothing was recorded as a finding. If a hazard is present, either add more detail to
+                what you wrote and run it again, or record the finding yourself below.
+              </p>
+            </div>
+          ) : (
+            <div>
+              <h2 className="text-xl font-black">
+                HazLenz found {proposedCandidates.length} possible finding{proposedCandidates.length === 1 ? "" : "s"}
+              </h2>
+              <p className="guided-muted mt-1 text-sm">
+                Tick the ones that are real findings. Anything you leave unticked is not recorded as a
+                finding, creates no corrective action, and does not appear in your report — you do not
+                have to review it or explain why.
+              </p>
+            </div>
+          )}
+
+          <div className="space-y-2">
+            {proposedCandidates.map((finding) => {
+              const fragment = (finding.sourceCandidate as { observationFragment?: string } | null)?.observationFragment;
+              const standards = resolveFindingStandards(finding);
+              const snapshot = finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null;
+              const band = snapshot?.riskBand || snapshot?.overallRisk || "Not established";
+              const checked = !!candidateSelection[finding.id];
+              return (
+                <label
+                  key={finding.id}
+                  className={`flex cursor-pointer items-start gap-3 rounded-lg border p-3 ${checked ? "border-sky-700 bg-sky-50 dark:bg-sky-950" : "border-slate-300"}`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    disabled={busy}
+                    onChange={() => setCandidateSelection((current) => ({ ...current, [finding.id]: !current[finding.id] }))}
+                    className="mt-1 h-5 w-5"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-black">{findingDisplayTitle(finding)}</span>
+                    {fragment && (
+                      <span className="guided-muted mt-1 block text-sm">
+                        From what you wrote: “{fragment}”
+                      </span>
+                    )}
+                    <span className="mt-1 block text-xs font-semibold text-slate-700 dark:text-slate-300">
+                      Risk {band}
+                      {standards.length > 0
+                        ? ` · ${standards[0].citation}${standards.length > 1 ? ` +${standards.length - 1}` : ""}`
+                        : " · no standard matched"}
+                    </span>
+                  </span>
+                </label>
+              );
+            })}
+          </div>
+
+          {proposedCandidates.length > 0 && (
+            <p className="guided-muted text-sm">
+              {confirmedCount} of {proposedCandidates.length} selected.
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-3">
+            {proposedCandidates.length > 0 && (
+              <button
+                disabled={busy || confirmedCount === 0}
+                onClick={confirmCandidates}
+                className="guided-primary-button"
+                data-testid="confirm-candidates"
+              >
+                {busy
+                  ? "Working…"
+                  : confirmedCount === 0
+                    ? "Tick at least one to continue"
+                    : `Continue with ${confirmedCount} finding${confirmedCount === 1 ? "" : "s"}`}
+              </button>
+            )}
+            <button
+              disabled={busy}
+              onClick={() => { setRevisionText(observation); setEditingObservation(true); setStep("hazlenz"); }}
+              className={proposedCandidates.length === 0 ? "guided-primary-button" : "guided-secondary-button"}
+            >
+              {proposedCandidates.length === 0 ? "Revise what I wrote" : "None of these — revise what I wrote"}
+            </button>
+          </div>
+
+          {missedFindingBlock}
+        </section>
+      )}
+
+      {/* ------------------------------------------------------------------ STEP 2 — HAZLENZ */}
+      {step === "hazlenz" && analysis && inspection && (
         <section className="guided-card space-y-4">
           {staleAnalysis && (
             <div role="alert" className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-semibold text-amber-950">
@@ -1324,431 +2491,803 @@ export default function InspectionWorkspacePage() {
               </button>
             </div>
           )}
-          <h2 className="text-xl font-black">HazLenz assessment — review before finalizing</h2>
-          <p className="guided-muted text-sm">
-            HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below;
-            a qualified human review is recorded when you finalize each finding.
-          </p>
-          <div className="guided-subcard space-y-3" aria-label="Observation revision">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <h3 className="font-black">Current observation</h3>
-                <p className="guided-muted text-sm">Revise the persisted observation before requesting a new HazLenz analysis.</p>
-              </div>
-              {!editingObservation && (
-                <button type="button" disabled={busy} onClick={() => { setRevisionText(observation); setEditingObservation(true); }} className="min-h-10 rounded-lg border border-slate-700 px-3 font-bold">
-                  Revise observation
-                </button>
-              )}
-            </div>
+
+          {/* The heading must describe whose assessment this is. For a finding the inspector added,
+              HazLenz produced nothing and did not "flag" anything -- saying otherwise would credit
+              the engine with the inspector's work. */}
+          <div>
+            <h2 className="text-xl font-black">
+              {selectedIsUserAuthored ? "Finding you identified" : "HazLenz assessment"}
+            </h2>
+            {selectedIsUserAuthored ? (
+              <p className="guided-muted mt-1 text-sm">
+                HazLenz did not propose this hazard. The evidence is what you recorded for this
+                observation.
+              </p>
+            ) : selectedFindingFragment ? (
+              <p className="guided-muted mt-1 text-sm">
+                Flagged from what you recorded: “{selectedFindingFragment}”
+              </p>
+            ) : null}
+          </div>
+
+          {/* APPLICABLE STANDARDS.
+              Collapsed to citation number + title. Expanding one fetches its regulatory text on
+              demand. Confidence sits on each standard, and opening it offers the questions that
+              would raise it -- clarification is pulled by the reviewer, never pushed at them. */}
+          <div className="space-y-2" aria-label="Applicable standards" data-testid="applicable-standards">
+            <h3 className="font-black">
+              Applicable standard{findingStandards.length === 1 ? "" : "s"}
+              {findingStandards.length > 0 && ` (${findingStandards.length})`}
+            </h3>
+            {findingStandards.length === 0 && (
+              <p className="guided-muted text-sm">
+                {selectedIsUserAuthored
+                  ? "You identified this hazard, so HazLenz has not matched a standard to it. None will be attached unless the engine independently finds one."
+                  : "No standard has been established for this finding from the evidence recorded so far."}
+              </p>
+            )}
+            {findingStandards.map((candidate) => {
+              const backing = getStandardBackingPresentation({
+                citation: candidate.citation,
+                backingStatus: candidate.backingStatus,
+                simplifiedRequirement: candidate.plainLanguageSummary || "",
+              } as Parameters<typeof getStandardBackingPresentation>[0]);
+              const expanded = expandedCitation === candidate.citation;
+              const record = standardTexts[candidate.citation];
+              const confidenceOpen = confidenceOpenFor === candidate.citation;
+              return (
+                <article key={candidate.citation} className="rounded-lg border border-slate-300 p-3">
+                  <button
+                    type="button"
+                    aria-expanded={expanded}
+                    onClick={() => void toggleStandardText(candidate.citation)}
+                    className="flex w-full items-start justify-between gap-3 text-left"
+                  >
+                    <span>
+                      <StandardCitationHeading
+                        citation={candidate.citation}
+                        title={candidate.title || candidate.family}
+                      />
+                    </span>
+                    <span aria-hidden className="mt-1 shrink-0 text-lg font-black">{expanded ? "−" : "+"}</span>
+                  </button>
+
+                  <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-bold">
+                    <span className={candidate.applicability === "direct"
+                      ? "rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-900"
+                      : "rounded-full bg-amber-100 px-2 py-0.5 text-amber-900"}>
+                      {candidate.applicability === "direct" ? "Applies" : "Candidate"}
+                    </span>
+                    {backing.verifiedBadge && (
+                      <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-800">{backing.verifiedBadge}</span>
+                    )}
+                    <button
+                      type="button"
+                      aria-expanded={confidenceOpen}
+                      onClick={() => setConfidenceOpenFor(confidenceOpen ? "" : candidate.citation)}
+                      className="rounded-full border border-slate-500 px-3 py-0.5 font-bold"
+                    >
+                      Confidence: {candidateConfidenceLabel(candidate.confidence, candidate.applicability)} ⓘ
+                    </button>
+                  </div>
+
+                  {/* Raise-the-confidence questions. Answering one re-runs the analysis; skipping
+                      them all is always allowed, because none of them blocks the review. */}
+                  {confidenceOpen && (
+                    <div className="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-3 dark:bg-slate-900">
+                      {candidate.missingPredicates?.length > 0 && (
+                        <>
+                          <p className="text-sm font-bold">What would raise this</p>
+                          <ul className="mt-1 list-disc pl-5 text-sm">
+                            {candidate.missingPredicates.map((item) => <li key={item}>{item}</li>)}
+                          </ul>
+                        </>
+                      )}
+                      {clarificationQuestions.length > 0 ? (
+                        <div className="mt-3 space-y-3">
+                          {clarificationQuestions.map((question) => (
+                            <fieldset key={question.id}>
+                              <legend className="text-sm font-semibold">{question.question}</legend>
+                              {question.reason && <p className="guided-muted mt-1 text-xs">{question.reason}</p>}
+                              <div className="mt-2 flex flex-wrap gap-2">
+                                {(question.options || ["Yes", "No", "Not sure"]).map((option) => (
+                                  <button
+                                    key={option}
+                                    disabled={busy}
+                                    onClick={() => reanalyze({ questionId: question.id, answer: option })}
+                                    className="min-h-11 rounded-lg border border-slate-500 px-4 text-sm font-semibold"
+                                  >
+                                    {option}
+                                  </button>
+                                ))}
+                              </div>
+                            </fieldset>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="guided-muted mt-2 text-sm">
+                          There is no question HazLenz can ask that would change this. Confidence is
+                          limited by the evidence itself — adding detail to the observation and
+                          reanalyzing is the way to raise it.
+                        </p>
+                      )}
+                      <p className="guided-muted mt-3 text-xs">
+                        Answering is optional. Nothing here blocks saving the finding.
+                      </p>
+                    </div>
+                  )}
+
+                  {candidate.explanation && (
+                    <p className="mt-2 text-sm"><span className="font-bold">Why: </span>{candidate.explanation}</p>
+                  )}
+
+                  {expanded && (
+                    <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3 text-sm dark:bg-slate-900">
+                      {standardTextLoading === candidate.citation && <p className="guided-muted">Loading the regulatory text…</p>}
+                      {standardTextLoading !== candidate.citation && record && (
+                        <>
+                          {record.matchScope === "parent-section" && (
+                            <p className="guided-muted mb-2 text-xs">
+                              InSite holds this standard at section level. The text below is{" "}
+                              <strong>{record.citation}</strong>, which contains the cited paragraph.
+                            </p>
+                          )}
+                          {record.heading && <p className="font-bold">{record.heading}</p>}
+                          <p className="mt-1 whitespace-pre-wrap">{record.textPlain}</p>
+                        </>
+                      )}
+                      {standardTextLoading !== candidate.citation && !record && (
+                        <p className="guided-muted">
+                          The regulatory text for this citation is not available in InSite yet.
+                          {candidate.plainLanguageSummary && backing.allowsContentText
+                            ? " HazLenz's summary is shown above."
+                            : ""}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Revise and reanalyze, at the bottom of the assessment where it belongs: it is what
+              you do when the assessment is wrong, not the first thing you read. */}
+          <details className="guided-subcard">
+            <summary className="cursor-pointer font-bold">Not right? Revise what you wrote</summary>
             {editingObservation ? (
               <>
-                <textarea aria-label="Revise persisted observation" value={revisionText} onChange={event => setRevisionText(event.target.value)} rows={6} className="w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-950" />
-                <div className="flex flex-wrap gap-2">
-                  <button type="button" disabled={busy || revisionText.trim().length < 3} onClick={saveObservationRevision} className="guided-primary-button">Save observation revision</button>
+                <textarea aria-label="Revise persisted observation" value={revisionText} onChange={event => setRevisionText(event.target.value)} rows={6} className="mt-2 w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-950" />
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button type="button" disabled={busy || revisionText.trim().length < 3} onClick={saveObservationRevision} className="guided-primary-button">Save revision</button>
                   <button type="button" disabled={busy} onClick={() => setEditingObservation(false)} className="guided-secondary-button">Cancel</button>
                 </div>
               </>
             ) : (
-              <p className="whitespace-pre-wrap rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-900">{observation}</p>
-            )}
-            {!editingObservation && (
-              <button type="button" disabled={busy} onClick={reanalyzeCurrentObservation} className="guided-secondary-button">
-                Reanalyze with HazLenz AI
-              </button>
-            )}
-          </div>
-          {inspection.findings && inspection.findings.length > 0 && (
-            <section aria-label="Findings in this inspection" className="guided-subcard space-y-2">
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div>
-                  <h3 className="font-black">
-                    Findings in this inspection ({activeFindingCount})
-                  </h3>
-                  <p className="guided-muted text-sm">
-                    {reviewedFindingCount} of {activeFindingCount} reviewed. Select a finding to
-                    review its standard, risk, and corrective action.
-                  </p>
+              <>
+                <p className="mt-2 whitespace-pre-wrap rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-900">{observation}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button type="button" disabled={busy} onClick={() => { setRevisionText(observation); setEditingObservation(true); }} className="guided-secondary-button">
+                    Edit the observation
+                  </button>
+                  <button type="button" disabled={busy} onClick={reanalyzeCurrentObservation} className="guided-secondary-button">
+                    Reanalyze
+                  </button>
                 </div>
+              </>
+            )}
+          </details>
+
+          {/* Correcting a fact HazLenz misread is a genuine safety action, so it stays available --
+              but behind a disclosure, because most reviews never need it. */}
+          {reviewFacts.length > 0 && (
+            <details className="guided-subcard">
+              <summary className="cursor-pointer font-bold">Correct what HazLenz read</summary>
+              <p className="guided-muted mt-1 text-sm">
+                Unknown facts stay unknown; they are never treated as observed.
+              </p>
+              <div className="mt-3 space-y-3">
+                {reviewFacts.map((item, index) => (
+                  <label key={item.id} className="block text-sm font-semibold">
+                    {item.type.replace(/([A-Z])/g, " $1")}
+                    <input
+                      aria-label={`Correct ${item.type}`}
+                      value={Array.isArray(item.value) ? item.value.join(", ") : String(item.value ?? "")}
+                      onChange={(event) =>
+                        setReviewFacts((facts) =>
+                          facts.map((fact, factIndex) =>
+                            factIndex === index ? { ...fact, value: event.target.value } : fact,
+                          ),
+                        )
+                      }
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
+                    />
+                    <span className="mt-1 block text-xs font-normal text-slate-600">
+                      Source: {item.source.replaceAll("_", " ")} · {item.status}
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <button disabled={busy} onClick={() => reanalyze()} className="guided-secondary-button mt-3">
+                Re-run after corrections
+              </button>
+            </details>
+          )}
+
+          {/* Other hazards HazLenz raised from the SAME observation. Shown here so the reviewer
+              knows what else is queued, without leaving the finding they are working on. */}
+          {/* Everything HazLenz proposed from this observation, INCLUDING what the customer did not
+              confirm. Nothing is silently discarded: an unconfirmed suggestion stays visible and
+              one tap brings it back, and its state is stated honestly rather than as "Saved".
+              User-authored findings are excluded by construction -- HazLenz did not propose them,
+              and counting them here would misattribute the inspector's own work to the engine. */}
+          {hazlenzProposedForObservation.length > 1 && (
+            <details className="guided-subcard">
+              <summary className="cursor-pointer font-bold">
+                HazLenz proposed {hazlenzProposedForObservation.length} hazards from this observation
+              </summary>
+              <div className="mt-2 space-y-2">
+                {hazlenzProposedForObservation
+                  .map((finding) => (
+                    <div key={finding.id} className={`rounded-lg border p-2 text-sm ${selectedFindingId === finding.id ? "border-sky-700 bg-sky-50" : "border-slate-300"}`}>
+                      <p className="font-bold">{findingDisplayTitle(finding)}</p>
+                      <p className="text-xs">
+                        {finding.status === "dismissed"
+                          ? "Not confirmed — not in the report"
+                          : finding.status === "finalized"
+                            ? "Saved as a finding"
+                            : "Confirmed — not yet saved"}
+                      </p>
+                      {finding.status === "dismissed" ? (
+                        <button
+                          type="button"
+                          disabled={busy}
+                          onClick={() => void restoreCandidate(finding)}
+                          className="mt-1 min-h-9 rounded-lg border border-slate-700 px-3 text-xs font-bold"
+                        >
+                          Actually, include this one
+                        </button>
+                      ) : selectedFindingId !== finding.id && (
+                        <button type="button" disabled={busy} onClick={() => selectFinding(finding)} className="mt-1 min-h-9 rounded-lg border border-slate-700 px-3 text-xs font-bold">
+                          Work on this one
+                        </button>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            </details>
+          )}
+
+          {missedFindingBlock}
+
+          <button disabled={busy} onClick={() => setStep("risk")} className="guided-primary-button">
+            Continue to risk
+          </button>
+        </section>
+      )}
+
+      {/* --------------------------------------------------------------- STEP 3 — RISK & FIX */}
+      {step === "risk" && inspection && selectedFindingDetail && (
+        <section className="guided-card space-y-5">
+          <div>
+            <h2 className="text-xl font-black">Risk and corrective action</h2>
+            <p className="guided-muted mt-1 text-sm">
+              Confirm the risk for this finding, then choose what will be done about it.
+            </p>
+          </div>
+
+          {selectedIsUserAuthored && userAuthoredNotice}
+
+          <RiskReviewSection
+            activeRiskScale={riskScale}
+            safeScopeResult={{
+              risk: {
+                operationalRisk: (selectedFindingDetail.riskSnapshot as { operationalRisk?: Record<string, unknown> } | null)?.operationalRisk,
+              },
+            }}
+            severity={severity}
+            setSeverity={setSeverity}
+            likelihood={likelihood}
+            setLikelihood={setLikelihood}
+          />
+
+          {/*
+            The rationale field is PROVENANCE-AWARE, because the same words are not true of both
+            kinds of finding.
+
+            A user-authored finding has no HazLenz risk proposal, so there is nothing to "disagree
+            with" and nothing to have "changed" -- the matrix selection IS the risk decision, and the
+            rationale is supporting human reasoning. A HazLenz-derived finding does have a proposal,
+            so when the reviewer moves off it the field keeps its existing wording, explicitly tied
+            to changing HazLenz's assessment; when they accept it, there is nothing to justify and
+            the field collapses out of the way.
+
+            Optional in every case. The matrix selection is the authoritative risk decision and the
+            rationale is never a completion requirement.
+          */}
+          {selectedIsUserAuthored ? (
+            <div>
+              <label className="block font-bold">
+                Why this risk? <span className="font-normal text-slate-500">(optional)</span>
+                <textarea
+                  aria-label="Risk rationale"
+                  value={reviewerRiskReason}
+                  onChange={event => setReviewerRiskReason(event.target.value)}
+                  className="guided-input mt-1 min-h-20"
+                />
+              </label>
+            </div>
+          ) : riskDiffersFromHazLenz ? (
+            <div>
+              <label className="block font-bold">
+                Why you changed it <span className="font-normal text-slate-500">(you have moved off HazLenz&apos;s assessment)</span>
+                <textarea value={reviewerRiskReason} onChange={event => setReviewerRiskReason(event.target.value)}
+                  className="guided-input mt-1 min-h-20" />
+              </label>
+            </div>
+          ) : (
+            <details>
+              <summary className="cursor-pointer font-bold">
+                Add a note about this risk <span className="font-normal text-slate-500">(optional)</span>
+              </summary>
+              <textarea
+                aria-label="Risk rationale"
+                value={reviewerRiskReason}
+                onChange={event => setReviewerRiskReason(event.target.value)}
+                className="guided-input mt-2 min-h-20"
+              />
+            </details>
+          )}
+
+          {/* CORRECTIVE ACTIONS for this finding, from its own HazLenz intelligence. The reviewer
+              may deselect any of them, edit the wording, or add their own. */}
+          {/*
+            MANUAL EDITOR — shown when there is nothing to suggest, which is always the case for a
+            hazard the inspector identified themselves.
+
+            The three fields are the existing domain fields, unchanged; only the labels and the
+            placeholder guidance are new. Placeholders describe the SHAPE of the answer and never
+            supply one: pre-filling substantive text would be pseudo-HazLenz content attached to a
+            hazard HazLenz never assessed. The heading is what the inspector needs to do, not an
+            apology for what the engine did not do -- the provenance note is secondary and small.
+          */}
+          {hasOnlyManualActions ? (
+            <div className="space-y-3" data-testid="corrective-actions">
+              <div>
+                <h3 className="font-black">Add corrective action</h3>
+                {selectedIsUserAuthored && (
+                  <p className="guided-muted mt-1 text-sm">
+                    You identified this finding, so no HazLenz corrective action was generated.
+                  </p>
+                )}
+              </div>
+              {reviewerActions.map((action) => (
+                <label key={action.id} className="block font-bold">
+                  {ACTION_KIND_LABELS[action.kind]}
+                  {action.kind === "immediate" && (
+                    <span className="font-normal text-slate-500"> — interim control</span>
+                  )}
+                  <textarea
+                    aria-label={ACTION_KIND_LABELS[action.kind]}
+                    value={action.detail}
+                    placeholder={ACTION_KIND_PLACEHOLDERS[action.kind]}
+                    onChange={(event) => editReviewerAction(action.id, event.target.value)}
+                    className="guided-input mt-1 min-h-20"
+                  />
+                </label>
+              ))}
+              <p className="guided-muted text-sm">
+                Anything you leave blank is simply not recorded.
+              </p>
+              {responsibleAndDueBlock}
+            </div>
+          ) : (
+          <div className="space-y-3" data-testid="corrective-actions">
+            <h3 className="font-black">What will be done</h3>
+            {reviewerActions.map((action) => (
+              <div key={action.id} className="rounded-lg border border-slate-300 p-3">
+                <label className="flex items-start gap-2 font-bold">
+                  <input
+                    type="checkbox"
+                    checked={action.selected}
+                    onChange={() => toggleReviewerAction(action.id)}
+                    className="mt-1"
+                  />
+                  <span>
+                    {action.title}
+                    <span className="block text-xs font-semibold text-slate-600 dark:text-slate-300">
+                      {ACTION_KIND_LABELS[action.kind]}
+                      {action.origin === "user" ? " · added by you" : " · suggested by HazLenz"}
+                    </span>
+                  </span>
+                </label>
+                {action.selected && (
+                  <textarea
+                    aria-label={`Detail for ${action.title}`}
+                    value={action.detail}
+                    onChange={(event) => editReviewerAction(action.id, event.target.value)}
+                    className="guided-input mt-2 min-h-16"
+                  />
+                )}
+              </div>
+            ))}
+
+            <details className="guided-subcard">
+              <summary className="cursor-pointer font-bold">Add your own action</summary>
+              <div className="mt-2 space-y-2">
+                <label className="block text-sm font-bold">
+                  Type
+                  <select
+                    value={newActionKind}
+                    onChange={(event) => setNewActionKind(event.target.value as ReviewerAction["kind"])}
+                    className="guided-input mt-1"
+                  >
+                    <option value="immediate">Immediate protective action</option>
+                    <option value="prevention">Permanent correction</option>
+                    <option value="verification">Verification step</option>
+                  </select>
+                </label>
+                <label className="block text-sm font-bold">
+                  Title
+                  <input value={newActionTitle} onChange={(event) => setNewActionTitle(event.target.value)} className="guided-input mt-1" />
+                </label>
+                <label className="block text-sm font-bold">
+                  What will be done
+                  <textarea value={newActionDetail} onChange={(event) => setNewActionDetail(event.target.value)} className="guided-input mt-1 min-h-20" />
+                </label>
+                <button type="button" onClick={addReviewerAction} disabled={!newActionTitle.trim() && !newActionDetail.trim()} className="guided-secondary-button">
+                  Add action
+                </button>
+              </div>
+            </details>
+            {responsibleAndDueBlock}
+          </div>
+          )}
+
+          <div className="flex flex-wrap gap-3">
+            <button onClick={() => setStep("hazlenz")} className="guided-secondary-button">Back</button>
+            <button
+              disabled={busy || !matrixRisk}
+              onClick={() => setStep("review")}
+              className="guided-primary-button"
+            >
+              {matrixRisk ? "Continue to review" : "Select a risk cell to continue"}
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* ------------------------------------------------------------------ STEP 4 — REVIEW */}
+      {step === "review" && inspection && selectedFindingDetail && (
+        <section className="guided-card space-y-4">
+          <div>
+            <h2 className="text-xl font-black">Check this finding before saving</h2>
+            <p className="guided-muted mt-1 text-sm">
+              Saving records your review against this finding. You can reopen and change it until
+              the report is generated.
+            </p>
+          </div>
+
+          <div className="guided-subcard space-y-3">
+            <div>
+              <h3 className="font-black">{findingDisplayTitle(selectedFindingDetail)}</h3>
+              {workArea && <p className="guided-muted text-sm">{workArea}</p>}
+            </div>
+
+            <div>
+              <h4 className="font-bold">What you recorded</h4>
+              <p className="mt-1 whitespace-pre-wrap text-sm">{observation}</p>
+            </div>
+
+            {selectedIsUserAuthored && userAuthoredNotice}
+
+            <div>
+              <h4 className="font-bold">Standard{findingStandards.length === 1 ? "" : "s"}</h4>
+              {findingStandards.length === 0 && (
+                <p className="guided-muted text-sm">
+                  {selectedIsUserAuthored
+                    ? "None. HazLenz did not identify this hazard, so no standard has been matched to it."
+                    : "Not established."}
+                </p>
+              )}
+              <ul className="mt-1 space-y-1 text-sm">
+                {findingStandards.map((candidate) => (
+                  <li key={candidate.citation}>
+                    <strong>{candidate.citation}</strong>
+                    {candidate.title ? ` — ${candidate.title}` : ""}
+                    <span className="guided-muted"> · {candidate.applicability === "direct" ? "applies" : "candidate"}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-bold">Risk</h4>
+              <p className="mt-1 text-sm">
+                {matrixRisk
+                  ? `${matrixRisk.overallRisk} — severity ${severity} × likelihood ${likelihood} = ${matrixRisk.score}`
+                  : "Not set"}
+              </p>
+              {reviewerRiskReason.trim() && <p className="guided-muted mt-1 text-sm">{reviewerRiskReason}</p>}
+            </div>
+
+            <div>
+              <h4 className="font-bold">What will be done</h4>
+              {reviewerActions.filter((action) => action.selected).length === 0 && (
+                <p className="guided-muted text-sm">No corrective action selected.</p>
+              )}
+              <ul className="mt-1 space-y-2 text-sm">
+                {reviewerActions.filter((action) => action.selected).map((action) => (
+                  <li key={action.id}>
+                    <strong>{ACTION_KIND_LABELS[action.kind]}: </strong>
+                    {action.detail || action.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Who and when, read back with the rest. Both were decided on the previous step -- one
+                typed, one derived from the risk -- and a check-before-saving screen that omits them
+                is not a complete read-back. "Unassigned" is stated plainly rather than left blank,
+                so the customer sees what the report will say. */}
+            <div>
+              <h4 className="font-bold">Responsible person</h4>
+              <p className="mt-1 text-sm">
+                {responsiblePerson.trim() || <span className="guided-muted">Unassigned</span>}
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-bold">Due date</h4>
+              <p className="mt-1 text-sm">
+                {matrixRisk ? (
+                  <>
+                    {governedDueDate(matrixRisk.overallRisk as RiskBandLabel, new Date())
+                      .toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+                    <span className="guided-muted">
+                      {" "}— based on {matrixRisk.overallRisk} risk
+                    </span>
+                  </>
+                ) : "Not set"}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <button onClick={() => setStep("risk")} className="guided-secondary-button">Back</button>
+            <button disabled={busy} onClick={acceptReview} className="guided-primary-button" data-testid="save-finding">
+              {busy ? "Saving…" : "Save finding"}
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* ------------------------------------------------------------------ STEP 5 — FINISH
+          The purpose of this screen is COMPLETING THE INSPECTION. The report is what completion
+          produces, not the thing the customer is here to do. It shows every current finding --
+          including any that still block completion -- with the accountability the inspector is
+          about to commit to: what will be done, by whom, and by when. */}
+      {step === "finalize" && inspection && (
+        <section className="space-y-4" data-testid="finalize-page">
+          <div className="guided-card">
+            <h2 className="text-xl font-black">Finish this inspection</h2>
+            <p className="guided-muted mt-1 text-sm">
+              Review your findings and corrective actions before finishing.
+            </p>
+
+            {/* READINESS, straight from the server's own completion contract. Never a frontend
+                approximation: `readiness` is the same evaluation `transition` enforces. */}
+            {readiness && (
+              <p
+                className={`mt-3 rounded-xl border p-3 text-sm font-black ${readiness.ready
+                  ? "border-emerald-300 bg-emerald-50 text-emerald-900"
+                  : "border-sky-300 bg-sky-50 text-sky-900"}`}
+                data-testid="completion-readiness"
+                role="status"
+              >
+                {readiness.ready ? (
+                  <>Ready to finish — {readiness.reportableCount} finding{readiness.reportableCount === 1 ? "" : "s"} reviewed</>
+                ) : readiness.reasons.includes("NO_CURRENT_FINDING") ? (
+                  <>Record at least one finding before finishing.</>
+                ) : readiness.reasons.includes("NO_OBSERVATION") ? (
+                  <>Record an observation before finishing.</>
+                ) : (
+                  <>
+                    {readiness.blockingFindingIds.length} finding
+                    {readiness.blockingFindingIds.length === 1 ? "" : "s"} need
+                    {readiness.blockingFindingIds.length === 1 ? "s" : ""} review before you can finish
+                  </>
+                )}
+              </p>
+            )}
+
+            <div className="mt-3">
+              <button disabled={busy} onClick={startAnotherFinding} className="guided-secondary-button">
+                + Add another finding
+              </button>
+            </div>
+          </div>
+
+          {/* UNRESOLVED FIRST. A finding that would block the server must be visible and actionable
+              here -- pressing Finish and meeting a validation error for something this screen never
+              showed is the defect this replaces. */}
+          {unresolvedFindings.map((finding) => (
+            <article key={finding.id} className="guided-card space-y-2 border-sky-400" data-testid="unresolved-finding">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <h3 className="text-lg font-black">{findingDisplayTitle(finding)}</h3>
+                <span className="rounded-full bg-sky-100 px-3 py-0.5 text-xs font-black text-sky-900">
+                  Needs review
+                </span>
+              </div>
+              {finding.source === "user_authored" && (
+                <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                  Identified by you
+                </p>
+              )}
+              <p className="guided-muted text-sm">
+                This finding has not been reviewed yet, so the inspection cannot be finished.
+              </p>
+              <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
                   disabled={busy}
-                  onClick={beginAdditionalObservation}
-                  data-testid="add-finding"
-                  className="guided-primary-button"
+                  onClick={() => reviewFindingAgain(finding)}
+                  className="min-h-10 rounded-lg bg-sky-700 px-3 font-bold text-white"
+                  data-testid="continue-review"
                 >
-                  + Add finding
+                  Continue review
+                </button>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void dismissFinding(finding)}
+                  className="min-h-10 rounded-lg border border-red-700 px-3 font-bold text-red-800"
+                >
+                  Remove
                 </button>
               </div>
-              {inspection.findings
-                .filter((finding) => finding.status !== "superseded")
-                .map((finding) => (
-                  <article key={finding.id} className={`rounded-lg border p-3 ${selectedFindingId === finding.id ? "border-[var(--guided-focus)] bg-[var(--guided-info)] text-[var(--guided-text)]" : "border-slate-300"}`}>
-                    <p className="font-bold">{findingDisplayTitle(finding)}</p>
-                    <p className="text-xs">
-                      {/* Reviewer-confirmed risk (the "Confirm risk and finalize finding" flow above) persists the
-                          chosen band under riskSnapshot.overallRisk, not riskBand -- only the earlier, system-generated
-                          snapshot uses riskBand. Fall back to overallRisk so a finalized, reviewer-confirmed finding
-                          doesn't display as "Not established" here despite having a real recorded risk. */}
-                      Risk: {String((finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null)?.riskBand
-                        || (finding.riskSnapshot as { riskBand?: string; overallRisk?: string } | null)?.overallRisk
-                        || "Not established")}
-                      {" "}(independent of other findings from this observation)
-                    </p>
-                    <p className="text-xs">
-                      {humanizeFindingStatus(finding.status)} · Review {finding.finalReviewId ? "complete" : "required"}
-                    </p>
-                    {/* slate-500 measured 4.38:1 against this card's light #EFF6FF surface,
-                        under the 4.5 needed at 12px. slate-600 is the app's own next muted
-                        step and clears it; dark mode is unaffected because the globals guard
-                        maps both to the same dark muted colour. */}
-                    <details className="mt-1">
-                      <summary className="cursor-pointer text-xs font-semibold text-slate-600">Advanced details</summary>
-                      <p className="mt-1 text-xs text-slate-600">Finding ID: {finding.id}</p>
-                      <p className="text-xs text-slate-600">Analysis: {finding.selectedAnalysisId || "pending"}</p>
-                    </details>
-                    <button type="button" onClick={() => selectFinding(finding)}
-                      className="mt-2 min-h-10 rounded-lg border border-slate-700 px-3 font-bold">
-                      {selectedFindingId === finding.id ? "Reviewing this finding" : "Review this finding"}
-                    </button>
-                  </article>
-                ))}
-            </section>
-          )}
-          {evidenceObjectId && <p className="text-sm">Private evidence stored: {evidenceObjectId.slice(0, 8)}…</p>}
-          <div className="guided-subcard">
-            <h3 className="font-black">What HazLenz understood</h3>
-            <p className="mt-1 text-sm">
-              Correct any extracted fact before accepting the advisory result. Unknown facts remain
-              unknown; they are not treated as observed.
-            </p>
-            <div className="mt-3 space-y-3">
-              {reviewFacts.map((item, index) => (
-                <label key={item.id} className="block text-sm font-semibold">
-                  {item.type.replace(/([A-Z])/g, " $1")}
-                  <input
-                    aria-label={`Correct ${item.type}`}
-                    value={Array.isArray(item.value) ? item.value.join(", ") : String(item.value ?? "")}
-                    onChange={(event) =>
-                      setReviewFacts((facts) =>
-                        facts.map((fact, factIndex) =>
-                          factIndex === index ? { ...fact, value: event.target.value } : fact,
-                        ),
-                      )
-                    }
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
-                  />
-                  <span className="mt-1 block text-xs font-normal text-slate-600">
-                    Source: {item.source.replaceAll("_", " ")} · {item.status}
-                  </span>
-                </label>
-              ))}
+            </article>
+          ))}
+
+          {savedFindings.length === 0 && unresolvedFindings.length === 0 && (
+            <div className="guided-card">
+              <p className="guided-muted text-sm">
+                No findings have been recorded yet. Add one before finishing.
+              </p>
             </div>
-            {reviewFacts.length > 0 && (
-              <button
-                disabled={busy}
-                onClick={() => reanalyze()}
-                className="mt-3 min-h-11 rounded-xl border border-slate-800 px-4 font-bold"
-              >
-                Re-run after fact corrections
-              </button>
-            )}
-          </div>
-          {analysis.regulatoryContext && (
-            <p className="text-sm" data-testid="hazlenz-regulatory-context">
-              {analysis.regulatoryContext.provenance === "USER_CONFIRMED" && (
-                <>Standards evaluated under <strong>{regulatoryContextLabel(analysis.regulatoryContext.value)}</strong> (set for this inspection).</>
-              )}
-              {analysis.regulatoryContext.provenance === "HAZLENZ_INFERRED" && (
-                <>
-                  Standards evaluated under <strong>{regulatoryContextLabel(analysis.regulatoryContext.value)}</strong> — inferred by HazLenz from the observation
-                  {analysis.regulatoryContext.basis?.length ? ` (“${analysis.regulatoryContext.basis.join("”, “")}”)` : ""}, not yet confirmed for this inspection.{" "}
+          )}
+
+          {/* COMPLETED FINDINGS. A compact read-back of what is being committed: the hazard, its
+              risk, the standard, the remediation plan, who is responsible and when it is due. */}
+          {savedFindings.map((finding) => {
+            const standards = resolveFindingStandards(finding);
+            const band = finding.riskSnapshot as { overallRisk?: string; riskBand?: string } | null;
+            const bandLabel = band?.overallRisk || band?.riskBand || "Risk not set";
+            const plan = reviewedPlanFor(finding);
+            return (
+              <article key={finding.id} className="guided-card space-y-2" data-testid="finalize-finding-card">
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <h3 className="text-lg font-black">{findingDisplayTitle(finding)}</h3>
+                  <span className="rounded-full bg-slate-100 px-3 py-0.5 text-xs font-black uppercase text-slate-800">
+                    {bandLabel}
+                  </span>
+                </div>
+
+                {finding.source === "user_authored" && (
+                  <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    Identified by you · not proposed by HazLenz
+                  </p>
+                )}
+
+                <p className="text-sm">
+                  {standards.length ? (
+                    <>
+                      <strong>{standards[0].citation}</strong>
+                      {standards[0].title ? ` — ${standards[0].title}` : ""}
+                      {standards.length > 1 ? ` +${standards.length - 1} more` : ""}
+                    </>
+                  ) : (
+                    <span className="guided-muted">
+                      {finding.source === "user_authored"
+                        ? "No standard matched — you identified this hazard"
+                        : "No standard established"}
+                    </span>
+                  )}
+                </p>
+
+                {/* The remediation plan, presented compactly. One plan per finding, which is what
+                    the domain model holds -- no separate action objects are invented here. */}
+                {plan.lines.length > 0 ? (
+                  <ul className="space-y-0.5 text-sm">
+                    {plan.lines.map((line) => <li key={line}>{line}</li>)}
+                  </ul>
+                ) : (
+                  <p className="guided-muted text-sm">No corrective action recorded.</p>
+                )}
+
+                <p className="text-sm">
+                  <span className="font-bold">Responsible: </span>
+                  {plan.responsible || <span className="guided-muted">Unassigned</span>}
+                  {bandLabel !== "Risk not set" && RISK_BAND_DUE_DAYS[bandLabel as RiskBandLabel] !== undefined && (
+                    <>
+                      {" · "}
+                      <span className="font-bold">Due: </span>
+                      {governedDueDate(bandLabel as RiskBandLabel, new Date())
+                        .toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+                    </>
+                  )}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     disabled={busy}
-                    onClick={() => void persistRegulatoryContext(analysis.regulatoryContext!.value)}
-                    className="min-h-9 rounded-lg border border-slate-700 px-3 text-sm font-bold"
+                    onClick={() => reviewFindingAgain(finding)}
+                    className="min-h-10 rounded-lg border border-slate-700 px-3 font-bold"
                   >
-                    Confirm for this inspection
+                    Edit / review
                   </button>
-                </>
-              )}
-              {analysis.regulatoryContext.provenance === "UNKNOWN" && (
-                <>Regulatory context is <strong>not established</strong>; standards below are shown as conditional candidates until the governing agency is known.</>
-              )}
-            </p>
-          )}
-          {/* Assessment lead-in for the SELECTED finding: what HazLenz identified, the evidence
-              it read it from, and the risk -- in that order, before the citation. Everything here
-              is existing persisted output (hazard title, the finding's own observationFragment,
-              its riskSnapshot); no new regulatory reasoning is produced in the frontend. */}
-          {selectedFindingDetail && (
-            <div className="guided-subcard space-y-3" data-testid="hazlenz-assessment">
-              <div>
-                <p className="guided-eyebrow">HazLenz assessment</p>
-                <h3 className="mt-1 text-lg font-black">{findingDisplayTitle(selectedFindingDetail)}</h3>
-              </div>
-              {selectedFindingFragment && (
-                <div>
-                  <h4 className="font-bold">Why HazLenz flagged this</h4>
-                  <p className="guided-muted mt-1 text-sm">
-                    From what you recorded: “{selectedFindingFragment}”
-                  </p>
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => void dismissFinding(finding)}
+                    className="min-h-10 rounded-lg border border-red-700 px-3 font-bold text-red-800"
+                  >
+                    Remove
+                  </button>
                 </div>
-              )}
-              <div>
-                <h4 className="font-bold">Risk</h4>
-                <p className="mt-1 text-sm">
-                  <strong>{selectedFindingRiskBand}</strong>
-                  {selectedFindingRiskBand === "Not established"
-                    ? " — confirm severity and likelihood on the next step."
-                    : " — assessed for this finding on its own, independent of the others."}
-                </p>
-              </div>
-            </div>
-          )}
-          <div className="guided-standard-card">
-            <p className="guided-eyebrow">
-              {selectedFindingStandard?.applicability === "candidate"
-                ? "Candidate standard — more evidence required"
-                : selectedFindingStandard?.jurisdictionProvenance === "HAZLENZ_INFERRED"
-                  ? "Primary standard — jurisdiction inferred by HazLenz, confirm for this inspection"
-                  : "Primary standard"}
-            </p>
-            {selectedFindingStandard ? (
-              <StandardCitationHeading citation={selectedFindingStandard.citation} title={selectedFindingStandard.title} />
-            ) : (
-              <h3 className="mt-1 text-lg font-black">No standard established for this finding yet</h3>
-            )}
-            {selectedFindingStandard && (
+              </article>
+            );
+          })}
+
+          <div className="guided-card space-y-3">
+            {hasPlanEntitlement("correctiveActionAssignments", planCode) ? (
               <>
-                {/* KG-3C: `simplifiedRequirement` falls back to the observation primary's value
-                    when the finding's own candidate carries no corpus summary, so for a
-                    CITATION_ONLY citation it holds the match rationale rather than a description
-                    of the standard. `allowsContentText` gates that tier off in exactly that
-                    state — the notice below is then the whole answer. */}
-                {selectedFindingStandard.simplifiedRequirement && selectedFindingStandardBacking.allowsContentText && (
-                  <p className="mt-2">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">HazLenz standard summary</span>
-                    {/* KG-3C: positive-only verification marker, derived from backingStatus.
-                        Never inferred from sourceKey — see standardDisplay.ts. `whitespace-nowrap`
-                        keeps the pill intact: at a 390px viewport the phrase otherwise breaks
-                        across two lines and renders as two separate rounded fragments. */}
-                    {selectedFindingStandardBacking.verifiedBadge && (
-                      <span className="ml-2 whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                        {selectedFindingStandardBacking.verifiedBadge}
-                      </span>
-                    )}
-                    <br />
-                    {selectedFindingStandard.simplifiedRequirement}
-                  </p>
-                )}
-                {selectedFindingStandardBacking.notice && (
-                  <p className="guided-muted mt-2 text-sm">{selectedFindingStandardBacking.notice}</p>
-                )}
-                <h4 className="mt-3 font-bold">Why HazLenz selected this</h4>
-                <p>{selectedFindingStandard.whyOffered}</p>
-                <p className="mt-3"><strong>Confidence:</strong> {selectedFindingStandard.confidenceLabel}</p>
-                {/* KG-3D (Phase 8). `confidenceLimitReason` is a CONTENT-BACKING caveat, but it
-                    is computed by the guided-finding adapter, while the verified badge beside the
-                    summary comes from this finding's own persisted candidate. Two independent
-                    computations of one fact can disagree, and when they do the card says "Verified
-                    standard text" and "has not completed source review" at the same time — the
-                    contradiction KG-3C flagged (§20.13) but could not reproduce, because no record
-                    was approved yet. KG-3D approves real records, so it became reachable.
-
-                    Gating the caveat on the same presentation the badge uses makes the card
-                    internally consistent whichever layer resolved the backing first. This does not
-                    touch applicability confidence, and the evidence-gap list below is unaffected. */}
-                {!selectedFindingStandardBacking.verifiedBadge && selectedFindingStandard.confidenceLimitReason && (
-                  <p className="guided-muted mt-1 text-sm">{selectedFindingStandard.confidenceLimitReason}</p>
-                )}
-                {selectedFindingStandard.evidenceMissing.length > 0 && (
-                  <>
-                    <h4 className="mt-3 font-bold">Details that would increase confidence</h4>
-                    <ul className="list-disc pl-5">
-                      {selectedFindingStandard.evidenceMissing.map(item => <li key={item}>{item}</li>)}
-                    </ul>
-                  </>
-                )}
+                <button
+                  disabled={busy || !readiness?.ready}
+                  onClick={complete}
+                  className="guided-primary-button"
+                  data-testid="generate-report"
+                >
+                  {busy ? "Working…" : "Finish inspection"}
+                </button>
+                <p className="guided-muted text-sm">
+                  {readiness?.ready
+                    // One report per inspection: finishing an inspection that already has one
+                    // replaces it rather than adding a version beside it.
+                    ? "Finishes the inspection and creates its report."
+                    : "Resolve the findings above to finish this inspection."}
+                </p>
               </>
+            ) : (
+              <div className="rounded-lg border border-amber-300 bg-amber-50 p-3">
+                <p className="text-sm font-black leading-5 text-amber-900">
+                  Corrective actions and reports are available on the Pro plan.
+                </p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-amber-800">
+                  Everything you have recorded is saved to this inspection — upgrade to finish it and
+                  create the report.
+                </p>
+                <AppLinkButton
+                  href="/pricing"
+                  variant="accent"
+                  className="mt-3 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-center !text-white"
+                >
+                  Unlock reports
+                </AppLinkButton>
+              </div>
+            )}
+
+            {report && (
+              <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-4 text-emerald-950">
+                <p className="font-black">Inspection finished. Your report is ready.</p>
+                <button onClick={() => router.push("/reports")} className="mt-2 min-h-11 rounded-xl bg-emerald-800 px-5 font-bold text-white">
+                  Open reports
+                </button>
+              </div>
             )}
           </div>
-          {/* Questions come after the assessment and its standard: they refine an answer the
-              reviewer can already see, and none of them blocks review. */}
-          {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).length > 0 && (
-            <div className="guided-subcard">
-              <h3 className="font-black">Clarification</h3>
-              <p className="guided-muted mt-1 text-sm">
-                {(() => {
-                  const list = (analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []) as Array<{ decisionCritical?: boolean }>;
-                  const critical = list.filter((item) => item.decisionCritical).length;
-                  return critical > 0
-                    ? `${critical} of ${list.length} could change the finding, standard, or risk; the rest only raise confidence. None blocks your review.`
-                    : `${list.length} optional question${list.length === 1 ? "" : "s"} — answering raises confidence in the standard shown below; none blocks your review.`;
-                })()}
-              </p>
-              {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).map((question) => (
-                <fieldset key={question.id} className="mt-3">
-                  <legend className="font-semibold">
-                    {question.question}{" "}
-                    <span className={`ml-1 rounded px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide ${(question as { decisionCritical?: boolean }).decisionCritical ? "bg-amber-100 text-amber-900" : "bg-slate-100 text-slate-600"}`}>
-                      {(question as { decisionCritical?: boolean }).decisionCritical ? "Decision-critical" : "Optional"}
-                    </span>
-                  </legend>
-                  {materialQuestionReason(question) && (
-                    <p className="guided-muted mt-1 text-sm">{materialQuestionReason(question)}</p>
-                  )}
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {(question.options || ["Yes", "No", "Not sure"]).map((option) => (
-                      <button
-                        key={option}
-                        disabled={busy}
-                        onClick={() => reanalyze({ questionId: question.id, answer: option })}
-                        className="min-h-11 rounded-lg border border-slate-500 px-4 font-semibold"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-              ))}
-            </div>
-          )}
-          {(analysis.guidedFinding?.multiHazardReview?.requiresSplitReview || decompositionHazards(analysis).length > 1) && (
-          <div className="guided-info-panel space-y-3" role="group" aria-labelledby="multi-hazard-heading">
-              <div>
-                <strong id="multi-hazard-heading">Multiple distinct hazards detected.</strong>{" "}
-                {analysis.guidedFinding?.multiHazardReview?.instruction ||
-                  "Review each hazard separately; do not merge materially distinct mechanisms."}
-              </div>
-              <fieldset className="space-y-2">
-                <legend className="font-bold">Choose the hazards to preserve as separate findings</legend>
-                {(analysis.guidedFinding?.findingCandidates?.length
-                  ? analysis.guidedFinding.findingCandidates
-                  : decompositionHazards(analysis).map(family => ({
-                    family,
-                    citation: "",
-                    applicability: "candidate" as const,
-                    evidenceFactIds: [],
-                  }))).map(candidate => {
-                  const key = candidateKey(candidate);
-                  return (
-                    <label key={key} className="flex items-start gap-2">
-                      <input
-                        type="checkbox"
-                        checked={selectedSegmentKeys.includes(key)}
-                        onChange={event => setSelectedSegmentKeys(current =>
-                          event.target.checked
-                            ? [...new Set([...current, key])]
-                            : current.filter(item => item !== key))}
-                        className="mt-1"
-                      />
-                      <span>
-                        <strong>{candidate.family || "Safety hazard"}</strong>
-                        {candidate.citation ? ` — ${candidate.citation}` : ""}
-                        <span className="guided-muted block text-sm">
-                          {candidate.applicability === "direct"
-                            ? "Supported by current evidence"
-                            : "Candidate — material evidence still requires review"}
-                        </span>
-                      </span>
-                    </label>
-                  );
-                })}
-              </fieldset>
-            </div>
-          )}
-          <button disabled={busy} onClick={() => setStep("risk")} className="guided-primary-button">
-            Continue to risk review
-          </button>
-        </section>
-      )}
-
-      {step === "risk" && analysis?.guidedFinding && (
-        <section className="guided-card space-y-4">
-          <div>
-            <p className="guided-eyebrow">Reviewer confirmation</p>
-            <h2 className="text-xl font-black">Proposed risk</h2>
-            <p className="guided-muted mt-1">{reviewerRisk.rationale}</p>
-          </div>
-          {selectedFindingId && (
-            <p role="status" className="rounded-lg border border-[var(--guided-border)] bg-[var(--guided-info)] p-3 text-sm font-semibold text-[var(--guided-text)]">
-              Risk and review actions below apply only to the selected finding. Other findings require their own review.
-            </p>
-          )}
-          <div className="grid gap-3 sm:grid-cols-2">
-            {(["severity", "likelihood", "exposure", "overallRisk"] as const).map(field => (
-              <label key={field} className="font-bold">
-                {field === "overallRisk" ? "Overall risk" : field[0].toUpperCase() + field.slice(1)}
-                <select value={reviewerRisk[field]}
-                  onChange={event => setReviewerRisk(value => ({ ...value, [field]: event.target.value }))}
-                  className="guided-input mt-1">
-                  {["Not established", "Minor", "Moderate", "Serious", "Unlikely", "Possible", "Likely", "Rare", "Potential", "Repeated", "Controlled", "Low", "High", "Critical"]
-                    .filter((value, index, array) => array.indexOf(value) === index)
-                    .map(value => <option key={value}>{value}</option>)}
-                </select>
-              </label>
-            ))}
-          </div>
-          <label className="block font-bold">
-            Reason for adjustment <span className="font-normal">(required when changing the proposal)</span>
-            <textarea value={reviewerRiskReason} onChange={event => setReviewerRiskReason(event.target.value)}
-              className="guided-input mt-1 min-h-24" />
-          </label>
-          <div className="flex flex-wrap gap-3">
-            <button onClick={() => setStep("review")} className="guided-secondary-button">Back to HazLenz review</button>
-            <button disabled={busy} onClick={acceptReview} className="guided-primary-button">
-              Confirm risk and finalize finding
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === "followup" && (
-        <section className="guided-card space-y-3">
-          <h2 className="text-xl font-black">Corrective action</h2>
-          {(["immediateAction", "permanentCorrection", "verificationStep"] as const).map(field => (
-            <label key={field} className="block font-bold">
-              {field === "immediateAction" ? "Immediate protective action" :
-                field === "permanentCorrection" ? "Permanent correction" : "Verification step"}
-              <textarea value={actionDraft[field]}
-                onChange={event => setActionDraft(value => ({ ...value, [field]: event.target.value }))}
-                className="guided-input mt-1 min-h-24" />
-            </label>
-          ))}
-          <p className="guided-muted text-sm">This creates durable corrective-action and calendar records before completing the inspection.</p>
-          {hasPlanEntitlement("correctiveActionAssignments", planCode) ? (
-            <button disabled={busy || !actionDraft.permanentCorrection.trim()} onClick={complete} className="guided-primary-button">
-              Complete inspection and generate report
-            </button>
-          ) : (
-            <div className="rounded-lg border border-amber-300 bg-amber-50 p-3">
-              <p className="text-sm font-black leading-5 text-amber-900">
-                Assigning corrective actions is available on the Pro plan.
-              </p>
-              <p className="mt-1 text-xs font-semibold leading-5 text-amber-800">
-                Your immediate action, permanent correction, and verification step above are saved in this draft — upgrade to finish creating the corrective action, calendar task, and report.
-              </p>
-              <AppLinkButton
-                href="/pricing"
-                variant="accent"
-                className="mt-3 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-center !text-white"
-              >
-                Unlock Corrective Actions
-              </AppLinkButton>
-            </div>
-          )}
-        </section>
-      )}
-
-      {step === "complete" && report && (
-        <section className="space-y-3 rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-emerald-950">
-          <h2 className="text-xl font-black">Report generated</h2>
-          <p>Version {report.version} of this inspection&apos;s report has been saved and is available in your report history.</p>
-          <button onClick={() => router.push("/reports")} className="min-h-11 rounded-xl bg-emerald-800 px-5 font-bold text-white">
-            View report history
-          </button>
         </section>
       )}
     </main>

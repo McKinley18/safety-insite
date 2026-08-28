@@ -1,0 +1,53 @@
+[
+    {
+        "domainId": "machine_guarding",
+        "mechanism": "conveyor",
+        "confidence": "0.4",
+        "hazardFamily": "machine_guarding",
+        "supportingSignals": [
+            "conveyor",
+            "guard"
+        ],
+        "standardCandidates": [
+            {
+                "family": "MSHA moving machine parts guarding",
+                "status": "SUPPORTED",
+                "citation": "30 CFR 56.14107(a)",
+                "confidence": 0.96,
+                "explanation": "Supported by submitted evidence for MSHA moving machine parts guarding; qualified review remains required.",
+                "corpusBacked": false,
+                "applicability": "direct",
+                "backingStatus": "CITATION_ONLY",
+                "contentDisclosure": "NONE",
+                "missingPredicates": [
+                ],
+                "jurisdictionProvenance": "USER_CONFIRMED"
+            }
+        ],
+        "observationFragment": "at the crusher drive the guard over the conveyor tail pulley had been removed"
+    },
+    {
+        "domainId": "material_handling",
+        "mechanism": "material",
+        "confidence": "0.2",
+        "hazardFamily": "material_handling",
+        "supportingSignals": [
+            "material"
+        ],
+        "standardCandidates": [
+        ],
+        "observationFragment": "material was being fed"
+    },
+    {
+        "domainId": "walking_working_surfaces",
+        "mechanism": "walkway",
+        "confidence": "0.2",
+        "hazardFamily": "walking_working_surfaces",
+        "supportingSignals": [
+            "walkway"
+        ],
+        "standardCandidates": [
+        ],
+        "observationFragment": "the walkway passes within about two feet of the exposed pinch point"
+    }
+]

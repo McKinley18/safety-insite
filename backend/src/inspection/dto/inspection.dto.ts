@@ -207,3 +207,26 @@ export class AssignInspectionDto {
   @IsIn(['collaborator', 'reviewer'])
   role: 'collaborator' | 'reviewer';
 }
+
+/**
+ * A hazard the INSPECTOR identified that HazLenz did not propose.
+ *
+ * Deliberately small. The inspector has already written the observation; this answers only
+ * "what did HazLenz miss?", and the existing observation supplies the evidence. `detail` exists
+ * for the case where the observation genuinely does not contain the missed hazard's evidence, and
+ * is optional precisely so the common case costs one field.
+ *
+ * There is no citation, confidence or risk input here, and there never should be: a finding is not
+ * granted regulatory support because a customer named a hazard.
+ */
+export class CreateUserAuthoredFindingDto {
+  @IsString()
+  @MinLength(3)
+  @MaxLength(160)
+  hazardTitle: string;
+
+  @IsString()
+  @IsOptional()
+  @MaxLength(10000)
+  detail?: string;
+}

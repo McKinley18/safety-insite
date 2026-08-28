@@ -3,6 +3,22 @@ import { HazardDecomposition, MultiHazardDecompositionResult } from './multi-haz
 import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
 import { hasAnyNonNegatedTerm } from '../reasoning-orchestrator/negation-context.util';
 
+// Suspended-load evidence, declared ONCE. The finding-local detector and the
+// output filter below both test the same two questions -- is a load overhead,
+// and is a person under it -- and each previously carried its own copy of the
+// pattern. The copies drifted: widening only the detector's exposure vocabulary
+// created the finding and the filter then silently deleted it again, which is
+// exactly the failure mode a duplicated predicate produces. One definition, two
+// call sites.
+const SUSPENDED_LOAD_EVIDENCE =
+  /\b(?:suspended|hanging|overhead|lifted|load|hook|pallet|beam)\b/i;
+// Establishes only that a PERSON is present. Field notes name that person by
+// trade at least as often as by the word "worker" ("a rigger was standing...",
+// "the millwright guided the beam"), and omitting the trades lost an
+// unmistakable drop-zone exposure entirely.
+const SUSPENDED_LOAD_EXPOSURE =
+  /\b(?:beneath|under|below|drop\s+zone|fall\s+zone|occupied|worker|employee|spotter|person|pedestrian|work\s+area|instructed\s+to\s+remain|swings?\s+over|rigger|signal(?:ler|man|person)|banksman|operator|millwright|fitter|technician|contractor|mason|welder|electrician|labou?rer|crew)\b/i;
+
 @Injectable()
 export class MultiHazardDecompositionService {
   private taxonomyService = new HazardTaxonomyCoverageService();
@@ -45,8 +61,14 @@ export class MultiHazardDecompositionService {
       /\b(?:no|not|never|without)\b[^.]{0,30}\b(?:lockout|lock\s*out|tagout|tag\s*out|LOTO|(?:personal\s+)?locks?(?:\s*(?:,|or|and|\/|nor)\s*(?:tags?|tagout))?|tags?)\b[^.]{0,25}\b(?:has\s+been\s+|have\s+been\s+|was\s+|were\s+|is\s+|are\s+|been\s+)?(?:applied|attached|installed|placed|in\s+place|hung|fitted|used|present)\b/i;
     const LOTO_CONTROL_ABSENT_ALT =
       /\b(?:lockout|lock\s*out|tagout|tag\s*out|LOTO|locks?|tags?)\b[^.]{0,20}\b(?:has\s+not\s+been|have\s+not\s+been|was\s+not|were\s+not|is\s+not|are\s+not|has\s+not|not)\b[^.]{0,20}\b(?:applied|attached|installed|placed|in\s+place|hung|fitted|used|present)\b/i;
+    // "unlocked"/"un-locked" is the adjectival form of the same control absence
+    // ("the agitator drive remained energized and unlocked"). It says the lock is
+    // not applied just as plainly as "no lock was applied" does, and every caller
+    // of lotoControlAbsent() additionally requires a servicing/intervention verb
+    // AND a hazardous-energy source in the same scope, so an ordinary unlocked
+    // door or cabinet cannot reach a LOTO finding through this alternative.
     const LOTO_CONTROL_ABSENT_BARE =
-      /\b(?:without\s+(?:a\s+|any\s+)?(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b|not\s+(?:locked|tagged)(?:\s+(?:or|and)\s+(?:locked|tagged))?(?:\s+out)?\b|no\s+(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b(?![^.]{0,20}\b(?:deficienc|issue|problem|concern|violation|finding)))/i;
+      /\b(?:without\s+(?:a\s+|any\s+)?(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b|not\s+(?:locked|tagged)(?:\s+(?:or|and)\s+(?:locked|tagged))?(?:\s+out)?\b|un-?locked\b|no\s+(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b(?![^.]{0,20}\b(?:deficienc|issue|problem|concern|violation|finding)))/i;
     const lotoControlAbsent = (value: string) =>
       LOTO_CONTROL_ABSENT.test(value) || LOTO_CONTROL_ABSENT_ALT.test(value) || LOTO_CONTROL_ABSENT_BARE.test(value);
     const LOTO_ENERGY_SOURCE =
@@ -231,6 +253,35 @@ export class MultiHazardDecompositionService {
         ) {
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
         }
+        // The same evidence-independence rule the 2026-08-27 precision phase applied
+        // to material handling, walking/working surfaces, guarding, fall protection,
+        // mobile equipment and excavation, extended to the two families the
+        // hazardous-energy probe family showed still promote a bare entity word:
+        // "the electrical safety training matrix" and "the annual lockout procedure
+        // audit were both current" are administrative records, and "a spare motor
+        // control centre bucket was stored on a shelf in the electrical room" names
+        // a place. A weak router hit (generic entity-word coincidence, confidence
+        // <= 0.4) must carry the family's own CONDITION evidence, not merely the
+        // family's name. Routes that arrive with their own evidence -- the
+        // finding-local electrical-exposure clause, positiveLotoMechanism, the
+        // cross-clause hazardous-energy detector -- are above this confidence and
+        // are untouched.
+        if (
+          route.domainId === 'electrical' &&
+          route.confidence <= 0.4 &&
+          !/\b(?:energi[sz]ed|live|powered|exposed|exposing|bare|uncovered|open|missing|removed|damaged|frayed|cracked|deteriorated|spliced|arc(?:ing|[- ]flash)?|shock|ungrounded|grounding|gfci|overload(?:ed)?|short(?:ed|ing)?|contact(?:ed)?|unguarded|unprotected|defective|inoperative)\b/i.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.domainId === 'lockout_tagout' &&
+          route.confidence <= 0.4 &&
+          !lotoControlAbsent(fragment) &&
+          !LOTO_ENERGY_SOURCE.test(fragment) &&
+          !/\b(?:not|never|without|missing|removed|bypass(?:ed|ing)?|defeat(?:ed|ing)?|failed|incomplete|unverified)\b/i.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
         if (
           route.domainId === 'environmental_spill' &&
           route.confidence <= 0.4 &&
@@ -262,6 +313,80 @@ export class MultiHazardDecompositionService {
           /\bleak\s+control\b[^.]{0,30}\b(?:are|is)\s+verified\b/i.test(observationText)
         ) {
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+
+        // Evidence-independence predicates for the remaining families whose
+        // taxonomy signals are ordinary English nouns ("material", "walkway",
+        // "floor", "fall", "guard", "forklift", "loader", "trench"). The router
+        // scores a single bare substring hit at confidence 0.2 and two at 0.4,
+        // so at confidence <= 0.4 the route rests entirely on entity-word
+        // coincidence. Such a route is a hazard only if the SAME fragment also
+        // carries evidence that is independently sufficient for that family:
+        // a clause the inspector wrote to establish energy state, exposure,
+        // proximity, material state or location for a DIFFERENT hazard must not
+        // become a hazard of its own ("material was being fed", "the walkway
+        // passes within two feet of the exposed pinch point", "the forklift
+        // charging room"). Equally, a family signal inside an explicitly
+        // verified-sound description ("the guard was correctly fitted", "the
+        // handrail was continuous", "the trench has been backfilled") is a
+        // statement of compliance, not a deficiency.
+        //
+        // This is deliberately family-keyed and confined to confidence <= 0.4,
+        // matching the false-current guards above. It is not a global
+        // confidence threshold: a route that reaches this layer with its own
+        // family-specific evidence is untouched, and no family's strong,
+        // independently preserved detection path is affected.
+        const MATERIAL_HANDLING_EVIDENCE = /\b(?:stack\w*|storage|stored|storing|rack(?:s|ing|ed)?|pallet|shelv\w*|tier\w*|bundle|bale|unsecured|unstable|unrestrained|overhang\w*|topple|toppl\w*|leaning|protrud\w*|fell|falling\s+(?:object|material|load)|struck\s+by|manual(?:ly)?\s+handl\w*|lift\w*|carr(?:y|ied|ying)|hoist\w*|load\s+(?:limit|capacity|rating)|capacity|blocked|obstruct\w*|congest\w*|narrow(?:ed)?\s+aisle)\b/i;
+        const WALKING_SURFACE_EVIDENCE = /\b(?:wet|slip\w*|slick|icy|ice|oil(?:y|ed)?|grease|greasy|spill\w*|uneven|damaged|broken|deteriorat\w*|hole|gap|unguarded|uncovered|unprotected|missing|obstruct\w*|blocked|congest\w*|clutter\w*|debris|scrap|trip(?:s|ped|ping|\s+hazard)?|protrud\w*|raised\s+edge|elevation\s+(?:change|transition)|fall\w*\s+(?:into|through)|no\s+(?:cover|guardrail|barrier|railing))\b/i;
+        const FALL_EVIDENCE = /\b(?:height|elevat\w*|overhead|storey|story|metre|meter|feet|foot|edge|opening|hole|guardrail|handrail|railing|harness|lanyard|anchor|fall\s+(?:arrest|protection|hazard|exposure)|scaffold|ladder|roof|mezzanine|platform|leading\s+edge|drop[- ]?off|unprotected|unguarded|missing|damaged|broken|absent|removed)\b/i;
+        const SOUND_CONDITION_ASSERTED = /\b(?:guard(?:s|ing|ed|rail|rails)?|handrail|railing|cover|barrier|edge\s+protection|interlock)\b[^.]{0,80}\b(?:correctly|properly|securely|fully)?\s*(?:fitted|installed|in\s+place|intact|secured|secure|present|sound|continuous|effective|adequate|compliant|closed|latched|free\s+of\s+damage|undamaged)\b/i;
+        const DEFICIENCY_PRESENT = /\b(?:not|no|never|missing|removed|absent|bypass\w*|defeat\w*|damaged|broken|loose|deteriorat\w*|inadequate|insufficient|unguarded|unprotected|uncovered|open|failed|defective)\b/i;
+        const MOBILE_EQUIPMENT_EVIDENCE = /\b(?:operat(?:ing|es|ed|ion)|driv(?:e|es|en|ing)|travel\w*|revers\w*|backing|manoeuvr\w*|maneuver\w*|haul(?:ing|ed|s)?|dump(?:ing|ed|s)?|tram(?:ming|med)?|struck|run\s+over|collid\w*|pedestrian|spotter|traffic|horn|alarm|seat\s?belt|brake|steering|mast|forks?|tine|blind\s+spot|speed|berm|windrow|barricade|right[- ]of[- ]way|crossing|rollover|overturn\w*|park(?:ed)?\s+on)\b/i;
+        const EXCAVATION_COMPLETED = /\b(?:backfill\w*|paved\s+over|filled\s+in|reinstated|compacted\s+and|restored|closed\s+out)\b/i;
+
+        if (
+          route.confidence <= 0.4 &&
+          (route.domainId === 'material_handling' || route.domainId === 'material_handling_storage') &&
+          !MATERIAL_HANDLING_EVIDENCE.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.confidence <= 0.4 &&
+          (route.domainId === 'walking_working_surfaces' || route.domainId === 'slips_trips_falls' || route.domainId === 'housekeeping') &&
+          !WALKING_SURFACE_EVIDENCE.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.confidence <= 0.4 &&
+          route.domainId === 'fall_protection' &&
+          (!FALL_EVIDENCE.test(fragment) ||
+            (SOUND_CONDITION_ASSERTED.test(fragment) && !DEFICIENCY_PRESENT.test(fragment)))
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.confidence <= 0.4 &&
+          (route.domainId === 'machine_guarding' || route.domainId === 'conveyors' || route.domainId === 'guarding_interlocks') &&
+          SOUND_CONDITION_ASSERTED.test(fragment) &&
+          !DEFICIENCY_PRESENT.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.confidence <= 0.4 &&
+          (route.domainId === 'mobile_equipment' || route.domainId === 'forklifts' || route.domainId === 'powered_industrial_trucks' || route.domainId === 'powered_haulage') &&
+          !MOBILE_EQUIPMENT_EVIDENCE.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          route.confidence <= 0.4 &&
+          route.domainId === 'excavation_trenching' &&
+          EXCAVATION_COMPLETED.test(fragment)
+        ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: false };
         }
 
         if (route.domainId !== 'unknown') {
@@ -343,7 +468,7 @@ export class MultiHazardDecompositionService {
       const explicitNoHazard = /\b(?:no|without)\s+(?:leak|unexpected\s+movement|intervention|servicing|maintenance|employee\s+exposure|hazard)\b/i.test(fragment);
       // "remain(?:s|ed)?" (not just "remains?"): ordinary past-tense inspection
       // language ("pressure remained in the ram") must match, not only present tense.
-      const hazardousEnergyEvidence = /\b(?:leak(?:ing)?|high[- ]pressure|injection|release|retain(?:s|ed)?\s+pressure|pressure\s+remain(?:s|ed)?|residual[- ]pressure|stored[- ]pressure|(?:hydraulic|pneumatic)\s+(?:stored|residual)?\s*energy\s+remain(?:s|ed)?|(?:stored|residual)\s+(?:hydraulic|pneumatic)\s+energy\s+remain(?:s|ed)?|charged|under\s+pressure|capable\s+of\s+(?:unexpected\s+)?movement|unexpected(?:ly)?\s+(?:move|stroke)|could\s+(?:move|stroke)|travel\s+path|hazard\s+zone|pressure\s+(?:release|loss|reliev(?:ed|e)|[^.]{0,30}reliev))\b/i.test(fragment);
+      const hazardousEnergyEvidence = /\b(?:leak(?:ing)?|high[- ]pressure|injection|release|retain(?:s|ed)?\s+pressure|pressure\s+(?:is\s+|was\s+|been\s+)?retained|pressure\s+remain(?:s|ed)?|residual[- ]pressure|stored[- ]pressure|(?:hydraulic|pneumatic)\s+(?:stored|residual)?\s*energy\s+remain(?:s|ed)?|(?:stored|residual)\s+(?:hydraulic|pneumatic)\s+energy\s+remain(?:s|ed)?|charged|under\s+pressure|capable\s+of\s+(?:unexpected\s+)?movement|unexpected(?:ly)?\s+(?:move|stroke)|could\s+(?:move|stroke)|travel\s+path|hazard\s+zone|pressure\s+(?:release|loss|reliev(?:ed|e)|[^.]{0,30}reliev))\b/i.test(fragment);
       const plannedPressureControl = /\b(?:planned|scheduled|tomorrow|future)\b[^.]{0,80}\bpressure\b[^.]{0,40}\breliev/i.test(fragment);
       const safeState = (/\b(?:isolated|bled\s+to\s+zero|bled\s+off|depressurized|de-pressurized|discharged|zero[- ]energy\s+(?:verified|confirmed)|pressure\s+relieved|relieved\s+and\s+verified|locked\s+out)\b/i.test(fragment) ||
         /\bleak\s+control\b[^.]{0,30}\b(?:are|is)\s+verified\b/i.test(fragment)) &&
@@ -376,7 +501,7 @@ export class MultiHazardDecompositionService {
       addHydraulicEnergyFinding(fragment, historicalFragment ? 'HISTORICAL' : plannedFragment ? 'PLANNED_FUTURE' : undefined);
     });
     const fullHydraulicEnergy = /\b(?:hydraulic|pneumatic|fluid\s+power|accumulator|pressurized|pressurised|pressure|compressed[- ]air|cylinder)\b/i.test(observationText) &&
-      /\b(?:leak(?:ing)?|high[- ]pressure|injection|release|retain(?:s|ed)?\s+pressure|pressure\s+remain(?:s|ed)?|residual[- ]pressure|stored[- ]pressure|(?:hydraulic|pneumatic)\s+(?:stored|residual)?\s*energy\s+remain(?:s|ed)?|(?:stored|residual)\s+(?:hydraulic|pneumatic)\s+energy\s+remain(?:s|ed)?|charged|under\s+pressure|capable\s+of\s+(?:unexpected\s+)?movement|unexpected(?:ly)?\s+(?:move|stroke)|could\s+(?:move|stroke)|not\s+(?:isolated|controlled|relieved|bled)|without\s+(?:isolation|relief|bleed)|before\s+(?:supply\s+)?isolation|pressure\s+(?:release|loss|reliev(?:ed|e)|[^.]{0,30}reliev))\b/i.test(observationText);
+      /\b(?:leak(?:ing)?|high[- ]pressure|injection|release|retain(?:s|ed)?\s+pressure|pressure\s+(?:is\s+|was\s+|been\s+)?retained|pressure\s+remain(?:s|ed)?|residual[- ]pressure|stored[- ]pressure|(?:hydraulic|pneumatic)\s+(?:stored|residual)?\s*energy\s+remain(?:s|ed)?|(?:stored|residual)\s+(?:hydraulic|pneumatic)\s+energy\s+remain(?:s|ed)?|charged|under\s+pressure|capable\s+of\s+(?:unexpected\s+)?movement|unexpected(?:ly)?\s+(?:move|stroke)|could\s+(?:move|stroke)|not\s+(?:isolated|controlled|relieved|bled)|without\s+(?:isolation|relief|bleed)|before\s+(?:supply\s+)?isolation|pressure\s+(?:release|loss|reliev(?:ed|e)|[^.]{0,30}reliev))\b/i.test(observationText);
     const fullNormalControlled = /\b(?:operating|running)\b[^.]{0,80}\b(?:normally|normal)\b/i.test(observationText) &&
       /\b(?:no|without)\b[^.]{0,80}\b(?:leak|unexpected\s+movement|exposure|intervention|servicing|maintenance|hazard)\b/i.test(observationText);
     const historicalHydraulic = fullHydraulicEnergy && /\b(?:yesterday|historical|prior|previous|earlier)\b/i.test(observationText) && /\b(?:isolated|repaired|resolved|restored|corrected|verified)\b/i.test(observationText);
@@ -413,10 +538,18 @@ export class MultiHazardDecompositionService {
         });
       }
     });
-    const crossClauseIntervention =/\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*|unjam\w*|reach\w*\s+into|disconnect\w*\s+(?:a\s+)?(?:hydraulic|pneumatic)|work\w*\s+(?:beneath|under))\b/i.test(observationText);
+    // Component replacement/installation ("began replacing the starter", "was
+    // installing a new contactor") is servicing under any hazardous-energy-control
+    // rule, and "began work inside the enclosure" is the ordinary field phrasing
+    // for the same thing. Their absence from this vocabulary is why an MCC bucket
+    // opened with the disconnect closed and no lock applied produced no LOTO
+    // finding at all. This predicate only OPENS the cross-clause detector; a
+    // hazardous-energy source AND uncontrolled-energy evidence are still both
+    // required before any finding is created.
+    const crossClauseIntervention =/\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*|unjam\w*|replac\w*|install\w*|reach\w*\s+into|disconnect\w*\s+(?:a\s+)?(?:hydraulic|pneumatic)|work\w*\s+(?:beneath|under)|(?:beg(?:an|ins|un)|start(?:ed|s|ing)?|perform(?:ed|ing|s)?)\s+(?:\w+\s+){0,2}work\b)/i.test(observationText);
     const crossClauseEnergy = /\b(?:hydraulic|pneumatic|compressed[- ]air|mechanical|gravity|spring|thermal|pressure|stored\s+energy|hazardous\s+energy|energ(?:ized|ised)|electrical|disconnect|isolation|elevated|raised|load|accumulator|cylinder|re-?energ(?:ization|isation|ized|ised|izes|ises)?)\b/i.test(observationText) ||
       LOTO_ENERGY_SOURCE.test(observationText);
-    const crossClauseUncontrolledEnergy = /\b(?:lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|re-?energ(?:izes|ises)|uncontrolled|without\s+(?:lockout|(?:hazardous\s+)?(?:energy\s+)?isolation|isolating|energy\s+control)|not\s+(?:been\s+|yet\s+)?(?:isolated|controlled|locked|restrained|discharged)|(?:pressure|energy)\s+remains?\b|remains?\s+(?:stored|pressurized|under\s+pressure)|capable\s+of\s+movement|spring\s+remains?|can\s+drop|unsupported|not\s+(?:been\s+)?discharged|before\s+(?:supply\s+)?isolation|before\s+(?:stored\s+)?(?:pressure|energy)\s+(?:is\s+)?(?:relieved|bled|released|discharged)|before\s+(?:stored\s+)?(?:pressure|energy)\s+has\s+been\s+(?:relieved|bled|released|discharged)|before\s+(?:hazardous\s+)?(?:stored\s+)?energy\s+isolation\s+is\s+applied|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|verification\s+was\s+never\s+completed)\b/i.test(observationText) ||
+    const crossClauseUncontrolledEnergy = /\b(?:lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|re-?energ(?:izes|ises)|uncontrolled|without\s+(?:lockout|(?:hazardous\s+)?(?:energy\s+)?isolation|isolating|energy\s+control)|not\s+(?:been\s+|yet\s+)?(?:isolated|controlled|locked|restrained|discharged)|(?:pressure|energy)\s+remains?\b|remains?\s+(?:stored|pressurized|under\s+pressure)|capable\s+of\s+movement|spring\s+remains?|can\s+drop|unsupported|not\s+(?:been\s+)?discharged|before\s+(?:supply\s+)?isolation|before\s+(?:stored\s+)?(?:pressure|energy)\s+(?:is\s+)?(?:relieved|bled|released|discharged)|before\s+(?:stored\s+)?(?:pressure|energy)\s+has\s+been\s+(?:relieved|bled|released|discharged)|before\s+(?:hazardous\s+)?(?:stored\s+)?energy\s+isolation\s+is\s+applied|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|verification\s+was\s+never\s+completed|absence\s+of\s+voltage\s+(?:was\s+|had\s+)?(?:not|never)\s+(?:been\s+)?(?:verified|tested|checked|confirmed|established))\b/i.test(observationText) ||
       lotoControlAbsent(observationText);
     const crossClauseSafeEnergy = /\b(?:isolated|bled\s+off|bled|depressurized|de-pressurized|zero[- ]energy\s+(?:verified|confirmed)|locked\s+out|lockout\s+(?:applied|verified)|released|restrained|relieved\s+and\s+verified)\b/i.test(observationText) && !crossClauseUncontrolledEnergy;
     const historicalLotoContext = crossClauseIntervention && crossClauseEnergy &&
@@ -495,8 +628,8 @@ export class MultiHazardDecompositionService {
     // hoist, sling, or rigging mention alone is not enough: the evidence must
     // establish a load suspended overhead and a person in/under the drop zone.
     const addSuspendedLoadFinding = (fragment: string, explicitState?: HazardDecomposition['conditionState']) => {
-      const loadEvidence = /\b(?:suspended|hanging|overhead|lifted|load|hook|pallet|beam)\b/i.test(fragment);
-      const exposureEvidence = /\b(?:beneath|under|below|drop\s+zone|fall\s+zone|occupied|worker|employee|spotter|person|pedestrian|work\s+area|instructed\s+to\s+remain|swings?\s+over)\b/i.test(fragment);
+      const loadEvidence = SUSPENDED_LOAD_EVIDENCE.test(fragment);
+      const exposureEvidence = SUSPENDED_LOAD_EXPOSURE.test(fragment);
       const explicitNoExposure = /\b(?:no|not|without)\b[^.]{0,80}\b(?:load\s+(?:is\s+)?suspended|person|employee|worker|one)\b/i.test(fragment) ||
         /\b(?:landed|fully\s+landed|secured\s+on\s+(?:a\s+)?stable\s+support|barricaded|area\s+below\s+is\s+clear|not\s+yet\s+lifted)\b/i.test(fragment);
       const unknownExposure = /\b(?:unknown|unclear|not\s+established|does\s+not\s+establish|not\s+known)\b/i.test(fragment);
@@ -527,12 +660,101 @@ export class MultiHazardDecompositionService {
       addSuspendedLoadFinding(observationText, historicalSuspended ? 'HISTORICAL' : plannedSuspended ? 'PLANNED_FUTURE' : undefined);
     }
 
+    // Preserve a compressed-gas cylinder finding when the same clause names a gas
+    // cylinder AND a restraint, valve-cap or segregation deficiency. The base
+    // router is single-winner, so a clause that carries both a cylinder defect and
+    // an adjacent hot-work signal ("unchained oxygen and acetylene cylinders with
+    // their valve protection caps removed ... in the welding bay") routes to hot
+    // work and the cylinder hazard is lost -- and an unrestrained cylinder with its
+    // cap off is a life-critical missile hazard in its own right. A cylinder that
+    // is secured and capped, or merely named, does not qualify.
+    const addCompressedGasCylinderFinding = (fragment: string, explicitState?: HazardDecomposition['conditionState']) => {
+      const cylinderIdentity =
+        /\b(?:gas\s+cylinder|oxygen|acetylene|propane|argon|nitrogen|helium|co2|carbon\s+dioxide|compressed\s+gas)\b[^.]{0,40}\bcylinders?\b/i.test(fragment) ||
+        /\bcylinders?\b[^.]{0,40}\b(?:oxygen|acetylene|propane|argon|nitrogen|helium|compressed\s+gas|fuel\s+gas)\b/i.test(fragment) ||
+        /\b(?:oxygen|acetylene|propane|argon|fuel\s+gas|compressed\s+gas)\s+cylinders?\b/i.test(fragment) ||
+        /\b(?:unchained|unsecured|unrestrained)\b[^.]{0,40}\bcylinders?\b/i.test(fragment) ||
+        /\bcylinders?\b[^.]{0,40}\b(?:valve\s+(?:protection\s+)?cap|regulator)\b/i.test(fragment);
+      const restraintDeficiency =
+        /\b(?:unchained|unsecured|unrestrained|not\s+(?:chained|secured|restrained|capped|upright)|without\s+(?:a\s+)?(?:chain|restraint|cap)|lying\s+(?:down|on\s+(?:its|their)\s+side)|free[- ]standing|standing\s+(?:loose|against))\b/i.test(fragment) ||
+        /\b(?:valve\s+(?:protection\s+)?caps?|caps?)\b[^.]{0,30}\b(?:removed|off|missing|not\s+(?:fitted|installed|in\s+place))\b/i.test(fragment) ||
+        /\b(?:oxygen|oxidiz(?:er|ing))\b[^.]{0,60}\b(?:stored|standing)\b[^.]{0,40}\b(?:with|beside|next\s+to)\b[^.]{0,30}\b(?:acetylene|fuel\s+gas|flammable)\b/i.test(fragment);
+      const verifiedSafe =
+        /\b(?:chained|secured|restrained|capped|caps?\s+(?:fitted|in\s+place|installed)|stored\s+upright(?:\s+and\s+(?:chained|secured|capped))?|properly\s+segregated)\b/i.test(fragment) &&
+        !/\b(?:not|without|no)\b[^.]{0,30}\b(?:chained|secured|restrained|capped)\b/i.test(fragment);
+      const negated = /\b(?:no|not|without)\b[^.]{0,60}\b(?:cylinders?\s+(?:present|stored|in\s+use)|compressed\s+gas)\b/i.test(fragment);
+      const uncertain = /\b(?:unknown|unclear|not\s+known|not\s+established|cannot\s+be\s+confirmed)\b/i.test(fragment);
+      if (!cylinderIdentity || !restraintDeficiency || verifiedSafe || negated || uncertain) return;
+      if (hazards.some(h => h.domainId === 'compressed_gas' && h.observationFragment === fragment)) return;
+      hazards.push({
+        hazardId: `haz-${hazards.length + 1}`,
+        domainId: 'compressed_gas',
+        hazardFamily: 'compressed_gas',
+        mechanism: 'compressed-gas cylinder restraint, valve-cap or segregation deficiency',
+        observationFragment: fragment,
+        supportingSignals: ['identified gas cylinder', 'explicit restraint, valve-cap or segregation deficiency'],
+        confidence: 0.85,
+        possibleOverlapWith: ['hot_work', 'fire_explosion'],
+        requiresHumanReview: true,
+        evidenceGaps: ['Confirm cylinder contents, restraint method, valve-cap status, upright storage, and separation of oxidizers from fuel gases.'],
+        reviewerQuestions: ['Are the cylinders secured upright with valve protection caps fitted and oxidizers separated from fuel gases?'],
+        ...(explicitState ? { conditionState: explicitState, temporalEvidence: [explicitState.toLowerCase()] } : this.inferConditionState(fragment, originalObservation, 'compressed_gas')),
+      });
+      routingNotes.push(`Preserved finding-local compressed-gas cylinder deficiency from "${fragment}"`);
+    };
+    fragments.forEach(fragment => addCompressedGasCylinderFinding(fragment));
+    if (!hazards.some(h => h.domainId === 'compressed_gas')) addCompressedGasCylinderFinding(observationText);
+
+    // Preserve a machine-guarding finding when the same clause names a guarding
+    // COMPONENT and an explicit deficiency in it. The taxonomy router carries no
+    // signal for abrasive-wheel guarding vocabulary (tool rest, work rest, tongue
+    // guard, wheel), so "the pedestal grinder was operated with the tool rest
+    // missing and a twelve millimetre gap at the wheel" generated no candidate at
+    // all. A measured clearance that is being reported as CORRECT, or a guard
+    // stated to be fitted, is not a deficiency and must not qualify -- that is the
+    // distinction the frozen A-24 row exists to protect.
+    const addGuardingComponentFinding = (fragment: string) => {
+      const guardingComponent =
+        /\b(?:tool\s+rest|work\s+rest|tongue\s+guard|wheel\s+guard|abrasive\s+wheel|grinding\s+wheel|barrier\s+guard|fixed\s+guard|interlock(?:ed|ing)?\s+guard|light\s+curtain|point\s+of\s+operation|nip\s+point|in-?running\s+nip|guard)\b/i.test(fragment);
+      const componentDeficiency =
+        /\b(?:tool\s+rest|work\s+rest|tongue\s+guard|wheel\s+guard|barrier\s+guard|fixed\s+guard|guard|light\s+curtain)\b[^.]{0,40}\b(?:missing|removed|absent|not\s+(?:installed|fitted|in\s+place|present)|broken|damaged|bypassed|defeated|jumpered)\b/i.test(fragment) ||
+        /\b(?:missing|removed|absent|broken|bypassed|defeated|no)\b[^.]{0,40}\b(?:tool\s+rest|work\s+rest|tongue\s+guard|wheel\s+guard|barrier\s+guard|fixed\s+guard|guard|light\s+curtain)\b/i.test(fragment) ||
+        /\b(?:gap|clearance|opening)\b[^.]{0,40}\b(?:at|on|to)\s+the\s+(?:wheel|blade|die|roll)\b/i.test(fragment) ||
+        /\b(?:wheel|blade|die|roll)\b[^.]{0,30}\b(?:gap|clearance|opening)\b[^.]{0,30}\b(?:of|exceed\w*|greater|more\s+than)\b/i.test(fragment);
+      const verifiedSafe =
+        /\b(?:correctly|properly|securely)\s+(?:fitted|installed|adjusted|set|guarded)\b/i.test(fragment) ||
+        /\b(?:guard|tool\s+rest|work\s+rest)\b[^.]{0,40}\b(?:was|is|were|are)\s+(?:set|adjusted|fitted|installed|in\s+place|intact)\b/i.test(fragment);
+      const negated = /\b(?:no|not|without)\b[^.]{0,50}\b(?:guarding\s+deficienc|guard\s+(?:issue|problem|defect))\b/i.test(fragment);
+      const uncertain = /\b(?:unknown|unclear|not\s+known|cannot\s+be\s+confirmed|not\s+established)\b/i.test(fragment);
+      if (!guardingComponent || !componentDeficiency || verifiedSafe || negated || uncertain) return;
+      if (hazards.some(h => h.domainId === 'machine_guarding' && h.observationFragment === fragment)) return;
+      hazards.push({
+        hazardId: `haz-${hazards.length + 1}`,
+        domainId: 'machine_guarding',
+        hazardFamily: 'machine_guarding',
+        mechanism: 'required machine-guarding component missing, defeated or out of adjustment',
+        observationFragment: fragment,
+        supportingSignals: ['named machine-guarding component', 'explicit component deficiency'],
+        confidence: 0.85,
+        possibleOverlapWith: ['guarding_interlocks', 'personal_protective_equipment'],
+        requiresHumanReview: true,
+        evidenceGaps: ['Confirm the machine, the required guard or rest, its adjustment tolerance, and employee access to the point of operation.'],
+        reviewerQuestions: ['Which guarding component is missing or out of adjustment, and can an employee reach the point of operation?'],
+        ...this.inferConditionState(fragment, originalObservation, 'machine_guarding'),
+      });
+      routingNotes.push(`Preserved finding-local machine-guarding component deficiency from "${fragment}"`);
+    };
+    fragments.forEach(fragment => addGuardingComponentFinding(fragment));
+
     // Preserve a current electrical finding when the same local clause
     // establishes an electrical source, energized/live state, and an
     // exposure/accessibility defect. Generic breaker, motor, outage, or
     // electrician language remains insufficient on its own.
     const electricalExposureFragment = fragments.find(fragment =>
-      /\b(?:panel|junction\s+box|disconnect|conductors?|terminal|wiring|wires?|cable|bus|electrical)\b/i.test(fragment) &&
+      // "terminals" plural is at least as common as the singular in field notes
+      // ("exposing live 480-volt terminals"); the sibling source words here are
+      // already pluralised, and this one was not.
+      /\b(?:panel|junction\s+box|disconnect|conductors?|terminals?|wiring|wires?|cable|bus|electrical)\b/i.test(fragment) &&
       // "Energized" state doesn't have to be spelled out: a bare/stripped
       // conductor found in service (not confirmed de-energized/locked out
       // elsewhere in the same clause) is ordinarily energized by default, and
@@ -594,9 +816,25 @@ export class MultiHazardDecompositionService {
     const grindCutPlaceOrSilicaOnly =
       /\b(?:grinding|cutting)\s+(?:area|room|bay|station|booth|shop|department|table|line|floor|wheel|oil|fluid|board|zone)\b/i.test(observationText) ||
       /\b(?:dry[- ]?cut(?:ting)?|masonry|concrete|block|brick|stone|tile)\b/i.test(observationText);
+    // "cutting" in the verb form above is also ordinary idiomatic English with
+    // no physical sense at all -- "employees were cutting their lunch break
+    // short", "cutting costs", "cutting corners", "cutting staff" -- which the
+    // verb-form alternative read as an active hot-work operation. Only the
+    // idiomatic object is excluded: a physical grinding or cutting task whose
+    // workpiece happens to be unstated ("grinding nearby") remains hot work,
+    // because sparks do not depend on the inspector naming the material.
+    const grindCutIdiomaticObject =
+      /\bcut(?:s|ting)?\s+(?:(?:their|his|her|its|our|the|a)\s+)?(?:lunch|break|shift|meeting|corner|corners|cost|costs|staff|hours?|time|budget|pay|price|prices)\b/i.test(observationText) ||
+      /\bcut(?:s|ting)?\s+(?:\w+\s+){1,3}short\b/i.test(observationText);
     const activeHotWork = !hotWorkUncertain && !hotWorkNegated && !hotWorkFuture && !hotWorkSafePpeContext &&
-      (explicitHotWorkTerm || (grindCutActivity && !grindCutPlaceOrSilicaOnly)) &&
-      !/\b(?:discussed|reviewed|permit|selected|completed|canceled|cancelled|planned|scheduled)\b/i.test(observationText);
+      (explicitHotWorkTerm || (grindCutActivity && !grindCutIdiomaticObject && !grindCutPlaceOrSilicaOnly)) &&
+      // "permit" was unscoped: a CONFINED-SPACE permit ("welding inside the empty
+      // fuel tank ... with no entry permit") is not evidence that the hot work was
+      // merely discussed rather than performed, yet it suppressed the finding for
+      // an active weld inside a fuel tank. The exclusion's purpose -- keeping a
+      // permit record from reading as an active operation -- is preserved by
+      // requiring the permit to be a hot-work permit.
+      !/\b(?:discussed|reviewed|hot[- ]?work\s+permit|selected|completed|canceled|cancelled|planned|scheduled)\b/i.test(observationText);
     if ((activeHotWork || hotWorkFuture) && !hotWorkNegated && !hazards.some(hazard => hazard.domainId === 'hot_work')) {
       hazards.push({
         hazardId: `haz-${hazards.length + 1}`,
@@ -1064,9 +1302,11 @@ export class MultiHazardDecompositionService {
     // establishes both an explicit affected task/exposure and required
     // protective equipment that is absent, missing, damaged, or not used.
     for (const clause of observationText.split(/[.!]/).map(value => value.trim()).filter(Boolean)) {
-      const ppeItem = /\b(?:eye(?:\/face)?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b/i.test(clause);
-      const requiredDeficiency = /\b(?:without|required)\b[^.]{0,70}\b(?:eye(?:\/face)?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b[^.]{0,50}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)?|\b(?:required\s+)?(?:eye(?:\/face)?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b[^.]{0,45}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)\b/i.test(clause);
-      const taskExposure = /\b(?:worker|workers|employee|operator|task|work|operation|handling|contact|splash|chemical|cutting|grinding|welding|noise|fall\s+exposure|overhead)\b/i.test(clause) && /\b(?:exposure|exposed|splash|contact|task|work|operation|handling|during|while|faces?|grind(?:s|ing)?|cut(?:s|ting)?|weld(?:s|ing)?)\b/i.test(clause);
+      // Field notes coordinate the two protections ("no eye or face protection"),
+      // which the fixed "eye/face protection" spelling could not match.
+      const ppeItem = /\b(?:(?:eye|face)(?:\s*(?:,|\/|or|and)\s*(?:eye|face))?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b/i.test(clause);
+      const requiredDeficiency = /\b(?:without|required)\b[^.]{0,70}\b(?:eye(?:\/face)?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b[^.]{0,50}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)?|\b(?:required\s+)?(?:(?:eye|face)(?:\s*(?:,|\/|or|and)\s*(?:eye|face))?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b[^.]{0,45}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)\b|\b(?:no|not|never|neither|nor|without)\b[^.]{0,45}\b(?:(?:eye|face)(?:\s*(?:,|\/|or|and)\s*(?:eye|face))?\s+protection|face\s+shield|safety\s+glasses|goggles|gloves?|hearing\s+protection|earplugs?|earmuffs?|protective\s+clothing|hard\s+hat|helmet|fall\s+arrest|harness)\b/i.test(clause);
+      const taskExposure = /\b(?:worker|workers|employee|operator|task|work|operation|handling|contact|splash|chemical|cutting|grinding|welding|noise|fall\s+exposure|overhead)\b/i.test(clause) && /\b(?:exposure|exposed|splash|contact|task|work|operation|operat(?:ed|ing)|handling|during|while|faces?|grind(?:s|ing)?|cut(?:s|ting)?|weld(?:s|ing)?)\b/i.test(clause);
       const uncertain = /\b(?:unknown|unclear|cannot\s+(?:be\s+)?determine|not\s+known|whether|records?\s+unavailable)\b/i.test(clause);
       const planned = /\b(?:scheduled|planned|tomorrow|before\s+(?:the\s+)?(?:task|work)|has\s+not\s+(?:begun|started)|not\s+yet\s+assigned)\b/i.test(clause) && !/\b(?:currently|now|continues?|underway)\b/i.test(clause);
       const adequate = /\b(?:required|appropriate)\b[^.]{0,50}\b(?:protection|ppe|gloves?|goggles|face\s+shield|hearing\s+protection|harness)\b[^.]{0,60}\b(?:is|are|was|were)?\s*(?:provided|available|worn|used|intact|verified|effective)|\b(?:wearing|using)\b[^.]{0,40}\b(?:required|appropriate)\b[^.]{0,40}\b(?:ppe|protection|gloves?|goggles|face\s+shield|harness)\b/i.test(clause);
@@ -1078,6 +1318,44 @@ export class MultiHazardDecompositionService {
       routingNotes.push('Promoted finding-local task-required PPE deficiency.');
     }
 
+    // Preserve an atmospheric-hazard finding when the observation names a specific
+    // atmospheric hazard and states that the required atmospheric evaluation was
+    // not performed. The base router carries only the single entity word "gas" for
+    // this family, so "the atmosphere had not been tested for oxygen deficiency or
+    // hydrogen sulphide before entry" produced no candidate at all -- the omitted
+    // test IS the hazard, and it is the one that kills entrants. An atmosphere that
+    // was tested, or a stated result, does not qualify.
+    for (const clause of observationText.split(/[.!]/).map(value => value.trim()).filter(Boolean)) {
+      const atmosphericSubject = /\b(?:atmosphere|atmospheric|oxygen(?:\s+deficien\w*)?|o2\b|hydrogen\s+sulph?ide|h2s|carbon\s+monoxide|carbon\s+dioxide|methane|toxic\s+(?:gas|atmosphere|vapou?r)|flammable\s+(?:gas|atmosphere|vapou?r)|lower\s+explosive\s+limit|\blel\b|air\s+quality)\b/i.test(clause);
+      const evaluationOmitted =
+        /\b(?:no|not|never|without)\b[^.]{0,45}\b(?:test(?:ed|ing|s)?|monitor(?:ed|ing|s)?|sampl(?:e|ed|ing)|measur(?:e|ed|ement)|evaluat(?:e|ed|ion)|verif(?:y|ied|ication)|check(?:ed)?|reading)\b/i.test(clause) ||
+        /\b(?:test(?:ing)?|monitor(?:ing)?|sampling|readings?)\b[^.]{0,45}\b(?:not\s+(?:performed|conducted|completed|done)|never\s+(?:performed|conducted|completed|done)|omitted)\b/i.test(clause);
+      const evaluationSatisfied =
+        /\b(?:atmosphere|air|oxygen|gas)\b[^.]{0,60}\b(?:was|were|been)\s+(?:tested|monitored|sampled|measured|verified)\b/i.test(clause) &&
+        !/\b(?:no|not|never|without)\b[^.]{0,45}\b(?:tested|monitored|sampled|measured|verified)\b/i.test(clause);
+      const atmosphericUncertain = /\b(?:unknown|unclear|cannot\s+(?:be\s+)?determine|not\s+known|undetermined)\b/i.test(clause);
+      const atmosphericHistorical = /\b(?:yesterday|previously|prior|earlier|historical)\b/i.test(clause) &&
+        /\b(?:now|subsequently|since)\b[^.]{0,80}\b(?:tested|monitored|verified|corrected)\b/i.test(clause);
+      if (!atmosphericSubject || !evaluationOmitted || evaluationSatisfied || atmosphericUncertain) continue;
+      if (hazards.some(hazard => hazard.domainId === 'atmospheric_hazard' && hazard.observationFragment === clause)) continue;
+      hazards.push({
+        hazardId: `haz-${hazards.length + 1}`,
+        domainId: 'atmospheric_hazard',
+        hazardFamily: 'atmospheric_hazard',
+        mechanism: 'required atmospheric evaluation not performed for a named atmospheric hazard',
+        observationFragment: clause,
+        supportingSignals: ['named atmospheric hazard', 'required atmospheric test or monitoring stated as not performed'],
+        confidence: 0.85,
+        possibleOverlapWith: ['confined_space', 'ventilation_air_quality', 'respiratory_protection'],
+        requiresHumanReview: true,
+        evidenceGaps: ['Confirm which atmospheric hazards apply, the instrument used, when the space was last tested, and continuous-monitoring status.'],
+        reviewerQuestions: ['Was the atmosphere tested and continuously monitored for oxygen, flammable and toxic gases before and during entry?'],
+        conditionState: atmosphericHistorical ? ('HISTORICAL' as const) : ('ACTIVE' as const),
+        temporalEvidence: atmosphericHistorical ? ['prior untested atmosphere subsequently evaluated'] : [],
+      });
+      routingNotes.push('Promoted finding-local omitted atmospheric evaluation for a named atmospheric hazard.');
+    }
+
     // Preserve a respiratory-protection deficiency as its own canonical family,
     // distinct from generic PPE, chemical exposure, or airborne-family findings.
     // Only an explicit respirator-specific deficiency (missing/damaged/not used)
@@ -1085,7 +1363,7 @@ export class MultiHazardDecompositionService {
     // airborne hazard with no respirator evidence at all, must not construct this.
     for (const clause of observationText.split(/[.!]/).map(value => value.trim()).filter(Boolean)) {
       const respiratorItem = /\b(?:respirators?|respiratory[- ]protection|cartridge\s+respirator|full[- ]face\s+respirator|half[- ]mask\s+respirator|air[- ]purifying\s+respirator|papr)\b/i.test(clause);
-      const respiratorDeficiency = /\b(?:without|required)\b[^.]{0,70}\b(?:respirators?|respiratory[- ]protection|cartridge\s+respirator)\b[^.]{0,50}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)?|\b(?:required\s+)?(?:cartridge\s+)?respirators?\b[^.]{0,45}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)\b/i.test(clause);
+      const respiratorDeficiency = /\b(?:without|required)\b[^.]{0,70}\b(?:respirators?|respiratory[- ]protection|cartridge\s+respirator)\b[^.]{0,50}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)?|\b(?:required\s+)?(?:cartridge\s+)?respirators?\b[^.]{0,45}\b(?:absent|missing|not\s+(?:provided|worn|used|available)|damaged|defective)\b|\b(?:no|not|never|neither|nor|without)\b[^.]{0,45}\b(?:respirators?|respiratory[- ]protection|cartridge\s+respirator|full[- ]face\s+respirator|half[- ]mask\s+respirator|air[- ]purifying\s+respirator|papr)\b/i.test(clause);
       const respiratorTaskExposure = /\b(?:worker|workers|employee|operator|task|work|operation|handling|contact|cutting|grinding|welding|exposure)\b/i.test(clause);
       const respiratorAdequate = /\brespirat(?:ory|or)\b/i.test(clause) && /\b(?:correctly\s+worn|functioning|properly\s+fitted|fit[- ]tested\s+and\s+(?:worn|functioning)|correctly\s+used|verified\s+effective)\b/i.test(clause);
       const respiratorUncertain = /\b(?:unknown|unclear|cannot\s+(?:be\s+)?determine|not\s+known|whether)\b/i.test(clause);
@@ -1239,7 +1517,16 @@ export class MultiHazardDecompositionService {
       routingNotes.push('Preserved unresolved chemical identity or labeling evidence as a separate hazard-communication finding.');
     }
 
+    // A powered-industrial-truck word used only to NAME A PLACE ("the forklift
+    // charging room", "the forklift battery bay") or a person ("the loader
+    // operator's break trailer") is a location or role descriptor, not evidence
+    // that a truck is operating or defective. The truck must itself appear in
+    // an operating, movement or defect context before this preservation path
+    // manufactures a struck-by finding on top of the hazard actually observed.
+    const poweredTruckOperationEvidence =
+      /\b(?:operat(?:ing|es|ed|ion)|driv(?:e|es|en|ing)|travel\w*|revers\w*|backing|manoeuvr\w*|maneuver\w*|haul(?:ing|ed|s)?|load(?:ing|ed)?|carry\w*|rais(?:e|ed|ing)|lower\w*|struck|run\s+over|collid\w*|tip(?:ped|ping)?|overturn\w*|rollover|pedestrian|spotter|traffic|horn|alarm|seat\s?belt|brake|steering|mast|forks?|tine|blind\s+spot|speed|barricade|crossing|aisle|ramp|dock)\b/i.test(observationText);
     const explicitPoweredTruck = /\b(?:powered industrial truck|forklift)\b/i.test(observationText) &&
+      poweredTruckOperationEvidence &&
       !/\b(?:parked|stored|secured|out of service|not operating)\b/i.test(observationText);
     if (explicitPoweredTruck && !hazards.some(hazard => hazard.domainId === 'powered_industrial_trucks')) {
       const poweredTruckFragment = fragments.find(fragment => /\b(?:powered industrial truck|forklift|haul truck)\b/i.test(fragment)) || observationText;
@@ -1264,8 +1551,19 @@ export class MultiHazardDecompositionService {
     // expose a fall edge, but fall protection must not replace the excavation
     // family or absorb its temporal state.
     for (const fragment of fragments) {
-      if (!/\b(?:trench|excavat(?:ion|ing)|open\s+cut|spoil\s+(?:pile|at)|trench\s+wall|cave[- ]?in|shor(?:e|ing)|shield(?:ing)?|trench\s+(?:access|egress))\b/i.test(fragment)) continue;
+      // "shield" was previously accepted here as a bare excavation trigger, for
+      // the trench-shield (trench-box) protective system. In field language a
+      // bare shield is almost never that: a face shield, welding shield, splash
+      // shield, arc-flash shield or heat shield is PPE or machine/thermal
+      // guarding, and "shielding" is ordinarily a verb. The alias produced a
+      // 0.85-confidence excavation finding on all of those -- scoring HIGHER
+      // than a genuine unshored trench -- so the trigger now requires the
+      // excavation sense to be stated. "shoring" is unaffected.
+      if (!/\b(?:trench|excavat(?:ion|ing)|open\s+cut|spoil\s+(?:pile|at)|trench\s+wall|cave[- ]?in|shor(?:e|ing)|(?:trench|excavation)\s+shield(?:ing)?|shield\s+box|trench\s+(?:access|egress))\b/i.test(fragment)) continue;
       if (/\b(?:no|without|never)\s+(?:trench|excavat(?:ion|ing)|open\s+cut)\b/i.test(fragment)) continue;
+      // A completed, backfilled or reinstated excavation is a closed condition,
+      // not an active cave-in hazard.
+      if (/\b(?:backfill\w*|paved\s+over|filled\s+in|reinstated|compacted\s+and|restored|closed\s+out)\b/i.test(fragment)) continue;
       if (hazards.some(hazard => hazard.domainId === 'excavation_trenching' && hazard.observationFragment === fragment)) continue;
       hazards.push({
         hazardId: `haz-${hazards.length + 1}`,
@@ -1293,6 +1591,14 @@ export class MultiHazardDecompositionService {
       // ACTIVE deficiency when it is explicitly described as effectively
       // covered, guarded, secured, or otherwise protected.
       if (/\b(?:floor\s+opening|open\s+edge|unguarded\s+opening|elevated\s+platform|platform\s+near\s+an\s+edge|edge|platform|opening)\b[^.]{0,40}\b(?:covered|guarded|secured|protected|effective(?:ly)?)\b/i.test(fragment)) continue;
+      // An opening described as fitted with a cover, lid, grating or plate that
+      // is closed/latched/in place is protected. The clause above only matched
+      // the participle "covered" within 40 characters, so ordinary phrasing
+      // ("the floor opening was fitted with a hinged cover that was closed")
+      // was read as an active fall exposure.
+      if (/\b(?:opening|hole|edge|platform)\b[^.]{0,80}\b(?:cover|lid|grating|plate|guardrail|barrier)\b[^.]{0,60}\b(?:closed|latched|secured|in\s+place|fitted|installed|effective)\b/i.test(fragment)) continue;
+      if (/\b(?:fitted|provided|equipped)\s+with\s+(?:a\s+|an\s+)?(?:\w+\s+){0,2}(?:cover|lid|grating|plate|guardrail|barrier)\b/i.test(fragment) &&
+        !/\b(?:not|no|missing|removed|absent|damaged|broken|open|unsecured)\b/i.test(fragment)) continue;
       if (/\b(?:covered|guarded|secured|protected|effective(?:ly)?)\b[^.]{0,40}\b(?:guardrail|guardrails|cover|opening)\b/i.test(fragment)) continue;
       if (hazards.some(hazard => hazard.domainId === 'fall_protection' && hazard.observationFragment === fragment)) continue;
       hazards.push({
@@ -1456,8 +1762,8 @@ export class MultiHazardDecompositionService {
       if (hazard.domainId === 'machine_guarding' && /\b(?:guard(?:ing)?\s+(?:is|was|has been)?\s*(?:installed|interlocked|fixed|intact)|fixed guard|interlocked guard|intact guard)\b/i.test(fragment) && !/\b(?:missing|removed|unguarded|bypassed)\b/i.test(fragment)) return false;
       if (hazard.domainId === 'machine_guarding' && /\b(?:guardrail|platform edge|fall protection|fall arrest)\b/i.test(fragment) && !/\b(?:machine|conveyor|shaft|pulley|point of operation|rotating)\b/i.test(fragment)) return false;
       if (hazard.domainId === 'suspended_loads') {
-        const load = /\b(?:suspended|hanging|overhead|lifted|load|hook|pallet|beam)\b/i.test(fragment);
-        const exposure = /\b(?:beneath|under|below|drop\s+zone|fall\s+zone|occupied|worker|employee|spotter|person|pedestrian|work\s+area|swings?\s+over)\b/i.test(fragment);
+        const load = SUSPENDED_LOAD_EVIDENCE.test(fragment);
+        const exposure = SUSPENDED_LOAD_EXPOSURE.test(fragment);
         const negated = /\b(?:no|not|without)\b[^.]{0,80}\b(?:load\s+(?:is\s+)?suspended|person|employee|worker|one)\b/i.test(fragment) || /\b(?:landed|secured\s+on\s+(?:a\s+)?stable\s+support|barricaded|area\s+below\s+is\s+clear|not\s+yet\s+lifted|unknown|unclear|not\s+established|does\s+not\s+establish)\b/i.test(fragment);
         if (!load || !exposure || negated) return false;
       }

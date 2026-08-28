@@ -19,6 +19,12 @@
  * pointer -- unacceptable, and unnecessary, because the release SNAPSHOT
  * (`regulatory_release_records`) is immutable once finalized. Pinning an id is sufficient to make
  * the snapshot stable; nothing needs to be locked.
+ *
+ * WHAT THE PIN NOW TAKES ITS VALUE FROM. Pinning the ACTIVE pointer is correct only for an analysis
+ * that has no prior regulatory basis. An inspection outlives its analyses, so the release is chosen
+ * ONCE for the inspection (`standards/releases/inspection-release-binding.ts`) and passed in here as
+ * `boundReleaseId`; the pointer is read only when there is no binding to honour. See
+ * `pinGovernedRelease()` below.
  */
 
 import { DataSource } from 'typeorm';
@@ -98,7 +104,10 @@ export interface GovernedReleasePin {
   pinnedAt: string;
   mode: GovernedCutoverMode;
   /** Why the pin holds what it holds. Categorical. */
-  reason: 'PINNED_ACTIVE_RELEASE' | 'NO_ACTIVE_RELEASE' | 'MODE_IS_LEGACY' | 'PIN_LOOKUP_FAILED';
+  reason:
+    /** The analysis's inspection is bound to this release, so the pointer was never consulted. */
+    | 'PINNED_BOUND_RELEASE'
+    | 'PINNED_ACTIVE_RELEASE' | 'NO_ACTIVE_RELEASE' | 'MODE_IS_LEGACY' | 'PIN_LOOKUP_FAILED';
   /**
    * KG-4B. The pinned release's manifest identity, captured in the SAME query as the pointer read so
    * the two can never describe different releases. Optional so every existing literal pin in the
@@ -127,7 +136,23 @@ function emptyResult(
 }
 
 /**
- * Reads the active-release pointer ONCE and freezes it for the analysis.
+ * Freezes the release that governs this analysis.
+ *
+ * `boundReleaseId` -- the release the analysis's INSPECTION is bound to, as resolved by
+ * `standards/releases/inspection-release-binding.ts`. When present it is pinned and the
+ * active-release pointer is never read.
+ *
+ * WHY THE BOUND RELEASE WINS, AND WHY THE POINTER IS NOT EVEN CONSULTED FOR COMPARISON. KG-4A
+ * pinned the pointer once per analysis so an activation could not straddle one. That is right at
+ * the scale of an analysis and wrong at the scale of an inspection, which is reopened, re-analysed
+ * and re-reported long after it was first run: reading the pointer again would silently re-govern
+ * a workflow the moment a newer release was activated, and the customer's report would change its
+ * regulatory basis with nobody deciding that it should. Comparing the two and preferring the bound
+ * one would behave identically and read as though a reconciliation were possible; there is none to
+ * make, so the pointer is simply not read.
+ *
+ * Omitting the argument preserves the KG-4A behaviour exactly -- the pointer is read once -- which
+ * is what every existing caller and every KG-4A/4B/4C suite depends on.
  *
  * Never throws. A pin failure degrades to `releaseId: null`, which every downstream resolution
  * reports as `NO_ACTIVE_RELEASE`/`RESOLVER_UNAVAILABLE` and which the fallback contract already
@@ -136,6 +161,7 @@ function emptyResult(
 export async function pinGovernedRelease(
   dataSource: DataSource | null | undefined,
   mode: GovernedCutoverMode,
+  boundReleaseId?: string | null,
 ): Promise<GovernedReleasePin> {
   const pinnedAt = new Date().toISOString();
   if (mode === 'LEGACY') {
@@ -146,6 +172,28 @@ export async function pinGovernedRelease(
   if (!dataSource) {
     return { releaseId: null, pinnedAt, mode, reason: 'PIN_LOOKUP_FAILED' };
   }
+
+  const bound = String(boundReleaseId || '').trim();
+  if (bound) {
+    try {
+      // The manifest is read for the BOUND release by id, in the same query shape the pointer read
+      // uses, so a shadow/telemetry record still names the manifest of the release actually used.
+      const rows = await dataSource.query(
+        `SELECT "manifestChecksum" FROM regulatory_releases WHERE "releaseId" = $1 LIMIT 1`,
+        [bound],
+      );
+      return {
+        releaseId: bound, pinnedAt, mode, reason: 'PINNED_BOUND_RELEASE',
+        manifestChecksum: rows?.[0]?.manifestChecksum ? String(rows[0].manifestChecksum) : null,
+      };
+    } catch {
+      // The binding is still authoritative -- it was resolved before this call. Only the manifest
+      // lookup failed, and a missing manifest is a telemetry gap, not a reason to fall back to a
+      // different release.
+      return { releaseId: bound, pinnedAt, mode, reason: 'PINNED_BOUND_RELEASE', manifestChecksum: null };
+    }
+  }
+
   try {
     const rows = await dataSource.query(
       `SELECT "releaseId", "manifestChecksum" FROM regulatory_releases WHERE status = 'active' LIMIT 1`,

@@ -10,6 +10,7 @@ import { APPROVAL_CONTRACT_SELECT_COLUMNS, computeApprovalIdentity } from '../re
 import { PLACEHOLDER_SOURCE_KEY_PREFIX, assessReviewState } from '../releases/review-state';
 import { releaseCitationKey } from '../releases/citation-identity';
 import { LegacyCorpusGuardRefused, assertSeedableCorpus } from './legacy-corpus-guard';
+import { ReleaseIdentityRefused, assertManifestMatchesDefinition } from '../releases/release-identity';
 const { Client } = require('pg') as {
   Client: new (options: { connectionString: string }) => {
     connect(): Promise<void>;
@@ -97,6 +98,15 @@ async function run() {
       applicability_schema_version: APPLICABILITY_SCHEMA_VERSION,
     }));
     const { manifestChecksum, records } = computeReleaseManifest(normalizedRows);
+
+    // RELEASE IDENTITY IMMUTABILITY (2026-08-28). The KG-3A guard below is correct but its scope
+    // is ONE DATABASE: it reads the prior manifest from `regulatory_releases`, so in a fresh
+    // database it does not engage and this script mints its default release id over whatever the
+    // corpus holds. That is how `federal-core-2026-07-30.1` came to name 35-, 64- and 72-record
+    // artifacts across three disposable databases. The binding that survives a database is the
+    // version-controlled release definition's `expectedManifestChecksum` pin, which
+    // `prepareGovernedRelease` already honours; this holds the seed finalizer to the same pin.
+    assertManifestMatchesDefinition(RELEASE_ID, manifestChecksum, { ownedDisposable: corpus.ownedDisposable });
 
     // KG-3A immutability (Phase 5). A finalized release is frozen. Re-finalizing is an
     // idempotent no-op when it would reproduce the identical snapshot, and an explicit refusal
@@ -234,6 +244,14 @@ async function run() {
 }
 
 run().catch(error => {
+  if (error instanceof ReleaseIdentityRefused) {
+    console.error('');
+    console.error(error.message);
+    console.error('');
+    console.error('No release was written; the transaction was rolled back.');
+    process.exitCode = 1;
+    return;
+  }
   if (error instanceof LegacyCorpusGuardRefused) {
     console.error('');
     console.error(error.message);

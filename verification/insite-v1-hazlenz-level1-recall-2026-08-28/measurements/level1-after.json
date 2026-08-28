@@ -1,0 +1,2671 @@
+{
+  "label": "level1-after-repair",
+  "corpus": {
+    "populationASize": 34,
+    "populationBSize": 22,
+    "populationBRequiredGroups": 43,
+    "populationBLifeCriticalGroups": 35
+  },
+  "populationB": {
+    "requiredGroupsSatisfied": 43,
+    "requiredGroupRecall": 1,
+    "missedGroupCount": 0,
+    "lifeCriticalSatisfied": 35,
+    "lifeCriticalOmissionCount": 0,
+    "caseLevelFullRecall": 1,
+    "citationOnlyGroupCount": 0,
+    "rows": [
+      {
+        "id": "B-01",
+        "category": "machine guarding + LOTO",
+        "surfaces": {
+          "findings": [
+            "lockout_tagout",
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [
+            "lockout_tagout"
+          ],
+          "represented": [
+            "lockout_tagout",
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "lockout_tagout"
+          ],
+          "citations": [
+            "29 CFR 1910.147"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding",
+            "lockout_tagout",
+            "lockout_tagout"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "lockout_tagout",
+            "Lockout Tagout",
+            "Lockout Tagout"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "lockout_tagout",
+          "machine_guarding"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-02",
+        "category": "electrical + machine guarding",
+        "surfaces": {
+          "findings": [
+            "electrical",
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [
+            "electrical"
+          ],
+          "represented": [
+            "electrical",
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "electrical",
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.212(a)(3)(ii)",
+            "29 CFR 1910.219(c)",
+            "29 CFR 1910.303(g)(2)(i)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding",
+            "electrical",
+            "electrical"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "electrical",
+            "Electrical",
+            "Electrical"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "satisfiedGroups": [
+          "electrical",
+          "machine_guarding"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-03",
+        "category": "excavation + fall protection",
+        "surfaces": {
+          "findings": [
+            "excavation",
+            "excavation_trenching",
+            "fall_protection"
+          ],
+          "primary": [
+            "excavation",
+            "excavation_trenching",
+            "fall_protection"
+          ],
+          "additional": [
+            "excavation",
+            "excavation_trenching"
+          ],
+          "represented": [
+            "excavation",
+            "excavation_trenching",
+            "fall_protection"
+          ],
+          "citationDomains": [
+            "fall_protection"
+          ],
+          "citations": [
+            "29 CFR 1926.451",
+            "29 CFR 1926.501"
+          ],
+          "rawFindingLabels": [
+            "excavation_trenching",
+            "excavation",
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawPrimaryLabels": [
+            "fall_protection",
+            "Fall Protection",
+            "fall_protection",
+            "excavation_trenching",
+            "excavation"
+          ],
+          "rawAdditionalLabels": [
+            "excavation_trenching",
+            "Excavation",
+            "Excavation"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 25
+        },
+        "satisfiedGroups": [
+          "excavation_trenching",
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-04",
+        "category": "hot work + fire/explosion",
+        "surfaces": {
+          "findings": [
+            "fall_protection",
+            "fire_explosion",
+            "hot_work"
+          ],
+          "primary": [
+            "fire_explosion",
+            "hot_work"
+          ],
+          "additional": [
+            "fall_protection",
+            "fire_explosion",
+            "hot_work"
+          ],
+          "represented": [
+            "fall_protection",
+            "fire_explosion",
+            "hot_work"
+          ],
+          "citationDomains": [
+            "compressed_gas",
+            "hot_work"
+          ],
+          "citations": [
+            "29 CFR 1910.252(a)(2)(iv)",
+            "29 CFR 1926.352(a)"
+          ],
+          "rawFindingLabels": [
+            "hot_work",
+            "hot_work",
+            "fall_protection",
+            "fall_protection",
+            "fire_explosion",
+            "fire_explosion"
+          ],
+          "rawPrimaryLabels": [
+            "fire_protection",
+            "Welding / Cutting / Hot Work",
+            "fire_protection",
+            "hot_work",
+            "hot_work"
+          ],
+          "rawAdditionalLabels": [
+            "hot_work",
+            "Hot Work",
+            "Hot Work",
+            "fall_protection",
+            "Fall Protection",
+            "Fall Protection",
+            "fire_explosion",
+            "Fire Explosion",
+            "Fire Explosion"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "hot_work|welding_cutting",
+          "fire_explosion|fire_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-05",
+        "category": "compressed gas / unsecured cylinder + hot work",
+        "surfaces": {
+          "findings": [
+            "hot_work"
+          ],
+          "primary": [
+            "compressed_gas",
+            "hot_work"
+          ],
+          "additional": [
+            "hot_work"
+          ],
+          "represented": [
+            "compressed_gas",
+            "hot_work"
+          ],
+          "citationDomains": [
+            "compressed_gas"
+          ],
+          "citations": [
+            "29 CFR 1910.101"
+          ],
+          "rawFindingLabels": [
+            "hot_work",
+            "hot_work"
+          ],
+          "rawPrimaryLabels": [
+            "compressed_gas",
+            "Compressed Gas Cylinders",
+            "compressed_gas",
+            "hot_work",
+            "hot_work"
+          ],
+          "rawAdditionalLabels": [
+            "hot_work",
+            "Hot Work",
+            "Hot Work"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "compressed_gas",
+          "hot_work|welding_cutting"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-06",
+        "category": "mobile equipment + traffic control",
+        "surfaces": {
+          "findings": [
+            "powered_industrial_trucks",
+            "traffic_control"
+          ],
+          "primary": [
+            "mobile_equipment",
+            "powered_industrial_trucks"
+          ],
+          "additional": [
+            "powered_industrial_trucks",
+            "traffic_control"
+          ],
+          "represented": [
+            "mobile_equipment",
+            "powered_industrial_trucks",
+            "traffic_control"
+          ],
+          "citationDomains": [
+            "mobile_equipment"
+          ],
+          "citations": [
+            "29 CFR 1910.178",
+            "29 CFR 1910.178(l)"
+          ],
+          "rawFindingLabels": [
+            "powered_industrial_trucks",
+            "powered_industrial_trucks",
+            "traffic_control",
+            "traffic_control"
+          ],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment",
+            "powered_industrial_trucks",
+            "powered_industrial_trucks"
+          ],
+          "rawAdditionalLabels": [
+            "powered_industrial_trucks",
+            "Powered Industrial Trucks",
+            "Powered Industrial Trucks",
+            "traffic_control",
+            "Traffic Control",
+            "Traffic Control"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "mobile_equipment|powered_industrial_trucks|forklifts",
+          "traffic_control"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-07",
+        "category": "confined space + atmospheric hazard",
+        "surfaces": {
+          "findings": [
+            "confined_space",
+            "ventilation_air_quality"
+          ],
+          "primary": [
+            "compressed_gas",
+            "confined_space"
+          ],
+          "additional": [
+            "ventilation_air_quality"
+          ],
+          "represented": [
+            "compressed_gas",
+            "confined_space",
+            "ventilation_air_quality"
+          ],
+          "citationDomains": [
+            "confined_space"
+          ],
+          "citations": [
+            "29 CFR 1926.1203"
+          ],
+          "rawFindingLabels": [
+            "confined_space",
+            "confined_space",
+            "atmospheric_hazard",
+            "atmospheric_hazard"
+          ],
+          "rawPrimaryLabels": [
+            "compressed_gas",
+            "Confined Space",
+            "compressed_gas",
+            "confined_space",
+            "confined_space"
+          ],
+          "rawAdditionalLabels": [
+            "atmospheric_hazard",
+            "Atmospheric Hazard",
+            "Atmospheric Hazard"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "confined_space",
+          "atmospheric_hazard|ventilation_air_quality|respiratory_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-08",
+        "category": "chemical exposure + PPE",
+        "surfaces": {
+          "findings": [
+            "hazard_communication",
+            "personal_protective_equipment"
+          ],
+          "primary": [
+            "hazard_communication",
+            "hazardous_materials"
+          ],
+          "additional": [
+            "personal_protective_equipment"
+          ],
+          "represented": [
+            "hazard_communication",
+            "hazardous_materials",
+            "personal_protective_equipment"
+          ],
+          "citationDomains": [
+            "hazard_communication"
+          ],
+          "citations": [
+            "29 CFR 1910.1200(f)"
+          ],
+          "rawFindingLabels": [
+            "hazcom",
+            "hazard_communication",
+            "personal_protective_equipment",
+            "personal_protective_equipment"
+          ],
+          "rawPrimaryLabels": [
+            "hazardous_materials",
+            "Hazard Communication",
+            "hazardous_materials",
+            "hazcom",
+            "hazard_communication"
+          ],
+          "rawAdditionalLabels": [
+            "personal_protective_equipment",
+            "Personal Protective Equipment",
+            "Personal Protective Equipment"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "hazcom|chemical_exposure|sds_labeling",
+          "ppe"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-09",
+        "category": "suspended load + rigging",
+        "surfaces": {
+          "findings": [
+            "cranes",
+            "cranes_rigging_hoisting",
+            "rigging",
+            "suspended_loads"
+          ],
+          "primary": [
+            "cranes",
+            "cranes_rigging_hoisting"
+          ],
+          "additional": [
+            "cranes",
+            "cranes_rigging_hoisting",
+            "rigging",
+            "suspended_loads"
+          ],
+          "represented": [
+            "cranes",
+            "cranes_rigging_hoisting",
+            "rigging",
+            "suspended_loads"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "cranes_hoists",
+            "cranes",
+            "rigging_lifting",
+            "rigging",
+            "suspended_loads",
+            "suspended_loads"
+          ],
+          "rawPrimaryLabels": [
+            "cranes_rigging_hoisting",
+            "Lifting & Rigging",
+            "cranes_rigging_hoisting",
+            "cranes_hoists",
+            "cranes"
+          ],
+          "rawAdditionalLabels": [
+            "cranes_hoists",
+            "Cranes",
+            "Cranes",
+            "rigging_lifting",
+            "Rigging",
+            "Rigging",
+            "suspended_loads",
+            "Suspended Loads",
+            "Suspended Loads"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "suspended_loads|cranes_hoists",
+          "rigging_lifting"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-10",
+        "category": "stored energy + machine guarding",
+        "surfaces": {
+          "findings": [
+            "compressed_gas",
+            "hydraulic_pneumatic_energy",
+            "machine_guarding"
+          ],
+          "primary": [
+            "compressed_gas"
+          ],
+          "additional": [
+            "compressed_gas",
+            "hydraulic_pneumatic_energy",
+            "machine_guarding"
+          ],
+          "represented": [
+            "compressed_gas",
+            "hydraulic_pneumatic_energy",
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "lockout_tagout"
+          ],
+          "citations": [
+            "29 CFR 1910.147"
+          ],
+          "rawFindingLabels": [
+            "compressed_gas",
+            "compressed_gas",
+            "machine_guarding",
+            "machine_guarding",
+            "hydraulic_pneumatic_energy",
+            "hydraulic_pneumatic_energy"
+          ],
+          "rawPrimaryLabels": [
+            "compressed_gas",
+            "Compressed Gas Cylinders",
+            "compressed_gas",
+            "compressed_gas",
+            "compressed_gas"
+          ],
+          "rawAdditionalLabels": [
+            "compressed_gas",
+            "Compressed Gas",
+            "Compressed Gas",
+            "machine_guarding",
+            "Machine Guarding",
+            "Machine Guarding",
+            "hydraulic_pneumatic_energy",
+            "Hydraulic Pneumatic Energy",
+            "Hydraulic Pneumatic Energy"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "hydraulic_pneumatic_energy|lockout_tagout",
+          "machine_guarding|guarding_interlocks"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-11",
+        "category": "fall protection + obstructed access",
+        "surfaces": {
+          "findings": [
+            "fall_protection"
+          ],
+          "primary": [
+            "fall_protection",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [
+            "fall_protection"
+          ],
+          "represented": [
+            "fall_protection",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [
+            "fall_protection"
+          ],
+          "citations": [
+            "29 CFR 1910.28(b)(1)"
+          ],
+          "rawFindingLabels": [
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall",
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawAdditionalLabels": [
+            "fall_protection",
+            "Fall Protection",
+            "Fall Protection"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-12",
+        "category": "electrical + fall protection",
+        "surfaces": {
+          "findings": [
+            "electrical",
+            "fall_protection"
+          ],
+          "primary": [
+            "electrical"
+          ],
+          "additional": [
+            "fall_protection"
+          ],
+          "represented": [
+            "electrical",
+            "fall_protection"
+          ],
+          "citationDomains": [
+            "electrical"
+          ],
+          "citations": [
+            "29 CFR 1910.305(g)",
+            "29 CFR 1910.305(g)(2)(iii)",
+            "29 CFR 1910.334(a)(2)(ii)"
+          ],
+          "rawFindingLabels": [
+            "electrical",
+            "electrical",
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawPrimaryLabels": [
+            "electrical",
+            "Electrical",
+            "electrical",
+            "electrical",
+            "electrical"
+          ],
+          "rawAdditionalLabels": [
+            "fall_protection",
+            "Fall Protection",
+            "Fall Protection"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "electrical",
+          "fall_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-13",
+        "category": "respirable silica + respiratory protection",
+        "surfaces": {
+          "findings": [
+            "respiratory_protection",
+            "silica",
+            "silica_respirable_dust"
+          ],
+          "primary": [
+            "industrial_hygiene",
+            "silica",
+            "silica_respirable_dust"
+          ],
+          "additional": [
+            "respiratory_protection",
+            "silica",
+            "silica_respirable_dust"
+          ],
+          "represented": [
+            "industrial_hygiene",
+            "respiratory_protection",
+            "silica",
+            "silica_respirable_dust"
+          ],
+          "citationDomains": [
+            "silica_respirable_dust"
+          ],
+          "citations": [
+            "29 CFR 1910.1053",
+            "29 CFR 1926.1153"
+          ],
+          "rawFindingLabels": [
+            "silica_respirable_dust",
+            "silica",
+            "respiratory_protection",
+            "respiratory_protection"
+          ],
+          "rawPrimaryLabels": [
+            "industrial_hygiene",
+            "Respirable Dust / Silica",
+            "industrial_hygiene",
+            "silica_respirable_dust",
+            "silica"
+          ],
+          "rawAdditionalLabels": [
+            "silica_respirable_dust",
+            "Silica",
+            "Silica",
+            "respiratory_protection",
+            "Respiratory Protection",
+            "Respiratory Protection"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "silica_respirable_dust|combustible_dust",
+          "respiratory_protection|ppe|ventilation_air_quality"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-14",
+        "category": "excavation + electrical",
+        "surfaces": {
+          "findings": [
+            "electrical",
+            "excavation",
+            "excavation_trenching",
+            "ground_control"
+          ],
+          "primary": [
+            "excavation",
+            "excavation_trenching"
+          ],
+          "additional": [
+            "electrical",
+            "excavation",
+            "excavation_trenching",
+            "ground_control"
+          ],
+          "represented": [
+            "electrical",
+            "excavation",
+            "excavation_trenching",
+            "ground_control"
+          ],
+          "citationDomains": [
+            "electrical"
+          ],
+          "citations": [
+            "29 CFR 1926.403(i)(2)(i)"
+          ],
+          "rawFindingLabels": [
+            "excavation_trenching",
+            "excavation",
+            "ground_control",
+            "ground_control",
+            "electrical",
+            "electrical",
+            "excavation_trenching",
+            "excavation_trenching"
+          ],
+          "rawPrimaryLabels": [
+            "excavation_trenching",
+            "Trenching & Shoring",
+            "excavation_trenching",
+            "excavation_trenching",
+            "excavation"
+          ],
+          "rawAdditionalLabels": [
+            "excavation_trenching",
+            "Excavation",
+            "Excavation",
+            "ground_control",
+            "Ground Control",
+            "Ground Control",
+            "electrical",
+            "Electrical",
+            "Electrical",
+            "excavation_trenching",
+            "Excavation Trenching",
+            "Excavation Trenching"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "excavation_trenching",
+          "electrical"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-15",
+        "category": "LOTO + electrical",
+        "surfaces": {
+          "findings": [
+            "electrical",
+            "lockout_tagout"
+          ],
+          "primary": [
+            "lockout_tagout",
+            "machine_guarding"
+          ],
+          "additional": [
+            "electrical",
+            "lockout_tagout"
+          ],
+          "represented": [
+            "electrical",
+            "lockout_tagout",
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "lockout_tagout",
+            "lockout_tagout",
+            "electrical",
+            "electrical"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "lockout_tagout",
+            "lockout_tagout"
+          ],
+          "rawAdditionalLabels": [
+            "lockout_tagout",
+            "Lockout Tagout",
+            "Lockout Tagout",
+            "electrical",
+            "Electrical",
+            "Electrical"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 8
+        },
+        "satisfiedGroups": [
+          "lockout_tagout",
+          "electrical"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-16",
+        "category": "machine guarding + PPE",
+        "surfaces": {
+          "findings": [
+            "personal_protective_equipment"
+          ],
+          "primary": [
+            "machine_guarding",
+            "noise_exposure",
+            "personal_protective_equipment"
+          ],
+          "additional": [
+            "personal_protective_equipment"
+          ],
+          "represented": [
+            "machine_guarding",
+            "noise_exposure",
+            "personal_protective_equipment"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "personal_protective_equipment",
+            "personal_protective_equipment"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Noise Exposure",
+            "machine_guarding",
+            "personal_protective_equipment",
+            "personal_protective_equipment"
+          ],
+          "rawAdditionalLabels": [
+            "personal_protective_equipment",
+            "Personal Protective Equipment",
+            "Personal Protective Equipment"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 8
+        },
+        "satisfiedGroups": [
+          "machine_guarding",
+          "ppe"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-17",
+        "category": "powered industrial truck + material storage",
+        "surfaces": {
+          "findings": [
+            "material_handling_storage",
+            "mobile_equipment",
+            "powered_industrial_trucks"
+          ],
+          "primary": [
+            "mobile_equipment"
+          ],
+          "additional": [
+            "material_handling_storage",
+            "mobile_equipment",
+            "powered_industrial_trucks"
+          ],
+          "represented": [
+            "material_handling_storage",
+            "mobile_equipment",
+            "powered_industrial_trucks"
+          ],
+          "citationDomains": [
+            "mobile_equipment"
+          ],
+          "citations": [
+            "29 CFR 1910.178"
+          ],
+          "rawFindingLabels": [
+            "mobile_equipment",
+            "mobile_equipment",
+            "material_handling",
+            "material_handling",
+            "material_handling_storage",
+            "material_handling_storage",
+            "powered_industrial_trucks",
+            "powered_industrial_trucks"
+          ],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment",
+            "mobile_equipment",
+            "mobile_equipment"
+          ],
+          "rawAdditionalLabels": [
+            "mobile_equipment",
+            "Mobile Equipment",
+            "Mobile Equipment",
+            "material_handling",
+            "Material Handling",
+            "Material Handling",
+            "material_handling_storage",
+            "Material Handling Storage",
+            "Material Handling Storage",
+            "powered_industrial_trucks",
+            "Powered Industrial Trucks",
+            "Powered Industrial Trucks"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "powered_industrial_trucks|forklifts|mobile_equipment",
+          "material_handling_storage|material_handling"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-18",
+        "category": "confined space + LOTO",
+        "surfaces": {
+          "findings": [
+            "confined_space",
+            "lockout_tagout",
+            "ventilation_air_quality"
+          ],
+          "primary": [
+            "confined_space"
+          ],
+          "additional": [
+            "lockout_tagout",
+            "ventilation_air_quality"
+          ],
+          "represented": [
+            "confined_space",
+            "lockout_tagout",
+            "ventilation_air_quality"
+          ],
+          "citationDomains": [
+            "confined_space"
+          ],
+          "citations": [
+            "29 CFR 1910.146"
+          ],
+          "rawFindingLabels": [
+            "confined_space",
+            "confined_space",
+            "lockout_tagout",
+            "lockout_tagout",
+            "atmospheric_hazard",
+            "atmospheric_hazard"
+          ],
+          "rawPrimaryLabels": [
+            "confined_space",
+            "Confined Space",
+            "confined_space",
+            "confined_space",
+            "confined_space"
+          ],
+          "rawAdditionalLabels": [
+            "lockout_tagout",
+            "Lockout Tagout",
+            "Lockout Tagout",
+            "atmospheric_hazard",
+            "Atmospheric Hazard",
+            "Atmospheric Hazard"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "confined_space",
+          "lockout_tagout"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-19",
+        "category": "hot work + confined space",
+        "surfaces": {
+          "findings": [
+            "confined_space",
+            "fire_explosion",
+            "hot_work"
+          ],
+          "primary": [
+            "confined_space"
+          ],
+          "additional": [
+            "fire_explosion",
+            "hot_work"
+          ],
+          "represented": [
+            "confined_space",
+            "fire_explosion",
+            "hot_work"
+          ],
+          "citationDomains": [
+            "confined_space"
+          ],
+          "citations": [
+            "29 CFR 1910.146"
+          ],
+          "rawFindingLabels": [
+            "confined_space",
+            "confined_space",
+            "hot_work",
+            "hot_work",
+            "fire_explosion",
+            "fire_explosion"
+          ],
+          "rawPrimaryLabels": [
+            "confined_space",
+            "Confined Space",
+            "confined_space",
+            "confined_space",
+            "confined_space"
+          ],
+          "rawAdditionalLabels": [
+            "hot_work",
+            "Hot Work",
+            "Hot Work",
+            "fire_explosion",
+            "Fire Explosion",
+            "Fire Explosion"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 15
+        },
+        "satisfiedGroups": [
+          "hot_work|welding_cutting",
+          "confined_space"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-20",
+        "category": "fall protection + suspended load",
+        "surfaces": {
+          "findings": [
+            "fall_protection"
+          ],
+          "primary": [
+            "cranes_rigging_hoisting",
+            "fall_protection",
+            "machine_guarding"
+          ],
+          "additional": [
+            "fall_protection"
+          ],
+          "represented": [
+            "cranes_rigging_hoisting",
+            "fall_protection",
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Lifting & Rigging",
+            "machine_guarding",
+            "fall_protection",
+            "fall_protection"
+          ],
+          "rawAdditionalLabels": [
+            "fall_protection",
+            "Fall Protection",
+            "Fall Protection"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 8
+        },
+        "satisfiedGroups": [
+          "fall_protection",
+          "suspended_loads|cranes_hoists|rigging_lifting"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-21",
+        "category": "chemical release + PPE",
+        "surfaces": {
+          "findings": [
+            "environmental",
+            "environmental_release",
+            "respiratory_protection"
+          ],
+          "primary": [
+            "environmental",
+            "environmental_release",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [
+            "environmental",
+            "environmental_release",
+            "respiratory_protection"
+          ],
+          "represented": [
+            "environmental",
+            "environmental_release",
+            "respiratory_protection",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [
+            "hazard_communication",
+            "walking_working_surfaces"
+          ],
+          "citations": [
+            "29 CFR 1910.1200",
+            "29 CFR 1910.1200(f)",
+            "29 CFR 1910.1200(f)(1)",
+            "29 CFR 1910.1200(f)(6)",
+            "29 CFR 1910.22(a)",
+            "29 CFR 1910.22(a)(2)"
+          ],
+          "rawFindingLabels": [
+            "environmental_spill",
+            "environmental",
+            "respiratory_protection",
+            "respiratory_protection"
+          ],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall",
+            "environmental_spill",
+            "environmental"
+          ],
+          "rawAdditionalLabels": [
+            "environmental_spill",
+            "Environmental",
+            "Environmental",
+            "respiratory_protection",
+            "Respiratory Protection",
+            "Respiratory Protection"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "satisfiedGroups": [
+          "environmental_spill|chemical_release|hazcom",
+          "ppe|respiratory_protection"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      },
+      {
+        "id": "B-22",
+        "category": "machine guarding + mobile equipment",
+        "surfaces": {
+          "findings": [
+            "machine_guarding",
+            "mobile_equipment"
+          ],
+          "primary": [
+            "machine_guarding",
+            "mobile_equipment"
+          ],
+          "additional": [
+            "machine_guarding",
+            "mobile_equipment"
+          ],
+          "represented": [
+            "machine_guarding",
+            "mobile_equipment"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.212(a)(3)(ii)",
+            "29 CFR 1910.219(c)",
+            "30 CFR 56.14107(a)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding",
+            "mobile_equipment",
+            "mobile_equipment"
+          ],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "Machine Guarding",
+            "mobile_equipment",
+            "Mobile Equipment",
+            "Mobile Equipment"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "satisfiedGroups": [
+          "machine_guarding|conveyors",
+          "mobile_equipment|powered_industrial_trucks|forklifts"
+        ],
+        "missedGroups": [],
+        "missedLifeCriticalGroups": [],
+        "citationOnlyGroups": [],
+        "fullRecall": true
+      }
+    ]
+  },
+  "populationA": {
+    "requiredOmissionCount": 0,
+    "rows": [
+      {
+        "id": "A-01",
+        "category": "preserved-failure/material-feed incidental to guarding",
+        "surfaces": {
+          "findings": [
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding",
+            "machine_guarding_loto"
+          ],
+          "additional": [],
+          "represented": [
+            "machine_guarding",
+            "machine_guarding_loto"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.212(a)(3)(ii)",
+            "29 CFR 1910.219(c)",
+            "29 CFR 1926.300(b)(2)",
+            "30 CFR 56.14107(a)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding_loto",
+            "Machine Guarding",
+            "machine_guarding_loto",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-02",
+        "category": "preserved-failure/PPE shield is not an excavation shield",
+        "surfaces": {
+          "findings": [
+            "hot_work",
+            "personal_protective_equipment"
+          ],
+          "primary": [
+            "hot_work",
+            "machine_guarding",
+            "noise_exposure"
+          ],
+          "additional": [
+            "hot_work",
+            "personal_protective_equipment"
+          ],
+          "represented": [
+            "hot_work",
+            "machine_guarding",
+            "noise_exposure",
+            "personal_protective_equipment"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "hot_work",
+            "hot_work",
+            "personal_protective_equipment",
+            "personal_protective_equipment"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Noise Exposure",
+            "machine_guarding",
+            "hot_work",
+            "hot_work"
+          ],
+          "rawAdditionalLabels": [
+            "hot_work",
+            "Hot Work",
+            "Hot Work",
+            "personal_protective_equipment",
+            "Personal Protective Equipment",
+            "Personal Protective Equipment"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-03",
+        "category": "preserved-failure/welding shield is not an excavation shield",
+        "surfaces": {
+          "findings": [
+            "hot_work"
+          ],
+          "primary": [
+            "hot_work",
+            "industrial_hygiene"
+          ],
+          "additional": [
+            "hot_work"
+          ],
+          "represented": [
+            "hot_work",
+            "industrial_hygiene"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "hot_work",
+            "hot_work"
+          ],
+          "rawPrimaryLabels": [
+            "industrial_hygiene",
+            "Industrial Hygiene",
+            "industrial_hygiene",
+            "hot_work",
+            "hot_work"
+          ],
+          "rawAdditionalLabels": [
+            "hot_work",
+            "Hot Work",
+            "Hot Work"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-04",
+        "category": "preserved-failure/splash shield is not an excavation shield",
+        "surfaces": {
+          "findings": [],
+          "primary": [],
+          "additional": [],
+          "represented": [],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "unknown",
+            "Unclassified",
+            "unknown"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 8
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-05",
+        "category": "material-feed incidental to machine operation",
+        "surfaces": {
+          "findings": [
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [],
+          "represented": [
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-06",
+        "category": "material-feed incidental to machine operation",
+        "surfaces": {
+          "findings": [
+            "machine_guarding",
+            "powered_haulage"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [
+            "powered_haulage"
+          ],
+          "represented": [
+            "machine_guarding",
+            "powered_haulage"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.212(a)(3)(ii)",
+            "29 CFR 1910.219(c)",
+            "30 CFR 56.14107(a)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding",
+            "powered_haulage",
+            "powered_haulage"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "powered_haulage",
+            "Powered Haulage",
+            "Powered Haulage"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-07",
+        "category": "material-feed incidental to energy control",
+        "surfaces": {
+          "findings": [
+            "lockout_tagout"
+          ],
+          "primary": [
+            "electrical",
+            "lockout_tagout"
+          ],
+          "additional": [
+            "lockout_tagout"
+          ],
+          "represented": [
+            "electrical",
+            "lockout_tagout"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "lockout_tagout",
+            "lockout_tagout"
+          ],
+          "rawPrimaryLabels": [
+            "electrical",
+            "Electrical",
+            "electrical",
+            "lockout_tagout",
+            "lockout_tagout"
+          ],
+          "rawAdditionalLabels": [
+            "lockout_tagout",
+            "Lockout Tagout",
+            "Lockout Tagout"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-08",
+        "category": "material-in-motion incidental to guarding",
+        "surfaces": {
+          "findings": [
+            "conveyors",
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [
+            "conveyors"
+          ],
+          "represented": [
+            "conveyors",
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.212(a)(3)(ii)",
+            "29 CFR 1910.219(c)",
+            "29 CFR 1926.300(b)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding",
+            "conveyors",
+            "conveyors"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "conveyors",
+            "Conveyors",
+            "Conveyors"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-09",
+        "category": "shield vocabulary/electrical arc-flash shield",
+        "surfaces": {
+          "findings": [
+            "electrical"
+          ],
+          "primary": [
+            "electrical"
+          ],
+          "additional": [],
+          "represented": [
+            "electrical"
+          ],
+          "citationDomains": [
+            "electrical"
+          ],
+          "citations": [
+            "29 CFR 1910.303(g)(2)(i)"
+          ],
+          "rawFindingLabels": [
+            "electrical",
+            "electrical"
+          ],
+          "rawPrimaryLabels": [
+            "electrical",
+            "Electrical",
+            "electrical",
+            "electrical",
+            "electrical"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-10",
+        "category": "shield vocabulary/thermal heat shield",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "compressed_gas"
+          ],
+          "additional": [],
+          "represented": [
+            "compressed_gas"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "compressed_gas",
+            "Compressed Gas Cylinders",
+            "compressed_gas"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-11",
+        "category": "shield vocabulary/verb form, no hazard",
+        "surfaces": {
+          "findings": [],
+          "primary": [],
+          "additional": [],
+          "represented": [],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "unknown",
+            "Unclassified",
+            "unknown"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-12",
+        "category": "barrier vocabulary/descriptive site feature",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [],
+          "represented": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-13",
+        "category": "vehicle vocabulary/location descriptor only",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "mobile_equipment"
+          ],
+          "additional": [],
+          "represented": [
+            "mobile_equipment"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-14",
+        "category": "vehicle and pressure vocabulary/location descriptor only",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "mobile_equipment"
+          ],
+          "additional": [],
+          "represented": [
+            "mobile_equipment"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-15",
+        "category": "vehicle vocabulary/possessive descriptor only",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "mobile_equipment"
+          ],
+          "additional": [],
+          "represented": [
+            "mobile_equipment"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "mobile_equipment",
+            "Mobile Equipment / Traffic",
+            "mobile_equipment"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-16",
+        "category": "vehicle vocabulary/verified-safe administrative record",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "lockout_tagout",
+            "machine_guarding_loto"
+          ],
+          "additional": [],
+          "represented": [
+            "lockout_tagout",
+            "machine_guarding_loto"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "machine_guarding_loto",
+            "Lockout / Stored Energy",
+            "machine_guarding_loto"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-17",
+        "category": "hose vocabulary/no pressure hazard",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "silica_respirable_dust",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [],
+          "represented": [
+            "silica_respirable_dust",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Respirable Dust / Silica",
+            "slip_trip_fall"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-18",
+        "category": "line vocabulary/unrelated sense of the word",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "emergency_preparedness"
+          ],
+          "additional": [],
+          "represented": [
+            "emergency_preparedness"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "emergency_preparedness",
+            "Unclassified",
+            "emergency_preparedness"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-19",
+        "category": "hydraulic and excavator vocabulary/verified intact",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "hydraulic_pneumatic_energy"
+          ],
+          "additional": [],
+          "represented": [
+            "hydraulic_pneumatic_energy"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "unknown",
+            "Compressed Air / Hose Safety",
+            "unknown"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-20",
+        "category": "pneumatic vocabulary/energy verified at zero",
+        "surfaces": {
+          "findings": [
+            "machine_guarding"
+          ],
+          "primary": [
+            "controlled_condition",
+            "machine_guarding"
+          ],
+          "additional": [],
+          "represented": [
+            "controlled_condition",
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawPrimaryLabels": [
+            "controlled_condition",
+            "Controlled Condition",
+            "controlled_condition",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-21",
+        "category": "hot-work vocabulary/historical and closed out",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "hot_work",
+            "machine_guarding"
+          ],
+          "additional": [
+            "hot_work"
+          ],
+          "represented": [
+            "hot_work",
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Welding / Cutting / Hot Work",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [
+            "Welding / Cutting / Hot Work"
+          ],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-22",
+        "category": "hot-work vocabulary/explicitly negated",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "industrial_hygiene"
+          ],
+          "additional": [],
+          "represented": [
+            "industrial_hygiene"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "industrial_hygiene",
+            "Industrial Hygiene",
+            "industrial_hygiene"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 1,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-23",
+        "category": "cutting vocabulary/unrelated sense of the word",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "hot_work"
+          ],
+          "additional": [],
+          "represented": [
+            "hot_work"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "unknown",
+            "Welding / Cutting / Hot Work",
+            "unknown"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-24",
+        "category": "grinding vocabulary/verified compliant condition",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [],
+          "represented": [
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.215"
+          ],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-25",
+        "category": "hot vocabulary/unrelated equipment with current inspection",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "emergency_equipment",
+            "fire_explosion"
+          ],
+          "additional": [],
+          "represented": [
+            "emergency_equipment",
+            "fire_explosion"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "fire_protection",
+            "First Aid / Eyewash / Safety Shower Access",
+            "fire_protection"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-26",
+        "category": "trench vocabulary/completed and backfilled",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "excavation_trenching"
+          ],
+          "additional": [],
+          "represented": [
+            "excavation_trenching"
+          ],
+          "citationDomains": [
+            "excavation_trenching"
+          ],
+          "citations": [
+            "29 CFR 1926.652(a)(1)"
+          ],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "excavation_trenching",
+            "Trenching & Shoring",
+            "excavation_trenching"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-27",
+        "category": "opening vocabulary/effectively covered",
+        "surfaces": {
+          "findings": [
+            "hazard_communication"
+          ],
+          "primary": [
+            "fall_protection",
+            "hazard_communication"
+          ],
+          "additional": [
+            "hazard_communication"
+          ],
+          "represented": [
+            "fall_protection",
+            "hazard_communication"
+          ],
+          "citationDomains": [
+            "fall_protection"
+          ],
+          "citations": [
+            "29 CFR 1910.28(b)",
+            "29 CFR 1926.501"
+          ],
+          "rawFindingLabels": [
+            "hazcom",
+            "hazard_communication"
+          ],
+          "rawPrimaryLabels": [
+            "fall_protection",
+            "Fall Protection",
+            "fall_protection",
+            "hazcom",
+            "hazard_communication"
+          ],
+          "rawAdditionalLabels": [
+            "hazcom",
+            "Hazard Communication",
+            "Hazard Communication"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 15
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-28",
+        "category": "fall vocabulary/unrelated sense of the word",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [],
+          "represented": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-29",
+        "category": "handrail vocabulary/verified sound",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [],
+          "represented": [
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-30",
+        "category": "proximity clause supporting a guarding hazard",
+        "surfaces": {
+          "findings": [
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [],
+          "represented": [
+            "machine_guarding"
+          ],
+          "citationDomains": [
+            "machine_guarding"
+          ],
+          "citations": [
+            "29 CFR 1910.212(a)(1)",
+            "29 CFR 1910.219(c)"
+          ],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-31",
+        "category": "proximity clause supporting an electrical hazard",
+        "surfaces": {
+          "findings": [
+            "electrical"
+          ],
+          "primary": [
+            "electrical",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "additional": [
+            "electrical"
+          ],
+          "represented": [
+            "electrical",
+            "slip_trip_fall",
+            "walking_working_surfaces"
+          ],
+          "citationDomains": [
+            "electrical"
+          ],
+          "citations": [
+            "29 CFR 1910.303(g)(2)(i)",
+            "29 CFR 1926.403(i)(2)(i)",
+            "30 CFR 56.12032"
+          ],
+          "rawFindingLabels": [
+            "electrical",
+            "electrical"
+          ],
+          "rawPrimaryLabels": [
+            "walking_working_surfaces",
+            "Walking/Working Surfaces",
+            "slip_trip_fall",
+            "electrical",
+            "electrical"
+          ],
+          "rawAdditionalLabels": [
+            "electrical",
+            "Electrical",
+            "Electrical"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 8
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-32",
+        "category": "energy-state clause supporting a guarding hazard",
+        "surfaces": {
+          "findings": [
+            "machine_guarding"
+          ],
+          "primary": [
+            "machine_guarding"
+          ],
+          "additional": [],
+          "represented": [
+            "machine_guarding"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawPrimaryLabels": [
+            "machine_guarding",
+            "Machine Guarding",
+            "machine_guarding",
+            "machine_guarding",
+            "machine_guarding"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 19
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-33",
+        "category": "observer-position clause, no hazard stated",
+        "surfaces": {
+          "findings": [
+            "conveyors"
+          ],
+          "primary": [
+            "conveyors",
+            "noise_exposure"
+          ],
+          "additional": [
+            "conveyors"
+          ],
+          "represented": [
+            "conveyors",
+            "noise_exposure"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [
+            "conveyors",
+            "conveyors"
+          ],
+          "rawPrimaryLabels": [
+            "conveyors",
+            "Noise Exposure",
+            "conveyors",
+            "conveyors",
+            "conveyors"
+          ],
+          "rawAdditionalLabels": [
+            "conveyors",
+            "Conveyors",
+            "Conveyors"
+          ],
+          "conditionStates": [
+            "ACTIVE"
+          ],
+          "isVague": false,
+          "clarificationCount": 0,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      },
+      {
+        "id": "A-34",
+        "category": "storage vocabulary/verified compliant condition",
+        "surfaces": {
+          "findings": [],
+          "primary": [
+            "hazardous_materials",
+            "material_handling_storage"
+          ],
+          "additional": [],
+          "represented": [
+            "hazardous_materials",
+            "material_handling_storage"
+          ],
+          "citationDomains": [],
+          "citations": [],
+          "rawFindingLabels": [],
+          "rawPrimaryLabels": [
+            "hazardous_materials",
+            "Material Handling",
+            "hazardous_materials"
+          ],
+          "rawAdditionalLabels": [],
+          "conditionStates": [],
+          "isVague": false,
+          "clarificationCount": 3,
+          "riskScore": 6
+        },
+        "missingRequired": []
+      }
+    ]
+  }
+}

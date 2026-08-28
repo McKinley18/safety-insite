@@ -212,8 +212,15 @@ async function main() {
   const emptyCorpus = classifyCorpus([]);
   check('an empty corpus is seedable', emptyCorpus.foreignRows === 0);
   const governedCorpus = classifyCorpus(governedCitations);
+  // The property this protects is "a corpus made of exactly the governed records is seedable",
+  // i.e. NO foreign rows. It was additionally pinned to the literal 35, which was the governed
+  // source set's size when KG-5B was written; the 2026-08-28 acquisition grew it to 72 under
+  // product-owner authorization, and a count literal makes this assertion fail on every
+  // legitimate growth. Comparing against the source set's own size keeps the real property and
+  // stays true at any size — a strengthening, not a relaxation.
   check('a corpus of exactly the governed records is seedable',
-    governedCorpus.foreignRows === 0 && governedCorpus.governedRows === 35, governedCorpus);
+    governedCorpus.foreignRows === 0 && governedCorpus.governedRows === sourceSet.records.length,
+    governedCorpus);
   const productionShaped = classifyCorpus([
     ...governedCitations,
     { citation: '30 CFR 46.1' }, { citation: '29 CFR 1910.1000' }, { citation: '29 CFR 1926.20' },

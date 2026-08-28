@@ -43,7 +43,7 @@ async function main() {
   );
   const site = await json('/sites', { method: 'POST', headers: headersA, body: JSON.stringify({ name: `Phase 5 ${suffix}` }) }, 201);
   const inspection = await json('/inspections', {
-    method: 'POST', headers: headersA, body: JSON.stringify({ siteId: site.id, title: 'Immutable report storage test' }),
+    method: 'POST', headers: headersA, body: JSON.stringify({ siteId: site.id, title: 'Replaced report storage test' }),
   }, 201);
   const observation = await json(`/inspections/${inspection.id}/observations`, {
     method: 'POST', headers: headersA,
@@ -76,47 +76,93 @@ async function main() {
   const freeDenied = await fetch(`${baseUrl}/inspections/${inspection.id}/reports`, { method: 'POST', headers: headersB });
   if (![402, 404].includes(freeDenied.status)) throw new Error(`Unexpected foreign/free report response: ${freeDenied.status}`);
   const first = await json(`/inspections/${inspection.id}/reports`, { method: 'POST', headers: headersA }, 201);
-  const firstPdf = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/versions/1/download`, { headers: headersA });
+  // The customer-facing download names no version, because the inspection has exactly one report.
+  const firstPdf = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/download`, { headers: headersA });
   const firstBytes = Buffer.from(await firstPdf.arrayBuffer());
-  if (firstPdf.status !== 200 || firstBytes.subarray(0, 5).toString() !== '%PDF-') throw new Error('Version 1 is not an authorized PDF.');
-  const foreign = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/versions/1/download`, { headers: headersB });
+  if (firstPdf.status !== 200 || firstBytes.subarray(0, 5).toString() !== '%PDF-') throw new Error('The current report is not an authorized PDF.');
+  const foreign = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/download`, { headers: headersB });
   if (foreign.status !== 404) throw new Error(`Cross-user report access returned ${foreign.status}.`);
   const duplicate = await json(`/inspections/${inspection.id}/reports`, { method: 'POST', headers: headersA }, 201);
   if (duplicate.version !== first.version || duplicate.versionId !== first.versionId) throw new Error('Unchanged report generation was not idempotent.');
+  const firstObject = (await db.query(
+    `SELECT "storageObjectId" FROM inspection_report_versions WHERE id=$1`, [first.versionId],
+  )).rows[0]?.storageObjectId;
+  if (!firstObject) throw new Error('The first report produced no stored artifact.');
+
   const reopened = await json(`/inspections/${inspection.id}/transition`, {
     method: 'POST', headers: headersA, body: JSON.stringify({ status: 'draft', version: completedState.version }),
   }, 201);
   const changed = await json(`/inspections/${inspection.id}`, {
     method: 'PATCH', headers: headersA,
-    body: JSON.stringify({ title: 'Immutable report storage test — reviewed update', version: reopened.version }),
+    body: JSON.stringify({ title: 'Replaced report storage test — reviewed update', version: reopened.version }),
   }, 200);
+  // Reopening on its own must change nothing: the customer keeps the report they had while they
+  // edit, and it is replaced only when a successor has actually been generated.
+  const duringReopen = (await db.query(
+    `SELECT count(*)::int AS snapshots FROM inspection_report_versions WHERE "reportId"=$1`, [first.reportId],
+  )).rows[0].snapshots;
+  const stillDownloadable = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/download`, { headers: headersA });
+  if (duringReopen !== 1 || stillDownloadable.status !== 200) {
+    throw new Error(`Reopening altered the existing report (snapshots=${duringReopen}, download=${stillDownloadable.status}).`);
+  }
+
   const reReview = await json(`/inspections/${inspection.id}/transition`, { method: 'POST', headers: headersA, body: JSON.stringify({ status: 'in_review', version: changed.version }) }, 201);
   await json(`/inspections/${inspection.id}/transition`, { method: 'POST', headers: headersA, body: JSON.stringify({ status: 'completed', version: reReview.version }) }, 201);
   const second = await json(`/inspections/${inspection.id}/reports`, { method: 'POST', headers: headersA }, 201);
-  if (second.version !== 2 || second.versionId === first.versionId) throw new Error('Legitimate source change did not create an immutable report version.');
+  if (second.versionId === first.versionId || second.checksum === first.checksum) {
+    throw new Error('A legitimate source change did not produce a genuinely different report.');
+  }
+
+  // ------------------------------------------------------------------ THE v1.0 REPLACEMENT CONTRACT
+  //
+  // This suite previously asserted the SUPERSEDED contract: two version rows, the older marked
+  // `superseded` and still downloadable. The product owner has replaced that contract -- an
+  // inspection has ONE current report, and finishing a reopened inspection REPLACES it. The old
+  // expectation is therefore stale rather than violated, and the assertions below are the new
+  // contract asserted at the same strength: exactly one snapshot retained, the predecessor's
+  // artifact genuinely destroyed rather than merely hidden, and no orphan left behind.
   const rows = await db.query(
     `SELECT
        (SELECT count(*)::int FROM inspection_reports WHERE id=$1) reports,
        (SELECT count(*)::int FROM inspection_report_versions WHERE "reportId"=$1) versions,
-       (SELECT count(*)::int FROM storage_objects WHERE "parentType"='report_version' AND status='ready') objects,
+       (SELECT count(*)::int FROM storage_objects o
+          WHERE o."parentType"='report_version' AND o.status='ready'
+            AND o."parentId" IN (SELECT id FROM inspection_report_versions WHERE "reportId"=$1)) objects,
+       (SELECT count(*)::int FROM storage_objects o
+          LEFT JOIN inspection_report_versions v ON v.id = o."parentId"
+          WHERE o."parentType"='report_version' AND o.status='ready' AND v.id IS NULL) orphans,
        (SELECT count(*)::int FROM security_audit_events WHERE action='report_generated') audits`,
     [first.reportId],
   );
   const snapshots = await db.query(
-    `SELECT version,status,"sourceSnapshot","storageObjectId",sha256 FROM inspection_report_versions WHERE "reportId"=$1 ORDER BY version`,
+    `SELECT id,version,status,"storageObjectId",sha256 FROM inspection_report_versions WHERE "reportId"=$1 ORDER BY version`,
     [first.reportId],
   );
-  if (rows.rows[0].reports !== 1 || rows.rows[0].versions !== 2 || rows.rows[0].objects < 2 || rows.rows[0].audits < 2) {
-    throw new Error(`Unexpected persistence: ${JSON.stringify(rows.rows[0])}`);
+  if (rows.rows[0].reports !== 1 || rows.rows[0].versions !== 1 || rows.rows[0].objects !== 1 ||
+      rows.rows[0].orphans !== 0 || rows.rows[0].audits < 2) {
+    throw new Error(`One-report-per-inspection was not achieved: ${JSON.stringify(rows.rows[0])}`);
   }
-  if (snapshots.rows[0].status !== 'superseded' || snapshots.rows[1].status !== 'generated' ||
-      snapshots.rows[0].storageObjectId === snapshots.rows[1].storageObjectId) {
-    throw new Error('Version lifecycle or artifact separation is invalid.');
+  if (snapshots.rows.length !== 1 || snapshots.rows[0].id !== second.versionId || snapshots.rows[0].status !== 'generated') {
+    throw new Error('The retained snapshot is not the replacement.');
+  }
+  const retiredArtifact = (await db.query(
+    `SELECT status, "deletedAt" FROM storage_objects WHERE id=$1`, [firstObject],
+  )).rows[0];
+  if (!retiredArtifact || retiredArtifact.status !== 'deleted' || !retiredArtifact.deletedAt) {
+    throw new Error(`The superseded PDF was not retired: ${JSON.stringify(retiredArtifact)}`);
+  }
+  // The replacement is what the unchanged customer-facing URL now serves, and it is the new bytes.
+  const currentPdf = await fetch(`${baseUrl}/inspection-reports/${first.reportId}/download`, { headers: headersA });
+  const currentBytes = Buffer.from(await currentPdf.arrayBuffer());
+  if (currentPdf.status !== 200 || currentBytes.equals(firstBytes)) {
+    throw new Error('The current download did not follow the replacement.');
   }
   await db.end();
   console.log(JSON.stringify({
-    passed: true, scenarios: 12, reportId: first.reportId, version1Checksum: first.checksum,
-    version2Checksum: second.checksum, sourceChangeVersion: changed.version, persistence: rows.rows[0], crossUserDownload: foreign.status,
+    passed: true, scenarios: 14, reportId: first.reportId,
+    replacedChecksum: first.checksum, currentChecksum: second.checksum,
+    sourceChangeVersion: changed.version, persistence: rows.rows[0],
+    crossUserDownload: foreign.status, retiredArtifactStatus: retiredArtifact.status,
   }));
 }
 
