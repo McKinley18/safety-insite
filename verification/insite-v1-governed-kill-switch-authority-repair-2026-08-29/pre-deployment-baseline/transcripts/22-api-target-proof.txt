@@ -1,0 +1,6 @@
+=== API DATABASE TARGET PROOF ===
+users in disposable test_v1_predeploy_api_20260829 BEFORE: 0
+users in protected safescope BEFORE: 1
+register HTTP 201
+users in disposable AFTER:  1
+users in protected safescope AFTER:  1

@@ -1,0 +1,70 @@
+RESOLVED TARGET: test_kg_approval_20260829
+
+=== PART 1 — the contract, in memory
+
+ok    CC-1 regulatory text: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the obligation itself is different)
+ok    CC-1 regulatory text: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-1 regulatory text: composed approvalDigest moved
+ok    CC-2 title: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the codified heading identifies the provision)
+ok    CC-2 title: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-2 title: composed approvalDigest moved
+ok    CC-3 canonical citation: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — a different citation is a different duty)
+ok    CC-3 canonical citation: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-3 canonical citation: composed approvalDigest moved
+ok    CC-4 paragraph granularity (part/subpart): BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — DEFECT FIXED: v1 covered `citation` but not the structural columns, so a record could be re-scoped from general industry to construction with its approval intact)
+ok    CC-4 paragraph granularity (part/subpart): axis 'substantive_content' (expected 'substantive_content')
+ok    CC-4 paragraph granularity (part/subpart): composed approvalDigest moved
+ok    CC-5 jurisdiction / regime: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the regime determines whom the duty binds)
+ok    CC-5 jurisdiction / regime: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-5 jurisdiction / regime: composed approvalDigest moved
+ok    CC-6 legally meaningful source identity (document checksum + edition): BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the artifact relied on is not the artifact now held)
+ok    CC-6 legally meaningful source identity (document checksum + edition): axis 'source_identity' (expected 'source_identity')
+ok    CC-6 legally meaningful source identity (document checksum + edition): composed approvalDigest moved
+ok    CC-7 source registry key: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the registry key names which authoritative dataset the record is attested to)
+ok    CC-7 source registry key: axis 'source_identity' (expected 'source_identity')
+ok    CC-7 source registry key: composed approvalDigest moved
+ok    CC-8 equivalent authoritative URL: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — a mirror path to the SAME artifact; the document checksum is unmoved, so nothing the reviewer read has changed. Binding approval to the URL would revoke the corpus on every mirror migration)
+ok    CC-8 equivalent authoritative URL: axis 'none' (expected 'none')
+ok    CC-8 equivalent authoritative URL: composed approvalDigest held
+ok    CC-9 retrieval date only: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — re-fetching an unchanged regulation later does not change one word of it)
+ok    CC-9 retrieval date only: axis 'none' (expected 'none')
+ok    CC-9 retrieval date only: composed approvalDigest held
+ok    CC-10 irrelevant transport metadata: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — describes the copy, not the content)
+ok    CC-10 irrelevant transport metadata: axis 'none' (expected 'none')
+ok    CC-10 irrelevant transport metadata: composed approvalDigest held
+ok    AX-1 a pure content change leaves the source-identity digest untouched
+ok    AX-2 a pure source-identity change leaves the substantive-content digest untouched
+ok    AX-3 identity carries the contract version (v2)
+ok    AX-4 the contract version is folded into both digests, so v2 can never collide with v1
+ok    TR-source_url: excluded from both approval projections by construction, not by equality
+ok    TR-retrieval_date: excluded from both approval projections by construction, not by equality
+ok    TR-created_at: excluded from both approval projections by construction, not by equality
+ok    TR-updated_at: excluded from both approval projections by construction, not by equality
+ok    V1-1 the v1 manifest projection still reads the same fields it always did
+ok    V1-2 the v1 manifest field set is byte-for-byte unchanged (release history stays verifiable)
+
+=== PART 2 — the implementation, against a disposable database
+
+[db-ownership] suite=kg3f-approval-contract host=localhost database=test_kg3f_contract_run claim=NEW
+source corpus:            test_kg3f_contract_20260820
+resolved target database: test_kg3f_contract_run (disposable, recreated per run)
+
+ok    DB-1 finalization stamps an approval digest on every record (34/34)
+ok    DB-2 every stored approval digest recomputes from its frozen payload alone, after a jsonb round-trip has reordered its keys (34 records)
+ok    DB-3 the release holds a record eligible for substantive review
+ok    DB-4 approval succeeds when both bindings match
+ok    DB-5 the decision row records the contract version and the digest it bound to
+ok    DB-6 a stale approval-contract digest is refused by `approvalDigestMatches` even when the manifest checksum matches
+ok    DB-7 carry-forward candidates are matched on the approval contract, never on the manifest checksum alone (0 candidates)
+ok    DB-8 an approval recorded without a contract binding is enumerated as a reaffirmation candidate rather than silently carried forward
+ok    DB-9 the candidate reports both the prior (null) and current contract versions
+ok    DB-10 enumerating a candidate does not mutate, reinterpret or upgrade the historical decision
+ok    DB-11 reaffirmation APPENDS decisions and deletes none (1 -> 3)
+ok    DB-12 the reaffirming decision points at the decision it supersedes and carries v2
+ok    DB-13 a reaffirmed record leaves the candidate list
+ok    DB-14 no drift is reported while the live corpus still matches what was approved
+ok    DB-15 editing source_url and retrieval_date on the live row reports NO drift — the KG-3E observation, now an intended and tested property
+ok    DB-16 a live granularity edit is reported as BECOME_INEFFECTIVE on the substantive axis — the change the manifest checksum cannot see
+ok    DB-17 a live source-registry-key edit is attributed to the source-identity axis, not to the regulatory-content axis
+
+57 passed, 0 failed

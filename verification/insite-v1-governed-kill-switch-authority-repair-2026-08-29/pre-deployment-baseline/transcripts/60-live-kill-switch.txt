@@ -1,0 +1,36 @@
+=== A. KILL SWITCH OFF — governed configuration, allowlisted principal ===
+  label                                   : kill-OFF-1
+  new inspection                          : ad15b799-df84-42b5-9f1a-8e8bcf9173d0
+  classify HTTP                           : 201
+  new inspection.knowledgeReleaseId BEFORE: NULL
+  new inspection.knowledgeReleaseId AFTER : federal-core-2026-08-28.1
+  pre-existing bound inspection (a72debe8): federal-core-2026-08-28.1
+
+=== B. KILL SWITCH ENGAGED — same configuration, same allowlisted principal ===
+    server env: GOVERNED_CUTOVER_MODE=GOVERNED_WITH_FALLBACK, allowlist=<acceptance identity>, GOVERNED_CUTOVER_KILL_SWITCH=engaged
+  label                                   : kill-ON
+  new inspection                          : 9ece0ec1-1f2e-4230-ae85-c0295a968578
+  classify HTTP                           : 201
+  new inspection.knowledgeReleaseId BEFORE: NULL
+  new inspection.knowledgeReleaseId AFTER : NULL
+  pre-existing bound inspection (a72debe8): federal-core-2026-08-28.1
+
+=== C. KILL SWITCH RELEASED — identical configuration, switch removed, nothing else changed ===
+  label                                   : kill-OFF-restored
+  new inspection                          : d75395f8-403d-4cc6-8615-a946f837d619
+  classify HTTP                           : 201
+  new inspection.knowledgeReleaseId BEFORE: NULL
+  new inspection.knowledgeReleaseId AFTER : federal-core-2026-08-28.1
+  pre-existing bound inspection (a72debe8): federal-core-2026-08-28.1
+
+=== D. ALL INSPECTION BINDINGS IN THE DATABASE AFTER THE THREE PHASES ===
+                  id                  |                     title                      |          binding           
+--------------------------------------+------------------------------------------------+----------------------------
+ a72debe8-abbf-4139-ab15-b58e05b5957e | Release-scoped workflow relscope-1787968019185 | federal-core-2026-08-28.1
+ 07b6c9d6-49e5-43e0-aa7e-0df716f4bdc2 | Successor relscope-1787968019185               | workflow-fixture.successor
+ a78898dc-ba4b-4182-ae40-065fbc1dbf4b | kill-switch kill-OFF-1                         | NULL
+ ad15b799-df84-42b5-9f1a-8e8bcf9173d0 | kill-switch kill-OFF-1                         | federal-core-2026-08-28.1
+ 9ece0ec1-1f2e-4230-ae85-c0295a968578 | kill-switch kill-ON                            | NULL
+ d75395f8-403d-4cc6-8615-a946f837d619 | kill-switch kill-OFF-restored                  | federal-core-2026-08-28.1
+(6 rows)
+

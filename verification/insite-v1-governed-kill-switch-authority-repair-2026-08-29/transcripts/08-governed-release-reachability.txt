@@ -1,0 +1,51 @@
+-- 64 approved members declared by the version-controlled definition --
+QueryFailedError: relation "regulatory_release_records" does not exist
+    at PostgresQueryRunner.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/typeorm/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DataSource.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/src/data-source/DataSource.ts:541:20)
+    at async main (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/tests/governed-release-reachability.ts:79:5) {
+  query: 'SELECT "citationKey", "recordChecksum", payload, citation, "agencyCode"\n' +
+    '         FROM regulatory_release_records WHERE "releaseId" = $1',
+  parameters: [ 'federal-core-2026-08-28.1' ],
+  driverError: error: relation "regulatory_release_records" does not exist
+      at /Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg/lib/client.js:631:17
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async PostgresQueryRunner.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/typeorm/src/driver/postgres/PostgresQueryRunner.ts:254:25)
+      at async DataSource.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/src/data-source/DataSource.ts:541:20)
+      at async main (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/tests/governed-release-reachability.ts:79:5) {
+    length: 125,
+    severity: 'ERROR',
+    code: '42P01',
+    detail: undefined,
+    hint: undefined,
+    position: '87',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_relation.c',
+    line: '1452',
+    routine: 'parserOpenTable'
+  },
+  length: 125,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '87',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1452',
+  routine: 'parserOpenTable'
+}

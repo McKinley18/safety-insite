@@ -1,0 +1,71 @@
+RESOLVED TARGET: test_kg_activation_20260829
+[db-ownership] suite=release-activation-acceptance host=127.0.0.1 database=test_kg_activation_20260829 claim=NEW
+
+-- Starting state (pre-activation) --
+  active pointer: none
+  federal-core-2026-08-28.1: manifest 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb members 64
+  [PASS] candidate release carries the pinned manifest identity — 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb
+  [PASS] candidate release has 64 members before activation — 64
+
+-- Negative controls: what activation must REFUSE --
+  [PASS] a non-existent release is refused by releaseExists — releaseExists
+  [PASS] a release with no reviewer-approved member is refused by governedRecordsPresent — federal-core-2026-07-30.1: governedRecordsPresent
+  [PASS] activating that release actually throws ReleaseActivationRefused
+  [PASS] a release whose snapshot no longer reproduces its stored manifest is refused — manifestChecksumVerifies
+
+-- G: pointer transition R1 -> R2 --
+  [PASS] fixture R1 becomes active from an empty pointer — {"outcome":"activated","releaseId":"activation-fixture.R1","previousReleaseId":null}
+  [PASS] a finding bound to R1 resolves approved under R1 while R1 is active — APPROVED_GOVERNED_CONTENT
+
+-- A: the candidate release becomes active --
+  [PASS] the reviewed candidate release activates — {"outcome":"activated","releaseId":"federal-core-2026-08-28.1","previousReleaseId":"activation-fixture.R1"}
+  [PASS] the transition records the exact release it replaced — activation-fixture.R1
+  [PASS] the active pointer is the candidate release — federal-core-2026-08-28.1
+  [PASS] the replaced release is retired as superseded, not deleted — superseded
+  [PASS] the activated release records its predecessor at activation time — activation-fixture.R1
+
+-- B/C/D/E: activation changed no release content --
+  [PASS] B: the candidate manifest checksum is unchanged by activation — 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb -> 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb
+  [PASS] C: candidate membership is byte-identical after activation — 64 -> 64
+  [PASS] D: every normalized release record — payload, checksum and frozen review state — is unchanged — 101 -> 101 rows
+  [PASS] E: the reviewer decision ledger is unchanged — 66 -> 66 rows
+  [PASS] no release CONTENT identity moved (manifest / recordCount / parserVersion / version)
+  [PASS] the historical release was not touched by another release activating — 35 -> 35
+  [PASS] the active release still reproduces its manifest from its own immutable snapshot — 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb
+  [PASS] the active release still holds exactly 64 members — 64
+
+-- F: re-activating the active release --
+  [PASS] activating the already-active release is an idempotent no-op — {"outcome":"already_active","releaseId":"federal-core-2026-08-28.1","previousReleaseId":"federal-core-2026-08-28.1"}
+  [PASS] the idempotent no-op wrote nothing to releases, records or reviews
+
+-- G: the R1-bound finding after R2 became active --
+  [PASS] G: an inspection bound to R1 re-resolves IDENTICALLY after R2 became active — APPROVED_GOVERNED_CONTENT
+  [PASS] the same citation carries no authority under R2, which does not contain it — REJECTED_GOVERNED_CONTENT
+
+-- H: the 8 rejected records under the ACTIVE release --
+  [PASS] H: 30 CFR 57.14107(a) stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 30 CFR 56.14105 stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 1910.219 stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 29 CFR 1910.132(a) stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 29 CFR 1926.95(a) stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 30 CFR 56.15006 stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 29 CFR 1926.602(a)(9)(ii) stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] H: 30 CFR 56.9100(a) stays rejected after activation — REJECTED_GOVERNED_CONTENT member=false
+  [PASS] positive control: 29 CFR 1910.147 IS approved under the active release — APPROVED_GOVERNED_CONTENT
+  [PASS] positive control: 29 CFR 1910.252 IS approved under the active release — APPROVED_GOVERNED_CONTENT
+
+-- I: an active release does not launder a code-resident citation --
+  [PASS] I: a code-resident citation with no governing release stays LEGACY even while that exact citation is approved in the ACTIVE release — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] I: naming the active release without actually resolving it confers nothing — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] I: a rejected citation string does not become governed because the release is active — REJECTED_GOVERNED_CONTENT
+
+-- J: release identity gates --
+  [PASS] J: the ACTIVE release still matches the manifest its version-controlled definition pins
+  [PASS] J: a different manifest under the same release identifier is still refused
+  [PASS] J: the superseded historical release still names its own 35-record manifest — 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b
+
+-- audit trail --
+  [PASS] the successful activation is recorded in the append-only event log
+  [PASS] the REFUSED activation is recorded too — a refusal is evidence, not silence
+
+ACTIVATION ACCEPTANCE: 43/43 checks passed

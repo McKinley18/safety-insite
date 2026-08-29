@@ -1,0 +1,74 @@
+[db-ownership] suite=test:governed-corpus-matrix database=test_kg_corpusmatrix_20260829 claim=NEW
+Resolved database target: host=127.0.0.1 database=test_kg_corpusmatrix_20260829
+ok  Observations derive from the tracked gold set (sha256 93184abc677c...), not from invented cases.
+ok  Release A finalized with 73 records.
+ok  HazLenz emits 23 distinct citations across 31 gold-set observations.
+ok  Emitted citations cover regimes: osha_general_industry, msha, osha_construction.
+ok  Representative fixture spans OSHA GI (3), OSHA Construction (3), MSHA (2).
+ok  8 of 73 records approved via the real review mechanism (deliberately partial: 64 validated-not-approved, 1 unreviewed).
+ok  The reviewed release activates through the KG-2 gate.
+
+Backing distribution over 24 HazLenz-emitted citations: {"CORPUS_BACKED":4,"UNAPPROVED_RECORD":19,"NOT_IN_RELEASE":1}
+ok  A reviewer-approved emitted citation resolves as CORPUS_BACKED: 29 CFR 1910.212(a)(1).
+ok  CORPUS_BACKED requires effective reviewer approval.
+ok  The approved record supplies a title.
+ok  The approved record supplies actual regulatory content, not just an identifier.
+ok  Provenance is a registered source (osha-ecfr-1910), not a placeholder.
+ok  The resolution names the release it came from.
+ok  Jurisdiction is carried: OSHA/general_industry.
+ok  A mechanically-validated-but-unapproved emitted citation is NOT corpus-backed: 29 CFR 1910.147.
+ok  It IS backed under the current live rule and is NOT under the governed contract -- this is precisely the gap the gold set could not see.
+ok  1 unreviewed records exist in the release.
+ok  An unreviewed record is never corpus-backed: 99 CFR 9999.1(a).
+ok  Its placeholder provenance is reported explicitly rather than hidden.
+ok  CRITICAL: the CURRENT live rule (corpusBacked = Boolean(sourceKey)) marks this placeholder-provenance record as corpus-backed, because finalization synthesized a source key literally named "starter-unverified". The governed contract corrects that.
+ok  That correction is classified distinctly from a genuine loss of backing.
+ok  A citation absent from the release resolves as NOT_IN_RELEASE, not as a silent empty success.
+ok  An unresolvable citation is CITATION_ONLY.
+ok  Jurisdiction is resolved from the release payload (MSHA vs OSHA), so a wrong-regime backing is detectable at the contract boundary.
+ok  Jurisdiction strings differ: 'MSHA/mining' vs 'OSHA/general_industry'.
+ok  1910.212(a)(1) is present in release A for the Standard Detail test.
+ok  Standard Detail can obtain real text for the citation from release A.
+ok  The citation number Standard Detail would display is correct: 1910.212(a)(1).
+ok  Release B finalized with revised content for the same citation.
+ok  Release B resolves the REVISED text.
+ok  The two releases hold different versions of the same logical citation.
+ok  NO NEWER RELEASE TEXT LEAKS INTO THE OLDER RELEASE: A still resolves A's text after B exists.
+ok  Reload does not change historical release content.
+ok  Release B's revised version is NOT approved -- approval did not follow the citation across versions.
+ok  And it is therefore NOT corpus-backed, even though its text exists and looks complete.
+ok  Release B has 0 governed records, so it is correctly not activatable while A remains active.
+ok  Release A is still the active release.
+ok  Release B becomes active after its own record is reviewed.
+ok  While B is active, the citation resolves to B's approved revised content.
+ok  Explicit rollback to A reports B as the release it replaced.
+ok  The pointer is back on release A.
+ok  After rollback the governed lookup resolves A's ORIGINAL content -- rollback restored content, not merely a pointer.
+ok  A's approval survived the round trip through B and back.
+ok  Release B is preserved historically and still resolves its own approved content.
+ok  suggest() returns 6 results from standards_master (a genuinely DB-backed path).
+
+suggest() governed backing: 2/6 results would be corpus-backed under release kg3b-matrix.A.
+ok  suggest() results were each resolved against the governed release (2/6 backed).
+ok  suggest() WOULD be materially affected by governed filtering: it returns results that the governed contract does not back. Its outputs are customer-facing, so it needs the same contract before any cutover.
+
+KG-3C display contract over 24 emitted citations: {"APPROVED_GOVERNED_CONTENT":4,"UNAPPROVED_CONTENT":19,"CITATION_ONLY":1}
+ok  corpusBacked is DERIVED from backingStatus for every case -- one truth system, no drift.
+ok  HARD GATE across the matrix: every placeholder-source citation is UNAPPROVED_CONTENT and NOT corpusBacked.
+ok  APPROVED_GOVERNED_CONTENT is only ever assigned when the release actually carries content.
+ok  CITATION_ONLY never exposes body text -- no fabricated standard text.
+ok  Unapproved text is always disclosed as HazLenz-authored, never as governed regulation.
+ok  A customer notice is attached only to CITATION_ONLY.
+ok  Approved cases map to the approved-versioned-regulation wire value (previously unreachable).
+ok  No unapproved case can reach the approved wire value.
+ok  CITATION_ONLY is exercised by the suite's own fixture, and no REAL emitted citation is unbacked (1 citation-only, 99 CFR 9998.2(b))
+ok  All three states are exercised: 4 approved, 19 unapproved, 1 citation-only.
+ok  The display contract annotates all 24 citations and removes none (23 emitted + 1 suite fixture).
+
+Difference classification (live rule vs governed contract): {"IDENTICAL":4,"LEGACY_ONLY_LOSES_BACKING":19,"BOTH_MISSING":1}
+ok  Every emitted citation carries an explicit difference classification.
+ok  PROOF THE LIVE PATH IS UNCHANGED: hydrateStandardReferences still returns the LATEST live corpus text with no release scope and no approval condition, even while release A is active and holds an approved older version. KG-3B did not enable governed read filtering.
+
+PASSED 60/60 checks.
+NOTE (Phase 20): approvals above are TEST FIXTURES created through the real review mechanism. They prove the governed pipeline, not that any real record was substantively reviewed.
+{"matrixSummary":{"byBacking":{"CORPUS_BACKED":4,"UNAPPROVED_RECORD":19,"NOT_IN_RELEASE":1},"differences":{"IDENTICAL":4,"LEGACY_ONLY_LOSES_BACKING":19,"BOTH_MISSING":1},"citations":24},"displayContract":{"byStatus":{"APPROVED_GOVERNED_CONTENT":4,"UNAPPROVED_CONTENT":19,"CITATION_ONLY":1},"cases":[{"citation":"29 CFR 1910.212(a)(1)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.147","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.12016","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.303","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.178(p)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.28","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.36","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.451(g)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.501","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.652(a)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.1153","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.14107(a)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 56.14132","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.95","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1910.1200","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.59","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.52","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.416(a)(1)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.300(b)(2)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"29 CFR 1926.34(a)","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 62.120","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 62.130","backing":"UNAPPROVED_RECORD","backingStatus":"UNAPPROVED_CONTENT","corpusBacked":false,"contentDisclosure":"HAZLENZ_AUTHORED","sourceStatus":"provisional-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"30 CFR 47.41(a)","backing":"CORPUS_BACKED","backingStatus":"APPROVED_GOVERNED_CONTENT","corpusBacked":true,"contentDisclosure":"GOVERNED_APPROVED","sourceStatus":"approved-versioned-regulation","notice":null,"placeholderSource":false,"hasText":true,"textExposed":true},{"citation":"99 CFR 9998.2(b)","backing":"NOT_IN_RELEASE","backingStatus":"CITATION_ONLY","corpusBacked":false,"contentDisclosure":"NONE","sourceStatus":"provisional-versioned-regulation","notice":"Verified standard text is not currently available for this citation.","placeholderSource":false,"hasText":false,"textExposed":false}]}}

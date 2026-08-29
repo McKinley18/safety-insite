@@ -1,0 +1,11 @@
+RESOLVED TARGET: test_kg_relscope_20260829
+{
+  "command": "activate",
+  "dryRun": false,
+  "outcome": "activated",
+  "releaseId": "federal-core-2026-08-28.1",
+  "previousReleaseId": null,
+  "activeReleaseAfter": "federal-core-2026-08-28.1",
+  "activeManifestAfter": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "actor": "predeploy-baseline-verification-20260829"
+}

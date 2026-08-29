@@ -1,0 +1,39 @@
+ok    derived 52 distinct probes from the 83-event corpus
+ok    the source has an active release to resolve against (federal-core-2026-07-30.1)
+NOTICE:  database "test_kg4b_layout_original" does not exist, skipping
+      layout original               52 probes resolved
+NOTICE:  database "test_kg4b_layout_citation_asc" does not exist, skipping
+      layout citation_asc           52 probes resolved
+NOTICE:  database "test_kg4b_layout_citation_desc" does not exist, skipping
+      layout citation_desc          52 probes resolved
+NOTICE:  database "test_kg4b_layout_parent_before_child" does not exist, skipping
+      layout parent_before_child    52 probes resolved
+NOTICE:  database "test_kg4b_layout_child_before_parent" does not exist, skipping
+      layout child_before_parent    52 probes resolved
+NOTICE:  database "test_kg4b_layout_random_seed_1" does not exist, skipping
+      layout random_seed_1          52 probes resolved
+NOTICE:  database "test_kg4b_layout_random_seed_2" does not exist, skipping
+      layout random_seed_2          52 probes resolved
+
+--- Phase 15 — every layout produces identical shadow telemetry
+ok    the control layout resolved every probe (52/52)
+ok    HARD: [citation_asc] every probe classifies identically to the control
+ok    HARD: [citation_asc] the aggregate distribution is identical — no metric moved
+ok    HARD: [citation_desc] every probe classifies identically to the control
+ok    HARD: [citation_desc] the aggregate distribution is identical — no metric moved
+ok    HARD: [parent_before_child] every probe classifies identically to the control
+ok    HARD: [parent_before_child] the aggregate distribution is identical — no metric moved
+ok    HARD: [child_before_parent] every probe classifies identically to the control
+ok    HARD: [child_before_parent] the aggregate distribution is identical — no metric moved
+ok    HARD: [random_seed_1] every probe classifies identically to the control
+ok    HARD: [random_seed_1] the aggregate distribution is identical — no metric moved
+ok    HARD: [random_seed_2] every probe classifies identically to the control
+ok    HARD: [random_seed_2] the aggregate distribution is identical — no metric moved
+ok    HARD: all 7 layouts share ONE telemetry digest (0bce5a71a9d26642…)
+
+--- Database ownership — layouts dropped, source unchanged
+ok    HARD: source record count unchanged (35)
+ok    HARD: the source's active release is unchanged (federal-core-2026-07-30.1)
+      7 layout databases dropped
+
+18 passed, 0 failed

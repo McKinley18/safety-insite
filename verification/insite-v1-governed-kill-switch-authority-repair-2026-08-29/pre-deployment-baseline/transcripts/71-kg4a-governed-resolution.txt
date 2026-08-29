@@ -1,0 +1,122 @@
+
+--- Provisioning owned database 'test_kg4a_resolution_run' from read-only source 'test_kg3f_remediation_20260820'
+NOTICE:  database "test_kg4a_resolution_run" does not exist, skipping
+ok    owned clone carries the source corpus (269 records)
+ok    HARD: the read-only source corpus still has NO active release — the clone was activated, not the source
+ok    corpus supplies an approved+texted citation (1910.212(a)(1))
+ok    corpus supplies an unapproved citation (1910.219)
+
+--- Phase 9 — the release is pinned once per analysis
+ok    HARD: LEGACY does not read the active pointer at all
+ok    governed mode pins the active release (federal-core-2026-08-20.5)
+ok    the pinned release resolves the approved citation as APPROVED_EXACT
+ok    the active pointer moved to federal-core-2026-08-20.4 mid-analysis
+ok    HARD: the in-flight analysis still resolves against its PINNED release R1, not the new R2
+ok    HARD: the in-flight analysis sees identical content before and after the activation race
+ok    a LATER independent analysis correctly picks up the new release R2
+ok    parallel analyses may safely pin the same release concurrently
+ok    each concurrent pin retains its OWN mode — no request-global mutable state
+
+--- Phase 10 — every failure mode is deterministic and none produces a raw error
+ok    [approved exact citation] resolver did not throw
+ok    [approved exact citation] backing = APPROVED_EXACT (got APPROVED_EXACT)
+ok    [approved exact citation] health = OK (got OK)
+ok    [approved exact citation] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [approved exact citation] deterministic across repeated calls
+ok    [approved exact citation/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [approved exact citation/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [active release missing the exact citation] resolver did not throw
+ok    [active release missing the exact citation] backing = NOT_IN_RELEASE (got NOT_IN_RELEASE)
+ok    [active release missing the exact citation] health = OK (got OK)
+ok    [active release missing the exact citation] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [active release missing the exact citation] deterministic across repeated calls
+ok    [active release missing the exact citation/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [active release missing the exact citation/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [unapproved record present in the release] resolver did not throw
+ok    [unapproved record present in the release] backing = UNAPPROVED_RECORD (got UNAPPROVED_RECORD)
+ok    [unapproved record present in the release] health = OK (got OK)
+ok    [unapproved record present in the release] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [unapproved record present in the release] deterministic across repeated calls
+ok    [unapproved record present in the release/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [unapproved record present in the release/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [no active release] resolver did not throw
+ok    [no active release] backing = NO_ACTIVE_RELEASE (got NO_ACTIVE_RELEASE)
+ok    [no active release] health = NO_ACTIVE_RELEASE (got NO_ACTIVE_RELEASE)
+ok    [no active release] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [no active release] deterministic across repeated calls
+ok    [no active release/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [no active release/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [pin lookup failed (governance outage)] resolver did not throw
+ok    [pin lookup failed (governance outage)] backing = RESOLVER_UNAVAILABLE (got RESOLVER_UNAVAILABLE)
+ok    [pin lookup failed (governance outage)] health = QUERY_FAILED (got QUERY_FAILED)
+ok    [pin lookup failed (governance outage)] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [pin lookup failed (governance outage)] deterministic across repeated calls
+ok    [pin lookup failed (governance outage)/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [pin lookup failed (governance outage)/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [no data source at all] resolver did not throw
+ok    [no data source at all] backing = RESOLVER_UNAVAILABLE (got RESOLVER_UNAVAILABLE)
+ok    [no data source at all] health = QUERY_FAILED (got QUERY_FAILED)
+ok    [no data source at all] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [no data source at all] deterministic across repeated calls
+ok    [no data source at all/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [no data source at all/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+ok    [unresolvable citation string] resolver did not throw
+ok    [unresolvable citation string] backing = NOT_IN_RELEASE (got NOT_IN_RELEASE)
+ok    [unresolvable citation string] health = OK (got OK)
+ok    [unresolvable citation string] HARD: resolvedCitation === requestedCitation (no substitution)
+ok    [unresolvable citation string] deterministic across repeated calls
+ok    [unresolvable citation string/GOVERNED_WITH_FALLBACK] the fallback contract has a defined row and keeps the citation
+ok    [unresolvable citation string/GOVERNED_STRICT] the fallback contract has a defined row and keeps the citation
+
+--- Phase 10 — stale schema fails loudly, and still does not break the customer
+ok    HARD: a missing approval-contract table is reported as STALE_SCHEMA, not as "not approved"
+ok    HARD: a stale schema is RESOLVER_UNAVAILABLE — "we do not know", never "there is none"
+ok    the stale-schema reason names the required migration
+ok    HARD: under fallback a stale schema degrades the customer to legacy text, not to an error
+ok    HARD: a stale-schema resolution supplies NO governed input — it cannot be laundered into an approval
+
+--- Phase 10 — revocation and digest mismatch
+ok    HARD: a revoked approval immediately stops the record being APPROVED_EXACT
+ok    HARD: a revoked record carries NO text forward — content is attached only to APPROVED_EXACT
+ok    a revoked record is never presented as verified regulatory text
+ok    removing the revocation restores APPROVED_EXACT
+ok    HARD: an approved record whose payload lost its text becomes APPROVED_NO_TEXT, never silently backed
+ok    an emptied approved record delivers citation-only with an explicit disclosure
+
+--- Phases 3 and 5 — no substitution, no parent/child promotion
+ok    HARD: asking for '1910.219(z)(99)' resolves for that citation, never for its parent section
+ok    HARD: a section-only match supplies NO text for the paragraph (no parent→child promotion)
+ok    a missing paragraph is SECTION_ONLY or NOT_IN_RELEASE (got APPROVED_SECTION_ONLY)
+ok    HARD: a section-only resolution supplies no governed backing input for the paragraph
+ok    HARD: a section-only state can never earn a verified badge for the paragraph
+ok    HARD: a digit-prefix neighbour (1926.5011 vs 1926.501) is never treated as the requested citation
+
+--- Integration — the governed input drives the SAME display contract
+ok    an approved exact resolution supplies a governed backing input
+ok    HARD: with a governed input the existing KG-3C contract reports APPROVED_GOVERNED_CONTENT
+ok    HARD: WITHOUT a governed input the same citation is NOT approved — legacy behaviour is unchanged
+ok    HARD: an unapproved governed record can never reach APPROVED_GOVERNED_CONTENT
+
+--- Phase 12 — shadow mismatch classification
+ok    identical governed and legacy text classifies as EXACT_MATCH
+ok    differing text classifies as CONTENT_DIFFERENCE
+ok    governed text where legacy had none classifies as GOVERNED_APPROVED_EQUIVALENT
+ok    approved backing under uncertain applicability classifies as APPLICABILITY_DISAGREEMENT
+ok    an unapproved record classifies as UNAPPROVED_GOVERNED_RECORD
+ok    an absent record classifies as MISSING_GOVERNED_RECORD
+ok    a resolver failure classifies as RESOLVER_FAILURE, not as a content difference
+ok    the shadow event records the customer-unchanged obligation
+ok    shadow compares by DIGEST, and different bodies produce different digests
+ok    HARD: the shadow event records digests, never the text itself
+ok    the shadow event passes the privacy guard
+ok    HARD: the privacy guard rejects an event carrying regulatory text
+ok    HARD: the privacy guard rejects an event carrying an email address
+
+--- Database ownership — the read-only source is provably unchanged
+ok    HARD: source corpus record count unchanged (269)
+ok    HARD: source corpus still has no active release
+ok    HARD: no KG-4A fixture decision leaked into the source corpus
+
+owned database 'test_kg4a_resolution_run' dropped
+
+99 passed, 0 failed

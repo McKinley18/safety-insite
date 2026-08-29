@@ -1,0 +1,15 @@
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:14976:13
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async request (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-actionable-coverage-scorer.ts:151:20)
+    at async bootstrapCustomer (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-actionable-coverage-scorer.ts:380:3)
+    at async measure (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-actionable-coverage-scorer.ts:403:43) {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:4231
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16) {
+    errno: -61,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 4231
+  }
+}

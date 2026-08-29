@@ -1,0 +1,28 @@
+=== stopping the disposable API instances created by this operation ===
+  stopped pid=18840
+  stopped pid=21782
+  stopped pid=23218
+  port 4231 health: 000down
+  port 4232 health: 000down
+  port 4340 health: 000down
+
+=== dropping ONLY the databases created by this operation ===
+  dropped test_kg_predeploy_baseline_20260829
+  dropped test_kg_binding_20260829
+  dropped test_kg_approval_20260829
+  dropped test_kg_activation_20260829
+  dropped test_kg_workflow_20260829
+  dropped test_kg_misc_20260829
+  dropped test_kg_relscope_20260829
+  dropped test_kg_shadow_20260829
+  dropped test_kg_corpusmatrix_20260829
+  dropped test_kg_extra_20260829
+  dropped test_v1_predeploy_api_20260829
+
+=== confirmation: none of this operation's databases remain ===
+  (no REMAINS lines above = fully disposed)
+
+=== pre-existing evidence databases preserved ===
+  disposable databases still present (pre-existing): 146
+=== protected database untouched ===
+safescope users=1 migrations=35

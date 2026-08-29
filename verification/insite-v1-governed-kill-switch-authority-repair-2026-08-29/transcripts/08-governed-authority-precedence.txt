@@ -1,0 +1,70 @@
+
+-- Phase 7: what each authority state is entitled to claim --
+QueryFailedError: relation "regulatory_release_records" does not exist
+    at PostgresQueryRunner.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/typeorm/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DataSource.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/src/data-source/DataSource.ts:541:20)
+    at async resolveFindingStandardAuthority (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/releases/finding-standards-authority.ts:147:18)
+    at async main (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/tests/governed-authority-precedence.ts:105:25) {
+  query: 'SELECT r."recordChecksum",\n' +
+    '            r."reviewState"          AS frozen_state,\n' +
+    "            r.payload->>'scope'      AS jurisdiction,\n" +
+    "            r.payload->>'summary'    AS summary,\n" +
+    "            r.payload->>'canonicalText' AS canonical_text,\n" +
+    '            v.decision               AS decision,\n' +
+    '            v."reviewerId"           AS reviewer_id,\n' +
+    '            v."reviewerRole"         AS reviewer_role,\n' +
+    '            v."decidedAt"            AS decided_at\n' +
+    '       FROM regulatory_release_records r\n' +
+    '       LEFT JOIN LATERAL (\n' +
+    '         SELECT decision, "reviewerId", "reviewerRole", "decidedAt"\n' +
+    '           FROM regulatory_release_record_reviews\n' +
+    '          WHERE "releaseId" = r."releaseId" AND "citationKey" = r."citationKey"\n' +
+    '          ORDER BY "decidedAt" DESC LIMIT 1\n' +
+    '       ) v ON TRUE\n' +
+    '      WHERE r."releaseId" = $1 AND r."citationKey" = $2\n' +
+    '      LIMIT 1',
+  parameters: [ 'federal-core-2026-08-28.1', '29cfr1910.147' ],
+  driverError: error: relation "regulatory_release_records" does not exist
+      at /Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg/lib/client.js:631:17
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async PostgresQueryRunner.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/typeorm/src/driver/postgres/PostgresQueryRunner.ts:254:25)
+      at async DataSource.query (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/src/data-source/DataSource.ts:541:20)
+      at async resolveFindingStandardAuthority (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/releases/finding-standards-authority.ts:147:18)
+      at async main (/Users/mckinley/Desktop/Safety_InSite/backend/src/standards/tests/governed-authority-precedence.ts:105:25) {
+    length: 126,
+    severity: 'ERROR',
+    code: '42P01',
+    detail: undefined,
+    hint: undefined,
+    position: '465',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_relation.c',
+    line: '1452',
+    routine: 'parserOpenTable'
+  },
+  length: 126,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '465',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1452',
+  routine: 'parserOpenTable'
+}

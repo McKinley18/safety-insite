@@ -1,0 +1,49 @@
+PASS  A. HazLenz did not propose the hazard the inspector will add
+PASS  A. the inspector can add the missed hazard
+PASS  B. persisted with source = user_authored
+PASS  B. persisted as pending_review, not pre-finalized
+PASS  B. tied to the authoritative inspection record
+PASS  C. reload returns the finding
+PASS  C. reload preserves its user-authored provenance
+PASS  D. no standard candidates were fabricated
+PASS  D. no citation was fabricated
+PASS  D. no HazLenz risk was fabricated
+PASS  D. it claims no HazLenz analysis as its origin
+PASS  D. it claims no knowledge release
+PASS  audit records HazLenz did not propose it (false-negative signal)
+PASS  re-running HazLenz does not supersede the user-authored finding
+PASS  H. another account cannot read the inspection
+PASS  H. another account cannot author a finding on it
+PASS  H. no row was created by the stranger
+PASS  E. a human review can be recorded against it
+PASS  E. it finalizes through the normal path
+PASS  E. it is now a finalized finding
+PASS  E. finalization did NOT convert its provenance
+PASS  E. the reviewer-confirmed risk was applied
+PASS  E. it supports a corrective action
+PASS  F. the inspection moves to in_review
+PASS  F. the inspection completes with a user-authored finding present
+PASS  F. a report version is generated
+PASS  F. the user-authored finding is in the report snapshot
+PASS  F. dismissed HazLenz candidates are NOT in the report snapshot
+PASS  G. provenance is user_authored inside the frozen report snapshot
+PASS  G. provenance is still user_authored in the database after report generation
+PASS  G. no citation appeared on it after report generation
+PASS  1. responsible person entered is accepted
+PASS  2. an action with no responsible person is accepted
+PASS  1. the entered name is persisted exactly
+PASS  2. a blank responsible person persists as NULL, not an empty string
+PASS  3. the inspector is NOT written in as the assignee
+PASS  3. the named action is not silently account-assigned either
+PASS  3. the inspector remains the record owner (a different role)
+PASS  4. reload preserves the responsible-party metadata
+PASS  5. another account cannot read it
+PASS  5. another account cannot mutate it
+PASS  5. the responsible party was not altered by the stranger
+PASS  7. Critical risk still yields a 1-day deadline
+PASS  7. High risk still yields a 3-day deadline
+PASS  7. Moderate risk still yields a 7-day deadline
+PASS  7. Low risk still yields a 14-day deadline
+PASS  6. risk-derived due-date policy remains the source of the deadline
+
+47 passed, 0 failed

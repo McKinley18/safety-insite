@@ -1,0 +1,30 @@
+
+== CONTROL: the same configuration with the emergency stop RELEASED ==
+  [PASS] control: the allowlisted principal IS governed with the stop released — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] control: enablement names the account allowlist — expected ACCOUNT_ALLOWLISTED, got ACCOUNT_ALLOWLISTED
+  [PASS] control: a new inspection binds to the active release — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] control: the binding is newly written — expected true, got true
+  [PASS] control: knowledgeReleaseId IS persisted when governance is running — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+
+== MEASURED: the same configuration with GOVERNED_CUTOVER_KILL_SWITCH ENGAGED ==
+   resolveCutoverEnablement -> effectiveMode=LEGACY reason=KILL_SWITCH_ENGAGED enabled=false
+  [PASS] CONTRACT 1: the emergency stop resolves customer eligibility to LEGACY — expected LEGACY, got LEGACY
+  [PASS] CONTRACT 1: the emergency stop resolves customer eligibility to NOT enabled — expected false, got false
+  [PASS] CONTRACT 2: governed content cannot influence customer output under the emergency stop — expected false, got false
+   resolveInspectionReleaseBinding -> releaseId=null reason=GOVERNED_MODE_INACTIVE newlyBound=false
+   inspection.knowledgeReleaseId after the call = null
+   durable writes attempted = 0
+  [PASS] CONTRACT 3: no release is resolved for a NEW inspection under the emergency stop — expected null, got null
+  [PASS] CONTRACT 3: no binding is newly written under the emergency stop — expected false, got false
+  [PASS] CONTRACT 4: inspection.knowledgeReleaseId remains NULL under the emergency stop — expected null, got null
+  [PASS] CONTRACT 4: no durable write is even ATTEMPTED under the emergency stop — expected 0, got 0
+  [PASS] CONTRACT 2: the active-release pointer is not read at all under the emergency stop — expected 0, got 0
+   GovernedCutoverContext.create -> null
+  [PASS] CONTRACT 5: no governed cutover context exists under the emergency stop — expected null, got null
+
+== MEASURED: the real call shape (process.env, as the controller and service use) ==
+   resolveCutoverEnablement(principal) -> effectiveMode=LEGACY reason=KILL_SWITCH_ENGAGED
+  [PASS] CONTRACT 1: the emergency stop applies to the no-env call shape the call sites actually use — expected LEGACY, got LEGACY
+  [PASS] CONTRACT 4: inspection.service.ts:537 takes the non-governed provenance branch — expected false, got false
+
+REPAIRED — 16 passed, 0 failed

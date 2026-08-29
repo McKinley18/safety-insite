@@ -1,0 +1,17 @@
+=== DISPOSABLE DATABASES CREATED BY THIS OPERATION, AND THEIR OWNERSHIP MARKERS ===
+  test_kg_predeploy_baseline_20260829    migrations=50   ownership_marker=<none>
+  test_kg_binding_20260829               migrations=50   ownership_marker=release-binding-acceptance
+  test_kg_approval_20260829              migrations=50   ownership_marker=<none>
+  test_kg_activation_20260829            migrations=50   ownership_marker=release-activation-acceptance
+  test_kg_workflow_20260829              migrations=50   ownership_marker=<none>
+  test_kg_misc_20260829                  migrations=50   ownership_marker=test:governed-corpus-matrix
+  test_kg_relscope_20260829              migrations=50   ownership_marker=verify:release-scoped-customer-workflow
+  test_kg_shadow_20260829                migrations=50   ownership_marker=<none>
+  test_kg_corpusmatrix_20260829          migrations=50   ownership_marker=test:governed-corpus-matrix
+  test_kg_extra_20260829                 migrations=50   ownership_marker=<none>
+  test_v1_predeploy_api_20260829         migrations=50   ownership_marker=verify:canonical-report-frontend-contract
+
+=== PROTECTED DATABASE UNTOUCHED ===
+safescope users=1
+safescope migrations=35
+safescope has kg_test_database_ownership marker: false

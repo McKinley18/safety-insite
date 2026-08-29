@@ -1,0 +1,34 @@
+
+--- Phase 11 — the field-by-field review is complete
+ok    reviewing 83 real serialized events
+ok    HARD: every field present in a real event is classified (all classified)
+ok    every allowlisted field is classified — the review has no gaps
+ok    the review has no entries for fields that cannot appear
+ok    HARD: no field is classified sensitive or prohibited (none)
+ok    no field is carried without a reason (none)
+
+--- Phase 11 — the ACTUAL serialized corpus contains no customer content
+ok    HARD: the corpus does not contain observation fragment (punch press)
+ok    HARD: the corpus does not contain observation fragment (haul truck)
+ok    HARD: the corpus does not contain observation fragment (scaffold)
+ok    HARD: the corpus does not contain observation fragment (solvent)
+ok    HARD: the corpus does not contain observation fragment (trench)
+ok    HARD: the corpus does not contain shadow account email
+ok    HARD: the corpus does not contain legacy account email
+ok    HARD: the corpus does not contain example.com domain
+ok    HARD: the corpus does not contain test password
+ok    HARD: the corpus does not contain JWT secret
+ok    HARD: the corpus does not contain bearer token prefix
+ok    HARD: the corpus does not contain regulatory body text
+ok    HARD: the corpus does not contain regulatory body text (msha)
+ok    HARD: the corpus does not contain reviewer identity
+ok    HARD: no email-shaped string anywhere in the corpus ()
+ok    HARD: no field exceeds 200 characters — prose cannot hide in an identifier ()
+ok    HARD: all 83 real events pass the runtime privacy guard
+ok    HARD: every text digest is a 32-hex-character hash, never a text excerpt (108 digests)
+
+--- Phase 11 — the corpus is still analytically useful without the content
+ok    54 events carry both digests, so content equality is still decidable
+ok    HARD: 54/54 agree by digest — equality is provable without ever storing the text
+
+26 passed, 0 failed

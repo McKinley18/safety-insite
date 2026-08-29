@@ -32,6 +32,7 @@ import {
 } from '../src/standards/releases/approval-contract';
 import { normalizeStandardRecord } from '../src/standards/releases/release-manifest';
 import { ReleaseRecordReviewService } from '../src/standards/releases/release-record-review.service';
+import { claimDatabaseOwnership } from './lib/test-database-ownership';
 
 const checks: string[] = [];
 let failed = 0;
@@ -188,13 +189,32 @@ function guard(db: string) {
   if (db === 'safescope' || !/^test_/.test(db)) throw new Error(`Refusing to touch database '${db}'.`);
 }
 
+/** The suite name this harness records in its database's KG-4C ownership marker. */
+const OWNERSHIP_SUITE = 'kg3f-approval-contract';
+
 /**
  * Provisioned fresh per run rather than reused. Part 2 deliberately EDITS the live corpus to
  * exercise drift detection (DB-15/16/17), so a reused database would carry those edits into the
  * next run and DB-14's "no drift yet" precondition would be false. A disposable clone keeps the
  * harness reproducible in either order.
+ *
+ * OWNERSHIP (2026-08-28). The clone is then CLAIMED under the KG-4C ownership contract, because
+ * Part 2 finalizes the synthetic fixture identity `federal-core-kg3f-contract.1` — an identifier
+ * no version-controlled definition registers, and deliberately so: the fixture exists to prove
+ * the approval machinery over a fabricated corpus. The release-identity guard exempts exactly
+ * that case, but only for a database carrying an ownership marker, and this harness predates the
+ * marker mechanism: it created its work database with a bare `createdb` and claimed nothing, so
+ * `ownedDisposable` was false and the exemption it is entitled to did not apply.
+ *
+ * The claim is truthful rather than a bypass. `initializeOwnership` is the sanctioned path for a
+ * database the calling process created moments ago, which is literally what happened two
+ * statements above, and claiming still requires a `test_*` name absent from
+ * `PROTECTED_DATABASE_NAMES` — so no production database can reach this state. Nothing about the
+ * guard is relaxed: a REGISTERED release identity whose pinned manifest disagrees stays refused
+ * here exactly as everywhere else. Proven end to end by
+ * `npm run test:release-identity-ownership-exemption`.
  */
-function provision(): string {
+async function provision(): Promise<string> {
   guard(SOURCE_DB); guard(WORK_DB);
   try { execFileSync('dropdb', ['-h', HOST, '-U', USER, '--if-exists', WORK_DB], { stdio: 'pipe' }); } catch { /* ignore */ }
   execFileSync('createdb', ['-h', HOST, '-U', USER, WORK_DB], { stdio: 'pipe' });
@@ -202,7 +222,16 @@ function provision(): string {
   execFileSync('/bin/sh', ['-c',
     `pg_dump -h ${HOST} -U ${USER} ${SOURCE_DB} | psql -q -h ${HOST} -U ${USER} ${WORK_DB}`],
     { stdio: 'pipe' });
-  return `postgresql://${USER}@${HOST}/${WORK_DB}`;
+  const dbUrl = `postgresql://${USER}@${HOST}/${WORK_DB}`;
+  // Claimed AFTER the restore so the dump cannot land on top of the marker, and BEFORE the
+  // finalizer — the first mutation — runs.
+  const claim = await claimDatabaseOwnership({
+    suite: OWNERSHIP_SUITE, databaseUrl: dbUrl, initializeOwnership: true,
+  });
+  console.log(
+    `[db-ownership] suite=${claim.suite} host=${claim.host} database=${claim.database} ` +
+    `claim=${claim.freshlyClaimed ? 'NEW' : 'RECLAIMED'}`);
+  return dbUrl;
 }
 
 async function partTwo() {
@@ -211,7 +240,7 @@ async function partTwo() {
     .pathname.replace('/', '');
   if (sourceName === 'safescope') throw new Error(`Refusing to run against database '${sourceName}'.`);
 
-  const dbUrl = provision();
+  const dbUrl = await provision();
   console.log(`source corpus:            ${SOURCE_DB}`);
   console.log(`resolved target database: ${WORK_DB} (disposable, recreated per run)\n`);
 

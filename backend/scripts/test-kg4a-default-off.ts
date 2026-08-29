@@ -139,9 +139,32 @@ async function main() {
     + `boundary (${[...new Set(forbidden)].join(', ') || 'nothing else'})`);
   // And the pure config contract must STAY pure -- if it ever gained a governed import, importing
   // it would silently become a second path to the corpus.
+  //
+  // UPDATED, NOT RELAXED -- 2026-08-29, and the same discipline as the KG-4D note above.
+  //
+  // The property this protects is "importing `cutover-mode.ts` cannot reach governed data". It was
+  // implemented as the blunter "imports nothing at all", which was true and sufficient while the
+  // module stood alone. The governed-cutover emergency stop then had to become part of the
+  // authoritative enablement answer -- a kill switch consulted only DOWNSTREAM of that answer let
+  // an engaged switch still bind a new inspection to the active release and still write
+  // `inspection.knowledgeReleaseId` -- so `cutover-mode.ts` now imports `cutover-kill-switch.ts`.
+  //
+  // The check is therefore made TRANSITIVE rather than removed: exactly one import is permitted,
+  // it must be that module, and THAT module must itself import nothing. A route to the corpus
+  // would need an import somewhere on this chain, and there is nowhere left to put one. Inlining
+  // the environment read instead was rejected as the weaker design: it would duplicate the parse
+  // and leave the in-process RUNTIME LATCH -- the one the circuit breaker pulls with no operator
+  // present -- unable to stop governed authority at all.
+  const PERMITTED_CONFIG_IMPORT = 'standards/cutover/cutover-kill-switch';
   const configBody = code(readFileSync(join(SRC, 'standards', 'cutover', 'cutover-mode.ts'), 'utf8'));
-  assert(!/from\s+['"]/.test(configBody),
-    'HARD: the pure config contract imports NOTHING — it cannot become a second route to governed data');
+  const configImports = [...configBody.matchAll(/from\s+['"]([^'"]+)['"]/g)]
+    .map(m => m[1].replace(/^\.\//, 'standards/cutover/'));
+  assert(configImports.every(mod => mod === PERMITTED_CONFIG_IMPORT),
+    `HARD: the pure config contract imports ONLY the emergency stop (${configImports.join(', ') || 'nothing'})`);
+  const killSwitchBody = code(
+    readFileSync(join(SRC, 'standards', 'cutover', 'cutover-kill-switch.ts'), 'utf8'));
+  assert(!/from\s+['"]/.test(killSwitchBody),
+    'HARD: the emergency stop itself imports NOTHING — the config chain cannot become a route to governed data');
   assert(seamImporters.length <= 3,
     `the seam has a small, enumerable set of customer importers (${seamImporters.length}: ${seamImporters.join(', ')})`);
 

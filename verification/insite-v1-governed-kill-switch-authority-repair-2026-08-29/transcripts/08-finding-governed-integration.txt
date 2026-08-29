@@ -1,0 +1,29 @@
+error: database "mckinley" does not exist
+    at parseErrorMessage (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg-protocol/src/parser.ts:394:9)
+    at Parser.handlePacket (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg-protocol/src/parser.ts:212:19)
+    at Parser.parse (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg-protocol/src/parser.ts:105:30)
+    at Socket.<anonymous> (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:524:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Socket.Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:191:23) {
+  length: 94,
+  severity: 'FATAL',
+  code: '3D000',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postinit.c',
+  line: '1023',
+  routine: 'InitPostgres'
+}

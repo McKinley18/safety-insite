@@ -1,0 +1,18 @@
+  ok   the inspection was given a customer-facing record number -- #1
+  ok   the original report downloads as a PDF
+  ok   the downloaded bytes match the stored checksum -- 813db9467c23be7d
+  ok   the original report has a stored artifact
+  ok   the replacement genuinely failed while storage was unwritable -- HTTP 500
+  ok   exactly one snapshot survives the failed replacement -- v1:generated
+  ok   the surviving snapshot is the ORIGINAL, not a half-made replacement
+  ok   the original artifact was never retired -- {"status":"ready","deletedAt":null}
+  ok   the customer can still download their report
+  ok   the report is byte-identical to before the failed replacement -- 7048 bytes
+  ok   the failed attempt left no orphaned artifact -- 0 orphans
+  ok   the failure was recorded as report_generation_failed -- 1 events
+  ok   once storage recovers, the replacement succeeds
+  ok   the replacement is a different artifact from the one it replaced
+  ok   the inspection still has exactly one report -- 1 snapshots
+  ok   and NOW the superseded artifact is retired -- {"status":"deleted"}
+
+report-replacement-failure-safety: 16 passed, 0 failed

@@ -1,0 +1,12 @@
+[gate] source corpus (read-only): test_kg3f_contract_20260820
+[gate] databases created and dropped by this gate: test_release_identity_exemption_unowned, test_release_identity_exemption_owned
+
+  [PASS] E1 a PROTECTED production database can never be claimed, whatever the caller asks for
+  [PASS] E2 a production-shaped name outside test_* can never be claimed, even with initializeOwnership
+  [PASS] E3 an UNMARKED database is refused and the refusal writes nothing (self-claim is impossible)
+  [PASS] B  an UNOWNED disposable database cannot finalize an UNREGISTERED release id
+  [PASS] A  a database the suite CREATED and CLAIMED may finalize an UNREGISTERED fixture release
+  [PASS] C  a REGISTERED id whose computed manifest disagrees with its pin is refused IN THE OWNED disposable database
+  [PASS] D  ownership does not permit MUTATING an already-finalized registered release under a mismatched manifest
+
+PASS release identity ownership exemption (7 checks)

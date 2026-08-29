@@ -1,0 +1,65 @@
+  workflow B-01: 2 finding(s)
+  workflow B-02: 2 finding(s)
+  workflow B-03: 2 finding(s)
+  workflow B-04: 3 finding(s)
+  workflow B-05: 2 finding(s)
+  workflow B-06: 2 finding(s)
+  workflow B-07: 2 finding(s)
+  workflow B-08: 2 finding(s)
+  workflow B-09: 3 finding(s)
+  workflow B-10: 3 finding(s)
+  workflow B-11: 1 finding(s)
+  workflow B-12: 2 finding(s)
+  workflow B-13: 2 finding(s)
+  workflow B-14: 4 finding(s)
+  workflow B-15: 2 finding(s)
+  workflow B-16: 2 finding(s)
+  workflow B-17: 5 finding(s)
+  workflow B-18: 3 finding(s)
+  workflow B-19: 3 finding(s)
+  workflow B-20: 2 finding(s)
+  workflow B-21: 2 finding(s)
+  workflow B-22: 2 finding(s)
+==================================================
+HazLenz ACTIONABLE FINDING coverage — predeploy-baseline-20260829
+API: http://127.0.0.1:4231
+==================================================
+Corpus: 22 rows / 43 required groups (35 life-critical)
+
+  LEVEL1_RECOGNITION_RECALL       : 100.0% (43/43)
+  recognition life-critical       : 35/35
+  ACTIONABLE_FINDING_COVERAGE     : 100.0% (43/43)
+  LIFE_CRITICAL_ACTIONABLE_COVERAGE: 100.0% (35/35)
+
+-- bounded standards check --
+  HAZARD_PRESENT_STANDARD_APPLICABLE_AND_MATCHED : 16
+  HAZARD_PRESENT_NO_STANDARD_APPLICABLE          : 1
+  HAZARD_PRESENT_STANDARD_EXPECTED_BUT_MISSING   : 26
+    B-04:hot_work|welding_cutting, B-04:fire_explosion|fire_protection, B-05:compressed_gas, B-05:hot_work|welding_cutting, B-06:mobile_equipment|powered_industrial_trucks|forklifts, B-07:confined_space, B-07:atmospheric_hazard|ventilation_air_quality|respiratory_protection, B-08:ppe, B-09:suspended_loads|cranes_hoists, B-09:rigging_lifting, B-10:hydraulic_pneumatic_energy|lockout_tagout, B-12:fall_protection, B-13:respiratory_protection|ppe|ventilation_air_quality, B-14:electrical, B-15:electrical, B-16:machine_guarding, B-16:ppe, B-17:powered_industrial_trucks|forklifts|mobile_equipment, B-17:material_handling_storage|material_handling, B-18:confined_space, B-19:hot_work|welding_cutting, B-19:confined_space, B-20:suspended_loads|cranes_hoists|rigging_lifting, B-21:environmental_spill|chemical_release|hazcom, B-21:ppe|respiratory_protection, B-22:mobile_equipment|powered_industrial_trucks|forklifts
+
+-- per row --
+  [ ok ] B-01 findings=[machine-guarding, lockout-tagout]
+  [ ok ] B-02 findings=[machine-guarding, electrical]
+  [ ok ] B-03 findings=[excavation-trenching, fall-protection]
+  [ ok ] B-04 findings=[hot-work, fall-protection, fire-explosion]
+  [ ok ] B-05 findings=[hot-work, compressed-gas]
+  [ ok ] B-06 findings=[powered-industrial-trucks, traffic-control]
+  [ ok ] B-07 findings=[confined-space, atmospheric-hazard]
+  [ ok ] B-08 findings=[hazcom, personal-protective-equipment]
+  [ ok ] B-09 findings=[cranes-hoists, rigging-lifting, suspended-loads]
+  [ ok ] B-10 findings=[compressed-gas, machine-guarding, hydraulic-pneumatic-energy]
+  [ ok ] B-11 findings=[fall-protection]
+  [ ok ] B-12 findings=[electrical, fall-protection]
+  [ ok ] B-13 findings=[silica-respirable-dust, respiratory-protection]
+  [ ok ] B-14 findings=[excavation-trenching, ground-control, electrical, excavation-trenching-2]
+  [ ok ] B-15 findings=[electrical, lockout-tagout]
+  [ ok ] B-16 findings=[machine-guarding, personal-protective-equipment]
+  [ ok ] B-17 findings=[mobile-equipment, material-handling, suspended-loads, material-handling-storage, powered-industrial-trucks]
+  [ ok ] B-18 findings=[confined-space, lockout-tagout, atmospheric-hazard]
+  [ ok ] B-19 findings=[confined-space, hot-work, fire-explosion]
+  [ ok ] B-20 findings=[fall-protection, suspended-loads]
+  [ ok ] B-21 findings=[environmental-spill, respiratory-protection]
+  [ ok ] B-22 findings=[machine-guarding, mobile-equipment]
+==================================================
+
+Wrote /Users/mckinley/Desktop/Safety_InSite/verification/insite-v1-governed-kill-switch-authority-repair-2026-08-29/pre-deployment-baseline/measurements/actionable-predeploy-baseline.json

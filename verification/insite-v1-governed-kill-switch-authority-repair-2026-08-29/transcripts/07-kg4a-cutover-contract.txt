@@ -1,0 +1,162 @@
+
+--- Part 1 — mode parsing cannot enable cutover by accident
+ok    empty environment resolves to LEGACY
+ok    empty environment reports DEFAULT_NO_CONFIGURATION
+ok    the declared default is LEGACY
+ok    truthy non-mode 'true' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'TRUE' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '1' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'yes' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'on' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'enabled' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'governed' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'false' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '0' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'off' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'no' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'disabled' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'GOVERNED' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'STRICT' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'SHADOW_MODE' resolves to LEGACY with INVALID_MODE_VALUE
+ok    'legacy ' trims to a real mode and parses as one
+ok    ' shadow' trims to a real mode and parses as one
+ok    truthy non-mode 'GOVERNED_WITH_FALLBACK_PLEASE' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '{}' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '[]' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'null' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'undefined' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode 'NaN' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '-1' resolves to LEGACY with INVALID_MODE_VALUE
+ok    truthy non-mode '0.0' resolves to LEGACY with INVALID_MODE_VALUE
+ok    whitespace-only mode is treated as unset, not as invalid
+ok    'LEGACY' parses to itself
+ok    lowercase 'legacy' parses to 'LEGACY'
+ok    'SHADOW' parses to itself
+ok    lowercase 'shadow' parses to 'SHADOW'
+ok    'GOVERNED_WITH_FALLBACK' parses to itself
+ok    lowercase 'governed_with_fallback' parses to 'GOVERNED_WITH_FALLBACK'
+ok    'GOVERNED_STRICT' parses to itself
+ok    lowercase 'governed_strict' parses to 'GOVERNED_STRICT'
+ok    'SHADOW' in production without acknowledgement forces LEGACY
+ok    startup validation refuses production 'SHADOW' without acknowledgement
+ok    'SHADOW' in production WITH the exact acknowledgement is honoured
+ok    'GOVERNED_WITH_FALLBACK' in production without acknowledgement forces LEGACY
+ok    startup validation refuses production 'GOVERNED_WITH_FALLBACK' without acknowledgement
+ok    'GOVERNED_WITH_FALLBACK' in production WITH the exact acknowledgement is honoured
+ok    'GOVERNED_STRICT' in production without acknowledgement forces LEGACY
+ok    startup validation refuses production 'GOVERNED_STRICT' without acknowledgement
+ok    'GOVERNED_STRICT' in production WITH the exact acknowledgement is honoured
+ok    a truthy-but-wrong production acknowledgement does not unlock governed mode
+ok    startup validation refuses an unrecognised production mode value
+ok    startup validation does not refuse non-production environments
+
+--- Part 2 — enablement defaults OFF and is server-controlled
+ok    'SHADOW' with no allowlist enables nobody
+ok    'SHADOW' with the account allowlisted enables that account
+ok    'SHADOW' does NOT leak to a non-allowlisted account (tenancy isolation)
+ok    'SHADOW' honours the organization allowlist
+ok    'SHADOW' with no principal stays LEGACY
+ok    'GOVERNED_WITH_FALLBACK' with no allowlist enables nobody
+ok    'GOVERNED_WITH_FALLBACK' with the account allowlisted enables that account
+ok    'GOVERNED_WITH_FALLBACK' does NOT leak to a non-allowlisted account (tenancy isolation)
+ok    'GOVERNED_WITH_FALLBACK' honours the organization allowlist
+ok    'GOVERNED_WITH_FALLBACK' with no principal stays LEGACY
+ok    'GOVERNED_STRICT' with no allowlist enables nobody
+ok    'GOVERNED_STRICT' with the account allowlisted enables that account
+ok    'GOVERNED_STRICT' does NOT leak to a non-allowlisted account (tenancy isolation)
+ok    'GOVERNED_STRICT' honours the organization allowlist
+ok    'GOVERNED_STRICT' with no principal stays LEGACY
+ok    an allowlist alone never enables anything
+ok    allowlist entries and principals are trimmed consistently
+ok    allowlist matching is exact, not prefix-based
+ok    only the two governed modes are declared to influence customer output
+ok    LEGACY and SHADOW are declared NOT to influence customer output
+ok    LEGACY does not execute governed resolution; SHADOW does
+
+--- Part 3 — the fallback decision table is total and coherent
+ok    matrix enumerates all 84 combinations (got 84)
+ok    every combination appears exactly once
+ok    HARD: the citation is shown in every one of the 84 rows — governance never suppresses a citation
+ok    text can only be VERIFIED if it is also SHOWN
+ok    verified text and the GOVERNED_VERIFIED_TEXT delivery state are the same condition
+ok    HARD: every citation-only row discloses that verified text is unavailable
+ok    the unavailable disclosure is never shown alongside displayed text
+ok    HARD: ONLY APPROVED_EXACT is ever presented as verified regulatory text
+ok    HARD: section-level approval NEVER confers verified text on a paragraph (no parent/child promotion)
+ok    an unapproved record is never presented as verified
+ok    customer disclosure copy is emitted only where the decision requires it
+
+--- Part 4 — applicability and content backing stay separate
+ok    [LEGACY/SUPPORTED] governed backing cannot change the applicability disclosure
+ok    [LEGACY/UNCERTAIN] governed backing cannot change the applicability disclosure
+ok    [LEGACY/UNSUPPORTED] governed backing cannot change the applicability disclosure
+ok    [LEGACY/APPROVED_EXACT] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/APPROVED_SECTION_ONLY] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/APPROVED_NO_TEXT] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/UNAPPROVED_RECORD] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/NOT_IN_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/NO_ACTIVE_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [LEGACY/RESOLVER_UNAVAILABLE] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/SUPPORTED] governed backing cannot change the applicability disclosure
+ok    [SHADOW/UNCERTAIN] governed backing cannot change the applicability disclosure
+ok    [SHADOW/UNSUPPORTED] governed backing cannot change the applicability disclosure
+ok    [SHADOW/APPROVED_EXACT] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/APPROVED_SECTION_ONLY] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/APPROVED_NO_TEXT] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/UNAPPROVED_RECORD] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/NOT_IN_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/NO_ACTIVE_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [SHADOW/RESOLVER_UNAVAILABLE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/SUPPORTED] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_WITH_FALLBACK/UNCERTAIN] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_WITH_FALLBACK/UNSUPPORTED] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_WITH_FALLBACK/APPROVED_EXACT] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/APPROVED_SECTION_ONLY] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/APPROVED_NO_TEXT] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/UNAPPROVED_RECORD] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/NOT_IN_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/NO_ACTIVE_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_WITH_FALLBACK/RESOLVER_UNAVAILABLE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/SUPPORTED] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_STRICT/UNCERTAIN] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_STRICT/UNSUPPORTED] governed backing cannot change the applicability disclosure
+ok    [GOVERNED_STRICT/APPROVED_EXACT] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/APPROVED_SECTION_ONLY] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/APPROVED_NO_TEXT] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/UNAPPROVED_RECORD] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/NOT_IN_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/NO_ACTIVE_RELEASE] applicability cannot change the text/verification/provenance decision
+ok    [GOVERNED_STRICT/RESOLVER_UNAVAILABLE] applicability cannot change the text/verification/provenance decision
+ok    HARD: the applicability disclosure is a function of applicability alone, in all 84 rows
+ok    EVIDENCE_UNKNOWN: approved text may be shown, and the missing trigger is STILL disclosed
+ok    EVIDENCE_UNKNOWN: a supported applicability carries no uncertainty disclosure
+ok    HARD: governed availability does NOT convert applicability uncertainty into certainty (same delivery, different disclosure)
+ok    GOVERNANCE_FILTER_EMPTY: a content-availability gap never reports itself as evidence uncertainty
+ok    GOVERNANCE_FILTER_EMPTY is an EXPECTED_FALLBACK with its own distinct reason code
+ok    UNKNOWN maps to UNCERTAIN
+ok    SUPPORTED maps to SUPPORTED
+ok    CONTRADICTED maps to UNSUPPORTED
+ok    NOT_SUPPORTED maps to UNSUPPORTED
+ok    an unrecognised applicability status degrades to UNCERTAIN, never to SUPPORTED
+ok    a null applicability status degrades to UNCERTAIN
+
+--- Part 5 — failure modes are classified, not improvised
+ok    a resolver failure is classified INTEGRITY_FAILURE in both governed modes
+ok    HARD: LEGACY and SHADOW report NO failure class — the resolver never enters their customer decision
+ok    an exact approved resolution is not a failure of any kind
+ok    every other governed-mode backing state is an EXPECTED_FALLBACK
+ok    HARD: a resolver failure under GOVERNED_WITH_FALLBACK degrades to legacy text — never an error
+ok    a resolver failure under GOVERNED_STRICT degrades to citation-only — never an error
+ok    there are exactly three delivery states; no implicit suppression state exists
+
+--- Part 6 — governed provenance only where governed data influenced the customer
+ok    HARD: LEGACY and SHADOW never make governed provenance eligible
+ok    HARD: a row whose customer output is identical to legacy never claims governed provenance
+ok    under fallback, only an approved record (with or without text) yields governed provenance
+ok    HARD: a failed or absent release never yields governed provenance
+
+--- Part 7 — SHADOW is customer-identical to LEGACY
+ok    HARD: SHADOW matches LEGACY on all 21 applicability x backing combinations (got 21)
+ok    every SHADOW row reports SHADOW_MODE_CUSTOMER_UNAFFECTED regardless of what the resolver found
+
+146 passed, 0 failed

@@ -81,26 +81,59 @@ try {
 
   const text =
     "At the fabrication shop, the pedestal grinder is unplugged, tagged do not use, and the wheel guard is cracked; nobody is using it while replacement parts are ordered.";
-  await page.getByLabel("What did you observe?").fill(text);
-  await page.getByRole("button", { name: "Save and review with HazLenz AI" }).click();
-  // The v1 workspace renamed and re-sequenced these steps. Same contract, current wording:
-  // review -> risk confirmation -> corrective action -> completion.
-  await page.getByRole("heading", { name: "HazLenz assessment — review before finalizing" })
-    .waitFor({ timeout: 60000 });
-  await page.getByRole("button", { name: "Continue to risk review" }).click();
-  await page.getByRole("button", { name: "Confirm risk and finalize finding" }).click();
-  await page.getByRole("heading", { name: "Corrective action" }).waitFor({ timeout: 30000 });
-  // The completion button stays disabled until a permanent correction is recorded, which is the
-  // product's own guard against completing an inspection with no durable corrective action.
-  await page.getByLabel("Permanent correction").fill(
-    "Replace the cracked wheel guard with the OEM part and re-commission the grinder before use.",
-  );
-  await page.getByRole("button", { name: "Complete inspection and generate report" }).click();
-  await page.getByRole("heading", { name: "Report generated" }).waitFor({ timeout: 60000 });
-  await page.reload({ waitUntil: "networkidle" });
-  await page.getByText(/Status: Completed/).waitFor();
+  // The workspace observation field was relabelled "What did you observe?" -> "What did you see?"
+  // (inspection-workspace/page.tsx). Same field, same contract; only the customer wording moved.
+  // Note /field-capture still says "What did you observe?", so this is not a global rename and
+  // the locator must stay specific to the workspace step this fixture is driving.
+  await page.getByLabel("What did you see?").fill(text);
+  // WORKFLOW SEQUENCE, re-derived from the shipped workspace 2026-08-28. The v1 guided flow is
+  // five named steps -- Record It / HazLenz / Risk & Fix / Review / Finish -- and the previous
+  // wording ("Save and review with HazLenz AI", "Continue to risk review", "Confirm risk and
+  // finalize finding", "Complete inspection and generate report", "Report generated") belongs to
+  // the pre-v1 workspace. Every literal below was read off the current source and confirmed by
+  // driving the flow. The CONTRACT this fixture protects is unchanged and is still asserted at
+  // the end: one site, one inspection, one observation, one analysis, one review, one finding,
+  // one corrective action, one task and one report, all persisted and reachable.
+  await page.getByRole("button", { name: "Review with HazLenz AI" }).click();
+  await page.getByRole("heading", { name: "HazLenz assessment" }).waitFor({ timeout: 60000 });
+  await page.getByRole("button", { name: "Continue to risk" }).click();
+
+  await page.getByRole("heading", { name: "Risk and corrective action" }).waitFor({ timeout: 30000 });
+  // The risk matrix cell IS the risk decision -- "Continue to review" stays disabled and reads
+  // "Select a risk cell to continue" until one is chosen, which is the product's own guard
+  // against reviewing a finding that carries no assessed risk.
+  await page.getByRole("button", { name: "12", exact: true }).first().click();
+  // Corrective actions are now structured, reviewer-confirmed items rather than one free-text
+  // field: ticking "Permanent correction" adopts the durable correction onto the finding. Same
+  // guard as before -- an inspection cannot be finished with no durable corrective action -- and
+  // the persisted `corrective_actions` row is still counted below.
+  await page.getByLabel("Permanent correction").first().check();
+  await page.getByRole("button", { name: "Continue to review" }).click();
+
+  await page.getByRole("heading", { name: "Check this finding before saving" }).waitFor({ timeout: 30000 });
+  await page.getByTestId("save-finding").click();
+
+  // Two distinct controls share the label "Finish inspection": the secondary one leaves the
+  // per-finding loop for the finalize step, and the primary one on that step runs `complete()`,
+  // which writes the corrective actions, the calendar task and the report.
+  await page.getByTestId("finish-inspection").click();
+  await page.getByRole("heading", { name: "Finish this inspection" }).waitFor({ timeout: 30000 });
+  await page.getByRole("button", { name: "Finish inspection" }).click();
+  await page.waitForURL(/inspection-complete/, { timeout: 60000 });
   await page.goto(`${appUrl}/reports`, { waitUntil: "networkidle" });
-  await page.getByText("Version 1", { exact: true }).first().waitFor();
+  // The report library pinned the literal "Version 1". That belongs to the superseded
+  // multi-version model: the canonical architecture is ONE report per inspection, so /reports
+  // deliberately shows no version list, nothing superseded, and no choice about which report is
+  // real. The property being protected -- the finished inspection's report is reachable in the
+  // library -- is re-pinned to what now identifies it: a report card carrying THIS run's site,
+  // and exactly one of them.
+  await page.getByTestId("report-card").filter({ hasText: siteName }).first().waitFor();
+  const cardsForThisSite = await page.getByTestId("report-card").filter({ hasText: siteName }).count();
+  if (cardsForThisSite !== 1) {
+    throw new Error(
+      `Report library shows ${cardsForThisSite} report cards for ${siteName}; one inspection has exactly one report.`,
+    );
+  }
 
   const persisted = await db.query(
     `SELECT

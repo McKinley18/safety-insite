@@ -1,0 +1,3 @@
+.next/types/cache-life.d 3.ts(3,1): error TS6200: Definitions of the following identifiers conflict with those in another file: unstable_cache, updateTag, revalidateTag, revalidatePath, refresh, unstable_noStore, cacheTag, unstable_cacheTag, unstable_cacheLife
+.next/types/routes.d 3.ts(66,13): error TS2428: All declarations of 'PageProps' must have identical type parameters.
+.next/types/routes.d 3.ts(80,8): error TS2300: Duplicate identifier 'LayoutProps'.

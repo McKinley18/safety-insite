@@ -1,0 +1,36 @@
+=== MIGRATION LEDGER ===
+ migrations_applied 
+--------------------
+                 50
+(1 row)
+
+   timestamp   |                      name                      
+---------------+------------------------------------------------
+ 1800000018000 | InspectionKnowledgeReleaseBinding1800000018000
+ 1800000017000 | InspectionDisplayNumber1800000017000
+ 1800000016000 | UserAuthoredFindingProvenance1800000016000
+ 1800000015000 | OfflineSyncIdempotency1800000015000
+ 1800000014000 | ApprovalProvenanceContract1800000014000
+(5 rows)
+
+=== GOVERNANCE SCHEMA PRESENCE ===
+            table_name             
+-----------------------------------
+ hazlenz_analyses
+ inspection
+ inspection_findings
+ regulatory_release_record_reviews
+ regulatory_release_records
+ regulatory_releases
+ standards_master
+(7 rows)
+
+=== REQUIRED COLUMNS ===
+     table_name      |    column_name     
+---------------------+--------------------
+ hazlenz_analyses    | knowledgeReleaseId
+ inspection          | displayNumber
+ inspection          | knowledgeReleaseId
+ inspection_findings | source
+(4 rows)
+

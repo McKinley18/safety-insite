@@ -1,0 +1,24 @@
+[db-ownership] suite=verify:canonical-report-frontend-contract host=127.0.0.1 database=test_v1_predeploy_api_20260829 claim=NEW
+
+-- initial report generation --
+  [PASS] report GENERATED — status=201
+  [PASS] a reportId was returned — 254d318f-54b9-47f6-b072-edf87a7b1567
+  [PASS] the report is associated with the correct inspection — 2a5faa11-67d6-4ca8-9948-da3bfc18ea1c
+
+-- retrieval through the exact endpoint the frontend calls --
+  [PASS] GET /inspections/:id/report returns THE one current report — 254d318f-54b9-47f6-b072-edf87a7b1567
+  [PASS] the summary carries inspectionNumber — the customer-facing identity the UI renders — 1
+  [PASS] the artifact downloads at the no-version-segment URL — status=200
+  [PASS] the library lists EXACTLY ONE report for this inspection — 1
+
+-- reopen, re-complete, regenerate --
+  [PASS] inspection REOPENS — status=201
+  [PASS] report REGENERATED — status=201
+  [PASS] regeneration REPLACES the same report record rather than creating a second one — 254d318f-54b9-47f6-b072-edf87a7b1567 -> 254d318f-54b9-47f6-b072-edf87a7b1567
+  [PASS] the underlying snapshot identity DID advance — a real replacement, not a no-op — 013561f2-2686-465e-857a-02cd8c659e94 -> d28fdbe8-7295-4a86-8535-e59df282890e
+  [PASS] the library STILL lists exactly one report — no duplicate canonical report is visible — 1
+  [PASS] GET /inspections/:id/report returns the replacement, not the superseded artifact
+  [PASS] the replacement artifact downloads — status=200
+  [PASS] there is no per-version download surface for the customer to choose between — status=404
+
+CANONICAL REPORT CONTRACT: 15/15 checks passed

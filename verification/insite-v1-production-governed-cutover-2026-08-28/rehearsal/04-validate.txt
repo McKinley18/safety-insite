@@ -1,0 +1,166 @@
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "test_prodcutover_20260828",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+TARGET PROOF OK — database=test_prodcutover_20260828, latest=InspectionKnowledgeReleaseBinding1800000018000, ledger rows observed=50 (observed, not asserted; the production ledger is baselined so its row count is not the repository migration position).
+
+=== (a) RELEASE STATUS ===
+{
+  "activeRelease": null,
+  "activeManifest": null,
+  "releasesInDatabase": [
+    {
+      "releaseId": "federal-core-2026-08-28.1",
+      "releaseVersion": "2026-08-28.1",
+      "status": "provisional",
+      "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+      "recordCount": 64,
+      "parentReleaseId": null,
+      "activatedAt": null,
+      "deactivatedAt": null,
+      "createdAt": "2026-08-28T22:12:21.065Z",
+      "approvedRecords": 64,
+      "totalRecords": 64,
+      "mechanicallyValidatedRecords": 0,
+      "unreviewedRecords": 0,
+      "manifestVerifies": true
+    }
+  ],
+  "definitionsInRepository": [
+    {
+      "releaseId": "federal-core-2026-07-30.1",
+      "releaseVersion": "2026-07-30.1",
+      "declaredMembers": 35,
+      "pinnedManifest": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b"
+    },
+    {
+      "releaseId": "federal-core-2026-08-28.1",
+      "releaseVersion": "2026-08-28.1",
+      "declaredMembers": 64,
+      "pinnedManifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb"
+    }
+  ]
+}
+
+=== (b) APPROVAL-STATE CHECKSUM ===
+{
+  "releaseId": "federal-core-2026-08-28.1",
+  "approvalStateChecksum": "3bbd2785e1ffb1319ac0d69d62c24f0e7a0a88b27b60b5f5350dfacd0d42975a",
+  "recordCount": 64
+}
+
+=== (c) IMMUTABLE-IDENTITY REPRODUCTION (dry run, zero writes) ===
+REQUIRED: outcome = idempotent_no_op, reproducedPinnedManifest = true, recordCount = 64.
+{
+  "command": "prepare",
+  "dryRun": true,
+  "releaseId": "federal-core-2026-08-28.1",
+  "outcome": "idempotent_no_op",
+  "status": "provisional",
+  "recordCount": 64,
+  "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "pinnedManifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "reproducedPinnedManifest": true,
+  "reviewState": {
+    "unreviewed": 0,
+    "mechanically_validated": 64,
+    "reviewer_approved": 0
+  },
+  "placeholderSourceRecords": 0,
+  "legacyCorpusRowsRead": 0,
+  "verifiedInOnePass": true,
+  "nextStep": "Nothing was written. Re-run without --dry-run to persist the provisional release."
+}
+exit=0
+
+=== (d) ACTIVATION GATES (dry run, zero writes, no lifecycle event) ===
+REQUIRED: wouldSucceed = true, failedGates = [], writesPerformed = 0.
+{
+  "command": "activate",
+  "dryRun": true,
+  "releaseId": "federal-core-2026-08-28.1",
+  "targetManifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "targetStatus": "provisional",
+  "pointer": {
+    "expectedCurrentRelease": null,
+    "actualCurrentRelease": null,
+    "matches": true
+  },
+  "gates": [
+    {
+      "key": "releaseExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 found."
+    },
+    {
+      "key": "statusEligible",
+      "passed": true,
+      "detail": "Status is 'provisional'; eligible: provisional."
+    },
+    {
+      "key": "manifestChecksumWellFormed",
+      "passed": true,
+      "detail": "Stored manifest checksum present."
+    },
+    {
+      "key": "recordCountPositive",
+      "passed": true,
+      "detail": "Declared recordCount is 64."
+    },
+    {
+      "key": "releaseRecordsPresent",
+      "passed": true,
+      "detail": "64 immutable snapshot records belong to federal-core-2026-08-28.1."
+    },
+    {
+      "key": "recordCountMatches",
+      "passed": true,
+      "detail": "Declared 64, found 64."
+    },
+    {
+      "key": "manifestChecksumVerifies",
+      "passed": true,
+      "detail": "Recomputed manifest matches the checksum stored at finalization."
+    },
+    {
+      "key": "governedRecordsPresent",
+      "passed": true,
+      "detail": "64 of 64 snapshot records are reviewer-approved (0 mechanically validated, 0 unreviewed)."
+    }
+  ],
+  "failedGates": [],
+  "wouldSucceed": true,
+  "refusalReason": null,
+  "writesPerformed": 0,
+  "note": "Dry run. No pointer was moved and no lifecycle event was recorded."
+}
+exit=0
+
+=== (e) SNAPSHOT INTEGRITY, RECOMPUTED IN SQL (read-only) ===
+[
+  {
+    "releaseId": "federal-core-2026-08-28.1",
+    "status": "provisional",
+    "recordCount": 64,
+    "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "manifest_is_pinned": true,
+    "snapshot_records": 64,
+    "rejected_members": 0,
+    "distinct_citation_keys": 64
+  }
+]
+
+STEP 4 COMPLETE — nothing was written. Proceed to step 5 ONLY if every REQUIRED line above holds.

@@ -1,0 +1,57 @@
+
+=== PART 1 — the contract, in memory
+
+ok    CC-1 regulatory text: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the obligation itself is different)
+ok    CC-1 regulatory text: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-1 regulatory text: composed approvalDigest moved
+ok    CC-2 title: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the codified heading identifies the provision)
+ok    CC-2 title: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-2 title: composed approvalDigest moved
+ok    CC-3 canonical citation: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — a different citation is a different duty)
+ok    CC-3 canonical citation: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-3 canonical citation: composed approvalDigest moved
+ok    CC-4 paragraph granularity (part/subpart): BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — DEFECT FIXED: v1 covered `citation` but not the structural columns, so a record could be re-scoped from general industry to construction with its approval intact)
+ok    CC-4 paragraph granularity (part/subpart): axis 'substantive_content' (expected 'substantive_content')
+ok    CC-4 paragraph granularity (part/subpart): composed approvalDigest moved
+ok    CC-5 jurisdiction / regime: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the regime determines whom the duty binds)
+ok    CC-5 jurisdiction / regime: axis 'substantive_content' (expected 'substantive_content')
+ok    CC-5 jurisdiction / regime: composed approvalDigest moved
+ok    CC-6 legally meaningful source identity (document checksum + edition): BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the artifact relied on is not the artifact now held)
+ok    CC-6 legally meaningful source identity (document checksum + edition): axis 'source_identity' (expected 'source_identity')
+ok    CC-6 legally meaningful source identity (document checksum + edition): composed approvalDigest moved
+ok    CC-7 source registry key: BECOME_INEFFECTIVE (contract requires BECOME_INEFFECTIVE — the registry key names which authoritative dataset the record is attested to)
+ok    CC-7 source registry key: axis 'source_identity' (expected 'source_identity')
+ok    CC-7 source registry key: composed approvalDigest moved
+ok    CC-8 equivalent authoritative URL: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — a mirror path to the SAME artifact; the document checksum is unmoved, so nothing the reviewer read has changed. Binding approval to the URL would revoke the corpus on every mirror migration)
+ok    CC-8 equivalent authoritative URL: axis 'none' (expected 'none')
+ok    CC-8 equivalent authoritative URL: composed approvalDigest held
+ok    CC-9 retrieval date only: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — re-fetching an unchanged regulation later does not change one word of it)
+ok    CC-9 retrieval date only: axis 'none' (expected 'none')
+ok    CC-9 retrieval date only: composed approvalDigest held
+ok    CC-10 irrelevant transport metadata: REMAIN_EFFECTIVE (contract requires REMAIN_EFFECTIVE — describes the copy, not the content)
+ok    CC-10 irrelevant transport metadata: axis 'none' (expected 'none')
+ok    CC-10 irrelevant transport metadata: composed approvalDigest held
+ok    AX-1 a pure content change leaves the source-identity digest untouched
+ok    AX-2 a pure source-identity change leaves the substantive-content digest untouched
+ok    AX-3 identity carries the contract version (v2)
+ok    AX-4 the contract version is folded into both digests, so v2 can never collide with v1
+ok    TR-source_url: excluded from both approval projections by construction, not by equality
+ok    TR-retrieval_date: excluded from both approval projections by construction, not by equality
+ok    TR-created_at: excluded from both approval projections by construction, not by equality
+ok    TR-updated_at: excluded from both approval projections by construction, not by equality
+ok    V1-1 the v1 manifest projection still reads the same fields it always did
+ok    V1-2 the v1 manifest field set is byte-for-byte unchanged (release history stays verifiable)
+
+=== PART 2 — the implementation, against a disposable database
+
+Error: Refusing to run against database 'safescope'.
+    at partTwo (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-approval-contract.ts:241:41)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-approval-contract.ts:448:9)
+    at Object.<anonymous> (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-approval-contract.ts:453:1)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module.m._compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)

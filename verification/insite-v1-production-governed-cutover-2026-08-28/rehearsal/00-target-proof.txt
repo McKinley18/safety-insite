@@ -1,0 +1,20 @@
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "test_prodcutover_20260828",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+TARGET PROOF OK — database=test_prodcutover_20260828, latest=InspectionKnowledgeReleaseBinding1800000018000, ledger rows observed=50 (observed, not asserted; the production ledger is baselined so its row count is not the repository migration position).
+
+STEP 0 COMPLETE. The target is the production database at the expected schema level.

@@ -1,0 +1,54 @@
+[db-ownership] suite=verify:release-scoped-customer-workflow host=127.0.0.1 database=test_kg_relscope_20260829 claim=NEW
+-- authenticated as 99da0cac-3f11-4d34-b37a-e322db79a0f0
+  [PASS] the reviewed candidate release is the ACTIVE release for this run — federal-core-2026-08-28.1
+
+-- Phase 9: the real customer workflow, release-scoped --
+  [PASS] a newly created inspection carries NO release binding yet — null
+  [PASS] the inspection acquired the active release as its binding, through the real request path — federal-core-2026-08-28.1
+  [PASS] 2 analyses persisted — 2
+
+  persisted findings              : 3
+  persisted standard candidates   : 3
+  authority states                : {"APPROVED_GOVERNED_CONTENT":3}
+  analysis knowledgeReleaseId     : ["federal-core-2026-08-28.1"]
+  corpusBacked = true             : 3
+  reviewer present                : 3
+  record checksum present         : 3
+  [PASS] the workflow persisted standard candidates to measure — 3
+  [PASS] approved claim on 29 CFR 1910.212(a)(1) is fully evidenced — {"release":"federal-core-2026-08-28.1","member":true}
+  [PASS] finding provenance names the bound release and no other — federal-core-2026-08-28.1
+  [PASS] approved claim on 29 CFR 1910.147 is fully evidenced — {"release":"federal-core-2026-08-28.1","member":true}
+  [PASS] finding provenance names the bound release and no other — federal-core-2026-08-28.1
+  [PASS] approved claim on 29 CFR 1910.303 is fully evidenced — {"release":"federal-core-2026-08-28.1","member":true}
+  [PASS] finding provenance names the bound release and no other — federal-core-2026-08-28.1
+
+-- Phase 10: customer-visible regulatory content --
+  [PASS] 29 CFR 1910.212(a)(1): the checksum it claims names a real record in the release — 96627e0b577e2b9c92353fdfca71ec964156bbf6a245b1714025c19fd6519a94
+  [PASS] 29 CFR 1910.212(a)(1): displayed regulatory text comes from the governed record — One or more methods of machine guarding must be provided to protect the operator and other
+  [PASS] 29 CFR 1910.212(a)(1): displayed regulatory text comes from the governed record — One or more methods of machine guarding must be provided to protect the operator and other
+  [PASS] 29 CFR 1910.147: the checksum it claims names a real record in the release — 003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10
+  [PASS] 29 CFR 1910.147: displayed regulatory text comes from the governed record — Before any employee performs servicing or maintenance on a machine or equipment where unex
+  [PASS] 29 CFR 1910.147: displayed regulatory text comes from the governed record — Before any employee performs servicing or maintenance on a machine or equipment where unex
+  [PASS] 29 CFR 1910.303: the checksum it claims names a real record in the release — e210f940c808a12bec28ca53146235ee5c30a6bd3e973e0d120206411642dee6
+  [PASS] 29 CFR 1910.303: displayed regulatory text comes from the governed record — Section 1910.303 sets OSHA's general requirements for electric equipment and installations
+  [PASS] 29 CFR 1910.303: displayed regulatory text comes from the governed record — Section 1910.303 sets OSHA's general requirements for electric equipment and installations
+  [PASS] no non-member record summary appears as approved governed customer text — 8 non-member summaries checked
+  [PASS] every non-approved candidate is distinguishable in its own provenance — 0 non-approved candidates
+
+-- Phase 11: report, reopen, re-analysis --
+  [PASS] report GENERATED — status=201 {"reportId":"c5b4eeb5-e88e-4fb4-9cb9-fda46f20bf1a","inspectionId":"a72debe8-abbf-4139-ab15-b58e05b5957e","versionId":"228c0a5b-64d7-42af-90e3-766dc69f942c","version":1,"status":"generated","sourceInsp
+  [PASS] report PDF downloadable by the customer — status=200
+  [PASS] the report makes no 'reviewerapproved' claim
+  [PASS] the report makes no 'reviewer-approved' claim
+  [PASS] the report makes no 'approvedbyreviewer' claim
+  [PASS] the report makes no 'governedrelease' claim
+  [PASS] the report makes no 'reviewedregulation' claim
+  [PASS] the report makes no 'insite-product-owner-authorized' claim
+  active release is now workflow-fixture.successor
+  [PASS] inspection REOPENS — status=201 {"id":"a72debe8-abbf-4139-ab15-b58e05b5957e","organizationId":null,"ownerUserId":"99da0cac-3f11-4d34-b37a-e322db79a0f0","createdByUserId":"99da0cac-3f11-4d34-b37a-e322db79a0f0","siteId":"a843add9-956c
+  [PASS] the reopened inspection PRESERVES its original release after a new one became active — federal-core-2026-08-28.1
+  [PASS] re-analysis records the ORIGINAL release, never the newly active one — federal-core-2026-08-28.1
+  [PASS] no already-persisted finding was rewritten when a different release became active
+  [PASS] positive control: a NEW inspection binds to the NEWLY ACTIVE release — workflow-fixture.successor
+
+RELEASE-SCOPED CUSTOMER WORKFLOW: 35/35 checks passed

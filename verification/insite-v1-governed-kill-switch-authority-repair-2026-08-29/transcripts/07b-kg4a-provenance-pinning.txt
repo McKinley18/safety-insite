@@ -1,0 +1,66 @@
+
+--- Part 1 — provenance by mode
+ok    HARD: LEGACY records knowledgeReleaseId = NULL even when every finding "consumed"
+ok    HARD: LEGACY records NULL on every finding
+ok    HARD: SHADOW records knowledgeReleaseId = NULL even when every finding "consumed"
+ok    HARD: SHADOW records NULL on every finding
+ok    the SHADOW reason states plainly that a background comparison is not consumption
+ok    GOVERNED_WITH_FALLBACK records the pinned release when findings consumed governed content
+ok    GOVERNED_WITH_FALLBACK records the release on every consuming finding
+ok    GOVERNED_WITH_FALLBACK with all findings governed is not mixed
+ok    GOVERNED_STRICT records the pinned release when findings consumed governed content
+ok    GOVERNED_STRICT records the release on every consuming finding
+ok    GOVERNED_STRICT with all findings governed is not mixed
+ok    HARD: a governed mode with a PINNED release but zero consumption still records NULL
+ok    the reason explains that naming a release with no consumption would be false provenance
+ok    HARD: governed mode with NO active release records NULL, never a fabricated id
+ok    HARD: provenance agrees with the fallback table on all 84 rows (got 84)
+
+--- Part 3 — a mixed analysis stays truthful per finding
+ok    the analysis names the release, because release content IS materially present in it
+ok    the analysis is flagged as MIXED so a reader knows to check per finding
+ok    finding A (approved governed content) claims the release
+ok    HARD: finding B (fell back to legacy) claims NO release — it was not governed
+ok    finding C (citation-only) claims the release — the release is why no text is shown
+ok    HARD: finding D claims no release; its UNCERTAIN applicability did not change that, its BACKING did
+ok    the counts describe the split (2 of 4 governed)
+ok    HARD: findings never disagree about WHICH release — one analysis pins one release
+ok    HARD: KG-1 invariant preserved — no finding claims a release its analysis did not use
+ok    HARD: changing ONLY applicability changes no provenance at all
+ok    the persisted reason states how many findings actually consumed governed content
+
+--- Part 4 — rollback affects future requests only
+ok    t0: a governed analysis persists the release id
+ok    HARD: after rollback the NEXT analysis records NULL — legacy provenance resumes immediately
+ok    HARD: the historical analysis retains its truthful release id — rollback rewrites no history
+ok    the preservation predicate genuinely fails if a historical id were cleared
+ok    the preservation predicate genuinely fails if a legacy analysis acquired an id
+ok    HARD: rollback needs no release de-activation, no approval revocation and no data change — the mode alone decides
+
+--- Part 5 — a client cannot fabricate governed provenance
+
+--- Part 2 — under default configuration NO snapshot can produce provenance
+ok    HARD: an absent snapshot yields NULL under default configuration (got null)
+ok    HARD: an empty snapshot yields NULL under default configuration (got null)
+ok    HARD: a LEGACY snapshot with no knowledgeReleaseId key anywhere yields NULL under default configuration (got null)
+ok    HARD: an explicit null finding-level id yields NULL under default configuration (got null)
+ok    HARD: a well-formed release id on a standard decision yields NULL under default configuration (got null)
+ok    HARD: a well-formed release id on primaryStandards yields NULL under default configuration (got null)
+ok    HARD: a well-formed release id on suggestedStandards yields NULL under default configuration (got null)
+ok    HARD: a well-formed release id on a hazard candidate yields NULL under default configuration (got null)
+ok    HARD: two distinct releases in one snapshot yields NULL under default configuration (got null)
+ok    HARD: a whitespace release id yields NULL under default configuration (got null)
+ok    HARD: an over-long release id yields NULL under default configuration (got null)
+ok    HARD: a malformed snapshot shape yields NULL under default configuration (got null)
+ok    HARD: a hostile deeply-nested shape yields NULL under default configuration (got null)
+NOTICE:  database "test_kg4a_gate_run" does not exist, skipping
+ok    HARD: with no governed mode configured, a spoofed snapshot is IGNORED — provenance stays NULL
+ok    HARD: with no governed mode configured, even a TRUTHFUL claim is ignored — the mode decides
+ok    HARD: a NON-allowlisted principal cannot fabricate provenance even in a governed deployment
+ok    HARD: an allowlisted principal claiming a release that is NOT active gets NULL, not the invented id
+ok    an allowlisted principal claiming the genuinely active release records it
+ok    a governed principal whose analysis consumed nothing records NULL
+ok    HARD: a snapshot claiming two releases records NULL — pinning was violated
+ok    HARD: SHADOW records NULL even for an allowlisted principal with a truthful claim
+
+53 passed, 0 failed

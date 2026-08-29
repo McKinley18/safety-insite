@@ -1,0 +1,241 @@
+REFUSAL / IDEMPOTENCY REHEARSAL — disposable database test_prodcutover_20260828, release ACTIVE.
+Every command below is the SAME reviewed command the runbook uses. No guard was relaxed.
+
+### N1 — re-approving an already-approved version is an idempotent no-op, not a duplicate row
+{
+  "outcome": "already_approved",
+  "releaseId": "federal-core-2026-08-28.1",
+  "citation": "29 CFR 1910.147",
+  "citationKey": "29cfr1910.147",
+  "recordChecksum": "003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10",
+  "effectiveReviewState": "reviewer_approved",
+  "decisionId": null
+}
+
+### N2 — a decision stating a checksum the release does not hold is REFUSED (stale-review protection)
+{
+  "refused": true,
+  "message": "Review decision 'approved' refused for 29 CFR 1910.147 in federal-core-2026-08-28.1: checksumMatches.",
+  "failedGates": [
+    "checksumMatches"
+  ],
+  "gates": [
+    {
+      "key": "releaseExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 exists (status 'active')."
+    },
+    {
+      "key": "recordExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 holds 29 CFR 1910.147 (checksum 003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10)."
+    },
+    {
+      "key": "checksumMatches",
+      "passed": false,
+      "detail": "STALE REVIEW: reviewer read aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, release now holds 003eac71364583a63c8b9ce944f4bbf65aaa787546705c2f9064c1b0ccf71c10. The content changed or a different version was substituted; re-review the current version."
+    },
+    {
+      "key": "approvalDigestMatches",
+      "passed": true,
+      "detail": "No approval-contract digest supplied; binding recorded from the stored record."
+    },
+    {
+      "key": "reviewerIdentified",
+      "passed": true,
+      "detail": "Reviewer 'insite-product-owner-authorized-regulatory-content-review'."
+    },
+    {
+      "key": "frozenStateEligible",
+      "passed": true,
+      "detail": "Record passed deterministic validation and is eligible for substantive review."
+    }
+  ]
+}
+exit=2
+
+### N3 — a REJECTED corpus record cannot be approved: it is a member of no release
+{
+  "refused": true,
+  "message": "Review decision 'approved' refused for 29 CFR 1910.132(a) in federal-core-2026-08-28.1: recordExists, checksumMatches, frozenStateEligible.",
+  "failedGates": [
+    "recordExists",
+    "checksumMatches",
+    "frozenStateEligible"
+  ],
+  "gates": [
+    {
+      "key": "releaseExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 exists (status 'active')."
+    },
+    {
+      "key": "recordExists",
+      "passed": false,
+      "detail": "Release federal-core-2026-08-28.1 holds no record for citation key '29cfr1910.132(a)'."
+    },
+    {
+      "key": "checksumMatches",
+      "passed": false,
+      "detail": "No record to compare against."
+    },
+    {
+      "key": "approvalDigestMatches",
+      "passed": true,
+      "detail": "No approval-contract digest supplied; binding recorded from the stored record."
+    },
+    {
+      "key": "reviewerIdentified",
+      "passed": true,
+      "detail": "Reviewer 'insite-product-owner-authorized-regulatory-content-review'."
+    },
+    {
+      "key": "frozenStateEligible",
+      "passed": false,
+      "detail": "Record is frozen as 'undefined': no record. Provenance/validation must be remediated and the release re-finalized before substantive review is meaningful."
+    }
+  ]
+}
+exit=2
+
+### N4 — re-preparing an ACTIVE release is REFUSED (RELEASE_IMMUTABLE); nothing is rewritten
+{
+  "refused": true,
+  "code": "RELEASE_IMMUTABLE",
+  "message": "[RELEASE_IMMUTABLE] Refusing to re-prepare release federal-core-2026-08-28.1: status is 'active'. Releases that have entered the governed lifecycle are immutable; prepare a new releaseId instead.",
+  "detail": {
+    "status": "active"
+  }
+}
+exit=2
+
+### N5 — re-activating the active release is an idempotent no-op
+{
+  "command": "activate",
+  "dryRun": false,
+  "outcome": "already_active",
+  "releaseId": "federal-core-2026-08-28.1",
+  "previousReleaseId": "federal-core-2026-08-28.1",
+  "activeReleaseAfter": "federal-core-2026-08-28.1",
+  "activeManifestAfter": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "actor": "insite-product-owner-authorized-regulatory-content-review"
+}
+exit=0
+
+### N6 — a STALE pointer belief is REFUSED (compare-and-swap under the advisory lock)
+{
+  "command": "activate",
+  "dryRun": false,
+  "refused": true,
+  "releaseId": "federal-core-2026-08-28.1",
+  "refusals": [
+    "STALE_EXPECTED_CURRENT: active release is federal-core-2026-08-28.1, --expected-current says none."
+  ],
+  "pointer": {
+    "expectedCurrentRelease": null,
+    "actualCurrentRelease": "federal-core-2026-08-28.1",
+    "matches": false
+  },
+  "gates": [
+    {
+      "key": "releaseExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 found."
+    },
+    {
+      "key": "statusEligible",
+      "passed": true,
+      "detail": "Status is 'active'; eligible: provisional."
+    },
+    {
+      "key": "manifestChecksumWellFormed",
+      "passed": true,
+      "detail": "Stored manifest checksum present."
+    },
+    {
+      "key": "recordCountPositive",
+      "passed": true,
+      "detail": "Declared recordCount is 64."
+    },
+    {
+      "key": "releaseRecordsPresent",
+      "passed": true,
+      "detail": "64 immutable snapshot records belong to federal-core-2026-08-28.1."
+    },
+    {
+      "key": "recordCountMatches",
+      "passed": true,
+      "detail": "Declared 64, found 64."
+    },
+    {
+      "key": "manifestChecksumVerifies",
+      "passed": true,
+      "detail": "Recomputed manifest matches the checksum stored at finalization."
+    },
+    {
+      "key": "governedRecordsPresent",
+      "passed": true,
+      "detail": "64 of 64 snapshot records are reviewer-approved (0 mechanically validated, 0 unreviewed)."
+    }
+  ]
+}
+exit=2
+
+### N7 — a WRONG manifest belief is REFUSED
+{
+  "command": "activate",
+  "dryRun": false,
+  "refused": true,
+  "releaseId": "federal-core-2026-08-28.1",
+  "refusals": [
+    "MANIFEST_MISMATCH: release holds 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb, --expected-manifest says bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb."
+  ],
+  "pointer": {
+    "expectedCurrentRelease": "federal-core-2026-08-28.1",
+    "actualCurrentRelease": "federal-core-2026-08-28.1",
+    "matches": true
+  },
+  "gates": [
+    {
+      "key": "releaseExists",
+      "passed": true,
+      "detail": "Release federal-core-2026-08-28.1 found."
+    },
+    {
+      "key": "statusEligible",
+      "passed": true,
+      "detail": "Status is 'active'; eligible: provisional."
+    },
+    {
+      "key": "manifestChecksumWellFormed",
+      "passed": true,
+      "detail": "Stored manifest checksum present."
+    },
+    {
+      "key": "recordCountPositive",
+      "passed": true,
+      "detail": "Declared recordCount is 64."
+    },
+    {
+      "key": "releaseRecordsPresent",
+      "passed": true,
+      "detail": "64 immutable snapshot records belong to federal-core-2026-08-28.1."
+    },
+    {
+      "key": "recordCountMatches",
+      "passed": true,
+      "detail": "Declared 64, found 64."
+    },
+    {
+      "key": "manifestChecksumVerifies",
+      "passed": true,
+      "detail": "Recomputed manifest matches the checksum stored at finalization."
+    },
+    {
+      "key": "governedRecordsPresent",
+      "passed": true,
+      "detail": "64 of 64 snapshot records are reviewer-approved (0 mechanically validated, 0 unreviewed)."
+    }
+  ]
+}
+exit=2

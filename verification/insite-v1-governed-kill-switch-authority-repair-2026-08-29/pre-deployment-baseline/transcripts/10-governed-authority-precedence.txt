@@ -1,0 +1,50 @@
+
+-- Phase 7: what each authority state is entitled to claim --
+  [PASS] APPROVED_GOVERNED_CONTENT is reachable — APPROVED_GOVERNED_CONTENT
+  [PASS] APPROVED_GOVERNED_CONTENT: corpusBacked = true — true
+  [PASS] APPROVED_GOVERNED_CONTENT: content is disclosed as GOVERNED_APPROVED — GOVERNED_APPROVED
+  [PASS] APPROVED_GOVERNED_CONTENT: reviewer identity present — insite-product-owner-authorized-regulatory-content-review
+  [PASS] APPROVED_GOVERNED_CONTENT: presentable as reviewed regulation = true
+  [PASS] UNAPPROVED_GOVERNED_CONTENT is reachable — UNAPPROVED_GOVERNED_CONTENT
+  [PASS] UNAPPROVED_GOVERNED_CONTENT: corpusBacked = false — false
+  [PASS] UNAPPROVED_GOVERNED_CONTENT: content is disclosed as HAZLENZ_AUTHORED — HAZLENZ_AUTHORED
+  [PASS] UNAPPROVED_GOVERNED_CONTENT: reviewer identity withheld — null
+  [PASS] UNAPPROVED_GOVERNED_CONTENT: presentable as reviewed regulation = false
+  [PASS] REJECTED_GOVERNED_CONTENT is reachable — REJECTED_GOVERNED_CONTENT
+  [PASS] REJECTED_GOVERNED_CONTENT: corpusBacked = false — false
+  [PASS] REJECTED_GOVERNED_CONTENT: content is disclosed as HAZLENZ_AUTHORED — HAZLENZ_AUTHORED
+  [PASS] REJECTED_GOVERNED_CONTENT: reviewer identity withheld — null
+  [PASS] REJECTED_GOVERNED_CONTENT: presentable as reviewed regulation = false
+  [PASS] LEGACY_CODE_RESIDENT_CONTENT is reachable — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] LEGACY_CODE_RESIDENT_CONTENT: corpusBacked = false — false
+  [PASS] LEGACY_CODE_RESIDENT_CONTENT: content is disclosed as HAZLENZ_AUTHORED — HAZLENZ_AUTHORED
+  [PASS] LEGACY_CODE_RESIDENT_CONTENT: reviewer identity withheld — null
+  [PASS] LEGACY_CODE_RESIDENT_CONTENT: presentable as reviewed regulation = false
+  [PASS] NO_GOVERNED_MATCH is reachable — NO_GOVERNED_MATCH
+  [PASS] NO_GOVERNED_MATCH: corpusBacked = false — false
+  [PASS] NO_GOVERNED_MATCH: content is disclosed as HAZLENZ_AUTHORED — HAZLENZ_AUTHORED
+  [PASS] NO_GOVERNED_MATCH: reviewer identity withheld — null
+  [PASS] NO_GOVERNED_MATCH: presentable as reviewed regulation = false
+  [PASS] exactly ONE of the five states may be presented as reviewed regulation
+
+-- Phase 7: hazard recognition is independent of every governance outcome --
+  [PASS] a life-critical hazard whose citations span four authority states is unchanged as a hazard — 4
+  [PASS] and its citations genuinely resolved to different authority states — APPROVED_GOVERNED_CONTENT,REJECTED_GOVERNED_CONTENT,REJECTED_GOVERNED_CONTENT,NO_GOVERNED_MATCH
+  [PASS] exactly one of them is corpus-backed — the approved member — APPROVED_GOVERNED_CONTENT,REJECTED_GOVERNED_CONTENT,REJECTED_GOVERNED_CONTENT,NO_GOVERNED_MATCH
+
+-- Phase 12: governed retrieval FAILS --
+  [PASS] a governance outage does not suppress the hazard, its severity or its citations
+  [PASS] and it leaves every candidate UNANNOTATED rather than partially trusted — annotated=0
+  [PASS] an unannotated candidate carries NO governance field at all — nothing to misread as approval
+  [PASS] absence is conservative for 29 CFR 1910.147: it reads as non-governed
+  [PASS] absence is conservative for 30 CFR 56.14105: it reads as non-governed
+  [PASS] a partial annotation failure loses no candidate — 2
+  [PASS] every candidate is EITHER fully annotated OR untouched — never half-trusted — unannotated,APPROVED_GOVERNED_CONTENT
+  [PASS] an unreadable active pointer degrades to no release, never to a guess — PIN_LOOKUP_FAILED
+  [PASS] and the resolution says "unknown", not "there is none" — RESOLVER_UNAVAILABLE
+  [PASS] a failed resolution can never make an analysis claim governed provenance — GOVERNED_RESOLVER_UNAVAILABLE
+  [PASS] and it can never deliver governed-verified text — LEGACY_TEXT_UNVERIFIED
+  [PASS] a failed binding lookup resolves to no release rather than to the active pointer — BINDING_LOOKUP_FAILED
+  [PASS] no active-pointer lookup silently replaces a stored inspection release — federal-core-2026-07-30.1 / PINNED_BOUND_RELEASE
+
+AUTHORITY PRECEDENCE + CONTAINMENT: 42/42 checks passed

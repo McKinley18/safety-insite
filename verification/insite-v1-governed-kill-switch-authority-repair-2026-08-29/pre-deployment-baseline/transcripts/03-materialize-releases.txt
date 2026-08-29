@@ -1,0 +1,46 @@
+TARGET: test_kg_predeploy_baseline_20260829
+=== prepare federal-core-2026-08-28.1 ===
+{
+  "command": "prepare",
+  "dryRun": false,
+  "releaseId": "federal-core-2026-08-28.1",
+  "outcome": "prepared",
+  "status": "provisional",
+  "recordCount": 64,
+  "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "pinnedManifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "reproducedPinnedManifest": true,
+  "reviewState": {
+    "unreviewed": 0,
+    "mechanically_validated": 64,
+    "reviewer_approved": 0
+  },
+  "placeholderSourceRecords": 0,
+  "legacyCorpusRowsRead": 0,
+  "verifiedInOnePass": true,
+  "nextStep": "Review and approve records one at a time with: npm run review:release-record -- approve --release <id> --citation <c> --expected-checksum <sha256> --reviewer <id>"
+}
+exit=0
+
+=== prepare federal-core-2026-07-30.1 ===
+{
+  "command": "prepare",
+  "dryRun": false,
+  "releaseId": "federal-core-2026-07-30.1",
+  "outcome": "prepared",
+  "status": "provisional",
+  "recordCount": 35,
+  "manifestChecksum": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+  "pinnedManifest": "14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b",
+  "reproducedPinnedManifest": true,
+  "reviewState": {
+    "unreviewed": 0,
+    "mechanically_validated": 35,
+    "reviewer_approved": 0
+  },
+  "placeholderSourceRecords": 0,
+  "legacyCorpusRowsRead": 0,
+  "verifiedInOnePass": true,
+  "nextStep": "Review and approve records one at a time with: npm run review:release-record -- approve --release <id> --citation <c> --expected-checksum <sha256> --reviewer <id>"
+}
+exit=0

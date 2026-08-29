@@ -1,0 +1,458 @@
+diff --git a/backend/package.json b/backend/package.json
+index 2d92a2d4..26ae0ca7 100644
+--- a/backend/package.json
++++ b/backend/package.json
+@@ -121,6 +121,7 @@
+     "test:hazlenz-standards-jurisdiction": "ts-node src/safescope-v2/tests/hazlenz-standards-jurisdiction-gate.ts",
+     "test:hazlenz-source-authority": "ts-node src/safescope-v2/tests/hazlenz-source-authority-gate.ts",
+     "test:release-identity-immutability": "ts-node src/standards/tests/release-identity-immutability.ts",
++    "test:release-identity-ownership-exemption": "ts-node scripts/test-release-identity-ownership-exemption.ts",
+     "test:finding-governed-authority": "ts-node src/standards/tests/finding-governed-authority.ts",
+     "verify:canonical-report-frontend-contract": "ts-node scripts/verify-canonical-report-frontend-contract.ts",
+     "diagnose:knowledge-release-null-path": "ts-node scripts/diagnose-knowledge-release-null-path.ts",
+@@ -243,7 +244,9 @@
+     "test:l3-condition-state-resolution": "ts-node scripts/test-l3-condition-state-resolution.ts",
+     "test:user-authored-findings": "ts-node scripts/test-user-authored-findings.ts",
+     "test:report-replacement-failure-safety": "ts-node scripts/test-report-replacement-failure-safety.ts",
+-    "retire:superseded-report-snapshots": "ts-node scripts/retire-superseded-report-snapshots.ts"
++    "retire:superseded-report-snapshots": "ts-node scripts/retire-superseded-report-snapshots.ts",
++    "reproduce:governed-kill-switch-defect": "ts-node scripts/reproduce-governed-kill-switch-defect.ts",
++    "test:governed-kill-switch-authority": "ts-node scripts/test-governed-kill-switch-authority.ts"
+   },
+   "dependencies": {
+     "@aws-sdk/client-s3": "^3.1096.0",
+diff --git a/backend/scripts/test-kg4a-default-off.ts b/backend/scripts/test-kg4a-default-off.ts
+index e532d800..0da139e6 100644
+--- a/backend/scripts/test-kg4a-default-off.ts
++++ b/backend/scripts/test-kg4a-default-off.ts
+@@ -139,9 +139,32 @@ async function main() {
+     + `boundary (${[...new Set(forbidden)].join(', ') || 'nothing else'})`);
+   // And the pure config contract must STAY pure -- if it ever gained a governed import, importing
+   // it would silently become a second path to the corpus.
++  //
++  // UPDATED, NOT RELAXED -- 2026-08-29, and the same discipline as the KG-4D note above.
++  //
++  // The property this protects is "importing `cutover-mode.ts` cannot reach governed data". It was
++  // implemented as the blunter "imports nothing at all", which was true and sufficient while the
++  // module stood alone. The governed-cutover emergency stop then had to become part of the
++  // authoritative enablement answer -- a kill switch consulted only DOWNSTREAM of that answer let
++  // an engaged switch still bind a new inspection to the active release and still write
++  // `inspection.knowledgeReleaseId` -- so `cutover-mode.ts` now imports `cutover-kill-switch.ts`.
++  //
++  // The check is therefore made TRANSITIVE rather than removed: exactly one import is permitted,
++  // it must be that module, and THAT module must itself import nothing. A route to the corpus
++  // would need an import somewhere on this chain, and there is nowhere left to put one. Inlining
++  // the environment read instead was rejected as the weaker design: it would duplicate the parse
++  // and leave the in-process RUNTIME LATCH -- the one the circuit breaker pulls with no operator
++  // present -- unable to stop governed authority at all.
++  const PERMITTED_CONFIG_IMPORT = 'standards/cutover/cutover-kill-switch';
+   const configBody = code(readFileSync(join(SRC, 'standards', 'cutover', 'cutover-mode.ts'), 'utf8'));
+-  assert(!/from\s+['"]/.test(configBody),
+-    'HARD: the pure config contract imports NOTHING — it cannot become a second route to governed data');
++  const configImports = [...configBody.matchAll(/from\s+['"]([^'"]+)['"]/g)]
++    .map(m => m[1].replace(/^\.\//, 'standards/cutover/'));
++  assert(configImports.every(mod => mod === PERMITTED_CONFIG_IMPORT),
++    `HARD: the pure config contract imports ONLY the emergency stop (${configImports.join(', ') || 'nothing'})`);
++  const killSwitchBody = code(
++    readFileSync(join(SRC, 'standards', 'cutover', 'cutover-kill-switch.ts'), 'utf8'));
++  assert(!/from\s+['"]/.test(killSwitchBody),
++    'HARD: the emergency stop itself imports NOTHING — the config chain cannot become a route to governed data');
+   assert(seamImporters.length <= 3,
+     `the seam has a small, enumerable set of customer importers (${seamImporters.length}: ${seamImporters.join(', ')})`);
+ 
+diff --git a/backend/src/standards/cutover/cutover-mode.ts b/backend/src/standards/cutover/cutover-mode.ts
+index f178a736..cf21ee64 100644
+--- a/backend/src/standards/cutover/cutover-mode.ts
++++ b/backend/src/standards/cutover/cutover-mode.ts
+@@ -6,7 +6,7 @@
+  * governed retrieval may influence a customer request, and it is built so that the answer is
+  * "no" unless somebody has deliberately and explicitly said otherwise on the SERVER.
+  *
+- * THE THREE RULES THAT SHAPE EVERY LINE BELOW.
++ * THE FOUR RULES THAT SHAPE EVERY LINE BELOW.
+  *
+  *  1. NO MISSING VARIABLE MAY ENABLE CUTOVER. `resolveCutoverMode({})` is `LEGACY`. There is no
+  *     "unset means inherit", no "unset means shadow", no default that is not the safest value.
+@@ -23,12 +23,20 @@
+  *     mistake -- a stray env var, a copy-pasted config, a bad deploy -- cannot expose customers to
+  *     governed retrieval on its own.
+  *
++ *  4. AND ONE BRAKE THAT OVERRIDES BOTH LOCKS (2026-08-29). Locks decide what governance is
++ *     CONFIGURED to do. `GOVERNED_CUTOVER_KILL_SWITCH` decides whether it may happen AT ALL right
++ *     now, and it is consulted HERE -- in the one function that answers "may this customer request
++ *     enter governed mode?" -- rather than by each downstream consumer. See the repair note on
++ *     `resolveCutoverEnablement()` for why that placement is the entire fix.
++ *
+  * WHY MODE LIVES IN THE ENVIRONMENT AND NOT IN THE DATABASE. Rollback (Phase 14) must not require a
+  * database write, a migration, a release de-activation or a corpus redeploy. An environment
+  * variable is the narrowest reversible server-side mechanism available here, and it affects future
+  * requests only -- it cannot rewrite an analysis that already recorded truthful provenance.
+  */
+ 
++import { resolveKillSwitch, type KillSwitchState } from './cutover-kill-switch';
++
+ /**
+  * What governed retrieval is allowed to do to a customer request.
+  *
+@@ -179,7 +187,15 @@ export type CutoverEnablementReason =
+   | 'ACCOUNT_ALLOWLISTED'
+   | 'ORGANIZATION_ALLOWLISTED'
+   | 'NOT_ALLOWLISTED'
+-  | 'NO_PRINCIPAL';
++  | 'NO_PRINCIPAL'
++  /**
++   * The emergency stop is engaged. Deliberately its OWN reason rather than a reuse of
++   * `MODE_IS_LEGACY` or `NO_ALLOWLIST_CONFIGURED`: those two describe a configuration that was
++   * never governed, and reporting either here would tell an operator to go and fix a mode or an
++   * allowlist that is in fact still exactly as they left it. The distinction matters most during
++   * an incident, which is the only time this value is ever produced.
++   */
++  | 'KILL_SWITCH_ENGAGED';
+ 
+ export interface CutoverEnablement {
+   /** The mode this REQUEST runs in, after the enablement boundary is applied. */
+@@ -188,6 +204,24 @@ export interface CutoverEnablement {
+   configuredMode: GovernedCutoverMode;
+   enabled: boolean;
+   reason: CutoverEnablementReason;
++  /**
++   * The emergency stop as an explicit, separately observable fact.
++   *
++   * `killSwitch.engaged === true` ALWAYS implies `enabled === false` and
++   * `effectiveMode === 'LEGACY'`. It is surfaced rather than merely applied so telemetry and the
++   * production-shadow gate can say *the brake is on* without re-reading the environment and
++   * arriving at a second, possibly different, interpretation of it.
++   */
++  killSwitch: KillSwitchState;
++  /**
++   * What enablement WOULD be with the emergency stop released -- i.e. the standing configuration.
++   *
++   * NEVER authoritative for a request. It exists so that "the brake stopped this" and "this was
++   * reconfigured" stay distinguishable: `production-shadow-authorization.ts` reports its
++   * `PRINCIPAL_ELIGIBILITY` lock from this field, which keeps the KG-4C property that the kill
++   * switch *overrides* the locks rather than *closing* them.
++   */
++  standing: { enabled: boolean; reason: CutoverEnablementReason };
+ }
+ 
+ export interface CutoverPrincipal {
+@@ -216,6 +250,13 @@ function parseAllowlist(value: string | undefined): Set<string> {
+  * kind -- a customer cannot turn governed retrieval on for themselves, and cannot turn it on for
+  * anybody else. Enablement is per-principal, so one account being allowlisted says nothing about
+  * any other account, which is the tenancy property Phase 18 verifies.
++ *
++ * AND IT IS THE EMERGENCY STOP'S ONE HOME (2026-08-29). This is the canonical answer to "may this
++ * customer request enter governed mode right now?", so `GOVERNED_CUTOVER_KILL_SWITCH` is applied
++ * here and nowhere downstream. Every consumer that decides durable state -- the controller's
++ * release binding, `GovernedCutoverContext.create()`, the shadow orchestrator, and the persistence
++ * provenance gate in `inspection.service.ts` -- reads this result, so the brake reaches all four by
++ * construction rather than by four remembered checks.
+  */
+ export function resolveCutoverEnablement(
+   principal: CutoverPrincipal | null | undefined,
+@@ -223,27 +264,81 @@ export function resolveCutoverEnablement(
+   configured: CutoverModeResolution = resolveCutoverMode(env),
+ ): CutoverEnablement {
+   const configuredMode = configured.mode;
+-  const off = (reason: CutoverEnablementReason): CutoverEnablement => ({
+-    effectiveMode: 'LEGACY', configuredMode, enabled: false, reason,
+-  });
++  const killSwitch = resolveKillSwitch(env);
++
++  // The STANDING answer: what the configuration says, with the brake ignored. Computed first and
++  // in one place so the brake never has to be woven through the allowlist logic, and so an
++  // operator can always see the configuration they still have.
++  const standing = standingEnablement(principal, env, configuredMode);
+ 
+-  if (configuredMode === 'LEGACY') return off('MODE_IS_LEGACY');
++  // THE EMERGENCY STOP, APPLIED WHERE AUTHORITY IS DECIDED -- the 2026-08-29 repair.
++  //
++  // WHAT WAS WRONG. The switch was consulted only inside `orchestrateShadowRequest()`, which runs
++  // AFTER the controller has already resolved the release binding and is not consulted at all by
++  // `inspection.service.ts`'s provenance gate. Measured with the switch engaged under a valid
++  // GOVERNED_WITH_FALLBACK production configuration, an allowlisted principal still resolved to
++  // `GOVERNED_WITH_FALLBACK / ACCOUNT_ALLOWLISTED`, a NEW inspection was still bound to the active
++  // release, and `inspection.knowledgeReleaseId` was still written -- write-once, so the incident
++  // left durable governed provenance behind it. A brake that stops delivery but not authority is
++  // not an emergency stop.
++  //
++  // WHY IT IS HERE AND NOT AT THE CALL SITES. There must be exactly ONE answer to "may this
++  // customer request enter governed mode right now?", and this function is it: the controller's
++  // release binding, `GovernedCutoverContext.create()`, the orchestrator and the persistence
++  // provenance gate all read it. Adding a kill-switch check to each consumer instead would create
++  // four independent interpretations of one variable, and the defect being repaired is precisely
++  // what happens when one consumer is missed.
++  //
++  // WHY IT IS EVALUATED AFTER `MODE_IS_LEGACY`. On a legacy server there is no governance to stop,
++  // and `MODE_IS_LEGACY` is the more informative answer -- reporting `KILL_SWITCH_ENGAGED` there
++  // would imply a brake is holding back something that was never configured to run. Everywhere
++  // else the brake dominates, including `NOT_ALLOWLISTED` and `NO_PRINCIPAL`, because during an
++  // incident the operator needs to know the brake is the thing they will have to release.
++  //
++  // WHAT IT DELIBERATELY DOES NOT DO. It does not rewrite history. This function decides only
++  // whether a request may become governed FROM NOW ON; an inspection that acquired its
++  // `knowledgeReleaseId` before the stop keeps it, because nothing here reads or clears that column
++  // and `resolveInspectionReleaseBinding()` returns before touching the database.
++  const decided = (
++    effectiveMode: GovernedCutoverMode, enabled: boolean, reason: CutoverEnablementReason,
++  ): CutoverEnablement => ({ effectiveMode, configuredMode, enabled, reason, killSwitch, standing });
++
++  if (configuredMode === 'LEGACY') return decided('LEGACY', false, 'MODE_IS_LEGACY');
++  if (killSwitch.engaged) return decided('LEGACY', false, 'KILL_SWITCH_ENGAGED');
++
++  return decided(
++    standing.enabled ? configuredMode : 'LEGACY', standing.enabled, standing.reason,
++  );
++}
++
++/**
++ * The KG-4A enablement boundary exactly as it was, with the emergency stop factored out.
++ *
++ * Kept as its own function so the brake and the boundary cannot be confused for one another: this
++ * answers "is this principal named in the configuration?", and nothing else.
++ */
++function standingEnablement(
++  principal: CutoverPrincipal | null | undefined,
++  env: Env,
++  configuredMode: GovernedCutoverMode,
++): { enabled: boolean; reason: CutoverEnablementReason } {
++  if (configuredMode === 'LEGACY') return { enabled: false, reason: 'MODE_IS_LEGACY' };
+ 
+   const accounts = parseAllowlist(env[CUTOVER_ALLOWLIST_ENV]);
+   const organizations = parseAllowlist(env[CUTOVER_ORG_ALLOWLIST_ENV]);
+-  if (accounts.size === 0 && organizations.size === 0) return off('NO_ALLOWLIST_CONFIGURED');
++  if (accounts.size === 0 && organizations.size === 0) {
++    return { enabled: false, reason: 'NO_ALLOWLIST_CONFIGURED' };
++  }
+ 
+   const userId = String(principal?.userId || '').trim();
+   const organizationId = String(principal?.organizationId || '').trim();
+-  if (!userId && !organizationId) return off('NO_PRINCIPAL');
++  if (!userId && !organizationId) return { enabled: false, reason: 'NO_PRINCIPAL' };
+ 
+-  if (userId && accounts.has(userId)) {
+-    return { effectiveMode: configuredMode, configuredMode, enabled: true, reason: 'ACCOUNT_ALLOWLISTED' };
+-  }
++  if (userId && accounts.has(userId)) return { enabled: true, reason: 'ACCOUNT_ALLOWLISTED' };
+   if (organizationId && organizations.has(organizationId)) {
+-    return { effectiveMode: configuredMode, configuredMode, enabled: true, reason: 'ORGANIZATION_ALLOWLISTED' };
++    return { enabled: true, reason: 'ORGANIZATION_ALLOWLISTED' };
+   }
+-  return off('NOT_ALLOWLISTED');
++  return { enabled: false, reason: 'NOT_ALLOWLISTED' };
+ }
+ 
+ /**
+@@ -254,6 +349,12 @@ export function resolveCutoverEnablement(
+  * "fail startup according to established configuration conventions" branch of the KG-4A contract.
+  */
+ export function assertCutoverConfigurationSafeForProduction(env: Env = process.env): void {
++  // THE EMERGENCY STOP IS DELIBERATELY NOT CONSULTED HERE, and that is a decision rather than an
++  // omission. The kill switch stops governance from RUNNING; it is not consent to BOOT with a
++  // configuration nobody acknowledged or a mode value nobody recognises. If engaging the brake
++  // suppressed these refusals, an operator could quiet a malformed production configuration by
++  // pulling the brake, and the misconfiguration would then go live the moment the brake was
++  // released -- which is exactly the moment nobody is looking for it.
+   if (String(env.NODE_ENV || '').trim() !== 'production') return;
+   const resolution = resolveCutoverMode(env);
+   if (resolution.productionGuardTriggered) {
+diff --git a/backend/src/standards/cutover/production-shadow-authorization.ts b/backend/src/standards/cutover/production-shadow-authorization.ts
+index 24b660a1..51fa476b 100644
+--- a/backend/src/standards/cutover/production-shadow-authorization.ts
++++ b/backend/src/standards/cutover/production-shadow-authorization.ts
+@@ -23,8 +23,8 @@
+  * authenticated, JWT-derived principal that KG-4A already established. There is no body, query,
+  * header or param path into this module -- asserted by test, not by convention.
+  *
+- * THIS MODULE IMPORTS ONLY `cutover-mode`. Like `cutover-mode.ts` it is deliberately close to
+- * dependency-free, so it cannot become a second route into governed data.
++ * THIS MODULE IMPORTS ONLY `cutover-mode` AND `cutover-kill-switch`. Like both of those it is
++ * deliberately close to dependency-free, so it cannot become a second route into governed data.
+  */
+ 
+ import { createHash } from 'crypto';
+@@ -33,6 +33,11 @@ import {
+   CUTOVER_ALLOWLIST_ENV, CUTOVER_ORG_ALLOWLIST_ENV, CUTOVER_PRODUCTION_ACK_ENV,
+   type CutoverModeResolution, type CutoverPrincipal, type GovernedCutoverMode,
+ } from './cutover-mode';
++import {
++  CUTOVER_KILL_SWITCH_ENV,
++  engageRuntimeKillSwitch, resetRuntimeKillSwitch, resolveKillSwitch,
++  type KillSwitchSource, type KillSwitchState,
++} from './cutover-kill-switch';
+ 
+ type Env = Record<string, string | undefined>;
+ 
+@@ -40,7 +45,12 @@ type Env = Record<string, string | undefined>;
+ 
+ export const PRODUCTION_SHADOW_ACK_ENV = 'GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK';
+ export const SHADOW_STAGE_ENV = 'GOVERNED_CUTOVER_SHADOW_STAGE';
+-export const SHADOW_KILL_SWITCH_ENV = 'GOVERNED_CUTOVER_KILL_SWITCH';
++/**
++ * Retained under its KG-4C name because every existing suite and runbook refers to it. It is now
++ * an alias for the canonical `CUTOVER_KILL_SWITCH_ENV`: the variable stops ALL governed cutover,
++ * not shadow alone, so the canonical name no longer says `SHADOW`.
++ */
++export const SHADOW_KILL_SWITCH_ENV = CUTOVER_KILL_SWITCH_ENV;
+ export const SHADOW_COHORT_BPS_ENV = 'GOVERNED_CUTOVER_SHADOW_COHORT_BPS';
+ export const SHADOW_COHORT_SALT_ENV = 'GOVERNED_CUTOVER_SHADOW_COHORT_SALT';
+ 
+@@ -227,70 +237,20 @@ export function resolveShadowStage(env: Env = process.env): StageResolution {
+ // ------------------------------------------------------------------ Section 3: the kill switch
+ 
+ /**
+- * The in-process latch. Set by the circuit breaker (or by an operator-triggered path in a future
+- * slice) and checked on every context creation, so it takes effect on the NEXT eligible request
+- * with no restart, no redeploy and no database write.
++ * MOVED, NOT CHANGED -- 2026-08-29.
+  *
+- * Module-level mutable state is used HERE and nowhere else in the cutover subsystem, and the
+- * exception is deliberate: a kill switch that is scoped per request cannot stop anything. Its only
+- * possible transitions are off -> on (any code path) and on -> off (explicit operator reset), so it
+- * can never make shadow *more* active than configuration already permits.
+- */
+-let runtimeKillSwitch: { engaged: boolean; reason: string | null; engagedAt: string | null } = {
+-  engaged: false, reason: null, engagedAt: null,
+-};
+-
+-export type KillSwitchSource = 'NONE' | 'ENVIRONMENT' | 'RUNTIME_LATCH';
+-
+-export interface KillSwitchState {
+-  engaged: boolean;
+-  source: KillSwitchSource;
+-  /** Categorical reason. Never customer data. */
+-  reason: string | null;
+-  engagedAt: string | null;
+-}
+-
+-/**
+- * Engages the runtime kill switch. Idempotent: a second call does not overwrite the first reason,
+- * because the FIRST cause is the one an operator needs during an incident.
+- */
+-export function engageRuntimeKillSwitch(reason: string): KillSwitchState {
+-  if (!runtimeKillSwitch.engaged) {
+-    runtimeKillSwitch = {
+-      engaged: true,
+-      reason: String(reason || 'UNSPECIFIED').slice(0, 120),
+-      engagedAt: new Date().toISOString(),
+-    };
+-  }
+-  return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
+-}
+-
+-/** Explicit operator reset. Separate from engaging so a reset is never accidental. */
+-export function resetRuntimeKillSwitch(): void {
+-  runtimeKillSwitch = { engaged: false, reason: null, engagedAt: null };
+-}
+-
+-/**
+- * Resolves the kill switch from BOTH sources.
++ * The emergency stop now lives in `cutover-kill-switch.ts`, one layer BELOW `cutover-mode.ts`, so
++ * that the authoritative enablement resolver can consult it. It could not while it lived here:
++ * this module imports `cutover-mode.ts`, so a consultation in the other direction would have been
++ * a cycle -- which is precisely why the switch used to stop governed DELIVERY without stopping
++ * governed AUTHORITY (release binding and `knowledgeReleaseId` assignment).
+  *
+- * PERMISSIVE ON PURPOSE. Any non-empty, non-whitespace value of the environment variable engages
+- * it. `'engaged'`, `'true'`, `'1'`, `'yes'`, `'STOP'`, `'please stop'` -- all engage. This is the
+- * exact opposite of the acknowledgement rule above, and the asymmetry is the point: locks must not
+- * open by accident, brakes must not fail to bite.
++ * Re-exported under the original names, including `SHADOW_KILL_SWITCH_ENV`, so every existing
++ * import site and verification suite keeps working against the SAME runtime latch. There is one
++ * latch, not two: these are re-exports of the extracted module's bindings, not a second copy.
+  */
+-export function resolveKillSwitch(env: Env = process.env): KillSwitchState {
+-  const raw = env[SHADOW_KILL_SWITCH_ENV];
+-  if (raw !== undefined && raw !== null && String(raw).trim() !== '') {
+-    return {
+-      engaged: true, source: 'ENVIRONMENT',
+-      reason: 'ENV_KILL_SWITCH_SET', engagedAt: null,
+-    };
+-  }
+-  if (runtimeKillSwitch.engaged) {
+-    return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
+-  }
+-  return { engaged: false, source: 'NONE', reason: null, engagedAt: null };
+-}
++export { engageRuntimeKillSwitch, resetRuntimeKillSwitch, resolveKillSwitch };
++export type { KillSwitchSource, KillSwitchState };
+ 
+ // ------------------------------------------------------------------ Section 4: cohort sampling
+ 
+@@ -429,10 +389,18 @@ export function resolveProductionShadowAuthorization(input: {
+   const namedPrincipals = countNamedPrincipals(env);
+   const withinStageLimit = namedPrincipals <= stageResolution.constraints.maxNamedPrincipals;
+ 
++  // `standing`, not `enabled`, and deliberately so -- 2026-08-29.
++  //
++  // Since the emergency stop became part of the canonical enablement answer, `enablement.enabled`
++  // is false whenever the brake is on. Reading it here would report `PRINCIPAL_ELIGIBILITY` as a
++  // CLOSED lock during an incident, which would tell an operator their allowlist had changed when
++  // it had not. `standing` is the configuration with the brake released, so the KG-4C property
++  // holds unchanged: the kill switch OVERRIDES the locks (it is refused first, below) rather than
++  // closing them.
+   const principalEligible =
+     stageResolution.stage !== 'STAGE_0_DISABLED' &&
+     withinStageLimit &&
+-    (enablement.enabled || Boolean(cohort?.included));
++    (enablement.standing.enabled || Boolean(cohort?.included));
+ 
+   const locks: Record<ProductionShadowLock, boolean> = {
+     SERVER_MODE: configured.mode === 'SHADOW',
+diff --git a/backend/src/standards/cutover/shadow-request-orchestration.ts b/backend/src/standards/cutover/shadow-request-orchestration.ts
+index 2b0b4c72..e0dafc0c 100644
+--- a/backend/src/standards/cutover/shadow-request-orchestration.ts
++++ b/backend/src/standards/cutover/shadow-request-orchestration.ts
+@@ -223,6 +223,32 @@ export async function orchestrateShadowRequest<T>(
+     ...over,
+   });
+ 
++  // ---------------------------------------------------------------- disabling overrides
++  //
++  // THE EMERGENCY STOP, now read from the CANONICAL enablement answer -- 2026-08-29.
++  //
++  // This branch used to sit below the legacy fast path and re-read the environment itself. That
++  // was the visible half of a structural defect: `resolveCutoverEnablement()` did not know about
++  // the kill switch, so the switch stopped governed DELIVERY here while the controller's release
++  // binding and the persistence provenance gate -- both of which read `resolveCutoverEnablement()`
++  // directly, and neither of which passes through this function -- carried on writing durable
++  // governed state. The brake now lives in the resolver, so `effectiveMode` is already LEGACY here.
++  //
++  // It is therefore evaluated BEFORE the legacy fast path, and it must be: without this branch a
++  // stopped governed request would be indistinguishable from an ordinary legacy one and would
++  // report `LEGACY_NO_CONTEXT`, losing the operational signal that governance is being held back.
++  // `standing.enabled` is what separates the two -- it is true only for a request the standing
++  // configuration WOULD have governed.
++  if (enablement.killSwitch.engaged && enablement.standing.enabled) {
++    shadowMetrics.increment('shadow_eligible_requests');
++    shadowMetrics.increment('shadow_skipped');
++    return base<T>({
++      payload: await input.runPipeline(null, { pristine: true }),
++      outcome: 'SHADOW_SKIPPED', skipReason: 'KILL_SWITCH_ENGAGED',
++      effectiveMode: 'LEGACY',
++    });
++  }
++
+   // ---------------------------------------------------------------- the legacy fast path
+   //
+   // Nothing in this module allocates, queries or measures for a LEGACY request. The context is not
+@@ -235,19 +261,6 @@ export async function orchestrateShadowRequest<T>(
+ 
+   shadowMetrics.increment('shadow_eligible_requests');
+ 
+-  // ---------------------------------------------------------------- disabling overrides
+-  //
+-  // Evaluated before anything else that could execute governed code, and unconditionally. A kill
+-  // switch that only applies once every other check has passed is not a kill switch.
+-  if (killSwitch.engaged) {
+-    shadowMetrics.increment('shadow_skipped');
+-    return base<T>({
+-      payload: await input.runPipeline(null, { pristine: true }),
+-      outcome: 'SHADOW_SKIPPED', skipReason: 'KILL_SWITCH_ENGAGED',
+-      effectiveMode: 'LEGACY',
+-    });
+-  }
+-
+   const standingVerdict = breakerWindow.evaluate();
+   if (standingVerdict.action === 'STOP_SHADOW') {
+     shadowMetrics.increment('shadow_skipped');

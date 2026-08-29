@@ -1,0 +1,4 @@
+Error: POST /auth/register: expected 201, got 429: {"statusCode":429,"message":"ThrottlerException: Too Many Requests"}
+    at call (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-actionable-workflow-verification.ts:43:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (/Users/mckinley/Desktop/Safety_InSite/backend/src/safescope-v2/tests/hazlenz-actionable-workflow-verification.ts:109:3)

@@ -1,0 +1,25 @@
+PASS two distinct disposable accounts created
+PASS each account has its own site
+PASS C. the first create succeeds
+PASS C. replaying the identifier returns the SAME inspection
+PASS C. ten CONCURRENT replays all resolve to the one inspection
+PASS C. no concurrent replay surfaced the unique-index rejection as an error
+PASS B. a DIFFERENT identifier creates a distinct inspection despite identical title, site and time
+PASS D. USER_B replaying USER_A's identifier gets a NEW inspection, never USER_A's
+PASS D. USER_B's inspection is scoped to USER_B's own site
+PASS D. USER_A still cannot read USER_B's inspection (404)
+PASS creates carrying NO identifier remain unconstrained and independent (backward compatible)
+PASS an identifier outside the accepted pattern is rejected (400)
+PASS E. the first observation create succeeds
+PASS E. replaying the observation identifier returns the SAME observation
+PASS E. eight CONCURRENT observation replays all resolve to the one observation
+PASS E. a different observation identifier creates a distinct observation despite identical text
+PASS E. the server holds exactly two observations — one per identifier, not one per request
+PASS F. the first evidence upload succeeds
+PASS F. replaying the photo identifier returns the SAME evidence object
+PASS F. a different photo identifier stores a distinct evidence object even for identical bytes
+PASS F. an upload carrying no identifier still works and is independent (backward compatible)
+PASS D. USER_B cannot append an observation to USER_A's inspection, identifier or not
+PASS D. USER_B cannot upload evidence to USER_A's inspection, identifier or not
+
+Offline sync idempotency: 23 passed, 0 failed — identity, not similarity, decides.

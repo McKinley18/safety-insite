@@ -1,0 +1,92 @@
+(node:92426) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "neondb",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+TARGET PROOF OK — database=neondb, latest=InspectionKnowledgeReleaseBinding1800000018000, ledger rows observed=50 (observed, not asserted; the production ledger is baselined so its row count is not the repository migration position).
+
+About to run, against the target proven above:
+  npm run release -- prepare --release-id federal-core-2026-08-28.1
+
+
+> safety-insite-backend@1.0.0 release
+> ts-node scripts/regulatory-release.ts prepare --release-id federal-core-2026-08-28.1
+
+(node:92452) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "command": "prepare",
+  "dryRun": false,
+  "releaseId": "federal-core-2026-08-28.1",
+  "outcome": "prepared",
+  "status": "provisional",
+  "recordCount": 64,
+  "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "pinnedManifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+  "reproducedPinnedManifest": true,
+  "reviewState": {
+    "unreviewed": 0,
+    "mechanically_validated": 64,
+    "reviewer_approved": 0
+  },
+  "placeholderSourceRecords": 0,
+  "legacyCorpusRowsRead": 0,
+  "verifiedInOnePass": true,
+  "nextStep": "Review and approve records one at a time with: npm run review:release-record -- approve --release <id> --citation <c> --expected-checksum <sha256> --reviewer <id>"
+}
+exit=0
+
+=== POST-MATERIALIZATION VERIFICATION (read-only) ===
+(node:92474) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "releaseId": "federal-core-2026-08-28.1",
+    "status": "provisional",
+    "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "recordCount": 64,
+    "snapshot_records": 64,
+    "manifest_matches_pin": true,
+    "rejected_records_included": 0,
+    "decision_rows_so_far": 0
+  }
+]
+
+REQUIRED: recordCount = 64, manifest_matches_pin = true,
+          rejected_records_included = 0, decision_rows_so_far = 0, status = provisional.
+If any differs: STOP BEFORE APPROVAL REPLAY.

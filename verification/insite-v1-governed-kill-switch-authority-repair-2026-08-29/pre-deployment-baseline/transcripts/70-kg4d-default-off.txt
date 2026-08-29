@@ -1,0 +1,24 @@
+
+  mutating-suite inventory (20 suites):
+    OPERATOR CMD   regulatory-release.ts
+    GUARDED        test-approval-contract.ts
+    GUARDED        test-governed-corpus-matrix.ts
+    GUARDED        test-kg3d-corpus-remediation.ts
+    SELF-CONTAINED test-kg3f-shadow-invariance.ts
+    SELF-CONTAINED test-kg4a-governed-resolution.ts
+    SELF-CONTAINED test-kg4b-shadow-adversarial.ts
+    SELF-CONTAINED test-kg4b-shadow-determinism.ts
+    GUARDED        test-kg4c-db-ownership.ts
+    SELF-CONTAINED test-kg4d-db-ownership-blackbox.ts
+    GUARDED        test-kg4d-default-off.ts
+    GUARDED        test-kg5b-release-construction.ts
+    GUARDED        test-kg5c-customer-path-equivalence.ts
+    GUARDED        test-kg5c-goldset-customer-path.ts
+    GUARDED        test-regulatory-release-lifecycle.ts
+    GUARDED        test-release-activation-acceptance.ts
+    GUARDED        test-release-integrity-and-approval.ts
+    GUARDED        test-reviewer-approval.ts
+    GUARDED        test-standards-backing-contract.ts
+    GUARDED        verify-release-scoped-customer-workflow.ts
+
+kg4d-default-off: 121 passed, 0 failed

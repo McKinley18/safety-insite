@@ -1,0 +1,11 @@
+
+kg4e-report-field-exclusion: 9 passed, 0 failed
+  ok  real frozen report snapshots exist to attack (5)
+  ok  the frozen report snapshot DOES carry knowledgeReleaseId -- so its absence from the PDF is exclusion, not absence
+  ok  the frozen report snapshot DOES carry a knowledgeProvenance block
+  ok  every finding in the frozen snapshot carries NULL provenance (SHADOW obligation, at report time)
+  ok  the generator is deterministic once CreationDate/ModDate/ID are normalised -- so an inequality below is the poison
+  ok  HARD: 5/5 reports are BYTE-IDENTICAL after poisoning with 38 governed/shadow/telemetry fields at every object depth
+  ok  the canary had at least one finding to mutate (1)
+  ok  CANARY: mutating a field the renderer DOES read changes the PDF -- the byte comparison is live
+  ok  CANARY: changing the site name changes the PDF (cover, summary and running header are live)

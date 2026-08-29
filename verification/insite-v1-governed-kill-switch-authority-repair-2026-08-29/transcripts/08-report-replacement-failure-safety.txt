@@ -1,0 +1,14 @@
+/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-report-replacement-failure-safety.ts:35
+if (!databaseUrl) throw new Error('DATABASE_URL is required.');
+                        ^
+Error: DATABASE_URL is required.
+    at Object.<anonymous> (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-report-replacement-failure-safety.ts:35:25)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module.m._compile (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at phase4 (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/mckinley/Desktop/Safety_InSite/backend/node_modules/ts-node/src/bin.ts:95:10)

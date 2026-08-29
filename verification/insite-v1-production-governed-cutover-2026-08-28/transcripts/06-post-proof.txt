@@ -1,0 +1,239 @@
+(node:98462) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "neondb",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+TARGET PROOF OK — database=neondb, latest=InspectionKnowledgeReleaseBinding1800000018000, ledger rows observed=50 (observed, not asserted; the production ledger is baselined so its row count is not the repository migration position).
+
+=== RELEASE ===
+(node:98472) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "releaseId": "federal-core-2026-08-28.1",
+    "status": "active",
+    "recordCount": 64,
+    "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "parentReleaseId": null,
+    "activatedAt": "2026-08-29T00:04:00.696Z",
+    "deactivatedAt": null,
+    "manifest_is_pinned": true,
+    "is_active": true,
+    "snapshot_records": 64
+  }
+]
+
+=== ACTIVE POINTER (exactly one, or none) ===
+(node:98475) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "releaseId": "federal-core-2026-08-28.1",
+    "manifestChecksum": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "activatedAt": "2026-08-29T00:04:00.696Z"
+  }
+]
+
+=== AUTHORITY: approvals bound to the exact reviewed checksums ===
+(node:98478) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "snapshot_records": 64,
+    "approved": 64,
+    "not_approved": 0,
+    "records_without_a_checksum_bound_decision": 0
+  }
+]
+
+=== AUTHORITY: reviewer identity actually recorded ===
+(node:98481) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "reviewerId": "insite-product-owner-authorized-regulatory-content-review",
+    "reviewerRole": "regulatory-content-reviewer (non-attorney, non-agency)",
+    "decision": "approved",
+    "rows": 64
+  }
+]
+
+=== AUTHORITY: the 8 rejected records — expected 0 rows everywhere ===
+(node:98484) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[]
+
+=== INSPECTIONS: no historical rebinding, no back-fill ===
+(node:98487) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "inspection_rows": 12,
+    "inspections_bound_to_a_release": 0,
+    "inspection_findings_rows": 3,
+    "standards_master_rows": 2390
+  }
+]
+
+=== GOVERNANCE AUDIT TRAIL (summary) ===
+(node:98490) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "event": "record_approval",
+    "outcome": "succeeded",
+    "actor": "insite-product-owner-authorized-regulatory-content-review",
+    "toReleaseId": "federal-core-2026-08-28.1",
+    "events": 64,
+    "first_at": "2026-08-28T23:51:28.041Z",
+    "last_at": "2026-08-28T23:54:19.235Z"
+  },
+  {
+    "event": "activation",
+    "outcome": "succeeded",
+    "actor": "insite-product-owner-authorized-regulatory-content-review",
+    "toReleaseId": "federal-core-2026-08-28.1",
+    "events": 1,
+    "first_at": "2026-08-29T00:04:00.696Z",
+    "last_at": "2026-08-29T00:04:00.696Z"
+  }
+]
+
+=== GOVERNANCE AUDIT TRAIL (pointer moves, in full) ===
+(node:98493) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "event": "activation",
+    "outcome": "succeeded",
+    "fromReleaseId": null,
+    "toReleaseId": "federal-core-2026-08-28.1",
+    "actor": "insite-product-owner-authorized-regulatory-content-review",
+    "reason": "InSite v1.0 bounded production Knowledge Governance cutover, product-owner authorized 2026-08-28. Control-plane activation only; customer governed mode and allowlist are NOT enabled by this step.",
+    "details": {
+      "gates": [
+        {
+          "key": "releaseExists",
+          "detail": "Release federal-core-2026-08-28.1 found.",
+          "passed": true
+        },
+        {
+          "key": "statusEligible",
+          "detail": "Status is 'provisional'; eligible: provisional.",
+          "passed": true
+        },
+        {
+          "key": "manifestChecksumWellFormed",
+          "detail": "Stored manifest checksum present.",
+          "passed": true
+        },
+        {
+          "key": "recordCountPositive",
+          "detail": "Declared recordCount is 64.",
+          "passed": true
+        },
+        {
+          "key": "releaseRecordsPresent",
+          "detail": "64 immutable snapshot records belong to federal-core-2026-08-28.1.",
+          "passed": true
+        },
+        {
+          "key": "recordCountMatches",
+          "detail": "Declared 64, found 64.",
+          "passed": true
+        },
+        {
+          "key": "manifestChecksumVerifies",
+          "detail": "Recomputed manifest matches the checksum stored at finalization.",
+          "passed": true
+        },
+        {
+          "key": "governedRecordsPresent",
+          "detail": "64 of 64 snapshot records are reviewer-approved (0 mechanically validated, 0 unreviewed).",
+          "passed": true
+        }
+      ],
+      "retiredStatus": "superseded"
+    },
+    "createdAt": "2026-08-29T00:04:00.696Z"
+  }
+]
+
+=== RUNTIME (public, read-only) ===

@@ -1,0 +1,159 @@
+
+== 1. the emergency stop is one variable, one module, one latch ==
+  [PASS] the canonical env var name is unchanged by the move — expected GOVERNED_CUTOVER_KILL_SWITCH, got GOVERNED_CUTOVER_KILL_SWITCH
+  [PASS] the KG-4C name SHADOW_KILL_SWITCH_ENV is an alias, not a second variable — expected GOVERNED_CUTOVER_KILL_SWITCH, got GOVERNED_CUTOVER_KILL_SWITCH
+  [PASS] the re-export is the SAME function, so there is one interpretation of the variable — expected function resolveKillSwitch(env = process.env) {
+    const raw = env[exports.CUTOVER_KILL_SWITCH_ENV];
+    if (raw !== undefined && raw !== null && String(raw).trim() !== '') {
+        return {
+            engaged: true, source: 'ENVIRONMENT',
+            reason: 'ENV_KILL_SWITCH_SET', engagedAt: null,
+        };
+    }
+    if (runtimeKillSwitch.engaged) {
+        return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
+    }
+    return { engaged: false, source: 'NONE', reason: null, engagedAt: null };
+}, got function resolveKillSwitch(env = process.env) {
+    const raw = env[exports.CUTOVER_KILL_SWITCH_ENV];
+    if (raw !== undefined && raw !== null && String(raw).trim() !== '') {
+        return {
+            engaged: true, source: 'ENVIRONMENT',
+            reason: 'ENV_KILL_SWITCH_SET', engagedAt: null,
+        };
+    }
+    if (runtimeKillSwitch.engaged) {
+        return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
+    }
+    return { engaged: false, source: 'NONE', reason: null, engagedAt: null };
+}
+  [PASS] the re-export is the SAME reset, so one reset clears the one latch — expected function resetRuntimeKillSwitch() {
+    runtimeKillSwitch = { engaged: false, reason: null, engagedAt: null };
+}, got function resetRuntimeKillSwitch() {
+    runtimeKillSwitch = { engaged: false, reason: null, engagedAt: null };
+}
+  [PASS] a brake must not fail to bite: 'engaged' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'true' engages the emergency stop
+  [PASS] a brake must not fail to bite: '1' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'yes' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'STOP' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'off' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'false' engages the emergency stop
+  [PASS] a brake must not fail to bite: '0' engages the emergency stop
+  [PASS] a brake must not fail to bite: 'please stop' engages the emergency stop
+  [PASS] an absent/blank value does NOT engage the stop ("")
+  [PASS] an absent/blank value does NOT engage the stop ("   ")
+  [PASS] an absent/blank value does NOT engage the stop (undefined)
+
+== 2. one canonical answer to "may this request enter governed mode right now?" ==
+  [PASS] CONTROL: the allowlisted principal IS governed with the stop released — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] CONTROL: enablement names the account allowlist — expected ACCOUNT_ALLOWLISTED, got ACCOUNT_ALLOWLISTED
+  [PASS] CONTROL: the brake is reported as released — expected false, got false
+  [PASS] CONTROL: standing configuration enables this principal — expected true, got true
+  [PASS] CONTRACT 1: eligibility resolves to LEGACY — expected LEGACY, got LEGACY
+  [PASS] CONTRACT 1: eligibility resolves to NOT enabled — expected false, got false
+  [PASS] the reason names the emergency stop rather than a configuration fact that did not change — expected KILL_SWITCH_ENGAGED, got KILL_SWITCH_ENGAGED
+  [PASS] the CONFIGURED mode is preserved — the brake is an override, not a reconfiguration — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] the standing configuration still names this principal, so releasing the brake restores it — expected true, got true
+  [PASS] the standing reason is preserved for the operator — expected ACCOUNT_ALLOWLISTED, got ACCOUNT_ALLOWLISTED
+  [PASS] the brake is reported as engaged — expected true, got true
+  [PASS] the engaged brake names its source — expected ENVIRONMENT, got ENVIRONMENT
+  [PASS] CONTRACT 2/5: governed content cannot influence customer output under the stop — expected false, got false
+  [PASS] CONTROL: governed before the latch is pulled — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] the RUNTIME latch stops governed authority with no environment change — expected LEGACY, got LEGACY
+  [PASS] the runtime latch reports the same reason — expected KILL_SWITCH_ENGAGED, got KILL_SWITCH_ENGAGED
+  [PASS] the runtime latch names itself as the source — expected RUNTIME_LATCH, got RUNTIME_LATCH
+  [PASS] an EXPLICIT reset restores the configured bounded rollout — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+
+== 3. inspection binding and knowledgeReleaseId assignment ==
+  [PASS] A: governed eligibility is true with the stop released — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] A: the active release resolves for a new inspection — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] A: the binding names the active release — expected BOUND_TO_ACTIVE_RELEASE, got BOUND_TO_ACTIVE_RELEASE
+  [PASS] A: the inspection acquires its release — expected true, got true
+  [PASS] A: the new inspection RECEIVES the governed release id — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] B: governed eligibility is inactive under the stop — expected LEGACY, got LEGACY
+  [PASS] CONTRACT 3: the active release is NOT used for new binding — expected null, got null
+  [PASS] B: the binding reports governed mode inactive — expected GOVERNED_MODE_INACTIVE, got GOVERNED_MODE_INACTIVE
+  [PASS] B: nothing is newly bound — expected false, got false
+  [PASS] CONTRACT 4: knowledgeReleaseId remains NULL — expected null, got null
+  [PASS] CONTRACT 4: no durable write is attempted — expected 0, got 0
+  [PASS] CONTRACT 2: the safe inactive result is reached BEFORE any active-release lookup — expected 0, got 0
+  [PASS] C: an already-bound inspection RETAINS its existing knowledgeReleaseId under the stop — expected federal-core-2026-07-30.1, got federal-core-2026-07-30.1
+  [PASS] C: no clearing, backfill or rebinding occurs — the brake does not falsify history — expected 0, got 0
+  [PASS] C: the stopped request itself is not governed by the historical release either — expected null, got null
+  [PASS] C: the persisted binding remains READABLE — provenance history is intact, not erased — expected federal-core-2026-07-30.1, got federal-core-2026-07-30.1
+  [PASS] D: nothing is bound while the stop is engaged — expected null, got null
+  [PASS] CONTRACT 9: releasing the stop restores the configured bounded rollout — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] D: binding resumes against the active release — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] D: a new inspection binds again — no configuration corruption — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] E: a non-allowlisted account remains legacy with the stop released — expected LEGACY, got LEGACY
+  [PASS] E: a non-allowlisted account reports its own unchanged reason — expected NOT_ALLOWLISTED, got NOT_ALLOWLISTED
+  [PASS] E: a non-allowlisted account remains legacy with the stop engaged — expected LEGACY, got LEGACY
+  [PASS] E: a non-allowlisted account keeps its configuration reason visible in `standing` — expected NOT_ALLOWLISTED, got NOT_ALLOWLISTED
+  [PASS] F: no principal remains legacy with the stop released — expected LEGACY, got LEGACY
+  [PASS] F: no principal reports its own unchanged reason — expected NO_PRINCIPAL, got NO_PRINCIPAL
+  [PASS] F: no principal remains legacy with the stop engaged — expected LEGACY, got LEGACY
+  [PASS] F: no principal keeps its configuration reason visible in `standing` — expected NO_PRINCIPAL, got NO_PRINCIPAL
+  [PASS] G: no allowlist configured remains legacy with the stop released — expected LEGACY, got LEGACY
+  [PASS] G: no allowlist configured reports its own unchanged reason — expected NO_ALLOWLIST_CONFIGURED, got NO_ALLOWLIST_CONFIGURED
+  [PASS] G: no allowlist configured remains legacy with the stop engaged — expected LEGACY, got LEGACY
+  [PASS] G: no allowlist configured keeps its configuration reason visible in `standing` — expected NO_ALLOWLIST_CONFIGURED, got NO_ALLOWLIST_CONFIGURED
+  [PASS] CONTROL: the organization allowlist enables a principal — expected ORGANIZATION_ALLOWLISTED, got ORGANIZATION_ALLOWLISTED
+  [PASS] the stop closes the ORGANIZATION door as well as the account door — expected LEGACY, got LEGACY
+
+== 4. governed retrieval / customer authority ==
+  [PASS] CONTROL: a governed context exists with the stop released
+  [PASS] CONTROL: the context runs the configured mode — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] CONTROL: retrieval pins the bound release — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] CONTROL: a reviewer-approved member IS reachable as governed authority when governance runs — expected APPROVED_EXACT, got APPROVED_EXACT
+  [PASS] a reviewer-REJECTED record is not governed authority even with governance running — UNAPPROVED_RECORD
+  [PASS] a rejected record supplies no governed text — expected null, got null
+  [PASS] CONTRACT 5: no governed context is created, so release-scoped retrieval is not selected — expected null, got null
+  [PASS] CONTRACT 5: no release is pinned, so an active release does not become customer authority — expected null, got null
+  [PASS] the pin reports the legacy mode the stop produced — expected MODE_IS_LEGACY, got MODE_IS_LEGACY
+  [PASS] the rejected record remains unreachable as governed authority under the stop — NO_ACTIVE_RELEASE
+
+== 5. governed / shadow delivery still stops, and says why ==
+  [PASS] CONTRACT 6: governed delivery is skipped under the stop — expected SHADOW_SKIPPED, got SHADOW_SKIPPED
+  [PASS] the skip NAMES the emergency stop rather than reporting an ordinary legacy request — expected KILL_SWITCH_ENGAGED, got KILL_SWITCH_ENGAGED
+  [PASS] the request runs legacy — expected LEGACY, got LEGACY
+  [PASS] no governed context reaches the customer pipeline
+  [PASS] the customer path stays available — the brake is not an outage
+  [PASS] a LEGACY server with the switch set reports an ordinary legacy request, not a suppression — expected LEGACY_NO_CONTEXT, got LEGACY_NO_CONTEXT
+  [PASS] no skip reason is invented for a request nothing was holding back — expected null, got null
+  [PASS] CONTROL: the same configuration DOES deliver governed output with the stop released — expected GOVERNED_DELIVERY, got GOVERNED_DELIVERY
+  [PASS] CONTROL: the governed context reaches the pipeline when governance runs
+  [PASS] the stop refuses a fully authorized shadow configuration — expected false, got false
+  [PASS] the refusal names the stop — expected KILL_SWITCH_ENGAGED, got KILL_SWITCH_ENGAGED
+  [PASS] the stop leaves EVERY lock open — it is an override, not a reconfiguration
+
+== 6. boot and configuration safety are unchanged by the brake ==
+  [PASS] the legal mode set is exactly the four frozen values — expected LEGACY,SHADOW,GOVERNED_WITH_FALLBACK,GOVERNED_STRICT, got LEGACY,SHADOW,GOVERNED_WITH_FALLBACK,GOVERNED_STRICT
+  [PASS] boot still REFUSES a governed mode in production with NO acknowledgement
+  [PASS] CONTRACT 8: engaging the brake does NOT make a governed mode in production with NO acknowledgement silently acceptable
+  [PASS] boot still REFUSES a governed mode in production with a NEAR-MISS acknowledgement
+  [PASS] CONTRACT 8: engaging the brake does NOT make a governed mode in production with a NEAR-MISS acknowledgement silently acceptable
+  [PASS] boot still REFUSES an unrecognised mode value in production
+  [PASS] CONTRACT 8: engaging the brake does NOT make an unrecognised mode value in production silently acceptable
+  [PASS] CONTROL: an acknowledged governed configuration still boots
+  [PASS] an acknowledged configuration with the brake engaged still boots
+  [PASS] the brake does not rewrite the CONFIGURED mode — rollback and the brake stay distinguishable — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+
+== 7. the rollback matrix, all three controls, measured ==
+  [PASS] PRIMARY EMERGENCY STOP — set GOVERNED_CUTOVER_KILL_SWITCH -> effectiveMode — expected LEGACY, got LEGACY
+  [PASS] PRIMARY EMERGENCY STOP — set GOVERNED_CUTOVER_KILL_SWITCH -> reason — expected KILL_SWITCH_ENGAGED, got KILL_SWITCH_ENGAGED
+  [PASS] PRIMARY EMERGENCY STOP — set GOVERNED_CUTOVER_KILL_SWITCH -> no new release binding — expected null, got null
+  [PASS] PRIMARY EMERGENCY STOP — set GOVERNED_CUTOVER_KILL_SWITCH -> knowledgeReleaseId stays NULL — expected null, got null
+  [PASS] PRIMARY EMERGENCY STOP — set GOVERNED_CUTOVER_KILL_SWITCH -> no durable write attempted — expected 0, got 0
+  [PASS] BOUNDED ROLLBACK — clear GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST -> effectiveMode — expected LEGACY, got LEGACY
+  [PASS] BOUNDED ROLLBACK — clear GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST -> reason — expected NO_ALLOWLIST_CONFIGURED, got NO_ALLOWLIST_CONFIGURED
+  [PASS] BOUNDED ROLLBACK — clear GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST -> no new release binding — expected null, got null
+  [PASS] BOUNDED ROLLBACK — clear GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST -> knowledgeReleaseId stays NULL — expected null, got null
+  [PASS] BOUNDED ROLLBACK — clear GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST -> no durable write attempted — expected 0, got 0
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> effectiveMode — expected LEGACY, got LEGACY
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> reason — expected MODE_IS_LEGACY, got MODE_IS_LEGACY
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> no new release binding — expected null, got null
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> knowledgeReleaseId stays NULL — expected null, got null
+  [PASS] MODE ROLLBACK — set GOVERNED_CUTOVER_MODE = LEGACY -> no durable write attempted — expected 0, got 0
+
+PASS — 115 passed, 0 failed

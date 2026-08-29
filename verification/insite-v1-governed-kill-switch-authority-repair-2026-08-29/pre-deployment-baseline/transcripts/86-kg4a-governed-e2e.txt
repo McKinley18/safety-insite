@@ -1,0 +1,46 @@
+ok    both test accounts authenticate
+
+--- Phase 3/4 — what the allowlisted customer actually receives
+ok    classify succeeded (201)
+ok    the analysis produced 3 standard decisions
+ok    HARD: every decision carries a governed delivery state — the seam ran for all of them
+ok    HARD: this is a genuinely MIXED analysis (1 governed, 2 fell back)
+ok    every governed decision reports APPROVED_GOVERNED_CONTENT
+ok    HARD: no fallen-back decision claims approved governed content
+ok    every governed decision names the release that supplied it
+ok    HARD: no fallen-back decision names a release
+ok    HARD: one analysis, one release — every governed decision names the SAME pinned release
+ok    HARD: 56.14132(a) resolves SECTION_ONLY — the approved section did not back the paragraph
+ok    HARD: a section-only match earns no approved badge for the paragraph
+ok    HARD: a section-only match records no governed provenance
+ok    the KG-4A-sourced 56.14132(b)(1) record backs the paragraph HazLenz established
+
+--- Phase 18 — enablement does not leak between accounts
+ok    the non-allowlisted account also gets a full analysis (3 decisions)
+ok    HARD: the non-allowlisted account receives NO governed keys at all — same server, same release
+ok    HARD: the non-allowlisted account sees nothing as approved governed content
+ok    HARD: both accounts receive the SAME CITATIONS — governance changed the claim, not the reasoning
+
+--- Phase 7/8 — persisted provenance is truthful and mixed
+ok    site created (201)
+ok    inspection created (201)
+ok    observation created (201)
+ok    analysis persisted (201)
+ok    HARD: the persisted analysis names the release governed content actually came from (federal-core-2026-08-28.1 === federal-core-2026-08-28.1)
+ok    HARD: a client-supplied release id is never persisted verbatim (status 404, stored n/a)
+
+--- Phase 15 — the report reports provenance truthfully
+ok    inspection carries 1 finding(s) to finalize
+ok    review recorded for finding 80b6b999-f853-43f6-aaa1-f2ad4f7ddbb2 (201)
+ok    finding finalized (201 {"id":"80b6b999-f853-43f6-aaa1-f2ad4f7ddbb2","inspectionId":"984ed0ac-8faf-4a9f-8e28-c6ddf0e2d050",")
+ok    inspection transitioned to completed (201 {"id":"984ed0ac-8faf-4a9f-8e28-c6ddf0e2d050","organizationId":null,"ownerUserId":"99da0cac-3f11-4d34-b37a-e322db79a0f0",)
+ok    report generated from the completed inspection (201)
+ok    the report carries a knowledge-provenance block
+ok    HARD: the report names at most one release (["federal-core-2026-08-28.1"]) — pinning held
+ok    HARD: the report states how many findings were NOT governed (0 of 1) rather than labelling the whole report governed
+ok    the report's governed and ungoverned finding counts are internally consistent
+      report provenance: {"findingCount":1,"knowledgeReleaseIds":["federal-core-2026-08-28.1"],"findingsWithoutKnowledgeRelease":0}
+ok    HARD: every persisted finding names either the analysis's release or nothing (["federal-core-2026-08-28.1"]) — never a third release
+ok    HARD: the other account cannot see this account's report through the release-bearing report list
+
+35 passed, 0 failed

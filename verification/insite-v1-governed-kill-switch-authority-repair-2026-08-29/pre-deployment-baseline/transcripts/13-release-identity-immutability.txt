@@ -1,0 +1,11 @@
+RESOLVED TARGET: test_kg_misc_20260829
+  [PASS] every version-controlled release definition pins a manifest checksum
+  [PASS] a matching manifest is accepted for its own release id
+  [PASS] a DIFFERENT manifest under an EXISTING release id is refused
+  [PASS] the 35-record release identity still names the 35-record manifest
+  [PASS] a release id with no version-controlled definition is refused rather than silently minted
+  [PASS] an UNREGISTERED id is permitted in a KG-owned disposable database (governance fixtures)
+  [PASS] a REGISTERED id with a different manifest stays refused EVEN in an owned disposable database
+  [PASS] the reviewed corpus has its OWN release identity, distinct from the 35-record one
+
+PASS release identity immutability (8 checks)

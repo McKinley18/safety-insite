@@ -172,13 +172,28 @@ if (observationBlock && analysisBlock) {
   for (const [needle, label] of [
     ["setAnalysisId(", "analysis id"],
     ["setAnalysis(", "analysis snapshot"],
-    ['setStep("review")', "review step"],
   ]) {
     assert(
       ana.includes(needle) && !obs.includes(needle),
       `${label} restore stays gated on an actual analysis`,
     );
   }
+
+  // STEP restore, generalized 2026-08-28. This pinned the literal `setStep("review")` inside the
+  // analysis block. The workspace now restores to `setStep("hazlenz")` and reaches review only
+  // through a user click gated on a selected risk cell, so the literal no longer appears and the
+  // assertion failed against a product that had become SAFER, not broken.
+  //
+  // The property this existed to protect was never the word "review" — it was that Free, with an
+  // observation and no analysis, must not be advanced past capture into a step that presumes an
+  // analysis. So it is re-pinned to the property rather than the literal, which also makes it
+  // strictly broader: ANY step restoration leaking into the observation-only block now fails it,
+  // not just one particular destination.
+  assert(
+    /setStep\(/.test(ana) && !/setStep\(/.test(obs),
+    "step restore stays gated on an actual analysis",
+    "Observation-only restore must never advance the step; that is the V1-FREEHIST-01 defect.",
+  );
 }
 
 // The Pro gate itself must remain untouched by this repair.
@@ -202,22 +217,40 @@ assert(
   "/inspections renders the persisted inspections, not just their count",
   "Rendering only persistedInspections.length is the original V1-FREEHIST-01 history defect.",
 );
+// The resume entry point was renamed `resumeInspection` -> `openInspection` when reopening a
+// COMPLETED inspection became a distinct destination. The name is not the property; the property
+// is that a saved inspection can be reopened through the existing selection context. Pinned to
+// the current name so the slice below binds to real source again — with a stale anchor,
+// `indexOf` returned -1 and every assertion over the slice was evaluating the empty string, so
+// three of them were passing or failing for no reason at all.
 assert(
-  /function resumeInspection\(/.test(inspections),
+  /function openInspection\(/.test(inspections),
   "/inspections exposes a resume path for a saved inspection",
 );
 
-const resume = inspections.slice(
-  inspections.indexOf("function resumeInspection("),
-  inspections.indexOf("async function addSite("),
+const resumeStart = inspections.indexOf("function openInspection(");
+const resumeEnd = inspections.indexOf("async function addSite(");
+assert(
+  resumeStart !== -1 && resumeEnd > resumeStart,
+  "the resume path is locatable in source (the slice below is not silently empty)",
 );
+const resume = inspections.slice(resumeStart, resumeEnd);
 assert(
   /persistedInspectionId: inspection\.id/.test(resume),
   "resume selects the chosen inspection by its own id",
 );
+// Route assertion widened 2026-08-28: a completed inspection now resumes to /inspection-complete
+// and everything else to the workspace, so the single literal push no longer matched. Both arms
+// are asserted rather than either being dropped — routing a completed inspection back into the
+// capture workspace, or an in-progress one to the completed page, are both real defects.
 assert(
-  /sentinel_selected_inspection_context/.test(resume) && /router\.push\("\/inspection-workspace"\)/.test(resume),
-  "resume reuses the existing selection context + workspace route (no new subsystem)",
+  /sentinel_selected_inspection_context/.test(resume)
+    && /router\.push\(/.test(resume)
+    && /"\/inspection-workspace"/.test(resume)
+    && /"\/inspection-complete"/.test(resume)
+    && /inspection\.status === "completed"/.test(resume),
+  "resume reuses the existing selection context, and routes completed vs in-progress distinctly "
+    + "(no new subsystem)",
 );
 assert(
   !/hasPlanEntitlement|planCode|entitlement/i.test(resume),

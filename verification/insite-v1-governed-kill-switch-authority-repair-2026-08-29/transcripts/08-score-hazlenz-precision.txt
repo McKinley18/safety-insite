@@ -1,0 +1,25 @@
+==================================================
+HazLenz secondary-hazard decomposition precision/recall — unlabelled
+==================================================
+Corpus: Population A = 34 rows, Population B = 22 rows / 43 required hazard groups (35 life-critical)
+
+-- Population A (contextual language must not create a hazard) --
+  forbidden-family count          : 0
+  rows with a forbidden family    : 0
+  false secondary-promotion rate  : 0.0%
+  case-level precision            : 100.0%
+  unexpected (non-forbidden) count: 5
+  required-hazard omissions in A  : 0
+  alias collisions (permission won): A-28:slips_trips_falls_housekeeping
+
+-- Population B (genuine multi-hazard must still split) --
+  required secondary-hazard recall: 100.0% (43/43)
+  dangerous-omission rate         : 0.0% (0)
+  life-critical omission count    : 0
+  case-level full-hazard recall   : 100.0%
+
+-- Combined safety tally --
+  total dangerous omissions (A+B) : 0
+  total life-critical omissions   : 0
+==================================================
+

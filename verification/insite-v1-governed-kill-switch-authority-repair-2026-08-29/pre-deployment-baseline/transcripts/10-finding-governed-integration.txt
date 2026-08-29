@@ -1,0 +1,26 @@
+-- Phase 5: the 8 rejected records as adversarial integration fixtures --
+  [PASS] rejected 30 CFR 57.14107(a) cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 30 CFR 56.14105 cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 1910.219 cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 29 CFR 1910.132(a) cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 29 CFR 1926.95(a) cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 30 CFR 56.15006 cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 29 CFR 1926.602(a)(9)(ii) cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] rejected 30 CFR 56.9100(a) cannot claim governed authority on a persisted finding — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] approved 29 CFR 1910.252 DOES carry governed authority (positive control) — state=APPROVED_GOVERNED_CONTENT
+  [PASS] approved 29 CFR 1926.1425 DOES carry governed authority (positive control) — state=APPROVED_GOVERNED_CONTENT
+  [PASS] identical citation STRINGS with no governing release stay legacy — string equality confers nothing
+
+-- Phase 6: inspection release binding --
+  [PASS] a finding created under R1 records R1 as its governing release
+  [PASS] under R1, 1910.219 is an UNAPPROVED member — not approved, not rejected
+  [PASS] under R2 the SAME citation is REJECTED — authority is release-scoped, not citation-scoped
+  [PASS] under R2 an approved member resolves approved
+  [PASS] the R1 finding was NOT rewritten when the same hazard was resolved under R2
+
+-- Phase 8: determinism --
+  [PASS] identical input, jurisdiction, release and ledger resolve identically across three runs
+  [PASS] the resolver itself is deterministic
+  [PASS] the authority state is reconstructable later from releaseId + recordChecksum — federal-core-2026-08-28.1 / ae911dfb0463…
+
+PASS finding-level governed integration (19 checks)

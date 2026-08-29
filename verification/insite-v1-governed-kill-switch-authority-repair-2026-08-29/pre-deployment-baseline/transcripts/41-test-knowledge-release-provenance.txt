@@ -1,0 +1,30 @@
+Resolved database target: host=127.0.0.1 database=test_v1_predeploy_api_20260829
+
+knowledge-release-provenance: 27/27 checks passed
+  ok  Live retrieval scoping is measured as unscoped_corpus.
+  ok  Live scoping resolves knowledgeReleaseId to NULL (no release fabricated).
+  ok  A genuine single-release scoping resolves to that release id.
+  ok  A single-release scoping with no usable id resolves to NULL.
+  ok  Registered verification user resolved.
+  ok  Live production analysis records knowledgeReleaseId = NULL.
+  ok  Live path materialized 2 findings (got 2).
+  ok  Live-path findings inherit NULL provenance.
+  ok  Reloaded live analysis still serialises knowledgeReleaseId = NULL.
+  ok  Fixture analysis records the single release it used.
+  ok  Multi-hazard decomposition produced 3 findings (got 3).
+  ok  All 3 multi-hazard findings inherit the analysis release (no independent resolution).
+  ok  Re-analysis records the same release.
+  ok  Re-analysis preserves finding provenance on the updated (existing) finding branch.
+  ok  Later analysis records the later release.
+  ok  Existing findings keep release A after a newer release B is used elsewhere.
+  ok  Finalized findings preserve their analysis provenance.
+  ok  Report generated from provenance-bearing findings.
+  ok  Report snapshot carries a knowledgeProvenance block.
+  ok  Mixed-provenance report lists both releases without collapsing them (got ["kg1-fixture-release.A","kg1-fixture-release.B"]).
+  ok  Every finding in the report snapshot carries its own release provenance.
+  ok  Re-reading the stored report reproduces historical provenance, not the newer release.
+  ok  Regenerating the report after the latest release changed does NOT adopt the newer release.
+  ok  Legacy (unversioned) findings load successfully with knowledgeReleaseId = NULL.
+  ok  Legacy (unversioned) analyses load successfully with knowledgeReleaseId = NULL.
+  ok  Report remains valid with partially unversioned findings and reports them as unversioned.
+  ok  Cleared provenance is reported as unknown rather than back-filled from another release.

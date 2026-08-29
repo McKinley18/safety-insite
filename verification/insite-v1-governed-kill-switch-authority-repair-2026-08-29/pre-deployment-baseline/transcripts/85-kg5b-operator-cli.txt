@@ -1,0 +1,32 @@
+KG-5B -- operator activation/rollback command contract
+
+1. prepare, and what prepare refuses to do
+------------------------------------------
+
+2. Activation refusal matrix (Phase 14)
+---------------------------------------
+
+3. Dry run performs zero writes (Phase 17)
+------------------------------------------
+
+4. Activation (Phase 14)
+------------------------
+
+5. Rollback (Phase 15)
+----------------------
+
+6. Concurrency (Phase 16)
+-------------------------
+
+7. status
+---------
+  FAIL  sources reports the 35 governed candidate records :: 72
+
+8. The legacy corpus after every operator action
+------------------------------------------------
+
+============================================================
+KG-5B operator CLI: 64/65 checks passed
+
+1 FAILED:
+  - sources reports the 35 governed candidate records :: 72

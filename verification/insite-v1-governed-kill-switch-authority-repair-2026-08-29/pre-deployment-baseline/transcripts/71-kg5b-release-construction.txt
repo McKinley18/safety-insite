@@ -1,0 +1,38 @@
+KG-5B -- governed release construction contract
+template=test_kg5b_prodshape_20260821
+
+1. Governed source set and explicit membership (Phases 2, 3)
+------------------------------------------------------------
+
+1b. The legacy seed pipeline cannot be run against a foreign corpus (KG5A-DISC-01)
+----------------------------------------------------------------------------------
+
+2. Citation canonicalization without legacy renaming (Phase 6)
+--------------------------------------------------------------
+
+3. Legacy corpus non-mutation contract (Phase 4)
+------------------------------------------------
+
+4. Governed provenance is independent of the legacy corpus (Phase 7)
+--------------------------------------------------------------------
+
+5. Clean vs production-shaped reproduction (Phases 8, 9)
+--------------------------------------------------------
+
+6. Membership is independent of the legacy corpus (Phase 3)
+-----------------------------------------------------------
+
+7. Atomicity and retry safety (Phase 5)
+---------------------------------------
+
+8. Idempotency (Phase 10)
+-------------------------
+
+9. Refusals that protect a reviewed release
+-------------------------------------------
+
+10. Finalization gates on the production-shaped database (Phase 13)
+-------------------------------------------------------------------
+
+============================================================
+KG-5B release construction: 102/102 checks passed

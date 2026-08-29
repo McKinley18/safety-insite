@@ -1,0 +1,8 @@
+-- 64 approved members declared by the version-controlled definition --
+   approved members reaching APPROVED_GOVERNED_CONTENT: 64/64
+
+-- 8 rejected records, adversarially --
+
+GOVERNED RELEASE REACHABILITY: 514/514 checks passed
+  approved members reachable: 64/64
+  rejected records reaching approval: 0/8 (must be 0)

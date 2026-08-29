@@ -1,0 +1,22 @@
+-- required actionable coverage (hazard must reach a finding) --
+  [PASS] B-05 (life-critical) need one of [compressed_gas] emitted=[compressed_gas, hot_work]
+  [PASS] B-16 need one of [machine_guarding] emitted=[machine_guarding, personal_protective_equipment]
+  [PASS] B-20 (life-critical) need one of [suspended_loads, cranes_hoists, rigging_lifting] emitted=[fall_protection, suspended_loads]
+
+-- classifier-only families that must NOT become findings --
+  [PASS] A-13 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-14 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-15 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-19 classifier said Compressed Air / Hose Safety @0.25 low; emitted=[]
+  [PASS] A-21 classifier said Welding / Cutting / Hot Work @0.70 medium; emitted=[]
+  [PASS] A-23 classifier said Welding / Cutting / Hot Work @0.52 low; emitted=[]
+  [PASS] A-24 classifier said Machine Guarding @0.93 high; emitted=[]
+  [PASS] A-25 classifier said First Aid / Eyewash @0.52 low; emitted=[]
+  [PASS] A-26 classifier said Trenching & Shoring @0.82 high; emitted=[]
+  [PASS] A-27 classifier said Fall Protection @0.93 high; emitted=[hazard_communication]
+  [PASS] A-29 classifier said Walking/Working Surfaces @0.70 medium; emitted=[]
+  [PASS] A-31 classifier said Walking/Working Surfaces @0.93 high; emitted=[electrical]
+  [PASS] A-34 classifier said Material Handling @0.70 medium; emitted=[]
+  [PASS] A-12 classifier said Unclassified @0.25 low; emitted=[]
+
+PASS HazLenz actionable-coverage gate (17 checks)

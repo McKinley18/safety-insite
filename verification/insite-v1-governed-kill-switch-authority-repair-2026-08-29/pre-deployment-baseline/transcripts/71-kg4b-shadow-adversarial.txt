@@ -1,0 +1,101 @@
+
+--- Provisioning owned database 'test_kg4b_adversarial_run' from read-only source 'test_kg4b_shadow_20260820'
+NOTICE:  database "test_kg4b_adversarial_run" does not exist, skipping
+ok    owned clone carries the source corpus (35 records)
+ok    corpus supplies an approved+texted citation (1910.212(a)(1))
+
+--- Phase 6 — SHADOW never writes governed customer provenance
+ok    a SHADOW context is created for the allowlisted principal
+ok    SHADOW pins the active release (federal-core-2026-07-30.1)
+ok    HARD: SHADOW supplies NO governed backing input for any citation, including the approved one
+ok    HARD: SHADOW supplies NO verified text for any citation
+ok    HARD: no SHADOW decision is customer-visible — the payload gains no key
+ok    HARD: no SHADOW decision is provenance-eligible, even where backing is APPROVED_EXACT
+ok    HARD: a SHADOW analysis records knowledgeReleaseId = NULL despite a pinned release and approved content
+ok    HARD: every SHADOW finding records NULL
+ok    the recorded reason states that a background comparison is not consumption
+ok    SHADOW still produced 3 comparison records for telemetry
+ok    every comparison asserts the customer output was unchanged
+ok    the mixed analysis produced several distinct outcomes (CONTENT_DIFFERENCE, GOVERNED_MISSING, GRANULARITY_DIFFERENCE)
+ok    HARD: the SAME analysis in GOVERNED_WITH_FALLBACK DOES record the release — SHADOW's silence is real
+ok    and it is correctly flagged as mixed provenance (some findings governed, some not)
+ok    HARD: a non-SHADOW mode produces NO shadow comparison records
+
+--- Phase 7 — one analysis, one pinned release
+ok    a second release (kg4b-race-target.2) exists in the owned clone, so the race is not vacuous
+ok    the analysis pins R1 and resolves against it
+ok    the active pointer moved to R2 (kg4b-race-target.2) mid-analysis
+ok    HARD: the in-flight SHADOW analysis still resolves against its PINNED R1, not R2
+ok    and reports the same backing state before and after the activation race
+ok    HARD: every shadow comparison in one analysis names ONE release — no half-R1/half-R2 corpus
+ok    and one manifest identity
+ok    a LATER independent analysis correctly shadows against R2
+ok    before revocation the record is APPROVED_EXACT
+ok    HARD: a revocation landing mid-analysis does NOT change that analysis — one citation, one resolution
+ok    HARD: the revocation does not move the analysis off its pinned release
+ok    HARD: every comparison in that analysis reports the SAME backing state — a coherent basis
+ok    HARD: the NEXT analysis sees the revocation — the boundary is the analysis, not a stale cache
+ok    HARD: a revoked record carries no text forward
+
+--- Phase 8 — no client input can manufacture governed provenance
+ok    HARD: LEGACY + arbitrary release id -> provenance NULL (got null)
+ok    HARD: LEGACY + the REAL active release id -> provenance NULL (got null)
+ok    HARD: SHADOW + the real active release id -> provenance NULL (got null)
+ok    HARD: SHADOW + arbitrary release id -> provenance NULL (got null)
+ok    HARD: governed + NON-allowlisted principal -> provenance NULL (got null)
+ok    HARD: governed + allowlisted + WRONG release id -> provenance NULL (got null)
+ok    HARD: governed + allowlisted + STALE release id -> provenance NULL (got null)
+ok    HARD: governed + allowlisted + nonexistent release id -> provenance NULL (got null)
+ok    HARD: governed + allowlisted + another environment's release id -> provenance NULL (got null)
+ok    HARD: governed + allowlisted + two conflicting release ids -> provenance NULL (got null)
+ok    HARD: an allowlisted governed principal claiming the genuinely active release DOES record it — the gate is not simply "always null"
+
+--- Phase 16 — injected failures leave the customer on legacy and are reported truthfully
+ok    [no active release] SHADOW did not throw — an expected failure is never a customer 500
+ok    [no active release] backing = NO_ACTIVE_RELEASE (got NO_ACTIVE_RELEASE)
+ok    [no active release] health = NO_ACTIVE_RELEASE (got NO_ACTIVE_RELEASE)
+ok    [no active release] HARD: the customer stays on LEGACY — no backing input, no text, no key
+ok    [no active release] a failed resolution cannot be laundered into an approval
+ok    [no active release] exactly one comparison record was emitted
+ok    [no active release] telemetry reports RESOLVER_FAILURE (got RESOLVER_FAILURE)
+ok    [no active release] the record still asserts customer output unchanged
+ok    [no active release] GOVERNED_WITH_FALLBACK keeps the citation and has a defined delivery state
+ok    [stale schema (migration 1800000014000 not run)] SHADOW did not throw — an expected failure is never a customer 500
+ok    [stale schema (migration 1800000014000 not run)] backing = RESOLVER_UNAVAILABLE (got RESOLVER_UNAVAILABLE)
+ok    [stale schema (migration 1800000014000 not run)] health = STALE_SCHEMA (got STALE_SCHEMA)
+ok    [stale schema (migration 1800000014000 not run)] HARD: the customer stays on LEGACY — no backing input, no text, no key
+ok    [stale schema (migration 1800000014000 not run)] a failed resolution cannot be laundered into an approval
+ok    [stale schema (migration 1800000014000 not run)] exactly one comparison record was emitted
+ok    [stale schema (migration 1800000014000 not run)] telemetry reports INTEGRITY_FAILURE (got INTEGRITY_FAILURE)
+ok    [stale schema (migration 1800000014000 not run)] the record still asserts customer output unchanged
+ok    [stale schema (migration 1800000014000 not run)] GOVERNED_WITH_FALLBACK keeps the citation and has a defined delivery state
+ok    [malformed governed record (payload emptied)] SHADOW did not throw — an expected failure is never a customer 500
+ok    [malformed governed record (payload emptied)] backing = APPROVED_NO_TEXT (got APPROVED_NO_TEXT)
+ok    [malformed governed record (payload emptied)] health = OK (got OK)
+ok    [malformed governed record (payload emptied)] HARD: the customer stays on LEGACY — no backing input, no text, no key
+ok    [malformed governed record (payload emptied)] a failed resolution cannot be laundered into an approval
+ok    [malformed governed record (payload emptied)] exactly one comparison record was emitted
+ok    [malformed governed record (payload emptied)] telemetry reports GOVERNED_CITATION_ONLY (got GOVERNED_CITATION_ONLY)
+ok    [malformed governed record (payload emptied)] the record still asserts customer output unchanged
+ok    [malformed governed record (payload emptied)] GOVERNED_WITH_FALLBACK keeps the citation and has a defined delivery state
+ok    [revoked approval] SHADOW did not throw — an expected failure is never a customer 500
+ok    [revoked approval] backing = UNAPPROVED_RECORD (got UNAPPROVED_RECORD)
+ok    [revoked approval] health = OK (got OK)
+ok    [revoked approval] HARD: the customer stays on LEGACY — no backing input, no text, no key
+ok    [revoked approval] a failed resolution cannot be laundered into an approval
+ok    [revoked approval] exactly one comparison record was emitted
+ok    [revoked approval] telemetry reports GOVERNED_UNAPPROVED (got GOVERNED_UNAPPROVED)
+ok    [revoked approval] the record still asserts customer output unchanged
+ok    [revoked approval] GOVERNED_WITH_FALLBACK keeps the citation and has a defined delivery state
+ok    a governance outage with no data source is RESOLVER_UNAVAILABLE, not "no record"
+ok    and it classifies as RESOLVER_FAILURE
+
+--- Database ownership — the read-only source is provably unchanged
+ok    HARD: source record count unchanged (35)
+ok    HARD: the source's active release is unchanged (federal-core-2026-07-30.1)
+ok    HARD: no KG-4B fixture decision leaked into the source corpus
+ok    HARD: the source schema was never renamed
+
+owned database 'test_kg4b_adversarial_run' dropped
+
+84 passed, 0 failed

@@ -23,8 +23,8 @@
  * authenticated, JWT-derived principal that KG-4A already established. There is no body, query,
  * header or param path into this module -- asserted by test, not by convention.
  *
- * THIS MODULE IMPORTS ONLY `cutover-mode`. Like `cutover-mode.ts` it is deliberately close to
- * dependency-free, so it cannot become a second route into governed data.
+ * THIS MODULE IMPORTS ONLY `cutover-mode` AND `cutover-kill-switch`. Like both of those it is
+ * deliberately close to dependency-free, so it cannot become a second route into governed data.
  */
 
 import { createHash } from 'crypto';
@@ -33,6 +33,11 @@ import {
   CUTOVER_ALLOWLIST_ENV, CUTOVER_ORG_ALLOWLIST_ENV, CUTOVER_PRODUCTION_ACK_ENV,
   type CutoverModeResolution, type CutoverPrincipal, type GovernedCutoverMode,
 } from './cutover-mode';
+import {
+  CUTOVER_KILL_SWITCH_ENV,
+  engageRuntimeKillSwitch, resetRuntimeKillSwitch, resolveKillSwitch,
+  type KillSwitchSource, type KillSwitchState,
+} from './cutover-kill-switch';
 
 type Env = Record<string, string | undefined>;
 
@@ -40,7 +45,12 @@ type Env = Record<string, string | undefined>;
 
 export const PRODUCTION_SHADOW_ACK_ENV = 'GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK';
 export const SHADOW_STAGE_ENV = 'GOVERNED_CUTOVER_SHADOW_STAGE';
-export const SHADOW_KILL_SWITCH_ENV = 'GOVERNED_CUTOVER_KILL_SWITCH';
+/**
+ * Retained under its KG-4C name because every existing suite and runbook refers to it. It is now
+ * an alias for the canonical `CUTOVER_KILL_SWITCH_ENV`: the variable stops ALL governed cutover,
+ * not shadow alone, so the canonical name no longer says `SHADOW`.
+ */
+export const SHADOW_KILL_SWITCH_ENV = CUTOVER_KILL_SWITCH_ENV;
 export const SHADOW_COHORT_BPS_ENV = 'GOVERNED_CUTOVER_SHADOW_COHORT_BPS';
 export const SHADOW_COHORT_SALT_ENV = 'GOVERNED_CUTOVER_SHADOW_COHORT_SALT';
 
@@ -227,70 +237,20 @@ export function resolveShadowStage(env: Env = process.env): StageResolution {
 // ------------------------------------------------------------------ Section 3: the kill switch
 
 /**
- * The in-process latch. Set by the circuit breaker (or by an operator-triggered path in a future
- * slice) and checked on every context creation, so it takes effect on the NEXT eligible request
- * with no restart, no redeploy and no database write.
+ * MOVED, NOT CHANGED -- 2026-08-29.
  *
- * Module-level mutable state is used HERE and nowhere else in the cutover subsystem, and the
- * exception is deliberate: a kill switch that is scoped per request cannot stop anything. Its only
- * possible transitions are off -> on (any code path) and on -> off (explicit operator reset), so it
- * can never make shadow *more* active than configuration already permits.
- */
-let runtimeKillSwitch: { engaged: boolean; reason: string | null; engagedAt: string | null } = {
-  engaged: false, reason: null, engagedAt: null,
-};
-
-export type KillSwitchSource = 'NONE' | 'ENVIRONMENT' | 'RUNTIME_LATCH';
-
-export interface KillSwitchState {
-  engaged: boolean;
-  source: KillSwitchSource;
-  /** Categorical reason. Never customer data. */
-  reason: string | null;
-  engagedAt: string | null;
-}
-
-/**
- * Engages the runtime kill switch. Idempotent: a second call does not overwrite the first reason,
- * because the FIRST cause is the one an operator needs during an incident.
- */
-export function engageRuntimeKillSwitch(reason: string): KillSwitchState {
-  if (!runtimeKillSwitch.engaged) {
-    runtimeKillSwitch = {
-      engaged: true,
-      reason: String(reason || 'UNSPECIFIED').slice(0, 120),
-      engagedAt: new Date().toISOString(),
-    };
-  }
-  return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
-}
-
-/** Explicit operator reset. Separate from engaging so a reset is never accidental. */
-export function resetRuntimeKillSwitch(): void {
-  runtimeKillSwitch = { engaged: false, reason: null, engagedAt: null };
-}
-
-/**
- * Resolves the kill switch from BOTH sources.
+ * The emergency stop now lives in `cutover-kill-switch.ts`, one layer BELOW `cutover-mode.ts`, so
+ * that the authoritative enablement resolver can consult it. It could not while it lived here:
+ * this module imports `cutover-mode.ts`, so a consultation in the other direction would have been
+ * a cycle -- which is precisely why the switch used to stop governed DELIVERY without stopping
+ * governed AUTHORITY (release binding and `knowledgeReleaseId` assignment).
  *
- * PERMISSIVE ON PURPOSE. Any non-empty, non-whitespace value of the environment variable engages
- * it. `'engaged'`, `'true'`, `'1'`, `'yes'`, `'STOP'`, `'please stop'` -- all engage. This is the
- * exact opposite of the acknowledgement rule above, and the asymmetry is the point: locks must not
- * open by accident, brakes must not fail to bite.
+ * Re-exported under the original names, including `SHADOW_KILL_SWITCH_ENV`, so every existing
+ * import site and verification suite keeps working against the SAME runtime latch. There is one
+ * latch, not two: these are re-exports of the extracted module's bindings, not a second copy.
  */
-export function resolveKillSwitch(env: Env = process.env): KillSwitchState {
-  const raw = env[SHADOW_KILL_SWITCH_ENV];
-  if (raw !== undefined && raw !== null && String(raw).trim() !== '') {
-    return {
-      engaged: true, source: 'ENVIRONMENT',
-      reason: 'ENV_KILL_SWITCH_SET', engagedAt: null,
-    };
-  }
-  if (runtimeKillSwitch.engaged) {
-    return { ...runtimeKillSwitch, source: 'RUNTIME_LATCH' };
-  }
-  return { engaged: false, source: 'NONE', reason: null, engagedAt: null };
-}
+export { engageRuntimeKillSwitch, resetRuntimeKillSwitch, resolveKillSwitch };
+export type { KillSwitchSource, KillSwitchState };
 
 // ------------------------------------------------------------------ Section 4: cohort sampling
 
@@ -429,10 +389,18 @@ export function resolveProductionShadowAuthorization(input: {
   const namedPrincipals = countNamedPrincipals(env);
   const withinStageLimit = namedPrincipals <= stageResolution.constraints.maxNamedPrincipals;
 
+  // `standing`, not `enabled`, and deliberately so -- 2026-08-29.
+  //
+  // Since the emergency stop became part of the canonical enablement answer, `enablement.enabled`
+  // is false whenever the brake is on. Reading it here would report `PRINCIPAL_ELIGIBILITY` as a
+  // CLOSED lock during an incident, which would tell an operator their allowlist had changed when
+  // it had not. `standing` is the configuration with the brake released, so the KG-4C property
+  // holds unchanged: the kill switch OVERRIDES the locks (it is refused first, below) rather than
+  // closing them.
   const principalEligible =
     stageResolution.stage !== 'STAGE_0_DISABLED' &&
     withinStageLimit &&
-    (enablement.enabled || Boolean(cohort?.included));
+    (enablement.standing.enabled || Boolean(cohort?.included));
 
   const locks: Record<ProductionShadowLock, boolean> = {
     SERVER_MODE: configured.mode === 'SHADOW',

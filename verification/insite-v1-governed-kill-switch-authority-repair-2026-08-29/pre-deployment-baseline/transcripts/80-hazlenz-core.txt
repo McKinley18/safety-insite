@@ -1,0 +1,1677 @@
+==================================================
+HazLenz AI Core Regression Runner
+==================================================
+
+Running Suite: Observation Understanding Benchmark
+Script: src/safescope-v2/tests/observation-understanding-benchmark.ts
+
+🏃 Running HazLenz AI Observation Understanding Benchmark...
+
+Checking Scenario: 1. Missing machine guard / rotating shaft
+✅ PASS
+   - Parsed Equipment: rotating_equipment (rotating shaft)
+   - Primary Energy:   mechanical_rotation
+   - Control Failures: Failed: [] | Missing: [guarding]
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Task or activity is not clearly identified.
+--------------------------------------------------
+
+Checking Scenario: 2. Damaged electrical cord / exposed conductor
+✅ PASS
+   - Parsed Equipment: electrical_cord (unknown)
+   - Primary Energy:   electrical
+   - Control Failures: Failed: [electrical_integrity] | Missing: []
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Task or activity is not clearly identified. • Worker exposure is not clearly established.
+--------------------------------------------------
+
+Checking Scenario: 3. Mobile equipment and pedestrian exposure
+✅ PASS
+   - Parsed Equipment: mobile_equipment (forklift)
+   - Primary Energy:   mobile_equipment_kinetic
+   - Control Failures: Failed: [] | Missing: []
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Existing, missing, or failed controls are not clearly described.
+--------------------------------------------------
+
+Checking Scenario: 4. Open edge / fall hazard
+✅ PASS
+   - Parsed Equipment: fall_protection (platform)
+   - Primary Energy:   gravity
+   - Control Failures: Failed: [] | Missing: [guarding, fall_protection_or_edge_protection]
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Task or activity is not clearly identified. • Worker exposure is not clearly established.
+--------------------------------------------------
+
+Checking Scenario: 5. Chemical exposure / unlabeled container
+✅ PASS
+   - Parsed Equipment: unknown (unknown)
+   - Primary Energy:   chemical
+   - Control Failures: Failed: [] | Missing: []
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Equipment type is not clearly identified. • Task or activity is not clearly identified.
+--------------------------------------------------
+
+Checking Scenario: 6. Housekeeping / slip-trip walkway hazard
+✅ PASS
+   - Parsed Equipment: unknown (unknown)
+   - Primary Energy:   gravity
+   - Control Failures: Failed: [] | Missing: []
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Equipment type is not clearly identified. • Worker proximity to the hazard is not clearly described.
+--------------------------------------------------
+
+Checking Scenario: 7. LOTO / energized maintenance
+✅ PASS
+   - Parsed Equipment: unknown (unknown)
+   - Primary Energy:   unknown
+   - Control Failures: Failed: [] | Missing: [energy_isolation]
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Equipment type is not clearly identified. • Worker exposure is not clearly established.
+--------------------------------------------------
+
+Checking Scenario: 8. Conveyor tail pulley / nip point exposure
+✅ PASS
+   - Parsed Equipment: conveyor (conveyor)
+   - Primary Energy:   mechanical_rotation
+   - Control Failures: Failed: [] | Missing: [guarding]
+   - Evidence Gaps:    Jurisdiction is unclear and should be confirmed. • Worker proximity to the hazard is not clearly described.
+--------------------------------------------------
+
+📊 Benchmark Summary: 8 passed, 0 failed.
+
+--------------------------------------------------
+
+Running Suite: PPE Standards Intelligence Benchmark
+Script: src/safescope-v2/tests/ppe-standards-benchmark.ts
+
+◇ injected env (19) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+🏃 Running HazLenz AI PPE Standards Intelligence & Evidence Explanation Benchmark...
+
+Checking Scenario: 1. OSHA General Industry PPE
+✅ PASS
+   - Top Match:      29 CFR 1910.22(a) (General requirements — Surface conditions)
+   - Reasoning Band: primary (Score: 180)
+   - Matched Facts:  [glasses, shield, decanting, chemical, safety glasses, face shield]
+   - Satisfied Ev:   [Requires confirmation of whether the designat..., Requires confirmation of the specific exposur...]
+   - Missing Ev:     [Requires confirmation of whether other protec..., Supports qualified review of whether MSHA, OS...]
+--------------------------------------------------
+
+Checking Scenario: 2. OSHA Construction PPE
+✅ PASS
+   - Top Match:      29 CFR 1926.95(a) (Criteria for personal protective equipment)
+   - Reasoning Band: primary (Score: 180)
+   - Matched Facts:  [boot, construction, safety boots]
+   - Satisfied Ev:   [Requires confirmation of whether the designat..., Requires confirmation of the specific exposur...]
+   - Missing Ev:     [Requires confirmation of whether other protec..., Supports qualified review of whether MSHA, OS...]
+--------------------------------------------------
+
+Checking Scenario: 3. MSHA Surface Mining PPE
+✅ PASS
+   - Top Match:      30 CFR 56.15006 (Protective equipment - clothing)
+   - Reasoning Band: primary (Score: 165)
+   - Matched Facts:  [glasses, earplug, crushing, safety glasses, earplugs]
+   - Satisfied Ev:   [Requires confirmation of whether the designat..., Requires confirmation of the specific exposur...]
+   - Missing Ev:     [Requires confirmation of whether other protec..., Supports qualified review of whether MSHA, OS...]
+--------------------------------------------------
+
+📊 PPE & Explanation Benchmark Summary: 3 passed, 0 failed.
+
+--------------------------------------------------
+
+Running Suite: Corrective Action Intelligence Benchmark
+Script: src/safescope-v2/tests/corrective-action-benchmark.ts
+
+🏃 Running HazLenz AI Corrective Action Intelligence Benchmark...
+
+Checking Scenario: 1. Conveyor tail pulley / mechanical rotation
+✅ PASS
+   - Immediate Action: Pause affected work and restrict access around the exposed rotating_shaft until guarding and mechanical_rotation exposure controls are reviewed.
+   - Interim Control:  Verify that temporary physical guards are positioned to isolate workers from the rotating components before continuing other work in the zone.
+   - Permanent Fix:    Install permanent, secure guarding over the exposed rotating_shaft to completely eliminate the rotating equipment entanglement hazard.
+--------------------------------------------------
+
+Checking Scenario: 2. Damaged electrical cord / electrical energy
+✅ PASS
+   - Immediate Action: Isolate the affected unknown from service and route damaged electrical-integrity concerns for qualified review before reuse.
+   - Interim Control:  Tag out the power supply source and enforce strict physical clearance from the affected cord_insulation_or_conductor area.
+   - Permanent Fix:    Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.
+--------------------------------------------------
+
+Checking Scenario: 3. Open platform edge / gravity
+✅ PASS
+   - Immediate Action: Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.
+   - Interim Control:  Establish clear warning lines and restrict the area around the unprotected_edge to authorized personnel using proper fall arrest gear.
+   - Permanent Fix:    Erect engineered guardrails or qualified-review approved edge-protection controls around the unprotected_edge to resolve fall exposures.
+--------------------------------------------------
+
+Checking Scenario: 4. Chemical transfer / chemical exposure
+✅ PASS
+   - Immediate Action: Confirm eye/face splash exposure controls for the chemical transfer task and review PPE/barrier controls before continuing the task.
+   - Interim Control:  Ensure that a readily accessible eyewash/emergency rinse capability appropriate for the chemical exposure scenario is immediately accessible and secondary chemical containers are properly labeled.
+   - Permanent Fix:    Implement localized engineering controls or ventilation systems to eliminate the risk of respiratory chemical inhalation and direct liquid contact.
+--------------------------------------------------
+
+📊 Corrective Action Benchmark Summary: 4 passed, 0 failed.
+
+--------------------------------------------------
+
+Running Suite: Mobile Equipment Standards Benchmark
+Script: src/safescope-v2/tests/mobile-standards-benchmark.ts
+
+◇ injected env (19) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+🏃 Running HazLenz AI Mobile Equipment Standards Benchmark...
+
+Checking Scenario: A. OSHA General Industry PIT (Forklift)
+✅ PASS
+   - Top Match:      29 CFR 1910.1200 (Hazard communication)
+   - Reasoning Band: primary (Score: 165)
+   - Matched Facts:  [forklift, lift, leak, fluid, pedestrian]
+   - Satisfied Ev:   [Requires confirmation of whether MSHA, OSHA G..., Requires confirmation of the active equipment...]
+   - Missing Ev:     [Supports qualified review of whether other sa...]
+--------------------------------------------------
+
+Checking Scenario: B. OSHA Construction Earthmoving Backing
+✅ PASS
+   - Top Match:      29 CFR 1926.602(a)(9)(ii) (Material handling equipment - Earthmoving equipment)
+   - Reasoning Band: primary (Score: 240)
+   - Matched Facts:  [loader, backing, reverse alarm, spotter]
+   - Satisfied Ev:   [Requires confirmation of whether MSHA, OSHA G..., Requires confirmation of the active equipment...]
+   - Missing Ev:     [Supports qualified review of whether other sa...]
+--------------------------------------------------
+
+Checking Scenario: C. MSHA Surface Mining Traffic Control
+✅ PASS
+   - Top Match:      30 CFR 56.9100(a) (Rules of the road - Traffic control)
+   - Reasoning Band: primary (Score: 260)
+   - Matched Facts:  [haul truck, operating, congested]
+   - Satisfied Ev:   [Requires confirmation of whether MSHA, OSHA G..., Requires confirmation of the active equipment...]
+   - Missing Ev:     [Supports qualified review of whether other sa...]
+--------------------------------------------------
+
+📊 Mobile Benchmark Summary: 3 passed, 0 failed.
+
+--------------------------------------------------
+
+Running Suite: Golden Hardening Scenarios Test
+Script: src/safescope-v2/tests/golden-hardening-tests.ts
+
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+Initializing database connection...
+FATAL: SafeScope persistence configured for database but repository is unavailable.
+
+🏃 Starting golden hardening tests under degraded fallback mode...
+
+Test: 1. MSHA Conveyor Guarding Cleanup
+  [PASS] Classification: Machine Guarding
+  [PASS] Risk Band: Critical
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "guard")
+  [PASS] Suggested standards: 30 CFR 56.14107(a), 30 CFR 56.14107
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 1. MSHA Conveyor Guarding Cleanup
+
+Test: 2. OSHA GI Electrical Open Breaker Slot
+  [PASS] Classification: Electrical
+  [PASS] Risk Band: Critical
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "panel")
+  [PASS] Suggested standards: 29 CFR 1910.303(g)(2)(i)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 2. OSHA GI Electrical Open Breaker Slot
+
+Test: 3. OSHA Construction Unprotected Edge
+  [PASS] Classification: Fall Protection
+  [PASS] Risk Band: High
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "fall")
+  [PASS] Suggested standards: 29 CFR 1926.501, 29 CFR 1926.501(b)(1)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 3. OSHA Construction Unprotected Edge
+
+Test: 4. Mobile Equipment Pedestrian Exposure
+  [PASS] Classification: Mobile Equipment / Traffic
+  [PASS] Risk Band: High
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "berm")
+  [PASS] Suggested standards: 30 CFR 56.9100
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 4. Mobile Equipment Pedestrian Exposure
+
+Test: 5. Chemical Unlabeled Container
+  [PASS] Classification: Hazard Communication
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "label")
+  [PASS] Suggested standards: 29 CFR 1910.1200(f)(6), 29 CFR 1910.1200(f)(1)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 5. Chemical Unlabeled Container
+
+Test: 6. Housekeeping/Trip walkway hazard (Not Fall Protection)
+  [PASS] Classification: Walking/Working Surfaces
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "walkway")
+  [PASS] Suggested standards: 29 CFR 1910.22(a)(3), 29 CFR 1910.22(a), 1910.22(a)(3)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 6. Housekeeping/Trip walkway hazard (Not Fall Protection)
+
+Test: 7. LOTO energized maintenance (Not Guarding alone)
+  [PASS] Classification: Lockout / Stored Energy
+  [PASS] Risk Band: High
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "LOTO")
+  [PASS] Suggested standards: 30 CFR 56.12016, 30 CFR 56.14107(a)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 7. LOTO energized maintenance (Not Guarding alone)
+
+Test: 8. Precision Scenario A: A container has no label.
+  [PASS] Classification: Hazard Communication
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "substance")
+  [PASS] Suggested standards: 29 CFR 1910.1200(f)(6), 29 CFR 1910.1200(f)(1), 29 CFR 1910.1200(f)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 8. Precision Scenario A: A container has no label.
+
+Test: 9. Precision Scenario B: Unlabeled spray bottle found in the maintenance shop.
+  [PASS] Classification: Hazard Communication
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "substance")
+  [PASS] Suggested standards: 29 CFR 1910.1200(f)(6), 29 CFR 1910.1200(f)(1)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 9. Precision Scenario B: Unlabeled spray bottle found in the maintenance shop.
+
+Test: 10. Precision Scenario C: Used oil container has no label.
+  [PASS] Classification: Hazard Communication
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "substance")
+  [PASS] Suggested standards: 29 CFR 1910.1200(f)(6), 29 CFR 1910.1200(f)(1), 29 CFR 1910.1200(f)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 10. Precision Scenario C: Used oil container has no label.
+
+Test: 11. Precision Scenario D: Oxygen cylinder stored unsecured near a walkway.
+  [PASS] Classification: Compressed Gas Cylinders
+  [PASS] Risk Band: High
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "cylinder")
+  [PASS] Suggested standards: 29 CFR 1910.101(b)
+  [PASS] Suggested actions generated: 1 actions.
+  [PASS] Hazard Domain: compressed_gas
+  [PASS] Unexpected Hazard Domain "slip_trip_fall" not present
+  [PASS] Unexpected Standard Family "walking_working_surfaces" not present
+✅ Success for: 11. Precision Scenario D: Oxygen cylinder stored unsecured near a walkway.
+
+Test: 12. Precision Scenario E: Compressed gas cylinder missing valve protection cap.
+  [PASS] Classification: Compressed Gas Cylinders
+  [PASS] Risk Band: Critical
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "cylinder")
+  [PASS] Suggested standards: 29 CFR 1910.101(b)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 12. Precision Scenario E: Compressed gas cylinder missing valve protection cap.
+
+Test: 13. Precision Scenario F: Tank has no label.
+  [PASS] Classification: Hazard Communication
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "substance")
+  [PASS] Suggested standards: 29 CFR 1910.1200(f)(6), 29 CFR 1910.1200(f)(1)
+  [PASS] Suggested actions generated: 1 actions.
+✅ Success for: 13. Precision Scenario F: Tank has no label.
+
+Test: 14. Test B: Oil spilled across the walkway.
+  [PASS] Classification: Walking/Working Surfaces
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "walkway")
+  [PASS] Suggested standards: 29 CFR 1910.22(a)(2), 29 CFR 1910.22(a), 1910.22(a)(3)
+  [PASS] Suggested actions generated: 1 actions.
+  [PASS] Unexpected Hazard Domain "compressed_gas" not present
+  [PASS] Unexpected Standard Family "compressed_gas_cylinders" not present
+✅ Success for: 14. Test B: Oil spilled across the walkway.
+
+Test: 15. Test C: Compressed gas cylinder stored in a pedestrian walkway.
+  [PASS] Classification: Compressed Gas Cylinders
+  [PASS] Risk Band: High
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "cylinder")
+  [PASS] Suggested standards: 29 CFR 1910.101(b)
+  [PASS] Suggested actions generated: 1 actions.
+  [PASS] Hazard Domain: compressed_gas
+  [PASS] Unexpected Hazard Domain "slip_trip_fall" not present
+  [PASS] Unexpected Standard Family "walking_working_surfaces" not present
+✅ Success for: 15. Test C: Compressed gas cylinder stored in a pedestrian walkway.
+
+Test: 16. Test D: Extension cord stretched across walkway creating a trip hazard.
+  [PASS] Classification: Walking/Working Surfaces
+  [PASS] Risk Band: Moderate
+  [PASS] Governance Guardrails (advisoryOnly: true, requiresQualifiedReview: true, degraded: true)
+  [PASS] Evidence Gaps verified (contains keyword "walkway")
+  [PASS] Suggested standards: 29 CFR 1910.22(a)(3), 29 CFR 1910.22(a), 1910.22(a)(3)
+  [PASS] Suggested actions generated: 1 actions.
+  [PASS] Unexpected Hazard Domain "compressed_gas" not present
+  [PASS] Unexpected Standard Family "compressed_gas_cylinders" not present
+✅ Success for: 16. Test D: Extension cord stretched across walkway creating a trip hazard.
+
+[HazLenz classify] skipping full intelligence orchestrator on Render production {
+  reason: 'pre_import_heap_guard',
+  textLength: 25,
+  standards: 3,
+  actions: 1,
+  memory: { rssMb: 648, heapUsedMb: 452, heapTotalMb: 508, externalMb: 31 }
+}
+✅ Render full-intelligence heap guard diagnostics
+==================================================
+Golden Hardening Tests Summary: 17 passed, 0 failed
+==================================================
+
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Regression
+Script: src/safescope-v2/tests/inspection-intelligence-regression.ts
+
+◇ injected env (19) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+PASS oxygen cylinder near walkway
+PASS open used-oil container
+PASS conveyor tail pulley cleanup
+PASS open breaker slot
+PASS damaged cord in wet area
+PASS forklift pedestrians
+PASS elevated platform
+PASS chemical near drain
+PASS blocked exit
+PASS poor housekeeping
+PASS rotating coupling
+PASS confined-space ambiguity
+PASS hot work combustibles
+PASS LOTO ambiguity
+PASS damaged ladder
+Inspection intelligence regression: 15 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Expansion Regression
+Script: src/safescope-v2/tests/inspection-intelligence-expansion-regression.ts
+
+◇ injected env (19) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+PASS wet floor without controls
+PASS snow and ice at entry
+PASS hose crossing walkway
+PASS damaged grating
+PASS uncovered floor hole
+PASS scaffold guardrail missing
+PASS aerial lift ambiguity
+PASS fall height unknown
+PASS daisy chained strips
+PASS blocked electrical panel
+PASS exposed fan blade
+PASS exposed auger
+PASS maintenance energy unknown
+PASS construction backing alarm
+PASS mine dump berm
+PASS unstable pallets
+PASS suspended load over crew
+PASS leaking chemical drum
+PASS incompatible storage
+PASS blocked extinguisher
+PASS oxygen fuel gas separation
+PASS combustible wood dust
+PASS blocked eyewash
+PASS possible confined space
+PASS dust without sampling
+PASS welding fumes ventilation
+PASS noise without measurements
+PASS heat stress
+PASS grinding PPE gap
+PASS trench no protection
+PASS trench water and egress
+PASS damaged sling
+PASS mine highwall
+PASS mine damaged cable
+PASS mobile equipment proximity unclear
+Inspection intelligence expansion regression: 35 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: MSHA Inspection Intelligence Regression
+Script: src/safescope-v2/tests/msha-inspection-intelligence-regression.ts
+
+◇ injected env (19) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+PASS aggregate tail pulley cleanup
+PASS crusher drive belt exposed
+PASS conveyor stop cord unclear
+PASS conveyor walkway ambiguity
+PASS travelway opening
+PASS screen deck ladder
+PASS mine travelway housekeeping
+PASS dump point berm
+PASS forklift pedestrian interaction
+PASS forklift backup alarm failure
+PASS damaged forklift defect
+PASS mobile equipment brake defect
+PASS haul truck backing pedestrian
+PASS loader pickup blind corner
+PASS unattended loader parking
+PASS highwall loose material
+PASS feed hopper engulfment
+PASS wet damaged trailing cable
+PASS open mine plant electrical panel
+PASS used oil drainage release
+PASS mine shop oxygen cylinder
+PASS mine shop hot work
+PASS crusher noise no monitoring
+PASS drill silica dust
+PASS contractor training ambiguity
+PASS underground loose rib
+PASS underground diesel exhaust
+PASS coal belt fire guarding ambiguity
+PASS coal roof context
+PASS coal methane ventilation
+PASS surface coal traffic mapping limitation
+PASS underground mnm escapeway
+PASS coal dust mapping limitation
+PASS coal permissibility limitation
+PASS unclear mine contractor
+PASS mine blasting safety boundary
+PASS [variation] variation tail drum shoveling
+PASS [variation] variation screen sheave
+PASS [variation] variation pull cable
+PASS [variation] variation catwalk belt
+PASS [variation] variation ladder rung
+PASS [variation] variation windrow edge
+PASS [variation] variation LHD reverse
+PASS [variation] variation underground cable
+MSHA inspection intelligence regression: 44 passed, 0 failed (8 wording variations)
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Adversarial Regression
+Script: src/safescope-v2/tests/inspection-intelligence-adversarial-regression.ts
+
+◇ injected env (19) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+PASS [controlled] guard installed
+PASS [controlled] guarded locked-out conveyor
+PASS [controlled] secured cylinders
+PASS [controlled] clear exit
+PASS [controlled] dry floor
+PASS [controlled] no energized exposure
+PASS [controlled] panel cover intact
+PASS [controlled] undamaged cord
+PASS [controlled] no pedestrian exposure
+PASS [controlled] barrier-separated route
+PASS [controlled] equipment locked out
+PASS [controlled] adequate berm
+PASS [controlled] accessible extinguisher
+PASS [controlled] ladder removed
+PASS [controlled] labeled closed chemical
+PASS [controlled] controlled hot work
+PASS [controlled] covered floor hole
+PASS [vague] possible fall hazard
+PASS [vague] maybe electrical issue
+PASS [vague] chemical container observed
+PASS [vague] equipment maintenance occurring
+PASS [vague] dust in area
+PASS [vague] mobile equipment nearby
+PASS [vague] mine site issue
+PASS [vague] training concern
+PASS [vague] possible confined space
+PASS [vague] fall hazard reported
+PASS [jurisdiction] quarry tile warehouse
+PASS [jurisdiction] mine the data office
+PASS [jurisdiction] coal tar shop
+PASS [jurisdiction] aggregate data warehouse
+PASS [jurisdiction] pit stop fleet shop
+PASS [jurisdiction] inspection pit shop
+PASS [jurisdiction] unclear mine property
+PASS [jurisdiction] construction ladder
+PASS [jurisdiction] warehouse ladder
+PASS [jurisdiction] construction scaffold
+PASS [jurisdiction] warehouse scaffold
+PASS [jurisdiction] construction temporary wiring
+PASS [jurisdiction] factory extension cord
+PASS [jurisdiction] real aggregate mine
+PASS [jurisdiction] contractor at mine
+PASS [trap] fall meeting
+PASS [trap] completed hot-work permit
+PASS [trap] training records reviewed
+PASS [trap] office noise conversation
+PASS [trap] dust cover installed
+PASS [trap] account lockout
+PASS [trap] security guard
+PASS [trap] chemical inventory complete
+PASS [trap] coal-colored material
+PASS [trap] pit stop
+PASS [mixed] electrical over dry floor
+PASS [mixed] forklift over clear exit
+PASS [mixed] unguarded shaft over labeled chemical
+PASS [mixed] oil spill over secured cylinders
+PASS [mixed] blocked exit over accessible extinguisher
+Inspection intelligence adversarial regression: 57 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Citation Recovery Regression
+Script: src/safescope-v2/tests/inspection-intelligence-citation-recovery-regression.ts
+
+◇ injected env (19) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+PASS [sufficient] mine conveyor guard
+PASS [sufficient] open breaker slot
+PASS [sufficient] wet construction cord
+PASS [sufficient] unlabeled shop chemical
+PASS [sufficient] used oil drain
+PASS [sufficient] tank no label
+PASS [sufficient] forklift pedestrians
+PASS [sufficient] blocked exit
+PASS [sufficient] unguarded platform
+PASS [sufficient] rotating shaft
+PASS [sufficient] hot work combustibles
+PASS [sufficient] mine berm
+PASS [sufficient] mine wet cable
+PASS [sufficient] crusher silica
+PASS [sufficient] crusher noise
+PASS [sufficient] damaged ladder in use
+PASS [false positive] pedestrian walkway does not trigger PIT fallback
+PASS [domain suppression] guarded conveyor and debris
+PASS [domain suppression] secured cylinder and unlabeled chemical
+PASS [domain suppression] clear exit and blocked extinguisher
+PASS [domain suppression] locked machine and trip hazard
+PASS [domain suppression] separated forklift and blind corner
+PASS [jurisdiction] shaft unclear
+PASS [jurisdiction] cord unclear
+PASS [jurisdiction] fall unclear
+PASS [jurisdiction] chemical unclear
+PASS [jurisdiction] conveyor unclear
+PASS [insufficient] possible electrical issue
+PASS [insufficient] maybe a fall hazard
+PASS [insufficient] chemical container observed
+PASS [insufficient] dust in the area
+PASS [insufficient] mobile equipment nearby
+PASS [insufficient] training concern
+PASS [insufficient] mine site issue
+PASS [insufficient] maintenance ongoing
+PASS [insufficient] noise concern
+PASS [insufficient] hot work discussed
+PASS [shape] legacy suggestedStandards exposes inspection candidate
+PASS [coexistence] valid suggestion and separate exclusion coexist
+PASS [suppression] insufficient evidence suppresses legacy candidate
+Inspection intelligence citation recovery regression: 39 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Citation Ranking Regression
+Script: src/safescope-v2/tests/inspection-intelligence-citation-ranking-regression.ts
+
+◇ injected env (19) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+PASS open breaker slot warehouse
+PASS missing cover plate conductors
+PASS blocked electrical panel
+PASS damaged wet cord
+PASS daisy chained power strips
+PASS intact electrical control
+PASS rotating shaft
+PASS conveyor tail pulley
+PASS guard installed
+PASS point of operation
+PASS wet walkway
+PASS open floor hole
+PASS platform guardrail
+PASS damaged ladder
+PASS unlabeled chemical
+PASS open used oil drain
+PASS controlled chemical
+PASS surface mine conveyor
+PASS underground loose rib
+PASS crusher noise Part 62
+PASS surface coal traffic limitation
+PASS quarry tile warehouse boundary
+PASS PPE demoted for physical panel
+PASS PPE leads when observed
+PASS training demoted for shaft
+PASS training leads when observed
+PASS scope supporting only
+PASS welding excluded without context
+PASS compressed gas excluded without context
+PASS broad electrical cannot lead
+PASS remote-smoke-like exclusion and ranking contract
+PASS suggested and excluded standards coexist
+Inspection intelligence citation ranking regression: 32 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Citation Output Coherence Regression
+Script: src/safescope-v2/tests/inspection-intelligence-citation-output-coherence-regression.ts
+
+◇ injected env (19) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+PASS breaker direct candidate only front-facing
+PASS breaker specific-purpose candidate excluded
+PASS breaker broad scope candidates supporting
+PASS breaker advisory guardrails
+PASS breaker recovered metadata title
+PASS specific-purpose electrical remains separate context
+PASS observed electrical PPE remains eligible context
+PASS blocked panel direct working-space candidate
+PASS cord direct candidates only
+PASS controlled electrical has no active suggestion
+PASS MSHA Part 56 direct and OSHA suppressed
+PASS surface coal incomplete mapping does not force wrong part
+PASS unclear jurisdiction keeps alternatives coherent
+PASS needs-more-evidence bucket separate
+PASS needs-more-evidence remains family coherent
+PASS suggested and excluded coexist
+PASS supporting separate from suggested
+PASS walking surface direct front-facing family
+PASS machine shaft direct front-facing family
+PASS chemical label direct front-facing family
+PASS platform fall direct front-facing family
+PASS damaged ladder direct front-facing family
+PASS clear governance preserves advisory candidate
+PASS clear governance has no contradictory block message
+PASS clear governance states source limitation accurately
+PASS unclear governance blocks consistently
+Inspection intelligence citation output coherence regression: 25 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Vague Input Regression
+Script: src/safescope-v2/tests/inspection-intelligence-vague-input-regression.ts
+
+◇ injected env (19) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+==================================================
+Running HazLenz AI Vague Input Regression Suite
+==================================================
+
+Running Group A (Electrical)...
+  [PASS] panel looks bad
+  [PASS] electrical issue
+  [PASS] cord problem
+  [PASS] breaker problem
+  [PASS] exposed wire
+Running Group B (Fall & Walking Surface)...
+  [PASS] trip hazard
+  [PASS] slip issue
+  [PASS] fall hazard
+  [PASS] ladder issue
+  [PASS] blocked walkway
+Running Group C (Chemical & Environmental)...
+  [PASS] chemical issue
+  [PASS] open container
+  [PASS] spill
+  [PASS] no label
+Running Group D (Machine & LOTO)...
+  [PASS] guard issue
+  [PASS] machine unsafe
+  [PASS] lockout concern
+  [PASS] guarding issue
+  [PASS] loto issue
+Running Group E (Mobile Equipment & Traffic)...
+  [PASS] forklift area unsafe
+  [PASS] traffic issue
+  [PASS] pedestrian safety
+  [PASS] vehicle issue
+  [PASS] blind corner
+Running Group F (Mining Context MSHA)...
+  [PASS] mine safety issue
+  [PASS] berm problem
+  [PASS] highwall concern
+  [PASS] quarry safety
+  [PASS] mine hazard
+Running Group G (Industrial Hygiene & Exposure)...
+  [PASS] dust in area
+  [PASS] too loud
+  [PASS] heat concern
+  [PASS] fumes
+  [PASS] noise concern
+Running Group H (General Vagueness)...
+  [PASS] unsafe
+  [PASS] needs fixed
+  [PASS] hazard noted
+  [PASS] something wrong
+  [PASS] safety concern
+Running Group I (Sufficient Evidence Bypasses)...
+  [PASS] open breaker slot
+  [PASS] unlabeled container
+  [PASS] unlabeled chemical container
+  [PASS] missing guard on conveyor tail pulley
+  [PASS] blocked emergency exit
+  [PASS] frayed extension cord
+Running Group J (False Positive Trap Bypasses)...
+  [PASS] Fall meeting is scheduled for Monday.
+  [PASS] Hot work permit filed and complete.
+  [PASS] Training record reviewed and current.
+  [PASS] User is locked out of account.
+  [PASS] Dust cover installed and secured on the equipment.
+
+==================================================
+Vague Input Regression Result: 50/50 passed
+==================================================
+
+
+--------------------------------------------------
+
+Running Suite: Inspection Intelligence Vague Output Coherence Regression
+Script: src/safescope-v2/tests/inspection-intelligence-vague-output-coherence-regression.ts
+
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+Initializing database connection for Vague Output Coherence suite...
+
+🏃 Starting vague-input downstream coherence regression tests...
+
+Running vague test 1: "panel looks bad"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 15,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 647, heapUsedMb: 441, heapTotalMb: 507, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 648, heapUsedMb: 449, heapTotalMb: 508, externalMb: 30 }
+}
+  [PASS] Test 1
+Running vague test 2: "electrical issue"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 16,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 651, heapUsedMb: 444, heapTotalMb: 511, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 652, heapUsedMb: 448, heapTotalMb: 511, externalMb: 30 }
+}
+  [PASS] Test 2
+Running vague test 3: "cord problem"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 12,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 458, heapTotalMb: 512, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 461, heapTotalMb: 512, externalMb: 30 }
+}
+  [PASS] Test 3
+Running vague test 4: "breaker problem"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 15,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 456, heapTotalMb: 512, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 459, heapTotalMb: 512, externalMb: 30 }
+}
+  [PASS] Test 4
+Running vague test 5: "machine unsafe"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 14,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 454, heapTotalMb: 513, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 653, heapUsedMb: 457, heapTotalMb: 513, externalMb: 30 }
+}
+  [PASS] Test 5
+Running vague test 6: "conveyor problem"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 16,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 653, heapUsedMb: 450, heapTotalMb: 513, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 454, heapTotalMb: 513, externalMb: 30 }
+}
+  [PASS] Test 6
+Running vague test 7: "forklift area unsafe"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 20,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 454, heapTotalMb: 514, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 456, heapTotalMb: 514, externalMb: 30 }
+}
+  [PASS] Test 7
+Running vague test 8: "chemical issue"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 14,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 453, heapTotalMb: 514, externalMb: 30 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 654, heapUsedMb: 456, heapTotalMb: 514, externalMb: 30 }
+}
+  [PASS] Test 8
+Running vague test 9: "leak near drain"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 15,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 654, heapUsedMb: 454, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 457, heapTotalMb: 514, externalMb: 31 }
+}
+  [PASS] Test 9
+Running vague test 10: "fall hazard"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 11,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 450, heapTotalMb: 514, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 453, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 10
+Running vague test 11: "mine safety issue"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 17,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 453, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 456, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 11
+Running vague test 12: "crusher area dusty"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 18,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 456, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 459, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 12
+Running vague test 13: "training concern"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 16,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 454, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 457, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 13
+Running vague test 14: "blocked access"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 14,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 655, heapUsedMb: 453, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 655, heapUsedMb: 456, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 14
+Running vague test 15: "open container"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 14,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 452, heapTotalMb: 515, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 656, heapUsedMb: 455, heapTotalMb: 515, externalMb: 31 }
+}
+  [PASS] Test 15
+Running clear preservation test 16: "Open breaker slot and missing panel cover expose energized parts in a warehouse."
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 80,
+  standards: 1,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 455, heapTotalMb: 516, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 656, heapUsedMb: 459, heapTotalMb: 516, externalMb: 31 }
+}
+  [PASS] Test 16
+Running clear preservation test 17: "Damaged extension cord with exposed conductor is used in a wet area."
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 68,
+  standards: 5,
+  actions: 1,
+  memory: { rssMb: 656, heapUsedMb: 464, heapTotalMb: 516, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 467, heapTotalMb: 516, externalMb: 31 }
+}
+  [PASS] Test 17
+Running clear preservation test 18: "Unlabeled chemical container in maintenance shop."
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 49,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 470, heapTotalMb: 517, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 457, heapTotalMb: 517, externalMb: 31 }
+}
+  [PASS] Test 18
+Running clear preservation test 19: "Forklift operating next to pedestrians without separation."
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 58,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 464, heapTotalMb: 517, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 467, heapTotalMb: 517, externalMb: 31 }
+}
+  [PASS] Test 19
+Running clear preservation test 20: "Missing guard on conveyor tail pulley at aggregate mine during cleanup."
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 71,
+  standards: 2,
+  actions: 1,
+  memory: { rssMb: 657, heapUsedMb: 459, heapTotalMb: 517, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 657, heapUsedMb: 462, heapTotalMb: 517, externalMb: 31 }
+}
+  [PASS] Test 20
+Running false-positive test 21: "fall meeting"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 12,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 470, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 473, heapTotalMb: 518, externalMb: 31 }
+}
+  [PASS] Test 21
+Running false-positive test 22: "locked out of account"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 21,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 460, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 463, heapTotalMb: 518, externalMb: 31 }
+}
+  [PASS] Test 22
+Running false-positive test 23: "guard at front gate"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 19,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 464, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 467, heapTotalMb: 518, externalMb: 31 }
+}
+  [PASS] Test 23
+Running false-positive test 24: "data mining issue"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 17,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 470, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 473, heapTotalMb: 518, externalMb: 31 }
+}
+  [PASS] Test 24
+Running false-positive test 25: "coal-colored paint"
+[HazLenz classify] intelligence orchestrator start {
+  textLength: 18,
+  standards: 0,
+  actions: 1,
+  memory: { rssMb: 658, heapUsedMb: 461, heapTotalMb: 518, externalMb: 31 }
+}
+[HazLenz classify] intelligence orchestrator complete {
+  memory: { rssMb: 658, heapUsedMb: 464, heapTotalMb: 518, externalMb: 31 }
+}
+  [PASS] Test 25
+
+==================================================
+Vague Output Coherence Regression Result: 25/25 passed
+==================================================
+
+
+--------------------------------------------------
+
+Running Suite: HazLenz Mechanism Chain Hardening
+Script: src/safescope-v2/tests/hazlenz-mechanism-chain-hardening.ts
+
+◇ injected env (19) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+PASS Open used-oil container near walkway
+PASS Leaking bucket or drum
+PASS Debris in walkway
+PASS Unsecured compressed gas cylinder near traffic
+PASS Missing cylinder valve protection cap
+PASS Open breaker slot / missing panel cover
+PASS Damaged cord in wet area
+PASS Conveyor tail pulley missing guard during cleanup
+PASS Rotating shaft missing guard
+PASS Unstable stacked material near work area
+HazLenz mechanism-chain hardening: 10 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Spill/Release Citation Ranking
+Script: src/safescope-v2/tests/hazlenz-spill-release-citation-ranking.ts
+
+◇ injected env (19) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+PASS open used oil near walkway
+PASS leaking oily waste bucket
+PASS unlabeled closed chemical shelf
+PASS oil spill across walkway
+PASS oily residue near drain
+HazLenz spill/release citation ranking: 5 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Mechanism Chain Contract Regression
+Script: src/safescope-v2/tests/hazlenz-mechanism-chain-contract-regression.ts
+
+◇ injected env (18) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+PASS unsecured oxygen cylinder near walkway
+PASS open used oil container near walkway
+PASS conveyor tail pulley missing guard during cleanup
+PASS open breaker slot
+PASS damaged extension cord
+PASS scrap and hoses across walkway
+PASS vague area unsafe
+HazLenz mechanism-chain contract regression: 7 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Supplemental Knowledge Regression
+Script: src/safescope-v2/tests/hazlenz-supplemental-knowledge-regression.ts
+
+◇ injected env (18) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+PASS helper hazcom aliases resolve supplemental guidance
+PASS helper mobile equipment returns supplemental guidance bundle
+PASS spill case gets walking-surface primary and supplemental guidance
+PASS chemical container keeps HazCom primary and supplemental guidance separate
+PASS mobile equipment case surfaces supplemental traffic guidance
+PASS DOT guidance stays outside the supplemental registry
+HazLenz supplemental knowledge regression: 6 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Vague Guarding Regression
+Script: src/safescope-v2/tests/hazlenz-vague-guarding-regression.ts
+
+◇ injected env (18) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+PASS missing guard
+PASS missing guard on rotating shaft
+PASS missing guardrail on elevated platform
+PASS missing conveyor tail pulley guard at aggregate plant
+HazLenz vague guarding regression: 4 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Classify Path Regression
+Script: src/safescope-v2/tests/hazlenz-classify-path-regression.ts
+
+◇ injected env (18) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+PASS open used oil near walkway
+PASS oil spill across walkway
+PASS forklift in aisle with pedestrians
+PASS scrap and hoses across walkway
+HazLenz classify path regression: 4 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Production Path Regression
+Script: src/safescope-v2/tests/hazlenz-production-path-regression.ts
+
+◇ injected env (18) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+PASS cord damaged osha gi
+PASS cord damaged msha
+PASS cord damaged no jurisdiction
+PASS frayed cord with exposed conductors
+PASS cord damaged without evidence texts
+PASS lockout before servicing
+PASS safe lockout verified
+PASS tagged but not locked
+PASS equipment being serviced without lockout
+PASS damaged construction ladder
+PASS improper ladder setup
+PASS vague ladder input
+PASS meaningless input
+PASS context-free unsafe condition stays unclassified
+PASS context-free servicing note stays unclassified
+HazLenz production path regression: 15 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Temporal Reconciliation Regression
+Script: src/safescope-v2/tests/hazlenz-temporal-reconciliation-regression.ts
+
+PASS haul route retains unknown mobile context
+PASS controlled chemical sibling preserves active hot work
+PASS future repair remains active
+HazLenz temporal reconciliation regression: 3 passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Condition-State Invariants Regression
+Script: src/safescope-v2/tests/hazlenz-condition-state-invariants-regression.ts
+
+PASS Invariant 1: no ACTIVE hazard from safe/negated text — "The scaffold was inspected today. There ..."
+PASS Invariant 1: no ACTIVE hazard from safe/negated text — "The conveyor's point-of-operation guard ..."
+PASS Invariant 1: no ACTIVE hazard from safe/negated text — "All electrical panel covers are intact a..."
+PASS Invariant 2: historical-corrected fall_protection hazard is HISTORICAL, not ACTIVE
+PASS Invariant 3: planned-future fall_protection hazard is PLANNED_FUTURE, not ACTIVE
+PASS Negative control: genuinely active machine_guarding hazard is still detected as ACTIVE
+PASS Mixed observation: electrical hazard preserved as ACTIVE
+PASS Mixed observation: safe guardrail language does not produce an ACTIVE fall/guarding finding
+PASS Invariant 4: at least 4 distinct findings decomposed from the 5-hazard observation
+PASS Invariant 4: every finding has its own distinct, non-empty evidence fragment
+PASS Invariant 4: the walking-surfaces finding carries real hazard evidence, not a contentless scene-setting fragment
+PASS Base router: "no missing guardrails" does not route to any hazard domain
+============================================================
+HazLenz condition-state invariants regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Finding-Scoped Standards Regression
+Script: src/safescope-v2/tests/hazlenz-finding-scoped-standards-regression.ts
+
+PASS Invariant 5: standardCandidates was computed (present) for every decomposed finding
+PASS Invariant 5: the LOTO finding's own evidence produces the LOTO standard (29 CFR 1910.147)
+PASS Invariant 6: the LOTO standard (1910.147) does not leak onto the machine_guarding finding
+PASS Invariant 6: the machine_guarding finding's own standard does not leak onto the LOTO finding
+PASS Invariant 5: a finding with no rule-matching evidence gets an empty (not fabricated) standardCandidates list
+============================================================
+HazLenz finding-scoped standards regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz LOTO Fragment-Scoping Regression
+Script: src/safescope-v2/tests/hazlenz-loto-fragment-scoping-regression.ts
+
+PASS Active LOTO deficiency ("no lockout/tagout has been applied") is detected as ACTIVE
+PASS Properly controlled LOTO produces no unsupported ACTIVE finding
+PASS Mixed LOTO case: active finding exists and is bound to Machine B's own fragment
+PASS Multi-hazard: LOTO finding exists and does not include the electrical sentence
+PASS Multi-hazard: electrical finding exists and does not include the LOTO sentence
+PASS "hazardous energy has not been isolated" (no specific energy-type word) is detected as ACTIVE LOTO
+PASS LOTO fragment does not absorb the unrelated handrail sentence
+PASS LOTO finding remains ACTIVE (not flipped to SAFE_VERIFIED by an unrelated sentence's "repaired/verified" language)
+PASS The handrail finding independently remains HISTORICAL, correctly scoped to only its own sentence
+PASS No finding's fragment equals the entire multi-sentence observation text
+============================================================
+HazLenz LOTO fragment-scoping regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Handrail/Guardrail Regression
+Script: src/safescope-v2/tests/hazlenz-handrail-guardrail-regression.ts
+
+PASS Historical handrail correction is not misrouted to material_handling_storage
+PASS Historical handrail correction lands in fall_protection with HISTORICAL state
+PASS Stair handrail missing is detected as ACTIVE fall_protection
+PASS Bare damaged-handrail evidence (no "fall hazard"/"edge" wording) is still detected as ACTIVE
+PASS Compliant handrail produces no unsupported ACTIVE finding
+PASS Platform guardrail missing is still detected as ACTIVE fall_protection
+PASS Guardrail evidence/mechanism text does not say "handrail"
+PASS Handrail and guardrail deficiencies in the same observation keep distinct mechanism text
+============================================================
+HazLenz handrail/guardrail regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz LOTO Degraded-Gap Alignment Regression
+Script: src/safescope-v2/tests/hazlenz-loto-degraded-gap-alignment-regression.ts
+
+◇ injected env (18) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+PASS degraded LOTO finding is classified as hazardous energy
+PASS degraded LOTO finding asks LOTO evidence questions, not guarding questions
+PASS degraded reasoning summary describes hazardous-energy isolation, not barrier guarding
+PASS genuine guarding finding still asks guarding evidence questions
+PASS degraded gaps were selected from the returned classification :: Maintenance performed without lockout and stored
+PASS degraded gaps were selected from the returned classification :: At an aggregate mine, the tail pulley on a conve
+PASS degraded gaps were selected from the returned classification :: In the warehouse, an electrical distribution pan
+PASS degraded gaps were selected from the returned classification :: Unlabeled plastic container filled with clear li
+PASS tag-only state classifies as hazardous energy :: equipment is tagged but not locked where locki
+PASS tag-only state is not returned at throwaway confidence :: equipment is tagged but not locked where locki
+PASS tag-only state classifies as hazardous energy :: the disconnect was tagged out but not locked o
+PASS tag-only state is not returned at throwaway confidence :: the disconnect was tagged out but not locked o
+PASS tag-only state classifies as hazardous energy :: servicing proceeded with tagout only on a swit
+PASS tag-only state is not returned at throwaway confidence :: servicing proceeded with tagout only on a swit
+PASS tag-only state classifies as hazardous energy :: the press was tagged without lockout while the
+PASS tag-only state is not returned at throwaway confidence :: the press was tagged without lockout while the
+PASS verified-safe lockout language is not scored as a tag-only deficiency
+PASS an out-of-service equipment tag is not converted into a LOTO finding
+PASS tag-only state reaches the customer as a hazardous-energy family
+PASS tag-only state still carries 29 CFR 1910.147
+============================================================
+HazLenz LOTO degraded-gap alignment regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Energy-Isolation Negation Regression
+Script: src/safescope-v2/tests/hazlenz-energy-isolation-negation-regression.ts
+
+PASS "has not been isolated or locked out" extracts not_isolated, never isolated_and_verified
+PASS "has not been deenergized or isolated" extracts not_isolated, never isolated_and_verified
+PASS Genuinely verified LOTO language still extracts isolated_and_verified
+============================================================
+HazLenz energy-isolation negation regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Defeated-Control / Contradiction Regression
+Script: src/safescope-v2/tests/hazlenz-defeated-control-contradiction-regression.ts
+
+PASS defeated control is ineffective: originating case: interlock guard installed but bypassed with a jumper wire
+PASS defeated control is ineffective: operator bypassed the interlock
+PASS defeated control is ineffective: interlock defeated so the machine runs with the guard open
+PASS defeated control is ineffective: jumper installed across the safety interlock (device named after the action)
+PASS defeated control is ineffective: interlock installed but intentionally disabled
+PASS defeated control is ineffective: light curtain taped over
+PASS defeated control is ineffective: safety gate blocked open
+PASS defeated control is ineffective: limit switch overridden
+PASS effective control still reads effective: fixed guard verified in place and interlock function-tested
+PASS effective control still reads effective: machine interlock is functioning normally
+PASS effective control still reads effective: guard interlock tested and works as designed
+PASS effective control still reads effective: previously bypassed but restored and function-tested
+PASS suspected bypass asserts neither an effective control nor an established deficiency
+PASS unverified/contradicted isolation is not "verified": locked out but isolation could not be verified
+PASS unverified/contradicted isolation is not "verified": locked and tagged out but disconnect may still be energized
+PASS unverified/contradicted isolation is not "verified": lockout complete but voltage measured at the work point
+PASS unverified/contradicted isolation is not "verified": de-energized and locked out but stored hydraulic pressure remains
+PASS unverified/contradicted isolation is not "verified": lock installed but power never verified
+PASS fully verified zero-energy state still extracts isolated_and_verified
+PASS an explicit "no lock or tag was present" still extracts not_isolated
+PASS contradicted energy control preserves a hazardous-energy finding: originating case: says locked out, disconnect found ON, no lock or tag
+PASS contradicted energy control preserves a hazardous-energy finding: locked and tagged out but disconnect may still be energized
+PASS contradicted energy control preserves a hazardous-energy finding: lock installed but power never verified
+PASS contradicted energy control preserves a hazardous-energy finding: lockout complete but voltage measured at the work point
+PASS contradicted energy control preserves a hazardous-energy finding: locked out but isolation could not be verified
+PASS the preserved contradiction finding is ACTIVE, requires review, and carries the contradiction as its evidence gap
+PASS a fully verified isolation is NOT turned into a hazard by contradiction preservation
+PASS a stated LOTO deficiency alongside an electrical hazard yields exactly one LOTO finding and one electrical finding
+PASS that LOTO finding is not a whole-observation catch-all that absorbs the electrical clause
+PASS stored energy remaining after partial isolation is preserved as a hazardous-energy finding
+PASS a blocked exit with unstated occupancy is UNKNOWN (a candidate), never CONTRADICTED
+PASS a blocked exit with stated occupancy is still SUPPORTED
+PASS a genuinely open and usable exit is still NOT_APPLICABLE (no over-correction)
+
+HazLenz defeated-control / contradiction regression: all invariants passed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Jurisdiction-Unknown Standards Regression
+Script: src/safescope-v2/tests/hazlenz-jurisdiction-unknown-standards-regression.ts
+
+PASS Unknown jurisdiction: LOTO finding still surfaces 29 CFR 1910.147 as a candidate (not silently dropped)
+PASS Unknown jurisdiction: 1910.147 candidate is UNKNOWN status, never fabricated as SUPPORTED
+PASS Unknown jurisdiction: 30 CFR 56.12016 (MSHA sibling) is also surfaced as a candidate
+PASS Confirmed general-industry jurisdiction: 1910.147 reaches SUPPORTED with complete evidence
+PASS Confirmed MSHA jurisdiction: OSHA General Industry 1910.147 does not appear at all
+PASS Confirmed construction jurisdiction: no LOTO rule exists for this jurisdiction, candidates list is empty (not fabricated)
+PASS Jurisdiction fact remains honestly 'unknown' (not guessed) when no scope is provided
+PASS Answering "Yes" to the general-industry jurisdiction clarification question resolves 1910.147 to SUPPORTED at finding scope
+PASS Confirming general-industry jurisdiction via clarification excludes the MSHA sibling candidate entirely
+PASS A jurisdiction confirmed on an earlier round (carried in the accumulated clarificationAnswers history) is not forgotten
+PASS Accumulated-round jurisdiction correctly excludes the MSHA sibling candidate
+PASS An echoed snapshot jurisdiction fact alone does not confirm jurisdiction (candidates stay honest UNKNOWN in both regimes, nothing fabricated as SUPPORTED)
+============================================================
+HazLenz jurisdiction-unknown standards regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Inspection-Context / Autonomy Regression
+Script: src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression.ts
+
+◇ injected env (19) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+PASS 1a Inspection entity declares a persisted regulatoryContext column (varchar, default unknown)
+PASS 1b A migration adds inspection.regulatoryContext
+PASS 1c CreateInspectionDto accepts every supported context and rejects an unknown value
+PASS 1d UpdateInspectionDto accepts a regulatoryContext change
+PASS 1e provenance is derived honestly: unknown -> UNKNOWN, any regime -> USER_CONFIRMED
+PASS 3 Confirmed General Industry: 1910.28 SUPPORTED and Construction-only 1926.501 / 1926.451 do not leak
+PASS 4 Confirmed Construction: 1926.501 SUPPORTED and General-Industry-only 1910.28 does not substitute
+PASS 5 Confirmed MSHA: 30 CFR 56.12016 SUPPORTED and no 29 CFR authority is returned as governing
+PASS 6 Unknown jurisdiction: candidates are retained (no zero-candidate failure) across regimes
+PASS 7 Unknown jurisdiction: no false certainty -- every regime candidate is UNKNOWN (conditional), none SUPPORTED, provenance UNKNOWN
+PASS 8a Unknown jurisdiction asks exactly ONE consolidated jurisdiction question (id "jurisdiction", inspection scope, named regime options)
+PASS 8b Once inspection context is established, the jurisdiction question is never asked again
+PASS 8c Answering the consolidated question resolves the regime (1926.501 SUPPORTED, USER_CONFIRMED) and clears it
+PASS 7b/B HazLenz-inferred regime is labelled HAZLENZ_INFERRED (never USER_CONFIRMED), confidence capped below a confirmed match, and cites its basis
+PASS 7c Conflicting regime cues do not infer (stays UNKNOWN)
+PASS 9 A jurisdiction answered on an earlier round survives later rounds (1910.147 SUPPORTED at finding scope on round 2)
+PASS 10a Finding A (LOTO) answer does not contaminate Finding B (electrical): B has no LOTO citation, A has no electrical citation
+PASS 10b An echoed snapshot jurisdiction fact alone cannot establish or re-label jurisdiction
+PASS 11 Manual finding evaluated with a finding-scoped standard [/1910\.147/] and a decomposed finding: "Employee is servicing the packaging line without..."
+PASS 11 Manual finding evaluated with a finding-scoped standard [/1910\.212/] and a decomposed finding: "The point of operation on the punch press is ung..."
+PASS 11 Manual finding evaluated with a finding-scoped standard [/1926\.451\(g\)\(1\)/] and a decomposed finding: "A worker is on a scaffold platform about 12 feet..."
+PASS 11 Manual finding evaluated with a finding-scoped standard [/1910\.303/] and a decomposed finding: "An extension cord in use at the workbench has da..."
+PASS 11 Manual finding evaluated with a finding-scoped standard [/1910\.95/] and a decomposed finding: "Employees in the grinding area are exposed to a ..."
+PASS 12 Clear evidence -> supported standard [/1910\.147/] with ZERO clarification questions: "Employee is servicing the conveyor with powe..."
+PASS 12 Clear evidence -> supported standard [/1910\.212/] with ZERO clarification questions: "Operator's hand can reach the unguarded poin..."
+PASS 12 Clear evidence -> supported standard [/1926\.501/] with ZERO clarification questions: "Worker is exposed to an unprotected roof edg..."
+PASS 12 Clear evidence -> supported standard [/1910\.303/] with ZERO clarification questions: "Extension cord has exposed copper conductors..."
+PASS 12 Clear evidence -> supported standard [/1926\.1153/] with ZERO clarification questions: "A worker is dry-cutting concrete block with ..."
+PASS 12 Clear evidence -> supported standard [/56\.14107/] with ZERO clarification questions: "The guard on the conveyor tail pulley at the..."
+PASS 12 Clear evidence -> supported standard [/1926\.652/] with ZERO clarification questions: "Two laborers are working in a 7-foot deep tr..."
+PASS 12b Verified-safe LOTO produces no SUPPORTED violation and no energy questions
+PASS 13a Servicing with no energy-control facts stays a candidate and asks a targeted energy question (no fabricated SUPPORTED)
+PASS 13b Trench with unknown exposure/protection stays a candidate and asks about exposure/protective system
+PASS 13c Genuinely unknown jurisdiction with no regime cues asks the one jurisdiction question
+PASS 14a Each finding carries its OWN standardCandidates array (present even when empty) with jurisdictionProvenance on every candidate
+PASS 14b LOTO finding owns 1910.147 only; electrical finding owns 1910.303 only (the same shape the persisted sourceCandidate, Standard Detail panel and PDF extractStandard read)
+PASS 2a Controller applies the persisted inspection context over whatever the client sent (jurisdiction "unknown", scopes all)
+PASS 2b Every decomposed finding inherits the inspection context (all candidates evaluated under USER_CONFIRMED construction; no 1910 leakage)
+PASS 2c Response carries regulatoryContext {value, provenance USER_CONFIRMED, source inspection}
+PASS 2d Without an inspectionId a client cannot claim inspection-level provenance (folded into an ordinary request jurisdiction)
+============================================================
+HazLenz inspection-context / autonomy regression: all invariants passed, 0 failed
+
+--------------------------------------------------
+
+Running Suite: HazLenz Decomposition Precision / Recall Gate
+Script: src/safescope-v2/tests/hazlenz-decomposition-precision-regression.ts
+
+==================================================
+HazLenz secondary-hazard decomposition precision/recall — current
+==================================================
+Corpus: Population A = 34 rows, Population B = 22 rows / 43 required hazard groups (35 life-critical)
+
+-- Population A (contextual language must not create a hazard) --
+  forbidden-family count          : 0
+  rows with a forbidden family    : 0
+  false secondary-promotion rate  : 0.0%
+  case-level precision            : 100.0%
+  unexpected (non-forbidden) count: 5
+  required-hazard omissions in A  : 0
+  alias collisions (permission won): A-28:slips_trips_falls_housekeeping
+
+-- Population B (genuine multi-hazard must still split) --
+  required secondary-hazard recall: 100.0% (43/43)
+  dangerous-omission rate         : 0.0% (0)
+  life-critical omission count    : 0
+  case-level full-hazard recall   : 100.0%
+
+-- Combined safety tally --
+  total dangerous omissions (A+B) : 0
+  total life-critical omissions   : 0
+==================================================
+
+PASS HazLenz decomposition precision/recall gate
+
+--------------------------------------------------
+
+Running Suite: HazLenz Level-1 Recall Gate
+Script: src/safescope-v2/tests/hazlenz-level1-recall-regression.ts
+
+-- Level-1 required-hazard omission repros (Phase 2 measurement) --
+  [PASS] B-07 need one of [atmospheric_hazard, ventilation_air_quality, respiratory_protection] emitted=[confined_space, ventilation_air_quality]
+  [PASS] B-10 (life-critical) need one of [hydraulic_pneumatic_energy, lockout_tagout] emitted=[compressed_gas, hydraulic_pneumatic_energy, machine_guarding]
+  [PASS] B-13 need one of [respiratory_protection, ppe, ventilation_air_quality] emitted=[respiratory_protection, silica_respirable_dust]
+  [PASS] B-15 (life-critical) need one of [lockout_tagout] emitted=[electrical, lockout_tagout]
+  [PASS] B-15 (life-critical) need one of [electrical] emitted=[electrical, lockout_tagout]
+  [PASS] B-16 need one of [ppe] emitted=[machine_guarding, personal_protective_equipment]
+  [PASS] B-18 (life-critical) need one of [lockout_tagout] emitted=[confined_space, lockout_tagout, ventilation_air_quality]
+  [PASS] B-19 (life-critical) need one of [hot_work, welding_cutting] emitted=[confined_space, fire_explosion, hot_work]
+  [PASS] A-02 need one of [ppe] emitted=[hot_work, personal_protective_equipment]
+
+-- Hazardous-energy / MCC probe family --
+  [PASS] HE-01 MCC bucket opened, disconnect closed, no lock — exposure with no energy control
+          emitted=[electrical, lockout_tagout]
+  [PASS] HE-02 Same task after verified isolation and lockout — safe state, no finding
+          emitted=[]
+  [PASS] HE-03 Energized enclosure open with exposed conductors — electrical exposure
+          emitted=[electrical]
+  [PASS] HE-04 Closed enclosure, no work occurring — descriptive, no finding
+          emitted=[]
+  [PASS] HE-05 Disconnect open but absence of voltage never established — verification omitted
+          emitted=[lockout_tagout]
+  [PASS] HE-06 Legitimate maintenance with documented LOTO — safe state, no finding
+          emitted=[machine_guarding]
+  [PASS] HE-07 Administrative records naming electrical and lockout — no physical condition
+          emitted=[]
+  [PASS] HE-08 Equipment named as stored stock — no energy, no exposure
+          emitted=[]
+
+PASS HazLenz Level-1 recall gate (17 checks)
+
+--------------------------------------------------
+
+Running Suite: HazLenz Actionable Coverage Gate
+Script: src/safescope-v2/tests/hazlenz-actionable-coverage-regression.ts
+
+-- required actionable coverage (hazard must reach a finding) --
+  [PASS] B-05 (life-critical) need one of [compressed_gas] emitted=[compressed_gas, hot_work]
+  [PASS] B-16 need one of [machine_guarding] emitted=[machine_guarding, personal_protective_equipment]
+  [PASS] B-20 (life-critical) need one of [suspended_loads, cranes_hoists, rigging_lifting] emitted=[fall_protection, suspended_loads]
+
+-- classifier-only families that must NOT become findings --
+  [PASS] A-13 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-14 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-15 classifier said Mobile Equipment / Traffic @0.93 high; emitted=[]
+  [PASS] A-19 classifier said Compressed Air / Hose Safety @0.25 low; emitted=[]
+  [PASS] A-21 classifier said Welding / Cutting / Hot Work @0.70 medium; emitted=[]
+  [PASS] A-23 classifier said Welding / Cutting / Hot Work @0.52 low; emitted=[]
+  [PASS] A-24 classifier said Machine Guarding @0.93 high; emitted=[]
+  [PASS] A-25 classifier said First Aid / Eyewash @0.52 low; emitted=[]
+  [PASS] A-26 classifier said Trenching & Shoring @0.82 high; emitted=[]
+  [PASS] A-27 classifier said Fall Protection @0.93 high; emitted=[hazard_communication]
+  [PASS] A-29 classifier said Walking/Working Surfaces @0.70 medium; emitted=[]
+  [PASS] A-31 classifier said Walking/Working Surfaces @0.93 high; emitted=[electrical]
+  [PASS] A-34 classifier said Material Handling @0.70 medium; emitted=[]
+  [PASS] A-12 classifier said Unclassified @0.25 low; emitted=[]
+
+PASS HazLenz actionable-coverage gate (17 checks)
+
+--------------------------------------------------
+
+Running Suite: HazLenz Standards Jurisdiction Gate
+Script: src/safescope-v2/tests/hazlenz-standards-jurisdiction-gate.ts
+
+-- standards jurisdiction safety and bounded matching --
+  [PASS] J-01 (osha-general-industry) LOTO under general industry cites 1910, never 1926 or 30 CFR
+          emitted=[29 CFR 1910.147]
+  [PASS] J-02 (msha) the same LOTO observation under MSHA cites 30 CFR, never 29 CFR
+          emitted=[30 CFR 56.12016]
+  [PASS] J-03 (osha-construction) a fall exposure under construction cites 1926, never 1910
+          emitted=[29 CFR 1926.501]
+  [PASS] J-04 (osha-general-industry) the same fall exposure under general industry cites 1910, never 1926
+          emitted=[29 CFR 1910.28]
+  [PASS] J-05 (osha-general-industry) an excavation under general industry must NOT borrow the construction trenching standard
+          emitted=[none]
+  [PASS] J-06 (msha) machine guarding under MSHA cites 30 CFR only
+          emitted=[30 CFR 56.14107(a)]
+  [PASS] J-07 (osha-construction) electrical exposure under construction cites 1926, never 1910
+          emitted=[29 CFR 1926.416(a)(1)]
+  [PASS] J-08 (msha) hazard communication under MSHA cites Part 47, never 1910.1200
+          emitted=[30 CFR 47.41(a)]
+  [PASS] S-01 (osha-general-industry) verified lockout is a safe state, not a LOTO citation
+          emitted=[none]
+  [PASS] S-02 (osha-general-industry) a guard reported correctly fitted is not a guarding citation
+          emitted=[none]
+  [PASS] S-03 (osha-general-industry) an explicitly negated hazard produces no citation for that family
+          emitted=[none]
+  [PASS] S-04 (osha-general-industry) a protected floor opening is not a fall-protection citation
+          emitted=[none]
+  [PASS] S-05 (osha-general-industry) an administrative record names no hazard and earns no citation
+          emitted=[none]
+  [PASS] A-01 (osha-general-industry) a cylinder mentioned as secured earns no unsecured-cylinder citation
+          emitted=[none]
+  [PASS] A-02 (osha-general-industry) a walkway named only as a location earns no walking-surface citation
+          emitted=[none]
+  [PASS] A-03 (osha-general-industry) noise vocabulary without an exposure earns no noise citation
+          emitted=[none]
+
+  wrong-jurisdiction citations: 0
+
+PASS HazLenz standards jurisdiction gate (16 checks, 0 wrong-jurisdiction citations)
+
+--------------------------------------------------
+
+Running Suite: HazLenz Source Authority Gate
+Script: src/safescope-v2/tests/hazlenz-source-authority-gate.ts
+
+-- source-level regulatory authority, by hazard family and regime --
+  [NO_STANDARD_APPLICABLE] excavation_trenching / osha-general-industry
+  [NO_STANDARD_APPLICABLE] confined_space / msha
+  [NO_STANDARD_APPLICABLE] environmental_release / msha
+  [NO_STANDARD_APPLICABLE] traffic_control / osha-general-industry
+  [NO_STANDARD_APPLICABLE] ground_control / osha-general-industry
+
+  governed source citations: 72
+  matrix families: 24   cells: 72
+  SOURCE_AUTHORITY_PRESENT : 67
+  NO_STANDARD_APPLICABLE   : 5
+  SOURCE_AUTHORITY_MISSING : 0
+  OUT_OF_SCOPE             : 0
+  families with a finding-level rule today: 11 / 24
+
+PASS HazLenz source-authority gate — every named provision is in the governed source set
+
+--------------------------------------------------
+
+Running Suite: Release Identity Immutability Gate
+Script: src/standards/tests/release-identity-immutability.ts
+
+  [PASS] every version-controlled release definition pins a manifest checksum
+  [PASS] a matching manifest is accepted for its own release id
+  [PASS] a DIFFERENT manifest under an EXISTING release id is refused
+  [PASS] the 35-record release identity still names the 35-record manifest
+  [PASS] a release id with no version-controlled definition is refused rather than silently minted
+  [PASS] an UNREGISTERED id is permitted in a KG-owned disposable database (governance fixtures)
+  [PASS] a REGISTERED id with a different manifest stays refused EVEN in an owned disposable database
+  [PASS] the reviewed corpus has its OWN release identity, distinct from the 35-record one
+
+PASS release identity immutability (8 checks)
+
+--------------------------------------------------
+
+==================================================
+HAZLENZ AI CORE REGRESSION RUN SUMMARY
+==================================================
+  [PASS] Suite: Observation Understanding Benchmark | Exit Code: 0
+  [PASS] Suite: PPE Standards Intelligence Benchmark | Exit Code: 0
+  [PASS] Suite: Corrective Action Intelligence Benchmark | Exit Code: 0
+  [PASS] Suite: Mobile Equipment Standards Benchmark | Exit Code: 0
+  [PASS] Suite: Golden Hardening Scenarios Test | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Expansion Regression | Exit Code: 0
+  [PASS] Suite: MSHA Inspection Intelligence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Adversarial Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Recovery Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Ranking Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Citation Output Coherence Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Vague Input Regression | Exit Code: 0
+  [PASS] Suite: Inspection Intelligence Vague Output Coherence Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Mechanism Chain Hardening | Exit Code: 0
+  [PASS] Suite: HazLenz Spill/Release Citation Ranking | Exit Code: 0
+  [PASS] Suite: HazLenz Mechanism Chain Contract Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Supplemental Knowledge Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Vague Guarding Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Classify Path Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Production Path Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Temporal Reconciliation Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Condition-State Invariants Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Finding-Scoped Standards Regression | Exit Code: 0
+  [PASS] Suite: HazLenz LOTO Fragment-Scoping Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Handrail/Guardrail Regression | Exit Code: 0
+  [PASS] Suite: HazLenz LOTO Degraded-Gap Alignment Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Energy-Isolation Negation Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Defeated-Control / Contradiction Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Jurisdiction-Unknown Standards Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Inspection-Context / Autonomy Regression | Exit Code: 0
+  [PASS] Suite: HazLenz Decomposition Precision / Recall Gate | Exit Code: 0
+  [PASS] Suite: HazLenz Level-1 Recall Gate | Exit Code: 0
+  [PASS] Suite: HazLenz Actionable Coverage Gate | Exit Code: 0
+  [PASS] Suite: HazLenz Standards Jurisdiction Gate | Exit Code: 0
+  [PASS] Suite: HazLenz Source Authority Gate | Exit Code: 0
+  [PASS] Suite: Release Identity Immutability Gate | Exit Code: 0
+==================================================
+Overall Result: PASS
+==================================================
+

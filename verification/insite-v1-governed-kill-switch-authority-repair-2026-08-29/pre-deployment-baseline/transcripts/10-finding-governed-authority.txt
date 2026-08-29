@@ -1,0 +1,19 @@
+  [PASS] POSITIVE: approved release member 29 CFR 1910.252 resolves APPROVED_GOVERNED_CONTENT — state=APPROVED_GOVERNED_CONTENT member=true review=reviewer_approved checksum=present
+  [PASS] POSITIVE: approved release member 29 CFR 1910.147 resolves APPROVED_GOVERNED_CONTENT — state=APPROVED_GOVERNED_CONTENT member=true review=reviewer_approved checksum=present
+  [PASS] POSITIVE: approved release member 30 CFR 56.16009 resolves APPROVED_GOVERNED_CONTENT — state=APPROVED_GOVERNED_CONTENT member=true review=reviewer_approved checksum=present
+  [PASS] POSITIVE: approved release member 29 CFR 1926.1425 resolves APPROVED_GOVERNED_CONTENT — state=APPROVED_GOVERNED_CONTENT member=true review=reviewer_approved checksum=present
+  [PASS] NEGATIVE 1: code-resident citation 29 CFR 1910.99999 with no governed member is not approved — state=NO_GOVERNED_MATCH
+  [PASS] NEGATIVE 1: code-resident citation 30 CFR 56.99999 with no governed member is not approved — state=NO_GOVERNED_MATCH
+  [PASS] NEGATIVE 2: rejected record 30 CFR 57.14107(a) cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 30 CFR 56.14105 cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 1910.219 cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 29 CFR 1910.132(a) cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 29 CFR 1926.95(a) cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 30 CFR 56.15006 cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 29 CFR 1926.602(a)(9)(ii) cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 2: rejected record 30 CFR 56.9100(a) cannot reach governed authority — state=REJECTED_GOVERNED_CONTENT member=false reviewer=none
+  [PASS] NEGATIVE 3: unapproved member 1910.219 of federal-core-2026-07-30.1 is not approved content — state=UNAPPROVED_GOVERNED_CONTENT
+  [PASS] NEGATIVE 4: approval is scoped to its own release (no cross-release approval exists to leak) — no approval outside the candidate release exists in this database
+  [PASS] LAUNDERING: a candidate that bypasses governed resolution carries no governed authority — state=LEGACY_CODE_RESIDENT_CONTENT
+
+PASS finding-level governed authority (17 checks)

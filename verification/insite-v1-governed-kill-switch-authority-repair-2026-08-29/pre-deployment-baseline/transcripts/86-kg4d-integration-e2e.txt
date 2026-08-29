@@ -1,0 +1,44 @@
+
+kg4d-integration-e2e: 42 passed, 0 failed
+  ok  the SHADOW-eligible account can persist an analysis (HTTP 201)
+  ok  the persisted analysis has an id
+  ok  the analysis row exists in the database
+  ok  HARD: the persisted analysis knowledgeReleaseId is NULL in SHADOW (got null)
+  ok  HARD: no finding row carries a governed release id in SHADOW (0 of 2 stamped)
+  ok  an active release EXISTS on this server -- so NULL provenance is a decision, not an absence (federal-core-2026-08-28.1)
+  ok  approved governed content EXISTS (64 approvals) -- SHADOW still records NULL
+  ok  the non-eligible account can persist an analysis
+  ok  the non-eligible account also records NULL provenance
+  ok  forgery probe "governedMode" was not throttled
+  ok  forged "governedMode" does not grant governed content to a non-eligible account
+  ok  forged "governedMode" does not put a governed release id in the payload
+  ok  forgery probe "cutoverMode" was not throttled
+  ok  forged "cutoverMode" does not grant governed content to a non-eligible account
+  ok  forged "cutoverMode" does not put a governed release id in the payload
+  ok  forgery probe "mode" was not throttled
+  ok  forged "mode" does not grant governed content to a non-eligible account
+  ok  forged "mode" does not put a governed release id in the payload
+  ok  forgery probe "forceGoverned" was not throttled
+  ok  forged "forceGoverned" does not grant governed content to a non-eligible account
+  ok  forged "forceGoverned" does not put a governed release id in the payload
+  ok  forgery probe "knowledgeReleaseId" was not throttled
+  ok  forged "knowledgeReleaseId" does not grant governed content to a non-eligible account
+  ok  forged "knowledgeReleaseId" does not put a governed release id in the payload
+  ok  forgery probe "userId" was not throttled
+  ok  forged "userId" does not grant governed content to a non-eligible account
+  ok  forged "userId" does not put a governed release id in the payload
+  ok  forgery probe "organizationId" was not throttled
+  ok  forged "organizationId" does not grant governed content to a non-eligible account
+  ok  forged "organizationId" does not put a governed release id in the payload
+  ok  forgery probe "allowlisted flag" was not throttled
+  ok  forged "allowlisted flag" does not grant governed content to a non-eligible account
+  ok  forged "allowlisted flag" does not put a governed release id in the payload
+  ok  forgery probe "cohort flag" was not throttled
+  ok  forged "cohort flag" does not grant governed content to a non-eligible account
+  ok  forged "cohort flag" does not put a governed release id in the payload
+  ok  forgery probe "productionShadowAck" was not throttled
+  ok  forged "productionShadowAck" does not grant governed content to a non-eligible account
+  ok  forged "productionShadowAck" does not put a governed release id in the payload
+  ok  header forgery probe was not throttled
+  ok  forged HEADERS do not grant governed content to a non-eligible account
+  ok  an unauthenticated classify is rejected (HTTP 402)

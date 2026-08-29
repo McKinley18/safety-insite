@@ -1,0 +1,45 @@
+
+> safety-insite-backend@1.0.0 reproduce:governed-kill-switch-defect
+> ts-node scripts/reproduce-governed-kill-switch-defect.ts
+
+
+== CONTROL: the same configuration with the emergency stop RELEASED ==
+  [PASS] control: the allowlisted principal IS governed with the stop released — expected GOVERNED_WITH_FALLBACK, got GOVERNED_WITH_FALLBACK
+  [PASS] control: enablement names the account allowlist — expected ACCOUNT_ALLOWLISTED, got ACCOUNT_ALLOWLISTED
+  [PASS] control: a new inspection binds to the active release — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+  [PASS] control: the binding is newly written — expected true, got true
+  [PASS] control: knowledgeReleaseId IS persisted when governance is running — expected federal-core-2026-08-28.1, got federal-core-2026-08-28.1
+
+== MEASURED: the same configuration with GOVERNED_CUTOVER_KILL_SWITCH ENGAGED ==
+   resolveCutoverEnablement -> effectiveMode=GOVERNED_WITH_FALLBACK reason=ACCOUNT_ALLOWLISTED enabled=true
+  [FAIL] CONTRACT 1: the emergency stop resolves customer eligibility to LEGACY — expected LEGACY, got GOVERNED_WITH_FALLBACK
+  [FAIL] CONTRACT 1: the emergency stop resolves customer eligibility to NOT enabled — expected false, got true
+  [FAIL] CONTRACT 2: governed content cannot influence customer output under the emergency stop — expected false, got true
+   resolveInspectionReleaseBinding -> releaseId=federal-core-2026-08-28.1 reason=BOUND_TO_ACTIVE_RELEASE newlyBound=true
+   inspection.knowledgeReleaseId after the call = federal-core-2026-08-28.1
+   durable writes attempted = 1
+  [FAIL] CONTRACT 3: no release is resolved for a NEW inspection under the emergency stop — expected null, got federal-core-2026-08-28.1
+  [FAIL] CONTRACT 3: no binding is newly written under the emergency stop — expected false, got true
+  [FAIL] CONTRACT 4: inspection.knowledgeReleaseId remains NULL under the emergency stop — expected null, got federal-core-2026-08-28.1
+  [FAIL] CONTRACT 4: no durable write is even ATTEMPTED under the emergency stop — expected 0, got 1
+  [FAIL] CONTRACT 2: the active-release pointer is not read at all under the emergency stop — expected 0, got 3
+   GovernedCutoverContext.create -> GOVERNED_WITH_FALLBACK
+  [FAIL] CONTRACT 5: no governed cutover context exists under the emergency stop — expected null, got [object Object]
+
+== MEASURED: the real call shape (process.env, as the controller and service use) ==
+   resolveCutoverEnablement(principal) -> effectiveMode=GOVERNED_WITH_FALLBACK reason=ACCOUNT_ALLOWLISTED
+  [FAIL] CONTRACT 1: the emergency stop applies to the no-env call shape the call sites actually use — expected LEGACY, got GOVERNED_WITH_FALLBACK
+  [FAIL] CONTRACT 4: inspection.service.ts:537 takes the non-governed provenance branch — expected false, got true
+
+DEFECT REPRODUCED — 5 passed, 11 failed
+  UNMET: CONTRACT 1: the emergency stop resolves customer eligibility to LEGACY — expected LEGACY, got GOVERNED_WITH_FALLBACK
+  UNMET: CONTRACT 1: the emergency stop resolves customer eligibility to NOT enabled — expected false, got true
+  UNMET: CONTRACT 2: governed content cannot influence customer output under the emergency stop — expected false, got true
+  UNMET: CONTRACT 3: no release is resolved for a NEW inspection under the emergency stop — expected null, got federal-core-2026-08-28.1
+  UNMET: CONTRACT 3: no binding is newly written under the emergency stop — expected false, got true
+  UNMET: CONTRACT 4: inspection.knowledgeReleaseId remains NULL under the emergency stop — expected null, got federal-core-2026-08-28.1
+  UNMET: CONTRACT 4: no durable write is even ATTEMPTED under the emergency stop — expected 0, got 1
+  UNMET: CONTRACT 2: the active-release pointer is not read at all under the emergency stop — expected 0, got 3
+  UNMET: CONTRACT 5: no governed cutover context exists under the emergency stop — expected null, got [object Object]
+  UNMET: CONTRACT 1: the emergency stop applies to the no-env call shape the call sites actually use — expected LEGACY, got GOVERNED_WITH_FALLBACK
+  UNMET: CONTRACT 4: inspection.service.ts:537 takes the non-governed provenance branch — expected false, got true

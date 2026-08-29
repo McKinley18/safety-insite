@@ -1,0 +1,11 @@
+RESOLVED TARGET: test_kg_misc_20260829
+[db-ownership] suite=test:governed-corpus-matrix database=test_kg_misc_20260829 claim=NEW
+Resolved database target: host=127.0.0.1 database=test_kg_misc_20260829
+ok  Observations derive from the tracked gold set (sha256 93184abc677c...), not from invented cases.
+ok  Release A finalized with 1 records.
+ok  HazLenz emits 23 distinct citations across 31 gold-set observations.
+ok  Emitted citations cover regimes: osha_general_industry, msha, osha_construction.
+Error: FAILED: Representative fixture spans OSHA GI (0), OSHA Construction (0), MSHA (0).
+    at assert (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-governed-corpus-matrix.ts:44:25)
+    at main (/Users/mckinley/Desktop/Safety_InSite/backend/scripts/test-governed-corpus-matrix.ts:207:3)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)

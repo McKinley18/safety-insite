@@ -1,0 +1,41 @@
+RESOLVED TARGET: test_kg_binding_20260829
+[db-ownership] suite=release-binding-acceptance host=127.0.0.1 database=test_kg_binding_20260829 claim=NEW
+
+-- SCENARIO 1: a new inspection acquires the active release --
+  [PASS] an unbound inspection resolves the ACTIVE release and binds to it — federal-core-2026-08-28.1 / BOUND_TO_ACTIVE_RELEASE / newlyBound=true
+  [PASS] the binding is PERSISTED on the inspection, not recomputed per analysis
+  [PASS] retrieval pins the BOUND release, not the pointer it re-reads — federal-core-2026-08-28.1 / PINNED_BOUND_RELEASE
+  [PASS] the pin carries the bound release manifest identity — 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb
+  [PASS] governed retrieval is SCOPED to the bound release and resolves the approved member — APPROVED_EXACT under federal-core-2026-08-28.1
+  [PASS] the persisted finding records approved governed authority under the bound release — APPROVED_GOVERNED_CONTENT
+
+-- SCENARIO 2: an inspection already bound to R1, with R2 now active --
+  [PASS] an inspection bound to R1 keeps R1 even though R2 is the active release — federal-core-2026-07-30.1 / BOUND_RELEASE_REUSED
+  [PASS] the stored binding was NOT rewritten to the newly active release
+  [PASS] re-analysis pins R1, so retrieval reproduces what the inspection was governed by — federal-core-2026-07-30.1
+  [PASS] every governed lookup in that re-analysis is scoped to R1 — federal-core-2026-07-30.1
+  [PASS] a citation reads with R1 semantics, proving the release did not silently switch — UNAPPROVED_GOVERNED_CONTENT
+  [PASS] positive control: the SAME citation is REJECTED under R2, so the two releases differ — REJECTED_GOVERNED_CONTENT
+
+-- SCENARIO 3: no release can legitimately govern the analysis --
+  [PASS] with no active release, no release id is invented — {"releaseId":null,"reason":"NO_ACTIVE_RELEASE","newlyBound":false,"inspectionId":"67702af9-29a0-4c21-ac7a-8fe18a463a6b"}
+  [PASS] and nothing is written to the inspection
+  [PASS] the pin reports the absence honestly rather than falling back to a release — NO_ACTIVE_RELEASE
+  [PASS] the finding keeps its hazard and its citation, labelled honestly as non-governed — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] LEGACY resolves no binding — null / GOVERNED_MODE_INACTIVE
+  [PASS] SHADOW resolves no binding — null / GOVERNED_MODE_INACTIVE
+  [PASS] and neither mode wrote a binding onto the inspection — LEGACY stays a structural no-op
+
+-- SCENARIO 4: a rejected record under an ACTIVE release --
+  [PASS] release-scoped retrieval does not resolve a rejected citation as approved — NOT_IN_RELEASE
+  [PASS] the rejected record stays non-approved under the active, bound release — REJECTED_GOVERNED_CONTENT
+
+-- SCENARIO 5: a code rule emitting an approved citation --
+  [PASS] citation-string equality confers nothing while that citation IS approved and active — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] naming the bound release without resolving the member confers nothing either — LEGACY_CODE_RESIDENT_CONTENT
+  [PASS] positive control: genuinely resolving the member DOES confer approval — APPROVED_GOVERNED_CONTENT
+
+-- pointer independence --
+  [PASS] moving the active pointer to a DIFFERENT release does not move an existing binding — federal-core-2026-08-28.1
+
+RELEASE BINDING ACCEPTANCE: 25/25 checks passed

@@ -14556,6 +14556,748 @@ COMMITTED                 = FALSE
 
 ---
 
+## 86 — PRE-PRODUCTION GOVERNANCE RECONCILIATION + CUTOVER DESIGN (2026-08-28) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-pre-production-governance-reconciliation-2026-08-28/STATUS.md`.
+HEAD `45251d38` unchanged; nothing committed, pushed, tagged or deployed; `PROVIDER_CALLS = 0`;
+`PRODUCTION_MUTATED = FALSE`.
+
+### 86.1 The premise changed — production is already running this checkpoint `PROTECTED_DECISION`
+
+> Read-only Render query, 2026-08-28: the production backend **`safety-insite-backend`
+> (`srv-d7kl74jeo5us73deaor0`) is LIVE on `45251d38`, deployed `2026-08-28T18:33:25Z`.** The service
+> has `autoDeploy=yes`, `autoDeployTrigger=commit`, branch `main`. **A commit to `main` IS a
+> production deploy.**
+
+Sections written before this one state that production still runs `e9355e91` and that deployment was
+"INTENTIONALLY DEFERRED". **That is now false and must not be repeated.** The code half of the
+cutover has already happened, and it happened as a side effect of preserving the checkpoint.
+
+`Saphyr-api` is NOT production — every deploy has been `build_failed` since 2026-04-03.
+
+### 86.2 The migration/deploy ordering, derived from DDL rather than convention `STABLE_INVARIANT`
+
+The deploy does **not** run migrations: `startCommand` is `npm run start:render` (diagnostic +
+`node dist/main.js`) and `synchronize: false`. Migrations are applied out-of-band. The three
+migrations between production's last recorded level (47, `OfflineSyncIdempotency1800000015000`) and
+HEAD (50) are all additive:
+
+* `1800000016000` — `inspection_findings.source varchar(32) NOT NULL DEFAULT 'hazlenz_decomposition'`.
+  Truthful backfill; old INSERTs satisfied by the default.
+* `1800000017000` — `inspection.displayNumber integer NULL`, backfilled by `ROW_NUMBER()` per owner,
+  two **partial** unique indexes `WHERE ... IS NOT NULL`. Old code omitting it leaves NULL, which the
+  partial index does not cover, so no constraint can be violated.
+* `1800000018000` — `inspection.knowledgeReleaseId varchar(120) NULL`, partial index, **no UPDATE
+  statement at all** — historical inspections are never back-filled. `STABLE_INVARIANT`.
+
+**Therefore: MIGRATION MUST PRECEDE DEPLOYMENT.** Migration-before-deploy is safe under old code;
+deploy-before-migration is not, because new code reads `source` and writes `displayNumber` and
+`knowledgeReleaseId`.
+
+**Open and urgent:** whether those three migrations are applied in production is **UNKNOWN** — it
+requires the production `DATABASE_URL`, which this authorization excluded. If they are not applied,
+production is new-code-on-old-schema (rollback boundary A) right now.
+
+### 86.3 Release materialization is reproducible from version control — measured
+
+On a clean, migrated, disposable database:
+
+```
+prepare federal-core-2026-07-30.1 -> 35 records, manifest 14a34fea..., reproducedPinnedManifest true
+prepare federal-core-2026-08-28.1 -> 64 records, manifest 680540d9..., reproducedPinnedManifest true
+                                     legacyCorpusRowsRead 0, placeholderSourceRecords 0
+                                     reviewState { mechanically_validated: 64, reviewer_approved: 0 }
+```
+
+**`prepare` reproduces release CONTENT but NOT reviewer approvals`** — and activation is refused by
+`governedRecordsPresent` with zero approved members. Replaying the preserved 64-decision ledger
+(`verification/insite-v1-reviewer-governance-2026-08-28/APPROVAL_DECISIONS.json`) through the real
+checksum-protected mechanism succeeded **64 approved / 0 failed**, every one accepted against its
+recorded `--expected-checksum` — which independently proves the version-controlled rebuild is
+byte-identical to what the reviewers approved. **Reviewer approval is a distinct cutover transition,
+not a side effect of materialization.**
+
+### 86.4 OPEN-1 — `test:approval-contract` `RESOLVED`
+
+Root cause: the fixture legitimately needed the KG-4C ownership marker. `test-approval-contract.ts`
+created its work database with a bare `createdb` and claimed nothing, so `ownedDisposable` was false
+and the release-identity guard's fixture exemption — which exists for exactly this synthetic,
+unregistered identity (`federal-core-kg3f-contract.1`) — did not apply. `provision()` now claims the
+database it just created, after the restore and before the finalizer's first write.
+**57 passed / 0 failed.**
+
+**The guard was not overbroad.** New gate `npm run test:release-identity-ownership-exemption`
+(7 checks, `backend/scripts/test-release-identity-ownership-exemption.ts`) passed **7/7 BEFORE the
+fix**, proving end-to-end through the real finalizer that: `safescope` and non-`test_*` names can
+never be claimed; an unmarked database is refused and the refusal writes nothing; an unowned database
+cannot finalize an unregistered id; an owned one can; and a **registered** id with a mismatched pin
+stays refused even in an owned database.
+
+### 86.5 OPEN-2 — the "four known failures" are ENUMERATED, not fictional `PROTECTED`
+
+The set exists and is recorded identically in `insite-v1-regulatory-source-acquisition-2026-08-28`
+and `insite-v1-hazlenz-standards-architecture-2026-08-28`. The activation phase searched §13 of this
+blueprint — which documents a **different** pair, both inside `test:hazlenz-core` — and wrongly
+concluded no set existed. Both are true; they overlap by one case.
+
+1. `domain-association-regression` — throws: `walking_working_surfaces` receives an electrical
+   permanent-correction narrative.
+2. `golden-hazard-tests` (`test:safescope`) — 11 passed / 1 failed: *Maintenance without lockout
+   classifies as Lockout / Stored Energy*.
+3. `hazlenz-vague-candidate-promotion-regression` — 2 FAIL: *container is open*, *cylinder is unsecured*.
+4. `hazlenz-standard-return-contract-regression` — 9 FAIL (MSHA LOTO; unlabeled container; tank no
+   label; damaged cord wet area; unsecured oxygen cylinder; missing valve cap; hot work near
+   combustibles; vague area unsafe; vague equipment issue).
+
+All four are PURE (no database, server or mutation) and all four reproduce byte-identically at HEAD.
+`UNDOCUMENTED_KNOWN_FAILURE_SET = ENUMERATED`. **Use these names; never the bare phrase again.**
+
+### 86.6 OPEN-3 — carried forward unchanged
+
+Reproduced through `applyFindingScopedStandards()`. Under an unresolved regime the ranked candidates
+are `["30 CFR 56.12016", "29 CFR 1910.147"]`; with general industry pinned, `["29 CFR 1910.147"]`.
+Still a RANKING defect, unchanged in kind and not worse: the correct standard is now *present* and
+ranked second rather than absent. Governed release integration changes provenance, not ordering.
+Jurisdiction gate 16/16, 0 wrong-jurisdiction citations.
+`UNRESOLVED_JURISDICTION_RANKING_DEFECT = CARRIED_FORWARD_UNCHANGED`.
+
+### 86.7 OPEN-4 — four stale tracked frontend scripts repaired `VERIFIED_AT_CHECKPOINT`
+
+All four now PASS. None was deleted, disabled, or reduced to existence checking; three gained
+assertions. Every failure was proven stale against shipped source and the real workflow.
+
+* `check:free-observation-restore` 23/4 -> **28/0**. `resumeInspection` -> `openInspection`; the stale
+  anchor made `indexOf` return -1, so **three assertions were evaluating the empty string**. The
+  `setStep("review")` literal became the property "step restore appears in the analysis-gated block
+  and never in the observation-only block", which is broader than what it replaced.
+* `check:closure-workflow` — label `What did you observe?` -> `What did you see?` (workspace only;
+  `/field-capture` keeps the old wording). Driving sequence re-derived for the five-step v1 flow.
+  `/reports` "Version 1" -> exactly one report card. Persistence proof unchanged: 1 of each.
+* `check:canonical-persistence` — site creation now behind the `Saved site` -> `__new__` selector;
+  *Quick Inspection* -> *Quick Capture* into `/inspection-workspace`; **regulatory context is a
+  required pre-start selection** and is now asserted to round-trip onto the persisted inspection.
+* `check:phase5-report-release` — retired `expert` tier -> `pro` **plus** a probe that Expert is still
+  rejected; finding disposition re-derived (**every** decomposed finding must be reviewed, and
+  `segmentKey` is the finding identity — without it the finalize call creates a duplicate); and the
+  two-version expectation replaced by the canonical one-report contract, **tightened** to prove the
+  superseded version row is gone and its artifact tombstoned. The bucket-is-not-public assertion
+  stays mandatory under `s3` and prints `NOT VERIFIED` under `local_test` rather than passing.
+
+`TRACKED_FRONTEND_VALIDATION_SCRIPTS = PASS`.
+
+### 86.8 Environment preconditions that are now acceptance requirements `KNOWN_CAVEAT`
+
+Each was a disposable-stack misconfiguration that masqueraded as a product failure during OPEN-4:
+
+* `DEV_AUTH_BYPASS=true` serves an **unauthenticated** request as a synthetic bypass user, returning
+  **404 instead of 401**. Production is confirmed `false`.
+* `NEXT_PUBLIC_DISABLE_AUTH=true` makes the login page store the literal `local-dev-token` instead of
+  a JWT.
+* `STORAGE_PROVIDER` unset defaults to `s3` and report generation 500s with
+  `STORAGE_S3_BUCKET is required`.
+* `CORS_ORIGINS` must name the app origin or every client fetch fails preflight.
+* Login/registration throttling (the documented 429 caveat) means the browser gates need a fresh
+  throttle window; back-to-back runs 429 at sign-in.
+
+### 86.9 Regression — every number re-measured, none weakened
+
+approval-contract **57/0** · ownership-exemption **7/7** · release identity **8/8** · activation
+**43/43** · binding **25/25** · reachability **514/514** (64/64 approved, **0/8** rejected) ·
+precedence **42/42** · release-scoped workflow **35/35** · finding authority **17/17** · finding
+integration **19/19** · `test:hazlenz-core` **PASS, 452 checks, 0 failing** · KG-5B **102/102** ·
+golden standards **15/15** · broad workflow **66/66** · user-authored **47/47** · offline
+idempotency **23/23** · report-replacement failure safety **16/16** · canonical workflow **PASS** ·
+persisted decomposition findings **PASS** · finding-scoped reviews **PASS** · backend `tsc` **clean**
+· frontend `tsc --noEmit` **clean against source** · `next build` **clean**.
+
+Protected floor intact: Population-A precision **100.0 %**, 0 forbidden emissions, 0 required-hazard
+omissions, secondary recall **43/43**, 0 life-critical omissions, jurisdiction **16/16**.
+
+**Frontend typecheck caveat.** In the working tree `tsc --noEmit` reports three errors, all inside
+untracked generated files `.next/types/{cache-life.d 3.ts, routes.d 3.ts, validator 3.ts}` — macOS
+duplicate-copy artifacts, the same `" 2"`/`" 3"` contamination present across ~2,100 untracked paths.
+Against a clean tree the identical source is exit 0. Recorded, not cleaned: worktree protection
+applies.
+
+### 86.10 Cutover order and the rollback rule that matters `STABLE_INVARIANT`
+
+```
+0 pause auto-deploy   1 migration   2 code deploy   3 prepare   4 approve x64
+5 activate            6 mode + allowlist            7 acceptance
+```
+
+Seven transitions, none simultaneous. Activation changes **selection**; mode changes **display**;
+both locks must move before a customer sees anything, and with the release ACTIVE under `LEGACY` the
+accepted workflow still measures 66/66 with every `knowledgeReleaseId` NULL.
+
+> **Rollback rule.** Once a real inspection is legitimately bound to `federal-core-2026-08-28.1`,
+> rollback is **disable the mode** — never an UPDATE of `knowledgeReleaseId`. Rewriting a persisted
+> binding would make the record claim a regulatory basis the customer was never given, which is the
+> laundering this architecture exists to prevent. Re-stating such inspections requires a NEW release
+> identity and a re-review, never an edit to history. A rollback that would require rewriting
+> historical inspection provenance is a STOP condition, not a procedure.
+
+Reverting `1800000017000` destroys allocated customer record numbers; prefer leaving it applied.
+
+
+## 87 — EMERGENCY PRODUCTION SCHEMA COMPATIBILITY PREFLIGHT (2026-08-28) `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-production-schema-preflight-2026-08-28/STATUS.md`.
+HEAD `45251d38` unchanged, reconciliation work still uncommitted, `PROVIDER_CALLS = 0`,
+`PRODUCTION_MUTATED = FALSE`.
+
+```
+TERMINAL: HAZLENZ_PRODUCTION_SCHEMA_PREFLIGHT_BLOCKED
+          -- PRODUCTION_DATABASE_UNREACHABLE_READ_ONLY_FROM_THIS_SESSION
+```
+
+### 87.1 Three states that must never be collapsed `STABLE_INVARIANT`
+
+```
+CODE_DEPLOYED                     = TRUE   45251d38, 2026-08-28T18:33:25Z
+SCHEMA_VERIFIED                   = FALSE  UNKNOWN -- unreachable read-only
+GOVERNED_RELEASE_CUTOVER_COMPLETE = FALSE  prepare/approve/activate/mode all pending
+```
+
+The deployed SHA is confirmed **twice**: by the Render deploy record, and by the service's own
+unauthenticated `/health` (`gitCommit 45251d38...`, `versionSourceStatus RENDER_GIT_COMMIT`,
+`nodeEnv production`, `database up`, `/health/ready` 200). Production's primary URL is
+`https://safescope-backend.onrender.com`.
+
+### 87.2 The pending migrations, by IDENTITY not by count
+
+Position 47 in the repository is `OfflineSyncIdempotency1800000015000` -- exactly the migration the
+last independent production record names as latest, so the `47 vs 50` count and the identity mapping
+agree. The three candidates:
+
+| pos | migration | object | additive | back-fills |
+|---|---|---|---|---|
+| 48 | `1800000016000-UserAuthoredFindingProvenance` | `inspection_findings.source varchar(32) NOT NULL DEFAULT 'hazlenz_decomposition'` + partial index | yes | by DEFAULT, truthfully |
+| 49 | `1800000017000-InspectionDisplayNumber` | `inspection.displayNumber integer NULL` + `ROW_NUMBER()` backfill + two PARTIAL unique indexes | yes | yes -- customer record numbers |
+| 50 | `1800000018000-InspectionKnowledgeReleaseBinding` | `inspection.knowledgeReleaseId varchar(120) NULL` + partial index | yes | **no UPDATE at all** |
+
+Two near-misses were checked and ruled out rather than assumed: `1800000010000` adds
+`knowledgeReleaseId` to **`hazlenz_analyses` and `inspection_findings`**, never to `inspection`; and
+the earlier `source` matches are `platform_support_grants.source` and `corrective_actions.source`,
+different tables.
+
+### 87.3 Why a green service proves nothing `PROTECTED` lesson
+
+**A healthy production service and a quiet error log are NOT evidence that a migration landed.**
+With `synchronize: false` TypeORM performs no schema validation at boot, and `/health` runs only
+`SELECT 1` -- so the service starts and reports healthy regardless of missing columns. Missing
+columns surface only at **request time**. Since the deploy, the only inbound production requests have
+been a Render health probe (`Go-http-client/2.0`) and an `OAI-SearchBot` crawler, so the affected
+queries have never executed and their silence carries no information.
+
+### 87.4 A missing column is CUSTOMER-PATH BLOCKING, not feature-scoped `STABLE_INVARIANT`
+
+`Inspection` declares `displayNumber` and `knowledgeReleaseId`; `InspectionFinding` declares
+`source`; and **neither entity uses `select: false` anywhere**. TypeORM therefore names every
+declared column in every generated `SELECT`, so a missing column fails **every** repository read or
+write of that entity (PostgreSQL `42703`), not merely the feature that introduced it -- across
+inspection creation/load/list, observations, analyses, findings, corrective actions, tasks, reports
+and offline sync. Login and `/health` are unaffected. **Startup blocking is empirically ruled out.**
+
+This also rules out cutover STATE C: a missing column cannot be isolated from reachable customer
+paths, so the real question is binary -- **A/B, or D**.
+
+### 87.5 Why the database could not be read, and the command that closes it
+
+Not a Render-managed datastore (`render ea pg list` -> `[]`); the URL exists only in the Render
+service environment; the CLI exposes no env read; `render ssh` is interactive-only and unavailable on
+the `free` instance plan; no local file holds a production connection string (`backend/.env`
+resolves to `127.0.0.1`). **Exactly one controller in the backend is unguarded** -- `@Controller('health')`
+-- and its check is schema-independent, so the black-box route is closed too. No connection was
+attempted.
+
+The owner-runnable check, inside `BEGIN TRANSACTION READ ONLY`, is in the evidence STATUS §9:
+`migrations` count and latest five, plus `information_schema.columns` for the three columns.
+Expected if current: **applied = 50**, latest `InspectionKnowledgeReleaseBinding1800000018000`, all
+three columns present. Any missing column is **STATE D**; columns present with `applied = 47` is
+**STATE B** -- and the migrations table must never be written to tidy it.
+
+### 87.6 Remediation, designed only
+
+Roll-forward (`npm run migration:run` against the production `DATABASE_URL`, after printing
+`current_database()` to prove the target) is technically safe for the reasons measured in 86.2 --
+additive, defaulted or nullable, no UPDATE in 50, partial unique indexes in 49 -- and both old and
+new code tolerate the result, which makes it strictly safer than rolling back. Rolling the deploy
+back to `a1515cbc` is the alternative and touches no data. **Technical safety is not authorization.**
+
+### 87.7 Auto-deploy release discipline `STABLE_INVARIANT`
+
+> While the Render service has `autoDeploy=yes` with trigger `commit` on branch `main`, **pushing a
+> commit to `origin/main` IS production deployment authorization.** Preservation and deployment are
+> not separable under this configuration.
+
+Any future instruction of the form *"commit and push, but do not deploy"* is **unsatisfiable** and
+must be refused or renegotiated until auto-deploy is changed under its own authorization. This is
+exactly how `45251d38` reached production: the intent was to preserve a checkpoint; the effect was a
+deploy. Options for the still-uncommitted reconciliation work: hold locally (current posture);
+commit to a non-deploying branch; commit to `main` deliberately as a deployment; or disable
+auto-deploy first. **None was executed.**
+
+### 87.8 Historical entries are not rewritten
+
+Phase records dated 2026-08-27 and earlier that name `e9355e91` as the running production SHA, or
+describe deployment as deferred, were **true as of their own date** and are deliberately left
+unmodified. The authoritative current SHA is `productionPosture.deployedBackendSha` in
+`INSITE_CURRENT_STATE.json`.
+
+
+## 88 — PRODUCTION SCHEMA COMPATIBILITY RESTORED (2026-08-28) `VERIFIED_AT_CHECKPOINT`
+
+Full record: `verification/insite-v1-production-schema-remediation-2026-08-28/STATUS.md`; raw
+transcript `REMEDIATION_TRANSCRIPT.txt` in the same directory. Executed by the product owner in
+their own Terminal against production; this section records it. Repository HEAD `45251d38`
+unchanged, nothing committed or pushed, `PROVIDER_CALLS = 0`.
+
+```
+DEPLOYED_CODE_SCHEMA_INCOMPATIBLE       = CLOSED
+PRODUCTION_SCHEMA_MATCHES_DEPLOYED_CODE = TRUE
+CODE_DEPLOYED                           = TRUE   (45251d38, unchanged -- no deploy occurred)
+SCHEMA_VERIFIED                         = TRUE
+GOVERNED_RELEASE_CUTOVER_COMPLETE       = FALSE
+```
+
+### 88.1 What was applied
+
+Against `neondb`, proven by `current_database()` before any mutation, with the ledger at
+`OfflineSyncIdempotency1800000015000`, **zero** rows newer than `1800000015000`, and all three target
+columns absent. Exactly three migrations executed inside ONE `START TRANSACTION` ... `COMMIT`:
+
+1. `UserAuthoredFindingProvenance1800000016000`
+2. `InspectionDisplayNumber1800000017000`
+3. `InspectionKnowledgeReleaseBinding1800000018000`
+
+Ledger 47 -> 50, delta exactly +3, latest now
+`InspectionKnowledgeReleaseBinding1800000018000`. Physical schema agrees with the ledger:
+`inspection.displayNumber` integer NULL, `inspection.knowledgeReleaseId` varchar NULL,
+`inspection_findings.source` varchar NOT NULL DEFAULT `'hazlenz_decomposition'`; all four indexes
+present.
+
+### 88.2 Data preservation -- measured
+
+`inspection` 12 -> 12, `inspection_findings` 3 -> 3. **Historical non-NULL `knowledgeReleaseId` = 0**,
+confirming in production what the source review predicted: migration 50 contains no `UPDATE` and
+never back-fills historical inspections. `displayNumber` NULL = 0 (migration 49 allocated record
+numbers to all 12), `source` NULL = 0, `source <> default` = 0. Post-migration `/health` reports
+`database: up` with `gitCommit 45251d38...` and `/health/ready` returns 200 -- **no deployment
+occurred**.
+
+### 88.3 Never assert production migration state by row count `STABLE_INVARIANT`
+
+An earlier draft of the preflight asserted literal `47` and `50` ledger row counts. **47 is the
+repository migration POSITION, not a guaranteed production row count** -- a production row for that
+migration carries `id = 71`, so ids are non-contiguous and the ledger has been baselined. The block
+was corrected before execution to observe the starting count and assert only position-independent
+facts: exact latest migration NAME, `count(*) WHERE timestamp > <known> = 0`, and
+`END = START + 3`. Verify migration state by timestamp and name; capture counts as observations,
+never as expectations. (The count did turn out to be 47, and TypeORM's own output agreed -- but it
+was verified, not assumed.)
+
+### 88.4 What this explicitly does NOT establish `PROTECTED_DECISION`
+
+Schema parity is code/schema compatibility and nothing more. It does not establish governed release
+activation, production reviewer-approval replay, governed-mode enablement, finding-level governed
+authority in production, or customer acceptance of governed findings. Six transitions remain, and
+**1 and 2 must never be collapsed**:
+
+1. **Release materialization** -- `federal-core-2026-08-28.1`, 64 members, manifest `680540d9...`,
+   deterministic from version control, 0 legacy corpus rows read.
+2. **Reviewer approval replay** -- the preserved ledger holds 64 authorised APPROVE decisions;
+   materializing the release does NOT recreate them; each replays through the governed approval
+   contract with its own `--expected-checksum`; **no fictitious autonomous AI reviewer identity**.
+3. **Finalization / validation** -- requires the approved member set; immutable identity and
+   checksum rules stay enforced.
+4. **Activation** -- `PRODUCTION_CANDIDATE_ACTIVATION = FALSE`.
+5. **Governed mode / allowlist** -- the only customer-visible step.
+6. **Post-cutover acceptance** -- release-scoped retrieval; approved-content-only authority;
+   rejected records unable to surface as reviewed regulation; `knowledgeReleaseId` binding
+   behaviour; historical NULL inspections stay unbound; protected HazLenz floor unchanged.
+
+### 88.5 Forward-looking caveat recorded, not acted on `KNOWN_CAVEAT`
+
+The pg driver emitted a deprecation notice during the run: pg-connection-string v3 / pg v9 will
+change `sslmode=require` from its current `verify-full` aliasing to standard libpq semantics, which
+are **weaker**. The connection currently receives the stronger behaviour. `data-source.ts:77` keys
+TLS off the literal `sslmode=require`, so before those major versions land this should be revisited
+so the production TLS posture does not silently loosen. Not a defect today; unchanged here.
+
+Also recorded: `displayNumber` is now allocated for all 12 historical inspections. That is
+customer-facing record identity, and it is why reverting migration 49 would be destructive even
+though the migration itself is additive.
+
+### 88.6 Auto-deploy coupling unchanged
+
+Render `autoDeploy=yes`, trigger `commit`, branch `main` still holds, so a push to `origin/main`
+remains a production deployment. The local reconciliation work stays **uncommitted** for that
+reason.
+
+
+## 89 — PRODUCTION GOVERNED CUTOVER RUNBOOK BUILT AND REHEARSED, NOT EXECUTED (2026-08-28) `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-production-governed-cutover-2026-08-28/STATUS.md`, with the
+operator runbook in `runbook/`, the disposable-database rehearsal in `rehearsal/`, and
+`TARGET_GUARD_REHEARSAL.txt`. Repository HEAD `45251d38` unchanged; nothing committed, pushed,
+tagged or deployed; no Render configuration touched; `PROVIDER_CALLS = 0`.
+
+```
+TERMINAL                          = HAZLENZ_PRODUCTION_GOVERNED_CUTOVER_BLOCKED
+                                    -- PRODUCTION_DATABASE_CREDENTIAL_REQUIRED (PHASE 2)
+PRODUCTION_SCHEMA_COMPATIBLE      = TRUE    (carried forward from 88)
+GOVERNED_RELEASE_MATERIALIZED     = FALSE   (rehearsed OK on a disposable database)
+REVIEWER_APPROVAL_REPLAY_COMPLETE = FALSE   (rehearsed OK, 64/64)
+GOVERNED_RELEASE_FINALIZED        = FALSE   (activation gates rehearsed 8/8 pass)
+GOVERNED_RELEASE_ACTIVATED        = FALSE   (rehearsed OK)
+CUSTOMER_GOVERNED_MODE_ENABLED    = FALSE
+POST_CUTOVER_CUSTOMER_ACCEPTANCE  = FALSE
+```
+
+### 89.1 The blocker, stated exactly
+
+Phases 3-8 mutate production and therefore need the production `DATABASE_URL`, which this
+operation's own credential boundary keeps out of the conversation and off disk. It is loaded only
+by the product owner, into their own Terminal, with `read -rs DATABASE_URL ; export DATABASE_URL`.
+Everything that could be done without it was done: the ledger cross-checks, the source-derived
+runbook, and a full rehearsal of the identical scripts.
+
+### 89.2 The transitions were derived from source, not guessed `STABLE_INVARIANT`
+
+`prepare` -> `review:release-record -- approve` (x64) -> validation -> `activate`. All four are
+existing reviewed commands; the runbook composes them and adds no new approval, activation or
+construction path. **There is no governed `finalize` command and none is missing**: the lifecycle
+is `draft -> provisional (finalized) -> active -> superseded | rolled_back`, so `provisional` --
+written by `prepare` -- IS the finalized state. `seed:regulatory-release`
+(`finalize-regulatory-release.ts`) is the LEGACY corpus finalizer and is not on the governed path.
+The finalization CONTRACT is `evaluateActivation()`, run with zero writes by
+`release -- activate --dry-run`.
+
+### 89.3 `backend/.env` defines its own `DATABASE_URL` `STABLE_INVARIANT`
+
+Measured, not assumed: with no exported `DATABASE_URL`, the dotenv+data-source resolution returns
+the LOCAL `safescope` development database. dotenv does not override an exported variable, so an
+exported production URL wins -- but a missing export makes the identical command mutate development
+data. Every runbook step therefore re-proves its target through that exact resolution path, inside
+`BEGIN READ ONLY`, and refuses unless `current_database() = neondb`, the latest migration is
+`InspectionKnowledgeReleaseBinding1800000018000`, the migrations above `1800000015000` are exactly
+the three from 88 in order, and all three columns exist. Consistent with 88.3, the ledger row count
+is observed and reported, never asserted. The guard was rehearsed against the shipped file and
+refuses in all three wrong-target cases without printing the credential.
+
+### 89.4 Rehearsed results, including every refusal path
+
+On disposable `test_prodcutover_20260828`: materialize -> 64 records, manifest `680540d9...`,
+`reproducedPinnedManifest: true`, `legacyCorpusRowsRead: 0`; replay -> **approved 64, failed 0**,
+effective state `reviewer_approved: 64` and nothing else; validate -> `idempotent_no_op` and **all
+8 activation gates pass, `writesPerformed: 0`**; activate -> `activated`; post-proof -> one active
+pointer, 64/64 approved with a checksum-bound decision each, **0 rejected records anywhere**, **0
+inspections bound to a release**.
+
+Refusals measured, nothing relaxed: stale checksum REFUSED; approving a rejected citation REFUSED
+(*"holds no record for citation key `29cfr1910.132(a)`"*); re-preparing an active release REFUSED
+`RELEASE_IMMUTABLE`; stale `--expected-current` REFUSED; wrong `--expected-manifest` REFUSED;
+re-approval and re-activation both idempotent no-ops.
+
+### 89.5 Governed mode is not readable read-only `KNOWN_CAVEAT`
+
+`GOVERNED_CUTOVER_MODE` and the allowlists are Render environment variables. This operation issued
+no Render command, so they are UNCHANGED -- but their VALUES cannot be verified read-only: the
+Render CLI exposes no env-var subcommand, no route exposes the mode, and the start diagnostic does
+not print it. The boot guard proves only that the value is not invalid and not an unacknowledged
+governed mode. Record it as `NOT_CHANGED_BY_THIS_OPERATION; VALUE_UNVERIFIED` and confirm in the
+dashboard rather than inferring `LEGACY`.
+
+### 89.6 Carried forward `PROTECTED_DECISION`
+
+The unresolved-jurisdiction ranking defect and the four known-failing regression suites remain
+OPEN. The HazLenz protected floor is untouched -- this operation changed no hazard behaviour and
+ran no scorer. `LIVE_PAYMENT_PROOF = FALSE`. InSite v1.0 is not launch-ready and this operation
+does not make it so: it prepares and proves a bounded control-plane cutover, and proves nothing
+about production governance state, because none was read or written.
+
+
+## 90 — PRODUCTION GOVERNED RELEASE EXECUTED AND ACTIVE; CUSTOMER MODE STILL OFF (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-production-governed-cutover-2026-08-28/FINAL_STATUS.md`, over
+the production run in `transcripts/` (steps 00-06). Section 89 recorded the runbook as built and
+rehearsed but BLOCKED at Phase 2; the product owner then executed it against production. This
+section reconciles that run. Repository HEAD `45251d38` and `origin/main` unchanged; nothing
+committed, pushed, tagged or deployed; no Render command issued; no database connection opened by
+the reconciling operation; `PROVIDER_CALLS = 0`.
+
+```
+TERMINAL = HAZLENZ_PRODUCTION_GOVERNANCE_RELEASE_ACTIVE
+           -- RENDER_GOVERNED_CONFIGURATION_MANUAL_VERIFICATION_REQUIRED
+
+PRODUCTION_SCHEMA_COMPATIBLE             = TRUE
+PRODUCTION_GOVERNED_RELEASE_MATERIALIZED = TRUE
+PRODUCTION_GOVERNED_RELEASE_REVIEWED     = TRUE   (64/64, checksum-bound)
+PRODUCTION_GOVERNED_RELEASE_ACTIVE       = TRUE
+PRODUCTION_GOVERNED_RELEASE_ID           = federal-core-2026-08-28.1
+PRODUCTION_GOVERNED_RELEASE_MANIFEST     = 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb
+CUSTOMER_GOVERNED_MODE_ENABLED           = FALSE
+CUSTOMER_GOVERNED_MODE_VERIFIED          = FALSE  (Render values not readable read-only)
+POST_CUTOVER_CUSTOMER_ACCEPTANCE         = FALSE
+```
+
+### 90.1 Control-plane activation is NOT customer-visible activation `PROTECTED_DECISION`
+
+These are two transitions and must never be collapsed in any report, document or summary. The
+release being `active` is a governance fact about the CONTROL PLANE. The activation audit event
+says so on its face: *"Control-plane activation only; customer governed mode and allowlist are NOT
+enabled by this step."* Customer-visible governed mode is a separate Render environment change that
+remains **NOT AUTHORIZED**.
+
+### 90.2 What production measured
+
+Pre-state, before any write: 0 releases, 0 release records, 0 decisions, 0 events, active pointer
+`null`, 0 rejected records reachable, 12 inspections, 3 findings, 2,390 `standards_master` rows;
+`release_present: false`, so nothing was overwritten.
+
+`prepare` -> `outcome: prepared`, 64 records, manifest `680540d9...`,
+`reproducedPinnedManifest: true`, `legacyCorpusRowsRead: 0`, `verifiedInOnePass: true`, and review
+state `mechanically_validated: 64 / reviewer_approved: 0` -- the measured proof, in production,
+that materialization does not create approvals (89.2).
+
+Approval replay -> binding proof first (64 preserved decisions bind 1:1 **by exact record
+checksum** to the 64 materialized records), then **`approved=64 already_approved=0 failed=0`**;
+effective state `reviewer_approved: 64` and nothing else; `distinct_checksums 64`,
+`distinct_reviewers 1`, `non_approve_decisions 0`.
+
+Validation, zero writes -> `prepare --dry-run` = `idempotent_no_op`; approval-state checksum
+`3bbd2785...2975a`; `activate --dry-run` = **8/8 gates pass, `writesPerformed: 0`**.
+
+Activation -> `activated`, `previousReleaseId: null`. Post-proof -> status `active`, **exactly one**
+active pointer, 64 snapshot records, **approved 64 / not approved 0**,
+`records_without_a_checksum_bound_decision 0`, reviewer identity and role recorded on all 64, **0
+rejected records anywhere**, 12 inspections with **0 bound to a release**, findings and
+`standards_master` unchanged, audit trail = **64 `record_approval` + 1 `activation`, all
+`succeeded`**.
+
+### 90.3 The `06` transcript ends at the runtime header, deliberately `STABLE_INVARIANT`
+
+`transcripts/06-post-proof.txt` ends at `=== RUNTIME (public, read-only) ===` with nothing beneath
+it: the public `/health` request timed out transiently while `/health/ready` returned 200. The file
+is preserved BYTE-FOR-BYTE and was NOT edited to look complete. The missing proof was completed by
+a separately executed public request: `status ok`, `database up`, `nodeEnv production`,
+`gitCommit 45251d38a4e800bbff461708aa4c77061feade56`, `/health/ready 200`.
+
+**That timeout is not a governance failure** and must not be reclassified as one. A subsequent
+request to the same endpoint returned the expected production identity and database state; it is
+consistent with a free-instance cold start and touches no release state.
+
+### 90.4 The governed-mode variables, named from source `STABLE_INVARIANT`
+
+Read from `backend/src/standards/cutover/cutover-mode.ts` and
+`production-shadow-authorization.ts`, not guessed. Decisive four:
+`GOVERNED_CUTOVER_MODE` (required unset/empty/`LEGACY`),
+`GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST` and `GOVERNED_CUTOVER_ORG_ALLOWLIST` (required unset/empty),
+`GOVERNED_CUTOVER_PRODUCTION_ACK` (required unset). Shadow-only, incapable of changing customer
+output: `GOVERNED_CUTOVER_PRODUCTION_SHADOW_ACK`, `GOVERNED_CUTOVER_SHADOW_STAGE`,
+`GOVERNED_CUTOVER_KILL_SWITCH`, `GOVERNED_CUTOVER_SHADOW_COHORT_BPS`,
+`GOVERNED_CUTOVER_SHADOW_COHORT_SALT`, `GOVERNED_CUTOVER_OBSERVABILITY`.
+
+### 90.5 The values are NOT readable read-only, and a healthy boot is not proof `MUST_REVERIFY`
+
+Render CLI v2.20.0 exposes no `env` subcommand; `render services --output json` returns the service
+configuration with **no `envVars` field** (it did confirm read-only:
+`srv-d7kl74jeo5us73deaor0`, `autoDeploy=yes`, `autoDeployTrigger=commit`, `branch=main`,
+`rootDir=backend`, `startCommand=npm run start:render`, `suspended=not_suspended`). `render ea`
+offers only `kv`/`objects`/`pg`. There is no `render.yaml` in the repository, no HTTP route reports
+the mode, and `render-start-diagnostic.js` prints no `GOVERNED_CUTOVER_*` variable. No Render
+mutation was issued and no CLI credential was read from disk or used against the Render API.
+
+`assertCutoverConfigurationSafeForProduction()` runs first and unconditionally at boot
+(`main.ts:12`), throwing on an unrecognised mode and on any non-legacy mode without the exact
+`I_ACKNOWLEDGE_GOVERNED_CUTOVER` sentinel. The service being up therefore narrows the configuration
+to: unset/empty, or `LEGACY`, **or a valid governed mode WITH the acknowledgement set**. The third
+case is not excluded, so **a healthy boot is narrowing evidence, not proof.** Confirm the ten
+variables in the Render dashboard.
+
+### 90.6 An active release alone opts NO customer into governed behaviour `PROTECTED_DECISION`
+
+Proved from source along the real customer path (`POST /safescope-v2/classify`), conditional on the
+required legacy/empty configuration:
+
+1. `resolveCutoverMode()` returns `LEGACY` for unset, empty, wrong-case and every unrecognised
+   string; `Boolean(env.X)` is never used. No missing variable can enable cutover.
+2. `resolveCutoverEnablement()` returns `effectiveMode: LEGACY` on **`NO_ALLOWLIST_CONFIGURED`** --
+   a governed mode with no allowlist enables nobody. The principal comes from the authenticated JWT
+   only; there is no request-scoped override.
+3. `resolveInspectionReleaseBinding()` returns `GOVERNED_MODE_INACTIVE` **before touching the
+   database** when the mode cannot influence customer output, so `readActiveRelease()` -- the only
+   read of the active pointer on this path -- is never reached and `inspection.knowledgeReleaseId`
+   is never written. This is why 12 historical inspections stay at 0 bound with the release ACTIVE.
+4. `orchestrateShadowRequest()` short-circuits on LEGACY and runs the pipeline with a `null`
+   context: no code in `standards/cutover/` executes at all.
+5. `hydrateFindingScopedStandards(result, null)` leaves `governed` undefined, so
+   `resolveStandardsBacking()` takes its pre-KG-4A legacy `standards_master` branch.
+6. `resolveKnowledgeReleaseId()` returns NULL for LEGACY and SHADOW, and a client-supplied
+   `knowledgeReleaseId` is discarded unless the server independently agrees on mode AND release.
+
+`GOVERNED_CUTOVER_SHADOW_COHORT_BPS` cannot bypass this: the cohort is consulted only after the
+LEGACY short-circuit, and only when `configured.mode === 'SHADOW'`, which never influences customer
+output. **The active pointer becomes an input only once `modeInfluencesCustomerOutput(mode)` is
+already true.** The proof establishes what the required configuration does; it does not establish
+that production holds it (90.5). Both halves must always be stated together.
+
+### 90.7 Carried forward `PROTECTED_DECISION`
+
+The unresolved-jurisdiction ranking defect and the four known-failing regression suites remain
+OPEN, as do the four tracked frontend check scripts (89 / OPEN-4). The HazLenz protected floor is
+untouched -- no hazard behaviour changed and no scorer ran. `LIVE_PAYMENT_PROOF = FALSE`,
+`DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`. **InSite v1.0 is not launch-ready.** A
+governed release being active in the control plane is not a launch signal.
+
+### 90.8 Next authorization `MUST_REVERIFY`
+
+Manual Render dashboard verification of the ten variables in 90.4 comes first. Enabling customer
+governed mode -- setting `GOVERNED_CUTOVER_MODE`, a bounded allowlist and
+`GOVERNED_CUTOVER_PRODUCTION_ACK` -- is a Render environment mutation and a customer-visible
+behaviour change, and is a separate product-owner authorization. Remember 45251d38's standing
+property: `autoDeploy=yes` / `autoDeployTrigger=commit` on `main` means **pushing to `origin/main`
+is a production deployment**.
+
+
+## 91 — CUSTOMER GOVERNED-MODE CUTOVER PREPARED AND BLOCKED BEFORE MUTATION (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-customer-governed-mode-cutover-2026-08-29/STATUS.md`. HEAD and
+`origin/main` unchanged at `45251d38`; **no Render environment variable was changed**; no production
+mutation, no database connection, no `DATABASE_URL`, no payment, `PROVIDER_CALLS = 0`.
+
+```
+TERMINAL = HAZLENZ_CUSTOMER_GOVERNED_CUTOVER_BLOCKED
+           -- RENDER_ENV_MUTATION_TOOLING_AND_ACCEPTANCE_CREDENTIAL_REQUIRED
+
+PRODUCTION_GOVERNED_RELEASE_ACTIVE       = TRUE   (federal-core-2026-08-28.1)
+CUSTOMER_GOVERNED_MODE_ENABLED           = FALSE
+CUSTOMER_GOVERNED_MODE_VERIFIED          = TRUE   (all ten variables confirmed ABSENT)
+BOUNDED_ACCEPTANCE_IDENTITY_ESTABLISHED  = TRUE
+BOUNDED_CUSTOMER_GOVERNED_MODE_ENABLED   = FALSE
+UNIVERSAL_CUSTOMER_GOVERNED_MODE_ENABLED = FALSE
+POST_CUTOVER_CUSTOMER_ACCEPTANCE         = FALSE
+```
+
+### 91.1 The `VALUE_UNVERIFIED` gap from 90.5 is CLOSED `VERIFIED_AT_CHECKPOINT`
+
+The product owner manually inspected the Render Environment page and confirmed all ten
+`GOVERNED_CUTOVER_*` variables are **ABSENT**. Section 90.5 could only narrow the value read-only;
+this closes it positively. `CUSTOMER_GOVERNED_MODE_VERIFIED` moves FALSE -> TRUE. The pre-cutover
+customer state is the no-allowlist legacy path, established rather than inferred.
+
+### 91.2 The legacy state was MEASURED, not only read `STABLE_INVARIANT`
+
+252 executed assertions: `test:kg4a-default-off` 51/0, `test:kg4d-default-off` 121/0,
+`test:kg4c-disabled-deployment` 80/0. A probe over the real exported functions returned
+`mode=LEGACY effective=LEGACY reason=MODE_IS_LEGACY` for both the acceptance identity and a control
+id. The proof is non-vacuous by construction: `kg4a-default-off` Part 4 shows the seam DOES return
+verified governed content for `1910.212(a)(1)` when explicitly configured -- same user, same
+database, same approved citation -- so the default silence is a real default-off, not an empty corpus.
+
+### 91.3 An allowlist is MANDATORY, so bounded IS the architecture's smallest mode `PROTECTED_DECISION`
+
+`resolveCutoverEnablement()` returns `NO_ALLOWLIST_CONFIGURED` -> `LEGACY` when both allowlists are
+empty. Setting a governed mode alone is inert. **There is no universal-rollout switch short of
+naming every account**, so the `UNIVERSAL_ROLLOUT_AUTHORIZATION_REQUIRED` terminal does not and
+cannot apply to this architecture. A bounded rollout is not a compromise here; it is the only shape
+the mechanism has.
+
+### 91.4 The source-derived cutover contract `STABLE_INVARIANT`
+
+Three variables, saved together, and nothing else:
+
+```
+GOVERNED_CUTOVER_MODE              = GOVERNED_WITH_FALLBACK
+GOVERNED_CUTOVER_PRODUCTION_ACK    = I_ACKNOWLEDGE_GOVERNED_CUTOVER
+GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST = e9a25131-dfa4-40ce-90ff-8ab3d884d8ef
+```
+
+`GOVERNED_STRICT` is documented in source as deliberately NOT a customer-default candidate.
+`GOVERNED_CUTOVER_ORG_ALLOWLIST`, `GOVERNED_CUTOVER_KILL_SWITCH` and all five shadow variables stay
+ABSENT -- the governed-delivery branch returns before `resolveProductionShadowAuthorization()` is
+consulted, so shadow configuration has no effect on `GOVERNED_WITH_FALLBACK`.
+
+**OPERATIONAL WARNING.** `assertCutoverConfigurationSafeForProduction()` THROWS at boot for a
+non-legacy mode without the exact acknowledgement sentinel. Saving `GOVERNED_CUTOVER_MODE` without
+`GOVERNED_CUTOVER_PRODUCTION_ACK` in the same change would crash-loop production.
+
+### 91.5 The bounded acceptance identity `MUST_REVERIFY`
+
+`e9a25131-dfa4-40ce-90ff-8ab3d884d8ef` -- the operator's own production account, recorded in
+`stage1PreflightVerdict` (2026-08-21), `stage1AccountIsOrdinaryCustomer: false`, role `Auditor`,
+`planCode=company`, subscription active, the only live user in its organization. Entitlement
+re-proved from source rather than inherited: `normalizeBillingTier()` maps `company` -> `pro`, and
+`proEntitlements.fullSafeScope = true`, so it can reach `POST /safescope-v2/classify`.
+
+All five Stage-1 blockers B1-B5 recorded in 2026-08-21 are now RESOLVED: the subsystem is committed
+and deployed (B1, B2), the migrations are applied (B3), a governed release is active in production
+(B4), and 64/64 records are checksum-bound reviewer-approved (B5).
+
+The v1 live-acceptance account `d07f56aa-...` is REJECTED and recorded as rejected: it is Free,
+`freeEntitlements.fullSafeScope = false`, so classify returns 402. Making it usable would require a
+manual Pro grant or a payment, both prohibited.
+
+### 91.6 FINDING -- the kill switch is a delivery brake, NOT a rollback `PROTECTED_DECISION`
+
+Measured, and material. Rollback candidates:
+
+| action | measured `effectiveMode` | complete rollback? |
+|---|---|---|
+| clear `GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST` | `LEGACY` / `NO_ALLOWLIST_CONFIGURED` | **YES** |
+| set `GOVERNED_CUTOVER_MODE = LEGACY` | `LEGACY` / `MODE_IS_LEGACY` | **YES** |
+| set `GOVERNED_CUTOVER_KILL_SWITCH` | **`GOVERNED_WITH_FALLBACK` / `ACCOUNT_ALLOWLISTED`** | **NO** |
+
+The kill switch is checked inside `orchestrateShadowRequest()` and does stop governed content
+reaching the customer. But it is **not read at all** by the two call sites that decide durable state
+-- verified by grep, there is no kill-switch reference in `inspection-release-binding.ts`,
+`inspection.service.ts`, `cutover-mode.ts` or `safescope-v2.controller.ts`. Both
+`resolveInspectionReleaseBinding()` and `resolveKnowledgeReleaseId()` read
+`resolveCutoverEnablement(...).effectiveMode`, which still reports `GOVERNED_WITH_FALLBACK` with the
+switch engaged. An allowlisted principal's new inspection would therefore **still be bound** to the
+active release and `inspection.knowledgeReleaseId` **still written** -- and the binding is
+write-once, so it persists.
+
+**Clear the allowlist, or set the mode to LEGACY. The kill switch is an incident brake to use
+alongside one of those, never instead of one.** Clearing the allowlist is the most surgical: it
+carries no boot risk, whereas any edit to the mode re-enters the boot guard. Recorded as a finding;
+no production code was changed.
+
+### 91.7 The two blockers `MUST_REVERIFY`
+
+**B1 -- no tooling to mutate Render environment variables.** Render CLI v2.20.0 has no `env`
+subcommand, and `render services update` exposes 24 flags of which **none** sets an environment
+variable. There is no `render.yaml` to edit, and editing one would be a source change requiring a
+deploy. Upgrading the CLI and extracting its stored session credential to call the REST API were
+both deliberately not attempted. The change must be made by the product owner in the dashboard.
+
+**B2 -- Phases 4, 7 and 8 need an authenticated production session.** Every governed entry point is
+behind `JwtGuard`, no credential is recorded in the repository, and the acceptance is itself a live
+production write. It belongs with the operator, exactly as the production `DATABASE_URL` operations
+did.
+
+### 91.8 Regression actually executed, and its stated limit
+
+836 assertions, 0 failures, nothing weakened and no expected output updated:
+`test:kg4a-default-off` 51/0, `test:kg4a-cutover-contract` 146/0,
+`test:kg4c-disabled-deployment` 80/0, `test:kg4c-production-shadow-contract` 438/0,
+`test:kg4d-default-off` 121/0.
+
+**NOT re-run, and stated as not re-run:** the protected HazLenz floor (43/43, 43/43, 35/35, 35/35,
+100 % Population-A precision, 0 forbidden emissions) and the customer-workflow suites. This
+operation changed no production code, no scorer and no test and performed no cutover, so there is
+nothing for them to regress against -- but they remain a requirement of the EXECUTED cutover. The
+four known-failing suites and the unresolved-jurisdiction ranking defect remain OPEN.
+
+### 91.9 Carried forward `PROTECTED_DECISION`
+
+`LIVE_PAYMENT_PROOF = FALSE`, `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`. The four tracked
+frontend check scripts still fail against committed source. **InSite v1.0 is not launch-ready**, and
+a prepared bounded cutover does not make it so. A bounded acceptance rollout must never be
+documented, summarised or reported as universal rollout.
+
+
 ## EVIDENCE INDEX
 
 Root: `verification/hazlenz-governed-knowledge-growth-2026-08-19/`
@@ -15280,6 +16022,351 @@ work. Three pin pre-redesign literals (a renamed resume function; the observatio
 and was already failing at HEAD. Each protected property was verified to still hold — see
 `COMBINED_APPLICATION_ACCEPTANCE.md`. **These instruments must be updated to the accepted redesign,
 or retired, before a production cutover.**
+
+## 92 — GOVERNED-CUTOVER EMERGENCY-STOP AUTHORITY REPAIRED, LOCALLY (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-governed-kill-switch-authority-repair-2026-08-29/STATUS.md`. HEAD
+and `origin/main` unchanged at `45251d38`; **nothing committed, pushed, tagged or deployed**; no
+Render mutation, no database connection, no `DATABASE_URL`, no payment, `PROVIDER_CALLS = 0`.
+
+```
+TERMINAL = HAZLENZ_GOVERNED_KILL_SWITCH_AUTHORITY_REPAIR_ACCEPTED
+           -- COMMIT_PUSH_DEPLOY_AND_BOUNDED_CUTOVER_REQUIRED
+
+PRODUCTION_CUSTOMER_GOVERNED_MODE_ENABLED      = FALSE
+GOVERNED_CUTOVER_ENV_VARS_IN_PRODUCTION        = 0
+PRODUCTION_GOVERNED_RELEASE_ACTIVE             = TRUE (federal-core-2026-08-28.1, control plane)
+KILL_SWITCH_AUTHORITY_DEFECT_FOUND_PRE_CUTOVER = TRUE
+KILL_SWITCH_AUTHORITY_REPAIRED_LOCALLY         = TRUE
+KILL_SWITCH_AUTHORITY_REPAIRED_IN_PRODUCTION   = FALSE
+```
+
+### 92.1 The defect, reproduced before anything was changed `STABLE_INVARIANT`
+
+Section 91.6 recorded, from measurement, that `GOVERNED_CUTOVER_KILL_SWITCH` was a **delivery brake,
+not an emergency stop**. This phase turned that finding into a deterministic, database-free,
+provider-free reproduction and ran it **before** touching the implementation
+(`npm run reproduce:governed-kill-switch-defect`, transcript
+`transcripts/01-defect-reproduction-BEFORE-repair.txt`).
+
+Under the exact bounded cutover contract of 91.4, in production runtime semantics, with the switch
+engaged and the allowlisted principal:
+
+| decision point | measured | required |
+|---|---|---|
+| `resolveCutoverEnablement()` | `GOVERNED_WITH_FALLBACK` / `ACCOUNT_ALLOWLISTED` | `LEGACY` |
+| `resolveInspectionReleaseBinding()` | `federal-core-2026-08-28.1` / `BOUND_TO_ACTIVE_RELEASE` / `newlyBound=true` | `null` |
+| `inspection.knowledgeReleaseId` | **WRITTEN** | `NULL` |
+| durable writes attempted | **1** | 0 |
+| database statements issued | **3** | 0 |
+| `GovernedCutoverContext.create()` | a live governed context | `null` |
+
+`DEFECT REPRODUCED — 5 passed, 11 failed`. The 5 passes are the positive control: with the switch
+released the same configuration governs, binds and persists. The binding is **write-once**, so an
+operator pulling the stop mid-incident would have left permanent governed provenance on every new
+inspection — provenance the incident existed to prevent.
+
+### 92.2 Root cause: a dependency direction, not a missing check `PROTECTED_DECISION`
+
+The switch was born in KG-4C as a shadow control and lived in `production-shadow-authorization.ts`.
+That module **imports** `cutover-mode.ts`, so `cutover-mode.ts` — which produces the authoritative
+"may this request enter governed mode?" answer — could not consult it without a circular import. The
+brake was therefore only ever reachable from modules **downstream** of the authority decision, and
+release binding and provenance assignment are not downstream of it: **they are two of its four
+consumers.**
+
+The general lesson, and the reason this is a `PROTECTED_DECISION`: a safety control placed below the
+decision it is meant to override can only ever stop the visible half of that decision.
+
+### 92.3 The repair: one canonical answer, with the brake inside it `STABLE_INVARIANT`
+
+The emergency stop was extracted to the new module `standards/cutover/cutover-kill-switch.ts`, which
+**imports nothing** and sits at the bottom of the cutover dependency graph, and is applied inside
+`resolveCutoverEnablement()`. All four consumers — the controller's release binding,
+`GovernedCutoverContext.create()`, `orchestrateShadowRequest()` and the persistence provenance gate
+in `inspection.service.ts` — already call that function, so the brake reaches all four by
+construction rather than by four remembered checks.
+
+`production-shadow-authorization.ts` **re-exports** the moved bindings under their original names;
+`SHADOW_KILL_SWITCH_ENV` is now an alias for `CUTOVER_KILL_SWITCH_ENV`. There is **one latch, not
+two** — asserted by function identity, because an operator resetting one of two latches would have
+only the illusion of an emergency stop.
+
+`KILL_SWITCH_ENGAGED` is its own reason code. `MODE_IS_LEGACY` and `NO_ALLOWLIST_CONFIGURED` are
+deliberately **not** overloaded: both describe a configuration that was never governed, and
+reporting either during an incident would send an operator to fix a mode or an allowlist that never
+changed. `CutoverEnablement` gains `killSwitch` and `standing` so that *"the brake stopped this"*
+and *"this was reconfigured"* stay distinguishable — `production-shadow-authorization.ts` reports
+`PRINCIPAL_ELIGIBILITY` from `standing`, preserving the KG-4C property that the switch **overrides**
+the locks rather than **closing** them.
+
+**Rejected alternative:** inlining the environment read would have kept `cutover-mode.ts`
+import-free, but duplicates the parse and leaves the in-process **runtime latch** — the one the
+circuit breaker pulls with no operator present — unable to stop governed authority at all.
+
+### 92.4 The brake does not falsify history `PROTECTED_DECISION`
+
+An inspection bound **before** the stop keeps its write-once `knowledgeReleaseId`, and that id
+remains readable, so a truthful provenance claim on an older analysis stays verifiable during an
+incident. This is structural, not conventional: `resolveInspectionReleaseBinding()` returns on
+`!modeInfluencesCustomerOutput(mode)` **before** the database is reached, so there is no code path
+from the brake to an existing binding. The stop blocks NEW binding and NEW delivery. Nothing else.
+
+### 92.5 What was proven, and by how much
+
+`npm run test:governed-kill-switch-authority` — **115 / 0**, every section with its own positive
+control. Cutover regression, `DATABASE_URL` unset, nothing weakened, no assertion deleted:
+
+| suite | result | floor |
+|---|---|---|
+| `test:kg4a-default-off` | **52 / 0** | 51 / 0 (**+1 added**, see 92.6) |
+| `test:kg4a-cutover-contract` | 146 / 0 | 146 / 0 |
+| `test:kg4c-disabled-deployment` | 80 / 0 | 80 / 0 |
+| `test:kg4c-production-shadow-contract` | 438 / 0 | 438 / 0 |
+| `test:kg4d-default-off` | 121 / 0 | 121 / 0 |
+| **protected floor** | **837 / 0** | **836 / 0** |
+| plus kg4d-orchestration 151, kg4b-shadow-contract 123, kg4b-shadow-adversarial 84, kg4a-provenance-pinning 53, and the new 115 | **1,363 / 0 total** | |
+
+Broader floor re-measured: `test:hazlenz-core` **PASS** (44 constituent suites, 276 assertions),
+`test:hazlenz-precision` PASS, `score:hazlenz-precision` Population-A precision **100.0 %**,
+forbidden-family count **0**, life-critical omissions **0** over the 43 required hazard groups
+(35 life-critical); `test:hazlenz-level1-recall` PASS (17), `test:hazlenz-actionable-coverage` PASS
+(17), `test:hazlenz-source-authority` PASS, `test:release-identity-immutability` PASS (8); backend
+`tsc` clean; frontend `tsc` **0 source errors** (3 errors, all inside `.next/` generated duplicate
+artifacts, pre-existing).
+
+### 92.6 The one test change is a TIGHTENING, and must not be read as a relaxation `PROTECTED_DECISION`
+
+`test:kg4a-default-off` carried a HARD gate asserting `cutover-mode.ts` **"imports NOTHING"**. The
+property it protects is *"importing `cutover-mode.ts` cannot reach governed data"*; "imports
+nothing" was the blunter implementation of that property, correct while the module stood alone.
+
+The assertion was made **transitive, not removed** — the same discipline the file already applies to
+the KG-4D permitted-import list. It now asserts that `cutover-mode.ts` imports **exactly one**
+module and it must be `cutover-kill-switch`, **and** that `cutover-kill-switch.ts` itself imports
+nothing. A route to the corpus would need an import somewhere on that chain, and there is nowhere
+left to put one. **51 → 52: one assertion added, none removed, none weakened.**
+
+### 92.7 The repaired rollback matrix, and what needs a restart `STABLE_INVARIANT`
+
+Every control now stops **durable state** as well as eligibility — the property the primary stop
+previously lacked.
+
+| control | `effectiveMode` / reason | new binding | new `knowledgeReleaseId` | writes |
+|---|---|---|---|---|
+| **PRIMARY EMERGENCY STOP** — set `GOVERNED_CUTOVER_KILL_SWITCH` | `LEGACY` / `KILL_SWITCH_ENGAGED` | none | NULL | 0 |
+| **BOUNDED ROLLBACK** — clear `GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST` | `LEGACY` / `NO_ALLOWLIST_CONFIGURED` | none | NULL | 0 |
+| **MODE ROLLBACK** — set `GOVERNED_CUTOVER_MODE = LEGACY` | `LEGACY` / `MODE_IS_LEGACY` | none | NULL | 0 |
+
+`resolveKillSwitch(env = process.env)` reads `process.env` on **every** call and the enablement
+resolver runs per request, so:
+
+* the **runtime latch** (`engageRuntimeKillSwitch`, pulled by the circuit breaker) takes effect on
+  the next eligible request — **no restart, no redeploy, no database write**;
+* all three **environment** controls require the Render restart that an environment change triggers,
+  because the new `process.env` exists only in the new process;
+* any edit to `GOVERNED_CUTOVER_MODE` additionally **re-enters the boot guard**
+  (`main.ts` → `validateProductionEnvironment()` → `assertCutoverConfigurationSafeForProduction()`,
+  first and unconditional), so it must never be saved without the acknowledgement.
+
+Under time pressure: the runtime latch has no restart and no boot risk; of the environment controls,
+clearing the allowlist is the most surgical.
+
+### 92.8 Boot safety is unchanged, deliberately `PROTECTED_DECISION`
+
+`assertCutoverConfigurationSafeForProduction()` does **not** consult the kill switch, and this is now
+asserted rather than assumed: a missing acknowledgement, a near-miss acknowledgement
+(`i_acknowledge_…`) and an unrecognised mode value **all still refuse to boot with the brake
+engaged**. If the brake suppressed those refusals, an operator could quiet a malformed production
+configuration by pulling it — and the misconfiguration would go live the moment the brake was
+released, which is the moment nobody is looking for it.
+
+### 92.9 What was NOT proven, stated plainly `MUST_REVERIFY`
+
+The local development database `safescope` has **no governed release schema** — every
+database-backed governance suite fails on `relation "regulatory_release_records" does not exist`, a
+read-only `SELECT` failure that predates and is unrelated to this repair. Not executed, and still
+**required before this repair is deployed**: `test:governed-release-reachability` (514),
+`test:governed-authority-precedence` (42), `test:finding-governed-authority` (17),
+`test:finding-governed-integration` (19), `test:release-binding-acceptance` (25 — correctly
+`REFUSED BEFORE MUTATION` by the repository's own `[PROTECTED_DATABASE]` guard),
+`test:approval-contract`, `test:user-authored-findings`,
+`test:report-replacement-failure-safety`.
+
+**The HazLenz recognition 43/43 and actionable 43/43 SCORERS were NOT re-measured.**
+`score:hazlenz-actionable-coverage` drives the real customer workflow against a disposable API
+instance and disposable database (`ECONNREFUSED 127.0.0.1:4231`), neither of which exists here. The
+deterministic gates pass and the precision scorer re-measured Population-A precision 100.0 % /
+forbidden 0 / life-critical omissions 0 — but a passing gate is not the scorer, and nothing here
+claims it is.
+
+The Next.js production build was deliberately not run: no frontend file changed, and building with
+`NEXT_DIST_DIR` is the known mechanism that rewrites `frontend-next/tsconfig.json`.
+Its hash is verified unchanged at
+`73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535`.
+
+### 92.10 Section 91.6 is closed LOCALLY only `MUST_REVERIFY`
+
+Production runs `45251d38` and **still contains the defect**. Section 91.6 remains an accurate
+description of the deployed system and must not be treated as closed in production until this repair
+is deployed. Because no `GOVERNED_CUTOVER_*` variable exists in production, the defect is not
+currently reachable by any customer — it would have become reachable the moment the bounded cutover
+was performed, which is why it was repaired before rather than after.
+
+**Next authorization: commit, push and deploy — which are ONE action, not three.** `autoDeploy=yes`
+with `autoDeployTrigger=commit` on `main` means pushing to `origin/main` **is** a production
+deployment. There is no deployment-neutral way to preserve this work on `main`. The bounded customer
+cutover of 91.4 should be performed **only after** this repair is deployed: the emergency stop is a
+precondition for the cutover, not a follow-up to it.
+
+---
+
+## 93 — THE PRE-DEPLOYMENT BASELINE IS COMPLETE; §92.9's OPEN GATES ARE CLOSED (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-governed-kill-switch-authority-repair-2026-08-29/pre-deployment-baseline/STATUS.md`.
+HEAD and `origin/main` unchanged at `45251d38`. **This operation changed NO source or test file** —
+it is verification only. No commit, push, tag, deploy, Render mutation, production database
+connection, production `DATABASE_URL`, payment or provider call.
+
+```
+TERMINAL = HAZLENZ_GOVERNED_KILL_SWITCH_REPAIR_FULLY_ACCEPTED
+           -- COMMIT_PUSH_PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED
+```
+
+### 93.1 The blocker was environmental, and was fixed by building the environment `PROTECTED_DECISION`
+
+Section 92.9 reported a list of gates as NOT PROVEN because the local `safescope` database has no
+governed release schema and the protected-database guard correctly refuses mutating suites. Neither
+was a defect. **No guard was weakened, bypassed or edited** — `PROTECTED_DATABASE_NAMES`, the
+disposable-name pattern, the ownership marker table and `KG_TEST_DB_INITIALIZE_OWNERSHIP` are
+byte-identical to HEAD. Where a suite refused, it was given a database it could legitimately claim.
+
+Eleven disposable databases were created (all `127.0.0.1`, all matching the repository's own
+`^test_[a-z0-9_]+$` pattern), the resolved host and name printed and checked before every mutable
+command, and all eleven dropped afterwards. **`safescope` was never migrated, seeded or written** —
+measured at the end at 1 user and 35 migrations, against 50 in the disposable databases, with no
+ownership marker table.
+
+The governed fixture was materialized through the reviewed mechanism, not hand-built: both releases
+reproduced their pinned manifests exactly (`680540d9…`/64 members and `14a34fea…`/35 members, **0
+legacy corpus rows read**, 0 rejected records included), and the **64 reviewer approvals were
+REPLAYED** from the preserved ledger after a 1:1 exact-record-checksum binding proof — `approved=64,
+already_approved=0, failed=0`. No expected governance content was altered.
+
+### 93.2 Every previously unexecuted governance gate now passes `STABLE_INVARIANT`
+
+| gate | result |
+|---|---|
+| `test:governed-release-reachability` | **514 / 514** — approved reachable **64/64**, rejected reaching approval **0/8** |
+| `test:governed-authority-precedence` | **42 / 42** |
+| `test:finding-governed-authority` / `-integration` | **17 / 17**, **19 / 19** |
+| `test:release-binding-acceptance` | **25 / 25** |
+| `test:approval-contract` | **57 / 0** |
+| `test:release-identity-immutability` / `-ownership-exemption` | **8 / 8**, **7 / 7** |
+| `test:release-activation-acceptance` | **43 / 43** |
+| `verify:release-scoped-customer-workflow` | **35 / 35** |
+| `test:governed-corpus-matrix` | **60 / 60** |
+| `test:knowledge-release-provenance` | **27 / 27** |
+| `test:kg5b-release-construction` / `-approval-continuity` | **102 / 102**, **29 / 29** |
+
+**`test:approval-contract`'s refusal, recorded as OPEN in §89, is CLOSED.** It self-provisions and
+claims its own per-run working database from an untouched source corpus. The fix lives in the
+uncommitted `backend/scripts/test-approval-contract.ts` and predates this operation.
+
+**The 8 rejected records remain unreachable as governed authority**, proved three independent ways:
+`0/8` reaching approval in reachability (against a 64/64 positive control), `REJECTED_GOVERNED_CONTENT`
+with `member=false, reviewer=none` in finding-authority, and `NOT_IN_RELEASE` under release-scoped
+retrieval plus `REJECTED_GOVERNED_CONTENT` under the **active, bound** release. Citation-string
+equality still confers nothing.
+
+### 93.3 The EXACT HazLenz floor, re-measured through the real workflow `STABLE_INVARIANT`
+
+Driven over HTTP against a disposable API instance and disposable database — not substituted with a
+`test:hazlenz-core` PASS, which §92.9 explicitly refused to do. The API's target was proved by
+measurement: a register wrote to the disposable database and left `safescope` at 1 user.
+
+```
+LEVEL1_RECOGNITION_RECALL        100.0 % (43/43)      recognition life-critical   35/35
+ACTIONABLE_FINDING_COVERAGE      100.0 % (43/43)      actionable life-critical    35/35
+Population-A case-level precision 100.0 %             forbidden-family count      0
+dangerous omissions (A+B)         0                   life-critical omissions     0
+recognizedButNotActionable        []
+```
+
+`measurements/actionable-predeploy-baseline.json` is **field-for-field identical** on `recognition`
+and `actionable` to the recorded 2026-08-28 post-repair baseline. No corpus row, scorer threshold or
+expectation was adjusted, and the unresolved-jurisdiction ranking defect was not touched.
+
+### 93.4 Customer workflow regression — legacy behaviour is unaltered
+
+`test:user-authored-findings` **47/0**; `test:offline-sync-idempotency` **23/0**;
+`test:report-replacement-failure-safety` **16/0**; `test:canonical-workflow` **passed** (25
+scenarios, 4 cross-user denials, mass-assignment rejected); `test:persisted-decomposition-findings`
+**passed**; `verify:hazlenz-actionable-workflow` **66/0**;
+`verify:canonical-report-frontend-contract` **15/15**; `test:kg4e-report-field-exclusion` **9/0**.
+All ran with **no** `GOVERNED_CUTOVER_*` variable set — the shipped production posture.
+
+### 93.5 The emergency stop, proved against a RUNNING SERVER `STABLE_INVARIANT`
+
+Section 92 proved the resolver in-process. This proves the server the customer talks to, including
+the controller call site that resolved the release binding before the repair. Real HTTP,
+`POST /safescope-v2/classify` with an `inspectionId`, `federal-core-2026-08-28.1` ACTIVE, one
+allowlisted account; only the kill-switch variable changed between phases.
+
+| phase | classify | new `inspection.knowledgeReleaseId` | pre-existing bound inspection |
+|---|---|---|---|
+| kill **OFF** | `201` | **`federal-core-2026-08-28.1`** — bound | intact |
+| kill **ON** | `201` | **NULL** | **intact** |
+| kill **released** | `201` | **`federal-core-2026-08-28.1`** — bound again | intact |
+
+Against the frozen pre-repair reproduction — where the identical configuration with the switch
+engaged **wrote** the release id onto a new inspection — this is the defect closed on a live server:
+no new eligibility, no new binding, no new `knowledgeReleaseId`, zero durable binding writes,
+existing provenance intact, customer path still served.
+
+### 93.6 Cutover floor re-asserted `STABLE_INVARIANT`
+
+Protected floor **837 / 0** (`kg4a-default-off` 52 + cutover-contract 146 + kg4c-disabled 80 +
+kg4c-production-shadow 438 + kg4d-default-off 121), no assertion removed or weakened. Cutover-family
+total across all suites now executable: **1,640 / 0**. `test:kg4b-default-off` **48/0** against a
+real SHADOW server and `test:kg4d-integration-e2e` **42/0** against the same — both previously
+unexecutable — are included.
+
+### 93.7 One surviving failure, classified and deliberately NOT repaired `MUST_REVERIFY`
+
+`test:kg5b-operator-cli` — **64 / 65**:
+
+```
+FAIL  sources reports the 35 governed candidate records :: 72
+```
+
+**Category D — a stale expected result reflecting a genuinely changed intended contract.** The
+assertion pins `governedSourceRecords === 35`; the version-controlled governed source set holds
+**72** since the 2026-08-28 eCFR acquisition, which this blueprint records as intended. Both the
+assertion file and the source set are committed at `45251d38` and unmodified by the repair, so the
+failure exists at HEAD independently of it. Updating the pin is a one-line change and belongs to
+whoever owns the governed corpus-size contract, not to a verification pass. **Left open.**
+
+### 93.8 Type and build
+
+Backend `tsc` **clean**. Frontend `tsc` **0 source errors** (3 errors, all inside `.next/`
+generated duplicate artifacts, pre-existing). Frontend `next build` **succeeded**, and
+`frontend-next/tsconfig.json` was snapshotted before and re-hashed after: **byte-identical at
+`73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535`**. It was not edited to hide
+anything.
+
+### 93.9 Production is unchanged, and §91.6 still describes it `MUST_REVERIFY`
+
+Production runs `45251d38` and **still contains the emergency-stop defect**. Customer governed mode
+is OFF and no `GOVERNED_CUTOVER_*` variable exists there, so the defect is not reachable by any
+customer today — it becomes reachable the moment the bounded cutover is performed. Section 91.6
+remains an accurate description of the deployed system.
+
+**Next authorization: commit, push and deploy — ONE action, not three.** `autoDeploy=yes` with
+`autoDeployTrigger=commit` on `main` means pushing to `origin/main` **is** a production deployment.
+The bounded cutover of §91.4 should follow only after that deployment.
+
+---
 
 ---
 

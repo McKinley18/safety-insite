@@ -1,0 +1,11 @@
+RESOLVED TARGET: test_kg_corpusmatrix_20260829
+migrations: 50
+=== seeding legacy standards corpus (disposable) ===
+│ 0       │ 'OSHA' │ 49    │
+│ 1       │ 'MSHA' │ 23    │
+└─────────┴────────┴───────┘
+[legacy-corpus-guard] rows=72 governed=72 foreign=0 ownedDisposable=false
+
+Refusing to finalize release federal-core-2026-07-30.1: its version-controlled definition pins manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b, and this run computes 702339e5f7b486a1fdc270abd0c006f25dc0cac4483bcc31dfbcb32bd14f121b. A release identifier names exactly one immutable manifest — finalize a NEW release identity instead of re-pointing this one.
+
+No release was written; the transaction was rolled back.

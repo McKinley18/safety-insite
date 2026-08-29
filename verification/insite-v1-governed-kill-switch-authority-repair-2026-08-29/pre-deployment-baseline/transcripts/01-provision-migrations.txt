@@ -1,0 +1,27 @@
+=== RESOLVED TARGET PROOF (before any mutable command) ===
+resolved host = 127.0.0.1
+resolved database = test_kg_predeploy_baseline_20260829
+is protected name = false
+matches disposable pattern = true
+
+=== migration:run ===
+         [94mAND[0m [37mtarget[0m[37m.[0m[37m"displayNumber"[0m [94mIS NULL[0m
+    
+[90m[4mquery:[24m[39m 
+      [94mCREATE UNIQUE INDEX[0m [94mIF[0m [94mNOT[0m [94mEXISTS[0m [37m"uq_inspection_display_number_org"[0m
+        [94mON[0m [37m"inspection"[0m [37m([0m[37m"organizationId"[0m[37m,[0m [37m"displayNumber"[0m[37m)[0m
+        [94mWHERE[0m [37m"organizationId"[0m [94mIS NOT NULL[0m [94mAND[0m [37m"displayNumber"[0m [94mIS NOT NULL[0m
+    
+[90m[4mquery:[24m[39m 
+      [94mCREATE UNIQUE INDEX[0m [94mIF[0m [94mNOT[0m [94mEXISTS[0m [37m"uq_inspection_display_number_owner"[0m
+        [94mON[0m [37m"inspection"[0m [37m([0m[37m"ownerUserId"[0m[37m,[0m [37m"displayNumber"[0m[37m)[0m
+        [94mWHERE[0m [37m"ownerUserId"[0m [94mIS NOT NULL[0m [94mAND[0m [37m"displayNumber"[0m [94mIS NOT NULL[0m
+    
+[90m[4mquery:[24m[39m [94mINSERT INTO[0m [37m"migrations"[0m[37m([0m[37m"timestamp"[0m[37m,[0m [37m"name"[0m[37m)[0m [94mVALUES[0m [37m([0m[37m$[0m[32m1[0m[37m,[0m [37m$[0m[32m2[0m[37m)[0m [90m-- PARAMETERS: [1800000017000,"InspectionDisplayNumber1800000017000"][0m
+[4mMigration InspectionDisplayNumber1800000017000 has been executed successfully.[24m
+[90m[4mquery:[24m[39m [94mALTER TABLE[0m [37m"inspection"[0m [94mADD[0m [94mCOLUMN[0m [94mIF[0m [94mNOT[0m [94mEXISTS[0m [37m"knowledgeReleaseId"[0m [94mvarchar[0m[37m([0m[32m120[0m[37m)[0m [94mNULL[0m
+[90m[4mquery:[24m[39m [94mCREATE INDEX[0m [94mIF[0m [94mNOT[0m [94mEXISTS[0m [37m"idx_inspection_knowledge_release"[0m
+         [94mON[0m [37m"inspection"[0m [37m([0m[37m"knowledgeReleaseId"[0m[37m)[0m [94mWHERE[0m [37m"knowledgeReleaseId"[0m [94mIS NOT NULL[0m
+[90m[4mquery:[24m[39m [94mINSERT INTO[0m [37m"migrations"[0m[37m([0m[37m"timestamp"[0m[37m,[0m [37m"name"[0m[37m)[0m [94mVALUES[0m [37m([0m[37m$[0m[32m1[0m[37m,[0m [37m$[0m[32m2[0m[37m)[0m [90m-- PARAMETERS: [1800000018000,"InspectionKnowledgeReleaseBinding1800000018000"][0m
+[4mMigration InspectionKnowledgeReleaseBinding1800000018000 has been executed successfully.[24m
+[90m[4mquery:[24m[39m [94mCOMMIT[0m

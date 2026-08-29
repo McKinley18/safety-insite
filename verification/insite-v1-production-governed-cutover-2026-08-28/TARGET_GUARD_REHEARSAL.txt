@@ -1,0 +1,54 @@
+TARGET-GUARD REFUSAL REHEARSAL — proves the runbook cannot be pointed at the wrong database.
+Run against runbook/lib-guard.sh EXACTLY as shipped (EXPECTED_DATABASE=neondb).
+
+### G1 — no DATABASE_URL exported: refuse before connecting
+STOP: DATABASE_URL is not exported in this shell.
+      Load it with:  read -rs DATABASE_URL ; export DATABASE_URL
+      Without the export these commands resolve to the LOCAL development database.
+exit=1
+
+### G2 — pointed at the LOCAL development database: refuse, naming every failed assertion
+    (this is the exact value backend/.env would silently supply if the export were missing)
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "safescope",
+    "latestMigration": "FindingScopedRiskSnapshot1800000005700",
+    "ledgerRows": 35,
+    "migrationsNewerThan1800000015000": [],
+    "schemaColumns": []
+}
+
+STOP — TARGET PROOF FAILED:
+  - resolved database is 'safescope', expected 'neondb'
+  - latest migration is 'FindingScopedRiskSnapshot1800000005700', expected 'InspectionKnowledgeReleaseBinding1800000018000'
+  - migrations above 1800000015000 are [], expected exactly ['UserAuthoredFindingProvenance1800000016000', 'InspectionDisplayNumber1800000017000', 'InspectionKnowledgeReleaseBinding1800000018000']
+  - schema columns are [], expected ['inspection.displayNumber', 'inspection.knowledgeReleaseId', 'inspection_findings.source']
+
+No mutation will be attempted. Resolve this before continuing.
+exit=1
+
+### G3 — pointed at a correctly-migrated but NON-PRODUCTION database: still refuse
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "test_prodcutover_20260828",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+STOP — TARGET PROOF FAILED:
+  - resolved database is 'test_prodcutover_20260828', expected 'neondb'
+
+No mutation will be attempted. Resolve this before continuing.
+exit=1
+
+No credential was printed at any point. Every probe ran inside BEGIN READ ONLY.

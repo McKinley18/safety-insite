@@ -6,7 +6,7 @@
  * governed retrieval may influence a customer request, and it is built so that the answer is
  * "no" unless somebody has deliberately and explicitly said otherwise on the SERVER.
  *
- * THE THREE RULES THAT SHAPE EVERY LINE BELOW.
+ * THE FOUR RULES THAT SHAPE EVERY LINE BELOW.
  *
  *  1. NO MISSING VARIABLE MAY ENABLE CUTOVER. `resolveCutoverMode({})` is `LEGACY`. There is no
  *     "unset means inherit", no "unset means shadow", no default that is not the safest value.
@@ -23,11 +23,19 @@
  *     mistake -- a stray env var, a copy-pasted config, a bad deploy -- cannot expose customers to
  *     governed retrieval on its own.
  *
+ *  4. AND ONE BRAKE THAT OVERRIDES BOTH LOCKS (2026-08-29). Locks decide what governance is
+ *     CONFIGURED to do. `GOVERNED_CUTOVER_KILL_SWITCH` decides whether it may happen AT ALL right
+ *     now, and it is consulted HERE -- in the one function that answers "may this customer request
+ *     enter governed mode?" -- rather than by each downstream consumer. See the repair note on
+ *     `resolveCutoverEnablement()` for why that placement is the entire fix.
+ *
  * WHY MODE LIVES IN THE ENVIRONMENT AND NOT IN THE DATABASE. Rollback (Phase 14) must not require a
  * database write, a migration, a release de-activation or a corpus redeploy. An environment
  * variable is the narrowest reversible server-side mechanism available here, and it affects future
  * requests only -- it cannot rewrite an analysis that already recorded truthful provenance.
  */
+
+import { resolveKillSwitch, type KillSwitchState } from './cutover-kill-switch';
 
 /**
  * What governed retrieval is allowed to do to a customer request.
@@ -179,7 +187,15 @@ export type CutoverEnablementReason =
   | 'ACCOUNT_ALLOWLISTED'
   | 'ORGANIZATION_ALLOWLISTED'
   | 'NOT_ALLOWLISTED'
-  | 'NO_PRINCIPAL';
+  | 'NO_PRINCIPAL'
+  /**
+   * The emergency stop is engaged. Deliberately its OWN reason rather than a reuse of
+   * `MODE_IS_LEGACY` or `NO_ALLOWLIST_CONFIGURED`: those two describe a configuration that was
+   * never governed, and reporting either here would tell an operator to go and fix a mode or an
+   * allowlist that is in fact still exactly as they left it. The distinction matters most during
+   * an incident, which is the only time this value is ever produced.
+   */
+  | 'KILL_SWITCH_ENGAGED';
 
 export interface CutoverEnablement {
   /** The mode this REQUEST runs in, after the enablement boundary is applied. */
@@ -188,6 +204,24 @@ export interface CutoverEnablement {
   configuredMode: GovernedCutoverMode;
   enabled: boolean;
   reason: CutoverEnablementReason;
+  /**
+   * The emergency stop as an explicit, separately observable fact.
+   *
+   * `killSwitch.engaged === true` ALWAYS implies `enabled === false` and
+   * `effectiveMode === 'LEGACY'`. It is surfaced rather than merely applied so telemetry and the
+   * production-shadow gate can say *the brake is on* without re-reading the environment and
+   * arriving at a second, possibly different, interpretation of it.
+   */
+  killSwitch: KillSwitchState;
+  /**
+   * What enablement WOULD be with the emergency stop released -- i.e. the standing configuration.
+   *
+   * NEVER authoritative for a request. It exists so that "the brake stopped this" and "this was
+   * reconfigured" stay distinguishable: `production-shadow-authorization.ts` reports its
+   * `PRINCIPAL_ELIGIBILITY` lock from this field, which keeps the KG-4C property that the kill
+   * switch *overrides* the locks rather than *closing* them.
+   */
+  standing: { enabled: boolean; reason: CutoverEnablementReason };
 }
 
 export interface CutoverPrincipal {
@@ -216,6 +250,13 @@ function parseAllowlist(value: string | undefined): Set<string> {
  * kind -- a customer cannot turn governed retrieval on for themselves, and cannot turn it on for
  * anybody else. Enablement is per-principal, so one account being allowlisted says nothing about
  * any other account, which is the tenancy property Phase 18 verifies.
+ *
+ * AND IT IS THE EMERGENCY STOP'S ONE HOME (2026-08-29). This is the canonical answer to "may this
+ * customer request enter governed mode right now?", so `GOVERNED_CUTOVER_KILL_SWITCH` is applied
+ * here and nowhere downstream. Every consumer that decides durable state -- the controller's
+ * release binding, `GovernedCutoverContext.create()`, the shadow orchestrator, and the persistence
+ * provenance gate in `inspection.service.ts` -- reads this result, so the brake reaches all four by
+ * construction rather than by four remembered checks.
  */
 export function resolveCutoverEnablement(
   principal: CutoverPrincipal | null | undefined,
@@ -223,27 +264,81 @@ export function resolveCutoverEnablement(
   configured: CutoverModeResolution = resolveCutoverMode(env),
 ): CutoverEnablement {
   const configuredMode = configured.mode;
-  const off = (reason: CutoverEnablementReason): CutoverEnablement => ({
-    effectiveMode: 'LEGACY', configuredMode, enabled: false, reason,
-  });
+  const killSwitch = resolveKillSwitch(env);
 
-  if (configuredMode === 'LEGACY') return off('MODE_IS_LEGACY');
+  // The STANDING answer: what the configuration says, with the brake ignored. Computed first and
+  // in one place so the brake never has to be woven through the allowlist logic, and so an
+  // operator can always see the configuration they still have.
+  const standing = standingEnablement(principal, env, configuredMode);
+
+  // THE EMERGENCY STOP, APPLIED WHERE AUTHORITY IS DECIDED -- the 2026-08-29 repair.
+  //
+  // WHAT WAS WRONG. The switch was consulted only inside `orchestrateShadowRequest()`, which runs
+  // AFTER the controller has already resolved the release binding and is not consulted at all by
+  // `inspection.service.ts`'s provenance gate. Measured with the switch engaged under a valid
+  // GOVERNED_WITH_FALLBACK production configuration, an allowlisted principal still resolved to
+  // `GOVERNED_WITH_FALLBACK / ACCOUNT_ALLOWLISTED`, a NEW inspection was still bound to the active
+  // release, and `inspection.knowledgeReleaseId` was still written -- write-once, so the incident
+  // left durable governed provenance behind it. A brake that stops delivery but not authority is
+  // not an emergency stop.
+  //
+  // WHY IT IS HERE AND NOT AT THE CALL SITES. There must be exactly ONE answer to "may this
+  // customer request enter governed mode right now?", and this function is it: the controller's
+  // release binding, `GovernedCutoverContext.create()`, the orchestrator and the persistence
+  // provenance gate all read it. Adding a kill-switch check to each consumer instead would create
+  // four independent interpretations of one variable, and the defect being repaired is precisely
+  // what happens when one consumer is missed.
+  //
+  // WHY IT IS EVALUATED AFTER `MODE_IS_LEGACY`. On a legacy server there is no governance to stop,
+  // and `MODE_IS_LEGACY` is the more informative answer -- reporting `KILL_SWITCH_ENGAGED` there
+  // would imply a brake is holding back something that was never configured to run. Everywhere
+  // else the brake dominates, including `NOT_ALLOWLISTED` and `NO_PRINCIPAL`, because during an
+  // incident the operator needs to know the brake is the thing they will have to release.
+  //
+  // WHAT IT DELIBERATELY DOES NOT DO. It does not rewrite history. This function decides only
+  // whether a request may become governed FROM NOW ON; an inspection that acquired its
+  // `knowledgeReleaseId` before the stop keeps it, because nothing here reads or clears that column
+  // and `resolveInspectionReleaseBinding()` returns before touching the database.
+  const decided = (
+    effectiveMode: GovernedCutoverMode, enabled: boolean, reason: CutoverEnablementReason,
+  ): CutoverEnablement => ({ effectiveMode, configuredMode, enabled, reason, killSwitch, standing });
+
+  if (configuredMode === 'LEGACY') return decided('LEGACY', false, 'MODE_IS_LEGACY');
+  if (killSwitch.engaged) return decided('LEGACY', false, 'KILL_SWITCH_ENGAGED');
+
+  return decided(
+    standing.enabled ? configuredMode : 'LEGACY', standing.enabled, standing.reason,
+  );
+}
+
+/**
+ * The KG-4A enablement boundary exactly as it was, with the emergency stop factored out.
+ *
+ * Kept as its own function so the brake and the boundary cannot be confused for one another: this
+ * answers "is this principal named in the configuration?", and nothing else.
+ */
+function standingEnablement(
+  principal: CutoverPrincipal | null | undefined,
+  env: Env,
+  configuredMode: GovernedCutoverMode,
+): { enabled: boolean; reason: CutoverEnablementReason } {
+  if (configuredMode === 'LEGACY') return { enabled: false, reason: 'MODE_IS_LEGACY' };
 
   const accounts = parseAllowlist(env[CUTOVER_ALLOWLIST_ENV]);
   const organizations = parseAllowlist(env[CUTOVER_ORG_ALLOWLIST_ENV]);
-  if (accounts.size === 0 && organizations.size === 0) return off('NO_ALLOWLIST_CONFIGURED');
+  if (accounts.size === 0 && organizations.size === 0) {
+    return { enabled: false, reason: 'NO_ALLOWLIST_CONFIGURED' };
+  }
 
   const userId = String(principal?.userId || '').trim();
   const organizationId = String(principal?.organizationId || '').trim();
-  if (!userId && !organizationId) return off('NO_PRINCIPAL');
+  if (!userId && !organizationId) return { enabled: false, reason: 'NO_PRINCIPAL' };
 
-  if (userId && accounts.has(userId)) {
-    return { effectiveMode: configuredMode, configuredMode, enabled: true, reason: 'ACCOUNT_ALLOWLISTED' };
-  }
+  if (userId && accounts.has(userId)) return { enabled: true, reason: 'ACCOUNT_ALLOWLISTED' };
   if (organizationId && organizations.has(organizationId)) {
-    return { effectiveMode: configuredMode, configuredMode, enabled: true, reason: 'ORGANIZATION_ALLOWLISTED' };
+    return { enabled: true, reason: 'ORGANIZATION_ALLOWLISTED' };
   }
-  return off('NOT_ALLOWLISTED');
+  return { enabled: false, reason: 'NOT_ALLOWLISTED' };
 }
 
 /**
@@ -254,6 +349,12 @@ export function resolveCutoverEnablement(
  * "fail startup according to established configuration conventions" branch of the KG-4A contract.
  */
 export function assertCutoverConfigurationSafeForProduction(env: Env = process.env): void {
+  // THE EMERGENCY STOP IS DELIBERATELY NOT CONSULTED HERE, and that is a decision rather than an
+  // omission. The kill switch stops governance from RUNNING; it is not consent to BOOT with a
+  // configuration nobody acknowledged or a mode value nobody recognises. If engaging the brake
+  // suppressed these refusals, an operator could quiet a malformed production configuration by
+  // pulling the brake, and the misconfiguration would then go live the moment the brake was
+  // released -- which is exactly the moment nobody is looking for it.
   if (String(env.NODE_ENV || '').trim() !== 'production') return;
   const resolution = resolveCutoverMode(env);
   if (resolution.productionGuardTriggered) {

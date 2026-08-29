@@ -223,6 +223,32 @@ export async function orchestrateShadowRequest<T>(
     ...over,
   });
 
+  // ---------------------------------------------------------------- disabling overrides
+  //
+  // THE EMERGENCY STOP, now read from the CANONICAL enablement answer -- 2026-08-29.
+  //
+  // This branch used to sit below the legacy fast path and re-read the environment itself. That
+  // was the visible half of a structural defect: `resolveCutoverEnablement()` did not know about
+  // the kill switch, so the switch stopped governed DELIVERY here while the controller's release
+  // binding and the persistence provenance gate -- both of which read `resolveCutoverEnablement()`
+  // directly, and neither of which passes through this function -- carried on writing durable
+  // governed state. The brake now lives in the resolver, so `effectiveMode` is already LEGACY here.
+  //
+  // It is therefore evaluated BEFORE the legacy fast path, and it must be: without this branch a
+  // stopped governed request would be indistinguishable from an ordinary legacy one and would
+  // report `LEGACY_NO_CONTEXT`, losing the operational signal that governance is being held back.
+  // `standing.enabled` is what separates the two -- it is true only for a request the standing
+  // configuration WOULD have governed.
+  if (enablement.killSwitch.engaged && enablement.standing.enabled) {
+    shadowMetrics.increment('shadow_eligible_requests');
+    shadowMetrics.increment('shadow_skipped');
+    return base<T>({
+      payload: await input.runPipeline(null, { pristine: true }),
+      outcome: 'SHADOW_SKIPPED', skipReason: 'KILL_SWITCH_ENGAGED',
+      effectiveMode: 'LEGACY',
+    });
+  }
+
   // ---------------------------------------------------------------- the legacy fast path
   //
   // Nothing in this module allocates, queries or measures for a LEGACY request. The context is not
@@ -234,19 +260,6 @@ export async function orchestrateShadowRequest<T>(
   }
 
   shadowMetrics.increment('shadow_eligible_requests');
-
-  // ---------------------------------------------------------------- disabling overrides
-  //
-  // Evaluated before anything else that could execute governed code, and unconditionally. A kill
-  // switch that only applies once every other check has passed is not a kill switch.
-  if (killSwitch.engaged) {
-    shadowMetrics.increment('shadow_skipped');
-    return base<T>({
-      payload: await input.runPipeline(null, { pristine: true }),
-      outcome: 'SHADOW_SKIPPED', skipReason: 'KILL_SWITCH_ENGAGED',
-      effectiveMode: 'LEGACY',
-    });
-  }
 
   const standingVerdict = breakerWindow.evaluate();
   if (standingVerdict.action === 'STOP_SHADOW') {

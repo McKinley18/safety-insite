@@ -1,0 +1,109 @@
+(node:91830) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+--- RESOLVED TARGET PROOF (read-only, credential never printed) ---
+{
+    "database": "neondb",
+    "latestMigration": "InspectionKnowledgeReleaseBinding1800000018000",
+    "ledgerRows": 50,
+    "migrationsNewerThan1800000015000": [
+        "UserAuthoredFindingProvenance1800000016000",
+        "InspectionDisplayNumber1800000017000",
+        "InspectionKnowledgeReleaseBinding1800000018000"
+    ],
+    "schemaColumns": [
+        "inspection.displayNumber",
+        "inspection.knowledgeReleaseId",
+        "inspection_findings.source"
+    ]
+}
+
+TARGET PROOF OK — database=neondb, latest=InspectionKnowledgeReleaseBinding1800000018000, ledger rows observed=50 (observed, not asserted; the production ledger is baselined so its row count is not the repository migration position).
+
+=== GOVERNANCE PRE-STATE (read-only) ===
+(node:91839) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "releases_in_database": 0,
+    "release_rows": [],
+    "active_release_pointer": null,
+    "active_release_manifest": null,
+    "candidate_snapshot_records": 0,
+    "candidate_decision_rows": 0,
+    "all_release_records": 0,
+    "all_decision_rows": 0,
+    "knowledge_release_events": 0,
+    "inspection_rows": 12,
+    "inspections_bound_to_a_release": 0,
+    "inspection_findings_rows": 3,
+    "standards_master_rows": 2390
+  }
+]
+
+=== CANDIDATE RELEASE EFFECTIVE REVIEW STATE, IF IT ALREADY EXISTS (read-only) ===
+(node:91843) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[]
+
+=== IMMUTABLE-IDENTITY CONFLICT CHECK (read-only) ===
+Expected before this operation: release_present=false.
+If release_present=true and stored_manifest <> 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb: HARD STOP.
+(node:91846) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[
+  {
+    "release_present": false,
+    "stored_manifest": null,
+    "expected_manifest": "680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb",
+    "stored_status": null,
+    "stored_record_count": null
+  }
+]
+
+=== REJECTED-RECORD REACHABILITY BASELINE (read-only) ===
+The 8 records the reviewer ledger disposed REJECT_CORRECTION_REQUIRED must belong to no
+release snapshot and carry no approval decision, in any release.
+(node:91849) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[]
+
+=== PRODUCTION RUNTIME (public, read-only) ===
+{"status":"ok","database":"up","timestamp":"2026-08-28T23:41:08.806Z","version":{"appName":"safety-insite-backend","gitCommit":"45251d38a4e800bbff461708aa4c77061feade56","buildTimestamp":"2026-06-19T20:42:00Z","nodeEnv":"production","versionSourceStatus":"RENDER_GIT_COMMIT"},"memory":{"rssMb":196,"heapUsedMb":112,"heapTotalMb":115,"externalMb":23}}
+/health/ready -> 200
+
+STEP 1 COMPLETE — nothing was written.

@@ -1,0 +1,93 @@
+
+== W-01 — genuine multi-hazard observation (B-01)
+  [PASS] W-01 lockout_tagout — customer can SEE the hazard as a finding — hazardKey=lockout-tagout
+  [PASS] W-01 lockout_tagout — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-01 lockout_tagout — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-01 lockout_tagout — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-01 lockout_tagout — corrective action ESTABLISHED and persisted
+  [PASS] W-01 lockout_tagout — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-01 machine_guarding — customer can SEE the hazard as a finding — hazardKey=machine-guarding
+  [PASS] W-01 machine_guarding — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-01 machine_guarding — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-01 machine_guarding — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-01 machine_guarding — corrective action ESTABLISHED and persisted
+  [PASS] W-01 machine_guarding — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-01 — carries 2 materially DISTINCT corrective actions — distinct titles=2, distinct findings=2
+
+== W-02 — classifier-only residual now actionable (B-05)
+  [PASS] W-02 compressed_gas — customer can SEE the hazard as a finding — hazardKey=compressed-gas
+  [PASS] W-02 compressed_gas — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-02 compressed_gas — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-02 compressed_gas — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-02 compressed_gas — corrective action ESTABLISHED and persisted
+  [PASS] W-02 compressed_gas — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-02 hot_work — customer can SEE the hazard as a finding — hazardKey=hot-work
+  [PASS] W-02 hot_work — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-02 hot_work — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-02 hot_work — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-02 hot_work — corrective action ESTABLISHED and persisted
+  [PASS] W-02 hot_work — finding COMPLETED (finalized) — status=finalized
+
+== W-03 — MCC bucket opened live, no lock (B-15)
+  [PASS] W-03 lockout_tagout — customer can SEE the hazard as a finding — hazardKey=lockout-tagout
+  [PASS] W-03 lockout_tagout — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-03 lockout_tagout — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-03 lockout_tagout — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-03 lockout_tagout — corrective action ESTABLISHED and persisted
+  [PASS] W-03 lockout_tagout — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-03 electrical — customer can SEE the hazard as a finding — hazardKey=electrical
+  [PASS] W-03 electrical — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-03 electrical — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-03 electrical — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-03 electrical — corrective action ESTABLISHED and persisted
+  [PASS] W-03 electrical — finding COMPLETED (finalized) — status=finalized
+
+== W-04 — two materially distinct corrective actions (B-12)
+  [PASS] W-04 electrical — customer can SEE the hazard as a finding — hazardKey=electrical
+  [PASS] W-04 electrical — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-04 electrical — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-04 electrical — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-04 electrical — corrective action ESTABLISHED and persisted
+  [PASS] W-04 electrical — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-04 fall_protection — customer can SEE the hazard as a finding — hazardKey=fall-protection
+  [PASS] W-04 fall_protection — customer can UNDERSTAND WHY (mechanism + observation fragment)
+  [PASS] W-04 fall_protection — customer can ASSIGN RISK (risk snapshot present)
+  [PASS] W-04 fall_protection — customer has a CORRECTIVE ACTION path on the finding
+  [PASS] W-04 fall_protection — corrective action ESTABLISHED and persisted
+  [PASS] W-04 fall_protection — finding COMPLETED (finalized) — status=finalized
+  [PASS] W-04 — carries 2 materially DISTINCT corrective actions — distinct titles=2, distinct findings=2
+
+== W-05 — negated/safe control — no hot work was taking place (A-22)
+  [PASS] W-05 safe/negated observation materialises no engine finding — none
+
+== W-06 — MCC safe-isolation control (HE-02)
+  [PASS] W-06 safe/negated observation materialises no engine finding — none
+
+== corrective-action retrieval, persistence and report
+  [PASS] customer can RETRIEVE every corrective action they established — 8/8 listed (total reported 8)
+  completion readiness: {"ready":true,"reasons":[],"message":"Every current finding requires a completed human review before finalization.","findingCount":8,"reviewedCount":8,"reportableCount":8,"blockingFindingIds":[]}
+  [PASS] inspection transitions draft -> in_review — status=201 {"id":"f2b31399-e1f3-41ba-9cdf-d1d829056eb0","organizationId":null,"ownerUserId":"97240b8f-f472-436b-aecc-d0ee29756d4f","createdByUserId":"97240b8f-f472-436b-ae
+  [PASS] inspection PERSISTS through completion transition — status=201 {"id":"f2b31399-e1f3-41ba-9cdf-d1d829056eb0","organizationId":null,"ownerUserId":"97240b8f-f472-436b-aecc-d0ee29756d4f","createdByUserId":"97240b8f-f472-436b-aecc-d0ee29756d4f","siteId":"28cd4dea-b974
+  [PASS] report GENERATED — status=201 {"reportId":"96f8ca62-88f5-46c5-bb77-5064703e5735","inspectionId":"f2b31399-e1f3-41ba-9cdf-d1d829056eb0","versionId":"bf53725e-b38a-4576-9333-d2a334ffc471","version":1,"status":"generated","sourceInsp
+  [PASS] report PDF downloadable by the customer — status=200
+  [PASS] report PDF carries readable text — 9939 chars
+  [PASS] report REPRESENTS W-01 hazard "lockout_tagout"
+  [PASS] report REPRESENTS W-01 hazard "machine_guarding"
+  [PASS] report REPRESENTS W-02 hazard "compressed_gas"
+  [PASS] report REPRESENTS W-02 hazard "hot_work"
+  [PASS] report REPRESENTS W-03 hazard "lockout_tagout"
+  [PASS] report REPRESENTS W-03 hazard "electrical"
+  [PASS] report REPRESENTS W-04 hazard "electrical"
+  [PASS] report REPRESENTS W-04 hazard "fall_protection"
+
+-- recorded (not asserted) --
+  W-01 lockout_tagout standards on finding: 30 CFR 56.12016, 29 CFR 1910.147
+  W-01 machine_guarding standards on finding: 30 CFR 56.14107(a), 29 CFR 1910.212(a)(1), 29 CFR 1926.300(b)(2)
+  W-02 compressed_gas standards on finding: NONE
+  W-02 hot_work standards on finding: NONE
+  W-03 lockout_tagout standards on finding: 30 CFR 56.12016, 29 CFR 1910.147
+  W-03 electrical standards on finding: NONE
+  W-04 electrical standards on finding: 29 CFR 1910.303, 29 CFR 1926.416(a)(1)
+  W-04 fall_protection standards on finding: NONE
+
+PASS HazLenz actionable workflow verification (66 checks)
