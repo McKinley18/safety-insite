@@ -1,0 +1,22 @@
+# REPOSITORY STATE — end of transport probe, 2026-08-29
+
+HEAD      de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+branch    main
+upstream  origin/main (0/0)
+stashes   4
+tags      24
+
+## tracked files modified (both Expert operations combined)
+ M backend/package.json
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/tsconfig.json
+
+## contamination file, untouched
+73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535  frontend-next/tsconfig.json
+
+## new source this phase
+35349455e9c638a3209e1c1ab35f54b3dd6741d228e4b885d4cc5620c6bbc29b  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+d07345f748b496b9c6d96d05e78046fa9a3f7eb1cf118c25ab42bec28ce3c2e6  backend/src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider.ts
+dcd8180216aae2493af2ad12bc25ff10d1629afb07391b3f5f6751032653a551  backend/scripts/probe-expert-transport.ts
+4cd96c96685c3d40f7813320c0a6771494b61b1f52d04283bc724650baac7955  backend/scripts/diagnose-expert-probe-content.ts

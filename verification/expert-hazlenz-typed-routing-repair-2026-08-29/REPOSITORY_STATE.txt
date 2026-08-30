@@ -1,0 +1,24 @@
+# REPOSITORY STATE — end of typed routing repair, 2026-08-29
+
+HEAD      de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+branch    main
+upstream  origin/main (0/0)
+stashes   4   tags 24
+
+## tracked files modified (sections 99-101 combined)
+ M backend/package.json
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/tsconfig.json
+
+## contamination file, untouched
+73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535  frontend-next/tsconfig.json
+
+## files changed this phase
+61859460a52b64a056e57e1169ae6ee9bf5c805d63036276d2803c0e365369c7  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+fd22d763ba1ae6634a4fc8f6c408de21728a9c15a4c6435b987d49656dbdb1fb  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+f6bcd4cd9134c242d3ce8e09f31c62714230de45a00cc68f6cd38daff992ae98  backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts
+9bec2abfa5393129ba206c8134530422bbc33f27c6fb2dc720131d625953e635  backend/src/safescope-v2/expert-hazlenz/expert-routing-metrics.ts
+e444b6920454a9d5cee6d72eece1aadddde141b7f84ead54ea42efe6f85c70cf  backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts
+225a98e5f50fb9cef83b0694831cd5ac35d82c8ed30eebc476c34bfc1851f7ac  backend/scripts/test-expert-routing-contract.ts
+310f7059344bc3a336a561aa4a8ca688c355249e0498909489e0414676336f9f  backend/scripts/probe-expert-routing.ts

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "insite.current-state.v1",
   "generatedAt": "2026-08-29",
-  "generatedBy": "INSITE_V1_PRE_DEPLOYMENT_BASELINE_COMPLETION 2026-08-29: the gates the kill-switch repair phase reported as NOT PROVEN were executed against a purpose-built disposable governed environment and all pass. TERMINAL = HAZLENZ_GOVERNED_KILL_SWITCH_REPAIR_FULLY_ACCEPTED -- COMMIT_PUSH_PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED. This operation changed NO source or test file: it is verification only. Eleven disposable databases were created on 127.0.0.1 (all matching the repository's own test_* pattern), the resolved target printed and checked before every mutable command, and all eleven dropped afterwards; NO protected-database guard was weakened, bypassed or edited, and safescope was never migrated, seeded or written (measured at 1 user / 35 migrations against 50 in the disposable databases). governed-release-reachability 514/514 with rejected records reaching approval 0/8; authority-precedence 42/42; finding-governed 17/17 and 19/19; release-binding-acceptance 25/25; approval-contract 57/0 (its section-89 refusal is CLOSED); activation 43/43; release-scoped customer workflow 35/35. The EXACT HazLenz floor was re-measured through the real customer workflow over HTTP -- recognition 43/43, actionable 43/43, life-critical 35/35 and 35/35, Population-A precision 100.0%, forbidden emissions 0 -- not substituted with a test:hazlenz-core PASS. The emergency stop was additionally proved against a RUNNING SERVER: with the switch engaged a new inspection's knowledgeReleaseId stayed NULL while an already-bound inspection kept its release id, and releasing the switch restored binding. Protected cutover floor 837/0, cutover-family total 1,640/0. ONE failure survives and was deliberately NOT repaired: test:kg5b-operator-cli 64/65, a stale 35-record pin against a 72-record governed source set, pre-existing at HEAD and unrelated to the repair. Production still runs 45251d38 and still contains the defect; nothing was committed, pushed, tagged or deployed.",
+  "generatedBy": "EXPERT_HAZLENZ_TYPED_COLLECTION_ROUTING_REPAIR 2026-08-29: the section 100 routing defect was diagnosed to a STRUCTURAL cause and repaired over TWO measured attempts, 14 local provider calls, $0.00, 0 hosted calls. Cause: expertExplanation carried free-text TWINS of three typed collections (whatIsMissing/clarifications, howConditionsInteract/insights, whatMatters/candidates) and a model asked to fill both fills the easier one. The twins were DELETED rather than discouraged; contract moved to hazlenz.expert.analysis.v2. ATTEMPT 1 FAILED 8 of 14 gates and is recorded rather than absorbed -- its two measurements (expertHazardCandidates empty on 13 of 13 live calls; quotes 0/0 on every call) located the real gate: candidates were the only collection whose schema listed evidence as REQUIRED, so the entry price was a quote the model could not produce. ATTEMPT 2 made the quote optional -- empty evidence has been contract-legal since section 99, only the wire schema demanded it -- and narrowed NOTHING_TO_ADD. THE VALIDATOR DID NOT MOVE: a supplied quote is still checked by exact equality and a fabricated one still rejected, so this changed what is ASKED FOR, not what is ACCEPTED. RESULT: 16/16 routing opportunities, 0 misses, 0 over-routing, EXPLANATION_ONLY_LOSSES = 0, all 14 routing gates passed, with the negative controls R6 and R7 returning every collection empty at ~110 output tokens -- the repair taught placement, not chattiness. The metric was validated before use (57/0). A G14 false failure caused by grepping the adapter's own comment about absent credentials was fixed as an instrument, not as a result. Expert suites 56/51/131/141/57 all 0 failed; Level-3 quarantine intact 61/0 and 37/0; HazLenz precision 100%; backend tsc clean. No hosted call, no evaluation corpus, no commit, push, deploy, Render change, production access or payment.",
   "documentContract": {
     "companion": "docs/INSITE_ENGINEERING_BLUEPRINT.md",
     "authoritativeFor": [
@@ -25,41 +25,54 @@
     "branch": "release/insite-rc-2026-08-18",
     "headNote": "The KG release package is now COMMITTED LOCALLY as six commits on top of 5f050858. Nothing is pushed: origin/release/insite-rc-2026-08-18 is still 5f050858. The protected checkpoint commit 5f050858 remains the parent of the package and is unmoved."
   },
-  "checkpoint": "HAZLENZ_GOVERNED_KILL_SWITCH_REPAIR_FULLY_ACCEPTED — COMMIT_PUSH_PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED",
-  "readiness": "PRODUCTION_CUSTOMER_GOVERNED_MODE_ENABLED = FALSE. NO GOVERNED_CUTOVER_* VARIABLE EXISTS IN PRODUCTION. PRODUCTION_GOVERNED_RELEASE_ACTIVE = TRUE (federal-core-2026-08-28.1, control plane only). KILL_SWITCH_AUTHORITY_REPAIRED_LOCALLY = TRUE. KILL_SWITCH_AUTHORITY_REPAIRED_IN_PRODUCTION = FALSE. PRE_DEPLOYMENT_BASELINE_COMPLETE = TRUE. BOUNDED_CUSTOMER_GOVERNED_MODE_ENABLED = FALSE. UNIVERSAL_CUSTOMER_GOVERNED_MODE_ENABLED = FALSE. POST_CUTOVER_CUSTOMER_ACCEPTANCE = FALSE. These must never be collapsed. The complete pre-deployment baseline is now green: every governance gate, the exact HazLenz recognition/actionable floor measured through the real workflow rather than inferred from a passing gate, the customer workflow suites, the cutover floor at 837/0, backend tsc clean, frontend 0 source errors and a successful production build. The repaired emergency stop was additionally proved on a live server. What remains unproven is production itself: the repair is uncommitted and unpushed, blueprint 91.6 still describes the DEPLOYED system, and no live production request has exercised the repaired path. One pre-existing unrelated failure remains open: test:kg5b-operator-cli 64/65.",
-  "nextSlice": "GOVERNED STANDARDS PRODUCTION CUTOVER -- still requires explicit authorization, and the local reconciliation work still requires a deploy decision because pushing to origin/main deploys. The schema blocker is gone; nothing else about production governance has changed. Ordered transitions, none collapsed: (1) release materialization via release -- prepare --release-id federal-core-2026-08-28.1, which must reproduce manifest 680540d9 and read 0 legacy corpus rows; (2) reviewer approval replay of the 64 preserved decisions through review:release-record -- approve, each with its own --expected-checksum, there being no bulk path and no autonomous AI reviewer identity; (3) finalization/validation against the approved member set with immutable identity and checksum rules enforced; (4) activation with --expected-manifest 680540d9, which is refused while zero members are approved; (5) GOVERNED_CUTOVER_MODE plus a named account allowlist, the only customer-visible step; (6) post-cutover acceptance on a disposable account proving release-scoped retrieval, approved-content-only authority, that rejected records cannot surface as reviewed regulation, knowledgeReleaseId binding behaviour, that historical NULL inspections stay unbound, and that the protected HazLenz floor is unchanged. Rollback from governed mode is ALWAYS disabling the mode, never an UPDATE of a persisted knowledgeReleaseId. Separately: decide how to preserve the uncommitted reconciliation work given the auto-deploy coupling.",
+  "checkpoint": "EXPERT_HAZLENZ_TYPED_ROUTING_REPAIRED — HOSTED_PROVIDER_TRANSPORT_PROBE_AUTHORIZATION_REQUIRED",
+  "readiness": "PRODUCTION_SHA = de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 (unchanged). Everything sections 98-100 established remains true. UPDATED THIS PHASE: EXPERT_TYPED_COLLECTION_ROUTING_DEFECT = REPAIRED. EXPERT_ANALYSIS_CONTRACT_VERSION = hazlenz.expert.analysis.v2. EXPERT_PROMPT_VERSION = hazlenz.expert.prompt.v3. TYPED_ROUTING_HITS = 16 of 16. EXPLANATION_ONLY_LOSSES = 0. ROUTING_GATES_PASSED = 14 of 14. ROUTING_NEGATIVE_CONTROLS_CLEAN = TRUE (R6 and R7 emitted nothing). LOCAL_PROVIDER_ROUTING_MEASURED = TRUE (qwen3-coder:30b). HOSTED_PROVIDER_TRANSPORT_MEASURED = FALSE -- still no hosted credential, and none was requested. UNCHANGED AND STILL FALSE: EXPERT_HAZLENZ_PROVIDER_VALIDATED, EXPERT_HAZLENZ_CUSTOMER_ACTIVE, EXPERT_PROVIDER_SELECTED, EXPERT_EVALUATION_EXECUTED. A routing pass binds REPRESENTATION on one local model over 16 opportunities across 7 synthetic fixtures. It is not provider validation, not reasoning validation, not production selection, and NO global production-quality precision target may be inferred from it.",
+  "nextSlice": "HOSTED PROVIDER TRANSPORT PROBE -- justified for the first time, and it needs a credential the account owner would provision plus its own spend decision. The architecture is now proven end to end against a real model: adapter, validation boundary, authority merge, typed routing and negative controls all hold, and the entire repair loop cost $0.00. Both probe scripts (probe:expert-transport, probe:expert-routing) would run against a hosted adapter unchanged, so the hosted question is now a credential and a spend decision rather than an engineering one. ONLY AFTER a hosted transport probe passes is the seventeen-measure evaluation worth a reserved single-use cohort. Carry into that phase the new debt that every Expert candidate so far is UNGROUNDED -- the model has never produced an evidence quote in 14 calls -- which M07_GOVERNED_RECORD_GROUNDING will measure and which a hosted model may do differently. Separately and NOT part of this slice: selecting a production provider; customer UI integration; expanding the governed rollout; and the debts in blueprint sections 99.8, 100.8 and 101.9. Pushing to origin/main remains a production deployment.",
   "actionsPerformedByThisTask": {
-    "phase": "INSITE_V1_PRE_DEPLOYMENT_BASELINE_COMPLETION",
-    "terminal": "HAZLENZ_GOVERNED_KILL_SWITCH_REPAIR_FULLY_ACCEPTED -- COMMIT_PUSH_PRODUCTION_DEPLOYMENT_AUTHORIZATION_REQUIRED",
-    "verificationOnly": true,
-    "productionSourceOrTestFilesChanged": 0,
+    "phase": "INSITE_V1_BOUNDED_GOVERNED_ACCEPTANCE_RETRY_STAGING",
+    "terminal": "HAZLENZ_PRODUCTION_GOVERNED_ROLLBACK_CONFIRMED -- BOUNDED_ACCEPTANCE_RETRY_AUTHORIZED_AND_PENDING_OPERATOR_EXECUTION",
+    "scope": "Phase 0 preservation, Phase 1 pre-retry safety gate, and preparation of the authorized retry sequence. Phases 2-7 were NOT executed.",
+    "retryExecuted": false,
+    "rollbackConfirmedByOperator": "8 passed, 0 failed -- transcripts/42-rollback-repaired.txt",
+    "productionFixtureFromOperatorRollbackRun": "inspection 80ec77e6-aca3-4a68-ac0f-b9f0e7b75b39 and its site, on the owner's own account",
+    "preRetryGate": "transcripts/50-pre-retry-gate.txt -- all green",
+    "failClosedSelfTest": "15 passed, 0 failed (re-run this session)",
+    "filesAdded": [
+      "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/transcripts/50-pre-retry-gate.txt"
+    ],
+    "filesUpdated": [
+      "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/runbook/README.md (Step H, the authorized retry sequence)",
+      "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md (addendum B)",
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md (section 97)",
+      "docs/INSITE_CURRENT_STATE.json"
+    ],
+    "backendOrFrontendSourceFilesChanged": 0,
+    "testOrScorerFilesChanged": 0,
+    "acceptanceAssertionsWeakened": 0,
+    "renderMutated": false,
+    "renderEnvVarChanged": false,
+    "allowlistRestored": false,
+    "killSwitchEngaged": false,
+    "governedModeEnabled": false,
+    "productionObjectCreated": false,
+    "productionRequestsMade": "read-only only: /health, /health/ready, unauthenticated /inspections (401)",
+    "productionDatabaseConnectionOpened": false,
+    "productionDatabaseUrlRequestedOrUsed": false,
+    "credentialRequestedOrPrinted": false,
+    "disposableDatabasesCreated": 0,
+    "disposableDatabasesDropped": 0,
     "committed": false,
     "pushed": false,
     "tagged": false,
     "staged": false,
-    "deploymentPerformed": false,
-    "productionModified": false,
-    "productionDatabaseModified": false,
-    "productionDatabaseConnectionOpened": false,
-    "productionDatabaseUrlRequestedOrUsed": false,
-    "safescopeDevDatabaseModified": false,
-    "safescopeDevDatabaseNote": "Never migrated, seeded or written. Measured at the end of the operation at 1 user and 35 migrations, against 50 in every disposable database created here, with no kg_test_database_ownership marker table. DATABASE_URL was set explicitly to a disposable target for every command and the resolved host/database printed and checked before each mutable one.",
-    "renderMutated": false,
-    "renderEnvVarChanged": false,
-    "governedModeOrAllowlistChangedInProduction": false,
-    "governedStandardsCorpusOrProductionActiveReleaseChanged": false,
+    "sourceDeploymentPerformed": false,
     "providerOrLlmCalls": 0,
     "paymentPerformed": false,
-    "expertHazLenzStarted": false,
-    "protectedGuardWeakenedOrEdited": false,
-    "scorerOrExpectationWeakened": false,
-    "assertionsDeleted": 0,
-    "disposableDatabasesCreated": 11,
-    "disposableDatabasesDropped": 11,
-    "disposableApiInstancesStarted": 3,
-    "disposableApiInstancesStopped": 3,
-    "evidence": "verification/insite-v1-governed-kill-switch-authority-repair-2026-08-29/pre-deployment-baseline/",
-    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 93"
+    "stripeMutated": false,
+    "protectedRegressionFloorRerun": false,
+    "protectedRegressionFloorNote": "Phase 8 is sequenced AFTER a successful production acceptance. The floor was measured on the working tree that became de655d2f (baseline STATUS records HEAD 45251d38 with the kill-switch repair as 13 uncommitted tracked modifications), so it does correspond to the source running in production.",
+    "evidence": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md (addendum B)",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 97"
   },
   "productionPosture": {
     "productionShadowEnabled": false,
@@ -488,20 +501,20 @@
   "mutable": {
     "note": "Recorded values only. Every key here also appears in reverify and MUST be re-measured before use.",
     "git": {
-      "branch": "release/insite-rc-2026-08-18",
-      "head": "5f050858227ca11cf90d2f6bf64148e70a018b64",
-      "headUnchangedSinceKG1": true,
-      "workingTreeEntryCount": 127,
+      "branch": "main",
+      "head": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "headUnchangedSinceKG1": false,
+      "workingTreeEntryCount": 2167,
       "workingTreeClean": false,
       "stashCount": 4,
-      "tagCount": 23,
-      "upstream": "origin/release/insite-rc-2026-08-18 (0 ahead, 0 behind)",
-      "workingTreeEntryCountMeasuredAt": "2026-08-21 (KG program convergence phase)",
-      "measuredAt": "2026-08-21 (KG-5D preflight pass two)"
+      "tagCount": 24,
+      "upstream": "origin/main (0 ahead, 0 behind)",
+      "measuredAt": "2026-08-29 (Expert HazLenz contract foundation) -- these superseded values recorded 2026-08-21 and were stale by 4 tags, 23 working-tree entries and a different branch entirely"
     },
     "counts": {
-      "backendMigrations": 46,
-      "backendPackageScripts": 201
+      "backendMigrations": 50,
+      "backendPackageScripts": 252,
+      "measuredAt": "2026-08-29 (typed routing repair) -- 252 scripts: the section 99 Expert suites, the routing-contract suite, and three probe scripts under a probe: namespace because they make real provider calls and must not read as tests"
     },
     "runtime": {
       "runningServices": null,
@@ -13613,7 +13626,7 @@
     "rollbackContract": {
       "R1_clearAccountAllowlist": "COMPLETE -- measured LEGACY / NO_ALLOWLIST_CONFIGURED. Most surgical: no boot risk.",
       "R2_setModeToLegacy": "COMPLETE -- measured LEGACY / MODE_IS_LEGACY. Re-enters the boot guard.",
-      "R3_engageKillSwitch": "INCOMPLETE IN PRODUCTION (45251d38) -- measured effectiveMode still GOVERNED_WITH_FALLBACK / ACCOUNT_ALLOWLISTED. REPAIRED LOCALLY on 2026-08-29 (see governedKillSwitchAuthorityRepair): the repaired code measures LEGACY / KILL_SWITCH_ENGAGED with no new binding and no knowledgeReleaseId write. Until that repair is deployed, this row remains TRUE of the deployed system.",
+      "R3_engageKillSwitch": "COMPLETE AS OF 2026-08-29. Repaired and DEPLOYED as de655d2f: an engaged kill switch now measures LEGACY / KILL_SWITCH_ENGAGED with no new release binding and no knowledgeReleaseId write, while already-bound provenance stays intact. The INCOMPLETE result recorded here was measured against 45251d38 and is superseded.",
       "FINDING_killSwitchIsNotARollback": "The kill switch is checked only inside orchestrateShadowRequest() and stops governed content reaching the customer, but it is NOT read by inspection-release-binding.ts, inspection.service.ts, cutover-mode.ts or safescope-v2.controller.ts (verified by grep). Both resolveInspectionReleaseBinding() and resolveKnowledgeReleaseId() read resolveCutoverEnablement(...).effectiveMode, which still reports GOVERNED_WITH_FALLBACK, so an allowlisted principal’s new inspection would STILL be bound to the active release and inspection.knowledgeReleaseId STILL written -- write-once, so it persists. Clear the allowlist or set the mode to LEGACY; use the kill switch alongside one of those, never instead. Recorded as a finding, NOT repaired. REPAIR STATUS 2026-08-29: repaired in the local worktree only -- the switch is now applied inside resolveCutoverEnablement(), the one canonical enablement answer, via the new import-free module standards/cutover/cutover-kill-switch.ts. The finding above remains an accurate record of the deployed system at 45251d38 and must not be treated as closed in production until the repair is deployed."
     },
     "blockers": {
@@ -13626,7 +13639,8 @@
       "ROLLED_BACK_REMEDIATION_REQUIRED": "Does not apply: nothing was changed, so nothing was rolled back."
     },
     "nextAuthorizationRequired": "The product owner sets the three variables together in the Render dashboard on safety-insite-backend (srv-d7kl74jeo5us73deaor0), changing nothing else; confirms /health ok, database up, /health/ready 200, gitCommit still 45251d38a4e800bbff461708aa4c77061feade56 (an environment change restarts from the same commit and is NOT a source deployment); then runs Phases 6-8 as the acceptance identity with a second non-allowlisted identity as the isolation control. Standing property: autoDeploy=yes / autoDeployTrigger=commit on main means pushing to origin/main IS a production deployment, and the environment change must not be combined with one.",
-    "supersededBy": "governedKillSwitchAuthorityRepair (2026-08-29) for the kill-switch finding ONLY. Every other statement in this block -- the cutover contract, the bounded acceptance identity, and both blockers -- stands unchanged."
+    "supersededBy": "governedKillSwitchAuthorityRepair (2026-08-29) for the kill-switch finding ONLY. Every other statement in this block -- the cutover contract, the bounded acceptance identity, and both blockers -- stands unchanged.",
+    "open4Closure": "OPEN-4 is CLOSED as of 2026-08-29: all four committed frontend verification scripts were executed exactly as committed and all four pass. See boundedGovernedAcceptanceAttempt.open4Results."
   },
   "governedKillSwitchAuthorityRepair": {
     "phase": "GOVERNED_CUTOVER_EMERGENCY_STOP_AUTHORITY_REPAIR",
@@ -13636,7 +13650,7 @@
     "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 92",
     "predecessorPhase": "customerGovernedModeCutover",
     "repairedLocally": true,
-    "repairedInProduction": false,
+    "repairedInProduction": true,
     "productionSha": "45251d38a4e800bbff461708aa4c77061feade56",
     "headUnchanged": true,
     "defect": {
@@ -13733,7 +13747,8 @@
       "takesEffectWithoutRestart": "The RUNTIME LATCH (engageRuntimeKillSwitch, pulled by the circuit breaker) takes effect on the next eligible request with no restart, no redeploy and no database write.",
       "requiresRestart": "All three ENVIRONMENT controls. resolveKillSwitch(env = process.env) reads process.env on every call and the enablement resolver runs per request, but a Render environment change restarts the service and the new process.env exists only in the new process. Any edit to GOVERNED_CUTOVER_MODE additionally re-enters the boot guard (main.ts -> validateProductionEnvironment() -> assertCutoverConfigurationSafeForProduction(), first and unconditional)."
     },
-    "nextAuthorizationRequired": "Commit, push and deploy this repair -- which are ONE action, not three: autoDeploy=yes with autoDeployTrigger=commit on main means pushing to origin/main IS a production deployment of safety-insite-backend. There is no deployment-neutral way to preserve this work on main. The bounded customer cutover (the three Render variables) should be performed ONLY AFTER this repair is deployed: the emergency stop is a precondition for the cutover, not a follow-up to it."
+    "nextAuthorizationRequired": "Commit, push and deploy this repair -- which are ONE action, not three: autoDeploy=yes with autoDeployTrigger=commit on main means pushing to origin/main IS a production deployment of safety-insite-backend. There is no deployment-neutral way to preserve this work on main. The bounded customer cutover (the three Render variables) should be performed ONLY AFTER this repair is deployed: the emergency stop is a precondition for the cutover, not a follow-up to it.",
+    "deployedAs": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 on 2026-08-29 (Render deploy dep-da941vu7bikc73am99mg, live 2026-08-29T02:18:12Z). See killSwitchRepairDeployment. Statements in this block that describe production as still carrying the defect were true of 45251d38 and are superseded."
   },
   "preDeploymentBaselineCompletion": {
     "phase": "PRE_DEPLOYMENT_GOVERNANCE_AND_HAZLENZ_BASELINE_COMPLETION",
@@ -13845,5 +13860,895 @@
     },
     "productionUnchanged": "Production runs 45251d38 and STILL CONTAINS the emergency-stop defect. Customer governed mode is OFF and no GOVERNED_CUTOVER_* variable exists there, so the defect is not reachable by any customer today — it becomes reachable the moment the bounded cutover is performed. Blueprint 91.6 remains an accurate description of the deployed system.",
     "nextAuthorizationRequired": "Commit, push and deploy the kill-switch repair — ONE action, not three: autoDeploy=yes with autoDeployTrigger=commit on main means pushing to origin/main IS a production deployment of safety-insite-backend. The bounded customer cutover (blueprint 91.4's three Render variables) should be performed ONLY AFTER that deployment; the emergency stop is a precondition for the cutover, not a follow-up."
+  },
+  "killSwitchRepairDeployment": {
+    "phase": "GOVERNED_KILL_SWITCH_AUTHORITY_REPAIR_PRODUCTION_DEPLOYMENT",
+    "date": "2026-08-29",
+    "terminal": "HAZLENZ_GOVERNED_KILL_SWITCH_AUTHORITY_REPAIR_DEPLOYED -- BOUNDED_CUSTOMER_GOVERNED_MODE_ACCEPTANCE_REQUIRED",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 94",
+    "predecessorPhase": "preDeploymentBaselineCompletion",
+    "shaBefore": "45251d38a4e800bbff461708aa4c77061feade56",
+    "shaAfter": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "originMainAfterPush": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "aheadBehindAfterPush": "0/0",
+    "productionHealth": {
+      "status": "ok",
+      "database": "up",
+      "nodeEnv": "production",
+      "gitCommit": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "versionSourceStatus": "RENDER_GIT_COMMIT",
+      "readyEndpoint": "HTTP 200, status ready, database available",
+      "bootLogs": "RENDER START DIAGNOSTIC PASSED; Environment: production; Backend listening on port 10000"
+    },
+    "deployedArtifactCarriesTheRepair": "cutover-kill-switch.ts exists in the deployed commit tree at sha256 1fa2beeb05c3612f29023ab267777afd7575f541f65b1b0c545f979a516e28ae, identical to the accepted record, and cutover-mode.ts line 307 of the deployed tree holds the authoritative brake: if (killSwitch.engaged) return decided('LEGACY', false, 'KILL_SWITCH_ENGAGED');",
+    "commitPayloadDiscipline": "Staged path by path; git add -A was never used. Every candidate path was classified before staging, and 0 excluded paths were staged.",
+    "excludedAndNotDeleted": {
+      "frontend-next/tsconfig.json": "KNOWN_CONTAMINATION — unstaged and unmodified, still 73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535",
+      "verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml": "UNCERTAIN — the working-tree DELETION was not staged. 84 KB of committed authoritative eCFR source evidence, named in that directory's frozen SHA256SUMS.txt, with every sibling ecfr-*.xml still present and Finder duplicates 'ecfr-1910-146 2.xml' / 'ecfr-1910-146 4.xml' beside it. Committing the deletion would have broken a frozen checksum manifest. The file remains intact in git history; the worktree discrepancy remains OPEN.",
+      "finderDuplicatesAndGeneratedArtifacts": "26 '… 2.*' Finder duplicates, backend/tsconfig.tsbuildinfo, compiled scripts/lib/test-database-ownership.{js,d.ts,js.map}, frontend-next/scripts/.walk.tmp.mjs — GENERATED_OR_SCRATCH",
+      "Safety InSite Logos/": "UNRELATED_USER_WORK",
+      "historicalVerificationCorpus": "~2,100 pre-existing untracked entries under verification/ — not part of this operation",
+      "disposableServerBootLogs": "7 *.log files under the new evidence directory, excluded by the repository's own .gitignore rule '*.log'. Every other evidence file is committed."
+    },
+    "secretScan": "162 intended files scanned. No credentialed connection string, no bearer token, no .env, no database dump, no browser/session state, no key material. The four sk_live/rk_live pattern hits are PROSE in the master documents describing a previous phase's own scan; \"ANTHROPIC_API_KEY\": \"absent\" is a status field. Disposable local test passwords appear nowhere in the payload.",
+    "customerGovernedModeStillOff": {
+      "noRenderMutation": "Only read-only `render services` and `render deploys list` were used. CLI v2.20.0 has no capability to read or write service environment variables.",
+      "noRepositoryConfigIntroducesThem": "No render.yaml exists. backend/Dockerfile sets only NODE_ENV and NODE_OPTIONS and contains zero GOVERNED_CUTOVER occurrences. No backend source assigns a value to any GOVERNED_CUTOVER_* name; they appear only as env-name constants.",
+      "bootGuardDidNotThrow": "main.ts -> validateProductionEnvironment() -> assertCutoverConfigurationSafeForProduction() runs first and unconditionally and refuses to boot for any non-LEGACY mode without the exact acknowledgement sentinel, or for an unrecognised mode value. The service is live, so neither condition holds.",
+      "allowlistIsMandatory": "With no allowlist configured, resolveCutoverEnablement() returns NO_ALLOWLIST_CONFIGURED -> LEGACY. There is no universal-rollout switch short of naming accounts.",
+      "brakeIsDormant": "With the mode unset, enablement returns on MODE_IS_LEGACY before the kill switch is consulted at all.",
+      "statedLimit": "The ten variables could not be ENUMERATED in this operation because the Render CLI cannot read them. Their absence rests on the product owner's manual dashboard verification recorded in blueprint 91.1, on this operation changing nothing on Render, and on the four architectural facts above — not on a fresh read."
+    },
+    "activeGovernedReleaseUnchanged": "federal-core-2026-08-28.1 remains the active control-plane release. Architecture-derived, not re-measured: the deploy runs `npm run start:render` (diagnostic + node dist/main.js) with synchronize:false, so it applies no migration and performs no seed, and no database command was issued by this operation. No production database connection was opened.",
+    "preExistingTestDebt": {
+      "suite": "test:kg5b-operator-cli",
+      "result": "64/65",
+      "classification": "PRE_EXISTING_STALE_EXPECTATION — NOT_INTRODUCED_BY_KILL_SWITCH_REPAIR",
+      "detail": "The assertion 'sources reports the 35 governed candidate records' pins a 35-record governed source set that the accepted 2026-08-28 acquisition grew to 72. It fails identically at 45251d38 and at de655d2f. Deliberately not repaired in this deployment operation."
+    },
+    "open4Status": "MOVED FROM 'not repaired' TO 'repaired but not re-executed'. The four frontend-next/scripts/check-*.mjs reconciliations are now COMMITTED and re-pin assertions to properties rather than stale literals rather than relaxing them, but they were NOT executed in this programme (they need a browser plus a running frontend and backend). They are verification instruments, are not part of the Next.js build, and the frontend is not deployed by this service, so they cannot affect production. OPEN-4 remains OPEN pending their execution.",
+    "liveKillSwitchProofInProduction": "NOT performed, deliberately. Enabling governed mode merely to test the brake was refused. The deployed repair is established by artifact identity; its live behavioural proof belongs to the separately authorized bounded governed-mode acceptance.",
+    "nextAuthorizationRequired": "Bounded customer governed-mode acceptance: the product owner sets the three blueprint 91.4 variables together in the Render dashboard on safety-insite-backend (srv-d7kl74jeo5us73deaor0), changing nothing else, then runs the bounded acceptance as the named identity with a non-allowlisted control. This is now safe to attempt for the first time, because the emergency stop it depends on is finally authoritative in the deployed code."
+  },
+  "boundedGovernedAcceptanceAttempt": {
+    "phase": "BOUNDED_PRODUCTION_GOVERNED_MODE_ACCEPTANCE_ATTEMPT",
+    "date": "2026-08-29",
+    "terminal": "HAZLENZ_BOUNDED_GOVERNED_ACCEPTANCE_BLOCKED -- AUTHENTICATED_ACCEPTANCE_SESSION_REQUIRED",
+    "evidence": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md",
+    "runbook": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/runbook/",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 95",
+    "predecessorPhase": "killSwitchRepairDeployment",
+    "OPEN_4_VERIFICATION_CLOSED": true,
+    "open4Results": {
+      "check:free-observation-restore": "28 passed, 0 failed",
+      "check:canonical-persistence": "passed — uiLogin, sitePersistence, inspectionPersistence, reloadPersistence, unauthenticatedDenial all true, 390x844",
+      "check:closure-workflow": "passed — real HazLenz endpoint, human review, immutable report, reload persistence, logout protection",
+      "check:phase5-report-release": "passed — 31 scenarios, canonical single report, authorized PDF, cross-user 404, retired legacy routes",
+      "scriptsModified": 0,
+      "regressionFound": false,
+      "declaredSubGap": "check-phase5-report-release printed directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER — the bucket-is-not-public assertion is unreachable under STORAGE_PROVIDER=local_test and was NOT performed. Every other assertion in it ran. Recorded, not absorbed."
+    },
+    "firstRunFailuresClassified": {
+      "canonicalPersistence401": "TEST ENVIRONMENT. backend/.env sets DEV_AUTH_BYPASS=true, which dotenv loads into any non-production backend, so an unauthenticated request resolved to the synthetic bypass principal and returned 404 instead of 401. Because this is an authentication assertion it was checked against PRODUCTION directly: the deployed service returns 401 for unauthenticated GET /inspections/{id} and 401 for GET /inspections. isDevBypassEnabled() requires DEV_AUTH_BYPASS === 'true' AND NODE_ENV !== 'production', so the bypass is structurally unreachable in production. Re-run with DEV_AUTH_BYPASS=false: PASSED.",
+      "phase5StorageProvider": "TEST ENVIRONMENT. The script reads STORAGE_PROVIDER from its OWN environment and defaults to 's3'; it had been exported to the backend process but not to the script's shell. Re-run with it exported: PASSED.",
+      "noScriptEdited": true
+    },
+    "preCutoverProductionState": {
+      "health": "status ok, database up, nodeEnv production",
+      "gitCommit": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936 (RENDER_GIT_COMMIT)",
+      "healthReady": "HTTP 200, database available",
+      "renderDeploy": "dep-da941vu7bikc73am99mg, live, trigger new_commit",
+      "unauthenticatedInspections": "HTTP 401 — every governed entry point is behind JwtGuard",
+      "governedCutoverVariables": "0 — none existed before this operation and none was created by it; customer behaviour remains LEGACY / NO_ALLOWLIST_CONFIGURED"
+    },
+    "blockers": {
+      "B1_authenticatedAcceptanceSession": "Every governed entry point is behind JwtGuard and no unauthenticated endpoint reports per-principal cutover posture (/standards/cutover and /admin/cutover-status are 404). Proving eligibility, binding, retrieval and the live kill switch all require authenticated requests as e9a25131-dfa4-40ce-90ff-8ab3d884d8ef, the product owner's own production account. NO CREDENTIAL FOR IT EXISTS IN THIS REPOSITORY — verified rather than inherited: the identifier appears in six tracked files and in none is it accompanied by a password, token or secret. Obtaining one would mean putting a password or bearer token into the transcript, which this operation's own Phase 3 forbids. A password reset was not attempted: it mutates the owner's account and needs their mailbox.",
+      "B2_renderEnvTooling": "Render CLI v2.20.0 has no env command, render services exposes no environment-variable flag, and the read-only service payload does not contain the string GOVERNED_CUTOVER. There is no render.yaml. The three variables must be entered by the product owner in the Render dashboard.",
+      "ordering": "Even a working session would not unblock this operation: Phases 6-11 all require the three variables to be live first, and only the product owner can set them."
+    },
+    "terminalsConsideredAndRejected": {
+      "BOUNDED_ACCEPTANCE_COMPLETE": "The acceptance did not run.",
+      "ROLLED_BACK_KILL_SWITCH_PRODUCTION_ACCEPTANCE_FAILED": "The live kill switch was never engaged in production, so it neither passed nor failed.",
+      "ROLLED_BACK_BOUNDED_ACCEPTANCE_REMEDIATION_REQUIRED": "Governed mode was never enabled, so nothing was rolled back.",
+      "BLOCKED_FRONTEND_VERIFICATION_REGRESSION": "Does not apply, and reporting it would be wrong: all four scripts pass and there is no regression."
+    },
+    "operatorRunbookProduced": "Seven scripts plus a README covering Phases 4-11, written so the credential never enters a transcript: the password is read with read -rs in the owner's own terminal, never echoed, never written to disk, never placed on a command line, and the bearer token is held in a shell variable and never printed. 01 boot gate (health + source SHA unchanged); 02 eligibility; 03 binding acceptance (binds once to federal-core-2026-08-28.1, second request must not rebind); 04 negative control (binds nothing, cannot force a release by naming one, cannot read the acceptance inspection, and does NOT alter billing to manufacture itself); 05 the live emergency-stop proof; 06 release and restoration; 99 rollback verification. The README carries the atomicity warning (all three variables saved as one change, because the boot guard throws for a non-LEGACY mode without the acknowledgement sentinel) and the rollback order (clear the allowlist first — no boot risk).",
+    "protectedRegressionNotRerun": "Deliberate. This operation changed no source or test file, and the full baseline was measured at this exact SHA in preDeploymentBaselineCompletion. It IS required after the production acceptance actually runs.",
+    "governanceBaselineFreeze": "NOT SAFE. Conditional on the bounded acceptance completing.",
+    "expertHazLenzAuthorized": false,
+    "expertHazLenzNote": "NOT authorized. The deployed emergency stop is proven by artifact identity and by a full local end-to-end proof on a running server, but it has never been exercised in production and no production customer has ever taken the governed path. Freezing a governance baseline whose central safety control is unproven in the environment it exists to protect would be exactly the green-checklist verdict this programme has refused before.",
+    "nextAuthorizationRequired": "1) The product owner enters the three blueprint 91.4 variables together in the Render dashboard on safety-insite-backend (srv-d7kl74jeo5us73deaor0), changing nothing else. 2) The owner runs runbook/01-06 in their own terminal, authenticating as the acceptance identity with read -rs, and brings back the transcripts. 3) Those transcripts are reconciled into the acceptance STATUS.md and the master state updated with the measured result. Alternatively the owner may grant a browser-automation session on an already-signed-in production tab AFTER step 1 — but the Render change is unavoidable either way."
+  },
+  "boundedGovernedAcceptanceRunbookRepair": {
+    "phase": "BOUNDED_GOVERNED_ACCEPTANCE_RUNBOOK_REPAIR",
+    "date": "2026-08-29",
+    "terminal": "HAZLENZ_PRODUCTION_GOVERNED_ROLLBACK_UNVERIFIED -- DO_NOT_REENABLE_CUTOVER",
+    "predecessorPhase": "boundedGovernedAcceptanceAttempt",
+    "evidence": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 96",
+    "productionRunOutcome": {
+      "step01BootGate": "2 passed, 0 failed -- health ok, database up, nodeEnv production, SHA de655d2f... unchanged, /health/ready 200",
+      "step02Eligibility": "2 passed, 0 failed -- authenticated principal was exactly e9a25131-dfa4-40ce-90ff-8ab3d884d8ef; governed classify returned 201",
+      "step03Binding": "2 passed, 6 failed -- FAILED at `inspection created -- expected 201, got 400`; the six failures after it are cascade from one empty variable",
+      "step99Rollback": "3 passed, 1 failed -- same create failure; the post-rollback no-binding condition was NEVER tested",
+      "governedBindingTested": false,
+      "rollbackTested": false,
+      "productionStayedHealthyOnExpectedSha": true,
+      "allowlistRemovedByProductOwnerAfterwards": true
+    },
+    "rootCause": {
+      "location": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/runbook/lib-acceptance.sh",
+      "defect": "body_of() { printf '%s\\n' \"$1\" | sed '$d' | sed '$d'; } -- a Nest JSON body has no trailing newline, so the captured curl stream is exactly two lines (body, then the -w status line). Deleting the last two deleted the body too, and body_of returned the empty string for every response.",
+      "consequence": "SITE_ID parsed from an empty string raised JSONDecodeError and stayed empty; POST /inspections received {\"siteId\":\"\",\"title\":...,\"regulatoryContext\":...}",
+      "exactProductionResponse": "{\"message\":[\"siteId must be a UUID\"],\"error\":\"Bad Request\",\"statusCode\":400}",
+      "secondDefect": "API was assigned but never exported, while inline python in acceptance_login and 04 reads os.environ[\"API\"] -- this is the earlier KeyError: 'API'. Reproduced against the original library and fixed by exporting API.",
+      "proofs": [
+        "The real CreateInspectionDto run through class-validator: siteId \"\" -> INVALID [\"siteId must be a UUID\"]; a real UUID -> VALID; with clientRequestId -> VALID.",
+        "The UNMODIFIED original scripts run against a local disposable backend built from this same source reproduced the identical signature: [PASS] site created 201, JSONDecodeError, [FAIL] inspection created -- expected 201, got 400.",
+        "Read-only measurement against the deployed service: the captured curl variable is 2 lines; one sed '$d' yields the JSON, two yield nothing."
+      ]
+    },
+    "authoritativeCreateContract": {
+      "route": "POST /inspections (InspectionController, JwtGuard)",
+      "dto": "backend/src/inspection/dto/inspection.dto.ts CreateInspectionDto",
+      "siteId": "REQUIRED @IsUUID()",
+      "title": "REQUIRED @IsString @MinLength(2) @MaxLength(200)",
+      "regulatoryContext": "OPTIONAL @IsIn('osha-general-industry','osha-construction','msha','unknown')",
+      "clientRequestId": "OPTIONAL @Matches(/^[A-Za-z0-9_.:-]{8,128}$/); a repeat returns the inspection already created for THIS user",
+      "validationPipe": "global, whitelist: true, forbidNonWhitelisted: true, transform: true -- any other field is a 400",
+      "oldRunbookPayload": "{\"siteId\":\"<EMPTY>\",\"title\":\"Bounded governed acceptance <suffix>\",\"regulatoryContext\":\"osha-general-industry\"}",
+      "repairedRunbookPayload": "{\"siteId\":\"<uuid captured fail-closed from POST /sites>\",\"title\":\"Bounded governed acceptance <suffix>\",\"regulatoryContext\":\"osha-general-industry\",\"clientRequestId\":\"<suffix>\"}"
+    },
+    "repair": {
+      "productChanged": false,
+      "assertionsWeakened": 0,
+      "sentinelParsing": "api() terminates with a unique sentinel line; http_code_of/body_of key off the sentinel, not a line count. Transport failure reports HTTP 000.",
+      "captureId": "the single chokepoint for every identifier: exact expected status AND a JSON object AND a UUID-shaped field, or the script exits non-zero.",
+      "failClosed": "require_status / check_release_binding / _abort print the sanitized status and body and exit immediately, stating explicitly that nothing downstream was measured.",
+      "readBackIntegrity": "check_release_binding requires HTTP 200 before knowledgeReleaseId may be reported as None -- this is exactly how 39-rollback.txt produced its misleading `expected None, got ` line.",
+      "recordedIdIntegrity": "require_recorded_id stops on an EMPTY .acceptance-inspection-id, the file the failed run left behind.",
+      "noTracebackSpam": "every python helper takes input by environment variable and exits quietly.",
+      "secretHygiene": "sanitize() redacts bearer tokens, JWT-shaped strings and \"token\"/\"password\" JSON values at the printing boundary; the password is still read with read -rs and the bearer token is still never printed.",
+      "fixtureMode": "ACCEPTANCE_FIXTURE=1 relaxes exactly one constant (the production source SHA) so the scripts can be exercised locally, and prints a loud banner so a fixture transcript can never be filed as acceptance."
+    },
+    "harnessExercisedOnDisposableStack": {
+      "database": "test_v1_runbook_repair2_20260829 (50 migrations) -- created and dropped by this operation; an earlier identical stack, test_v1_runbook_repair_20260829, was also created and dropped",
+      "backend": "127.0.0.1:4001, DEV_AUTH_BYPASS=false, built from this same source",
+      "scriptsShaIdenticalToRepository": "TRUE -- sha256-compared immediately before the run; the whole matrix was re-run against the final files after two cosmetic edits landed during an earlier pass",
+      "legacy_99Rollback": "8 passed, 0 failed",
+      "legacy_03Binding": "6 passed, 2 failed -- prerequisites pass; the two governed assertions fail truthfully because nothing is governed",
+      "governed_02Eligibility": "2 passed, 0 failed",
+      "governed_03Binding": "8 passed, 0 failed -- bound exactly once to federal-core-2026-08-28.1; a second request did not rebind",
+      "governed_04NegativeControl": "6 passed, 0 failed -- fresh Free identity: classify 402, binds nothing, cannot force a release, cannot read the acceptance inspection (404)",
+      "governed_99Rollback": "6 passed, 2 failed -- correctly REFUSES to certify rollback while governed mode is still on",
+      "killSwitchEngaged_05": "8 passed, 0 failed -- customer path still 201, new inspection unbound, already-bound provenance intact",
+      "killSwitchReleased_06": "9 passed, 0 failed -- binding resumed, the inspection created during the stop stayed unbound, the original binding unchanged",
+      "failClosedConformanceSelfTest": "15 passed, 0 failed -- harness-selftest/run-selftest.sh, offline and credential-free"
+    },
+    "productionRollbackStatus": {
+      "confirmed": false,
+      "failed": false,
+      "classification": "UNVERIFIED",
+      "why": "No endpoint reports effective per-principal cutover posture without a session: /standards/cutover, /admin/cutover-status and /health/cutover are all 404, and unauthenticated /inspections is 401. Proving it requires one authenticated request sequence as e9a25131-dfa4-40ce-90ff-8ab3d884d8ef, and no credential for that identity exists in this repository.",
+      "readOnlyObservation": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/transcripts/41-post-failure-production-readonly.txt -- healthy, de655d2f..., nodeEnv production, /health/ready 200",
+      "nextOperatorAction": "bash 99-rollback.sh (Step G of runbook/README.md), which changes no Render configuration and creates one disposable site and one disposable inspection. Expected 8 passed, 0 failed.",
+      "doNotReAddAllowlist": true
+    }
+  },
+  "boundedGovernedAcceptanceRetryStaging": {
+    "phase": "BOUNDED_GOVERNED_ACCEPTANCE_RETRY_STAGING",
+    "date": "2026-08-29",
+    "terminal": "HAZLENZ_PRODUCTION_GOVERNED_ROLLBACK_CONFIRMED -- BOUNDED_ACCEPTANCE_RETRY_AUTHORIZED_AND_PENDING_OPERATOR_EXECUTION",
+    "predecessorPhase": "boundedGovernedAcceptanceRunbookRepair",
+    "evidence": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 97",
+    "rollbackProof": {
+      "transcript": "transcripts/42-rollback-repaired.txt",
+      "result": "8 passed, 0 failed",
+      "runBy": "product owner",
+      "freshInspectionCreatedThroughRealApi": "201 -- the production counterpart of the local reproduction; closes PRODUCTION_INSPECTION_CREATE_REGRESSION = FALSE with production evidence",
+      "bindingAfterRollback": "None, and still None when a release id was named explicitly (HTTP 400 from the ClassifyDto whitelist)",
+      "productionFixture": "inspection 80ec77e6-aca3-4a68-ac0f-b9f0e7b75b39 and its site"
+    },
+    "authorization": {
+      "granted": "ONE bounded production governed-mode acceptance retry using the repaired fail-closed harness",
+      "bounded": "account allowlist limited to e9a25131-dfa4-40ce-90ff-8ab3d884d8ef",
+      "notAuthorized": [
+        "universal or organization-wide rollout",
+        "Expert HazLenz",
+        "source changes absent a true regression",
+        "commit",
+        "push",
+        "deploy",
+        "Stripe mutation",
+        "payment",
+        "entitlement escalation to defeat a 402"
+      ]
+    },
+    "preRetryGate": {
+      "transcript": "transcripts/50-pre-retry-gate.txt",
+      "productionHealth": "status ok, database up, nodeEnv production, gitCommit de655d2f... (RENDER_GIT_COMMIT)",
+      "healthReady": "HTTP 200, database available",
+      "unauthenticatedInspections": "HTTP 401",
+      "shellSyntax": "all 9 runbook + self-test scripts parse; mock-endpoints.py parses",
+      "frozenConstants": "ACCEPTANCE_USER_ID=e9a25131-dfa4-40ce-90ff-8ab3d884d8ef, EXPECTED_SHA=de655d2f..., EXPECTED_RELEASE=federal-core-2026-08-28.1",
+      "credentialHandling": "two read -rsp prompts intact; ACCEPTANCE_TOKEN echoed 0 times",
+      "failClosedSelfTest": "15 passed, 0 failed",
+      "activeReleaseAssertedNotMeasured": "federal-core-2026-08-28.1 is asserted from the control-plane record; no endpoint exposes the active release or per-principal cutover posture without a session. Step 03 measures it directly.",
+      "verdict": "every gate this session can execute is GREEN"
+    },
+    "whyExecutionStopped": {
+      "render": "CLI v2.20.0 has no env subcommand; `render services --output json` returns a payload with zero environment variables (GOVERNED_CUTOVER occurrences: 0). Re-verified this session, not inherited.",
+      "credential": "Every governed entry point is behind JwtGuard and no credential for the acceptance identity exists in this repository. Requesting one would put it in a transcript."
+    },
+    "operatorSequence": "runbook/README.md Step H: restore ONLY GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST (all three together if mode/ack are absent, because the boot guard throws on an intermediate state), then 01 (2/0), 02 (2/0), 03 (8/0), 04 (6/0), then add GOVERNED_CUTOVER_KILL_SWITCH=engaged and run 05 (8/0), then remove it and run 06 (9/0). Uniform failure rule: if a script exits non-zero, stop -- clear the allowlist, run 99-rollback.sh, report.",
+    "intendedPostAcceptancePosture": "KEEP the account allowlist. Governed mode reachable only by the bounded acceptance account; every other customer legacy; kill switch absent but proven; active release federal-core-2026-08-28.1. This is a bounded production validation state, NOT a universal customer rollout."
+  },
+  "boundedGovernedAcceptanceComplete": {
+    "phase": "POST_ACCEPTANCE_REGRESSION_AND_GOVERNANCE_BASELINE_FREEZE",
+    "date": "2026-08-29",
+    "terminal": "HAZLENZ_PRODUCTION_GOVERNED_MODE_BOUNDED_ACCEPTANCE_COMPLETE -- GOVERNANCE_BASELINE_FROZEN_AND_EXPERT_HAZLENZ_ENHANCEMENT_AUTHORIZED",
+    "predecessorPhase": "boundedGovernedAcceptanceRetryStaging",
+    "evidence": "verification/insite-v1-post-acceptance-regression-2026-08-29/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 98",
+    "productionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "productionAcceptance": {
+      "runBy": "product owner, in their own terminal, with the repaired fail-closed runbook",
+      "transcriptDirectory": "verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/transcripts/",
+      "steps": {
+        "bootGate": "51-post-config-boot-gate.txt -- 2 passed, 0 failed",
+        "eligibility": "52-eligibility.txt -- 2 passed, 0 failed",
+        "boundGovernedAcceptance": "53-binding-acceptance.txt -- 8 passed, 0 failed",
+        "nonAllowlistedControl": "54-negative-control.txt -- 6 passed, 0 failed",
+        "killSwitchEngaged": "55-kill-switch-engaged.txt -- 8 passed, 0 failed",
+        "killSwitchReleased": "56-kill-switch-released.txt -- 9 passed, 0 failed"
+      },
+      "total": "35 passed, 0 failed",
+      "acceptanceIdentity": "e9a25131-dfa4-40ce-90ff-8ab3d884d8ef",
+      "governedAcceptanceInspection": "84f5b1cf-1e2b-4b6a-88f3-824e26754eff",
+      "governedAcceptanceInspectionBinding": "federal-core-2026-08-28.1 -- bound exactly once, did not rebind on a second governed request, unchanged through the kill-switch cycle",
+      "killSwitchInspection": "54d9d516-28bd-4ec8-826b-59b6619cddec",
+      "killSwitchInspectionBinding": "NULL while the stop was engaged AND still NULL after the stop was released -- history is not back-filled",
+      "nonAllowlistedControlIdentity": "153d53c0-cd4e-4755-a043-683ffb166090",
+      "nonAllowlistedControlResult": "binds no governed release; naming a release id explicitly forces no binding; cross-account read of the acceptance inspection returns 404; Free classify answers 402 and that is recorded as the truthful outcome rather than manufactured away",
+      "organizationId": "1cdaccec-ef6d-4dba-b0f4-4b25187796f8",
+      "siteId": "e3970361-72f7-4e10-9f8c-527323b80d85"
+    },
+    "killSwitchBehaviourInProduction": {
+      "productionHealthDuringStop": "/health ok, /health/ready 200, SHA unchanged",
+      "customerPathDuringStop": "inspection create 201 -- a brake, not an outage",
+      "newGovernedBindingDuringStop": "stopped",
+      "alreadyBoundProvenanceDuringStop": "intact -- federal-core-2026-08-28.1",
+      "afterRelease": "new governed binding restored; the inspection created during the stop stayed unbound; the original binding unchanged",
+      "historicalOrBackfillMutation": "none"
+    },
+    "finalBoundedRenderPosture": {
+      "GOVERNED_CUTOVER_MODE": "GOVERNED_WITH_FALLBACK",
+      "GOVERNED_CUTOVER_PRODUCTION_ACK": "I_ACKNOWLEDGE_GOVERNED_CUTOVER",
+      "GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST": "e9a25131-dfa4-40ce-90ff-8ab3d884d8ef",
+      "GOVERNED_CUTOVER_KILL_SWITCH": "ABSENT / RELEASED",
+      "GOVERNED_CUTOVER_ORG_ALLOWLIST": "ABSENT",
+      "universalRollout": "FALSE",
+      "howThisPostureIsEvidenced": "bound to the product-owner-executed acceptance transcripts, NOT to CLI introspection. Render CLI v2.20.0 has no top-level env command; the only `render services update` flag matching 'env' is --runtime <enum>; and `render services --output json` returns a payload for srv-d7kl74jeo5us73deaor0 containing 0 occurrences of GOVERNED_CUTOVER. Re-verified this session rather than inherited."
+    },
+    "postAcceptanceRegression": {
+      "hazlenzFloor": {
+        "recognition": "43/43 (100.0%)",
+        "recognitionLifeCritical": "35/35",
+        "actionableCoverage": "43/43 (100.0%)",
+        "lifeCriticalActionableCoverage": "35/35 (100.0%)",
+        "recognizedButNotActionable": "[]",
+        "populationAPrecision": "100.0%",
+        "forbiddenFamilyCount": 0,
+        "totalDangerousOmissions": 0,
+        "totalLifeCriticalOmissions": 0,
+        "measurement": "verification/insite-v1-post-acceptance-regression-2026-08-29/measurements/actionable-postacceptance.json -- field-for-field identical on corpus, recognition and actionable to the pre-deployment baseline",
+        "drivenThrough": "the real customer workflow over HTTP against a disposable API (127.0.0.1:4231) and disposable database test_v1_postaccept_api_20260829",
+        "deterministicGates": "test:hazlenz-core PASS (37 constituent suites, 0 failed, 239 gate-level assertions); precision PASS; level1-recall PASS (17); actionable-coverage PASS (17); source-authority PASS; standards-jurisdiction PASS (16 checks, 0 wrong-jurisdiction citations)"
+      },
+      "cutoverFloor": {
+        "kg4aDefaultOff": "52/0",
+        "kg4aCutoverContract": "146/0",
+        "kg4cDisabledDeployment": "80/0",
+        "kg4cProductionShadowContract": "438/0",
+        "kg4dDefaultOff": "121/0",
+        "protectedFloorTotal": "837/0 -- >= 837 required, met",
+        "killSwitchAuthority": "115/0",
+        "killSwitchDefectReproduction": "REPAIRED -- 16/0",
+        "cutoverFamilyTotal": "1,640/0",
+        "familyDetail": "kg4d-orchestration 151/0, kg4b-shadow-contract 123/0, kg4a-governed-resolution 99/0, kg4b-shadow-adversarial 84/0, kg4a-provenance-pinning 53/0, kg4b-default-off 48/0 (real SHADOW server), kg4d-integration-e2e 42/0 (same SHADOW server over real HTTP), kg4a-governed-e2e 35/0 (GOVERNED_WITH_FALLBACK server), kg4b-privacy-review 26/0, kg4b-shadow-determinism 18/0, kg4e-report-field-exclusion 9/0, kg4e-telemetry-privacy-v2 PASS (48 events, 0 violations, 0 fields outside the v2 allowlist, 12 canary patterns)"
+      },
+      "governanceSuites": {
+        "governedReleaseReachability": "514/514",
+        "governedAuthorityPrecedence": "42/42",
+        "findingGovernedAuthority": "17/17",
+        "findingGovernedIntegration": "19/19",
+        "releaseBindingAcceptance": "25/25",
+        "approvalContract": "57/0",
+        "releaseIdentityImmutability": "8/8",
+        "releaseIdentityOwnershipExemption": "7/7",
+        "releaseActivationAcceptance": "43/43",
+        "releaseScopedCustomerWorkflow": "35/35",
+        "governedCorpusMatrix": "60/60",
+        "knowledgeReleaseProvenance": "27/27",
+        "kg5bReleaseConstruction": "102/102",
+        "kg5bApprovalContinuity": "29/29"
+      },
+      "customerWorkflowFloor": {
+        "userAuthoredFindings": "47/0",
+        "offlineSyncIdempotency": "23/0",
+        "reportReplacementFailureSafety": "16/0",
+        "canonicalWorkflow": "passed: true -- 25 scenarios, 4 cross-user denials, mass-assignment rejected",
+        "persistedDecompositionFindings": "passed: true -- stale-version write correctly 409",
+        "hazlenzActionableWorkflow": "66 checks, PASS",
+        "canonicalReportFrontendContract": "15/15",
+        "kg4eReportFieldExclusion": "9/0",
+        "open4FrontendScripts": "4/4 pass -- free-observation-restore 28/0; canonical-persistence passed (uiLogin, sitePersistence, inspectionPersistence, reloadPersistence, unauthenticatedDenial all true, 390x844); closure-workflow passed; phase5-report-release passed (31 scenarios)"
+      },
+      "buildAndTypecheck": {
+        "backendTsc": "clean, 0 errors",
+        "frontendTsc": "0 errors -- improved from the baseline's 3, and the reason is recorded: those 3 were inside .next/ duplicate generated artifacts (routes.d 3.ts, cache-life.d 3.ts) which no longer exist after .next/types was regenerated on 2026-08-28 21:53. No source change was made to silence them.",
+        "frontendProductionBuild": "exit 0, all routes prerendered",
+        "tsconfigHash": "73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535 -- byte-identical before and after both the typecheck and the build; the known contamination, untouched"
+      },
+      "governedFixtureProvenance": {
+        "federalCore20260828_1": "64 members, manifest 680540d994cedb9384912cb7a3ccd28d798756bd787a84a530c8076ed3a668cb, pin reproduced true, legacyCorpusRowsRead 0",
+        "federalCore20260730_1": "35 members, manifest 14a34feaa670d5d0d289d7249b38466e0cac5626f58e54bc6aba9d8a9c2ece5b, pin reproduced true, legacyCorpusRowsRead 0",
+        "approvalReplay": "BINDING PROOF OK -- 64 preserved decisions bind 1:1 by exact record checksum (ledger 64, unique checksums 64, materialized 64, exact set match); replayed one record at a time: approved=64, already_approved=0, failed=0",
+        "reviewer": "insite-product-owner-authorized-regulatory-content-review"
+      },
+      "harnessMistakesMadeAndCorrectedThisSession": [
+        "test:release-identity-ownership-exemption first reported 3 failures across 7 checks, all with precondition: messages, because this session's runner overrode SOURCE_DB with a governed clone carrying no legacy standards_master rows. Re-run with the documented default read-only corpus test_kg3f_contract_20260820: 7/7. Not a product result.",
+        "test:approval-contract refused with 'Refusing to run against database safescope' because DATABASE_URL was unset and dotenv supplied the repository .env value naming the protected development database -- the guard working exactly as designed. Pointed at its own self-provisioned work database test_kg3f_contract_run: 57/0.",
+        "Three of the four OPEN-4 frontend scripts first failed at page.waitForURL: Timeout 30000ms. A browser probe captured the real cause: CORS. backend/src/main.ts:57 builds its non-production CORS allowlist from FRONTEND_URL / CORS_ORIGIN / CORS_ORIGINS plus a fixed local set covering ports 3000/3001 only; the OPEN-4 stack serves the frontend on 3104. Restarting the disposable backend with CORS_ORIGINS naming 3104 made all three pass. No script was modified and no assertion relaxed. An earlier hypothesis -- the baked-in NEXT_PUBLIC_DISABLE_AUTH=true -- was checked and DISPROVED: lib/auth.ts:86 also requires NODE_ENV !== 'production', and next build sets NODE_ENV=production, so the flag is structurally inert in a production build."
+      ]
+    },
+    "governanceBaselineFreeze": {
+      "GOVERNANCE_BASELINE_FROZEN": true,
+      "scope": "the BOUNDED customer acceptance path only -- this is not universal-rollout proof and authorizes no rollout expansion",
+      "frozenContracts": [
+        "approved governed corpus and release identity: federal-core-2026-08-28.1, manifest 680540d9...",
+        "active release: federal-core-2026-08-28.1, proven active through the real production customer path",
+        "64 approved governed members, bound 1:1 by exact record checksum to the preserved reviewer ledger",
+        "8 rejected records unreachable -- 0 of 8 reach approval against a 64/64 positive control, in three independent suites",
+        "release binding is write-once -- a second governed request does not silently rebind",
+        "historical NULL is never back-filled",
+        "allowlist authority -- an allowlist is mandatory; NO_ALLOWLIST_CONFIGURED and NOT_ALLOWLISTED both resolve to LEGACY; the principal comes from the authenticated JWT alone and there is no request-scoped override (forged body fields and forged headers both rejected)",
+        "non-allowlisted legacy behaviour",
+        "canonical kill-switch authority",
+        "already-bound provenance preservation",
+        "the deterministic Level-1 HazLenz recognition/actionability floor",
+        "the finding-level authority / anti-citation-laundering contract -- citation-string equality confers nothing"
+      ],
+      "rule": "the next enhancement phase may add intelligence; it may NOT silently weaken any of these"
+    },
+    "expertHazlenzAuthorization": {
+      "EXPERT_HAZLENZ_ENHANCEMENT_AUTHORIZED": true,
+      "EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN": false,
+      "constraint": "additive only; the deterministic Level-1 engine remains the protected safety authority and fallback",
+      "mustNot": [
+        "silently remove Level-1 hazards",
+        "weaken dangerous-hazard recall",
+        "downgrade currently authoritative governed standards",
+        "bypass approval/governance",
+        "rewrite inspection release provenance",
+        "bypass kill-switch / cutover authority"
+      ],
+      "providerCallsAuthorizedByThisPhase": 0
+    },
+    "residualDebtCarriedForwardUnchanged": [
+      "test:kg5b-operator-cli 64/65 -- re-run this session and failing identically: 'sources reports the 35 governed candidate records :: 72'. The pin at scripts/test-kg5b-operator-cli.ts:416 is unmodified at HEAD; the governed source set has held 72 records since the 2026-08-28 source acquisition. Classification unchanged (a stale expected result reflecting a genuinely changed intended contract), deliberately NOT repaired -- it is an assertion about governed corpus size and belongs to whoever owns that contract. NOT a regression: identical to the pre-deployment baseline at this same SHA.",
+      "the unresolved-jurisdiction ranking behaviour -- unresolved ['30 CFR 56.12016','29 CFR 1910.147'], pinned ['29 CFR 1910.147'], preserved unchanged and deliberately not remediated",
+      "directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER -- the bucket-is-not-public assertion is unreachable under STORAGE_PROVIDER=local_test. A disposable-environment coverage gap, unchanged, not a product finding",
+      "LIVE_PAYMENT_PROOF = FALSE -- untouched, still DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION"
+    ],
+    "disposal": {
+      "disposableDatabasesCreated": 21,
+      "disposableDatabasesDropped": 21,
+      "disposableServicesStartedAndStopped": "ports 4231, 4232, 4331, 4340, 4001, 3104",
+      "productOwnerProcessesUntouched": "PIDs 9380, 96264 and the npm run dev at 75045, all running for days and unrelated to this work",
+      "protectedDatabase": "safescope: 1 user, 35 migrations, no kg_test_database_ownership marker -- before and after",
+      "preExistingDatabasesTouchedByDesignedSuiteBehaviour": "test:approval-contract recreates its per-run work database test_kg3f_contract_run from the untouched source corpus test_kg3f_contract_20260820; test:release-identity-ownership-exemption creates and drops test_release_identity_exemption_unowned / _owned"
+    },
+    "actionsNotPerformed": {
+      "commitPushTagDeploy": "NONE",
+      "renderMutationOrEnvVarChange": "NONE",
+      "productionDatabaseConnectionOrMutation": "NONE",
+      "productionDatabaseUrlRequestedOrUsed": "NO",
+      "productionObjectCreated": "NONE -- read-only /health, /health/ready, one unauthenticated /inspections, three 404 probes",
+      "sourceTestScorerOrExpectedResultChanged": "NONE",
+      "acceptanceAssertionsWeakened": 0,
+      "protectedGuardWeakenedBypassedOrEdited": "NONE",
+      "governedRolloutExpanded": "NO",
+      "pricingStripeOrPayment": "NONE",
+      "providerOrLlmCalls": 0,
+      "expertHazlenzImplementation": "NOT STARTED"
+    },
+    "worktreeStateAtClose": {
+      "head": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "originMain": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+      "aheadBehind": "0/0",
+      "staged": 0,
+      "trackedModified": 3,
+      "trackedDeleted": 1,
+      "untracked": 2156,
+      "stashes": 4,
+      "tags": 24,
+      "excludedMaterialUntouched": "frontend-next/tsconfig.json (sha256 73990cd1...) and the deleted verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml"
+    }
+  },
+  "expertHazlenzContractFoundation": {
+    "phase": "EXPERT_HAZLENZ_ARCHITECTURE_AND_EXECUTABLE_CONTRACT_FOUNDATION",
+    "date": "2026-08-29",
+    "terminal": "EXPERT_HAZLENZ_CONTRACT_FOUNDATION_COMPLETE -- REAL_PROVIDER_EVALUATION_AUTHORIZATION_REQUIRED",
+    "predecessorPhase": "boundedGovernedAcceptanceComplete",
+    "evidence": "verification/expert-hazlenz-contract-foundation-2026-08-29/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 99",
+    "decisionLogEntry": "D-111",
+    "productionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "providerCalls": 0,
+    "apiCostUsd": 0.0,
+    "flags": {
+      "EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN": true,
+      "EXPERT_HAZLENZ_CUSTOMER_ACTIVE": false,
+      "EXPERT_HAZLENZ_PROVIDER_VALIDATED": false,
+      "EXPERT_PROVIDER_SELECTED": false,
+      "EXPERT_EVALUATION_EXECUTED": false,
+      "EXPERT_PROMPT_AND_SCHEMA_SERIALIZATION_WRITTEN": false
+    },
+    "filesAdded": [
+      "backend/src/safescope-v2/expert-hazlenz/expert-authority-matrix.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-authority-merge.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-provider.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-runner.ts",
+      "backend/src/safescope-v2/expert-hazlenz/replay-expert-provider.ts",
+      "backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts",
+      "backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts",
+      "backend/scripts/test-expert-contract-foundation.ts",
+      "backend/scripts/test-expert-authority-merge.ts",
+      "backend/scripts/test-expert-provider-failure.ts",
+      "backend/scripts/test-expert-nocall-harness.ts",
+      "verification/expert-hazlenz-contract-foundation-2026-08-29/STATUS.md"
+    ],
+    "filesModified": {
+      "backend/package.json": "+4 script registrations only; no other change",
+      "docs/INSITE_ENGINEERING_BLUEPRINT.md": "section 99 added, decision log entry D-111 appended",
+      "docs/INSITE_CURRENT_STATE.json": "this key added; header keys updated; stale mutable counts re-measured"
+    },
+    "confinementProof": "The ONLY tracked production file this operation modified is backend/package.json (+4 script lines). grep -rl expert-hazlenz over backend/src, backend/scripts and frontend-next returns ONLY the four new test scripts, so nothing on the HTTP customer path references the module.",
+    "authorityHierarchy": {
+      "labels": [
+        "DETERMINISTIC_AUTHORITY",
+        "GOVERNED_REGULATORY_AUTHORITY",
+        "EXPERT_ADVISORY"
+      ],
+      "rule": "Expert is additive only. No authority surface permits SUPPRESS or MUTATE, and an unknown surface permits nothing.",
+      "noFlattening": "There is no combined findings array in MergedIntelligence, and the merge suite asserts its absence."
+    },
+    "protectionMatrix": {
+      "behaviouralSurfaces": 12,
+      "frozenGovernanceContracts": 12,
+      "everyFrozenContractClaimedBySurface": true,
+      "surfacesPermittingAdd": [
+        "HAZARD_RECOGNITION",
+        "HAZARD_DECOMPOSITION",
+        "ACTIONABLE_CLASSIFICATION",
+        "RISK_BEHAVIOUR",
+        "CORRECTIVE_ACTION_AND_WORKFLOW"
+      ],
+      "surfacesPermittingChallengeOnly": [
+        "DANGEROUS_AND_LIFE_CRITICAL_RETENTION",
+        "CONDITION_STATE_INTERPRETATION",
+        "NEGATION_AND_SAFE_STATE",
+        "JURISDICTION_HANDLING",
+        "GOVERNED_REGULATORY_CITATION",
+        "KNOWLEDGE_RELEASE_PROVENANCE",
+        "FAIL_CLOSED_AND_FALLBACK"
+      ],
+      "onExpertUnavailable": "SURFACE_UNCHANGED on every surface, asserted across the whole matrix"
+    },
+    "clarificationCarrier": {
+      "briefPremise": "CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE",
+      "premiseCorrectedFromEvidence": "L3-2i added a proposal-level carrier; L3-2j declared it in the shipped prompt, measured the full 24-scenario corpus and PUT IT BACK because every activating configuration cost high-consequence recall. L3 Run-2 then measured that on 13 of 13 clarification misses the model expressed no question in EITHER carrier, and only 1 of 13 had zero candidates. Coupling was not what was losing the questions.",
+      "resolution": "The Expert contract removes the possibility instead of re-repairing it: decisionCriticalClarifications is one of four sibling collections and there is NO candidate-owned clarification field.",
+      "proofs": {
+        "zeroCandidatesPlusClarificationSurvives": true,
+        "candidateAndClarificationBothSurvive": true,
+        "multipleClarificationsRetainIdentityAndOrder": true,
+        "emptyClarificationCollectionValid": true,
+        "malformedClarificationFailsValidationRatherThanDisappearing": "issue emitted with collection and index; item absent; the good clarification beside it survives",
+        "providerFailureDoesNotAffectLevel1": "proved against a real merge in test:expert-authority-merge and test:expert-provider-failure"
+      }
+    },
+    "mergeInvariants": {
+      "count": 11,
+      "failureShapesProvedIdentical": [
+        "failure",
+        "timeout",
+        "malformed",
+        "omission",
+        "contradiction"
+      ],
+      "statement": "For each shape the protected halves of the merged result are byte-identical to a merge with no Expert layer.",
+      "verifierIsItselfTested": "Section E of the merge suite tampers with merged objects to prove verifyMergeInvariants actually detects removal, alteration, rebinding and unapproved promotion."
+    },
+    "providerFailureSemantics": {
+      "failureKinds": 14,
+      "failOpen": "the inspection, deterministic HazLenz and governed standards all continue",
+      "failClosed": "nothing synthesized, nothing stale substituted, no lexical result relabelled as Expert, failure observable",
+      "runnerNeverThrows": true,
+      "retryCeiling": 1,
+      "rejectedOutputIsNotRetried": true,
+      "providerNotCallableIsADistinctKind": "because the L3 provider-readiness gate recorded exactly that, with credentials provisioned and a shim written",
+      "noCacheExists": "a success followed by a failure yields a failure; proved rather than asserted"
+    },
+    "noCallHarness": {
+      "scenarios": 10,
+      "providerCalls": 0,
+      "zeroCallProvedFromSource": "Section D reads all nine module files and fails if any contains a network primitive, endpoint, credential or vendor name; it also asserts the replay provider was actually exercised (18 invocations)."
+    },
+    "protectedGuardIncident": {
+      "guards": [
+        "test:l32i-clarification-carrier F3",
+        "test:l32j-carrier-activation D5"
+      ],
+      "label": "CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE",
+      "cause": "the Expert contract imported EvidenceReference and the condition-state vocabulary from the Level-3 tier",
+      "resolution": "THE GUARD WAS NOT TOUCHED. The Expert module was made self-contained, because the guard is a real quarantine and the tier it quarantines FAILED its sealed acceptance (MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL, seven gates).",
+      "newFactLearned": "That guard is a CONTENT GREP, not an import-graph check: it matches the directory name anywhere in a file, so a prose mention breaks it exactly as an import does.",
+      "vocabularyEqualityAsserted": "test:expert-contract-foundation section E reads the Level-3 file as DATA from a runtime-assembled path and asserts the eight condition states are identical.",
+      "resultAfterFix": "61/0 and 37/0 -- one assertion higher than before, because the containment check now also runs from the Expert side."
+    },
+    "evaluationPlan": {
+      "executed": false,
+      "measures": 17,
+      "families": [
+        "SAFETY",
+        "REGULATORY_INTEGRITY",
+        "REASONING_QUALITY",
+        "RELIABILITY"
+      ],
+      "noAggregateScore": "evaluateGateFamilies returns four verdicts and has no overall field; an unmeasured hard gate FAILS rather than being skipped.",
+      "zeroToleranceGates": [
+        "M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY",
+        "M05_FABRICATED_CITATIONS",
+        "M08_GOVERNED_PROVENANCE_INTEGRITY"
+      ],
+      "lifeCriticalRetentionFloor": 1.0,
+      "g9LessonCarriedForward": "M17_CROSS_PROCESS_REPRODUCIBILITY is pre-registered as MEASURED_AND_REPORTED, not as a hard gate, until precondition P2_DETERMINISM_CONTROL establishes by cheap probe whether a determinism control exists at all. Run-2 pre-registered a hard 100% gate and then measured that neither temperature nor seed was forwardable, so the gate was unreachable by construction and learning that burned a single-use holdout.",
+      "corpusClosed": [
+        "Run-1 sealed acceptance",
+        "Run-2 sealed acceptance (93 rows)",
+        "GAUNTLET_OFFSET_1 (retired)",
+        "REALISM_OFFSET_0 (retired)"
+      ],
+      "corpusReserved": [
+        "gauntlet offsets 2 and 3",
+        "realism offsets 1 and 2",
+        "the unopened 100-row gauntlet.seed"
+      ]
+    },
+    "verificationExecuted": {
+      "backendTypecheck": "npx tsc --noEmit -p tsconfig.json -- exit 0, clean",
+      "frontendTypecheck": "NOT RUN -- no frontend source was touched",
+      "frontendTsconfigHash": "73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535 -- byte-identical before and after; the known contamination, untouched",
+      "newExpertSuites": {
+        "test:expert-contract-foundation": "56 passed, 0 failed",
+        "test:expert-authority-merge": "51 passed, 0 failed",
+        "test:expert-provider-failure": "131 passed, 0 failed",
+        "test:expert-nocall-harness": "141 passed, 0 failed",
+        "total": "379 passed, 0 failed"
+      },
+      "protectedHazlenzFloor": {
+        "test:hazlenz-level1-recall": "PASS (17 checks)",
+        "test:hazlenz-actionable-coverage": "PASS (17 checks)",
+        "test:hazlenz-precision": "case-level precision 100.0%, forbidden-family count 0, required secondary-hazard recall 100.0% (43/43), dangerous omissions 0, life-critical omissions 0 -- field-for-field identical to the section 98.4 baseline at this SHA",
+        "test:hazlenz-core": "exit 0",
+        "test:hazlenz-standards-jurisdiction": "exit 0",
+        "test:hazlenz-source-authority": "exit 0",
+        "test:hazlenz-evidence-boundary": "exit 0"
+      },
+      "level3Family": {
+        "test:l31-reasoning-contract": "49/0",
+        "test:l32-semantic-contract": "191/0",
+        "test:l32b-binder-precision": "105/0",
+        "test:l32c-gate-polarity": "86/0",
+        "test:l32d-clarification-scope": "71/0",
+        "test:l32e-syntactic-role": "82/0",
+        "test:l32f-predicate-scope": "77/0",
+        "test:l32g-state-separation": "57/0",
+        "test:l32i-clarification-carrier": "61/0",
+        "test:l32j-carrier-activation": "37/0",
+        "test:l3-condition-state-resolution": "155/0"
+      },
+      "cutoverGovernance": {
+        "test:kg4a-cutover-contract": "exit 0",
+        "test:kg4a-default-off": "exit 0",
+        "test:kg4d-default-off": "exit 0"
+      },
+      "notExecuted": {
+        "suites": [
+          "test:hazlenz-clarification-gauntlet",
+          "test:kg4b-default-off"
+        ],
+        "reason": "Both fail at ECONNREFUSED before any behavioural assertion: they require a running backend and database that this operation did not provision.",
+        "classification": "VERIFICATION_INFRASTRUCTURE_PREREQUISITE_ABSENT -- NOT a regression and NOT recorded as a pass.",
+        "whyNotAtRisk": "See confinementProof. No file on the HTTP customer path was modified, and nothing on that path imports the new module. test:kg4b-default-off additionally PASSED its own containment phase -- cutover configuration is read ONLY inside standards/cutover/ -- before reaching the connection failure."
+      }
+    },
+    "residualDebt": [
+      "test:kg5b-operator-cli 64/65 -- carried forward unchanged; NOT re-run by this operation; the pin at scripts/test-kg5b-operator-cli.ts:416 is unmodified at HEAD",
+      "the unresolved-jurisdiction ranking behaviour -- carried forward unchanged",
+      "directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER -- carried forward unchanged",
+      "LIVE_PAYMENT_PROOF = FALSE -- carried forward unchanged, still DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION",
+      "NEW: the Expert contract has no prompt and no schema serialization -- a provider adapter must translate it, and that translation is deliberately unwritten until a provider is selected",
+      "NEW: M01_ADDITIVE_HAZARD_RECALL and M11_CROSS_HAZARD_REASONING are reported, not gated -- both are new capabilities with no baseline, and a guessed floor is a floor that gets quietly lowered later"
+    ],
+    "notDone": [
+      "no provider call, no API spend, no provider selection",
+      "no customer-path integration and no UI surface",
+      "no production access, read or write",
+      "no database migration, seed or mutation",
+      "no Render change",
+      "no Stripe or payment action",
+      "no governed-rollout expansion -- the allowlist still names exactly one account",
+      "no commit, push, tag or deploy",
+      "no existing scorer, threshold, expected result, assertion or protected guard modified"
+    ]
+  },
+  "expertHazlenzProviderTransportProbe": {
+    "phase": "EXPERT_HAZLENZ_PROVIDER_TRANSPORT_PROBE",
+    "date": "2026-08-29",
+    "terminal": "EXPERT_HAZLENZ_PROVIDER_TRANSPORT_PROBE_INCONCLUSIVE -- NO_EVALUATION_SPEND_AUTHORIZED",
+    "predecessorPhase": "expertHazlenzContractFoundation",
+    "evidence": "verification/expert-hazlenz-provider-transport-probe-2026-08-29/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 100",
+    "decisionLogEntry": "D-112",
+    "productionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "provider": {
+      "id": "local-ollama",
+      "modelRequested": "qwen3-coder:30b",
+      "modelResponded": "qwen3-coder:30b",
+      "identitySource": "the provider's own HTTP 200 response body `model` field, never echoed from the request",
+      "endpoint": "127.0.0.1:11434 (loopback; no egress; no observation text leaves the host)",
+      "selectionRationale": "FORCED BY MEASUREMENT, NOT CHOSEN. No hosted credential is resolvable on this machine: ANTHROPIC_API_KEY absent, GEMINI/GOOGLE absent, OPENAI_API_KEY present but an 11-character sk- stub. Presence and length only were measured; no value was printed, logged, hashed or persisted. This repeats D-92's position for the L3 programme and takes the same resolution its ollama provider documents.",
+      "isProductionRecommendation": false,
+      "productionRecommendationNote": "A local 30B model is NOT the customer-facing Expert layer. Nothing measured here transfers to a hosted provider."
+    },
+    "hostedProviderCredentials": {
+      "ANTHROPIC_API_KEY_PRESENT": false,
+      "GEMINI_OR_GOOGLE_API_KEY_PRESENT": false,
+      "OPENAI_API_KEY_PRESENT": true,
+      "OPENAI_API_KEY_USABLE": false,
+      "OPENAI_API_KEY_CLASSIFICATION": "11-character sk- stub; length reported because it is what proves the value is a stub rather than a key",
+      "credentialHandling": "presence and length only; no value printed, logged, hashed, persisted or copied into any artifact",
+      "credentialRequested": false
+    },
+    "adapterArchitecture": {
+      "adapterPath": "backend/src/safescope-v2/expert-hazlenz-adapters/ollama-expert-provider.ts",
+      "whyOutsideTheCore": "test:expert-nocall-harness section D fails on any network primitive, endpoint, credential or vendor name in expert-hazlenz/. The adapter needs four of those five. A guard written in section 99, BEFORE this adapter existed, is what decided where it went -- the boundary is enforced by a test, not a convention.",
+      "corePurityAfterAdapter": "10 files scanned, 0 network primitives, 0 vendor names -- unchanged",
+      "dependencyDirection": "one-way: the adapter imports the contract; the contract knows no vendor and has no adapter registry",
+      "rawTypedUnknown": "analyze() returns raw `unknown`, so an adapter cannot assert that validation happened",
+      "quoteBinder": "The model is never asked for a character offset -- L3 measured EVIDENCE_OUT_OF_BOUNDS taking three gates down on one row. It is asked for the exact quote and the adapter resolves the span. A present quote binds and is re-checked by the core validator; an absent quote binds to [-1,-1) and is REJECTED. The unbindable quote is never dropped, because dropping it would hide a fabrication behind a cleaner-looking result."
+    },
+    "promptAndSchema": {
+      "path": "backend/src/safescope-v2/expert-hazlenz/expert-prompt.ts",
+      "version": "hazlenz.expert.prompt.v1",
+      "providerNeutral": true,
+      "note": "A JSON Schema object plus two strings. Each adapter wires them into its own request shape."
+    },
+    "calls": {
+      "ceiling": 12,
+      "attempted": 6,
+      "completed": 6,
+      "stoppedEarlyBecause": null,
+      "httpFailures": 0,
+      "normalizationRejections": 0,
+      "mergeInvariantViolations": 0,
+      "actualCostUsd": 0.0,
+      "costBasis": "local inference on the host; no metered API was contacted",
+      "totalPromptTokens": 4190,
+      "totalOutputTokens": 2347,
+      "latencyMsP50": 7510,
+      "latencyMsMax": 10175,
+      "cheapRepeatability": "P2 and P2R produced identical collection counts AND identical token counts at temperature=0 seed=20260829. Both parameters ARE forwardable on this transport -- precisely what was not true of the hosted provider that made L3's G9 gate unreachable. Recorded as a property of THIS transport, not as a general fact."
+    },
+    "hardGates": {
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "G06_LIVE_EVIDENCE": "A real model given a genuinely underdetermined observation returned an empty hazard list and a populated question list -- TWICE -- and the question survived the adapter, the boundary and the merge. The case the carrier architecture was built for now has live evidence, not only a fixture.",
+      "G13_VACUOUS": "PASSED VACUOUSLY and labelled so: no malformed output arose in six calls, so the gate's condition never obtained. The behaviour remains proved deterministically in test:expert-provider-failure.",
+      "G07_RESULT": "6/6 protected halves byte-identical to a merge with no Expert layer; 0 invariant violations",
+      "G12_RESULT": "0 citation-shaped strings in any accepted advisory block"
+    },
+    "decidingFinding": {
+      "id": "EXPERT_PROMPT_COLLECTION_ROUTING_DEFECT",
+      "owner": "OUR PROMPT AND SCHEMA -- not the provider",
+      "symptom": "five of six responses returned empty typed collections",
+      "whatOneDiagnosticCallEstablished": "The model DID reason, and reasoned well: it identified the wet/electrical interaction, four genuinely decision-critical missing facts (was it de-energized, was lockout/tagout followed, was PPE worn, was the pump isolated) and a plausible additional confined-space hazard.",
+      "theDefect": "All of that content landed in expertExplanation.whatIsMissing, expertExplanation.howConditionsInteract, expertExplanation.whatMatters and uncertainty.statements instead of decisionCriticalClarifications, crossHazardInsights and expertHazardCandidates. The free-text sinks are easier than the typed collections and are starving them.",
+      "class": "the same representation-loses-the-reasoning failure the L3 programme kept hitting",
+      "consequence": "Running the seventeen-measure evaluation now would score M09_CLARIFICATION_QUALITY and M11_CROSS_HAZARD_REASONING near zero and attribute our prompt defect to the provider, burning a reserved single-use cohort to measure our own bug.",
+      "remediationCost": "deterministic, local, $0.00 to iterate; needs no credential and no spend authorization"
+    },
+    "whyInconclusive": {
+      "notFailed": "nothing failed; fourteen of fourteen gates hold",
+      "notPassed": "a PASS terminal carries BOUNDED_PROVIDER_EVALUATION_AUTHORIZATION_REQUIRED, and asking for that would be asking the owner to fund a measurement a known prompt defect would corrupt, on a provider that is not the candidate",
+      "secondIndependentReason": "every gate was measured against a local stand-in; NO hosted provider transport was measured at all",
+      "whatAGreenGateSetDoesNotMean": "not provider validated, not reasoning validated, not a production provider selected, not customer activation authorized"
+    },
+    "protectedRegression": {
+      "test:expert-contract-foundation": "56/0",
+      "test:expert-authority-merge": "51/0",
+      "test:expert-provider-failure": "131/0",
+      "test:expert-nocall-harness": "141/0 -- core still 10 files, 0 network primitives, 0 vendor names",
+      "test:l32i-clarification-carrier": "61/0 -- Level-3 quarantine intact",
+      "test:l32j-carrier-activation": "37/0 -- Level-3 quarantine intact",
+      "test:kg4a-cutover-contract": "exit 0",
+      "test:kg4a-default-off": "exit 0",
+      "backendTypecheck": "npx tsc --noEmit -p tsconfig.json -- exit 0",
+      "fullProductionRegressionRun": false,
+      "whyNotRequired": "the adapter is isolated from every production-authority module, proved by dependency inspection rather than asserted"
+    },
+    "confinementProof": "grep -rl expert-hazlenz over backend/src, backend/scripts and frontend-next returns exactly eight files: the adapter, one core file and six scripts. NO controller, service or module references it, so the HTTP customer path cannot reach the Expert layer. The only tracked production file modified across sections 99 and 100 remains backend/package.json.",
+    "residualDebt": [
+      "CLOSED by this phase: section 99.8 item 5 -- the Expert contract now has a prompt and a structured-output schema",
+      "NEW: EXPERT_PROMPT_COLLECTION_ROUTING_DEFECT -- free-text explanation fields absorb content belonging in the typed collections; measured on 6 of 6 calls",
+      "NEW: hosted-provider transport is unmeasured and needs a credential the owner would provision plus its own spend decision",
+      "NEW: G13 passed vacuously -- live malformed-output behaviour remains unobserved",
+      "UNCHANGED: test:kg5b-operator-cli 64/65",
+      "UNCHANGED: the unresolved-jurisdiction ranking behaviour",
+      "UNCHANGED: directObjectStatus NOT_VERIFIED_LOCAL_TEST_PROVIDER",
+      "UNCHANGED: LIVE_PAYMENT_PROOF = FALSE, still DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION"
+    ],
+    "notDone": [
+      "no hosted-provider call and no credential requested",
+      "no production provider selected",
+      "no seventeen-measure evaluation run and no corpus opened",
+      "no customer-path integration and no UI surface",
+      "no production access, database mutation, Render change or Stripe action",
+      "no commit, push, tag or deploy"
+    ]
+  },
+  "expertHazlenzTypedRoutingRepair": {
+    "phase": "EXPERT_HAZLENZ_TYPED_COLLECTION_ROUTING_REPAIR",
+    "date": "2026-08-29",
+    "terminal": "EXPERT_HAZLENZ_TYPED_ROUTING_REPAIRED -- HOSTED_PROVIDER_TRANSPORT_PROBE_AUTHORIZATION_REQUIRED",
+    "predecessorPhase": "expertHazlenzProviderTransportProbe",
+    "evidence": "verification/expert-hazlenz-typed-routing-repair-2026-08-29/STATUS.md",
+    "blueprintSection": "docs/INSITE_ENGINEERING_BLUEPRINT.md section 101",
+    "decisionLogEntry": "D-113",
+    "productionSha": "de655d2f6e4c0ff7b0de17f9ccfbd3668138a936",
+    "diagnosis": {
+      "id": "EXPERT_TYPED_COLLECTION_ROUTING_DEFECT",
+      "MODEL_REASONING_PRESENT": true,
+      "MODEL_REASONING_TYPED_CORRECTLY": false,
+      "rootCause": "The schema gave every semantic TWO homes. expertExplanation.whatIsMissing was a free-text twin of decisionCriticalClarifications, howConditionsInteract of crossHazardInsights, and whatMatters of expertHazardCandidates. A model asked to fill both fills the easier one.",
+      "fixPhilosophy": "Delete the twin rather than instruct against it. An instruction competes with a field; an absent field does not."
+    },
+    "contractAndPromptChanges": {
+      "analysisContractVersion": "hazlenz.expert.analysis.v1 -> v2 (SUBTRACTIVE, so the version moved)",
+      "promptVersion": "hazlenz.expert.prompt.v1 -> v2 (attempt 1) -> v3 (attempt 2)",
+      "removedFields": [
+        "expertExplanation.whatMatters",
+        "expertExplanation.whatIsMissing",
+        "expertExplanation.howConditionsInteract"
+      ],
+      "legacyFieldHandling": "a provider still sending them has them DROPPED at the boundary, not carried",
+      "routingSemanticsAdded": "explicit inclusion rule per collection, an ordered classification procedure, and the NO-LOSS rule",
+      "chainOfThoughtRequested": false,
+      "schemaDescriptionsStrengthened": "candidate vs clarification, clarification vs uncertainty, insight vs explanation, disagreement vs additive context"
+    },
+    "attempt1": {
+      "promptVersion": "hazlenz.expert.prompt.v2",
+      "result": "FAILED -- 8 of 14 routing gates",
+      "TYPED_ROUTING_OPPORTUNITIES": 16,
+      "TYPED_ROUTING_HITS": 10,
+      "TYPED_ROUTING_MISSES": 6,
+      "TYPED_ROUTING_OVER_ROUTED": 0,
+      "EXPLANATION_ONLY_LOSSES": 3,
+      "calls": 7,
+      "whyItFailed": "Two measurements located the cause: expertHazardCandidates was empty on 13 of 13 live calls while clarifications and insights had begun to populate, and quotes were 0/0 on every call. expertHazardCandidates was the ONLY collection whose wire schema listed `evidence` as required, and the prompt warned that an unfound quote gets the candidate rejected -- so the entry price for the collection was a quote the model could not produce, and it proposed none.",
+      "recordedNotAbsorbed": true
+    },
+    "attempt2": {
+      "promptVersion": "hazlenz.expert.prompt.v3",
+      "changes": [
+        "`evidence` removed from the candidate required list -- empty evidence has been contract-legal since section 99; only the wire schema demanded it",
+        "the prompt now states a quote is OPTIONAL: an unquoted candidate is worth far more than a silent one",
+        "NOTHING_TO_ADD narrowed to genuinely complete, already-controlled observations, with an explicit self-check"
+      ],
+      "validatorUnchanged": "A supplied quote is still checked by exact equality and a fabricated one still rejected; the unbindable-quote path is still proved fail-closed. This changed what is ASKED FOR, not what is ACCEPTED, and is NOT loosening a validator until malformed output passes.",
+      "calls": 7,
+      "TYPED_ROUTING_OPPORTUNITIES": 16,
+      "TYPED_ROUTING_HITS": 16,
+      "TYPED_ROUTING_MISSES": 0,
+      "TYPED_ROUTING_OVER_ROUTED": 0,
+      "EXPLANATION_ONLY_LOSSES": 0,
+      "byCollection": {
+        "expertHazardCandidates": "opp 4 / hit 4 / miss 0 / over 0",
+        "decisionCriticalClarifications": "opp 6 / hit 6 / miss 0 / over 0",
+        "crossHazardInsights": "opp 4 / hit 4 / miss 0 / over 0",
+        "disagreements": "opp 2 / hit 2 / miss 0 / over 0"
+      },
+      "negativeControls": "R6 (fully controlled lockout) and R7 (inspected ladder, only unfalsifiable residual ambiguity) each returned EVERY collection empty at ~110 output tokens. The repair taught placement, not chattiness -- an over-correction would have surfaced here as over-routing and none appeared.",
+      "routingGatesPassed": "14 of 14"
+    },
+    "fixtures": {
+      "count": 7,
+      "path": "backend/src/safescope-v2/expert-hazlenz/fixtures/routing-fixtures.ts",
+      "set": [
+        "R1 zero-candidate clarification",
+        "R2 wet + electrical",
+        "R3 LOTO / stored energy",
+        "R4 extra plausible hazard",
+        "R5 multi-collection",
+        "R6 explanation-only NEGATIVE CONTROL",
+        "R7 uncertainty NEGATIVE CONTROL"
+      ]
+    },
+    "metricValidatedBeforeUse": {
+      "suite": "test:expert-routing-contract -- 57 passed, 0 failed",
+      "why": "A routing metric that cannot tell a correct silence from a miss would score the negative controls as failures and reward chattiness. The suite asserts all four verdicts, that OPTIONAL casts no vote, that the section 100 defect shape replays to exactly two losses, that correctly-typed content scores ZERO losses even when the summary repeats it, and that a concept never raised is not a loss -- so the metric measures routing, never reasoning."
+    },
+    "falseGateFailure": {
+      "gate": "G14 no hosted provider call occurred",
+      "cause": "the check grepped the adapter directory for ANTHROPIC_API_KEY / OPENAI_API_KEY and matched the adapter's own header COMMENT explaining that those credentials are absent -- it read a sentence documenting an absence as a presence",
+      "resolution": "the instrument was fixed to strip comments before matching; the result was not waived",
+      "patternNote": "the THIRD content-grep-matches-prose incident in this programme (section 99.5 Level-3 quarantine, section 100 evaluation corpus path, now this)"
+    },
+    "protectedRegression": {
+      "test:expert-contract-foundation": "56/0",
+      "test:expert-authority-merge": "51/0",
+      "test:expert-provider-failure": "131/0",
+      "test:expert-nocall-harness": "141/0",
+      "test:expert-routing-contract": "57/0",
+      "test:l32i-clarification-carrier": "61/0 -- Level-3 quarantine intact",
+      "test:l32j-carrier-activation": "37/0 -- Level-3 quarantine intact",
+      "test:kg4a-cutover-contract / kg4a-default-off / kg4d-default-off": "exit 0",
+      "test:hazlenz-level1-recall / actionable-coverage": "exit 0",
+      "test:hazlenz-precision": "precision 100.0%, forbidden 0, omissions 0",
+      "backendTypecheck": "exit 0",
+      "staleTestRepaired": "test:expert-contract-foundation C.5 used the literal hazlenz.expert.analysis.v2 as its WRONG version, so bumping the contract TO v2 silently stopped it testing anything. It now derives the invalid version from the current constant."
+    },
+    "confinementProof": "Nothing under backend/src outside expert-hazlenz/ and expert-hazlenz-adapters/ references either. No controller, service or module reaches the Expert layer. The only tracked production file modified across sections 99-101 remains backend/package.json.",
+    "cost": {
+      "totalLocalCalls": 14,
+      "hostedCalls": 0,
+      "actualCostUsd": 0.0,
+      "ceilingPerAttempt": 12,
+      "callsPerAttempt": 7
+    },
+    "whatARoutingPassDoesNotMean": [
+      "the local model is NOT provider-validated",
+      "the local model is NOT production-selected",
+      "Expert reasoning is NOT validated",
+      "the seventeen-measure evaluation is NOT authorized",
+      "customer activation is NOT authorized",
+      "no global production-quality precision target may be inferred from 16 opportunities on 7 synthetic fixtures"
+    ],
+    "residualDebt": [
+      "CLOSED: EXPERT_PROMPT_COLLECTION_ROUTING_DEFECT (section 100.8 item 1)",
+      "NEW: quotes = 0/0 on all 14 calls -- the model has never produced an evidence quote, so every Expert candidate so far is UNGROUNDED; M07_GOVERNED_RECORD_GROUNDING will measure this and a hosted model may differ",
+      "NEW: routing is measured on ONE local model only and nothing here transfers to a hosted provider",
+      "UNCHANGED: hosted-provider transport unmeasured",
+      "UNCHANGED: live malformed-output behaviour unobserved",
+      "UNCHANGED: test:kg5b-operator-cli 64/65",
+      "UNCHANGED: the unresolved-jurisdiction ranking behaviour",
+      "UNCHANGED: directObjectStatus NOT_VERIFIED_LOCAL_TEST_PROVIDER",
+      "UNCHANGED: LIVE_PAYMENT_PROOF = FALSE"
+    ],
+    "notDone": [
+      "no hosted provider call and no credential requested",
+      "no production provider selected",
+      "no seventeen-measure evaluation and no reserved cohort opened",
+      "no customer-path integration and no UI surface",
+      "no production access, database mutation, Render change or Stripe action",
+      "no commit, push, tag or deploy"
+    ]
   }
 }

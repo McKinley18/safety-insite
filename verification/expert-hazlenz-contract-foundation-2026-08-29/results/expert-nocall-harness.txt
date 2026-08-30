@@ -1,0 +1,156 @@
+
+> safety-insite-backend@1.0.0 test:expert-nocall-harness
+> ts-node scripts/test-expert-nocall-harness.ts
+
+
+--- A. the ten scenarios
+ok    A.0 ten representative scenarios
+ok    A.1 S01 single obvious hazard: layer status PRESENT (got PRESENT)
+ok    A.2 S01 single obvious hazard: 0 advisory candidate(s)
+ok    A.3 S01 single obvious hazard: 0 clarification(s)
+ok    A.4 S01 single obvious hazard: 0 cross-hazard insight(s)
+ok    A.5 S01 single obvious hazard: 0 disagreement(s)
+ok    A.6 S01 single obvious hazard: required issue codes present []
+ok    A.7 S01 single obvious hazard: every deterministic finding retained
+ok    A.8 S01 single obvious hazard: deterministic findings are source-labelled
+ok    A.9 S01 single obvious hazard: knowledge release id unchanged
+ok    A.10 S01 single obvious hazard: governed citations retained and source-labelled
+ok    A.11 S01 single obvious hazard: no merge invariant violated []
+ok    A.1 S02 genuine multi-hazard observation with a cross-hazard interaction: layer status PRESENT (got PRESENT)
+ok    A.2 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 advisory candidate(s)
+ok    A.3 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 clarification(s)
+ok    A.4 S02 genuine multi-hazard observation with a cross-hazard interaction: 1 cross-hazard insight(s)
+ok    A.5 S02 genuine multi-hazard observation with a cross-hazard interaction: 0 disagreement(s)
+ok    A.6 S02 genuine multi-hazard observation with a cross-hazard interaction: required issue codes present []
+ok    A.7 S02 genuine multi-hazard observation with a cross-hazard interaction: every deterministic finding retained
+ok    A.8 S02 genuine multi-hazard observation with a cross-hazard interaction: deterministic findings are source-labelled
+ok    A.9 S02 genuine multi-hazard observation with a cross-hazard interaction: knowledge release id unchanged
+ok    A.10 S02 genuine multi-hazard observation with a cross-hazard interaction: governed citations retained and source-labelled
+ok    A.11 S02 genuine multi-hazard observation with a cross-hazard interaction: no merge invariant violated []
+ok    A.1 S03 negated / safe-state observation, Expert proposes a candidate anyway: layer status PRESENT (got PRESENT)
+ok    A.2 S03 negated / safe-state observation, Expert proposes a candidate anyway: 1 advisory candidate(s)
+ok    A.3 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 clarification(s)
+ok    A.4 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 cross-hazard insight(s)
+ok    A.5 S03 negated / safe-state observation, Expert proposes a candidate anyway: 0 disagreement(s)
+ok    A.6 S03 negated / safe-state observation, Expert proposes a candidate anyway: required issue codes present []
+ok    A.7 S03 negated / safe-state observation, Expert proposes a candidate anyway: every deterministic finding retained
+ok    A.8 S03 negated / safe-state observation, Expert proposes a candidate anyway: deterministic findings are source-labelled
+ok    A.9 S03 negated / safe-state observation, Expert proposes a candidate anyway: knowledge release id unchanged
+ok    A.10 S03 negated / safe-state observation, Expert proposes a candidate anyway: governed citations retained and source-labelled
+ok    A.11 S03 negated / safe-state observation, Expert proposes a candidate anyway: no merge invariant violated []
+ok    A.1 S04 ZERO hazard candidates and a decision-critical clarification: layer status PRESENT (got PRESENT)
+ok    A.2 S04 ZERO hazard candidates and a decision-critical clarification: 0 advisory candidate(s)
+ok    A.3 S04 ZERO hazard candidates and a decision-critical clarification: 1 clarification(s)
+ok    A.4 S04 ZERO hazard candidates and a decision-critical clarification: 0 cross-hazard insight(s)
+ok    A.5 S04 ZERO hazard candidates and a decision-critical clarification: 0 disagreement(s)
+ok    A.6 S04 ZERO hazard candidates and a decision-critical clarification: required issue codes present []
+ok    A.7 S04 ZERO hazard candidates and a decision-critical clarification: every deterministic finding retained
+ok    A.8 S04 ZERO hazard candidates and a decision-critical clarification: deterministic findings are source-labelled
+ok    A.9 S04 ZERO hazard candidates and a decision-critical clarification: knowledge release id unchanged
+ok    A.10 S04 ZERO hazard candidates and a decision-critical clarification: governed citations retained and source-labelled
+ok    A.11 S04 ZERO hazard candidates and a decision-critical clarification: no merge invariant violated []
+ok    A.1 S05 Expert-only plausible candidate the deterministic set missed: layer status PRESENT (got PRESENT)
+ok    A.2 S05 Expert-only plausible candidate the deterministic set missed: 1 advisory candidate(s)
+ok    A.3 S05 Expert-only plausible candidate the deterministic set missed: 0 clarification(s)
+ok    A.4 S05 Expert-only plausible candidate the deterministic set missed: 1 cross-hazard insight(s)
+ok    A.5 S05 Expert-only plausible candidate the deterministic set missed: 0 disagreement(s)
+ok    A.6 S05 Expert-only plausible candidate the deterministic set missed: required issue codes present []
+ok    A.7 S05 Expert-only plausible candidate the deterministic set missed: every deterministic finding retained
+ok    A.8 S05 Expert-only plausible candidate the deterministic set missed: deterministic findings are source-labelled
+ok    A.9 S05 Expert-only plausible candidate the deterministic set missed: knowledge release id unchanged
+ok    A.10 S05 Expert-only plausible candidate the deterministic set missed: governed citations retained and source-labelled
+ok    A.11 S05 Expert-only plausible candidate the deterministic set missed: no merge invariant violated []
+ok    A.1 S06 Expert disagrees with the deterministic condition state: layer status PRESENT (got PRESENT)
+ok    A.2 S06 Expert disagrees with the deterministic condition state: 0 advisory candidate(s)
+ok    A.3 S06 Expert disagrees with the deterministic condition state: 0 clarification(s)
+ok    A.4 S06 Expert disagrees with the deterministic condition state: 0 cross-hazard insight(s)
+ok    A.5 S06 Expert disagrees with the deterministic condition state: 1 disagreement(s)
+ok    A.6 S06 Expert disagrees with the deterministic condition state: required issue codes present []
+ok    A.7 S06 Expert disagrees with the deterministic condition state: every deterministic finding retained
+ok    A.8 S06 Expert disagrees with the deterministic condition state: deterministic findings are source-labelled
+ok    A.9 S06 Expert disagrees with the deterministic condition state: knowledge release id unchanged
+ok    A.10 S06 Expert disagrees with the deterministic condition state: governed citations retained and source-labelled
+ok    A.11 S06 Expert disagrees with the deterministic condition state: no merge invariant violated []
+ok    A.1 S07 Expert disagrees with a governed interpretation; approval is untouched: layer status PRESENT (got PRESENT)
+ok    A.2 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 advisory candidate(s)
+ok    A.3 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 clarification(s)
+ok    A.4 S07 Expert disagrees with a governed interpretation; approval is untouched: 0 cross-hazard insight(s)
+ok    A.5 S07 Expert disagrees with a governed interpretation; approval is untouched: 1 disagreement(s)
+ok    A.6 S07 Expert disagrees with a governed interpretation; approval is untouched: required issue codes present []
+ok    A.7 S07 Expert disagrees with a governed interpretation; approval is untouched: every deterministic finding retained
+ok    A.8 S07 Expert disagrees with a governed interpretation; approval is untouched: deterministic findings are source-labelled
+ok    A.9 S07 Expert disagrees with a governed interpretation; approval is untouched: knowledge release id unchanged
+ok    A.10 S07 Expert disagrees with a governed interpretation; approval is untouched: governed citations retained and source-labelled
+ok    A.11 S07 Expert disagrees with a governed interpretation; approval is untouched: no merge invariant violated []
+ok    A.1 S08 malformed Expert output is rejected at the boundary: layer status OUTPUT_REJECTED (got OUTPUT_REJECTED)
+ok    A.2 S08 malformed Expert output is rejected at the boundary: 0 advisory candidate(s)
+ok    A.3 S08 malformed Expert output is rejected at the boundary: 0 clarification(s)
+ok    A.4 S08 malformed Expert output is rejected at the boundary: 0 cross-hazard insight(s)
+ok    A.5 S08 malformed Expert output is rejected at the boundary: 0 disagreement(s)
+ok    A.6 S08 malformed Expert output is rejected at the boundary: required issue codes present []
+ok    A.7 S08 malformed Expert output is rejected at the boundary: every deterministic finding retained
+ok    A.8 S08 malformed Expert output is rejected at the boundary: deterministic findings are source-labelled
+ok    A.9 S08 malformed Expert output is rejected at the boundary: knowledge release id unchanged
+ok    A.10 S08 malformed Expert output is rejected at the boundary: governed citations retained and source-labelled
+ok    A.11 S08 malformed Expert output is rejected at the boundary: no merge invariant violated []
+ok    A.1 S09 provider unavailable; the inspection is unaffected: layer status NOT_CONFIGURED (got NOT_CONFIGURED)
+ok    A.2 S09 provider unavailable; the inspection is unaffected: 0 advisory candidate(s)
+ok    A.3 S09 provider unavailable; the inspection is unaffected: 0 clarification(s)
+ok    A.4 S09 provider unavailable; the inspection is unaffected: 0 cross-hazard insight(s)
+ok    A.5 S09 provider unavailable; the inspection is unaffected: 0 disagreement(s)
+ok    A.6 S09 provider unavailable; the inspection is unaffected: required issue codes present []
+ok    A.7 S09 provider unavailable; the inspection is unaffected: every deterministic finding retained
+ok    A.8 S09 provider unavailable; the inspection is unaffected: deterministic findings are source-labelled
+ok    A.9 S09 provider unavailable; the inspection is unaffected: knowledge release id unchanged
+ok    A.10 S09 provider unavailable; the inspection is unaffected: governed citations retained and source-labelled
+ok    A.11 S09 provider unavailable; the inspection is unaffected: no merge invariant violated []
+ok    A.1 S10 life-critical deterministic hazard plus total Expert omission: layer status PRESENT (got PRESENT)
+ok    A.2 S10 life-critical deterministic hazard plus total Expert omission: 0 advisory candidate(s)
+ok    A.3 S10 life-critical deterministic hazard plus total Expert omission: 0 clarification(s)
+ok    A.4 S10 life-critical deterministic hazard plus total Expert omission: 0 cross-hazard insight(s)
+ok    A.5 S10 life-critical deterministic hazard plus total Expert omission: 0 disagreement(s)
+ok    A.6 S10 life-critical deterministic hazard plus total Expert omission: required issue codes present []
+ok    A.7 S10 life-critical deterministic hazard plus total Expert omission: every deterministic finding retained
+ok    A.8 S10 life-critical deterministic hazard plus total Expert omission: deterministic findings are source-labelled
+ok    A.9 S10 life-critical deterministic hazard plus total Expert omission: knowledge release id unchanged
+ok    A.10 S10 life-critical deterministic hazard plus total Expert omission: governed citations retained and source-labelled
+ok    A.11 S10 life-critical deterministic hazard plus total Expert omission: no merge invariant violated []
+
+--- B. the scenarios that carry a specific proof
+ok    B.1 S04: zero deterministic findings, zero Expert candidates, and the clarification SURVIVES the merge
+ok    B.2 S04: the clarification keeps its criticality through the merge
+ok    B.3 S03: an Expert candidate on a safe state stays ADVISORY and creates no finding
+ok    B.4 S03: it is labelled so a consumer cannot mistake it for authority
+ok    B.5 S06: a challenge to the condition state is recorded and the state is unchanged
+ok    B.6 S07: a governed challenge is recorded and approval is NOT conferred
+ok    B.7 S08: rejected Expert output leaves the required action intact
+ok    B.8 S09: the inspection is unaffected by an absent provider
+ok    B.9 S10: a life-critical finding survives a total Expert omission with all four actions
+ok    B.10 S10: the omission is recorded as a PRESENT layer that added nothing -- not as a failure
+ok    B.11 S02: a cross-hazard insight is added beside two unchanged deterministic findings
+
+--- C. the evaluation plan is specified and NOT executed
+ok    C.1 seventeen measures pre-registered (the fourteen required, split where precision and recall differ)
+ok    C.2 four independent gate families
+ok    C.3 every hard gate carries a direction and a threshold
+ok    C.4 every measure states why its threshold is where it is
+ok    C.5 M03_CONTRADICTION_WITH_PROTECTED_AUTHORITY is a zero-tolerance gate
+ok    C.5 M05_FABRICATED_CITATIONS is a zero-tolerance gate
+ok    C.5 M08_GOVERNED_PROVENANCE_INTEGRITY is a zero-tolerance gate
+ok    C.6 life-critical retention is a 100% floor
+ok    C.7 cross-process reproducibility is REPORTED, not a hard gate -- the G9 lesson
+ok    C.8 a determinism-control precondition exists and is established before a corpus is opened
+ok    C.9 a pre-spend authorization is a precondition, not an assumption
+ok    C.10 with nothing measured, every gated family fails -- an unmeasured gate is not a passed one
+ok    C.11 there is no aggregate score that could hide a safety failure
+ok    C.12 the corpus policy names what is burnt and what is reserved
+ok    C.13 the spent Run-2 holdout is CLOSED and cannot be re-scored
+
+--- D. zero provider calls, proved from the source
+      replay provider invocations this run: 18
+ok    D.1 the replay provider was actually exercised (a harness that ran nothing proves nothing)
+ok    D.2 the module has 9 source files to scan
+ok    D.3 no network primitive, endpoint or credential appears anywhere in the module []
+ok    D.4 no vendor name appears in module CODE []
+
+141 passed, 0 failed

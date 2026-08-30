@@ -1,0 +1,74 @@
+
+> safety-insite-backend@1.0.0 test:expert-contract-foundation
+> ts-node scripts/test-expert-contract-foundation.ts
+
+
+--- A. the protection matrix
+ok    A.1 twelve behavioural authority surfaces
+ok    A.2 twelve frozen governance contracts (section 98.6)
+ok    A.3 no surface anywhere permits SUPPRESS or MUTATE
+ok    A.4 every surface degrades to SURFACE_UNCHANGED when Expert is missing
+ok    A.5 every surface may be challenged -- disagreement is always expressible
+ok    A.6 permitted actions come from the closed vocabulary
+ok    A.7 GOVERNED_REGULATORY_CITATION does not permit ADD
+ok    A.7 KNOWLEDGE_RELEASE_PROVENANCE does not permit ADD
+ok    A.7 FAIL_CLOSED_AND_FALLBACK does not permit ADD
+ok    A.7 JURISDICTION_HANDLING does not permit ADD
+ok    A.8 hazard recognition does permit ADD -- an extra advisory candidate cannot reduce recall
+ok    A.9 unknown surface resolves to null
+ok    A.10 an unknown surface permits nothing (fail closed)
+ok    A.11 surface keys are unique
+ok    A.12 every surface names an authority source, an evidence pin and a rationale
+ok    A.13 every frozen contract is claimed by a surface []
+
+--- B. non-goals
+ok    B.1 ten non-goals recorded
+ok    B.2 provider-specific architecture is a non-goal
+ok    B.3 a citation smuggled into prose is rejected, not sanitized
+ok    B.4 a release id anywhere in the payload rejects the whole analysis
+ok    B.5 a governance field NESTED three deep is still found
+ok    B.6 the forbidden-field list names the three that matter most
+
+--- C. the normalization boundary
+ok    C.1 a well-formed empty analysis validates
+ok    C.2 the validated object records the validator version
+ok    C.3 the timestamp is injected, so a replay reproduces byte-for-byte
+ok    C.4 non-object provider output rejects (null)
+ok    C.4 non-object provider output rejects ("a string")
+ok    C.4 non-object provider output rejects (42)
+ok    C.4 non-object provider output rejects ([])
+ok    C.4 non-object provider output rejects (undefined)
+ok    C.5 a contract version mismatch rejects
+ok    C.6 an analysis id mismatch rejects -- an answer to a different question is not an answer
+ok    C.7 an outcome outside the closed vocabulary rejects
+ok    C.8 "unavailable" cannot be used to deliver content
+ok    C.9 quoted text that is not the span rejects
+ok    C.10 an out-of-bounds span rejects
+ok    C.11 an unknown evidence source rejects
+ok    C.12 a near-miss hazard family rejects (case matters)
+ok    C.13 a condition state outside the closed vocabulary rejects
+ok    C.14 a disagreement against a surface the matrix does not govern rejects
+ok    C.15 a well-formed governed disagreement is accepted as evidence
+ok    C.16 an "interaction" with one participant is dropped and recorded, not fatal
+ok    C.17 fabricated evidence and governance leakage are analysis-fatal
+ok    C.18 a malformed collection member is item-level, not analysis-fatal
+
+--- D. THE CLARIFICATION CARRIER -- the six proofs
+ok    D.1 zero hazard candidates + a valid decision-critical clarification SURVIVES
+ok    D.2 a hazard candidate and a clarification both survive, independently
+ok    D.3 multiple clarifications retain identity AND order
+ok    D.3b a duplicate clarification id is refused and recorded, so identity stays a key
+ok    D.4 an empty clarification collection remains valid
+ok    D.5a a malformed clarification FAILS schema validation (issue emitted)
+ok    D.5b the issue names its collection and index, so the refused item is locatable
+ok    D.5c the malformed item is absent and the GOOD one survives -- a bad question never destroys the analysis
+ok    D.5d a question that changes no product decision is refused and recorded (L3-INV-06)
+
+note  D.6 (provider failure does not affect Level-1) is proved in test-expert-authority-merge.ts and test-expert-provider-failure.ts, against a real merge.
+
+--- E. containment: the Expert module depends on no unaccepted reasoning tier
+ok    E.1 no Expert source file references the quarantined Level-3 module []
+ok    E.2 the Level-3 vocabulary was read as data (8 members)
+ok    E.3 the duplicated condition-state vocabulary is IDENTICAL to the Level-3 one
+
+56 passed, 0 failed

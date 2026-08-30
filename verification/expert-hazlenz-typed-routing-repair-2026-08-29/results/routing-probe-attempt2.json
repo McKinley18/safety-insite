@@ -1,0 +1,581 @@
+{
+  "contractVersion": "hazlenz.expert.analysis.v2",
+  "promptVersion": "hazlenz.expert.prompt.v3",
+  "provider": "local-ollama",
+  "modelRequested": "qwen3-coder:30b",
+  "modelResponded": [
+    "qwen3-coder:30b"
+  ],
+  "callCeiling": 12,
+  "callsAttempted": 7,
+  "callsCompleted": 7,
+  "schemaValid": 7,
+  "actualCostUsd": 0,
+  "totalPromptTokens": 9085,
+  "totalOutputTokens": 3473,
+  "latencyMsP50": 8660,
+  "latencyMsMax": 11054,
+  "routing": {
+    "TYPED_ROUTING_OPPORTUNITIES": 16,
+    "TYPED_ROUTING_HITS": 16,
+    "TYPED_ROUTING_MISSES": 0,
+    "TYPED_ROUTING_OVER_ROUTED": 0,
+    "EXPLANATION_ONLY_LOSSES": 0,
+    "byCollection": {
+      "expertHazardCandidates": {
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "decisionCriticalClarifications": {
+        "opportunities": 6,
+        "hits": 6,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "crossHazardInsights": {
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0
+      },
+      "disagreements": {
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0
+      }
+    }
+  },
+  "gates": [
+    {
+      "gate": "G01",
+      "name": "transport remains callable",
+      "pass": true,
+      "detail": "7/7 HTTP 200"
+    },
+    {
+      "gate": "G02",
+      "name": "schema validity remains intact",
+      "pass": true,
+      "detail": "7/7 PRESENT"
+    },
+    {
+      "gate": "G03",
+      "name": "zero-candidate clarification still survives",
+      "pass": true,
+      "detail": "R1 clar=3 cand=1"
+    },
+    {
+      "gate": "G04",
+      "name": "wet/electrical interaction lands in crossHazardInsights",
+      "pass": true,
+      "detail": "R2 insights=1"
+    },
+    {
+      "gate": "G05",
+      "name": "decision-changing missing facts land in decisionCriticalClarifications",
+      "pass": true,
+      "detail": "R3 clar=2, R2 clar=2"
+    },
+    {
+      "gate": "G06",
+      "name": "extra plausible hazards land in expertHazardCandidates",
+      "pass": true,
+      "detail": "R4 candidates=1"
+    },
+    {
+      "gate": "G07",
+      "name": "multi-collection cases populate independently",
+      "pass": true,
+      "detail": "R5 cand=1 clar=2 ins=1"
+    },
+    {
+      "gate": "G08",
+      "name": "explanation is not the sole carrier (EXPLANATION_ONLY_LOSSES = 0)",
+      "pass": true,
+      "detail": "0 loss(es)"
+    },
+    {
+      "gate": "G09",
+      "name": "uncertainty is not a catch-all carrier",
+      "pass": true,
+      "detail": "0 concept(s) found only in uncertainty"
+    },
+    {
+      "gate": "G10",
+      "name": "negative controls do not cause indiscriminate typed emissions",
+      "pass": true,
+      "detail": "R6 over=0 (c0/q0/i0/d0)  R7 over=0 (c0/q0/i0/d0)"
+    },
+    {
+      "gate": "G11",
+      "name": "quote binding remains fail-closed",
+      "pass": true,
+      "detail": "no unbindable quote arose live — proved deterministically in test:expert-routing-contract D.4-D.7"
+    },
+    {
+      "gate": "G12",
+      "name": "protected deterministic/governed halves byte-identical through merge",
+      "pass": true,
+      "detail": "7/7 identical, 0 violations"
+    },
+    {
+      "gate": "G13",
+      "name": "no Level-3 quarantine / content guard regresses",
+      "pass": true,
+      "detail": "no file under src/ outside the Level-3 module references it; Expert core stays vendor-free"
+    },
+    {
+      "gate": "G14",
+      "name": "no hosted provider call occurred",
+      "pass": true,
+      "detail": "the only adapter is local-ollama on loopback; no hosted client or credential exists in the tree"
+    }
+  ],
+  "failedGates": 0,
+  "rows": [
+    {
+      "id": "R1",
+      "title": "ZERO-CANDIDATE CLARIFICATION",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 10931,
+      "promptTokens": 1273,
+      "outputTokens": 720,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 2,
+      "score": {
+        "fixtureId": "R1",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 3,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "Employees working in a vault near a transformer bay presents potential electrical hazards that require verification of de-energization and lockout/tagout procedures. The confined space nature of the vault introduces additional risks that must be assessed through ventilation checks. No definitive hazards were identified from the observation alone, but critical safety conditions require confirmation."
+    },
+    {
+      "id": "R2",
+      "title": "WET + ELECTRICAL",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 8660,
+      "promptTokens": 1310,
+      "outputTokens": 582,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 0,
+      "score": {
+        "fixtureId": "R2",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 2,
+        "hits": 2,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The observation identifies an active electrical hazard from an extension cord running through standing water while a worker reaches into a sump pump housing. The wet environment significantly increases the risk of electrical shock. Critical clarifications are needed regarding whether the equipment is de-energized and if lockout/tagout has been applied. The interaction between standing water and electrical exposure creates a heightened hazard that requires immediate attention."
+    },
+    {
+      "id": "R3",
+      "title": "LOTO / STORED ENERGY",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 9583,
+      "promptTokens": 1297,
+      "outputTokens": 642,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 2,
+      "score": {
+        "fixtureId": "R3",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The inspection identified an active machine guarding hazard with the conveyor drive guard removed. The millwright was working on the take-up pulley without the guard in place, which creates a potential for stored energy release or unexpected movement. Critical clarifications are needed regarding whether the system was de-energized and if lockout/tagout procedures were applied before work began. There is also a possible interaction between mobile equipment and pedestrian exposure that requires further investigation."
+    },
+    {
+      "id": "R4",
+      "title": "EXTRA PLAUSIBLE HAZARD",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 11054,
+      "promptTokens": 1306,
+      "outputTokens": 742,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 3,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 2,
+      "score": {
+        "fixtureId": "R4",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "OPTIONAL",
+            "count": 3,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "OPTIONAL",
+            "count": 1,
+            "verdict": "NOT_SCORED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 1,
+        "hits": 1,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 2
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The observation identifies a chemical exposure hazard from an open solvent drum, which is already established as active and actionable. There are insufficient details to determine if the below-grade sump constitutes a confined space or whether adequate ventilation exists to prevent vapor accumulation. The type of residue being removed also affects potential exposure risks. These uncertainties could impact the severity assessment and required controls for the chemical exposure hazard."
+    },
+    {
+      "id": "R5",
+      "title": "MULTI-COLLECTION",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 8563,
+      "promptTokens": 1307,
+      "outputTokens": 571,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 1,
+        "clarifications": 2,
+        "insights": 1,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 0,
+      "score": {
+        "fixtureId": "R5",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "REQUIRED",
+            "count": 2,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "REQUIRED",
+            "count": 1,
+            "verdict": "CORRECT_POPULATED"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "OPTIONAL",
+            "count": 0,
+            "verdict": "NOT_SCORED"
+          }
+        ],
+        "opportunities": 3,
+        "hits": 3,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The observation describes a forklift charging in a wet aisle with pedestrians present, creating potential electrical hazards. The wet conditions and active charger interact to increase risk. Key facts needed to fully assess the hazard include whether the charger is energized and if proper separation exists between pedestrians and the charging area."
+    },
+    {
+      "id": "R6",
+      "title": "EXPLANATION-ONLY NEGATIVE CONTROL",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 1885,
+      "promptTokens": 1298,
+      "outputTokens": 116,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 0,
+      "score": {
+        "fixtureId": "R6",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The observation describes a lockout/tagout procedure that was completed with supervisor tag application, energy bled down and verified, and second worker verification. No additional hazards or interactions were identified beyond the controlled lockout/tagout state."
+    },
+    {
+      "id": "R7",
+      "title": "UNCERTAINTY NEGATIVE CONTROL",
+      "ran": true,
+      "httpStatus": 200,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "respondedModel": "qwen3-coder:30b",
+      "latencyMs": 1657,
+      "promptTokens": 1294,
+      "outputTokens": 100,
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "issues": [],
+      "counts": {
+        "candidates": 0,
+        "clarifications": 0,
+        "insights": 0,
+        "disagreements": 0
+      },
+      "uncertaintyStatements": 0,
+      "score": {
+        "fixtureId": "R7",
+        "perCollection": [
+          {
+            "collection": "expertHazardCandidates",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "decisionCriticalClarifications",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "crossHazardInsights",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          },
+          {
+            "collection": "disagreements",
+            "expectation": "FORBIDDEN",
+            "count": 0,
+            "verdict": "CORRECT_EMPTY"
+          }
+        ],
+        "opportunities": 4,
+        "hits": 4,
+        "misses": 0,
+        "overRouted": 0,
+        "explanationOnlyLosses": [],
+        "zeroCandidateClarificationPresent": false,
+        "uncertaintyStatementCount": 0
+      },
+      "protectedShapeUnchanged": true,
+      "mergeViolations": [],
+      "citationShaped": false,
+      "summary": "The fixed ladder inspection was current and no deficiencies were observed. No additional hazards or interactions were identified that would change the controlled status of fall protection."
+    }
+  ]
+}

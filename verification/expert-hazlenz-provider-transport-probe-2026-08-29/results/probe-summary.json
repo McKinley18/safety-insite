@@ -1,0 +1,252 @@
+{
+  "provider": "local-ollama",
+  "modelRequested": "qwen3-coder:30b",
+  "modelResponded": [
+    "qwen3-coder:30b"
+  ],
+  "endpoint": "http://127.0.0.1:11434",
+  "callCeiling": 12,
+  "callsAttempted": 6,
+  "callsCompleted": 6,
+  "stoppedEarlyBecause": null,
+  "actualCostUsd": 0,
+  "costBasis": "local inference on the host; no metered API was contacted",
+  "totalPromptTokens": 4190,
+  "totalOutputTokens": 2347,
+  "latencyMsP50": 7510,
+  "latencyMsMax": 10175,
+  "cheapRepeatabilityIdenticalCollectionCounts": true,
+  "gates": [
+    {
+      "gate": "G01",
+      "name": "provider is callable",
+      "pass": true,
+      "detail": "6/6 returned HTTP 200"
+    },
+    {
+      "gate": "G02",
+      "name": "no credential/configuration failure prevents intended use",
+      "pass": true,
+      "detail": "local transport needs no credential; none was read"
+    },
+    {
+      "gate": "G03",
+      "name": "all intended successful calls return at the transport level",
+      "pass": true,
+      "detail": "6/6"
+    },
+    {
+      "gate": "G04",
+      "name": "required structured output is parseable",
+      "pass": true,
+      "detail": "6/6 parsed as JSON"
+    },
+    {
+      "gate": "G05",
+      "name": "output validates against the internal Expert schema after normalization",
+      "pass": true,
+      "detail": "6/6 reached PRESENT"
+    },
+    {
+      "gate": "G06",
+      "name": "a decision-critical clarification can exist with ZERO hazard candidates",
+      "pass": true,
+      "detail": "2 response(s) carried a question with no candidate"
+    },
+    {
+      "gate": "G07",
+      "name": "no provider response mutated the deterministic/governed halves",
+      "pass": true,
+      "detail": "6/6 byte-identical, 0 invariant violations"
+    },
+    {
+      "gate": "G08",
+      "name": "provider/model identity captured from the response body",
+      "pass": true,
+      "detail": "responded model: qwen3-coder:30b"
+    },
+    {
+      "gate": "G09",
+      "name": "token usage captured where available",
+      "pass": true,
+      "detail": "prompt+output token counts present on every 200"
+    },
+    {
+      "gate": "G10",
+      "name": "latency measured",
+      "pass": true,
+      "detail": "p50 7510 ms"
+    },
+    {
+      "gate": "G11",
+      "name": "actual/best-computable cost recorded",
+      "pass": true,
+      "detail": "ACTUAL $0.00 — local inference, no metered API"
+    },
+    {
+      "gate": "G12",
+      "name": "no fabricated citation/provenance accepted as governed authority",
+      "pass": true,
+      "detail": "0 citation-shaped strings in any accepted advisory block"
+    },
+    {
+      "gate": "G13",
+      "name": "malformed output, IF encountered, fails closed at the boundary",
+      "pass": true,
+      "detail": "not encountered live — proved deterministically in test:expert-provider-failure"
+    },
+    {
+      "gate": "G14",
+      "name": "the protected customer path remains untouched",
+      "pass": true,
+      "detail": "no module on the HTTP customer path imports Expert HazLenz or its adapter"
+    }
+  ],
+  "failedGates": 0,
+  "rows": [
+    {
+      "id": "P1",
+      "intent": "multi-hazard with a real interaction — does anything come back at all",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 736,
+      "outputTokens": 315,
+      "latencyMs": 10175,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 0,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    },
+    {
+      "id": "P2",
+      "intent": "GATE 6 — underdetermined observation, no basis for any candidate",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 668,
+      "outputTokens": 518,
+      "latencyMs": 7510,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 1,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    },
+    {
+      "id": "P3",
+      "intent": "negated / safe state — a described safe state must not become a finding",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 682,
+      "outputTokens": 319,
+      "latencyMs": 4697,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 0,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    },
+    {
+      "id": "P4",
+      "intent": "GATE 12 — a governed record is supplied; no citation may be fabricated",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 720,
+      "outputTokens": 331,
+      "latencyMs": 4887,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 0,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    },
+    {
+      "id": "P5",
+      "intent": "GATE 7 — life-critical finding must survive whatever the model says",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 716,
+      "outputTokens": 346,
+      "latencyMs": 5083,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 0,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    },
+    {
+      "id": "P2R",
+      "intent": "GATE 6 — underdetermined observation, no basis for any candidate",
+      "ran": true,
+      "layerStatus": "PRESENT",
+      "failureKind": null,
+      "httpStatus": 200,
+      "respondedModel": "qwen3-coder:30b",
+      "promptTokens": 668,
+      "outputTokens": 518,
+      "latencyMs": 7561,
+      "doneReason": "stop",
+      "quotesTotal": 0,
+      "quotesBound": 0,
+      "quotesUnbindable": 0,
+      "normalizationIssues": [],
+      "candidates": 0,
+      "clarifications": 1,
+      "insights": 0,
+      "disagreements": 0,
+      "mergeViolations": [],
+      "protectedShapeUnchanged": true,
+      "citationShapedInAccepted": false
+    }
+  ]
+}

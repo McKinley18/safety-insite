@@ -1,0 +1,36 @@
+# PRESERVATION AND REPOSITORY STATE — measured 2026-08-29, end of operation
+
+HEAD          de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+branch        main
+upstream      origin/main  (0/0 ahead/behind)
+stashes       4
+tags          24
+worktree      2167 entries
+
+## tracked files modified by this operation
+ M backend/package.json
+ M docs/INSITE_CURRENT_STATE.json
+ M docs/INSITE_ENGINEERING_BLUEPRINT.md
+ M frontend-next/tsconfig.json
+
+## the known contamination, untouched
+73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535  frontend-next/tsconfig.json
+expected      73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535
+
+## the excluded KG source-evidence deletion, preserved as-is
+ D verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml
+
+## new file hashes
+8814f67bec9ec42e565d44bd895059c63c3f47553f6ef0139ffbe6a21c3ff6f2  backend/src/safescope-v2/expert-hazlenz/expert-authority-matrix.ts
+db5ffe30722cc7181f46e06b4e5b1efb5fddcdcba736177f23bc1483f3f57c04  backend/src/safescope-v2/expert-hazlenz/expert-authority-merge.ts
+97b5383fb2ae287360737bc71c7e33a0c82f40c7d1124a958fed42b708095af5  backend/src/safescope-v2/expert-hazlenz/expert-contract.types.ts
+0b9b273a0c7bc24b226374fe544d5d32c5dba2dd03259b1bf7a3872a4d5b2bd8  backend/src/safescope-v2/expert-hazlenz/expert-evaluation-plan.ts
+e4d559fe650f1cd941b6fa43e1cef348fd93b85fe0e8d1d0e69cc85fb9f6b03c  backend/src/safescope-v2/expert-hazlenz/expert-normalization.ts
+c79c0cfb3c5f8c6103999e7a0820afb10296c47c7682487685e4a6d393769a99  backend/src/safescope-v2/expert-hazlenz/expert-provider.ts
+698c052473cdd01abfa59d3405b8ee56deb7c01956db77bf964e739af9346e10  backend/src/safescope-v2/expert-hazlenz/expert-runner.ts
+9ecd69eadfab9619987df38c9277badf5a5e716dd63b989229aba3965761d1b2  backend/src/safescope-v2/expert-hazlenz/replay-expert-provider.ts
+2d63307fce29171b9aae13ff95cd6c8fce50361b2e98babf71c36568e7964e46  backend/src/safescope-v2/expert-hazlenz/fixtures/no-call-scenarios.ts
+a5829da96c386cdca260d8d4b79847dce31927a050d6775f2edb3c330cc1b3b5  backend/scripts/test-expert-authority-merge.ts
+e40348d04d010b3ae43cbc86d3db97a9e37440391c785243cbd40239caaecca4  backend/scripts/test-expert-contract-foundation.ts
+738f47d24211289c80e30a58d36eb2e134acaece372cb53fee41a81cb2ba83c4  backend/scripts/test-expert-nocall-harness.ts
+d510c6795b80c682682375bfc9277b80598f56ef3b318c1a6461c24996d4f419  backend/scripts/test-expert-provider-failure.ts

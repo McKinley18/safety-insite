@@ -2093,6 +2093,11 @@ describes the customer's actual result.
 | D-106 | PRELAUNCH-ARCH | **`shield` IN THE EXCAVATION REGEX MATCHES "FACE SHIELD", AND THE FALSE POSITIVE OUTSCORES A REAL TRENCH. ROOT-CAUSED, DELIBERATELY NOT REPAIRED.** `multi-hazard-decomposition.service.ts:1267` includes `shield(?:ing)?`, intended as a **trench shield**, and pushes `excavation_trenching` at a hard-coded **0.85**. Single-sentence probes: *face shield* **0.85**, *welding shield* **0.85**, *splash shield on a parts washer* **0.85**, *eye protection* (no `shield`) **none**, and a genuine *unshored trench with a spoil pile* **0.60**. In the measured journey the spurious finding carried the fragment *"the operator was not wearing a face shield"* into the frozen report snapshot under `Finding 3 — Excavation Trenching`. `hot_work` on the same sentence is **NOT** a defect — `grindCutActivity` deliberately treats `portable grinder` as hot-work evidence and documents it — but it doubles reviewer work identically. **Repair is W-2 and must land with the four probes as regressions, Level-1 31/31 unrelaxed, and NO scorer, threshold or gold-set expectation modified.** | §84.4 |
 | D-107 | PRELAUNCH-ARCH | **REPORTS STAY VERSIONED IMMUTABLE SNAPSHOTS; WHAT IS MISSING IS A NAME, A VISIBLE REGENERATION LIFECYCLE, AN UNARCHIVE ROUTE AND A LIST PROJECTION.** The existing model is right and is KEPT: one report per inspection, append-only versions each freezing a `sourceSnapshot` and the PDF with sha256, fingerprint dedupe, prior versions retained and downloadable, `organizationId` XOR `ownerUserId` by CHECK. A live-projection report is REJECTED — a document shown to regulators must not change after it was sent. **Measured gaps:** no `name` column (the list derives `inspection.title · siteName`); no unarchive route although the UI button says "Delete Report"; generation requires `completed`, so reopening to add a finding makes regeneration impossible until re-completed, with no UI for either transition; and `list()` returns every version's full `sourceSnapshot` — **196,016 bytes for ONE one-version report**, of which 71% is raw analysis, against a 12,915-byte PDF. **This quantifies open item `KG4E-DISC-03`.** Separately, `/inspection`, `/inspection-quick`, `/inspection-cover`, `/inspection-review` and `legacy/reports` are an unreachable SECOND report implementation — the concrete contradictory-source-of-truth risk (W-4). **PROPOSED, NOT IMPLEMENTED.** | §84.5, §84.7 |
 | D-108 | PRELAUNCH-ARCH | **NO OPERATING LIMIT IS CLAIMED, AND THE CONFIGURATION FACTS THAT WOULD DETERMINE ONE ARE NOW RECORDED.** `TypeOrmModule.forRootAsync` sets **no `extra.max`**, so the `pg` pool runs at its **default of 10 connections**, with no statement, connection or acquire timeout; global throttle is 100 req/60 s; HazLenz Level-1 classification is **in-process and CPU-bound**, so concurrent classification competes for the same event loop as every other route. A single-client warm-process probe measured `classify` at **p50 56 ms / p95 81 ms** (n=12) and is recorded as **INDICATIVE ONLY — NOT a capacity measurement**. **`CAPACITY_LIMITS = NOT_MEASURED`.** Eight tests (C-1 pool saturation, C-2 concurrent classify, C-3 report generation under the advisory lock, C-4 list payload before and after the projection fix, C-5 storage growth, C-6 offline sync burst, C-7 isolation under load, C-8 throttle intent) are specified and **none has been run**. No number may be published before they are. | §84.6 |
+| D-109 | GOVERNED-CUTOVER | **THE GOVERNANCE BASELINE IS FROZEN ON PRODUCTION EVIDENCE, NOT ON A GREEN CHECKLIST.** The freeze was withheld in §95.7 precisely because the emergency stop had never been exercised in the environment it protects. It is granted now because the owner-run acceptance measured it there: **35 passed, 0 failed** across six steps, with inspection `84f5b1cf-1e2b-4b6a-88f3-824e26754eff` bound exactly once to `federal-core-2026-08-28.1` and unchanged through the cycle, and inspection `54d9d516-28bd-4ec8-826b-59b6619cddec` NULL during the stop **and still NULL after release**. The post-acceptance floor was then re-executed at the same SHA: HazLenz 43/43 · 43/43 · 35/35 · 35/35, precision 100 %, forbidden emissions 0; cutover floor **837/0**; kill-switch authority **115/0**; cutover family **1,640/0**; 14 governance suites; the customer-workflow floor; and **4/4** OPEN-4 scripts. Twelve contracts are frozen. **The freeze binds the BOUNDED path only — `GOVERNED_CUTOVER_ORG_ALLOWLIST` stays absent and no universal rollout is claimed or authorized.** | **ACTIVE — PROTECTED_DECISION** | §98, `verification/insite-v1-post-acceptance-regression-2026-08-29/STATUS.md` |
+| D-110 | GOVERNED-CUTOVER | **EXPERT HAZLENZ IS AUTHORIZED AS AN ADDITIVE LAYER AND WAS DELIBERATELY NOT STARTED.** The deterministic Level-1 engine remains the protected safety authority and fallback. A future Expert phase must not silently remove Level-1 hazards, weaken dangerous-hazard recall, downgrade authoritative governed standards, bypass approval/governance, rewrite inspection release provenance, or bypass kill-switch / cutover authority. No provider call is authorized by the authorization itself; this operation made **0**. Debt is carried forward unchanged rather than tidied into the freeze: `test:kg5b-operator-cli` **64/65** (a stale 35-record pin against a 72-record governed source set, file unmodified at HEAD, identical to §93 — not a regression and not repaired here), the unresolved-jurisdiction ranking behaviour, `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER`, and `LIVE_PAYMENT_PROOF = FALSE`. | **ACTIVE — PROTECTED_DECISION** | §98.7, §98.8 |
+| D-111 | EXPERT-HAZLENZ | **THE EXPERT FOUNDATION IS EXECUTABLE, AND IT IS NOT A FEATURE.** Nine source files under `backend/src/safescope-v2/expert-hazlenz/` and four deterministic suites totalling **379 assertions, 0 failed**, with **0 provider calls and $0.00**. `EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN = TRUE`, but `EXPERT_HAZLENZ_CUSTOMER_ACTIVE = FALSE` and `EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE`: nothing on the customer path imports the module and no provider exists behind the interface. **Three things are settled as structure rather than as rules.** (1) The protection matrix holds twelve behavioural surfaces, every one of §98.6's twelve frozen contracts is claimed by one, and **no surface permits SUPPRESS or MUTATE**. (2) The clarification carrier defect is removed as a POSSIBILITY -- four sibling collections, no candidate-owned clarification field -- and the brief's premise was corrected from evidence: Run-2 measured **13 of 13** clarification misses expressed in NEITHER carrier, so coupling was not what lost the questions. (3) The merge copies both protected authorities verbatim and appends the advisory one, so Expert failure, timeout, malformed output, contradiction and omission all leave the protected halves **byte-identical** to a merge with no Expert layer. **A protected guard was broken by this work and the NEW CODE was changed, never the guard**: the L3 containment assertions (`l32i` F3, `l32j` D5) failed on an import from a tier that FAILED its sealed acceptance, so the Expert module was made self-contained; both are green at 61/0 and 37/0. The first provider evaluation is **pre-registered and not run** -- seventeen measures, four independent families, no aggregate score, and reproducibility REPORTED rather than gated until a determinism control is measured, which is the G9 lesson. Two server-dependent suites (`hazlenz-clarification-gauntlet`, `kg4b-default-off`) failed at ECONNREFUSED and are recorded as NOT EXECUTED, not as passes. | **ACTIVE — PROTECTED_DECISION** | §99, `verification/expert-hazlenz-contract-foundation-2026-08-29/STATUS.md` |
+| D-112 | EXPERT-HAZLENZ | **THE TRANSPORT WORKS, THE PROVIDER QUESTION DOES NOT CLOSE, AND THE ONE REAL DEFECT FOUND IS OURS.** Six real provider calls, all local (`qwen3-coder:30b` on loopback), **$0.00**, ceiling 12, no early stop. **All fourteen hard transport gates PASSED** -- 6/6 HTTP 200, 6/6 parsed, 6/6 validated through the boundary, 6/6 protected halves byte-identical, 0 merge-invariant violations, model identity read from the provider's own response body, tokens and latency captured. **G06 has live evidence twice**: a real model returned a decision-critical clarification with ZERO hazard candidates and it survived adapter, boundary and merge. **G13 passed VACUOUSLY and is labelled so** -- no malformed output arose in six calls. Provider choice was FORCED, not made: no hosted credential is resolvable (`ANTHROPIC_API_KEY` absent, Gemini absent, `OPENAI_API_KEY` an 11-character stub), which is `D-92`'s position again. **The verdict is INCONCLUSIVE anyway, for two independent reasons.** First, five of six responses returned empty typed collections, and one diagnostic call proved that reading wrong: the model DID reason -- the wet/electrical interaction, four decision-critical missing facts and an extra plausible hazard were all present, but landed in `expertExplanation` and `uncertainty` instead of `decisionCriticalClarifications`, `crossHazardInsights` and `expertHazardCandidates`. That is a PROMPT/SCHEMA defect of ours -- the same representation-loses-the-reasoning class the L3 programme kept hitting -- and evaluating now would score M09/M11 near zero and bill our bug to the provider while burning a reserved cohort. Second, no HOSTED provider's transport was measured at all. **Not FAILED (nothing failed); not PASSED (a PASS requests evaluation spend).** The adapter lives in a SIBLING directory because the §99 no-call guard forbids vendor names in the core -- a guard written before the adapter existed decided the architecture. | **ACTIVE — PROTECTED_DECISION** | §100, `verification/expert-hazlenz-provider-transport-probe-2026-08-29/STATUS.md` |
+| D-113 | EXPERT-HAZLENZ | **THE ROUTING DEFECT WAS STRUCTURAL, THE FIRST FIX FAILED, AND THE SECOND ONE IS MEASURED.** §100's free-text drainage had a cause in the schema, not the model: `whatIsMissing`, `howConditionsInteract` and `whatMatters` were free-text TWINS of three typed collections, and a model asked to fill both fills the easier one. The twins were DELETED rather than discouraged (contract -> `analysis.v2`), because an instruction competes with a field and an absent field does not. **Attempt 1 failed 8 of 14 gates** and is recorded, not absorbed. Its two measurements found the real gate: `expertHazardCandidates` empty on **13 of 13** live calls while other collections began to populate, and **`quotes = 0/0`** on every call -- and candidates were the ONLY collection whose schema listed `evidence` as required. **The gate on the collection was a quote the model could not produce.** Attempt 2 made the quote optional (empty evidence has been contract-legal since §99; only the wire schema demanded it) and narrowed `NOTHING_TO_ADD`. **The validator did not move** -- a supplied quote is still checked by exact equality and a fabricated one still rejected, so this changed what is ASKED FOR, not what is ACCEPTED. Result: **16/16 routing opportunities, 0 misses, 0 over-routing, `EXPLANATION_ONLY_LOSSES = 0`, 14/14 gates**. The load-bearing evidence is the NEGATIVE CONTROLS: R6 and R7 returned every collection empty at ~110 output tokens, so the repair taught placement rather than chattiness. The metric was validated BEFORE use (57/0), including that correctly-typed content scores zero losses even when the summary repeats it. `G14` first reported a FALSE FAILURE by grepping the adapter's own comment about absent credentials -- **the third content-grep-matches-prose incident in this programme** -- and the instrument was fixed, not the result. A routing pass is NOT provider validation: 14 local calls, **$0.00**, 0 hosted calls, and `EXPERT_HAZLENZ_PROVIDER_VALIDATED` / `EXPERT_HAZLENZ_CUSTOMER_ACTIVE` both stay FALSE. New debt: the model has still never produced an evidence quote, so every Expert candidate so far is UNGROUNDED. | **ACTIVE — PROTECTED_DECISION** | §101, `verification/expert-hazlenz-typed-routing-repair-2026-08-29/STATUS.md` |
 
 ---
 
@@ -16367,6 +16372,1073 @@ remains an accurate description of the deployed system.
 The bounded cutover of §91.4 should follow only after that deployment.
 
 ---
+
+## 94 — THE KILL-SWITCH AUTHORITY REPAIR IS DEPLOYED TO PRODUCTION (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+```
+TERMINAL = HAZLENZ_GOVERNED_KILL_SWITCH_AUTHORITY_REPAIR_DEPLOYED
+           -- BOUNDED_CUSTOMER_GOVERNED_MODE_ACCEPTANCE_REQUIRED
+
+BEFORE : HEAD = origin/main = production = 45251d38a4e800bbff461708aa4c77061feade56
+AFTER  : HEAD = origin/main = production = de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+```
+
+One commit, `de655d2f`, parent `45251d38`, **155 files, +17,312 / −462**. Pushed to `origin/main`,
+which — `autoDeploy=yes`, `autoDeployTrigger=commit`, `branch=main` — **is** the production
+deployment, and was explicitly authorized as such.
+
+### 94.1 The deployment `VERIFIED_AT_CHECKPOINT`
+
+| fact | value |
+|---|---|
+| Render deploy id | `dep-da941vu7bikc73am99mg` |
+| trigger | `new_commit` (not manually triggered) |
+| commit | `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936` |
+| status | **live**, finished `2026-08-29T02:18:12Z` |
+| previous live deploy | `dep-da8t858u01pc73cji2cg` @ `45251d38`, now superseded |
+
+`/health` — `status: ok`, `database: up`, `nodeEnv: production`,
+`gitCommit: de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`, `versionSourceStatus: RENDER_GIT_COMMIT`.
+`/health/ready` — **HTTP 200**, `status: ready`, `database: available`, same commit. Boot logs show
+`RENDER START DIAGNOSTIC PASSED`, `Environment: production`, `Backend listening on port 10000`.
+
+**The deployed artifact provably carries the repair.** `cutover-kill-switch.ts` exists in the
+deployed commit tree at sha256 `1fa2beeb05c3612f29023ab267777afd7575f541f65b1b0c545f979a516e28ae` —
+identical to the accepted record — and the authoritative brake
+`if (killSwitch.engaged) return decided('LEGACY', false, 'KILL_SWITCH_ENGAGED');` is present in
+`cutover-mode.ts` at line 307 of the deployed tree.
+
+### 94.2 What was committed, and what was deliberately excluded `PROTECTED_DECISION`
+
+Staged path by path — **never `git add -A`** — after classifying every candidate.
+
+Committed: the four cutover implementation files (one new), the four repair test files, the
+`package.json` script entries, `test-approval-contract.ts` and
+`test-release-identity-ownership-exemption.ts` (accepted reconciliation), the four
+`frontend-next/scripts/check-*.mjs` OPEN-4 reconciliations, both master documents, and the three
+governed-cutover evidence packages (`insite-v1-production-governed-cutover-2026-08-28`,
+`insite-v1-customer-governed-mode-cutover-2026-08-29`,
+`insite-v1-governed-kill-switch-authority-repair-2026-08-29`).
+
+**Excluded, and not deleted:**
+
+* `frontend-next/tsconfig.json` — the known contamination, still at
+  `73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535`, unstaged and unmodified.
+* the working-tree deletion of
+  `verification/hazlenz-governed-knowledge-growth-2026-08-19/kg-3e/source-evidence/ecfr-1910-146.xml`
+  — **UNCERTAIN, so not staged.** It is 84 KB of committed authoritative eCFR source evidence, it
+  is named in that directory's `SHA256SUMS.txt`, every sibling `ecfr-*.xml` is still present, and
+  Finder duplicates `ecfr-1910-146 2.xml` / `ecfr-1910-146 4.xml` sit beside it — an accidental
+  Finder move, not a decision. Committing the deletion would have broken a frozen checksum manifest.
+  **The file remains intact in git history and this remains an open worktree discrepancy.**
+* 26 Finder `… 2.*` duplicates, `backend/tsconfig.tsbuildinfo`, the compiled
+  `scripts/lib/test-database-ownership.{js,d.ts,js.map}`, `frontend-next/scripts/.walk.tmp.mjs`,
+  `Safety InSite Logos/`, and the ~2,100-entry pre-existing historical verification corpus.
+* 7 disposable-server boot logs under the new evidence directory, excluded by the repository's own
+  `.gitignore` rule `*.log`. Every other evidence file is committed.
+
+Secret scan over all 162 intended files: no credentialed connection string, no bearer token, no
+`.env`, no dump, no key material. The four `sk_live`/`rk_live` pattern hits are **prose** in the
+master documents describing a previous phase's own scan, and `"ANTHROPIC_API_KEY": "absent"` is a
+status field. Disposable local test passwords appear nowhere in the payload.
+
+### 94.3 Customer governed mode remains OFF `PROTECTED_DECISION`
+
+This deployment ships the repair and **nothing else**. No `GOVERNED_CUTOVER_*` variable was created.
+
+* **No Render mutation occurred** — only read-only `render services` and `render deploys list` were
+  used, and CLI v2.20.0 has no capability to read or write service environment variables at all.
+* **No repository configuration introduces them** — there is no `render.yaml`; `backend/Dockerfile`
+  sets only `NODE_ENV` and `NODE_OPTIONS` and contains zero `GOVERNED_CUTOVER` occurrences; no
+  backend source assigns a value to any of the nine `GOVERNED_CUTOVER_*` names, which appear only as
+  env-name constants.
+* **The boot guard did not throw.** `main.ts` → `validateProductionEnvironment()` →
+  `assertCutoverConfigurationSafeForProduction()` runs first and unconditionally and refuses to boot
+  for any non-`LEGACY` mode without the exact acknowledgement sentinel, or for an unrecognised mode
+  value. The service is live, so neither condition holds.
+* **An allowlist is mandatory anyway.** With none configured, `resolveCutoverEnablement()` returns
+  `NO_ALLOWLIST_CONFIGURED → LEGACY`, and there is no universal-rollout switch short of naming
+  accounts.
+* **The newly deployed brake is dormant.** With the mode unset, enablement returns on
+  `MODE_IS_LEGACY` before the kill switch is consulted at all.
+
+**Stated as a limit:** the ten variables could not be *enumerated* in this operation, because the
+Render CLI cannot read them. Their absence rests on the product owner's manual dashboard
+verification recorded in §91.1, on this operation changing nothing on Render, and on the four
+architectural facts above — not on a fresh read.
+
+### 94.4 Production state after deployment `MUST_REVERIFY`
+
+Governed control-plane release `federal-core-2026-08-28.1` is **unchanged**: the deploy runs
+`npm run start:render` (diagnostic + `node dist/main.js`) with `synchronize: false`, so it applies no
+migration and performs no seed, and no database command was issued by this operation. That is
+architecture-derived, not re-measured — no production database connection was opened.
+
+```
+PRODUCTION_SHA                              = de655d2f6e4c0ff7b0de17f9ccfbd3668138a936
+KILL_SWITCH_AUTHORITY_REPAIRED_IN_PRODUCTION = TRUE
+CUSTOMER_GOVERNED_MODE_ENABLED               = FALSE
+GOVERNED_CUTOVER_VARIABLES_CREATED           = 0
+BOUNDED_CUSTOMER_GOVERNED_MODE_ACCEPTANCE    = PENDING
+```
+
+**Section 91.6 is now closed in production as well as locally.** The kill switch is an authoritative
+emergency stop in the deployed code. Its live behavioural proof under a real governed configuration
+belongs to the bounded acceptance, not to this deployment — enabling governed mode merely to test
+the brake was deliberately refused.
+
+### 94.5 Carried forward unchanged `MUST_REVERIFY`
+
+`test:kg5b-operator-cli` **64/65** — `PRE_EXISTING_STALE_EXPECTATION — NOT_INTRODUCED_BY_KILL_SWITCH_REPAIR`.
+The assertion pins a 35-record governed source set that the 2026-08-28 acquisition grew to 72. It
+failed at `45251d38` and fails identically at `de655d2f`; it was not touched.
+
+**OPEN-4 moves from "not repaired" to "repaired but not re-executed."** The four
+`frontend-next/scripts/check-*.mjs` reconciliations are now committed, and they re-pin assertions to
+properties rather than stale literals rather than relaxing them — but they were **not executed** in
+this programme (they need a browser plus a running frontend and backend). They are verification
+instruments, are not part of the Next.js build, and the frontend is not deployed by this service, so
+they cannot affect production. **OPEN-4 remains OPEN pending their execution.**
+
+Also unchanged: the unresolved-jurisdiction ranking defect, and `LIVE_PAYMENT_PROOF = FALSE`.
+
+### 94.6 Next authorization
+
+**Bounded customer governed-mode acceptance.** The product owner sets the three §91.4 variables
+together in the Render dashboard on `safety-insite-backend` (`srv-d7kl74jeo5us73deaor0`), changing
+nothing else, then runs the bounded acceptance as the named identity with a non-allowlisted control.
+That is now safe to attempt for the first time, because the emergency stop it depends on is finally
+authoritative in the deployed code.
+
+Nothing in this section authorizes that cutover, a further push, a database change, or a payment.
+
+---
+
+## 95 — OPEN-4 CLOSED; BOUNDED PRODUCTION ACCEPTANCE BLOCKED BEFORE MUTATION (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+Full record: `verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md`.
+HEAD, `origin/main` and production all `de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`, ahead/behind
+`0/0`. **No Render environment variable was changed, no production mutation of any kind occurred,
+and no source or test file was modified.**
+
+```
+TERMINAL = HAZLENZ_BOUNDED_GOVERNED_ACCEPTANCE_BLOCKED
+           -- AUTHENTICATED_ACCEPTANCE_SESSION_REQUIRED
+```
+
+### 95.1 OPEN-4 is CLOSED `VERIFIED_AT_CHECKPOINT`
+
+The four frontend verification scripts committed in `de655d2f` were executed for the first time in
+this programme, **exactly as committed**, and all four pass:
+
+| script | result |
+|---|---|
+| `check:free-observation-restore` | **28 / 0** |
+| `check:canonical-persistence` | **passed** — UI login, site/inspection/reload persistence, unauthenticated denial |
+| `check:closure-workflow` | **passed** — real HazLenz endpoint, human review, immutable report, logout protection |
+| `check:phase5-report-release` | **passed, 31 scenarios** — canonical single report, authorized PDF, cross-user 404, retired legacy routes |
+
+`OPEN_4_VERIFICATION_CLOSED = TRUE`. §94.5's *"repaired but not re-executed"* becomes **repaired and
+executed**. No script exposed a customer-workflow regression.
+
+**One sub-gap, declared by the script itself and recorded rather than absorbed:**
+`check-phase5-report-release` printed `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER` — the
+"bucket is not public" assertion is unreachable under `STORAGE_PROVIDER=local_test` and was not
+performed. Every other assertion in it ran.
+
+### 95.2 The two first-run failures were environment, and the auth one was checked against production `PROTECTED_DECISION`
+
+Both were fixed by correcting the disposable environment; **no script was edited**.
+
+`check-canonical-persistence` first reported *"Unauthenticated inspection lookup returned 404,
+expected 401."* Cause: `backend/.env` sets `DEV_AUTH_BYPASS=true`, which dotenv loads into any
+non-production backend, so the unauthenticated request resolved to the synthetic bypass principal
+and returned `404` instead of `401`. **Because this is an authentication assertion it was verified
+against production directly rather than reasoned about:** the deployed service returns **401** for
+unauthenticated `GET /inspections/{id}` and **401** for `GET /inspections`. `isDevBypassEnabled()`
+requires `DEV_AUTH_BYPASS === 'true'` **and** `NODE_ENV !== 'production'`, so the bypass is
+structurally unreachable in production. Re-run with `DEV_AUTH_BYPASS=false`: **PASSED**.
+
+`check-phase5-report-release` first reported the artifact was not persisted through the `s3`
+provider. Cause: the script reads `STORAGE_PROVIDER` from its **own** environment and defaults to
+`s3`; it had been exported to the backend but not to the script's shell. Re-run with it exported:
+**PASSED**.
+
+### 95.3 The acceptance is blocked, and both blockers are the owner's `MUST_REVERIFY`
+
+**B1 — no authenticated session for `e9a25131-…`.** Every governed entry point is behind `JwtGuard`
+(reconfirmed live: unauthenticated `/inspections` → 401), and no unauthenticated endpoint reports
+per-principal cutover posture (`/standards/cutover`, `/admin/cutover-status` → 404). **No credential
+for the acceptance account exists in this repository** — verified, not inherited: the identifier
+appears in six tracked files and in none is it accompanied by a password, token or secret. Obtaining
+one would mean putting a password or bearer token into the transcript, which this operation's own
+Phase 3 forbids. A password reset was not attempted: it mutates the owner's account and needs their
+mailbox.
+
+**B2 — Render environment variables still cannot be set with the available tooling.** CLI v2.20.0
+has no `env` command, `render services` exposes no environment-variable flag, and the read-only
+service payload does not contain the string `GOVERNED_CUTOVER`. No `render.yaml` exists.
+
+The ordering matters: **even a working session would not unblock this operation**, because Phases
+6–11 all require the three variables to be live first, and only the product owner can set them.
+
+### 95.4 An operator runbook now exists for Phases 4–11 `STABLE_INVARIANT`
+
+`verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/runbook/` — seven
+scripts plus a README, written so the credential never enters a transcript: the password is read
+with `read -rs` in the owner's own terminal, never echoed, never written to disk, never placed on a
+command line (so it reaches neither shell history nor the process table), and the bearer token is
+held in a shell variable and never printed.
+
+`01` boot gate (health + **source SHA unchanged**) · `02` eligibility · `03` binding acceptance
+(binds **once** to `federal-core-2026-08-28.1`; a second governed request must not rebind) ·
+`04` negative control (binds nothing, cannot force a release by naming one, cannot read the
+acceptance inspection) · `05` **the live emergency-stop proof** (customer path still `201`, new
+inspection unbound, already-bound provenance intact) · `06` release and restoration · `99` rollback
+verification.
+
+The README carries the atomicity warning — all three variables must be saved as one change, because
+the boot guard throws for a non-`LEGACY` mode without the acknowledgement sentinel and would
+crash-loop production — and the rollback order: clear the allowlist first, since it carries no boot
+risk whereas any `GOVERNED_CUTOVER_MODE` edit re-enters the boot guard. The negative control
+deliberately does not alter billing to manufacture itself.
+
+### 95.5 State, and what is still not true `MUST_REVERIFY`
+
+```
+OPEN_4_VERIFICATION_CLOSED                   = TRUE
+PRODUCTION_GOVERNED_RELEASE_ACTIVE           = TRUE  (federal-core-2026-08-28.1, control plane)
+KILL_SWITCH_AUTHORITY_REPAIRED_IN_PRODUCTION = TRUE  (deployed code)
+PRODUCTION_KILL_SWITCH_AUTHORITY_PROVEN      = FALSE (never engaged in production)
+CUSTOMER_GOVERNED_MODE_ENABLED               = FALSE
+CUSTOMER_GOVERNED_MODE_SCOPE                 = NONE
+UNIVERSAL_CUSTOMER_GOVERNED_MODE_ENABLED     = FALSE
+GOVERNED_CUTOVER_VARIABLES_IN_PRODUCTION     = 0
+POST_CUTOVER_CUSTOMER_ACCEPTANCE             = FALSE
+```
+
+The protected regression was deliberately **not** re-run: this operation changed no source or test
+file, and the full baseline was measured at this exact SHA in §93. It **is** required after the
+production acceptance actually runs.
+
+### 95.6 The governance baseline must NOT be frozen yet, and Expert HazLenz is NOT authorized `PROTECTED_DECISION`
+
+Both were made conditional on the bounded acceptance completing. The deployed emergency stop is
+proven by artifact identity and by a full local end-to-end proof on a running server — but it has
+**never been exercised in production**, and no production customer has ever taken the governed path.
+Freezing a governance baseline whose central safety control is unproven in the environment it exists
+to protect would be exactly the green-checklist verdict this programme has refused before.
+
+---
+
+---
+
+## 96 — THE BOUNDED ACCEPTANCE FAILED ON A HARNESS DEFECT, NOT ON THE PRODUCT (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `HAZLENZ_PRODUCTION_GOVERNED_ROLLBACK_UNVERIFIED — DO_NOT_REENABLE_CUTOVER`.**
+Evidence: `verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md`
+(addendum A1–A7), `.../acceptance/transcripts/`, `.../acceptance/harness-selftest/`.
+Predecessor: §95.
+
+### 96.1 What was attempted and what actually happened
+
+The product owner made the §91.4 configuration change and ran the §95 runbook against production.
+Steps `01` (boot gate: healthy, SHA `de655d2f…` unchanged, `/health/ready` 200) and `02`
+(eligibility: the authenticated principal was exactly `e9a25131-dfa4-40ce-90ff-8ab3d884d8ef` and
+governed classify returned **201**) both passed, 2/2 each. Step `03` failed at
+`inspection created — expected 201, got 400`, and `99-rollback.sh` later failed the same way. The
+owner then removed `GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST`. Production remained healthy on the expected
+SHA throughout.
+
+**Governed binding was never tested. Rollback was never tested.** Neither failed. Every line printed
+after the 400 — the `JSONDecodeError` tracebacks, the empty inspection id, the downstream 404, and
+both `expected …, got ` assertions — is one empty shell variable cascading.
+
+### 96.2 Root cause — `body_of()` deleted the body
+
+`runbook/lib-acceptance.sh` captured each response as `curl -w '\nHTTP %{http_code}\n'` and then
+took the body with `sed '$d' | sed '$d'`. A Nest JSON body carries **no trailing newline**, so the
+captured stream is exactly **two** lines. Deleting the last two deleted the body as well as the
+status line, and `body_of` returned the empty string for every response. `SITE_ID` was therefore
+never parsed, and `POST /inspections` was sent `{"siteId":"", …}`, which
+`CreateInspectionDto.@IsUUID()` rejects with
+`{"message":["siteId must be a UUID"],"error":"Bad Request","statusCode":400}`.
+
+Proven twice without a production write: the real `CreateInspectionDto` run through
+`class-validator` returns `INVALID → ["siteId must be a UUID"]` for `siteId: ""` and `VALID` for a
+real UUID; and the **unmodified original** scripts, run against a local disposable backend built
+from this same source, reproduced the identical failure signature. A second defect explains the
+earlier `KeyError: 'API'`: `API` was assigned but never exported while inline python read
+`os.environ["API"]`.
+
+**`PRODUCTION_INSPECTION_CREATE_REGRESSION = FALSE`.** The authoritative create contract at
+`de655d2f` is `siteId` (`@IsUUID`, required), `title` (`@IsString @MinLength(2) @MaxLength(200)`,
+required), `regulatoryContext` (optional, `@IsIn` of `osha-general-industry` / `osha-construction` /
+`msha` / `unknown`), `clientRequestId` (optional, `/^[A-Za-z0-9_.:-]{8,128}$/`), under a global
+`ValidationPipe` with `whitelist` + `forbidNonWhitelisted`. The runbook's payload shape was always
+correct; only its `siteId` value was empty.
+
+### 96.3 The repair — harness only
+
+No product or test source file was changed. `lib-acceptance.sh` now terminates responses with a
+unique sentinel and parses by that sentinel rather than by line count; every identifier passes
+through `capture_id`, which yields a value only on the exact expected status **and** a JSON object
+**and** a UUID-shaped field; any prerequisite failure prints the sanitized status and body and exits
+non-zero immediately, stating that nothing downstream was measured; a read-back must return 200
+before `knowledgeReleaseId` may be reported as `None`; an empty recorded-id file stops the script;
+`API` is exported; every printed body is passed through a bearer/JWT/`"token"` redactor; and
+`clientRequestId` is supplied on each create so a retried step does not accumulate production
+objects. `EXPECTED_RELEASE` remains `federal-core-2026-08-28.1`; no expected status, allowlist
+behaviour, negative control, provenance check or kill-switch assertion was weakened.
+
+### 96.4 The repaired harness was exercised end to end on a disposable stack
+
+Database `test_v1_runbook_repair_20260829` (50 migrations), backend on `127.0.0.1:4001`,
+`DEV_AUTH_BYPASS=false`, scripts sha256-identical to the repository copies. `99` passes 8/0 under
+LEGACY and fails 6/2 while governed mode is still on — a measurement, not a rubber stamp. `03`
+passes 8/0 under `GOVERNED_WITH_FALLBACK` + allowlist, binding once to `federal-core-2026-08-28.1`,
+and fails its two governed assertions truthfully under LEGACY. `04` 6/0, `05` (kill switch engaged)
+8/0, `06` (released) 9/0. `harness-selftest/run-selftest.sh` is a permanent offline, credential-free
+conformance test of the fail-closed contract: **15 passed, 0 failed**. The protected `safescope`
+database was 46 tables / 35 migrations / 1 user before and after; the disposable database was
+dropped.
+
+### 96.5 What is still unproven, stated plainly
+
+`GOVERNED_BINDING_PROVEN_IN_PRODUCTION = FALSE`. `PRODUCTION_KILL_SWITCH_AUTHORITY_PROVEN = FALSE`.
+`PRODUCTION_GOVERNED_ROLLBACK_CONFIRMED = FALSE` — **unverified, not failed.** No endpoint reports
+effective per-principal cutover posture without a session (`/standards/cutover`,
+`/admin/cutover-status`, `/health/cutover` are all 404; unauthenticated `/inspections` is 401), so
+the rolled-back state can only be proven by one authenticated request sequence as the acceptance
+identity, and no credential for it exists in this repository. It is one operator command away —
+`bash 99-rollback.sh`, Step G of the runbook README, which changes no Render configuration.
+
+The governance baseline still must not be frozen and Expert HazLenz is still not authorized. §95.7's
+reasoning is unchanged and is now stronger: the emergency stop has still never been exercised in
+production, and no production customer has ever taken the governed path.
+
+### 96.6 The lesson worth keeping
+
+A verification harness is an evidence surface. This one produced six confident-looking `[FAIL]`
+lines about governed binding and rollback while measuring nothing at all, and the first reading of
+the transcript pointed at the product. The repair is not the sentinel; it is that **a prerequisite
+failure now ends the run** rather than letting later assertions print numbers derived from an empty
+variable. Any future acceptance script in this programme is expected to fail closed the same way,
+and `harness-selftest/run-selftest.sh` exists so that property can be re-proven in seconds.
+
+---
+
+---
+
+## 97 — PRODUCTION ROLLBACK CONFIRMED; BOUNDED ACCEPTANCE RETRY AUTHORIZED AND STAGED (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `HAZLENZ_PRODUCTION_GOVERNED_ROLLBACK_CONFIRMED — BOUNDED_ACCEPTANCE_RETRY_AUTHORIZED_AND_PENDING_OPERATOR_EXECUTION`.**
+Evidence: `verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/STATUS.md`
+addendum B, `.../transcripts/42-rollback-repaired.txt`, `.../transcripts/50-pre-retry-gate.txt`,
+`.../runbook/README.md` Step H. Predecessor: §96.
+
+### 97.1 §96.5's open item is closed, and it closed a second one with it
+
+The product owner ran Step G. The repaired rollback verifier returned **8 passed, 0 failed** against
+production: SHA `de655d2f…` unchanged, `/health/ready` 200, the authenticated principal exactly
+`e9a25131-dfa4-40ce-90ff-8ab3d884d8ef`, site 201, **a fresh inspection created through the real
+current API — 201**, the governed-capable classify 201, `knowledgeReleaseId` `None`, and still `None`
+when a release id was named explicitly (HTTP 400 from the `ClassifyDto` whitelist).
+
+`PRODUCTION_GOVERNED_ROLLBACK_CONFIRMED = TRUE`, measured rather than inferred. And that `201` on the
+create line is the production counterpart of §96.2's local reproduction: **`PRODUCTION_INSPECTION_CREATE_REGRESSION
+= FALSE` is now carried by production evidence, not only by a fixture.** The run left one disposable
+production fixture on the owner's own account — inspection `80ec77e6-aca3-4a68-ac0f-b9f0e7b75b39`
+and its site.
+
+### 97.2 Authorization, and its boundary
+
+One bounded production governed-mode acceptance retry, using the repaired harness, to prove eight
+things: governed entry for the authorized account; bind-exactly-once to the active release;
+non-allowlisted identities stay legacy; the kill switch stops **new** binding; existing provenance
+survives the stop; removing the switch resumes binding; inspections created during the stop are not
+back-filled; and the protected floor is intact afterwards. Not authorized: universal or
+organization-wide rollout, Expert HazLenz, source changes absent a true regression, commit/push/deploy,
+Stripe mutation, payment, or entitlement escalation to defeat a Free-tier `402`.
+
+### 97.3 Pre-retry gate — green, and that is all it is
+
+`transcripts/50-pre-retry-gate.txt`. HEAD = `origin/main` = production = `de655d2f…`, ahead/behind
+0/0, 0 staged, 4 stashes and 24 tags untouched, the excluded `frontend-next/tsconfig.json` and KG
+source-evidence deletion untouched. Production `status ok` / `database up` / `nodeEnv production`,
+`/health/ready` **200**, unauthenticated `/inspections` **401**. All nine scripts parse; the frozen
+constants are correct; credential handling is intact with `ACCEPTANCE_TOKEN` echoed **0** times; the
+fail-closed conformance self-test is **15/0**.
+
+`federal-core-2026-08-28.1` is asserted from the control-plane record, **not** measured live — no
+endpoint exposes the active release or per-principal cutover posture without a session, and step `03`
+measuring it directly is the intended proof rather than a gap.
+
+Protected-floor provenance was checked rather than inherited. The pre-deployment baseline records
+`HEAD = 45251d38`, one commit before production, which is not a gap: it was measured on the working
+tree that held the kill-switch repair as 13 uncommitted tracked modifications, and that tree was
+subsequently committed as `de655d2f`. The measured floor corresponds to the deployed source.
+
+### 97.4 Why the retry was not executed here
+
+Both blockers were re-verified this session rather than carried forward from §95. **Render:** CLI
+v2.20.0 still has no `env` subcommand, and `render services --output json` returns a payload
+containing no environment variables at all — `GOVERNED_CUTOVER` occurrences: 0. The three bounded
+variables can be set only in the dashboard. **Credential:** every governed entry point is behind
+`JwtGuard`, and no credential for the acceptance identity exists in this repository; asking for one
+would put it in a transcript.
+
+### 97.5 What was staged for the owner
+
+`runbook/README.md` **Step H**: restore **only** `GOVERNED_CUTOVER_ACCOUNT_ALLOWLIST` (and all three
+together if the mode and acknowledgement are absent, because the boot guard throws on a saved
+intermediate state), then `01` → `02` → `03` → `04`, then add `GOVERNED_CUTOVER_KILL_SWITCH=engaged`
+and run `05`, then remove it and run `06`. Expected counts are named per step — 2/0, 2/0, 8/0, 6/0,
+8/0, 9/0 — along with the registration password policy that broke an earlier fixture run. The failure
+rule is uniform because the harness now fails closed: **if a script exits non-zero, stop**, clear the
+allowlist, run `99-rollback.sh`, report. For a failed kill-switch acceptance it says to clear the
+allowlist immediately rather than trust the switch that just failed.
+
+The intended posture on success is recorded there too: **keep the allowlist.** The result is a
+bounded production validation state, not a rollout.
+
+### 97.6 What remains false
+
+`GOVERNED_BINDING_PROVEN_IN_PRODUCTION = FALSE`. `PRODUCTION_KILL_SWITCH_AUTHORITY_PROVEN = FALSE`.
+`POST_CUTOVER_CUSTOMER_ACCEPTANCE = FALSE`. The governance baseline must not be frozen and Expert
+HazLenz is not authorized. A green pre-flight is not an acceptance, and the terminal cannot move to
+`…BOUNDED_ACCEPTANCE_COMPLETE` on the strength of one — it requires the six operator transcripts and
+the Phase 8 protected regression floor re-run afterwards.
+
+---
+
+---
+
+## 98 — BOUNDED PRODUCTION GOVERNED-MODE ACCEPTANCE COMPLETE; GOVERNANCE BASELINE FROZEN; EXPERT HAZLENZ AUTHORIZED (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `HAZLENZ_PRODUCTION_GOVERNED_MODE_BOUNDED_ACCEPTANCE_COMPLETE — GOVERNANCE_BASELINE_FROZEN_AND_EXPERT_HAZLENZ_ENHANCEMENT_AUTHORIZED`.**
+Evidence: `verification/insite-v1-post-acceptance-regression-2026-08-29/STATUS.md`,
+`.../transcripts/` (60+ transcripts), `.../measurements/actionable-postacceptance.json`,
+`verification/insite-v1-customer-governed-mode-cutover-2026-08-29/acceptance/transcripts/51-…`
+through `56-…` and that directory's addendum C. Predecessor: §97.
+
+### 98.1 The acceptance §97 staged was executed, and it passed
+
+The product owner restored the bounded configuration and ran Step H with the repaired harness.
+**35 passed, 0 failed** across six steps: boot gate 2/0, eligibility 2/0, bound governed acceptance
+8/0, non-allowlisted control 6/0, kill switch engaged 8/0, kill switch released 9/0.
+
+Five flags §97.6 recorded as FALSE are now TRUE, measured in production rather than inferred:
+
+```
+GOVERNED_BINDING_PROVEN_IN_PRODUCTION           = TRUE
+PRODUCTION_KILL_SWITCH_AUTHORITY_PROVEN         = TRUE
+PRODUCTION_NON_ALLOWLISTED_ISOLATION_PROVEN     = TRUE
+PRODUCTION_GOVERNED_NO_BACKFILL_PROVEN          = TRUE
+PRODUCTION_BOUND_PROVENANCE_IMMUTABILITY_PROVEN = TRUE
+```
+
+Active release proven through the real customer path: **`federal-core-2026-08-28.1`**. Production
+SHA unchanged throughout: **`de655d2f6e4c0ff7b0de17f9ccfbd3668138a936`**.
+
+**These prove the BOUNDED customer acceptance path only.** They are not universal-rollout proof, and
+nothing in this section describes, implies or authorizes a universal rollout. `GOVERNED_CUTOVER_ORG_ALLOWLIST`
+remains absent; the allowlist names exactly one account.
+
+### 98.2 The production objects, and what each one proves
+
+| object | identity | what it settles |
+|---|---|---|
+| acceptance identity | `e9a25131-dfa4-40ce-90ff-8ab3d884d8ef` | the only allowlisted principal |
+| governed acceptance inspection | `84f5b1cf-1e2b-4b6a-88f3-824e26754eff` | bound **exactly once** to `federal-core-2026-08-28.1`; a second governed request did not rebind; still bound after the full kill-switch cycle |
+| inspection created under the ENGAGED stop | `54d9d516-28bd-4ec8-826b-59b6619cddec` | `knowledgeReleaseId` NULL during the stop **and still NULL after release** — history is not back-filled |
+| rollback probe (from §97) | `80ec77e6-aca3-4a68-ac0f-b9f0e7b75b39` | unchanged |
+| non-allowlisted control | `153d53c0-cd4e-4755-a043-683ffb166090` | binds nothing; naming a release id forces nothing; cross-account read **404** |
+
+The control was Free, so classify answered **402**. That is recorded as the truthful outcome; no
+billing was altered to manufacture a cleaner control.
+
+### 98.3 The live kill switch, measured on the system it protects
+
+§92 repaired the emergency stop and §93 proved it against a running local server. §98 proves it in
+production: with the stop engaged, production stayed healthy on the expected SHA, the customer path
+still returned **201** (a brake, not an outage), **no new** governed binding occurred, and the
+already-bound inspection kept its release id. Releasing the stop restored new binding, left the
+inspection created during the stop unbound, and left the original binding unchanged.
+
+### 98.4 The post-acceptance protected floor, re-executed at this SHA
+
+Every gate below was executed in this session against disposable infrastructure. **No scorer,
+threshold, expected result or assertion was modified, and no protected guard was weakened.**
+
+| floor | result |
+|---|---|
+| HazLenz recognition / life-critical | **43/43 · 35/35** |
+| HazLenz actionable / life-critical actionable | **43/43 · 35/35**, `recognizedButNotActionable []` |
+| Population-A precision · forbidden emissions | **100.0 % · 0** |
+| dangerous omissions · life-critical omissions | **0 · 0** |
+| protected cutover floor | **837 / 0** |
+| `test:governed-kill-switch-authority` | **115 / 0** |
+| `reproduce:governed-kill-switch-defect` | **REPAIRED — 16 / 0** |
+| cutover family total | **1,640 / 0** |
+| governance suites (14) | reachability 514/514 · precedence 42/42 · finding authority 17/17 · finding integration 19/19 · binding 25/25 · approval contract 57/0 · immutability 8/8 · ownership exemption 7/7 · activation 43/43 · release-scoped workflow 35/35 · corpus matrix 60/60 · release provenance 27/27 · KG5B construction 102/102 · KG5B continuity 29/29 |
+| customer workflow | user-authored 47/0 · offline 23/0 · report replacement 16/0 · canonical workflow `passed:true` · persisted decomposition `passed:true` · actionable workflow 66 · report frontend contract 15/15 · KG4E exclusion 9/0 |
+| OPEN-4 frontend scripts | **4 / 4 pass** |
+| backend `tsc` · frontend `tsc` · `next build` | **clean · 0 errors · exit 0** |
+
+`measurements/actionable-postacceptance.json` is field-for-field identical on `corpus`,
+`recognition` and `actionable` to the §93 pre-deployment baseline.
+
+The 64 reviewer approvals were **replayed, not invented** — proved to bind 1:1 by exact record
+checksum to the preserved ledger before a single approval was sent, then replayed one record at a
+time (`approved=64  already_approved=0  failed=0`). Both release manifests reproduced their
+version-controlled pins exactly, with `legacyCorpusRowsRead = 0`.
+
+### 98.5 Two environment defects, and one improvement, each explained rather than absorbed
+
+Recorded because a bare "everything passed" would hide how three gates were made to pass.
+
+1. **Three of four OPEN-4 scripts first failed at `page.waitForURL: Timeout 30000ms`.** A browser
+   probe captured the real cause: `Access to fetch at 'http://localhost:4001/auth/login' from origin
+   'http://127.0.0.1:3104' has been blocked by CORS policy`. `backend/src/main.ts:57` builds its
+   non-production CORS allowlist from `FRONTEND_URL` / `CORS_ORIGIN` / `CORS_ORIGINS` plus a fixed
+   local set covering ports **3000/3001 only**; the OPEN-4 stack serves on **3104**, which must be
+   named in `CORS_ORIGINS`. Restarting the disposable backend with it set made all three pass. **No
+   script was modified and no assertion relaxed.** An earlier hypothesis — the baked-in
+   `NEXT_PUBLIC_DISABLE_AUTH=true` — was checked and **disproved**: `lib/auth.ts:86` also requires
+   `NODE_ENV !== 'production'`, and `next build` sets `NODE_ENV=production`, so that flag is
+   structurally inert in a production build.
+2. **Two harness mistakes made in this session.** `test:release-identity-ownership-exemption`
+   first reported 3 failures, all `precondition:` messages, because the runner overrode `SOURCE_DB`
+   with a governed clone carrying no legacy `standards_master`; the documented default read-only
+   corpus gives **7/7**. `test:approval-contract` refused with `Refusing to run against database
+   'safescope'` because `DATABASE_URL` was unset and `dotenv` supplied the protected development
+   database — **the guard working as designed**; pointed at its own self-provisioned work database it
+   gives **57/0**.
+3. **The frontend typecheck improved from 3 errors to 0, and no source change is responsible.** §93
+   recorded 3 errors, all inside `.next/` duplicate generated artifacts (`routes.d 3.ts`,
+   `cache-life.d 3.ts`) and 0 source errors. `.next/types/` was regenerated on 2026-08-28 21:53 and
+   those duplicates no longer exist (`find .next -name "* [0-9].ts"` → **0**).
+
+`frontend-next/tsconfig.json` was hashed before and after both the typecheck and the production
+build and is **byte-identical at `73990cd12c472ec2f0793da8d0d7fc359ec15b020d3833b748acbebb7b858535`**
+— the known contamination, untouched, and not rewritten by the build.
+
+### 98.6 GOVERNANCE BASELINE FROZEN
+
+```
+GOVERNANCE_BASELINE_FROZEN = TRUE
+```
+
+Twelve contracts are frozen as a protected baseline for the next enhancement phase: the approved
+governed corpus and release identity (`federal-core-2026-08-28.1`, manifest `680540d9…`); that
+release as the active pointer; 64 approved governed members; 8 rejected records unreachable (0/8
+reach approval against a 64/64 positive control, in three independent suites); write-once release
+binding; historical NULL never back-filled; allowlist authority with no request-scoped override;
+non-allowlisted legacy behaviour; canonical kill-switch authority; already-bound provenance
+preservation; the deterministic Level-1 recognition/actionability floor; and the finding-level
+authority / anti-citation-laundering contract.
+
+The next phase may add intelligence. It may **not** silently weaken any of these.
+
+### 98.7 EXPERT HAZLENZ AUTHORIZED — and not started
+
+```
+EXPERT_HAZLENZ_ENHANCEMENT_AUTHORIZED = TRUE
+EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN   = FALSE
+```
+
+The Expert architecture must remain **additive**; the deterministic Level-1 engine remains the
+protected safety authority and fallback. A future Expert phase must not silently remove Level-1
+hazards, weaken dangerous-hazard recall, downgrade authoritative governed standards, bypass
+approval/governance, rewrite inspection release provenance, or bypass kill-switch / cutover
+authority. **No provider call is authorized by this phase.** Provider/LLM calls by this operation: 0.
+
+### 98.8 Residual debt, carried forward unchanged
+
+1. **`test:kg5b-operator-cli` 64/65** — re-run this session, failing identically: `sources reports
+   the 35 governed candidate records :: 72`. The pin at `scripts/test-kg5b-operator-cli.ts:416`
+   is unmodified at HEAD; the governed source set has held 72 records since the 2026-08-28 source
+   acquisition. Classification unchanged (a stale expected result reflecting a genuinely changed
+   intended contract), **deliberately not repaired** — it is an assertion about governed corpus size
+   and belongs to whoever owns that contract. It is **not a regression**: identical to §93 at this
+   same SHA.
+2. **The unresolved-jurisdiction ranking behaviour** — preserved unchanged: unresolved
+   `["30 CFR 56.12016","29 CFR 1910.147"]`, pinned `["29 CFR 1910.147"]`. Deliberately not remediated.
+3. **`directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER`** — the bucket-is-not-public assertion is
+   unreachable under `STORAGE_PROVIDER=local_test`. A disposable-environment coverage gap, unchanged.
+4. **`LIVE_PAYMENT_PROOF = FALSE`** — untouched, still
+   `DEFERRED_UNTIL_FIRST_GENUINE_CUSTOMER_TRANSACTION`.
+
+### 98.9 The Render tooling boundary, re-verified rather than inherited
+
+Render CLI **v2.20.0** has no top-level `env` command; the only `render services update` flag
+matching "env" is `--runtime <enum>`; and `render services --output json` returns a payload for
+`safety-insite-backend` (`srv-d7kl74jeo5us73deaor0`) containing **0** occurrences of
+`GOVERNED_CUTOVER`. **The final bounded posture is therefore bound to the product-owner-executed
+acceptance transcripts, not to CLI introspection, which does not exist.** The engaged and released
+halves of the kill-switch cycle are each evidenced by a production transcript measuring the
+behaviour the variable produces — a stronger claim than reading the variable back.
+
+### 98.10 What this does not authorize
+
+No universal rollout, no organization allowlist, no Expert HazLenz implementation in this operation,
+no commit, push, tag or deploy, no Render change, no production database change, no pricing change,
+no Stripe or payment action, and no provider call. `autoDeploy=yes` with `autoDeployTrigger=commit`
+on `main` remains true, so **pushing to `origin/main` is itself a production deployment**.
+
+---
+
+## 99 — EXPERT HAZLENZ ARCHITECTURE AND EXECUTABLE CONTRACT FOUNDATION (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_CONTRACT_FOUNDATION_COMPLETE — REAL_PROVIDER_EVALUATION_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-contract-foundation-2026-08-29/STATUS.md`. Predecessor: §98.
+Provider/LLM calls by this operation: **0**. API cost: **$0.00**. Production untouched. Nothing
+committed, pushed, tagged or deployed.
+
+```
+EXPERT_HAZLENZ_IMPLEMENTATION_BEGUN = TRUE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE      = FALSE
+EXPERT_HAZLENZ_PROVIDER_VALIDATED   = FALSE
+```
+
+The third line is the one that matters. Nine source files and 379 passing assertions exist; no
+provider exists behind the interface, nothing on the customer path imports the module, and **schemas
+existing is not Expert HazLenz being implemented.**
+
+### 99.1 The protection matrix — §98.6's freeze, as data a test iterates
+
+`backend/src/safescope-v2/expert-hazlenz/expert-authority-matrix.ts` records **twelve behavioural
+authority surfaces** (hazard recognition, decomposition, dangerous/life-critical retention, condition
+state, negation/safe state, actionable classification, risk, jurisdiction, governed citation,
+knowledge-release provenance, corrective action/workflow, fail-closed/fallback). Each names its
+authority source, a runnable evidence pin, the frozen contracts it inherits, and exactly what Expert
+may do to it. **Every one of the twelve frozen governance contracts is claimed by at least one
+surface**, asserted rather than asserted-to.
+
+**No surface permits `SUPPRESS` or `MUTATE`, and every surface degrades to `SURFACE_UNCHANGED` when
+Expert is missing** — both checked across the whole matrix, so a future permissive row breaks a test
+instead of quietly widening authority. Four surfaces also withhold `ADD`: governed citation, release
+provenance, fail-closed and jurisdiction, where anything Expert could contribute would be a claim it
+is not allowed to make. An unknown surface permits nothing.
+
+### 99.2 The clarification carrier — removed as a possibility rather than repaired again
+
+The brief named `CLARIFICATION_CARRIER_COUPLED_TO_HAZARD_CANDIDATE`. **The repository evidence says
+that is not where the questions were being lost, and re-repairing it would have been a speculative
+fix.** L3-2i added a proposal-level carrier; L3-2j declared it in the shipped prompt, measured the
+full 24-scenario corpus and **put it back**, because every activating configuration cost
+high-consequence recall. L3 Run-2 then measured that on **13 of 13** clarification misses the model
+expressed no question *in either carrier*, and only 1 of 13 had zero candidates.
+
+So the Expert contract removes the coupling structurally instead: `decisionCriticalClarifications`
+is one of **four sibling collections** and **there is no candidate-owned clarification field**. A
+clarification cannot be coupled to a hazard because there is nothing to couple it to. All six
+required proofs pass, including the one that matters most — a malformed clarification **fails schema
+validation with a locatable issue and is absent from the output, while a good clarification beside it
+survives**. That is L3-2i's rule inherited verbatim: a superfluous question is dropped; it never
+destroys the analysis that carried it.
+
+### 99.3 The merge layer — three authorities, none flattened
+
+`DETERMINISTIC_AUTHORITY`, `GOVERNED_REGULATORY_AUTHORITY` and `EXPERT_ADVISORY` are three separately
+typed collections. **There is no combined `findings` array, and the suite asserts its absence.** The
+merge copies the two protected inputs verbatim and appends the advisory one; no branch reads an
+Expert value to decide a protected one, so removal is impossible by construction rather than
+forbidden by rule. Eleven invariants are then audited after the fact, and the suite tampers with
+merged objects to prove the auditor actually looks.
+
+Expert failure, timeout, malformed output, contradiction and omission are five things to the
+evaluation plan and **exactly one thing here**: for each, the protected halves of the merged result
+are **byte-identical** to a merge with no Expert layer. A `HIGH`-confidence Expert claim that a
+life-critical confined-space finding does not belong leaves that finding and all four of its required
+actions untouched. An unapproved record stays unapproved; a `NULL` `knowledgeReleaseId` stays `NULL`.
+
+### 99.4 Provider failure — fail open for availability, fail closed for authority
+
+Fourteen failure kinds, each exercised through the real runner and the real merge.
+`PROVIDER_NOT_CALLABLE` is a distinct member because the L3 readiness gate recorded exactly that,
+with credentials provisioned and a shim written. Also proved: a provider that **throws** is caught
+and classified (`runExpertAnalysis` does not throw, ever — an Expert outage must not become an
+inspection outage); an unqualified model identity is refused *before* the boundary; a rejected output
+is **not** retried; and a success followed by a failure yields a failure, because **no cache exists
+to substitute a stale answer from**.
+
+### 99.5 One protected guard was broken by this work, and the CODE was changed
+
+`test:l32i-clarification-carrier` F3 and `test:l32j-carrier-activation` D5 failed on the first run:
+the Expert contract had imported `EvidenceReference` and the condition-state vocabulary from the
+Level-3 tier, and both suites assert that nothing under `src/` outside that module references it,
+under the label `CURRENT_LEVEL1_ENGINE_REMAINS_CUSTOMER_AUTHORITATIVE`.
+
+**Neither guard was touched.** The Expert module was made self-contained, for two reasons that agree:
+the guard is a real quarantine, and the tier it quarantines **failed its sealed acceptance**
+(`MODEL_ACCEPTANCE_RESULT = ESTABLISHED_FAIL`, seven gates) — coupling a newly authorized additive
+layer to it would make Expert inherit both the quarantine and the fate.
+
+A third fact was learned by tripping it and is now recorded in the source: **that guard is a content
+grep, not an import-graph check.** It matches the directory name anywhere in a file, so a prose
+mention in a comment breaks it exactly as an import does. Two references — one comment, one path
+string — were rewritten to describe the tier without naming it. The duplicated vocabularies are
+deliberate and asserted equal by reading the Level-3 file **as data** from a runtime-assembled path;
+reading is not depending. Both suites are green at **61/0** and **37/0**, one assertion higher than
+before because the containment check now also runs from the Expert side.
+
+### 99.6 Verification actually executed
+
+Backend `tsc --noEmit`: **exit 0**. No frontend source touched; `frontend-next/tsconfig.json` hashed
+before and after and **byte-identical at `73990cd1…`** — the known contamination, untouched.
+
+| suite | result |
+|---|---|
+| `test:expert-contract-foundation` · `test:expert-authority-merge` | **56 / 0** · **51 / 0** |
+| `test:expert-provider-failure` · `test:expert-nocall-harness` | **131 / 0** · **141 / 0** |
+| **new Expert total** | **379 / 0** |
+| HazLenz recall · actionable coverage | **PASS** (17 checks) · **PASS** (17 checks) |
+| HazLenz precision | **100.0 %**, forbidden **0**, secondary recall **100.0 % (43/43)**, dangerous omissions **0**, life-critical omissions **0** |
+| `hazlenz-core` · `standards-jurisdiction` · `source-authority` · `evidence-boundary` | all **exit 0** |
+| L3 family (`l31`, `l32`, `l32b`–`l32j`, condition-state) | 49 · 191 · 105 · 86 · 71 · 82 · 77 · 57 · **61** · **37** · 155, all **0 failed** |
+| `kg4a-cutover-contract` · `kg4a-default-off` · `kg4d-default-off` | all **exit 0** |
+
+The precision measurements are field-for-field identical to the §98.4 baseline at this same SHA.
+
+**Two suites were NOT executed, and are recorded as such rather than as passes.**
+`test:hazlenz-clarification-gauntlet` and `test:kg4b-default-off` both fail at `ECONNREFUSED` before
+any behavioural assertion — they require a running backend and database that this operation did not
+provision. They are **not evidence of regression**, and the confinement proof is exact: the only
+tracked file this operation modified is `backend/package.json` (**+4 script lines**), and
+`grep -rl expert-hazlenz` over `backend/src`, `backend/scripts` and `frontend-next` returns **only the
+four new test scripts**. No file on the HTTP customer path was touched. `test:kg4b-default-off`
+additionally passed its own containment phase — "cutover configuration is read ONLY inside
+`standards/cutover/`" — before reaching the connection failure.
+
+### 99.7 The first provider evaluation — pre-registered and NOT run
+
+`expert-evaluation-plan.ts` records **seventeen measures across four independent families** (`SAFETY`,
+`REGULATORY_INTEGRITY`, `REASONING_QUALITY`, `RELIABILITY`). `evaluateGateFamilies()` returns four
+verdicts and **has no aggregate field**, so a safety failure cannot be averaged away by good prose.
+An unmeasured hard gate **fails**; it is not skipped. Zero-tolerance gates: contradiction with
+protected authority `0`, fabricated citations `0`, governed provenance integrity `0`, life-critical
+retention `100 %`.
+
+**The G9 lesson is carried forward explicitly.** Run-2 pre-registered a hard 100 % cross-process
+reproducibility gate and then measured, from 400 responses, that `temperature` was not forwardable
+and `seed` had no equivalent — the gate was unreachable by construction, and learning that burned a
+single-use holdout. `M17_CROSS_PROCESS_REPRODUCIBILITY` is therefore pre-registered as
+`MEASURED_AND_REPORTED`, and precondition `P2_DETERMINISM_CONTROL` establishes by cheap probe, before
+any corpus is opened, whether a determinism control exists at all. Promoting it to a hard gate later
+is a governance act with its own authorization.
+
+Corpus policy: the Run-1 and Run-2 sealed holdouts and the retired gauntlet/realism offsets are
+**CLOSED**; gauntlet offsets 2–3, realism offsets 1–2 and the unopened 100-row `gauntlet.seed` are
+**reserved**, each a different exam opened once.
+
+### 99.8 Residual debt
+
+The four debts of §98.8 are carried forward **unchanged and unrepaired** — `test:kg5b-operator-cli`
+64/65 (not re-run by this operation; the pin is unmodified at HEAD), the unresolved-jurisdiction
+ranking behaviour, `directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER`, and
+`LIVE_PAYMENT_PROOF = FALSE`.
+
+Two new items, introduced by this phase and stated rather than hidden:
+
+5. **The Expert contract has no prompt and no schema serialization.** A provider adapter must
+   translate it into whatever structured-output form its transport requires, and that translation is
+   unwritten — deliberately, because a prompt written before a provider is selected is a prompt
+   written for a guess.
+6. **`M01_ADDITIVE_HAZARD_RECALL` and `M11_CROSS_HAZARD_REASONING` are reported, not gated.** Both
+   are new capabilities with no baseline, and a floor guessed before any measurement is a floor that
+   gets quietly lowered later.
+
+### 99.9 What this does not authorize
+
+No provider call, no API spend, no provider selection, no customer-path integration, no UI surface,
+no universal rollout, no organization allowlist, no Render change, no production database change, no
+Stripe or payment action, and no commit, push, tag or deploy. `autoDeploy=yes` with
+`autoDeployTrigger=commit` on `main` remains true, so **pushing to `origin/main` is itself a
+production deployment** and preserving this work in git is a separate decision.
+
+**Next operation: provider selection and a priced transport probe** — authorization required, and it
+is a spend decision. Not a corpus run. The probe establishes `P1_TRANSPORT_PROBE`,
+`P2_DETERMINISM_CONTROL` and `P3_MODEL_IDENTITY` on non-corpus fixtures at a stated call count and
+ceiling. Only after that does the choice of a first evaluation cohort become answerable, and opening
+one needs `P4_PRESPEND_AUTHORIZATION`.
+
+---
+
+## 100 — EXPERT HAZLENZ PROVIDER TRANSPORT PROBE (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_PROVIDER_TRANSPORT_PROBE_INCONCLUSIVE — NO_EVALUATION_SPEND_AUTHORIZED`.**
+Evidence: `verification/expert-hazlenz-provider-transport-probe-2026-08-29/STATUS.md`. Predecessor: §99.
+Provider calls: **6**, all local. API cost: **$0.00**. Production untouched. Nothing committed,
+pushed, tagged or deployed.
+
+```
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+EXPERT_PROVIDER_SELECTED          = FALSE
+EXPERT_EVALUATION_EXECUTED        = FALSE
+```
+
+**All fourteen hard transport gates passed. The verdict is still INCONCLUSIVE, and the two are not
+in tension**: the gates bind the ADAPTER AND THE BOUNDARY, which work. They do not bind the provider
+question, which §100.4 and §100.5 leave open for two independent reasons.
+
+### 100.1 The provider was forced by measurement
+
+No hosted credential is resolvable on this machine: `ANTHROPIC_API_KEY` **absent**, Gemini/Google
+**absent**, and `OPENAI_API_KEY` present but an **11-character `sk-` stub**. Presence and length only
+— no value was printed, logged, hashed or persisted.
+
+This is the position `D-92` recorded for the L3 programme and the resolution is the one
+`ollama-reasoning-provider.ts` already documents: probe the locally hosted model
+(**`qwen3-coder:30b`** on loopback, no egress, `$0.00`) and report the hosted question as OPEN.
+**It is not a production provider recommendation.**
+
+### 100.2 The adapter is outside the core, because a guard put it there
+
+`test:expert-nocall-harness` section D fails on any network primitive, endpoint, credential or
+vendor name in `expert-hazlenz/`. The adapter needs four of those five, so it lives in
+`expert-hazlenz-adapters/`. **A guard written in §99, before this adapter existed, is what decided
+the architecture** — the boundary is enforced by a test rather than by a convention. The core still
+scans clean at 10 files.
+
+`analyze()` returns raw `unknown`, so an adapter cannot assert that validation happened.
+
+**The quote binder.** A model cannot reliably produce character offsets — L3 measured that with an
+`EVIDENCE_OUT_OF_BOUNDS` that took three gates down on one row. So the model is asked for the exact
+quote and the adapter resolves the span. A quote that IS present binds and is then re-checked by the
+core validator; a quote that is NOT binds to `[-1,-1)` and is rejected. **The unbindable quote is
+never dropped**, because dropping it would hide a fabrication behind a cleaner-looking result.
+
+### 100.3 Six calls, and what they measured
+
+**6 attempted, 6 completed, ceiling 12, no early stop, 0 HTTP failures, 0 normalization rejections,
+0 merge-invariant violations.** 4,190 prompt / 2,347 output tokens, p50 **7,510 ms**, max
+**10,175 ms**, **$0.00**. On all six, the deterministic and governed halves of the merged result were
+**byte-identical** to a merge with no Expert layer.
+
+All fourteen gates PASSED. Two deserve naming:
+
+- **G06 — a decision-critical clarification with ZERO hazard candidates, live, twice.** A real model
+  given a genuinely underdetermined observation returned an empty hazard list and a populated
+  question list, and that question survived the adapter, the boundary and the merge. The case the
+  whole carrier architecture was built for now has live evidence, not only a fixture.
+- **G13 passed VACUOUSLY and is labelled so.** No malformed output occurred in six calls; the gate is
+  conditional and its condition did not arise. The behaviour stays proved deterministically.
+
+**Cheap repeatability**: identical collection counts and identical token counts across two identical
+requests at `temperature=0, seed=20260829`. Both parameters **are** forwardable here — precisely what
+was not true of the hosted provider that made L3's G9 unreachable. Recorded as a property of THIS
+transport, not as a general fact.
+
+### 100.4 The finding that decides the verdict — and it is OUR defect
+
+Five of six responses returned empty typed collections. The counts alone read as a weak model.
+**One diagnostic call proved that reading wrong.**
+
+Given the electrical-cord-in-standing-water observation the model returned `NOTHING_TO_ADD` with
+empty collections — and an explanation containing the electrical/wet interaction, four genuinely
+decision-critical missing facts (was it de-energized, was LOTO followed, was PPE worn, was the pump
+isolated), and a plausible additional confined-space hazard.
+
+**The reasoning was there. It landed in the wrong collections.** Decision-critical facts went to
+`expertExplanation.whatIsMissing` and `uncertainty.statements` instead of
+`decisionCriticalClarifications`; the interaction went to `howConditionsInteract` instead of
+`crossHazardInsights`; the extra hazard went to `whatMatters` instead of `expertHazardCandidates`.
+
+This is a **prompt/schema design defect** — the free-text sinks are easier than the typed
+collections and are starving them. It is the same class of failure the L3 programme kept hitting:
+the reasoning exists and the representation loses it. **Consequence: running the seventeen-measure
+evaluation now would score `M09` and `M11` near zero and attribute our prompt defect to the
+provider, burning a reserved single-use cohort to measure our own bug.**
+
+### 100.5 The second, independent reason
+
+Every gate was measured against a local stand-in. **No hosted provider's transport was measured at
+all.** If the evaluation is meant for a hosted model — and a local 30B is not a customer-facing
+Expert layer — its transport readiness is unmeasured, and a PASS here would tee up spend on evidence
+from a different provider.
+
+### 100.6 Why INCONCLUSIVE rather than PASSED or FAILED
+
+**Not FAILED** — nothing failed; fourteen of fourteen gates hold. **Not PASSED** — a PASS carries
+`BOUNDED_PROVIDER_EVALUATION_AUTHORIZATION_REQUIRED`, and asking for that would be asking the owner
+to fund a measurement a known prompt defect would corrupt, on a provider that is not the candidate.
+
+### 100.7 Protected regression, executed
+
+`test:expert-contract-foundation` **56/0** · `test:expert-authority-merge` **51/0** ·
+`test:expert-provider-failure` **131/0** · `test:expert-nocall-harness` **141/0** (core still 10
+files, 0 network primitives, 0 vendor names) · `test:l32i-clarification-carrier` **61/0** ·
+`test:l32j-carrier-activation` **37/0** (Level-3 quarantine intact) · `test:kg4a-cutover-contract`
+and `test:kg4a-default-off` exit 0 · backend `tsc --noEmit` **exit 0**.
+
+A full production regression was not required and was not run. **Confinement is proved by dependency
+inspection**: `grep -rl expert-hazlenz` over `backend/src`, `backend/scripts` and `frontend-next`
+returns exactly eight files — the adapter, one core file and six scripts. **No controller, service or
+module references it.** The only tracked production file modified across §99 and §100 remains
+`backend/package.json`.
+
+### 100.8 Residual debt
+
+§99.8's four inherited debts are unchanged. **Item 5 of §99.8 is CLOSED** — the Expert contract now
+has a prompt and a structured-output schema. New:
+
+1. **`EXPERT_PROMPT_COLLECTION_ROUTING_DEFECT`** — free-text explanation fields absorb content
+   belonging in the typed collections. Measured on 6 of 6 calls; root cause established. Deterministic
+   and free to iterate on.
+2. **Hosted-provider transport is unmeasured** and needs a credential the owner would provision, plus
+   its own spend decision.
+3. **G13 passed vacuously** — live malformed-output behaviour remains unobserved.
+
+### 100.9 Exact next operation
+
+**Repair the collection-routing defect and re-run the probe locally at `$0.00`.** The probe exists,
+the gates are written, and the loop is free — so the prompt can be iterated until the typed
+collections carry what the model already demonstrably reasons, BEFORE any credential is provisioned
+or any spend authorized. Only then is a hosted transport probe worth its credential, and only after
+that is the seventeen-measure evaluation worth a reserved cohort.
+
+No provider selection, no customer activation, no evaluation corpus, no Render change, no production
+access, no Stripe action, and no commit, push, tag or deploy. `autoDeploy=yes` on `main` means
+preserving this work in git remains a separate decision.
+
+---
+
+## 101 — EXPERT HAZLENZ TYPED COLLECTION ROUTING REPAIR (2026-08-29) `VERIFIED_AT_CHECKPOINT` / `MUST_REVERIFY`
+
+**Terminal: `EXPERT_HAZLENZ_TYPED_ROUTING_REPAIRED — HOSTED_PROVIDER_TRANSPORT_PROBE_AUTHORIZATION_REQUIRED`.**
+Evidence: `verification/expert-hazlenz-typed-routing-repair-2026-08-29/STATUS.md`. Predecessor: §100.
+Provider calls: **14**, all local, across **two attempts**. API cost: **$0.00**. Hosted calls: **0**.
+Production untouched. Nothing committed, pushed, tagged or deployed.
+
+```
+EXPERT_HAZLENZ_PROVIDER_VALIDATED = FALSE
+EXPERT_HAZLENZ_CUSTOMER_ACTIVE    = FALSE
+EXPERT_PROVIDER_SELECTED          = FALSE
+EXPERT_EVALUATION_EXECUTED        = FALSE
+```
+
+### 101.1 The defect had a structural cause: every semantic had TWO homes
+
+§100 measured a model that reasoned correctly and filed all of it in free text. The cause was in the
+schema, not the model: `expertExplanation.whatIsMissing` was a twin of `decisionCriticalClarifications`,
+`howConditionsInteract` a twin of `crossHazardInsights`, `whatMatters` a twin of
+`expertHazardCandidates`. **A model asked to fill both fills the easier one.**
+
+So the twins were deleted rather than discouraged — an instruction competes with a field, an absent
+field does not. `expertExplanation` is now `{ summary }` alone, and the contract moved to
+`hazlenz.expert.analysis.v2` because that removal is subtractive. A provider still sending the v1
+fields has them **dropped at the boundary**.
+
+### 101.2 The first attempt FAILED, and it is recorded rather than absorbed
+
+Prompt v2 — routing semantics, an ordered classification procedure, the no-loss rule, strengthened
+schema descriptions, twins removed — **failed 8 of 14 gates**. `TYPED_ROUTING_HITS 10/16`,
+`MISSES 6`, `EXPLANATION_ONLY_LOSSES 3`. Output collapsed to ~120 tokens on three fixtures.
+
+Two measurements made the cause findable rather than guessable: **`expertHazardCandidates` was empty
+on 13 of 13 live calls** while clarifications and insights had begun to populate, and **`quotes = 0/0`
+on every one of those calls** — the model had never produced a single evidence quote.
+`expertHazardCandidates` is the only collection whose schema listed `evidence` as **required**, and
+the prompt warned an unfound quote gets the candidate rejected. **The gate on the collection was a
+quote the model could not produce, so it proposed nothing.**
+
+### 101.3 The second attempt changed what is ASKED FOR, not what is ACCEPTED
+
+`evidence` was removed from the candidate `required` list — empty evidence has been contract-legal
+since §99 ("legal, and scores as ungrounded"); only the wire schema demanded it. The prompt now says
+a quote is optional and *an unquoted candidate is worth far more than a silent one*, and
+`NOTHING_TO_ADD` was narrowed to genuinely controlled observations with an explicit self-check.
+
+**The validator did not move.** A supplied quote is still checked by exact equality, a fabricated one
+still rejected, and the unbindable-quote path is still proved fail-closed. This is not loosening a
+validator until malformed output passes.
+
+### 101.4 Result — clean, including the controls that could have caught an over-correction
+
+```
+TYPED_ROUTING_OPPORTUNITIES  16      EXPLANATION_ONLY_LOSSES  0
+TYPED_ROUTING_HITS           16      TYPED_ROUTING_MISSES     0
+TYPED_ROUTING_OVER_ROUTED     0
+```
+
+Candidates 4/4, clarifications 6/6, insights 4/4, disagreements 2/2. **All fourteen routing gates
+passed.**
+
+**The negative controls are the part worth trusting.** R6 (a fully described, fully controlled
+lockout) and R7 (an inspected ladder carrying only unfalsifiable residual ambiguity) each returned
+**every collection empty** at ~110 output tokens. The repair taught the model where things go, not
+to fill lists — a repair that moved the metric by making the model chattier would have surfaced here
+as over-routing, and none appeared.
+
+### 101.5 The instrument was validated before it was used
+
+`test:expert-routing-contract` (**57 / 0**) proves the metric first, because a routing measure that
+cannot tell a correct silence from a miss would score R6/R7 as failures. It asserts all four verdicts
+(`CORRECT_EMPTY` / `INCORRECT_EMPTY` / `CORRECT_POPULATED` / `INCORRECT_POPULATED`), that `OPTIONAL`
+casts no vote, that the §100 defect shape replays to exactly two losses, that **the same concepts
+typed correctly produce zero losses even when the summary repeats them**, and that a concept the
+model never raised is not a loss — so the metric measures routing and never reasoning.
+
+### 101.6 A false gate failure, fixed as an instrument rather than as a result
+
+`G14` first reported FAIL. Its check grepped the adapter directory for `ANTHROPIC_API_KEY` /
+`OPENAI_API_KEY` and matched the adapter's own header **comment explaining that those credentials are
+absent** — it read a sentence documenting an absence as a presence. **This is the third content-grep-
+matches-prose incident in this programme** (§99.5 the Level-3 quarantine, §100 the evaluation corpus
+path, now this). The gate now strips comments before matching, as the Expert core-purity guard
+already did.
+
+### 101.7 Protected regression, executed
+
+Expert suites **56 / 51 / 131 / 141 / 57**, all 0 failed. Level-3 quarantine intact at **61 / 0** and
+**37 / 0**. `kg4a-cutover-contract`, `kg4a-default-off`, `kg4d-default-off` exit 0. HazLenz recall and
+actionable coverage exit 0; precision **100.0 %**, forbidden **0**, omissions **0**. Backend `tsc`
+**exit 0**.
+
+One suite needed its own repair: `test:expert-contract-foundation` C.5 used the literal
+`hazlenz.expert.analysis.v2` as its *wrong* version, so bumping the contract TO v2 silently stopped
+it testing anything. It now derives the invalid version from the current constant.
+
+Confinement unchanged: nothing under `backend/src` outside the Expert module and its adapter
+directory references either, and the only tracked production file modified across §§99–101 remains
+`backend/package.json`.
+
+### 101.8 What a routing pass does NOT mean
+
+Not provider-validated, not production-selected, not reasoning-validated, not evaluation-authorized,
+not customer activation. Sixteen routing opportunities on seven synthetic fixtures is a bounded
+probe; **no global production-quality precision target is claimed from it.**
+
+### 101.9 Residual debt
+
+**Closed:** `EXPERT_PROMPT_COLLECTION_ROUTING_DEFECT` (§100.8 item 1).
+
+**Carried forward unchanged:** `test:kg5b-operator-cli` 64/65, the unresolved-jurisdiction ranking,
+`directObjectStatus: NOT_VERIFIED_LOCAL_TEST_PROVIDER`, `LIVE_PAYMENT_PROOF = FALSE`, hosted-provider
+transport unmeasured, live malformed-output behaviour unobserved.
+
+**New:**
+
+1. **`quotes = 0/0` on all 14 calls.** The repair unblocked candidates by making the quote optional;
+   it did not make the model able to quote. Every Expert candidate so far is **ungrounded**, which
+   `M07_GOVERNED_RECORD_GROUNDING` will measure and which a hosted model may do differently.
+2. **Routing is measured on one local model only.** Nothing here transfers to a hosted provider.
+
+### 101.10 Exact next operation
+
+**A hosted transport probe — justified for the first time.** The architecture is now proven end to
+end against a real model: adapter, boundary, merge, routing and negative controls all hold, and the
+repair loop cost `$0.00`. What remains unmeasured is whether a hosted provider can be called at all,
+which needs a credential the owner would provision and its own spend decision. `probe:expert-transport`
+and `probe:expert-routing` would both run against a hosted adapter unchanged. Only after that is the
+seventeen-measure evaluation worth a reserved cohort.
+
+No provider selection, no customer activation, no evaluation corpus, no Render change, no production
+access, no Stripe action, and no commit, push, tag or deploy.
+
 
 ---
 

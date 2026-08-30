@@ -1,0 +1,77 @@
+EXPERT HAZLENZ — LOCAL TYPED-ROUTING RE-PROBE
+provider   local-ollama   model qwen3-coder:30b
+contract   hazlenz.expert.analysis.v2   prompt hazlenz.expert.prompt.v2
+ceiling    12 calls   cost $0.00
+
+  R1  ZERO-CANDIDATE CLARIFICATION
+        PRESENT http=200 4750ms tok=1179/108 quotes=0/0
+        cand=0 clar=0 ins=0 dis=0 unc=0   hits=0 misses=1 over=0 losses=0
+  R2  WET + ELECTRICAL
+        PRESENT http=200 2176ms tok=1216/138 quotes=0/0
+        cand=0 clar=0 ins=0 dis=0 unc=0   hits=0 misses=2 over=0 losses=2
+        LOSS  "water + electrical interaction" -> crossHazardInsights (found in summary)
+        LOSS  "de-energization / isolation unknown" -> decisionCriticalClarifications (found in summary)
+  R3  LOTO / STORED ENERGY
+        PRESENT http=200 1932ms tok=1203/121 quotes=0/0
+        cand=0 clar=0 ins=0 dis=0 unc=0   hits=0 misses=1 over=0 losses=0
+  R4  EXTRA PLAUSIBLE HAZARD
+        PRESENT http=200 7944ms tok=1212/540 quotes=0/0
+        cand=0 clar=3 ins=0 dis=0 unc=0   hits=0 misses=1 over=0 losses=0
+  R5  MULTI-COLLECTION
+        PRESENT http=200 7757ms tok=1213/522 quotes=0/0
+        cand=0 clar=2 ins=1 dis=0 unc=2   hits=2 misses=1 over=0 losses=1
+        LOSS  "battery / hydrogen / chemical hazard" -> expertHazardCandidates (found in both)
+  R6  EXPLANATION-ONLY NEGATIVE CONTROL
+        PRESENT http=200 1792ms tok=1204/111 quotes=0/0
+        cand=0 clar=0 ins=0 dis=0 unc=0   hits=4 misses=0 over=0 losses=0
+  R7  UNCERTAINTY NEGATIVE CONTROL
+        PRESENT http=200 1745ms tok=1200/108 quotes=0/0
+        cand=0 clar=0 ins=0 dis=0 unc=0   hits=4 misses=0 over=0 losses=0
+
+== ROUTING METRICS ==
+
+  TYPED_ROUTING_OPPORTUNITIES  16
+  TYPED_ROUTING_HITS           10
+  TYPED_ROUTING_MISSES         6
+  TYPED_ROUTING_OVER_ROUTED    0
+  EXPLANATION_ONLY_LOSSES      3
+
+  expertHazardCandidates           opp=4 hit=2 miss=2 over=0
+  decisionCriticalClarifications   opp=6 hit=3 miss=3 over=0
+  crossHazardInsights              opp=4 hit=3 miss=1 over=0
+  disagreements                    opp=2 hit=2 miss=0 over=0
+
+== ROUTING PASS GATES ==
+
+  PASS  G01  transport remains callable
+              7/7 HTTP 200
+  PASS  G02  schema validity remains intact
+              7/7 PRESENT
+  FAIL  G03  zero-candidate clarification still survives
+              R1 clar=0 cand=0
+  FAIL  G04  wet/electrical interaction lands in crossHazardInsights
+              R2 insights=0
+  FAIL  G05  decision-changing missing facts land in decisionCriticalClarifications
+              R3 clar=0, R2 clar=0
+  FAIL  G06  extra plausible hazards land in expertHazardCandidates
+              R4 candidates=0
+  FAIL  G07  multi-collection cases populate independently
+              R5 cand=0 clar=2 ins=1
+  FAIL  G08  explanation is not the sole carrier (EXPLANATION_ONLY_LOSSES = 0)
+              3 loss(es)
+  FAIL  G09  uncertainty is not a catch-all carrier
+              1 concept(s) found only in uncertainty
+  PASS  G10  negative controls do not cause indiscriminate typed emissions
+              R6 over=0 (c0/q0/i0/d0)  R7 over=0 (c0/q0/i0/d0)
+  PASS  G11  quote binding remains fail-closed
+              no unbindable quote arose live — proved deterministically in test:expert-routing-contract D.4-D.7
+  PASS  G12  protected deterministic/governed halves byte-identical through merge
+              7/7 identical, 0 violations
+  PASS  G13  no Level-3 quarantine / content guard regresses
+              no file under src/ outside the Level-3 module references it; Expert core stays vendor-free
+  FAIL  G14  no hosted provider call occurred
+              the only adapter is local-ollama on loopback; no hosted client or credential exists in the tree
+
+calls 7/12   cost $0.00   evidence /Users/mckinley/Desktop/Safety_InSite/verification/expert-hazlenz-typed-routing-repair-2026-08-29
+
+8 ROUTING GATE(S) FAILED

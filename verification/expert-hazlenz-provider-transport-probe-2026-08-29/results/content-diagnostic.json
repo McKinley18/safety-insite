@@ -1,0 +1,52 @@
+{
+  "layerStatus": "PRESENT",
+  "issues": [],
+  "telemetry": {
+    "latencyMs": 5466,
+    "promptTokens": 693,
+    "outputTokens": 373,
+    "respondedModel": "qwen3-coder:30b",
+    "binding": {
+      "total": 0,
+      "bound": 0,
+      "unbindable": 0
+    },
+    "httpStatus": 200,
+    "failureKind": null,
+    "doneReason": "stop"
+  },
+  "analysis": {
+    "contractVersion": "hazlenz.expert.analysis.v1",
+    "analysisId": "diag-1",
+    "outcome": "NOTHING_TO_ADD",
+    "expertHazardCandidates": [],
+    "decisionCriticalClarifications": [],
+    "crossHazardInsights": [],
+    "disagreements": [],
+    "expertExplanation": {
+      "summary": "The deterministic finding correctly identifies the electrical hazard from the extension cord in standing water. No additional hazards were identified that would change the decision or require further action beyond de-energizing and removing the cord.",
+      "whatMatters": [
+        "The extension cord running through standing water creates an immediate electrical hazard",
+        "Worker exposure to live electrical equipment while working in wet conditions",
+        "The sump pump housing is a confined space with potential for entrapment or asphyxiation"
+      ],
+      "whatIsMissing": [
+        "No information about whether the worker was properly de-energized before reaching into the pump housing",
+        "No information about whether lockout/tagout procedures were followed",
+        "No information about whether the worker had proper PPE for wet conditions",
+        "No information about whether the sump pump was properly isolated from power"
+      ],
+      "howConditionsInteract": [
+        "The combination of standing water and electrical equipment creates a high-risk environment",
+        "Worker reaching into the pump housing while electrical equipment is energized in wet conditions increases risk of electrocution"
+      ]
+    },
+    "uncertainty": {
+      "statements": [
+        "The observation does not establish whether the worker was properly de-energized before working on the pump",
+        "The observation does not establish whether proper lockout/tagout procedures were followed",
+        "The observation does not establish whether the worker had appropriate PPE for wet conditions"
+      ]
+    }
+  }
+}
